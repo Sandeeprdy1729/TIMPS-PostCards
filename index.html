@@ -328,18 +328,17 @@
 
   /* Post cards */
   .post-list {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
   }
 
   .post-card {
     display: flex;
-    gap: 0;
+    flex-direction: column;
     border: 2.5px solid var(--forest);
     border-radius: 14px;
     overflow: hidden;
-    background: var(--card-bg);
     transition: transform .15s, box-shadow .15s;
     cursor: pointer;
     color: var(--forest);
@@ -349,36 +348,40 @@
     box-shadow: 6px 6px 0 var(--forest);
   }
 
-  /* Thumb strip on the left */
+  /* Unique pastel background per card */
+  .post-card:nth-child(1)  { background: #DCF07A; } /* lime   – latest */
+  .post-card:nth-child(2)  { background: #C8E4F8; } /* sky blue */
+  .post-card:nth-child(3)  { background: #F8D4E8; } /* blush pink */
+  .post-card:nth-child(4)  { background: #D4EDD8; } /* sage green */
+  .post-card:nth-child(5)  { background: #F8ECD4; } /* warm apricot */
+  .post-card:nth-child(6)  { background: #DED4F8; } /* soft lavender */
+  .post-card:nth-child(7)  { background: #D4F8EC; } /* cool mint */
+  .post-card:nth-child(8)  { background: #F8E0C8; } /* peach */
+  .post-card:nth-child(9)  { background: #E8F8D4; } /* pale lime */
+
+  /* Top banner strip */
   .post-thumb {
-    width: 120px;
+    width: 100%;
+    height: 88px;
     flex-shrink: 0;
     background: var(--forest);
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 16px;
-    border-right: 2.5px solid var(--forest);
+    border-bottom: 2.5px solid var(--forest);
   }
-  .post-thumb svg { width: 42px; height: 42px; opacity: .9; }
+  .post-thumb svg { width: 36px; height: 36px; opacity: .85; }
 
-  /* Different accent colors for card thumb strips */
-  .post-card:nth-child(3n+2) .post-thumb { background: #2A4A32; }
-  .post-card:nth-child(3n+3) .post-thumb { background: #354030; }
-
-  /* latest: lime thumb */
-  .post-card.latest .post-thumb {
-    background: var(--lime);
-    border-right-color: var(--forest);
-  }
-  .post-card.latest .post-thumb svg { color: var(--forest); opacity: 1; }
+  /* latest: lime top strip */
+  .post-card.latest .post-thumb { background: var(--forest); }
+  .post-card.latest .post-thumb svg { opacity: 1; }
 
   .post-content {
-    padding: 20px 24px 20px;
+    padding: 20px 20px 18px;
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center;
   }
   .post-meta-row {
     display: flex;
@@ -587,8 +590,9 @@
     .subscribe { padding: 72px 24px; }
     .footer { padding: 36px 24px; flex-direction: column; align-items: flex-start; }
     .footer-right { text-align: left; }
-    .post-thumb { width: 80px; }
-    .post-thumb svg { width: 30px; height: 30px; }
+    .post-list { grid-template-columns: 1fr; }
+    .post-thumb { height: 70px; }
+    .post-thumb svg { width: 28px; height: 28px; }
   }
   @media (max-width: 480px) {
     .nav-logo span { display: none; }
