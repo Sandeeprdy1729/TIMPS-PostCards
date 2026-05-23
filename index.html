@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The TIMPS PostCards — Newsletter Archive</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #D9D0BE;
+    font-family: 'EB Garamond', Georgia, serif;
+    color: #111;
+    min-height: 100vh;
+  }
+
+  /* ── PAGE WRAPPER ── */
+  .page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 24px 20px 60px;
+  }
+
+  /* ── MASTHEAD ── */
+  .masthead {
+    background: #F0EAD6;
+    border: 2px solid #111;
+    border-bottom: none;
+    text-align: center;
+    padding: 18px 20px 14px;
+  }
+  .paper-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 64px;
+    font-weight: 900;
+    letter-spacing: 4px;
+    line-height: 1;
+    color: #111;
+  }
+  .tagline {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 15px;
+    letter-spacing: 1px;
+    margin-top: 6px;
+    color: #444;
+  }
+  .orn-line {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    margin: 8px 0;
+  }
+  .orn-rule { flex: 1; height: 1px; background: #111; }
+  .orn-text {
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+  }
+  .issue-bar {
+    display: flex;
+    justify-content: space-between;
+    font-size: 9.5px;
+    letter-spacing: 1px;
+    border-top: 1px solid #111;
+    border-bottom: 1px solid #111;
+    padding: 4px 0;
+    margin-top: 6px;
+  }
+
+  /* ── HERO BAND ── */
+  .hero-band {
+    background: #111;
+    color: #F0EAD6;
+    text-align: center;
+    padding: 28px 24px;
+    border-left: 2px solid #111;
+    border-right: 2px solid #111;
+  }
+  .hero-band h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    line-height: 1.25;
+    margin-bottom: 10px;
+  }
+  .hero-band p {
+    font-size: 14px;
+    line-height: 1.7;
+    max-width: 560px;
+    margin: 0 auto 20px;
+    opacity: 0.85;
+  }
+
+  /* ── SUBSCRIBE FORM ── */
+  .subscribe-form {
+    display: flex;
+    gap: 0;
+    max-width: 420px;
+    margin: 0 auto;
+    border: 1.5px solid #F0EAD6;
+  }
+  .subscribe-form input[type="email"] {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #F0EAD6;
+    font-family: 'EB Garamond', serif;
+    font-size: 14px;
+    padding: 10px 14px;
+    letter-spacing: 0.5px;
+  }
+  .subscribe-form input[type="email"]::placeholder {
+    color: #aaa;
+    font-style: italic;
+  }
+  .subscribe-form button {
+    background: #F0EAD6;
+    color: #111;
+    border: none;
+    font-family: 'Playfair Display', serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 10px 18px;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+  }
+  .subscribe-form button:hover {
+    background: #FFFF00;
+  }
+  .subscribe-note {
+    font-size: 10px;
+    letter-spacing: 1px;
+    opacity: 0.5;
+    margin-top: 10px;
+    text-transform: uppercase;
+  }
+
+  /* ── STATS STRIP ── */
+  .stats-strip {
+    background: #F0EAD6;
+    border: 2px solid #111;
+    border-top: none;
+    border-bottom: none;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .stat-cell {
+    text-align: center;
+    padding: 14px 10px;
+    border-right: 1px solid #111;
+  }
+  .stat-cell:last-child { border-right: none; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 34px;
+    font-weight: 900;
+    line-height: 1;
+    display: block;
+  }
+  .stat-label {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 4px;
+    display: block;
+    color: #555;
+  }
+
+  /* ── SECTION DIVIDER ── */
+  .section-divider {
+    background: #F0EAD6;
+    border-left: 2px solid #111;
+    border-right: 2px solid #111;
+    border-top: 3px double #111;
+    border-bottom: 3px double #111;
+    text-align: center;
+    padding: 7px 0;
+    font-family: 'Playfair Display', serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+  }
+
+  /* ── ARCHIVE GRID ── */
+  .archive-section {
+    background: #F0EAD6;
+    border: 2px solid #111;
+    border-top: none;
+    padding: 20px;
+  }
+
+  .archive-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: #111;
+    border: 1px solid #111;
+    margin-bottom: 20px;
+  }
+
+  .issue-card {
+    background: #F0EAD6;
+    padding: 14px 13px;
+    text-decoration: none;
+    color: #111;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    transition: background 0.15s;
+    position: relative;
+  }
+  .issue-card:hover {
+    background: #EDE3C8;
+  }
+  .issue-card:hover .card-read {
+    opacity: 1;
+  }
+
+  .card-vol {
+    font-size: 8.5px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #888;
+  }
+  .card-date {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 900;
+    line-height: 1;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 6px;
+  }
+  .card-headline {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 13px;
+    line-height: 1.35;
+    flex: 1;
+  }
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 2px;
+  }
+  .tag {
+    font-size: 8px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    border: 0.5px solid #555;
+    padding: 1px 5px;
+    color: #555;
+  }
+  .tag.green  { border-color: #355E3B; color: #355E3B; }
+  .tag.purple { border-color: #6B3FA0; color: #6B3FA0; }
+  .tag.yellow { background: #FFFF00; border-color: #111; color: #111; }
+
+  .card-read {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    color: #355E3B;
+    opacity: 0;
+    transition: opacity 0.15s;
+    margin-top: 4px;
+  }
+
+  /* ── LATEST ISSUE FEATURED ── */
+  .featured-issue {
+    display: grid;
+    grid-template-columns: 1fr 200px;
+    border: 1px solid #111;
+    margin-bottom: 16px;
+    background: #F0EAD6;
+  }
+  .featured-content {
+    padding: 16px;
+    border-right: 1px solid #111;
+  }
+  .featured-badge {
+    font-size: 8.5px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    background: #111;
+    color: #F0EAD6;
+    display: inline-block;
+    padding: 2px 8px;
+    margin-bottom: 8px;
+  }
+  .featured-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+  .featured-deck {
+    font-style: italic;
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: #333;
+    border-top: 0.5px solid #aaa;
+    border-bottom: 0.5px solid #aaa;
+    padding: 6px 0;
+    margin-bottom: 10px;
+  }
+  .featured-meta {
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: #666;
+  }
+  .featured-cta {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 8px;
+  }
+  .cta-label {
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #888;
+  }
+  .cta-date {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 900;
+    line-height: 1;
+  }
+  .cta-btn {
+    display: inline-block;
+    background: #111;
+    color: #F0EAD6;
+    text-decoration: none;
+    font-family: 'Playfair Display', serif;
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    border: 1.5px solid #111;
+    transition: background 0.15s, color 0.15s;
+    width: 100%;
+    text-align: center;
+  }
+  .cta-btn:hover {
+    background: #F0EAD6;
+    color: #111;
+  }
+
+  /* ── TOPICS STRIP ── */
+  .topics-strip {
+    display: flex;
+    border-top: 1px solid #111;
+    border-bottom: 1px solid #111;
+    margin: 0 0 16px;
+  }
+  .topics-label {
+    font-size: 8.5px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 6px 12px 6px 0;
+    border-right: 1px solid #111;
+    margin-right: 12px;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    color: #666;
+  }
+  .topics-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    padding: 4px 0;
+  }
+  .topics-list span {
+    font-family: 'Playfair Display', serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: default;
+  }
+  .topics-list span::after {
+    content: '·';
+    margin-left: 8px;
+    color: #aaa;
+  }
+  .topics-list span:last-child::after { content: ''; }
+
+  /* ── ABOUT STRIP ── */
+  .about-strip {
+    background: #F0EAD6;
+    border: 2px solid #111;
+    border-top: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .about-cell {
+    padding: 16px;
+    border-right: 1px solid #111;
+  }
+  .about-cell:last-child { border-right: none; }
+  .about-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-bottom: 1px solid #111;
+    padding-bottom: 4px;
+    margin-bottom: 8px;
+  }
+  .about-body {
+    font-size: 11px;
+    line-height: 1.7;
+    color: #333;
+  }
+
+  /* ── FOOTER ── */
+  .footer-bar {
+    background: #F0EAD6;
+    border: 2px solid #111;
+    border-top: 3px double #111;
+    text-align: center;
+    padding: 8px;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #555;
+  }
+  .footer-bar a {
+    color: #355E3B;
+    text-decoration: none;
+    font-weight: 700;
+  }
+  .footer-bar a:hover { text-decoration: underline; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 700px) {
+    .paper-title { font-size: 40px; }
+    .archive-grid { grid-template-columns: 1fr 1fr; }
+    .stats-strip { grid-template-columns: repeat(2, 1fr); }
+    .about-strip { grid-template-columns: 1fr; }
+    .about-cell { border-right: none; border-bottom: 1px solid #111; }
+    .about-cell:last-child { border-bottom: none; }
+    .featured-issue { grid-template-columns: 1fr; }
+    .featured-content { border-right: none; border-bottom: 1px solid #111; }
+    .issue-bar { flex-direction: column; gap: 2px; align-items: center; }
+  }
+  @media (max-width: 480px) {
+    .archive-grid { grid-template-columns: 1fr; }
+    .stats-strip { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ══ MASTHEAD ══ -->
+  <div class="masthead">
+    <div class="paper-title">The TIMPS PostCards</div>
+    <div class="orn-line">
+      <div class="orn-rule"></div>
+      <div class="orn-text">✦&nbsp; AI Intelligence Digest &nbsp;✦</div>
+      <div class="orn-rule"></div>
+    </div>
+    <p class="tagline">Weekly dispatches on the ideas, tools &amp; people shaping artificial intelligence.</p>
+    <div class="orn-line">
+      <div class="orn-rule"></div>
+      <div class="orn-text">Est. 2025 — Hyderabad, India</div>
+      <div class="orn-rule"></div>
+    </div>
+    <div class="issue-bar">
+      <span>Published Every Friday</span>
+      <span>Vol. II &nbsp;·&nbsp; Issue No. 048</span>
+      <span>Built with TIMPS Ecosystem</span>
+    </div>
+  </div>
+
+  <!-- ══ HERO BAND ══ -->
+  <div class="hero-band">
+    <h2>Intelligence, delivered<br>every Friday morning.</h2>
+    <p>
+      The TIMPS PostCards is a weekly newsletter tracking the signals, breakthroughs
+      and quiet shifts in the AI landscape — curated by the TIMPS team from Hyderabad.
+      No noise. No hype. Just the story behind the story.
+    </p>
+    <form class="subscribe-form" onsubmit="handleSubscribe(event)">
+      <input type="email" placeholder="Your email address…" required autocomplete="email">
+      <button type="submit">Subscribe</button>
+    </form>
+    <p class="subscribe-note">Free &nbsp;·&nbsp; Weekly &nbsp;·&nbsp; Unsubscribe anytime</p>
+  </div>
+
+  <!-- ══ STATS STRIP ══ -->
+  <div class="stats-strip">
+    <div class="stat-cell">
+      <span class="stat-num">048</span>
+      <span class="stat-label">Issues Published</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-num">5</span>
+      <span class="stat-label">Signals Per Issue</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-num">2</span>
+      <span class="stat-label">Years Running</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-num">1</span>
+      <span class="stat-label">Team. TIMPS.</span>
+    </div>
+  </div>
+
+  <!-- ══ SECTION: LATEST ISSUE ══ -->
+  <div class="section-divider">✦ &nbsp; Latest Issue &nbsp; ✦</div>
+
+  <div class="archive-section">
+
+    <!-- Featured Latest Issue -->
+    <div class="featured-issue">
+      <div class="featured-content">
+        <span class="featured-badge">Latest — May 23, 2026</span>
+        <div class="featured-headline">The Agentic Turn: How AI Stopped Answering and Started Doing</div>
+        <div class="featured-deck">
+          This week's five signals converge on one theme — the AI industry has decisively
+          shifted from conversational assistants to autonomous agents that plan, execute,
+          and adapt without waiting for your next prompt.
+        </div>
+        <div class="card-tags">
+          <span class="tag green">Agentic AI</span>
+          <span class="tag purple">Compute</span>
+          <span class="tag">OpenAI</span>
+          <span class="tag">Google</span>
+          <span class="tag yellow">This Week</span>
+        </div>
+        <div class="featured-meta" style="margin-top: 10px;">Vol. II · Issue No. 048 &nbsp;·&nbsp; 5 Signals &nbsp;·&nbsp; ~8 min read</div>
+      </div>
+      <div class="featured-cta">
+        <span class="cta-label">Issue Date</span>
+        <div class="cta-date">23<br>May<br>2026</div>
+        <a href="23-05-2026.html" class="cta-btn">Read Issue →</a>
+      </div>
+    </div>
+
+    <!-- Topics Strip -->
+    <div class="topics-strip">
+      <span class="topics-label">Topics Covered</span>
+      <div class="topics-list">
+        <span>Agentic AI</span>
+        <span>LLMs</span>
+        <span>Compute &amp; Chips</span>
+        <span>Open Source</span>
+        <span>Policy</span>
+        <span>Startups</span>
+        <span>Research</span>
+        <span>Tools</span>
+      </div>
+    </div>
+
+    <!-- ══ SECTION: ARCHIVE ══ -->
+    <div class="section-divider" style="border-left:none;border-right:none;border:none;border-top:3px double #111;border-bottom:3px double #111;margin-bottom:14px;">✦ &nbsp; Archive &nbsp; ✦</div>
+
+    <div class="archive-grid">
+
+      <!-- Issue Card — placeholder past issues -->
+      <a href="#" class="issue-card">
+        <span class="card-vol">Vol. II · No. 047</span>
+        <div class="card-date">16 May 2026</div>
+        <div class="card-headline">Frontier Models Race to a $1 Trillion Parameter Wall</div>
+        <div class="card-tags">
+          <span class="tag purple">LLMs</span>
+          <span class="tag">Research</span>
+          <span class="tag green">Compute</span>
+        </div>
+        <span class="card-read">Read Issue →</span>
+      </a>
+
+      <a href="#" class="issue-card">
+        <span class="card-vol">Vol. II · No. 046</span>
+        <div class="card-date">09 May 2026</div>
+        <div class="card-headline">The Open-Source Surge: Why Big Labs Are Losing Their Moat</div>
+        <div class="card-tags">
+          <span class="tag green">Open Source</span>
+          <span class="tag">Meta</span>
+          <span class="tag purple">Policy</span>
+        </div>
+        <span class="card-read">Read Issue →</span>
+      </a>
+
+      <a href="#" class="issue-card">
+        <span class="card-vol">Vol. II · No. 045</span>
+        <div class="card-date">02 May 2026</div>
+        <div class="card-headline">Memory, Context &amp; the Machines That Never Forget</div>
+        <div class="card-tags">
+          <span class="tag">Long Context</span>
+          <span class="tag purple">LLMs</span>
+          <span class="tag green">Research</span>
+        </div>
+        <span class="card-read">Read Issue →</span>
+      </a>
+
+      <a href="#" class="issue-card">
+        <span class="card-vol">Vol. II · No. 044</span>
+        <div class="card-date">25 Apr 2026</div>
+        <div class="card-headline">AI in the Courtroom: Regulation Comes for Foundation Models</div>
+        <div class="card-tags">
+          <span class="tag purple">Policy</span>
+          <span class="tag">EU AI Act</span>
+          <span class="tag green">Governance</span>
+        </div>
+        <span class="card-read">Read Issue →</span>
+      </a>
+
+      <a href="#" class="issue-card">
+        <span class="card-vol">Vol. II · No. 043</span>
+        <div class="card-date">18 Apr 2026</div>
+        <div class="card-headline">Chip Wars: NVIDIA's Next Bet &amp; the Custom Silicon Insurgency</div>
+        <div class="card-tags">
+          <span class="tag green">Compute</span>
+          <span class="tag">NVIDIA</span>
+          <span class="tag yellow">Hot Take</span>
+        </div>
+        <span class="card-read">Read Issue →</span>
+      </a>
+
+      <a href="#" class="issue-card">
+        <span class="card-vol">Vol. II · No. 042</span>
+        <div class="card-date">11 Apr 2026</div>
+        <div class="card-headline">Multimodal, Multi-Agent, Multi-Everything: A Week of Launches</div>
+        <div class="card-tags">
+          <span class="tag">Multimodal</span>
+          <span class="tag purple">Agents</span>
+          <span class="tag green">Startups</span>
+        </div>
+        <span class="card-read">Read Issue →</span>
+      </a>
+
+    </div><!-- /archive-grid -->
+
+    <!-- Load More -->
+    <div style="text-align:center;padding-top:6px;">
+      <a href="#" class="cta-btn" style="display:inline-block;width:auto;padding:9px 28px;">
+        View Full Archive →
+      </a>
+    </div>
+
+  </div><!-- /archive-section -->
+
+  <!-- ══ ABOUT STRIP ══ -->
+  <div class="section-divider">✦ &nbsp; About The PostCards &nbsp; ✦</div>
+  <div class="about-strip">
+    <div class="about-cell">
+      <div class="about-title">What We Cover</div>
+      <div class="about-body">
+        Every Friday, five curated signals — from breakthroughs in foundation models
+        to the quiet policy shifts, infrastructure bets, and startup moves that rarely
+        make the headline but always make the future.
+      </div>
+    </div>
+    <div class="about-cell">
+      <div class="about-title">Who We Are</div>
+      <div class="about-body">
+        The TIMPS PostCards is published by the TIMPS team, based in Hyderabad, India.
+        We're builders and researchers who believe the most important AI stories live
+        one layer below the press release.
+      </div>
+    </div>
+    <div class="about-cell">
+      <div class="about-title">How To Read</div>
+      <div class="about-body">
+        Each issue is published as a self-contained postcard — designed to be read
+        in eight minutes, saved offline, and shared with anyone who finds the noise
+        of the AI news cycle exhausting.
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ FOOTER ══ -->
+  <div class="footer-bar">
+    &copy; 2025–2026 TIMPS &nbsp;·&nbsp; The TIMPS PostCards &nbsp;·&nbsp; Hyderabad, India
+    &nbsp;·&nbsp; Built with the TIMPS Ecosystem
+    &nbsp;·&nbsp; <a href="mailto:hello@timps.in">hello@timps.in</a>
+  </div>
+
+</div><!-- /page -->
+
+<script>
+  function handleSubscribe(e) {
+    e.preventDefault();
+    const input = e.target.querySelector('input[type="email"]');
+    const btn   = e.target.querySelector('button');
+    btn.textContent = 'Subscribed ✦';
+    btn.style.background = '#FFFF00';
+    btn.style.color = '#111';
+    input.value = '';
+    input.placeholder = 'Welcome aboard.';
+    input.disabled = true;
+    btn.disabled = true;
+  }
+</script>
+</body>
+</html>

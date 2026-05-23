@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TIMPS PostCards — AI Intelligence Digest</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #D9D0BE; display: flex; justify-content: center; padding: 20px; }
+
+  .paper {
+    background: #F0EAD6;
+    font-family: 'EB Garamond', Georgia, serif;
+    color: #111;
+    width: 720px;
+    border: 2px solid #111;
+  }
+
+  /* ── MASTHEAD ── */
+  .masthead {
+    border-bottom: 3px double #111;
+    padding: 12px 16px 10px;
+    text-align: center;
+  }
+  .paper-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 52px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    line-height: 1;
+    color: #111;
+  }
+  .orn-line {
+    display: flex; align-items: center; gap: 8px;
+    justify-content: center; margin: 4px 0;
+  }
+  .orn-rule { flex: 1; height: 1px; background: #111; }
+  .orn-text { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; }
+  .issue-bar {
+    display: flex; justify-content: space-between;
+    font-size: 9.5px; letter-spacing: 1px;
+    border-top: 1px solid #111; border-bottom: 1px solid #111;
+    padding: 3px 0; margin-top: 5px;
+  }
+
+  /* ── MAIN 3-COLUMN GRID ── */
+  .grid-main {
+    display: grid;
+    grid-template-columns: 160px 1fr 160px;
+    border-bottom: 1px solid #111;
+  }
+  .col-left  { border-right: 1px solid #111; }
+  .col-right { border-left:  1px solid #111; }
+
+  .box {
+    padding: 9px 11px;
+    border-bottom: 1px solid #111;
+  }
+  .box:last-child { border-bottom: none; }
+
+  .box-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase;
+    border-bottom: 1px solid #111;
+    padding-bottom: 3px; margin-bottom: 7px;
+  }
+  .big-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 78px; font-weight: 900;
+    line-height: 1; text-align: center; display: block;
+  }
+  .body-sm  { font-size: 10.5px; line-height: 1.65; margin-top: 5px; }
+  .italic   { font-style: italic; }
+  .date-stamp {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px; font-weight: 700;
+    border-top: 1px solid #111; margin-top: 7px; padding-top: 5px;
+  }
+
+  /* ── CENTER STORY ── */
+  .center-story { padding: 10px 14px; }
+  .story-head {
+    font-family: 'Playfair Display', serif;
+    font-size: 23px; font-weight: 900;
+    line-height: 1.15; margin-bottom: 6px;
+  }
+  .story-deck {
+    font-style: italic; font-size: 12.5px; line-height: 1.5;
+    border-top: 1px solid #111; border-bottom: 1px solid #111;
+    padding: 5px 0; margin-bottom: 8px;
+  }
+  .story-body {
+    font-size: 11px; line-height: 1.75;
+    column-count: 2; column-gap: 14px;
+    column-rule: 0.5px solid #999;
+  }
+  .story-body p { margin-bottom: 7px; }
+  .story-body p.drop::first-letter {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px; font-weight: 900;
+    float: left; line-height: 0.75;
+    margin: 3px 4px 0 0;
+  }
+
+  /* ── VISUAL STAT BOX ── */
+  .vis-box {
+    background: #F0EAD6; border: 1px solid #111;
+    margin: 6px 0; padding: 7px 9px; text-align: center;
+  }
+  .vis-stat {
+    font-family: 'Playfair Display', serif;
+    font-size: 40px; font-weight: 900; line-height: 1;
+  }
+
+  /* ── BOTTOM GRID ── */
+  .grid-bottom {
+    display: grid; grid-template-columns: 1fr 1fr;
+    border-bottom: 1px solid #111;
+  }
+  .bottom-left  { padding: 11px; border-right: 1px solid #111; }
+  .bottom-right { padding: 11px; }
+
+  /* ── GENRES LIST ── */
+  .genres { list-style: none; padding: 0; margin: 0; }
+  .genres li {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase;
+    text-align: center; padding: 5px 0;
+    border-bottom: 0.5px solid #888;
+  }
+  .genres li:last-child { border-bottom: none; }
+
+  /* ── SIGNAL ROWS ── */
+  .signal-row { display: flex; align-items: flex-start; gap: 9px; margin-bottom: 9px; }
+  .signal-num {
+    width: 22px; height: 22px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 11px; font-weight: 900; flex-shrink: 0;
+  }
+  .signal-label { font-size: 10px; font-weight: 700; font-family: 'Playfair Display', serif; }
+
+  /* ── FOOTER ── */
+  .footer-bar {
+    border-top: 3px double #111; text-align: center;
+    padding: 6px; font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
+  }
+
+  /* ── COLOUR HIGHLIGHTS (used sparingly on key words only) ── */
+  .hl-g  { background: #355E3B; color: #fff;  padding: 0 3px; }
+  .hl-y  { background: #FFFF00; color: #111;  padding: 0 3px; }
+  .hl-v  { background: #D2C3F6; color: #111;  padding: 0 3px; }
+  .text-g { color: #355E3B; font-weight: 700; }
+  .text-v { color: #6B3FA0; font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="paper">
+
+  <!-- ══ MASTHEAD ══ -->
+  <div class="masthead">
+    <div class="paper-title">The TIMPS PostCards</div>
+    <div class="orn-line">
+      <div class="orn-rule"></div>
+      <div class="orn-text">✦&nbsp; AI Intelligence Digest &nbsp;✦</div>
+      <div class="orn-rule"></div>
+    </div>
+    <div class="orn-line">
+      <div class="orn-rule"></div>
+      <div class="orn-text">May 23, 2026 &nbsp;·&nbsp; Weekly Edition</div>
+      <div class="orn-rule"></div>
+    </div>
+    <div class="issue-bar">
+      <span>Est. 2025 — Hyderabad, India</span>
+      <span>Vol. II &nbsp;·&nbsp; Issue No. 048</span>
+      <span>Built with TIMPS Ecosystem</span>
+    </div>
+  </div>
+
+  <!-- ══ MAIN 3-COLUMN ROW ══ -->
+  <div class="grid-main">
+
+    <!-- LEFT COL -->
+    <div class="col-left">
+      <div class="box">
+        <div class="box-title">AI Signals<br>This Week</div>
+        <span class="big-num">5</span>
+        <p class="body-sm" style="text-align:center;">
+          According to <span class="hl-g">TIMPS PostCards</span>, this week
+          I tracked <span class="hl-y">5 major signals</span> shaping the AI
+          landscape — from compute deals to agentic breakthroughs.
+        </p>
+      </div>
+      <div class="box">
+        <div class="box-title">Intelligence Report</div>
+        <p class="body-sm">
+          Overnight, the AI industry cycled through landmark moves —
+          <span class="hl-g">Microsoft Maia chips</span> to Anthropic,
+          IPO filings from OpenAI and SpaceX, and a
+          <span class="hl-y">Cursor milestone</span> of $3B ARR.
+          By morning, the picture was clear: hardware and capital
+          are the new battleground.
+        </p>
+        <div class="date-stamp">Apr 24, 2026</div>
+      </div>
+    </div>
+
+    <!-- CENTER COL -->
+    <div>
+      <div class="center-story">
+        <div class="box-title" style="text-align:center;border-bottom:none;margin-bottom:4px;">
+          Top Story of the Week
+        </div>
+        <div class="story-head">
+          The <span class="hl-v">$45 Billion</span> Compute Reckoning:
+          OpenAI, SpaceX &amp; The New AI Finance Era
+        </div>
+        <div class="story-deck">
+          A near-$45B Anthropic–SpaceX compute arrangement, dual IPO filings,
+          and Microsoft's Maia chip deal are redrawing the map of who controls
+          AI's future infrastructure.
+        </div>
+        <div class="story-body">
+          <p class="drop">
+            The AI industry is entering what observers are calling its
+            <span class="hl-g">IPO era</span>. OpenAI is advancing preparations
+            for a public listing while SpaceX simultaneously moves toward a
+            large-scale filing — two of the most closely watched private
+            companies heading to markets in the same window.
+          </p>
+          <p>
+            The backdrop: a reported <span class="hl-y">~$45B compute arrangement</span>
+            between Anthropic and SpaceX. Analysis of SpaceX's IPO disclosures points
+            directly to how compute is now the primary bottleneck and strategic
+            asset. NVIDIA has identified a <span class="hl-v">new large market opportunity</span>
+            tied to this infrastructure build-out.
+          </p>
+          <p>
+            Separately, Microsoft will supply its custom
+            <span class="hl-g">Maia silicon</span> to Anthropic — a direct answer
+            to mounting GPU scarcity. Cursor has crossed an estimated
+            <span class="hl-y">$3B ARR</span>, signalling AI-native developer
+            tools are past the early-adopter phase. For builders and investors,
+            <strong>hardware is the new moat</strong> — not the models themselves.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT COL -->
+    <div class="col-right">
+      <div class="box">
+        <div class="box-title">Intelligence Report</div>
+        <p class="body-sm">
+          Google I/O unveiled <span class="hl-g">Gemini Omni</span> for
+          video generation, <span class="hl-v">Gemini 3.5 Flash</span>,
+          and <span class="hl-y">Gemini Spark</span>. LinkedIn began clamping
+          down on AI-generated spam. Mobile Codex in ChatGPT signals on-device
+          code generation arriving for mass consumers.
+        </p>
+        <div class="date-stamp">Jun 28, 2026</div>
+      </div>
+      <div class="box" style="border-bottom:none;">
+        <div class="box-title">Top Story of 2026</div>
+        <div class="vis-box">
+          <div class="vis-stat">
+            <span class="text-g">35</span>
+            <span style="font-size:20px;">hrs</span>
+          </div>
+          <div style="font-size:9px;letter-spacing:1px;text-transform:uppercase;margin-top:3px;">
+            Continuous Autonomous AI
+          </div>
+        </div>
+        <p class="body-sm italic">
+          From January to May, I tracked <span class="hl-v">Qwen's model</span>
+          running autonomous reasoning for <span class="hl-y">35 uninterrupted hours</span>
+          — the longest documented agentic run to date. A benchmark that
+          redefines what agents can sustain.
+        </p>
+      </div>
+    </div>
+
+  </div><!-- /grid-main -->
+
+  <!-- ══ BOTTOM GRID ══ -->
+  <div class="grid-bottom">
+
+    <!-- LEFT: 5 SIGNALS -->
+    <div class="bottom-left">
+      <div class="box-title" style="border-bottom:1px solid #111;padding-bottom:3px;margin-bottom:9px;">
+        Top Insights &amp; Tools This Issue
+      </div>
+
+      <div class="signal-row">
+        <div class="signal-num" style="background:#111;color:#F0EAD6;">1</div>
+        <div>
+          <div class="signal-label">Big AI financings reshape infrastructure</div>
+          <div class="body-sm"><span class="hl-g">OpenAI</span> + <span class="hl-g">SpaceX</span> IPO activity and the ~$45B compute deal signal a new finance phase.</div>
+        </div>
+      </div>
+
+      <div class="signal-row">
+        <div class="signal-num" style="background:#355E3B;color:#fff;">2</div>
+        <div>
+          <div class="signal-label">Hardware is the new moat</div>
+          <div class="body-sm"><span class="hl-y">Microsoft Maia chips</span> for Anthropic shape who can scale AI at frontier level.</div>
+        </div>
+      </div>
+
+      <div class="signal-row">
+        <div class="signal-num" style="background:#D2C3F6;color:#111;">3</div>
+        <div>
+          <div class="signal-label">Agents run for days, not seconds</div>
+          <div class="body-sm"><span class="hl-v">Qwen's 35-hour run</span> highlights practical progress in long-running agentic reasoning.</div>
+        </div>
+      </div>
+
+      <div class="signal-row">
+        <div class="signal-num" style="background:#FFFF00;color:#111;">4</div>
+        <div>
+          <div class="signal-label">Google accelerates multimodal AI</div>
+          <div class="body-sm"><span class="hl-g">Gemini Omni</span>, Spark, and 3.5 Flash push video generation and agentic capabilities.</div>
+        </div>
+      </div>
+
+      <div class="signal-row" style="margin-bottom:0;">
+        <div class="signal-num" style="background:#111;color:#F0EAD6;">5</div>
+        <div>
+          <div class="signal-label">Segment your list, grow your revenue</div>
+          <div class="body-sm">Two targeted offers to two groups <span class="hl-y">outperformed</span> one offer to the whole list every time.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: THEMES + TOOL -->
+    <div class="bottom-right">
+      <div class="box-title" style="border-bottom:1px solid #111;padding-bottom:3px;margin-bottom:9px;">
+        Top AI Themes This Issue
+      </div>
+      <ul class="genres">
+        <li><span class="text-g">AI Infrastructure</span></li>
+        <li style="color:#8A7A00;">IPO &amp; Finance</li>
+        <li><span class="text-v">Agentic Reasoning</span></li>
+        <li><span class="text-g">Multimodal AI</span></li>
+        <li style="color:#8A7A00;">Hardware Deals</li>
+        <li><span class="text-v">Creator Monetisation</span></li>
+        <li>AI Dev Tools</li>
+      </ul>
+      <div style="margin-top:11px;text-align:center;border-top:1px solid #111;padding-top:7px;">
+        <div style="font-family:'Playfair Display',serif;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;">
+          Top AI Tool of the Week
+        </div>
+        <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:900;margin-top:4px;">
+          <span class="hl-v">Wispr Flow</span>
+        </div>
+        <div style="font-size:10px;margin-top:3px;">Voice-to-text, anywhere</div>
+        <div style="font-family:'Playfair Display',serif;font-size:13px;font-weight:700;margin-top:7px;color:#555;letter-spacing:1px;">
+          1,050 Mentions This Week
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /grid-bottom -->
+
+  <div class="footer-bar">
+    TIMPS PostCards &nbsp;✦&nbsp; AI Intelligence Digest &nbsp;✦&nbsp; Built with the TIMPS Ecosystem &nbsp;✦&nbsp; Hyderabad, India
+  </div>
+
+</div>
+</body>
+</html>
+
+
+
+
+
