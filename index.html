@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TIMPS PostCards — AI Intelligence Digest</title>
+<!-- config.js is gitignored; generate it with: source .env && echo "window.BEEHIIV_PUB_ID='pub_${BEEHIVE_ID}';" > config.js -->
+<script src="config.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -977,12 +979,9 @@
 
 <script>
   // ─── Beehiiv subscription ─────────────────────────────────────────────
-  // SETUP: Replace the value below with your Beehiiv Publication ID.
-  //   1. Sign up free at https://app.beehiiv.com
-  //   2. Create your publication "TIMPS PostCards"
-  //   3. Settings > API  →  copy Publication ID  (looks like pub_xxxxxxxx-...)
-  //   4. Paste it here ↓
-  const BEEHIIV_PUB_ID = 'pub_REPLACE_WITH_YOUR_ID';
+  // Publication ID is loaded from config.js (gitignored, generated from .env).
+  // See config.example.js for setup instructions.
+  const BEEHIIV_PUB_ID = (window.BEEHIIV_PUB_ID || '').trim();
 
   async function handleSub(e) {
     e.preventDefault();
@@ -995,8 +994,8 @@
     btn.disabled = input.disabled = true;
     note.style.color = '';
 
-    // Guard: warn if not yet configured
-    if (BEEHIIV_PUB_ID === 'pub_REPLACE_WITH_YOUR_ID') {
+    // Guard: warn if config.js is missing or placeholder not replaced
+    if (!BEEHIIV_PUB_ID || BEEHIIV_PUB_ID === 'pub_YOUR_ID_HERE') {
       note.textContent = 'Setup needed: add your Beehiiv Publication ID to the script.';
       note.style.color = '#c0392b';
       btn.textContent = 'Sign Up';

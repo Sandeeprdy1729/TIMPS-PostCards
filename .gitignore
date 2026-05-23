@@ -1,0 +1,8 @@
+# Environment variables — keep your Beehiiv Publication ID off GitHub
+.env
+
+# Generated local config — created from .env by running: source .env && echo "window.BEEHIIV_PUB_ID='pub_$BEEHIVE_ID';" > config.js
+config.js
+
+# macOS
+.DS_Store

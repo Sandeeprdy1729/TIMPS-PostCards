@@ -1,0 +1,40 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Inject Beehiiv Publication ID from secret
+        # Reads BEEHIIV_PUB_ID from GitHub repo secrets and writes config.js
+        # so the real ID is never stored in the repo source code.
+        run: |
+          echo "window.BEEHIIV_PUB_ID = '${{ secrets.BEEHIIV_PUB_ID }}';" > config.js
+          echo "config.js generated for deployment"
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
