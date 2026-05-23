@@ -1004,21 +1004,18 @@
     }
 
     try {
-      const res = await fetch(
-        'https://api.beehiiv.com/v2/publications/' + BEEHIIV_PUB_ID + '/subscriptions',
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            email,
-            reactivate_existing: false,
-            send_welcome_email:  true,
-            utm_source:   'timps-postcards-website',
-            utm_medium:   'organic',
-            utm_campaign: 'landing-page'
-          })
-        }
-      );
+      const body = new URLSearchParams({
+        email,
+        publication_id:   BEEHIIV_PUB_ID,
+        utm_source:       'timps-postcards-website',
+        utm_medium:       'organic',
+        utm_campaign:     'landing-page'
+      });
+      const res = await fetch('https://embeds.beehiiv.com/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: body.toString()
+      });
 
       if (res.ok || res.status === 201) {
         btn.textContent = "You're in! \u2713";
