@@ -4,463 +4,598 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TIMPS PostCards — AI Intelligence Digest</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --bg:     #FFFFFF;
-    --bg-lt:  #F5F6FA;
-    --navy:   #0F1117;
-    --blue:   #4B7BF5;
-    --blue-h: #3966e8;
-    --muted:  #6B7280;
-    --border: #EAEAEA;
-    --card-r: 12px;
+    --cream:  #EDE8DA;
+    --forest: #1C2E22;
+    --pink:   #E8B4E8;
+    --lime:   #DCF07A;
+    --lime-d: #C8DE60;
+    --black:  #111111;
+    --border: #1C2E22;
+    --card-bg:#F5F1E6;
+    --mono:   'Space Mono', 'Courier New', monospace;
+    --serif:  'Playfair Display', Georgia, serif;
   }
 
+  html { scroll-behavior: smooth; }
+
   body {
-    background: var(--bg);
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    color: var(--navy);
+    background-color: var(--cream);
+    /* graph-paper grid */
+    background-image:
+      linear-gradient(rgba(28,46,34,.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(28,46,34,.07) 1px, transparent 1px);
+    background-size: 38px 38px;
+    color: var(--forest);
+    font-family: var(--mono);
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
   }
 
   a { text-decoration: none; color: inherit; }
 
-  /* ───────────────── NAV ───────────────── */
+  /* ─── NAV ─── */
   .nav {
     position: sticky;
     top: 0;
     z-index: 100;
-    background: #000;
-    height: 64px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 20px;
-  }
-
-  .nav-hamburger {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 6px;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-  }
-  .nav-hamburger span {
-    display: block;
-    width: 22px;
-    height: 2px;
-    background: #fff;
-    border-radius: 2px;
+    padding: 18px 48px;
+    background-color: rgba(237,232,218,.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1.5px solid rgba(28,46,34,.12);
+    /* keep grid visible through nav */
+    background-image:
+      linear-gradient(rgba(28,46,34,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(28,46,34,.05) 1px, transparent 1px);
+    background-size: 38px 38px;
   }
 
   .nav-logo {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 22px;
-    font-weight: 800;
-    color: #fff;
-    letter-spacing: -0.5px;
-  }
-
-  .nav-actions {
     display: flex;
     align-items: center;
     gap: 10px;
+    font-family: var(--mono);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--forest);
+    letter-spacing: -0.3px;
   }
-  .nav-btn {
-    display: inline-block;
-    border: 1.5px solid rgba(255,255,255,.55);
-    color: #fff;
-    font-family: 'Inter', sans-serif;
-    font-size: 13px;
-    font-weight: 500;
-    padding: 8px 20px;
-    border-radius: 100px;
-    cursor: pointer;
-    background: none;
-    transition: border-color .15s, background .15s;
-    white-space: nowrap;
-  }
-  .nav-btn:hover { border-color: #fff; background: rgba(255,255,255,.08); }
-  .nav-btn.filled {
-    background: #fff;
-    color: #000;
-    border-color: #fff;
-  }
-  .nav-btn.filled:hover { background: #f0f0f0; }
-
-  /* ───────────────── HERO ───────────────── */
-  .hero {
-    background: var(--bg);
-    padding: 64px 24px 56px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .hero-logomark {
-    width: 100px;
-    height: 100px;
-    background: #000;
-    border-radius: 18px;
+  .nav-logo-mark {
+    width: 38px;
+    height: 38px;
+    background: var(--forest);
+    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 28px;
-    box-shadow: 0 8px 32px rgba(0,0,0,.18);
+    flex-shrink: 0;
   }
-  .hero-logomark svg {
-    width: 60px;
-    height: 60px;
-  }
+  .nav-logo-mark svg { width: 22px; height: 22px; }
 
-  .hero h1 {
-    font-size: clamp(32px, 5vw, 48px);
-    font-weight: 800;
-    letter-spacing: -1px;
-    color: var(--navy);
-    margin-bottom: 14px;
-    line-height: 1.1;
-  }
-
-  .hero-sub {
-    font-size: 17px;
-    color: var(--muted);
-    font-weight: 400;
-    line-height: 1.55;
-    max-width: 480px;
-    margin-bottom: 32px;
-  }
-
-  /* Subscribe form in hero */
-  .hero-form {
-    width: 100%;
-    max-width: 460px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  .hero-form input {
-    width: 100%;
-    padding: 15px 18px;
-    border: 1.5px solid var(--border);
-    border-radius: 10px;
-    font-family: 'Inter', sans-serif;
-    font-size: 15px;
-    color: var(--navy);
-    background: var(--bg);
-    outline: none;
-    transition: border-color .15s;
-  }
-  .hero-form input:focus { border-color: var(--blue); }
-  .hero-form input::placeholder { color: #B0B7C3; }
-  .hero-form button {
-    width: 100%;
-    padding: 15px;
-    background: var(--blue);
-    color: #fff;
-    border: none;
-    border-radius: 10px;
-    font-family: 'Inter', sans-serif;
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background .15s;
-  }
-  .hero-form button:hover { background: var(--blue-h); }
-
-  .hero-author {
-    margin-top: 28px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-  }
-  .hero-author-label {
+  .nav-cta {
+    display: inline-block;
+    font-family: var(--mono);
     font-size: 13px;
-    color: var(--muted);
+    font-weight: 700;
+    color: var(--forest);
+    background: var(--lime);
+    border: 2.5px solid var(--forest);
+    border-radius: 100px;
+    padding: 11px 26px;
+    cursor: pointer;
+    transition: background .15s, transform .1s;
+    white-space: nowrap;
   }
-  .hero-author-name {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--blue);
-  }
+  .nav-cta:hover { background: var(--lime-d); transform: translateY(-1px); }
 
-  /* ───────────────── ARCHIVE ───────────────── */
-  .archive {
-    background: var(--bg);
-    padding: 0 24px 72px;
-    max-width: 680px;
+  /* ─── HERO ─── */
+  .hero {
+    padding: 96px 48px 80px;
+    text-align: center;
+    max-width: 900px;
     margin: 0 auto;
   }
 
-  .archive-heading {
-    font-size: 34px;
-    font-weight: 800;
-    letter-spacing: -0.5px;
-    color: var(--navy);
-    margin-bottom: 22px;
-    padding-top: 12px;
+  .hero-eyebrow {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--forest);
+    opacity: .55;
+    margin-bottom: 36px;
+    font-family: var(--mono);
   }
 
-  .search-wrap {
-    position: relative;
+  .hero-h1 {
+    font-family: var(--serif);
+    font-size: clamp(52px, 8vw, 96px);
+    font-weight: 900;
+    line-height: 1.06;
+    letter-spacing: -1.5px;
+    color: var(--forest);
     margin-bottom: 32px;
   }
-  .search-icon {
+
+  /* Pink text highlight — matches Daisy's lavender highlight strip */
+  .hero-highlight {
+    background: var(--pink);
+    padding: 2px 6px;
+    border-radius: 4px;
+    display: inline;
+  }
+
+  .hero-sub {
+    font-family: var(--mono);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.75;
+    color: var(--forest);
+    opacity: .7;
+    max-width: 520px;
+    margin: 0 auto 48px;
+  }
+  .hero-sub strong { font-weight: 700; opacity: 1; }
+
+  .hero-btns {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .btn-chunky {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 14px;
+    font-weight: 700;
+    padding: 14px 32px;
+    border-radius: 100px;
+    border: 2.5px solid var(--forest);
+    cursor: pointer;
+    transition: transform .1s, box-shadow .15s;
+    letter-spacing: 0;
+  }
+  .btn-chunky:hover {
+    transform: translateY(-2px);
+    box-shadow: 4px 4px 0 var(--forest);
+  }
+  .btn-chunky.filled { background: var(--forest); color: #fff; }
+  .btn-chunky.filled:hover { box-shadow: 4px 4px 0 rgba(28,46,34,.35); }
+  .btn-chunky.lime   { background: var(--lime); color: var(--forest); }
+  .btn-chunky.lime:hover { background: var(--lime-d); box-shadow: 4px 4px 0 var(--forest); }
+  .btn-chunky.outline { background: transparent; color: var(--forest); }
+
+  /* ─── SIGNALS STRIP ─── */
+  .signals-strip {
+    border-top: 2px solid var(--forest);
+    border-bottom: 2px solid var(--forest);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .signal-cell {
+    padding: 32px 36px;
+    border-right: 1.5px solid rgba(28,46,34,.18);
+    text-align: left;
+  }
+  .signal-cell:last-child { border-right: none; }
+  .signal-num {
+    font-family: var(--serif);
+    font-size: 54px;
+    font-weight: 900;
+    line-height: 1;
+    color: var(--forest);
+    display: block;
+    margin-bottom: 6px;
+  }
+  .signal-num em { font-style: italic; color: inherit; }
+  .signal-lbl {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 400;
+    opacity: .5;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+
+  /* ─── FEATURES ─── */
+  .features {
+    padding: 96px 48px;
+    max-width: 760px;
+    margin: 0 auto;
+    border-bottom: 1.5px solid rgba(28,46,34,.15);
+  }
+  .features-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    opacity: .45;
+    margin-bottom: 28px;
+  }
+  .features-h {
+    font-family: var(--serif);
+    font-size: clamp(34px, 4.5vw, 52px);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 48px;
+    letter-spacing: -0.5px;
+  }
+  .features-h em { font-style: italic; }
+  .feature-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 22px;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px dashed rgba(28,46,34,.2);
+  }
+  .feature-row:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .feature-num {
+    font-family: var(--serif);
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--forest);
+    opacity: .25;
+    line-height: 1;
+    flex-shrink: 0;
+    width: 36px;
+    padding-top: 2px;
+  }
+  .feature-text strong {
+    display: block;
+    font-family: var(--mono);
+    font-size: 14.5px;
+    font-weight: 700;
+    margin-bottom: 5px;
+  }
+  .feature-text p {
+    font-family: var(--mono);
+    font-size: 13px;
+    opacity: .6;
+    line-height: 1.7;
+  }
+
+  /* ─── ARCHIVE ─── */
+  .archive {
+    padding: 80px 48px;
+    max-width: 780px;
+    margin: 0 auto;
+  }
+  .archive-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 44px;
+    flex-wrap: wrap;
+    gap: 16px;
+    border-bottom: 2px solid var(--forest);
+    padding-bottom: 20px;
+  }
+  .archive-h {
+    font-family: var(--serif);
+    font-size: clamp(38px, 5vw, 58px);
+    font-weight: 900;
+    letter-spacing: -1px;
+    line-height: 1;
+  }
+  .archive-count {
+    font-family: var(--mono);
+    font-size: 12px;
+    opacity: .45;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+
+  /* Search */
+  .search-row {
+    position: relative;
+    margin-bottom: 36px;
+  }
+  .search-row svg {
     position: absolute;
-    left: 16px;
+    left: 18px;
     top: 50%;
     transform: translateY(-50%);
-    color: #B0B7C3;
+    color: var(--forest);
+    opacity: .35;
     pointer-events: none;
   }
-  .search-wrap input {
+  .search-row input {
     width: 100%;
-    padding: 14px 18px 14px 46px;
-    border: 1.5px solid var(--border);
-    border-radius: 10px;
-    font-family: 'Inter', sans-serif;
-    font-size: 15px;
-    color: var(--navy);
-    background: var(--bg-lt);
+    padding: 15px 18px 15px 50px;
+    background: var(--card-bg);
+    border: 2px solid var(--forest);
+    border-radius: 100px;
+    font-family: var(--mono);
+    font-size: 14px;
+    color: var(--forest);
     outline: none;
-    transition: border-color .15s, background .15s;
+    transition: box-shadow .15s;
   }
-  .search-wrap input:focus {
-    border-color: var(--blue);
-    background: var(--bg);
-  }
-  .search-wrap input::placeholder { color: #B0B7C3; }
+  .search-row input:focus { box-shadow: 4px 4px 0 var(--forest); }
+  .search-row input::placeholder { opacity: .35; font-style: italic; }
 
   /* Post cards */
   .post-list {
     display: flex;
     flex-direction: column;
-    gap: 28px;
+    gap: 20px;
   }
 
   .post-card {
-    display: block;
-    border: 1px solid var(--border);
-    border-radius: var(--card-r);
+    display: flex;
+    gap: 0;
+    border: 2.5px solid var(--forest);
+    border-radius: 14px;
     overflow: hidden;
-    background: var(--bg);
-    box-shadow: 0 1px 6px rgba(0,0,0,.06);
-    transition: box-shadow .2s, transform .2s;
+    background: var(--card-bg);
+    transition: transform .15s, box-shadow .15s;
     cursor: pointer;
-    color: var(--navy);
+    color: var(--forest);
   }
   .post-card:hover {
-    box-shadow: 0 6px 24px rgba(0,0,0,.1);
-    transform: translateY(-2px);
+    transform: translate(-3px, -3px);
+    box-shadow: 6px 6px 0 var(--forest);
   }
 
-  /* Thumbnail */
+  /* Thumb strip on the left */
   .post-thumb {
-    width: 100%;
-    aspect-ratio: 16 / 7;
-    background: #000;
+    width: 120px;
+    flex-shrink: 0;
+    background: var(--forest);
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
-    position: relative;
+    padding: 16px;
+    border-right: 2.5px solid var(--forest);
   }
-  .post-thumb svg {
-    width: 72px;
-    height: 72px;
-    opacity: 1;
-  }
-  /* Different background tints for variety */
-  .post-card:nth-child(2) .post-thumb { background: #0a0a0a; }
-  .post-card:nth-child(3) .post-thumb { background: #080b10; }
-  .post-card:nth-child(4) .post-thumb { background: #0d0800; }
-  .post-card:nth-child(5) .post-thumb { background: #08100d; }
-  .post-card:nth-child(6) .post-thumb { background: #0a0008; }
-  .post-card:nth-child(7) .post-thumb { background: #100805; }
-  .post-card:nth-child(8) .post-thumb { background: #050810; }
-  .post-card:nth-child(9) .post-thumb { background: #0c0c0c; }
+  .post-thumb svg { width: 42px; height: 42px; opacity: .9; }
 
-  /* Content */
+  /* Different accent colors for card thumb strips */
+  .post-card:nth-child(3n+2) .post-thumb { background: #2A4A32; }
+  .post-card:nth-child(3n+3) .post-thumb { background: #354030; }
+
+  /* latest: lime thumb */
+  .post-card.latest .post-thumb {
+    background: var(--lime);
+    border-right-color: var(--forest);
+  }
+  .post-card.latest .post-thumb svg { color: var(--forest); opacity: 1; }
+
   .post-content {
-    padding: 20px 20px 22px;
-  }
-  .post-top-row {
+    padding: 20px 24px 20px;
+    flex: 1;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 11px;
+    flex-direction: column;
+    justify-content: center;
   }
-  .post-date {
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--blue);
-  }
-  .post-heart {
-    font-size: 17px;
-    color: var(--blue);
-    line-height: 1;
-  }
-  .post-title {
-    font-size: 20px;
-    font-weight: 700;
-    letter-spacing: -0.3px;
-    line-height: 1.3;
-    color: var(--navy);
-    margin-bottom: 9px;
-  }
-  .post-excerpt {
-    font-size: 14px;
-    color: var(--muted);
-    line-height: 1.6;
-    margin-bottom: 18px;
-    font-weight: 400;
-  }
-  .post-author-row {
+  .post-meta-row {
     display: flex;
     align-items: center;
     gap: 10px;
+    margin-bottom: 9px;
+    flex-wrap: wrap;
   }
-  .author-avatar {
-    width: 34px;
-    height: 34px;
-    border-radius: 50%;
-    background: #000;
-    color: #fff;
-    font-size: 13px;
+  .post-date {
+    font-family: var(--mono);
+    font-size: 11px;
     font-weight: 700;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    overflow: hidden;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    opacity: .45;
   }
-  .author-name {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--blue);
-  }
-
-  /* "Latest" badge */
-  .badge-latest {
+  .badge {
     display: inline-block;
-    background: var(--blue);
-    color: #fff;
+    font-family: var(--mono);
     font-size: 10px;
     font-weight: 700;
     letter-spacing: 1px;
     text-transform: uppercase;
-    padding: 3px 9px;
+    padding: 3px 10px;
     border-radius: 100px;
-    margin-left: 8px;
-    vertical-align: middle;
+    border: 1.5px solid var(--forest);
   }
+  .badge.lime { background: var(--lime); }
 
-  /* Load more pagination */
-  .pagination {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 40px;
-    flex-wrap: wrap;
-  }
-  .page-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 36px;
-    height: 36px;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--navy);
-    border: 1px solid var(--border);
-    cursor: pointer;
-    transition: background .15s, border-color .15s, color .15s;
-  }
-  .page-btn:hover { background: var(--bg-lt); }
-  .page-btn.active {
-    background: var(--blue);
-    color: #fff;
-    border-color: var(--blue);
-  }
-  .page-btn.arrow {
-    font-size: 18px;
-    color: var(--muted);
-    border-color: transparent;
-    width: auto;
-    padding: 0 8px;
-  }
-  .page-btn.arrow:hover { color: var(--navy); background: var(--bg-lt); border-color: var(--border); }
-
-  /* ───────────────── FOOTER ───────────────── */
-  .footer {
-    border-top: 1px solid var(--border);
-    padding: 40px 24px;
-    text-align: center;
-    background: var(--bg);
-  }
-  .footer-logo-row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 10px;
-  }
-  .footer-logomark {
-    width: 32px;
-    height: 32px;
-    background: #000;
-    border-radius: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .footer-logomark svg { width: 19px; height: 19px; }
-  .footer-brand {
-    font-size: 16px;
+  .post-title {
+    font-family: var(--serif);
+    font-size: 20px;
     font-weight: 700;
-    color: var(--navy);
+    line-height: 1.3;
+    letter-spacing: -0.2px;
+    color: var(--forest);
+    margin-bottom: 7px;
   }
-  .footer-tagline {
-    font-size: 14px;
-    color: var(--muted);
-    margin-bottom: 20px;
+  .post-excerpt {
+    font-family: var(--mono);
+    font-size: 12px;
+    line-height: 1.7;
+    opacity: .55;
+    margin-bottom: 14px;
   }
-  .footer-links {
+  .post-author-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .author-dot {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--forest);
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    flex-wrap: wrap;
-    font-size: 13px;
-    color: var(--muted);
+    flex-shrink: 0;
+  }
+  .author-dot svg { width: 14px; height: 14px; }
+  .author-lbl {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    opacity: .55;
+  }
+
+  /* ─── SUBSCRIBE ─── */
+  .subscribe {
+    background: var(--lime);
+    border-top: 2.5px solid var(--forest);
+    border-bottom: 2.5px solid var(--forest);
+    padding: 96px 48px;
+    text-align: center;
+  }
+  .subscribe-kicker {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    opacity: .5;
+    margin-bottom: 22px;
+  }
+  .subscribe-h {
+    font-family: var(--serif);
+    font-size: clamp(40px, 6vw, 72px);
+    font-weight: 900;
+    line-height: 1.05;
+    color: var(--forest);
+    letter-spacing: -1px;
     margin-bottom: 16px;
   }
-  .footer-links a { color: var(--muted); transition: color .15s; }
-  .footer-links a:hover { color: var(--navy); }
-  .footer-dot { opacity: .4; }
-  .footer-copy {
+  .subscribe-h em { font-style: italic; }
+  .subscribe-sub {
+    font-family: var(--mono);
+    font-size: 14px;
+    opacity: .65;
+    line-height: 1.7;
+    max-width: 500px;
+    margin: 0 auto 44px;
+  }
+  .subscribe-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    max-width: 540px;
+    margin: 0 auto 18px;
+  }
+  .subscribe-form input {
+    flex: 1;
+    min-width: 240px;
+    padding: 15px 22px;
+    background: #fff;
+    border: 2.5px solid var(--forest);
+    border-radius: 100px;
+    font-family: var(--mono);
+    font-size: 14px;
+    color: var(--forest);
+    outline: none;
+    transition: box-shadow .15s;
+  }
+  .subscribe-form input:focus { box-shadow: 4px 4px 0 var(--forest); }
+  .subscribe-form input::placeholder { opacity: .35; font-style: italic; }
+  .subscribe-form button {
+    background: var(--forest);
+    color: #fff;
+    border: 2.5px solid var(--forest);
+    border-radius: 100px;
+    font-family: var(--mono);
+    font-size: 14px;
+    font-weight: 700;
+    padding: 15px 32px;
+    cursor: pointer;
+    transition: transform .1s, box-shadow .15s;
+    white-space: nowrap;
+  }
+  .subscribe-form button:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0 rgba(28,46,34,.4);
+  }
+  .subscribe-note {
+    font-family: var(--mono);
     font-size: 12px;
-    color: #B0B7C3;
+    opacity: .45;
   }
 
-  /* ───────────────── RESPONSIVE ───────────────── */
+  /* ─── FOOTER ─── */
+  .footer {
+    background: var(--black);
+    padding: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .footer-mark {
+    width: 34px;
+    height: 34px;
+    background: var(--lime);
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .footer-mark svg { width: 20px; height: 20px; }
+  .footer-brand {
+    font-family: var(--mono);
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .footer-center {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: rgba(255,255,255,.4);
+    text-align: center;
+    line-height: 1.7;
+  }
+  .footer-right {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: rgba(255,255,255,.3);
+    text-align: right;
+    line-height: 2;
+  }
+  .footer-right a { color: rgba(255,255,255,.5); transition: color .15s; }
+  .footer-right a:hover { color: #fff; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 720px) {
+    .nav { padding: 14px 24px; }
+    .hero { padding: 64px 24px 56px; }
+    .signals-strip { grid-template-columns: repeat(2, 1fr); }
+    .signal-cell:nth-child(2) { border-right: none; }
+    .features, .archive { padding: 60px 24px; }
+    .subscribe { padding: 72px 24px; }
+    .footer { padding: 36px 24px; flex-direction: column; align-items: flex-start; }
+    .footer-right { text-align: left; }
+    .post-thumb { width: 80px; }
+    .post-thumb svg { width: 30px; height: 30px; }
+  }
   @media (max-width: 480px) {
-    .nav-btn { padding: 7px 14px; font-size: 12px; }
-    .hero { padding: 44px 18px 44px; }
-    .archive { padding: 0 18px 56px; }
-    .post-title { font-size: 18px; }
-    .archive-heading { font-size: 28px; }
+    .nav-logo span { display: none; }
+    .hero-h1 { font-size: clamp(42px, 12vw, 64px); }
+    .btn-chunky { padding: 12px 22px; font-size: 13px; }
+    .post-title { font-size: 17px; }
+    .archive-h { font-size: 36px; }
   }
 </style>
 </head>
@@ -468,52 +603,102 @@
 
 <!-- NAV -->
 <nav class="nav">
-  <button class="nav-hamburger" aria-label="Menu">
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
-
-  <div class="nav-logo">TIMPS</div>
-
-  <div class="nav-actions">
-    <a href="#" class="nav-btn">Login</a>
-    <a href="#subscribe" class="nav-btn filled">Join Now</a>
+  <div class="nav-logo">
+    <div class="nav-logo-mark">
+      <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="8" y="10" width="44" height="8" rx="3" fill="#DCF07A"/>
+        <rect x="24" y="18" width="12" height="34" rx="3" fill="#DCF07A"/>
+      </svg>
+    </div>
+    <span>TIMPS PostCards</span>
   </div>
+  <a href="#subscribe" class="nav-cta">Subscribe</a>
 </nav>
 
 <!-- HERO -->
-<section class="hero" id="subscribe">
-  <!-- Logo mark: black square with white "T" letterform -->
-  <div class="hero-logomark" aria-hidden="true">
-    <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="8" y="10" width="44" height="6" rx="2" fill="white"/>
-      <rect x="25" y="16" width="10" height="36" rx="2" fill="white"/>
-    </svg>
-  </div>
-
-  <h1>TIMPS PostCards</h1>
+<section class="hero">
+  <span class="hero-eyebrow">Est. 2025 &middot; Hyderabad, India &middot; Vol. II</span>
+  <h1 class="hero-h1">
+    Every AI signal<br>
+    <span class="hero-highlight">worth reading.</span>
+  </h1>
   <p class="hero-sub">
-    Five curated signals from the AI landscape,<br>delivered every Friday morning.
+    <strong>Five curated signals from the AI landscape,</strong><br>
+    delivered every Friday morning.
+    No noise. No hype. Just the story behind the story.
   </p>
+  <div class="hero-btns">
+    <a href="23-05-2026.html" class="btn-chunky filled">Read Latest Issue</a>
+    <a href="#archive" class="btn-chunky lime">Browse Archive</a>
+  </div>
+</section>
 
-  <form class="hero-form" onsubmit="handleSub(event)">
-    <input type="email" placeholder="Type your email..." autocomplete="email" required>
-    <button type="submit">Subscribe</button>
-  </form>
+<!-- STATS STRIP -->
+<div class="signals-strip">
+  <div class="signal-cell">
+    <span class="signal-num">048</span>
+    <span class="signal-lbl">Issues published</span>
+  </div>
+  <div class="signal-cell">
+    <span class="signal-num"><em>5</em></span>
+    <span class="signal-lbl">Signals per issue</span>
+  </div>
+  <div class="signal-cell">
+    <span class="signal-num">2</span>
+    <span class="signal-lbl">Years running</span>
+  </div>
+  <div class="signal-cell">
+    <span class="signal-num"><em>1</em></span>
+    <span class="signal-lbl">Team &middot; TIMPS</span>
+  </div>
+</div>
 
-  <div class="hero-author">
-    <span class="hero-author-label">Written by</span>
-    <span class="hero-author-name">TIMPS Team</span>
+<!-- FEATURES -->
+<section class="features">
+  <p class="features-label">What you get</p>
+  <h2 class="features-h">
+    Turn AI noise into<br><em>clear signals.</em>
+  </h2>
+
+  <div class="feature-row">
+    <div class="feature-num">01</div>
+    <div class="feature-text">
+      <strong>Five curated signals, every Friday</strong>
+      <p>Each issue distills the week&#39;s AI landscape into exactly five high-signal items &#8212; no filler, no fluff.</p>
+    </div>
+  </div>
+  <div class="feature-row">
+    <div class="feature-num">02</div>
+    <div class="feature-text">
+      <strong>The story behind the story</strong>
+      <p>We don&#39;t just report what happened. We explain why it matters and what it means for builders and thinkers in India.</p>
+    </div>
+  </div>
+  <div class="feature-row">
+    <div class="feature-num">03</div>
+    <div class="feature-text">
+      <strong>Agentic AI, compute &amp; frontier research</strong>
+      <p>From LLM architecture shifts to chip wars to policy &#8212; every domain that shapes where AI is actually heading.</p>
+    </div>
+  </div>
+  <div class="feature-row">
+    <div class="feature-num">04</div>
+    <div class="feature-text">
+      <strong>8-minute read. Free, forever.</strong>
+      <p>Designed to respect your time. No paywalls, no sponsored noise. Built by the TIMPS team in Hyderabad.</p>
+    </div>
   </div>
 </section>
 
 <!-- ARCHIVE -->
-<section class="archive">
-  <h2 class="archive-heading">Archive</h2>
+<section class="archive" id="archive">
+  <div class="archive-header">
+    <h2 class="archive-h">Archive</h2>
+    <span class="archive-count">048 issues</span>
+  </div>
 
-  <div class="search-wrap">
-    <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <div class="search-row">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
       <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
     </svg>
     <input type="text" placeholder="Search posts..." id="searchInput" oninput="filterPosts(this.value)">
@@ -522,25 +707,25 @@
   <div class="post-list" id="postList">
 
     <!-- Issue 048 – Latest -->
-    <a href="23-05-2026.html" class="post-card">
+    <a href="23-05-2026.html" class="post-card latest">
       <div class="post-thumb">
         <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="8" y="10" width="44" height="6" rx="2" fill="white"/>
-          <rect x="25" y="16" width="10" height="36" rx="2" fill="white"/>
+          <rect x="8" y="10" width="44" height="8" rx="3" fill="#1C2E22"/>
+          <rect x="24" y="18" width="12" height="34" rx="3" fill="#1C2E22"/>
         </svg>
       </div>
       <div class="post-content">
-        <div class="post-top-row">
-          <span class="post-date">May 23, 2026 <span class="badge-latest">Latest</span></span>
-          <span class="post-heart">&#10084;</span>
+        <div class="post-meta-row">
+          <span class="post-date">May 23, 2026</span>
+          <span class="badge lime">Latest</span>
         </div>
         <h3 class="post-title">The Agentic Turn: How AI Stopped Answering and Started Doing</h3>
-        <p class="post-excerpt">PLUS: Five signals on autonomous AI workflows &#8212; from multi-step reasoning chains to real-world tool-use &#8212; reshaping how enterprise software gets built.</p>
+        <p class="post-excerpt">PLUS: Five signals on autonomous AI workflows &#8212; multi-step reasoning, tool-use, and the end of the prompt-response loop.</p>
         <div class="post-author-row">
-          <div class="author-avatar">
-            <svg width="16" height="16" viewBox="0 0 60 60" fill="none"><rect x="8" y="10" width="44" height="6" rx="2" fill="white"/><rect x="25" y="16" width="10" height="36" rx="2" fill="white"/></svg>
+          <div class="author-dot">
+            <svg viewBox="0 0 60 60" fill="none"><rect x="8" y="10" width="44" height="8" rx="3" fill="#DCF07A"/><rect x="24" y="18" width="12" height="34" rx="3" fill="#DCF07A"/></svg>
           </div>
-          <span class="author-name">TIMPS Team</span>
+          <span class="author-lbl">TIMPS Team &middot; 8 min read</span>
         </div>
       </div>
     </a>
@@ -549,22 +734,22 @@
     <a href="#" class="post-card">
       <div class="post-thumb">
         <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="8" y="10" width="44" height="6" rx="2" fill="white"/>
-          <rect x="25" y="16" width="10" height="36" rx="2" fill="white"/>
+          <rect x="8" y="10" width="44" height="8" rx="3" fill="white" opacity=".8"/>
+          <rect x="24" y="18" width="12" height="34" rx="3" fill="white" opacity=".8"/>
         </svg>
       </div>
       <div class="post-content">
-        <div class="post-top-row">
+        <div class="post-meta-row">
           <span class="post-date">May 16, 2026</span>
-          <span class="post-heart">&#10084;</span>
+          <span class="badge">No. 047</span>
         </div>
         <h3 class="post-title">Frontier Models Race to a $1 Trillion Parameter Wall</h3>
         <p class="post-excerpt">PLUS: The structural compute ceiling slowing the scaling era &#8212; and what the labs are building instead to keep benchmarks moving.</p>
         <div class="post-author-row">
-          <div class="author-avatar">
-            <svg width="16" height="16" viewBox="0 0 60 60" fill="none"><rect x="8" y="10" width="44" height="6" rx="2" fill="white"/><rect x="25" y="16" width="10" height="36" rx="2" fill="white"/></svg>
+          <div class="author-dot">
+            <svg viewBox="0 0 60 60" fill="none"><rect x="8" y="10" width="44" height="8" rx="3" fill="#DCF07A"/><rect x="24" y="18" width="12" height="34" rx="3" fill="#DCF07A"/></svg>
           </div>
-          <span class="author-name">TIMPS Team</span>
+          <span class="author-lbl">TIMPS Team &middot; 7 min read</span>
         </div>
       </div>
     </a>
@@ -573,22 +758,22 @@
     <a href="#" class="post-card">
       <div class="post-thumb">
         <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="8" y="10" width="44" height="6" rx="2" fill="white"/>
-          <rect x="25" y="16" width="10" height="36" rx="2" fill="white"/>
+          <rect x="8" y="10" width="44" height="8" rx="3" fill="white" opacity=".8"/>
+          <rect x="24" y="18" width="12" height="34" rx="3" fill="white" opacity=".8"/>
         </svg>
       </div>
       <div class="post-content">
-        <div class="post-top-row">
+        <div class="post-meta-row">
           <span class="post-date">May 9, 2026</span>
-          <span class="post-heart">&#10084;</span>
+          <span class="badge">No. 046</span>
         </div>
         <h3 class="post-title">The Open-Source Surge: Why Big Labs Are Losing Their Moat</h3>
-        <p class="post-excerpt">PLUS: Open-weight models are closing the gap on closed labs, benchmark by benchmark. Here is how the strategic calculus is shifting.</p>
+        <p class="post-excerpt">PLUS: Open-weight models closing the capability gap on closed labs, benchmark by benchmark.</p>
         <div class="post-author-row">
-          <div class="author-avatar">
-            <svg width="16" height="16" viewBox="0 0 60 60" fill="none"><rect x="8" y="10" width="44" height="6" rx="2" fill="white"/><rect x="25" y="16" width="10" height="36" rx="2" fill="white"/></svg>
+          <div class="author-dot">
+            <svg viewBox="0 0 60 60" fill="none"><rect x="8" y="10" width="44" height="8" rx="3" fill="#DCF07A"/><rect x="24" y="18" width="12" height="34" rx="3" fill="#DCF07A"/></svg>
           </div>
-          <span class="author-name">TIMPS Team</span>
+          <span class="author-lbl">TIMPS Team &middot; 6 min read</span>
         </div>
       </div>
     </a>
@@ -597,22 +782,22 @@
     <a href="#" class="post-card">
       <div class="post-thumb">
         <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="8" y="10" width="44" height="6" rx="2" fill="white"/>
-          <rect x="25" y="16" width="10" height="36" rx="2" fill="white"/>
+          <rect x="8" y="10" width="44" height="8" rx="3" fill="white" opacity=".8"/>
+          <rect x="24" y="18" width="12" height="34" rx="3" fill="white" opacity=".8"/>
         </svg>
       </div>
       <div class="post-content">
-        <div class="post-top-row">
+        <div class="post-meta-row">
           <span class="post-date">May 2, 2026</span>
-          <span class="post-heart">&#10084;</span>
+          <span class="badge">No. 045</span>
         </div>
         <h3 class="post-title">Memory, Context &amp; the Machines That Never Forget</h3>
-        <p class="post-excerpt">PLUS: As context windows stretch past a million tokens, the real question shifts from capacity to attention &#8212; a quiet architectural revolution is underway.</p>
+        <p class="post-excerpt">PLUS: As context windows stretch past a million tokens, the real question shifts from capacity to attention.</p>
         <div class="post-author-row">
-          <div class="author-avatar">
-            <svg width="16" height="16" viewBox="0 0 60 60" fill="none"><rect x="8" y="10" width="44" height="6" rx="2" fill="white"/><rect x="25" y="16" width="10" height="36" rx="2" fill="white"/></svg>
+          <div class="author-dot">
+            <svg viewBox="0 0 60 60" fill="none"><rect x="8" y="10" width="44" height="8" rx="3" fill="#DCF07A"/><rect x="24" y="18" width="12" height="34" rx="3" fill="#DCF07A"/></svg>
           </div>
-          <span class="author-name">TIMPS Team</span>
+          <span class="author-lbl">TIMPS Team &middot; 7 min read</span>
         </div>
       </div>
     </a>
@@ -621,22 +806,22 @@
     <a href="#" class="post-card">
       <div class="post-thumb">
         <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="8" y="10" width="44" height="6" rx="2" fill="white"/>
-          <rect x="25" y="16" width="10" height="36" rx="2" fill="white"/>
+          <rect x="8" y="10" width="44" height="8" rx="3" fill="white" opacity=".8"/>
+          <rect x="24" y="18" width="12" height="34" rx="3" fill="white" opacity=".8"/>
         </svg>
       </div>
       <div class="post-content">
-        <div class="post-top-row">
+        <div class="post-meta-row">
           <span class="post-date">Apr 25, 2026</span>
-          <span class="post-heart">&#10084;</span>
+          <span class="badge">No. 044</span>
         </div>
         <h3 class="post-title">AI in the Courtroom: Regulation Comes for Foundation Models</h3>
-        <p class="post-excerpt">PLUS: Brussels moved first. Washington is watching. This week tracks cascading compliance obligations landing on the labs that build foundation models.</p>
+        <p class="post-excerpt">PLUS: Brussels moved first. Washington is watching. Cascading compliance obligations now landing on the labs that build foundation models.</p>
         <div class="post-author-row">
-          <div class="author-avatar">
-            <svg width="16" height="16" viewBox="0 0 60 60" fill="none"><rect x="8" y="10" width="44" height="6" rx="2" fill="white"/><rect x="25" y="16" width="10" height="36" rx="2" fill="white"/></svg>
+          <div class="author-dot">
+            <svg viewBox="0 0 60 60" fill="none"><rect x="8" y="10" width="44" height="8" rx="3" fill="#DCF07A"/><rect x="24" y="18" width="12" height="34" rx="3" fill="#DCF07A"/></svg>
           </div>
-          <span class="author-name">TIMPS Team</span>
+          <span class="author-lbl">TIMPS Team &middot; 6 min read</span>
         </div>
       </div>
     </a>
@@ -645,22 +830,22 @@
     <a href="#" class="post-card">
       <div class="post-thumb">
         <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="8" y="10" width="44" height="6" rx="2" fill="white"/>
-          <rect x="25" y="16" width="10" height="36" rx="2" fill="white"/>
+          <rect x="8" y="10" width="44" height="8" rx="3" fill="white" opacity=".8"/>
+          <rect x="24" y="18" width="12" height="34" rx="3" fill="white" opacity=".8"/>
         </svg>
       </div>
       <div class="post-content">
-        <div class="post-top-row">
+        <div class="post-meta-row">
           <span class="post-date">Apr 18, 2026</span>
-          <span class="post-heart">&#10084;</span>
+          <span class="badge">No. 043</span>
         </div>
         <h3 class="post-title">Chip Wars: NVIDIA&#39;s Next Bet &amp; the Custom Silicon Insurgency</h3>
-        <p class="post-excerpt">PLUS: Custom silicon from Amazon, Google, and Microsoft is gaining ground, quietly reshaping the AI compute stack from the ground up.</p>
+        <p class="post-excerpt">PLUS: Custom silicon from Amazon, Google, and Microsoft quietly reshaping the AI compute stack from the ground up.</p>
         <div class="post-author-row">
-          <div class="author-avatar">
-            <svg width="16" height="16" viewBox="0 0 60 60" fill="none"><rect x="8" y="10" width="44" height="6" rx="2" fill="white"/><rect x="25" y="16" width="10" height="36" rx="2" fill="white"/></svg>
+          <div class="author-dot">
+            <svg viewBox="0 0 60 60" fill="none"><rect x="8" y="10" width="44" height="8" rx="3" fill="#DCF07A"/><rect x="24" y="18" width="12" height="34" rx="3" fill="#DCF07A"/></svg>
           </div>
-          <span class="author-name">TIMPS Team</span>
+          <span class="author-lbl">TIMPS Team &middot; 8 min read</span>
         </div>
       </div>
     </a>
@@ -669,22 +854,22 @@
     <a href="#" class="post-card">
       <div class="post-thumb">
         <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="8" y="10" width="44" height="6" rx="2" fill="white"/>
-          <rect x="25" y="16" width="10" height="36" rx="2" fill="white"/>
+          <rect x="8" y="10" width="44" height="8" rx="3" fill="white" opacity=".8"/>
+          <rect x="24" y="18" width="12" height="34" rx="3" fill="white" opacity=".8"/>
         </svg>
       </div>
       <div class="post-content">
-        <div class="post-top-row">
+        <div class="post-meta-row">
           <span class="post-date">Apr 11, 2026</span>
-          <span class="post-heart">&#10084;</span>
+          <span class="badge">No. 042</span>
         </div>
         <h3 class="post-title">Multi-Agent, Multi-Modal, Multi-Everything: A Week of Launches</h3>
         <p class="post-excerpt">PLUS: April opened with an avalanche of product launches. Five signals cut through the noise to find what will actually matter next year.</p>
         <div class="post-author-row">
-          <div class="author-avatar">
-            <svg width="16" height="16" viewBox="0 0 60 60" fill="none"><rect x="8" y="10" width="44" height="6" rx="2" fill="white"/><rect x="25" y="16" width="10" height="36" rx="2" fill="white"/></svg>
+          <div class="author-dot">
+            <svg viewBox="0 0 60 60" fill="none"><rect x="8" y="10" width="44" height="8" rx="3" fill="#DCF07A"/><rect x="24" y="18" width="12" height="34" rx="3" fill="#DCF07A"/></svg>
           </div>
-          <span class="author-name">TIMPS Team</span>
+          <span class="author-lbl">TIMPS Team &middot; 7 min read</span>
         </div>
       </div>
     </a>
@@ -693,22 +878,22 @@
     <a href="#" class="post-card">
       <div class="post-thumb">
         <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="8" y="10" width="44" height="6" rx="2" fill="white"/>
-          <rect x="25" y="16" width="10" height="36" rx="2" fill="white"/>
+          <rect x="8" y="10" width="44" height="8" rx="3" fill="white" opacity=".8"/>
+          <rect x="24" y="18" width="12" height="34" rx="3" fill="white" opacity=".8"/>
         </svg>
       </div>
       <div class="post-content">
-        <div class="post-top-row">
+        <div class="post-meta-row">
           <span class="post-date">Apr 4, 2026</span>
-          <span class="post-heart">&#10084;</span>
+          <span class="badge">No. 041</span>
         </div>
         <h3 class="post-title">The $100B Club: AI Valuations Are Rewriting Every Rule</h3>
         <p class="post-excerpt">PLUS: Three AI companies crossed the $100B valuation threshold this quarter. Five signals trace the capital flows and what it means for the next wave.</p>
         <div class="post-author-row">
-          <div class="author-avatar">
-            <svg width="16" height="16" viewBox="0 0 60 60" fill="none"><rect x="8" y="10" width="44" height="6" rx="2" fill="white"/><rect x="25" y="16" width="10" height="36" rx="2" fill="white"/></svg>
+          <div class="author-dot">
+            <svg viewBox="0 0 60 60" fill="none"><rect x="8" y="10" width="44" height="8" rx="3" fill="#DCF07A"/><rect x="24" y="18" width="12" height="34" rx="3" fill="#DCF07A"/></svg>
           </div>
-          <span class="author-name">TIMPS Team</span>
+          <span class="author-lbl">TIMPS Team &middot; 6 min read</span>
         </div>
       </div>
     </a>
@@ -717,61 +902,65 @@
     <a href="#" class="post-card">
       <div class="post-thumb">
         <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="8" y="10" width="44" height="6" rx="2" fill="white"/>
-          <rect x="25" y="16" width="10" height="36" rx="2" fill="white"/>
+          <rect x="8" y="10" width="44" height="8" rx="3" fill="white" opacity=".8"/>
+          <rect x="24" y="18" width="12" height="34" rx="3" fill="white" opacity=".8"/>
         </svg>
       </div>
       <div class="post-content">
-        <div class="post-top-row">
+        <div class="post-meta-row">
           <span class="post-date">Mar 28, 2026</span>
-          <span class="post-heart">&#10084;</span>
+          <span class="badge">No. 040</span>
         </div>
         <h3 class="post-title">The Alignment Problem Isn&#39;t What You Think It Is</h3>
-        <p class="post-excerpt">PLUS: The public debate about AI safety is stuck on the wrong question. Five signals look at technical alignment work happening inside the labs, far from op-ed noise.</p>
+        <p class="post-excerpt">PLUS: The public debate about AI safety is stuck on the wrong question. Five signals look at the real technical alignment work happening inside the labs.</p>
         <div class="post-author-row">
-          <div class="author-avatar">
-            <svg width="16" height="16" viewBox="0 0 60 60" fill="none"><rect x="8" y="10" width="44" height="6" rx="2" fill="white"/><rect x="25" y="16" width="10" height="36" rx="2" fill="white"/></svg>
+          <div class="author-dot">
+            <svg viewBox="0 0 60 60" fill="none"><rect x="8" y="10" width="44" height="8" rx="3" fill="#DCF07A"/><rect x="24" y="18" width="12" height="34" rx="3" fill="#DCF07A"/></svg>
           </div>
-          <span class="author-name">TIMPS Team</span>
+          <span class="author-lbl">TIMPS Team &middot; 7 min read</span>
         </div>
       </div>
     </a>
 
   </div><!-- /post-list -->
+</section>
 
-  <!-- Pagination -->
-  <div class="pagination">
-    <a href="#" class="page-btn arrow">&larr;</a>
-    <a href="#" class="page-btn active">1</a>
-    <a href="#" class="page-btn">2</a>
-    <a href="#" class="page-btn">3</a>
-    <a href="#" class="page-btn">4</a>
-    <a href="#" class="page-btn">5</a>
-    <a href="#" class="page-btn arrow">&rarr;</a>
-  </div>
-
+<!-- SUBSCRIBE -->
+<section class="subscribe" id="subscribe">
+  <p class="subscribe-kicker">Join the PostCards &middot; Free forever</p>
+  <h2 class="subscribe-h">
+    Get the signal,<br><em>every Friday.</em>
+  </h2>
+  <p class="subscribe-sub">
+    Sign up with your email address to receive<br>TIMPS PostCards every Friday morning.
+  </p>
+  <form class="subscribe-form" onsubmit="handleSub(event)">
+    <input type="email" placeholder="Email Address" autocomplete="email" required>
+    <button type="submit">Sign Up</button>
+  </form>
+  <p class="subscribe-note">We respect your privacy.</p>
 </section>
 
 <!-- FOOTER -->
 <footer class="footer">
-  <div class="footer-logo-row">
-    <div class="footer-logomark">
+  <div class="footer-logo">
+    <div class="footer-mark">
       <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="8" y="10" width="44" height="6" rx="2" fill="white"/>
-        <rect x="25" y="16" width="10" height="36" rx="2" fill="white"/>
+        <rect x="8" y="10" width="44" height="8" rx="3" fill="#1C2E22"/>
+        <rect x="24" y="18" width="12" height="34" rx="3" fill="#1C2E22"/>
       </svg>
     </div>
     <span class="footer-brand">TIMPS PostCards</span>
   </div>
-  <p class="footer-tagline">Five signals from the AI landscape, every Friday.</p>
-  <div class="footer-links">
-    <a href="#">Home</a>
-    <span class="footer-dot">&middot;</span>
-    <a href="#archive">Posts</a>
-    <span class="footer-dot">&middot;</span>
-    <a href="#subscribe">Subscribe</a>
+  <div class="footer-center">
+    Five signals from the AI landscape, every Friday.<br>
+    Hyderabad, India &middot; Est. 2025
   </div>
-  <p class="footer-copy">&copy; 2026 TIMPS PostCards &middot; Hyderabad, India</p>
+  <div class="footer-right">
+    <a href="#">Home</a><br>
+    <a href="#archive">Posts</a><br>
+    &copy; 2026 TIMPS
+  </div>
 </footer>
 
 <script>
@@ -779,10 +968,10 @@
     e.preventDefault();
     const input = e.target.querySelector('input');
     const btn   = e.target.querySelector('button');
-    btn.textContent = 'Subscribed \u2713';
-    btn.style.background = '#22c55e';
+    btn.textContent = 'Subscribed!';
+    btn.style.background = '#2a6e3a';
     input.value = '';
-    input.placeholder = 'Welcome aboard!';
+    input.placeholder = 'Welcome aboard.';
     input.disabled = btn.disabled = true;
   }
 
@@ -790,8 +979,7 @@
     const cards = document.querySelectorAll('#postList .post-card');
     const val = q.toLowerCase().trim();
     cards.forEach(c => {
-      const text = c.textContent.toLowerCase();
-      c.style.display = (!val || text.includes(val)) ? '' : 'none';
+      c.style.display = (!val || c.textContent.toLowerCase().includes(val)) ? '' : 'none';
     });
   }
 </script>
