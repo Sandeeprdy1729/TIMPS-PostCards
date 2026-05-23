@@ -938,11 +938,19 @@
   <p class="subscribe-sub">
     Sign up with your email address to receive<br>TIMPS PostCards every Friday morning.
   </p>
-  <form class="subscribe-form" onsubmit="handleSub(event)">
-    <input type="email" placeholder="Email Address" autocomplete="email" required>
-    <button type="submit">Sign Up</button>
+  <!--
+    BEEHIIV SETUP:
+    1. Sign up at https://app.beehiiv.com (free)
+    2. Create a publication called "TIMPS PostCards"
+    3. Go to Settings > API > copy your Publication ID (pub_xxxxxxxx...)
+    4. Replace  pub_REPLACE_WITH_YOUR_ID  in the <script> at the bottom of this file
+    Beehiiv will handle all confirmation emails + Friday sends from your dashboard.
+  -->
+  <form class="subscribe-form" id="subForm" onsubmit="handleSub(event)">
+    <input type="email" id="subEmail" placeholder="Email Address" autocomplete="email" required>
+    <button type="submit" id="subBtn">Sign Up</button>
   </form>
-  <p class="subscribe-note">We respect your privacy.</p>
+  <p class="subscribe-note" id="subNote">We respect your privacy.</p>
 </section>
 
 <!-- FOOTER -->
@@ -968,15 +976,68 @@
 </footer>
 
 <script>
-  function handleSub(e) {
+  // ─── Beehiiv subscription ─────────────────────────────────────────────
+  // SETUP: Replace the value below with your Beehiiv Publication ID.
+  //   1. Sign up free at https://app.beehiiv.com
+  //   2. Create your publication "TIMPS PostCards"
+  //   3. Settings > API  →  copy Publication ID  (looks like pub_xxxxxxxx-...)
+  //   4. Paste it here ↓
+  const BEEHIIV_PUB_ID = 'pub_REPLACE_WITH_YOUR_ID';
+
+  async function handleSub(e) {
     e.preventDefault();
-    const input = e.target.querySelector('input');
-    const btn   = e.target.querySelector('button');
-    btn.textContent = 'Subscribed!';
-    btn.style.background = '#2a6e3a';
-    input.value = '';
-    input.placeholder = 'Welcome aboard.';
-    input.disabled = btn.disabled = true;
+    const input = document.getElementById('subEmail');
+    const btn   = document.getElementById('subBtn');
+    const note  = document.getElementById('subNote');
+    const email = input.value.trim();
+
+    btn.textContent = 'Subscribing...';
+    btn.disabled = input.disabled = true;
+    note.style.color = '';
+
+    // Guard: warn if not yet configured
+    if (BEEHIIV_PUB_ID === 'pub_REPLACE_WITH_YOUR_ID') {
+      note.textContent = 'Setup needed: add your Beehiiv Publication ID to the script.';
+      note.style.color = '#c0392b';
+      btn.textContent = 'Sign Up';
+      btn.disabled = input.disabled = false;
+      return;
+    }
+
+    try {
+      const res = await fetch(
+        'https://api.beehiiv.com/v2/publications/' + BEEHIIV_PUB_ID + '/subscriptions',
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email,
+            reactivate_existing: false,
+            send_welcome_email:  true,
+            utm_source:   'timps-postcards-website',
+            utm_medium:   'organic',
+            utm_campaign: 'landing-page'
+          })
+        }
+      );
+
+      if (res.ok || res.status === 201) {
+        btn.textContent = "You're in! \u2713";
+        btn.style.background = '#1C2E22';
+        input.value = '';
+        input.placeholder = 'Welcome aboard.';
+        note.textContent = 'Check your inbox for a confirmation email.';
+      } else {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.message || 'Subscription failed (status ' + res.status + ').');
+      }
+    } catch (err) {
+      btn.textContent = 'Try Again';
+      btn.style.background = '';
+      btn.disabled = input.disabled = false;
+      note.textContent = err.message;
+      note.style.color = '#c0392b';
+    }
   }
 
   function filterPosts(q) {
