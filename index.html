@@ -994,12 +994,16 @@
     btn.disabled = input.disabled = true;
     note.style.color = '';
 
-    // Guard: warn if config.js is missing or placeholder not replaced
+    // Guard: newsletter not yet connected — show friendly message to visitors
     if (!BEEHIIV_PUB_ID || BEEHIIV_PUB_ID === 'pub_YOUR_ID_HERE') {
-      note.textContent = 'Setup needed: add your Beehiiv Publication ID to the script.';
-      note.style.color = '#c0392b';
-      btn.textContent = 'Sign Up';
-      btn.disabled = input.disabled = false;
+      btn.textContent = 'Coming Soon!';
+      note.textContent = 'Our newsletter is launching soon — check back shortly!';
+      note.style.color = '#1C2E22';
+      setTimeout(() => {
+        btn.textContent = 'Sign Up';
+        btn.disabled = input.disabled = false;
+        note.textContent = '';
+      }, 4000);
       return;
     }
 
@@ -1017,12 +1021,14 @@
         body: body.toString()
       });
 
-      if (res.ok || res.status === 201) {
+      if (res.ok || res.status === 201 || res.status === 200) {
         btn.textContent = "You're in! \u2713";
         btn.style.background = '#1C2E22';
         input.value = '';
         input.placeholder = 'Welcome aboard.';
         note.textContent = 'Check your inbox for a confirmation email.';
+      } else if (res.status === 404) {
+        throw new Error('Publication not found. Please check your Beehiiv publication ID in config.js.');
       } else {
         const data = await res.json().catch(() => ({}));
         throw new Error(data.message || 'Subscription failed (status ' + res.status + ').');
