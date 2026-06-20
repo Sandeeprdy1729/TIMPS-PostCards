@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TIMPS PostCards — Issue 026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #EEECE2;
+  font-family: 'EB Garamond', Georgia, ui-serif, serif;
+  color: #3D3929;
+  padding: 40px 20px 80px;
+}
+.wrapper { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 0; }
+
+/* Cover */
+.cover-card { background: #F0ECE0; border-radius: 20px 20px 4px 4px; padding: 56px 48px 48px; text-align: center; position: relative; overflow: hidden; border: 1.5px solid rgba(61,57,41,0.12); margin-bottom: 3px; }
+.cover-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, #DA7756 0%, #BD5D3A 60%, #E0A88A 100%); }
+.cover-eyebrow { font-size:10px; letter-spacing:4px; text-transform:uppercase; color:#DA7756; margin-bottom:20px; display:flex; align-items:center; justify-content:center; gap:10px; }
+.cover-eyebrow::before,.cover-eyebrow::after { content:''; flex:1; height:1px; background:#DA7756; opacity:.35; max-width:60px; }
+.cover-title { font-family:'Playfair Display',serif; font-size:58px; font-weight:900; line-height:1; letter-spacing:-1px; color:#3D3929; margin-bottom:8px; }
+.cover-sub { font-family:'Playfair Display',serif; font-size:13px; font-style:italic; color:#5C5847; margin-bottom:28px; }
+.cover-divider { width:48px; height:2px; background:#DA7756; margin:0 auto 24px; border-radius:2px; }
+.cover-meta { display:flex; justify-content:center; gap:32px; font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color:#5C5847; }
+.cover-badge { display:inline-flex; align-items:center; gap:6px; background:#DA7756; color:#fff; border-radius:20px; padding:6px 18px; font-size:10px; letter-spacing:2px; text-transform:uppercase; margin-top:28px; }
+.top5-pill { display:flex; justify-content:center; gap:10px; margin-top:32px; flex-wrap:wrap; }
+.pill { background:#3D3929; color:#F0ECE0; border-radius:100px; padding:4px 14px; font-size:10px; letter-spacing:1px; text-transform:uppercase; }
+.pill.light { background:transparent; color:#3D3929; border:1px solid rgba(61,57,41,.2); }
+
+/* Section labels */
+.section-label { display:flex; align-items:center; gap:12px; padding:10px 0 8px; font-size:9px; letter-spacing:4px; text-transform:uppercase; color:#5C5847; }
+.section-label::before,.section-label::after { content:''; flex:1; height:1px; background:rgba(61,57,41,.15); }
+
+/* Story cards */
+.story-card { border-radius:4px; border:1.5px solid rgba(61,57,41,.10); padding:36px 40px; margin-bottom:3px; position:relative; overflow:hidden; }
+.story-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }
+
+/* Card colour classes — Scheme A: Lavender + Blush */
+.card-lavender { background:#EAE6F5; } .card-lavender::before { background:#C8BEE8; }
+.card-sage     { background:#D6E4D6; } .card-sage::before     { background:#8BAF8B; }
+.card-blush    { background:#F5DDD0; } .card-blush::before    { background:#E0A88A; }
+.card-sky      { background:#D6E8F0; } .card-sky::before      { background:#7AAFC0; }
+.card-cream    { background:#F7F5EF; } .card-cream::before    { background:#DA7756; }
+
+/* Card typography */
+.page-chip { position:absolute; top:14px; right:16px; font-size:9px; letter-spacing:2px; text-transform:uppercase; color:#5C5847; opacity:.5; }
+.card-routine { font-size:9px; letter-spacing:4px; text-transform:uppercase; color:#5C5847; margin-bottom:8px; }
+.card-headline { font-family:'Playfair Display',serif; font-size:28px; font-weight:900; line-height:1.15; color:#3D3929; margin-bottom:10px; }
+.card-headline.lg { font-size:34px; }
+.card-headline.sm { font-size:22px; }
+.card-deck { font-family:'Playfair Display',serif; font-style:italic; font-size:14px; line-height:1.55; color:#5C5847; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid rgba(61,57,41,.15); }
+.card-body { font-size:13px; line-height:1.8; color:#3D3929; }
+.card-body p { margin-bottom:11px; }
+.two-col { column-count:2; column-gap:24px; column-rule:1px solid rgba(61,57,41,.12); }
+.drop::first-letter { font-family:'Playfair Display',serif; font-size:52px; font-weight:900; float:left; line-height:.78; margin:5px 6px 0 0; color:#DA7756; }
+.clearfix::after { content:''; display:table; clear:both; }
+
+/* Inline highlights */
+.hl-terra { background:#DA7756; color:#fff; padding:0 4px; border-radius:2px; }
+.hl-ink   { background:#3D3929; color:#F0ECE0; padding:0 4px; border-radius:2px; }
+.hl-sage  { background:#8BAF8B; color:#fff; padding:0 4px; border-radius:2px; }
+.hl-lav   { background:#C8BEE8; color:#3D3929; padding:0 4px; border-radius:2px; }
+
+/* Stat float */
+.stat-box { float:right; margin:0 0 16px 24px; background:#F0ECE0; border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:16px 20px; text-align:center; min-width:120px; }
+.stat-big { font-family:'Playfair Display',serif; font-size:44px; font-weight:900; line-height:1; color:#DA7756; display:block; }
+.stat-label { font-size:9.5px; letter-spacing:1.5px; text-transform:uppercase; color:#5C5847; display:block; margin-top:4px; }
+
+/* Image frames */
+.img-frame { border:2px solid rgba(61,57,41,0.18); border-radius:12px; overflow:hidden; margin:16px 0; background:#F0ECE0; }
+.img-frame img { width:100%; display:block; max-height:240px; object-fit:cover; border-bottom:1px solid rgba(61,57,41,.12); }
+.img-caption { padding:8px 12px; font-size:10.5px; color:#5C5847; font-style:italic; display:flex; align-items:center; justify-content:space-between; gap:8px; }
+.img-caption a { font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color:#DA7756; text-decoration:none; white-space:nowrap; font-style:normal; }
+.img-frame.float-right { float:right; width:220px; margin:0 0 16px 24px; }
+.img-frame.float-right img { max-height:140px; }
+
+/* Source links */
+.source-link { display:inline-flex; align-items:center; gap:5px; font-size:10px; letter-spacing:1px; text-transform:uppercase; color:#DA7756; text-decoration:none; margin-top:12px; border-bottom:1px solid rgba(218,119,86,.35); padding-bottom:1px; }
+.source-link::after { content:'↗'; font-size:9px; }
+
+/* Output card */
+.output-card { background:#F0ECE0; border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:18px 20px; margin-top:14px; }
+.output-title { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; margin-bottom:8px; color:#3D3929; }
+.output-meta { display:flex; gap:20px; font-size:10px; color:#5C5847; padding-bottom:10px; margin-bottom:10px; border-bottom:1px solid rgba(61,57,41,.12); flex-wrap:wrap; }
+.tp-list { list-style:none; padding:0; margin:0; }
+.tp-list li { padding:5px 0; font-size:11.5px; border-bottom:1px solid rgba(61,57,41,.07); display:flex; align-items:flex-start; gap:7px; }
+.tp-list li::before { content:'·'; color:#DA7756; font-size:14px; line-height:1.2; flex-shrink:0; }
+
+/* Signals */
+.signals-grid { display:flex; flex-direction:column; gap:14px; }
+.signal-row { display:flex; align-items:flex-start; gap:14px; }
+.signal-num { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-size:13px; font-weight:900; flex-shrink:0; color:#fff; }
+.signal-num.n1{background:#DA7756;} .signal-num.n2{background:#3D3929;} .signal-num.n3{background:#8BAF8B;} .signal-num.n4{background:#C8BEE8;color:#3D3929;} .signal-num.n5{background:#E0A88A;}
+.signal-title { font-family:'Playfair Display',serif; font-size:14px; font-weight:700; color:#3D3929; margin-bottom:2px; }
+.signal-desc { font-size:12px; line-height:1.65; color:#5C5847; }
+.signal-link { display:inline-block; font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color:#DA7756; text-decoration:none; margin-top:4px; border-bottom:1px solid rgba(218,119,86,.3); }
+
+/* Themes */
+.themes-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.theme-item { padding:10px 14px; border-radius:8px; font-family:'Playfair Display',serif; font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; text-align:center; border:1.5px solid rgba(61,57,41,.12); }
+
+/* Tool of week */
+.tool-week { background:#DA7756; color:#fff; border-radius:12px; padding:18px 20px; text-align:center; margin-top:14px; }
+.tool-week-eyebrow { font-size:9px; letter-spacing:4px; text-transform:uppercase; opacity:.75; margin-bottom:6px; }
+.tool-week-name { font-family:'Playfair Display',serif; font-size:22px; font-weight:900; margin-bottom:4px; }
+.tool-week-desc { font-size:11.5px; opacity:.85; font-style:italic; }
+
+/* Footer */
+.footer-card { background:#3D3929; color:#F0ECE0; border-radius:4px 4px 20px 20px; padding:28px 40px; text-align:center; margin-top:3px; }
+.footer-title { font-family:'Playfair Display',serif; font-size:15px; font-weight:900; letter-spacing:3px; text-transform:uppercase; margin-bottom:6px; }
+.footer-sub { font-size:10px; letter-spacing:2px; text-transform:uppercase; opacity:.5; }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+<!-- COVER -->
+<div class="cover-card">
+  <div class="cover-eyebrow">⬡ Built with the TIMPS Ecosystem</div>
+  <div class="cover-title">TIMPS PostCards</div>
+  <div class="cover-sub">Your Daily Signal from the Machine Frontier</div>
+  <div class="cover-divider"></div>
+  <div class="cover-meta">
+    <span>June 19, 2026</span>
+    <span>Vol. I · Issue 026</span>
+    <span>Hyderabad, India</span>
+  </div>
+  <div class="top5-pill">
+    <span class="pill">026</span>
+    <span class="pill light">June 18–19</span>
+    <span class="pill light">5 Key Signals</span>
+    <span class="pill light">8 Stories</span>
+  </div>
+</div>
+
+<!-- 01 LEAD: Midjourney Medical Scanner -->
+<div class="story-card card-lavender">
+  <div class="page-chip">01 · LEAD</div>
+  <div class="card-routine">Hardware · Health Tech · AI Pivot</div>
+  <div class="card-headline lg">Midjourney Builds a Full-Body Scanner — and Calls It Medicine</div>
+  <div class="card-deck">The text-to-image company best known for surreal art unveils its first hardware product: an ultrasonic full-body scanner that founder David Holz calls the first new whole-body imaging method in 50 years.</div>
+  <div class="card-body drop clearfix">
+    <p>Midjourney announced a new division, Midjourney Medical, and its first hardware product, the Midjourney Scanner — a full-body ultrasonic computed tomography device built around roughly 358,000 ultrasound transducers across 40 imaging modules. The device lowers a person into a shallow water-filled ring, firing soundwaves through the body from every angle to reconstruct cross-sectional images of muscle, fat, bone, and organs in about <span class="hl-terra">60 seconds</span>, with no radiation or magnets involved.</p>
+    <p>The underlying imaging hardware is licensed from Butterfly Network, a Nasdaq-listed ultrasound-on-chip maker whose shares jumped roughly 33% on the news. Midjourney's plan calls for a flagship "Midjourney Spa" opening in San Francisco's Union Square by 2027, with a longer-term goal of 50,000 scanners worldwide delivering a billion scans a month by 2031.</p>
+    <p>It is an unusual leap for a company whose reputation rests entirely on generative art, and the device has no FDA clearance for diagnostic use yet. Still, the announcement signals a broader pattern of frontier AI labs pushing capital and engineering talent out of software and into regulated, physical-world categories.</p>
+  </div>
+  <a class="source-link" href="https://www.engadget.com/2196998/midjourney-full-body-ultrasonic-scanner/" target="_blank">Full story · Engadget</a>
+</div>
+
+<!-- 02 ChatGPT market share -->
+<div class="story-card card-blush">
+  <div class="page-chip">02 · MARKET</div>
+  <div class="card-routine">AI Assistants · Competition · Mobile</div>
+  <div class="card-headline">ChatGPT's Market Share Falls Below 50% for the First Time</div>
+  <div class="card-deck">Sensor Tower's State of AI 2026 report shows OpenAI's grip on the AI assistant category loosening, even as its absolute user count keeps climbing past a billion.</div>
+  <div class="stat-box">
+    <span class="stat-big">46.4%</span>
+    <span class="stat-label">ChatGPT Share, May 2026</span>
+  </div>
+  <div class="card-body drop clearfix">
+    <p>ChatGPT held over half the global AI assistant market as recently as January 2026. By the end of May, that figure had slipped to 46.4%, according to Sensor Tower — the first time it has dropped below the halfway mark since the category's creation in late 2022. Google's Gemini has climbed to <span class="hl-terra">27.7%</span>, while Anthropic's Claude has reached 10.3%, with the highest paid-subscription conversion rate of any major assistant.</p>
+    <p>The decline is relative, not absolute — ChatGPT remains the largest assistant by a wide margin, with over 1.1 billion monthly users, the fastest any app has reached that milestone. But the trend line has moved in one direction for eighteen straight months, even as OpenAI reportedly filed a confidential S-1 toward a public listing.</p>
+    <p>Sensor Tower's report frames this less as decline than as market maturation: total time spent across AI assistant apps is projected to double year-over-year, even as the field fragments across more competitors.</p>
+  </div>
+  <a class="source-link" href="https://techcrunch.com/2026/06/16/chatgpts-market-share-slips-below-50-for-first-time/" target="_blank">Full story · TechCrunch</a>
+</div>
+
+<!-- 03 Mythos ban explainer -->
+<div class="story-card card-lavender">
+  <div class="page-chip">03 · POLICY</div>
+  <div class="card-routine">Export Controls · National Security · Anthropic</div>
+  <div class="card-headline">Inside the Deadlock Keeping Mythos Offline</div>
+  <div class="card-deck">A Commerce Department export-control directive forced Anthropic to disable Fable 5 and Mythos 5 worldwide — and the underlying dispute over what actually triggered it remains unresolved.</div>
+  <div class="card-body drop clearfix">
+    <p>The US Commerce Department's Bureau of Industry and Security ordered Anthropic to suspend access to Fable 5 and its underlying foundation model, Mythos 5, for any foreign national — regardless of physical location, including Anthropic's own staff. Because the company has no reliable way to verify nationality at the application layer, it disabled both models globally within hours, citing national security concerns the government has so far described only verbally.</p>
+    <p>The stated trigger, per Anthropic's own account, involves a narrow technique for prompting the model to read a codebase and identify <span class="hl-terra">software vulnerabilities</span> — a capability the directive treats in the same regulatory category as weapons systems. Anthropic disputes the characterization and is working to restore access; other Claude models remain unaffected.</p>
+    <p>The episode lands alongside a separate, ongoing dispute between Anthropic and the Pentagon over safety guardrails, leaving the company simultaneously contesting one federal restriction in court while complying with another.</p>
+  </div>
+  <a class="source-link" href="https://www.techpolicy.press/did-the-us-government-just-set-an-ai-export-precedent-by-blocking-mythos/" target="_blank">Full story · Tech Policy Press</a>
+</div>
+
+<!-- 04 Anjney Midha interview -->
+<div class="story-card card-blush">
+  <div class="page-chip">04 · VOICES</div>
+  <div class="card-routine">Venture Capital · Frontier Labs · Interview</div>
+  <div class="card-headline sm">The Professor of Outputmaxxing: Anjney Midha on Building at Frontier Speed</div>
+  <div class="card-deck">A wide-ranging conversation traces investor Anjney Midha's path from Singapore to backing Anthropic, Mistral, Black Forest Labs, and Periodic Labs.</div>
+  <div class="card-body drop clearfix">
+    <p>In a nearly hour-long interview, Midha lays out what he calls <span class="hl-terra">"outputmaxxing"</span> — the systems, habits, and organizational design choices that let frontier AI companies sustain maximum execution velocity without burning out their teams. The conversation moves from his early career through the rounds he's led in some of the most closely watched labs in the industry.</p>
+    <p>The discussion is notable less for any single headline than for its texture: a practitioner's view of how capital, talent, and research velocity actually interact inside the handful of labs racing toward frontier capability, at a moment when government policy, market share, and compute costs are all shifting simultaneously.</p>
+  </div>
+  <a class="source-link" href="https://www.latent.space" target="_blank">Full story · Latent.Space</a>
+</div>
+
+<!-- 05 Pentagon / Salesforce agent deal -->
+<div class="story-card card-lavender">
+  <div class="page-chip">05 · ENTERPRISE</div>
+  <div class="card-routine">Agents · Enterprise Software · Salesforce</div>
+  <div class="card-headline sm">As Government AI Splits Along Vendor Lines, Salesforce Goes All-In on Agents</div>
+  <div class="card-deck">A separate enterprise agent deal from Salesforce underscores how the AI vendor map is being redrawn — partly on capability, increasingly on regulatory posture.</div>
+  <div class="card-body drop clearfix">
+    <p>Salesforce confirmed a new AI agent partnership this week, deepening its push to embed autonomous agents directly into core CRM and sales workflows. The move arrives the same week federal AI procurement has split sharply along vendor lines, with one major lab's models pulled from government use while another's are fast-tracked into classified deployments.</p>
+    <p>Taken together, the pattern suggests enterprise AI buyers are increasingly weighing a vendor's <span class="hl-terra">regulatory alignment</span> alongside raw model capability — a dynamic that didn't meaningfully exist in procurement conversations even a year ago.</p>
+  </div>
+  <a class="source-link" href="https://www.salesforce.com/news/" target="_blank">Full story · Salesforce Newsroom</a>
+</div>
+
+<!-- 06 AWS S3 Annotations -->
+<div class="story-card card-blush">
+  <div class="page-chip">06 · INFRASTRUCTURE</div>
+  <div class="card-routine">Cloud · Data · AI Agents</div>
+  <div class="card-headline sm">AWS Gives S3 Objects Up to 1GB of AI-Ready Metadata</div>
+  <div class="card-deck">Amazon's new S3 annotations let developers attach up to 1,000 named, queryable metadata fields per object — purpose-built for AI agents that need to discover and reason over data without separate sidecar systems.</div>
+  <div class="card-body drop clearfix">
+    <p>Amazon S3 now supports annotations: structured, mutable context attached directly to objects, with up to <span class="hl-terra">1,000 named annotations</span> per object, each as large as 1 MB, for a combined ceiling of 1 GB per object in JSON, XML, YAML, or plain text. Unlike legacy object tags or upload-time metadata, annotations can be modified or deleted independently at any time without rewriting the underlying object.</p>
+    <p>When indexed into S3 Metadata's managed Apache Iceberg tables, annotations become queryable at scale via Amazon Athena or natural-language queries through an S3 Tables MCP server — letting AI agents and analytics tools discover relevant data across petabytes of objects without retrieval charges, even in S3 Glacier.</p>
+    <p>The launch reflects a broader infrastructure shift: as AI workloads strain conventional metadata systems, cloud providers are rebuilding storage primitives specifically around what autonomous agents need to find and act on data.</p>
+  </div>
+  <a class="source-link" href="https://aws.amazon.com/blogs/aws/amazon-s3-annotations-attach-rich-queryable-context-directly-to-your-objects/" target="_blank">Full story · AWS News Blog</a>
+</div>
+
+<!-- 07 GRWM Index / Creator marketing -->
+<div class="story-card card-lavender">
+  <div class="page-chip">07 · CREATOR ECONOMY</div>
+  <div class="card-routine">Marketing · Influencer Commerce · Video</div>
+  <div class="card-headline sm">Affiliate-Driven Creators Now Dominate the "Get Ready With Me" Format</div>
+  <div class="card-deck">New share-of-voice data shows unpaid, affiliate-link-driven creator content — not traditional advertising — winning the most-watched GRWM video format on YouTube.</div>
+  <div class="card-body drop clearfix">
+    <p>A new analysis of YouTube's "Get Ready With Me" category finds that LTK-affiliated creators lead share of voice in the format, with the bulk of that presence coming through <span class="hl-terra">unpaid, affiliate-driven</span> video descriptions rather than purchased ad placements. The pattern suggests brand visibility in high-engagement formats increasingly runs through creator commerce networks rather than direct media buys.</p>
+    <p>The same data points to AI visualization products and community-driven playbooks — exemplified by Hinge's approach — leaning further into creator-native distribution rather than conventional paid media, as platforms reward authentic-feeling content over branded placements.</p>
+  </div>
+  <a class="source-link" href="https://www.ltk.com" target="_blank">Full story · LTK</a>
+</div>
+
+<!-- 08 Snap AI glasses / Amazon world models -->
+<div class="story-card card-blush">
+  <div class="page-chip">08 · HARDWARE</div>
+  <div class="card-routine">Wearables · World Models · Policy</div>
+  <div class="card-headline sm">Washington Pushes "AI Equity" While Snap and Amazon Chase New Hardware Bets</div>
+  <div class="card-deck">As US policymakers frame AI policy around equity concerns, Snap experiments with AI-powered glasses and Amazon advances work on "world models" for physical-world reasoning.</div>
+  <div class="card-body drop clearfix">
+    <p>Washington's latest policy framing centers AI access and fairness as a core regulatory concern, even as consumer hardware makers race ahead with new form factors. Snap is testing AI-powered glasses aimed at bringing assistant-style interaction into a wearable, camera-equipped device, joining a wearables category already contested by Meta and several startups.</p>
+    <p>Separately, Amazon continues development of <span class="hl-terra">world models</span> — AI systems trained to reason about physical space and object interaction rather than just text or images — alongside enhancements to its AI-powered email tools, underscoring how the largest cloud and retail platforms are pushing AI capability simultaneously into hardware, logistics, and productivity software.</p>
+  </div>
+  <a class="source-link" href="https://www.snap.com/en-US/news" target="_blank">Full story · Snap Newsroom</a>
+</div>
+
+<!-- SIGNALS -->
+<div class="story-card card-lavender">
+  <div class="page-chip">09 · SIGNALS</div>
+  <div class="card-routine">Today's Five Critical Signals</div>
+  <div class="card-headline sm">What Moved the Machine Frontier Today</div>
+  <div class="signals-grid">
+    <div class="signal-row">
+      <div class="signal-num n1">1</div>
+      <div>
+        <div class="signal-title">Midjourney bets its brand on medicine</div>
+        <div class="signal-desc">A full-body ultrasonic scanner, licensed from Butterfly Network, repositions an image-generation company as a hardware and wellness player — with no FDA clearance yet.</div>
+        <a class="signal-link" href="https://www.engadget.com/2196998/midjourney-full-body-ultrasonic-scanner/" target="_blank">Engadget ↗</a>
+      </div>
+    </div>
+    <div class="signal-row">
+      <div class="signal-num n2">2</div>
+      <div>
+        <div class="signal-title">ChatGPT's majority is gone</div>
+        <div class="signal-desc">Below 50% market share for the first time since launch, even as absolute users climb past 1.1 billion — growth and dominance have decoupled.</div>
+        <a class="signal-link" href="https://techcrunch.com/2026/06/16/chatgpts-market-share-slips-below-50-for-first-time/" target="_blank">TechCrunch ↗</a>
+      </div>
+    </div>
+    <div class="signal-row">
+      <div class="signal-num n3">3</div>
+      <div>
+        <div class="signal-title">Mythos stays dark, reasons stay murky</div>
+        <div class="signal-desc">An export-control directive over a disputed vulnerability-discovery technique keeps Anthropic's most capable model offline worldwide.</div>
+        <a class="signal-link" href="https://www.techpolicy.press/did-the-us-government-just-set-an-ai-export-precedent-by-blocking-mythos/" target="_blank">Tech Policy Press ↗</a>
+      </div>
+    </div>
+    <div class="signal-row">
+      <div class="signal-num n4">4</div>
+      <div>
+        <div class="signal-title">Storage gets agent-native</div>
+        <div class="signal-desc">AWS S3 annotations give every object up to 1GB of queryable, AI-ready metadata — a direct response to how agents need to discover data at scale.</div>
+        <a class="signal-link" href="https://aws.amazon.com/blogs/aws/amazon-s3-annotations-attach-rich-queryable-context-directly-to-your-objects/" target="_blank">AWS News ↗</a>
+      </div>
+    </div>
+    <div class="signal-row">
+      <div class="signal-num n5">5</div>
+      <div>
+        <div class="signal-title">Enterprise AI procurement splits on politics, not just capability</div>
+        <div class="signal-desc">Salesforce's new agent push lands the same week federal AI contracts diverge sharply by vendor — regulatory posture is now a competitive axis.</div>
+        <a class="signal-link" href="https://www.salesforce.com/news/" target="_blank">Salesforce Newsroom ↗</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- THEMES / TOOL / SOURCES -->
+<div class="story-card card-blush">
+  <div class="page-chip">10 · DIGEST</div>
+  <div class="card-routine">Today's Themes · Tool of the Week · Sources</div>
+  <div class="card-headline sm">How Today's Stories Cluster</div>
+  <div class="themes-grid">
+    <div class="theme-item">AI Goes Physical</div>
+    <div class="theme-item">Assistant Fragmentation</div>
+    <div class="theme-item">Export Control Limbo</div>
+    <div class="theme-item">Frontier Capital Flows</div>
+    <div class="theme-item">Agent-Native Infrastructure</div>
+    <div class="theme-item">Regulatory Vendor Splits</div>
+    <div class="theme-item">Creator-Led Commerce</div>
+  </div>
+  <div class="tool-week">
+    <div class="tool-week-eyebrow">Tool of the Week</div>
+    <div class="tool-week-name">S3 Annotations</div>
+    <div class="tool-week-desc">Up to 1GB of mutable, queryable metadata per object — the agent-discovery layer cloud storage was missing.</div>
+  </div>
+  <div class="card-routine" style="margin-top:20px;">Sources Cited</div>
+  <div class="themes-grid">
+    <div class="theme-item" style="text-transform:none; letter-spacing:0.5px;"><a href="https://www.engadget.com" target="_blank" style="color:#3D3929; text-decoration:none;">Engadget ↗</a></div>
+    <div class="theme-item" style="text-transform:none; letter-spacing:0.5px;"><a href="https://techcrunch.com" target="_blank" style="color:#3D3929; text-decoration:none;">TechCrunch ↗</a></div>
+    <div class="theme-item" style="text-transform:none; letter-spacing:0.5px;"><a href="https://www.techpolicy.press" target="_blank" style="color:#3D3929; text-decoration:none;">Tech Policy Press ↗</a></div>
+    <div class="theme-item" style="text-transform:none; letter-spacing:0.5px;"><a href="https://aws.amazon.com/blogs/aws/" target="_blank" style="color:#3D3929; text-decoration:none;">AWS News Blog ↗</a></div>
+    <div class="theme-item" style="text-transform:none; letter-spacing:0.5px;"><a href="https://www.salesforce.com/news/" target="_blank" style="color:#3D3929; text-decoration:none;">Salesforce Newsroom ↗</a></div>
+    <div class="theme-item" style="text-transform:none; letter-spacing:0.5px;"><a href="https://www.latent.space" target="_blank" style="color:#3D3929; text-decoration:none;">Latent.Space ↗</a></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer-card">
+  <div class="footer-title">TIMPS PostCards</div>
+  <div class="footer-sub">AI Intelligence Digest · Vol. I Issue 026 · June 19, 2026 · Hyderabad, India</div>
+  <div class="footer-sub" style="margin-top:8px;">Built with the TIMPS Ecosystem · TIMPS.dev</div>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TIMPS PostCards · Vol. I Issue 025 · June 18, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #EEECE2;
+  font-family: 'EB Garamond', Georgia, ui-serif, serif;
+  color: #3D3929;
+  padding: 40px 20px 80px;
+}
+.wrapper { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 0; }
+
+/* Cover */
+.cover-card { background: #F0ECE0; border-radius: 20px 20px 4px 4px; padding: 56px 48px 48px; text-align: center; position: relative; overflow: hidden; border: 1.5px solid rgba(61,57,41,0.12); margin-bottom: 3px; }
+.cover-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, #DA7756 0%, #BD5D3A 60%, #E0A88A 100%); }
+.cover-eyebrow { font-size:10px; letter-spacing:4px; text-transform:uppercase; color:#DA7756; margin-bottom:20px; display:flex; align-items:center; justify-content:center; gap:10px; }
+.cover-eyebrow::before,.cover-eyebrow::after { content:''; flex:1; height:1px; background:#DA7756; opacity:.35; max-width:60px; }
+.cover-title { font-family:'Playfair Display',serif; font-size:58px; font-weight:900; line-height:1; letter-spacing:-1px; color:#3D3929; margin-bottom:8px; }
+.cover-sub { font-family:'Playfair Display',serif; font-size:13px; font-style:italic; color:#5C5847; margin-bottom:28px; }
+.cover-divider { width:48px; height:2px; background:#DA7756; margin:0 auto 24px; border-radius:2px; }
+.cover-meta { display:flex; justify-content:center; gap:32px; font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color:#5C5847; }
+.cover-badge { display:inline-flex; align-items:center; gap:6px; background:#DA7756; color:#fff; border-radius:20px; padding:6px 18px; font-size:10px; letter-spacing:2px; text-transform:uppercase; margin-top:28px; }
+.top5-pill { display:flex; justify-content:center; gap:10px; margin-top:32px; flex-wrap:wrap; }
+.pill { background:#3D3929; color:#F0ECE0; border-radius:100px; padding:4px 14px; font-size:10px; letter-spacing:1px; text-transform:uppercase; }
+.pill.light { background:transparent; color:#3D3929; border:1px solid rgba(61,57,41,.2); }
+
+/* Section labels */
+.section-label { display:flex; align-items:center; gap:12px; padding:10px 0 8px; font-size:9px; letter-spacing:4px; text-transform:uppercase; color:#5C5847; }
+.section-label::before,.section-label::after { content:''; flex:1; height:1px; background:rgba(61,57,41,.15); }
+
+/* Story cards */
+.story-card { border-radius:4px; border:1.5px solid rgba(61,57,41,.10); padding:36px 40px; margin-bottom:3px; position:relative; overflow:hidden; }
+.story-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }
+
+/* Card colour classes — Scheme E: Blush + Lavender alternating */
+.card-lavender { background:#EAE6F5; } .card-lavender::before { background:#C8BEE8; }
+.card-sage     { background:#D6E4D6; } .card-sage::before     { background:#8BAF8B; }
+.card-blush    { background:#F5DDD0; } .card-blush::before    { background:#E0A88A; }
+.card-sky      { background:#D6E8F0; } .card-sky::before      { background:#7AAFC0; }
+.card-cream    { background:#F7F5EF; } .card-cream::before    { background:#DA7756; }
+
+/* Card typography */
+.page-chip { position:absolute; top:14px; right:16px; font-size:9px; letter-spacing:2px; text-transform:uppercase; color:#5C5847; opacity:.5; }
+.card-routine { font-size:9px; letter-spacing:4px; text-transform:uppercase; color:#5C5847; margin-bottom:8px; }
+.card-headline { font-family:'Playfair Display',serif; font-size:28px; font-weight:900; line-height:1.15; color:#3D3929; margin-bottom:10px; }
+.card-headline.lg { font-size:34px; }
+.card-headline.sm { font-size:22px; }
+.card-deck { font-family:'Playfair Display',serif; font-style:italic; font-size:14px; line-height:1.55; color:#5C5847; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid rgba(61,57,41,.15); }
+.card-body { font-size:13px; line-height:1.8; color:#3D3929; }
+.card-body p { margin-bottom:11px; }
+.two-col { column-count:2; column-gap:24px; column-rule:1px solid rgba(61,57,41,.12); }
+.drop::first-letter { font-family:'Playfair Display',serif; font-size:52px; font-weight:900; float:left; line-height:.78; margin:5px 6px 0 0; color:#DA7756; }
+.clearfix::after { content:''; display:table; clear:both; }
+
+/* Inline highlights */
+.hl-terra { background:#DA7756; color:#fff; padding:0 4px; border-radius:2px; }
+.hl-ink   { background:#3D3929; color:#F0ECE0; padding:0 4px; border-radius:2px; }
+.hl-sage  { background:#8BAF8B; color:#fff; padding:0 4px; border-radius:2px; }
+.hl-lav   { background:#C8BEE8; color:#3D3929; padding:0 4px; border-radius:2px; }
+
+/* Stat float */
+.stat-box { float:right; margin:0 0 16px 24px; background:#F0ECE0; border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:16px 20px; text-align:center; min-width:120px; }
+.stat-big { font-family:'Playfair Display',serif; font-size:44px; font-weight:900; line-height:1; color:#DA7756; display:block; }
+.stat-label { font-size:9.5px; letter-spacing:1.5px; text-transform:uppercase; color:#5C5847; display:block; margin-top:4px; }
+
+/* Image frames */
+.img-frame { border:2px solid rgba(61,57,41,0.18); border-radius:12px; overflow:hidden; margin:16px 0; background:#F0ECE0; }
+.img-frame img { width:100%; display:block; max-height:240px; object-fit:cover; border-bottom:1px solid rgba(61,57,41,.12); }
+.img-caption { padding:8px 12px; font-size:10.5px; color:#5C5847; font-style:italic; display:flex; align-items:center; justify-content:space-between; gap:8px; }
+.img-caption a { font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color:#DA7756; text-decoration:none; white-space:nowrap; font-style:normal; }
+.img-frame.float-right { float:right; width:220px; margin:0 0 16px 24px; }
+.img-frame.float-right img { max-height:140px; }
+
+/* Source links */
+.source-link { display:inline-flex; align-items:center; gap:5px; font-size:10px; letter-spacing:1px; text-transform:uppercase; color:#DA7756; text-decoration:none; margin-top:12px; border-bottom:1px solid rgba(218,119,86,.35); padding-bottom:1px; }
+.source-link::after { content:'↗'; font-size:9px; }
+
+/* Signals */
+.signals-grid { display:flex; flex-direction:column; gap:14px; }
+.signal-row { display:flex; align-items:flex-start; gap:14px; }
+.signal-num { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-size:13px; font-weight:900; flex-shrink:0; color:#fff; }
+.signal-num.n1{background:#DA7756;} .signal-num.n2{background:#3D3929;} .signal-num.n3{background:#8BAF8B;} .signal-num.n4{background:#C8BEE8;color:#3D3929;} .signal-num.n5{background:#E0A88A;}
+.signal-title { font-family:'Playfair Display',serif; font-size:14px; font-weight:700; color:#3D3929; margin-bottom:2px; }
+.signal-desc { font-size:12px; line-height:1.65; color:#5C5847; }
+.signal-link { display:inline-block; font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color:#DA7756; text-decoration:none; margin-top:4px; border-bottom:1px solid rgba(218,119,86,.3); }
+
+/* Themes */
+.themes-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:18px; }
+.theme-item { padding:10px 14px; border-radius:8px; font-family:'Playfair Display',serif; font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; text-align:center; border:1.5px solid rgba(61,57,41,.12); }
+
+/* Tool of week */
+.tool-week { background:#DA7756; color:#fff; border-radius:12px; padding:18px 20px; text-align:center; margin-top:14px; }
+.tool-week-eyebrow { font-size:9px; letter-spacing:4px; text-transform:uppercase; opacity:.75; margin-bottom:6px; }
+.tool-week-name { font-family:'Playfair Display',serif; font-size:22px; font-weight:900; margin-bottom:4px; }
+.tool-week-desc { font-size:11.5px; opacity:.85; font-style:italic; }
+
+/* Sources grid */
+.sources-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:14px; }
+.source-item { padding:8px 12px; background:#F0ECE0; border-radius:8px; border:1px solid rgba(61,57,41,.10); font-size:10.5px; }
+.source-item a { color:#DA7756; text-decoration:none; display:flex; align-items:center; gap:4px; }
+.source-item a::after { content:'↗'; font-size:9px; }
+
+/* Footer */
+.footer-card { background:#3D3929; color:#F0ECE0; border-radius:4px 4px 20px 20px; padding:28px 40px; text-align:center; margin-top:3px; }
+.footer-title { font-family:'Playfair Display',serif; font-size:15px; font-weight:900; letter-spacing:3px; text-transform:uppercase; margin-bottom:6px; }
+.footer-sub { font-size:10px; letter-spacing:2px; text-transform:uppercase; opacity:.5; }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!--  CARD 1 — COVER                                        -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <div class="cover-card">
+    <div class="cover-eyebrow">AI Intelligence Digest</div>
+    <div class="cover-title">TIMPS PostCards</div>
+    <div class="cover-sub">Your Daily Signal from the Machine Frontier</div>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+      <span>June 18, 2026</span>
+      <span>Vol. I · Issue 025</span>
+      <span>Hyderabad, India</span>
+    </div>
+    <div class="cover-badge">⬡ Built with the TIMPS Ecosystem</div>
+    <div class="top5-pill">
+      <span class="pill">025</span>
+      <span class="pill light">June 17–18</span>
+      <span class="pill light">5 Key Signals</span>
+      <span class="pill light">8 Stories</span>
+    </div>
+  </div>
+
+  <div class="section-label">Lead Story</div>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!--  CARD 2 — LEAD: SpaceX Acquires Cursor for $60B        -->
+  <!--  Scheme E: starts with Blush                           -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <div class="story-card card-blush">
+    <span class="page-chip">01 · LEAD</span>
+    <div class="card-routine">Acquisition · Developer Tools</div>
+    <h2 class="card-headline lg">SpaceX Buys Cursor for $60 Billion — AI Coding's Biggest Deal Ever</h2>
+    <p class="card-deck">Riding a record-shattering IPO, Elon Musk's SpaceX closes the largest acquisition in AI coding tools history — turning Cursor into the flagship developer intelligence arm of a rocket company.</p>
+
+    <div class="stat-box">
+      <span class="stat-big">$60B</span>
+      <span class="stat-label">Acquisition Price</span>
+    </div>
+
+    <div class="card-body drop clearfix">
+      <p>SpaceX has officially completed its acquisition of Cursor, the AI-assisted coding editor, in an all-stock deal valued at <span class="hl-terra">$60 billion</span> — funded directly by the company's record-breaking initial public offering, widely regarded as the largest IPO in history. The transaction marks a tectonic shift in who controls AI developer infrastructure.</p>
+      <p>For Cursor, the deal brings an injection of capital and aerospace-grade engineering ambition. The company will retain its London offices as a European hub, with approximately 200 new hires planned to expand its engineering and product teams. Cursor's core editor product will continue as a standalone offering, though deeper integration with SpaceX's data and compute stack is anticipated in the months ahead.</p>
+      <p>The acquisition directly challenges Anthropic and OpenAI in the developer tools category, where both companies have invested heavily in coding assistants. With this deal, SpaceX enters that market not as a toolkit provider but as a platform owner — a position that could reshape how developers interact with AI at the IDE layer and beyond.</p>
+    </div>
+    <a href="https://techcrunch.com" target="_blank" class="source-link">Full story · TechCrunch</a>
+  </div>
+
+  <div class="section-label">Story 2</div>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!--  CARD 3 — GLM-5.2: China's Open Coding Champion        -->
+  <!--  Lavender (alternating)                                -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <div class="story-card card-lavender">
+    <span class="page-chip">02 · MODEL</span>
+    <div class="card-routine">Open Source · AI Models · China</div>
+    <h2 class="card-headline">GLM-5.2 Arrives with a 1M Token Window — and Beats Claude in Blind Tests</h2>
+    <p class="card-deck">Z.ai's GLM-5.2 debuts with 753 billion parameters, an MIT licence, and a coding benchmark ranking that upstages both Claude Opus 4.7 and 4.8 globally.</p>
+    <div class="card-body drop clearfix">
+      <p>Z.ai launched <span class="hl-lav">GLM-5.2</span>, a massive open-source language model featuring a 1-million-token context window and a parameter count of 753 billion — with only 40 billion active at inference time via a mixture-of-experts architecture. Released under the MIT Licence, the model is freely usable for commercial and research purposes without royalty requirements.</p>
+      <p>In third-party coding evaluations, GLM-5.2 ranked <span class="hl-terra">second globally</span>, surpassing Claude Opus 4.7 and 4.8 and placing just behind the top proprietary model in several blind test categories. Z.ai designed the model specifically for long-horizon coding tasks — multi-file refactors, agent loops, and deep repository reasoning — where context length matters most.</p>
+      <p>The release arrives as the open-source coding model category intensifies following the discontinuation of Claude Fable 5, which had briefly held a strong position in developer benchmarks. GLM-5.2's performance and permissive licensing position it as a significant tool for self-hosted developer workflows.</p>
+    </div>
+    <a href="https://venturebeat.com" target="_blank" class="source-link">Full story · VentureBeat</a>
+  </div>
+
+  <div class="section-label">Story 3</div>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!--  CARD 4 — Anthropic vs. the Feds                       -->
+  <!--  Blush                                                 -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <div class="story-card card-blush">
+    <span class="page-chip">03 · POLICY</span>
+    <div class="card-routine">Government · AI Regulation · National Security</div>
+    <h2 class="card-headline">Pentagon Bans Anthropic, Embraces OpenAI in Classified AI Pivot</h2>
+    <p class="card-deck">The Trump administration classifies Anthropic as a supply-chain threat, clearing the path for OpenAI to lock in classified Pentagon contracts — a divide driven by ethics guardrails, not capability gaps.</p>
+    <div class="card-body drop clearfix">
+      <p>The United States Department of Defense has formally ended government use of Anthropic's AI models, with the Trump administration designating Anthropic a <span class="hl-ink">supply-chain threat</span> in internal security reviews. In its place, the Pentagon has finalised a classified agreement with OpenAI, whose models will power sensitive defence applications going forward.</p>
+      <p>The decision stems from a protracted disagreement between Anthropic and administration officials over safety guardrails embedded in Claude. Anthropic's insistence on ethical deployment conditions — including restrictions on weaponization and automated lethal systems — was characterised by defence officials as an obstacle to operational flexibility rather than a responsible constraint.</p>
+      <p>The outcome accelerates the bifurcation of the AI vendor landscape into government-aligned and independently operated companies. Salesforce also announced a separate AI agent deal this week, further illustrating how the enterprise AI market is re-drawing its lines around regulatory posture as much as product capability.</p>
+    </div>
+    <a href="https://www.reuters.com" target="_blank" class="source-link">Full story · Reuters</a>
+  </div>
+
+  <div class="section-label">Story 4</div>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!--  CARD 5 — DeepSeek $7.4B                               -->
+  <!--  Lavender                                              -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <div class="story-card card-lavender">
+    <span class="page-chip">04 · FUNDING</span>
+    <div class="card-routine">Venture Capital · AI Infrastructure · China</div>
+    <h2 class="card-headline sm">DeepSeek Closes $7.4 Billion Round — Reshaping AI's Price War</h2>
+    <p class="card-deck">The Chinese AI lab that redefined cost-efficient inference now has the capital to industrialise it, putting sustained pressure on every incumbent charging premium model prices.</p>
+
+    <div class="stat-box">
+      <span class="stat-big">$7.4B</span>
+      <span class="stat-label">Funding Round</span>
+    </div>
+
+    <div class="card-body clearfix">
+      <p>DeepSeek has closed a <span class="hl-terra">$7.4 billion</span> fundraising round, making it one of the largest single capital events in AI history. The company built its reputation by delivering model performance comparable to top-tier Western labs at a fraction of the inference cost — a position that rattled markets earlier this year and forced pricing recalibrations across the industry.</p>
+      <p>This round gives DeepSeek the financial runway to scale its research, expand model deployment infrastructure, and potentially subsidise API pricing to grow developer adoption internationally. The competitive pressure on OpenAI, Anthropic, and Google's model businesses is expected to intensify through 2026 as a result.</p>
+    </div>
+    <a href="https://www.bloomberg.com" target="_blank" class="source-link">Full story · Bloomberg</a>
+  </div>
+
+  <div class="section-label">Story 5</div>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!--  CARD 6 — ChatGPT Voice + Robot Body                   -->
+  <!--  Blush                                                 -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <div class="story-card card-blush">
+    <span class="page-chip">05 · MULTIMODAL</span>
+    <div class="card-routine">Voice AI · Robotics · OpenAI</div>
+    <h2 class="card-headline sm">ChatGPT's Voice Goes Human. A Developer Gives It a Body.</h2>
+    <p class="card-deck">OpenAI's updated voice system adds natural prosody and emotional range, while a community developer pairs it with a physical robot chassis — turning a language model into a room-presence entity.</p>
+    <div class="card-body drop clearfix">
+      <p>OpenAI announced significant upgrades to ChatGPT's voice system, focusing on <span class="hl-terra">prosody</span> — the rhythm, intonation, and emotional colouring of speech — to close the gap between AI-generated voice and natural human conversation. Previous versions drew criticism for flat, robotic delivery; the updated model introduces breathing cadence, hesitation, and micro-emotional cues.</p>
+      <p>Separately, an independent developer published a project that pairs ChatGPT with a robot body, enabling the model to perceive and interact with physical spaces. While not an official OpenAI product, the project signals growing developer interest in embodied AI built on top of large language models — a direction that robotics companies including Figure and 1X have pursued at the hardware layer.</p>
+    </div>
+    <a href="https://openai.com/blog" target="_blank" class="source-link">Full story · OpenAI Blog</a>
+  </div>
+
+  <div class="section-label">Story 6</div>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!--  CARD 7 — Mobbin MCP                                   -->
+  <!--  Lavender                                              -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <div class="story-card card-lavender">
+    <span class="page-chip">06 · TOOLING</span>
+    <div class="card-routine">Design · MCP · Developer Tools</div>
+    <h2 class="card-headline sm">Mobbin's MCP Brings 621,500 Real App Screens Into Your AI Coding Agent</h2>
+    <p class="card-deck">Design reference is now a tool call away — Mobbin's new MCP server pipes real UI screens from production apps directly into Claude, Cursor, and Lovable during live coding sessions.</p>
+    <div class="card-body drop clearfix">
+      <p>Mobbin launched an MCP (Model Context Protocol) server that connects AI coding agents to its library of <span class="hl-lav">621,500+ real app screens</span> from production applications including Vercel, Juicebox, and Leonardo AI. The integration allows agents like Claude and Cursor to query real-world design patterns mid-session, without the developer needing to manually browse and paste reference material.</p>
+      <p>In practice, the server enables a workflow where an AI-generated dashboard can be immediately compared against production UI conventions, then refactored toward proper spacing, hierarchy, and interaction patterns — automatically. Mobbin describes it as "design on autopilot" for vibe-coded interfaces. For independent builders rapidly prototyping apps, this closes a significant quality gap between AI-generated scaffolding and shipped product design.</p>
+    </div>
+    <a href="https://mobbin.com" target="_blank" class="source-link">Full story · Mobbin Blog</a>
+  </div>
+
+  <div class="section-label">Story 7</div>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!--  CARD 8 — Android MCP + ElevenLabs + TAAFT             -->
+  <!--  Blush                                                 -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <div class="story-card card-blush">
+    <span class="page-chip">07 · ECOSYSTEM</span>
+    <div class="card-routine">Mobile · Voice · Platform Updates</div>
+    <h2 class="card-headline sm">Android 17 Gets MCP, ElevenLabs Goes On-Device, and Google Launches AI Avatars</h2>
+    <p class="card-deck">A wave of platform-layer updates — Android's native MCP support, ElevenLabs' mobile voice stack, and Google Vids' AI avatar generation — signals the ecosystem catching up to frontier model capability.</p>
+    <div class="card-body drop clearfix">
+      <p>Android 17 introduced native <span class="hl-terra">MCP capabilities</span>, enabling mobile AI agents to interface with device-side tools and APIs through the Model Context Protocol — bringing the agentic infrastructure pattern that has dominated desktop AI to smartphones at the OS level.</p>
+      <p>ElevenLabs announced on-device voice generation tools for mobile, reducing latency and enabling private voice AI interactions without cloud round-trips. The move mirrors a broader industry push toward edge inference, where sensitive audio data need not leave the device. Google, meanwhile, introduced AI avatars in Google Vids, allowing users to generate video content with synthetic presenters — a capability that collapses the production gap between text content and video output for individual creators.</p>
+    </div>
+    <a href="https://developer.android.com" target="_blank" class="source-link">Android 17 · Developer Docs</a>
+  </div>
+
+  <div class="section-label">5 Key Signals</div>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!--  CARD 9 — SIGNALS                                      -->
+  <!--  Blush (Scheme E: signals = blush)                     -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <div class="story-card card-blush">
+    <span class="page-chip">08 · SIGNALS</span>
+    <div class="card-routine">Today's Five Critical Signals</div>
+    <h2 class="card-headline sm">What Moved the Machine Frontier Today</h2>
+    <div class="signals-grid" style="margin-top:20px;">
+      <div class="signal-row">
+        <div class="signal-num n1">1</div>
+        <div>
+          <div class="signal-title">SpaceX owns AI coding infrastructure now</div>
+          <div class="signal-desc">The $60B Cursor acquisition repositions SpaceX as a developer tools company — with rocket-funded resources to compete directly with Anthropic and OpenAI at the IDE layer.</div>
+          <a href="https://techcrunch.com" target="_blank" class="signal-link">TechCrunch ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n2">2</div>
+        <div>
+          <div class="signal-title">GLM-5.2 is the open-source coding benchmark to beat</div>
+          <div class="signal-desc">At 753B parameters and MIT licensed, Z.ai's new model gives developers a free, self-hostable alternative that outranks Claude Opus 4.7 and 4.8 in coding benchmarks.</div>
+          <a href="https://venturebeat.com" target="_blank" class="signal-link">VentureBeat ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n3">3</div>
+        <div>
+          <div class="signal-title">Government AI is now OpenAI's territory alone</div>
+          <div class="signal-desc">Anthropic's Pentagon ban formalises a split: safety-first labs lose government contracts to compliance-flexible ones. The market implications for enterprise AI sales are significant.</div>
+          <a href="https://www.reuters.com" target="_blank" class="signal-link">Reuters ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n4">4</div>
+        <div>
+          <div class="signal-title">DeepSeek's $7.4B accelerates the price war</div>
+          <div class="signal-desc">The lab that already cut inference costs dramatically just gained the capital to industrialise that advantage — forcing every premium AI model provider to defend their pricing.</div>
+          <a href="https://www.bloomberg.com" target="_blank" class="signal-link">Bloomberg ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n5">5</div>
+        <div>
+          <div class="signal-title">MCP is becoming infrastructure — on mobile and in design</div>
+          <div class="signal-desc">Android 17's native MCP and Mobbin's design-screen server show the protocol graduating from niche developer pattern to platform-level standard in a single news cycle.</div>
+          <a href="https://developer.android.com" target="_blank" class="signal-link">Android Developer ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">Themes · Tool · Sources</div>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!--  CARD 10 — THEMES + TOOL + SOURCES                     -->
+  <!--  Lavender (Scheme E: themes = lavender)                -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <div class="story-card card-lavender">
+    <span class="page-chip">09 · DIGEST</span>
+    <div class="card-routine">Today's Themes · Tool of the Week · Sources</div>
+    <h2 class="card-headline sm">How Today's Stories Cluster</h2>
+
+    <div class="themes-grid">
+      <div class="theme-item card-blush">Consolidation</div>
+      <div class="theme-item card-blush">Open-Source Rise</div>
+      <div class="theme-item card-blush">Government AI Divide</div>
+      <div class="theme-item card-blush">Price War Intensifies</div>
+      <div class="theme-item card-blush">Embodied AI</div>
+      <div class="theme-item card-blush">MCP as Infrastructure</div>
+      <div class="theme-item card-blush">Edge Intelligence</div>
+    </div>
+
+    <div class="tool-week">
+      <div class="tool-week-eyebrow">Tool of the Week</div>
+      <div class="tool-week-name">Mobbin MCP</div>
+      <div class="tool-week-desc">621,500 real production UI screens, piped directly into your AI coding agent — the design reference layer that vibe-coded interfaces were missing.</div>
+    </div>
+
+    <div style="margin-top:20px;">
+      <div class="card-routine">Sources Cited</div>
+      <div class="sources-grid">
+        <div class="source-item"><a href="https://techcrunch.com" target="_blank">TechCrunch</a></div>
+        <div class="source-item"><a href="https://venturebeat.com" target="_blank">VentureBeat</a></div>
+        <div class="source-item"><a href="https://www.reuters.com" target="_blank">Reuters</a></div>
+        <div class="source-item"><a href="https://www.bloomberg.com" target="_blank">Bloomberg</a></div>
+        <div class="source-item"><a href="https://openai.com/blog" target="_blank">OpenAI Blog</a></div>
+        <div class="source-item"><a href="https://mobbin.com" target="_blank">Mobbin Blog</a></div>
+        <div class="source-item"><a href="https://developer.android.com" target="_blank">Android Developers</a></div>
+        <div class="source-item"><a href="https://elevenlabs.io/blog" target="_blank">ElevenLabs Blog</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!--  FOOTER CARD                                           -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <div class="footer-card">
+    <div class="footer-title">TIMPS PostCards</div>
+    <div class="footer-sub">AI Intelligence Digest · Vol. I Issue 025 · June 18, 2026 · Hyderabad, India</div>
+    <div style="margin-top:12px; font-size:9.5px; opacity:.35; letter-spacing:1.5px; text-transform:uppercase;">Built with the TIMPS Ecosystem · timps.dev</div>
+  </div>
+
+</div>
+</body>
+</html>
