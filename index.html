@@ -72,14 +72,12 @@
   .nav-logo-mark {
     width: 38px;
     height: 38px;
-    background: var(--forest);
-    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
   }
-  .nav-logo-mark svg { width: 22px; height: 22px; }
+  .nav-logo-mark img { width: 32px; height: 32px; object-fit: contain; }
 
   .nav-cta {
     display: inline-block;
@@ -99,54 +97,17 @@
 
   /* ─── HERO ─── */
   .hero {
-    padding: 96px 48px 80px;
-    text-align: center;
-    max-width: 900px;
-    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
   }
-
-  .hero-eyebrow {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--forest);
-    opacity: .55;
-    margin-bottom: 36px;
-    font-family: var(--mono);
+  .hero-bg {
+    width: 100%;
+    height: auto;
+    display: block;
   }
-
-  .hero-h1 {
-    font-family: var(--serif);
-    font-size: clamp(52px, 8vw, 96px);
-    font-weight: 900;
-    line-height: 1.06;
-    letter-spacing: -1.5px;
-    color: var(--forest);
-    margin-bottom: 32px;
-  }
-
-  /* Pink text highlight — matches Daisy's lavender highlight strip */
-  .hero-highlight {
-    background: var(--pink);
-    padding: 2px 6px;
-    border-radius: 4px;
-    display: inline;
-  }
-
-  .hero-sub {
-    font-family: var(--mono);
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 1.75;
-    color: var(--forest);
-    opacity: .7;
-    max-width: 520px;
-    margin: 0 auto 48px;
-  }
-  .hero-sub strong { font-weight: 700; opacity: 1; }
-
   .hero-btns {
     display: flex;
     align-items: center;
@@ -552,13 +513,11 @@
   .footer-mark {
     width: 34px;
     height: 34px;
-    background: var(--lime);
-    border-radius: 7px;
     display: flex;
     align-items: center;
     justify-content: center;
   }
-  .footer-mark svg { width: 20px; height: 20px; }
+  .footer-mark img { width: 28px; height: 28px; object-fit: contain; filter: brightness(10); }
   .footer-brand {
     font-family: var(--mono);
     font-size: 14px;
@@ -585,7 +544,7 @@
   /* ─── RESPONSIVE ─── */
   @media (max-width: 720px) {
     .nav { padding: 14px 24px; }
-    .hero { padding: 64px 24px 56px; }
+    .hero-btns { bottom: 24px; }
     .signals-strip { grid-template-columns: repeat(2, 1fr); }
     .signal-cell:nth-child(2) { border-right: none; }
     .features, .archive { padding: 60px 24px; }
@@ -598,7 +557,8 @@
   }
   @media (max-width: 480px) {
     .nav-logo span { display: none; }
-    .hero-h1 { font-size: clamp(42px, 12vw, 64px); }
+    .hero-btns { bottom: 16px; gap: 10px; }
+    .hero-btns .btn-chunky { padding: 10px 18px; font-size: 12px; }
     .btn-chunky { padding: 12px 22px; font-size: 13px; }
     .post-title { font-size: 17px; }
     .archive-h { font-size: 36px; }
@@ -611,10 +571,7 @@
 <nav class="nav">
   <div class="nav-logo">
     <div class="nav-logo-mark">
-      <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="8" y="10" width="44" height="8" rx="3" fill="#DCF07A"/>
-        <rect x="24" y="18" width="12" height="34" rx="3" fill="#DCF07A"/>
-      </svg>
+      <img src="timps_logo.svg" alt="TIMPS">
     </div>
     <span>TIMPS PostCards</span>
   </div>
@@ -623,17 +580,8 @@
 
 <!-- HERO -->
 <section class="hero">
-  <span class="hero-eyebrow">Est. 2025 &middot; Hyderabad, India &middot; Vol. II</span>
-  <h1 class="hero-h1">
-    Every AI signal<br>
-    <span class="hero-highlight">worth reading.</span>
-  </h1>
-  <p class="hero-sub">
-    <strong>Five curated signals from the AI landscape,</strong><br>
-    delivered every Friday morning.
-    No noise. No hype. Just the story behind the story.
-  </p>
-  <div class="hero-btns">
+  <img class="hero-bg" src="timps-hero-banner.png" alt="TIMPS Hero">
+  <div class="hero-btns" style="position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); z-index: 2;">
     <a href="timps-postcards-2026-06-21.html" class="btn-chunky filled">Read Latest Issue</a>
     <a href="#archive" class="btn-chunky lime">Browse Archive</a>
   </div>
@@ -1059,10 +1007,7 @@
 <footer class="footer">
   <div class="footer-logo">
     <div class="footer-mark">
-      <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="8" y="10" width="44" height="8" rx="3" fill="#1C2E22"/>
-        <rect x="24" y="18" width="12" height="34" rx="3" fill="#1C2E22"/>
-      </svg>
+      <img src="timps_logo.svg" alt="TIMPS">
     </div>
     <span class="footer-brand">TIMPS PostCards</span>
   </div>
