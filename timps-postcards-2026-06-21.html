@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>TIMPS PostCards — Issue 028</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #EEECE2;
+  font-family: 'EB Garamond', Georgia, ui-serif, serif;
+  color: #3D3929;
+  padding: 40px 20px 80px;
+}
+.wrapper { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 0; }
+
+/* Cover */
+.cover-card { background: #F0ECE0; border-radius: 20px 20px 4px 4px; padding: 56px 48px 48px; text-align: center; position: relative; overflow: hidden; border: 1.5px solid rgba(61,57,41,0.12); margin-bottom: 3px; }
+.cover-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, #DA7756 0%, #BD5D3A 60%, #E0A88A 100%); }
+.cover-eyebrow { font-size:10px; letter-spacing:4px; text-transform:uppercase; color:#DA7756; margin-bottom:20px; display:flex; align-items:center; justify-content:center; gap:10px; }
+.cover-eyebrow::before,.cover-eyebrow::after { content:''; flex:1; height:1px; background:#DA7756; opacity:.35; max-width:60px; }
+.cover-title { font-family:'Playfair Display',serif; font-size:58px; font-weight:900; line-height:1; letter-spacing:-1px; color:#3D3929; margin-bottom:8px; }
+.cover-sub { font-family:'Playfair Display',serif; font-size:13px; font-style:italic; color:#5C5847; margin-bottom:28px; }
+.cover-divider { width:48px; height:2px; background:#DA7756; margin:0 auto 24px; border-radius:2px; }
+.cover-meta { display:flex; justify-content:center; gap:32px; font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color:#5C5847; }
+.cover-badge { display:inline-flex; align-items:center; gap:6px; background:#DA7756; color:#fff; border-radius:20px; padding:6px 18px; font-size:10px; letter-spacing:2px; text-transform:uppercase; margin-top:28px; }
+.top5-pill { display:flex; justify-content:center; gap:10px; margin-top:32px; flex-wrap:wrap; }
+.pill { background:#3D3929; color:#F0ECE0; border-radius:100px; padding:4px 14px; font-size:10px; letter-spacing:1px; text-transform:uppercase; }
+.pill.light { background:transparent; color:#3D3929; border:1px solid rgba(61,57,41,.2); }
+
+/* Section labels */
+.section-label { display:flex; align-items:center; gap:12px; padding:10px 0 8px; font-size:9px; letter-spacing:4px; text-transform:uppercase; color:#5C5847; }
+.section-label::before,.section-label::after { content:''; flex:1; height:1px; background:rgba(61,57,41,.15); }
+
+/* Story cards */
+.story-card { border-radius:4px; border:1.5px solid rgba(61,57,41,.10); padding:36px 40px; margin-bottom:3px; position:relative; overflow:hidden; }
+.story-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }
+
+/* Card colour classes */
+.card-lavender { background:#EAE6F5; } .card-lavender::before { background:#C8BEE8; }
+.card-sage     { background:#D6E4D6; } .card-sage::before     { background:#8BAF8B; }
+.card-blush    { background:#F5DDD0; } .card-blush::before    { background:#E0A88A; }
+.card-sky      { background:#D6E8F0; } .card-sky::before      { background:#7AAFC0; }
+.card-cream    { background:#F7F5EF; } .card-cream::before    { background:#DA7756; }
+
+/* Card typography */
+.page-chip { position:absolute; top:14px; right:16px; font-size:9px; letter-spacing:2px; text-transform:uppercase; color:#5C5847; opacity:.5; }
+.card-routine { font-size:9px; letter-spacing:4px; text-transform:uppercase; color:#5C5847; margin-bottom:8px; }
+.card-headline { font-family:'Playfair Display',serif; font-size:28px; font-weight:900; line-height:1.15; color:#3D3929; margin-bottom:10px; }
+.card-headline.lg { font-size:34px; }
+.card-headline.sm { font-size:22px; }
+.card-deck { font-family:'Playfair Display',serif; font-style:italic; font-size:14px; line-height:1.55; color:#5C5847; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid rgba(61,57,41,.15); }
+.card-body { font-size:13px; line-height:1.8; color:#3D3929; }
+.card-body p { margin-bottom:11px; }
+.two-col { column-count:2; column-gap:24px; column-rule:1px solid rgba(61,57,41,.12); }
+.drop::first-letter { font-family:'Playfair Display',serif; font-size:52px; font-weight:900; float:left; line-height:.78; margin:5px 6px 0 0; color:#DA7756; }
+.clearfix::after { content:''; display:table; clear:both; }
+
+/* Inline highlights */
+.hl-terra { background:#DA7756; color:#fff; padding:0 4px; border-radius:2px; }
+.hl-ink   { background:#3D3929; color:#F0ECE0; padding:0 4px; border-radius:2px; }
+.hl-sage  { background:#8BAF8B; color:#fff; padding:0 4px; border-radius:2px; }
+.hl-lav   { background:#C8BEE8; color:#3D3929; padding:0 4px; border-radius:2px; }
+
+/* Stat float */
+.stat-box { float:right; margin:0 0 16px 24px; background:#F0ECE0; border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:16px 20px; text-align:center; min-width:120px; }
+.stat-big { font-family:'Playfair Display',serif; font-size:44px; font-weight:900; line-height:1; color:#DA7756; display:block; }
+.stat-label { font-size:9.5px; letter-spacing:1.5px; text-transform:uppercase; color:#5C5847; display:block; margin-top:4px; }
+
+/* Image frames */
+.img-frame { border:2px solid rgba(61,57,41,0.18); border-radius:12px; overflow:hidden; margin:16px 0; background:#F0ECE0; }
+.img-frame img { width:100%; display:block; max-height:240px; object-fit:cover; border-bottom:1px solid rgba(61,57,41,.12); }
+.img-caption { padding:8px 12px; font-size:10.5px; color:#5C5847; font-style:italic; display:flex; align-items:center; justify-content:space-between; gap:8px; }
+.img-caption a { font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color:#DA7756; text-decoration:none; white-space:nowrap; font-style:normal; }
+.img-frame.float-right { float:right; width:220px; margin:0 0 16px 24px; }
+.img-frame.float-right img { max-height:140px; }
+
+/* Source links */
+.source-link { display:inline-flex; align-items:center; gap:5px; font-size:10px; letter-spacing:1px; text-transform:uppercase; color:#DA7756; text-decoration:none; margin-top:12px; border-bottom:1px solid rgba(218,119,86,.35); padding-bottom:1px; }
+.source-link::after { content:'↗'; font-size:9px; }
+
+/* Chat bubbles */
+.chat-wrap { display:flex; flex-direction:column; gap:10px; margin-bottom:16px; }
+.bubble-label { font-size:9px; letter-spacing:2px; text-transform:uppercase; color:#5C5847; margin-bottom:4px; }
+.bubble { border-radius:16px; padding:14px 18px; font-size:13px; line-height:1.6; max-width:88%; }
+.bubble.user { background:#F0ECE0; border:1.5px solid rgba(61,57,41,.14); align-self:flex-end; border-bottom-right-radius:4px; }
+.bubble.ai { background:#DA7756; color:#fff; align-self:flex-start; border-bottom-left-radius:4px; font-style:italic; }
+.arrow-row { display:flex; align-items:center; gap:8px; color:#5C5847; font-size:11px; margin:2px 0 2px 12px; }
+
+/* Output card */
+.output-card { background:#F0ECE0; border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:18px 20px; margin-top:14px; }
+.output-title { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; margin-bottom:8px; color:#3D3929; }
+.output-meta { display:flex; gap:20px; font-size:10px; color:#5C5847; padding-bottom:10px; margin-bottom:10px; border-bottom:1px solid rgba(61,57,41,.12); flex-wrap:wrap; }
+.tp-list { list-style:none; padding:0; margin:0; }
+.tp-list li { padding:5px 0; font-size:11.5px; border-bottom:1px solid rgba(61,57,41,.07); display:flex; align-items:flex-start; gap:7px; }
+.tp-list li::before { content:'·'; color:#DA7756; font-size:14px; line-height:1.2; flex-shrink:0; }
+
+/* Signals */
+.signals-grid { display:flex; flex-direction:column; gap:14px; }
+.signal-row { display:flex; align-items:flex-start; gap:14px; }
+.signal-num { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-size:13px; font-weight:900; flex-shrink:0; color:#fff; }
+.signal-num.n1{background:#DA7756;} .signal-num.n2{background:#3D3929;} .signal-num.n3{background:#8BAF8B;} .signal-num.n4{background:#C8BEE8;color:#3D3929;} .signal-num.n5{background:#E0A88A;}
+.signal-title { font-family:'Playfair Display',serif; font-size:14px; font-weight:700; color:#3D3929; margin-bottom:2px; }
+.signal-desc { font-size:12px; line-height:1.65; color:#5C5847; }
+.signal-link { display:inline-block; font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color:#DA7756; text-decoration:none; margin-top:4px; border-bottom:1px solid rgba(218,119,86,.3); }
+
+/* Themes */
+.themes-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.theme-item { padding:10px 14px; border-radius:8px; font-family:'Playfair Display',serif; font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; text-align:center; border:1.5px solid rgba(61,57,41,.12); }
+
+/* Tool of week */
+.tool-week { background:#DA7756; color:#fff; border-radius:12px; padding:18px 20px; text-align:center; margin-top:14px; }
+.tool-week-eyebrow { font-size:9px; letter-spacing:4px; text-transform:uppercase; opacity:.75; margin-bottom:6px; }
+.tool-week-name { font-family:'Playfair Display',serif; font-size:22px; font-weight:900; margin-bottom:4px; }
+.tool-week-desc { font-size:11.5px; opacity:.85; font-style:italic; }
+
+/* Footer */
+.footer-card { background:#3D3929; color:#F0ECE0; border-radius:4px 4px 20px 20px; padding:28px 40px; text-align:center; margin-top:3px; }
+.footer-title { font-family:'Playfair Display',serif; font-size:15px; font-weight:900; letter-spacing:3px; text-transform:uppercase; margin-bottom:6px; }
+.footer-sub { font-size:10px; letter-spacing:2px; text-transform:uppercase; opacity:.5; }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- COVER -->
+  <div class="cover-card">
+    <div class="cover-eyebrow">AI Intelligence Digest</div>
+    <div class="cover-title">TIMPS<br>PostCards</div>
+    <div class="cover-sub">Your Daily Signal from the Machine Frontier</div>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+      <span>June 21, 2026</span>
+      <span>Hyderabad, India</span>
+      <span>Vol. 1 · Issue 028</span>
+    </div>
+    <div class="top5-pill">
+      <span class="pill">Issue 028</span>
+      <span class="pill light">Last 24 Hours</span>
+      <span class="pill light">8 Stories</span>
+    </div>
+    <div class="cover-badge">⬡ Built with the TIMPS Ecosystem</div>
+  </div>
+
+  <!-- STORY 1 — LEAD -->
+  <div class="section-label">Lead Story</div>
+  <div class="story-card card-sky">
+    <div class="page-chip">01 · LEAD</div>
+    <div class="card-routine">Agent Infrastructure</div>
+    <h1 class="card-headline lg">Claude Code Learns to Show Its Work</h1>
+    <p class="card-deck">Anthropic turns coding sessions into live, shareable web pages — so a whole team can watch an agent's work update in real time, instead of waiting for a status report.</p>
+    <div class="card-body drop clearfix">
+      <p>On June 18, Anthropic rolled out Artifacts inside Claude Code, letting a terminal session publish its own progress as a living web page. Built from the full context of a coding session — the codebase, connected tools, and the conversation itself — it can render PR walkthroughs, dashboards, or release checklists that keep updating as the work continues.</p>
+      <p>The most common early use case, by Anthropic's own account, is debugging: an engineer kicks off an incident investigation, and instead of writing a stand-up update, shares a link to a page that's already tracking the timeline, the suspect commits, and the error rate — updating in place as the session digs deeper.</p>
+      <p>Every publish creates a new version at the same URL, so teammates can roll back to an earlier state, and a gallery keeps every artifact ever generated in one place. It's in beta for Team and Enterprise plans, reachable from the CLI and desktop app — a quiet admission that AI-written work increasingly needs a human-readable surface, not just a terminal log.</p>
+      <a href="https://claude.com/blog/artifacts-in-claude-code" target="_blank" class="source-link">Full story · Claude</a>
+    </div>
+  </div>
+
+  <!-- STORY 2 -->
+  <div class="story-card card-cream">
+    <div class="page-chip">02</div>
+    <div class="card-routine">Agent Memory</div>
+    <h2 class="card-headline">Perplexity Gives Its Agent a Brain</h2>
+    <p class="card-deck">A self-improving memory layer for Perplexity's Computer agent learns from its own past work — not just from your preferences.</p>
+    <div class="card-body drop clearfix">
+      <div class="stat-box">
+        <span class="stat-big">+25%</span>
+        <span class="stat-label">Accuracy on Repeat Tasks</span>
+      </div>
+      <p>Most AI memory is about you — your preferences, your tone, your recurring requests. Perplexity's new Brain, launched June 18 for its Computer agent, is built around something different: the work itself. It logs what an agent tried, what worked, what failed, and what corrections a person made along the way.</p>
+      <p>Overnight, that log gets synthesized into a kind of personal wiki the agent reads before its next task, so a project doesn't start from zero every morning. Perplexity says early internal testing showed real movement on tasks the system had already seen before, alongside a drop in the cost of pulling up historical context.</p>
+      <p>It's a research preview limited to Max and Enterprise Max subscribers for now, and the company has been careful to frame it as something narrower than general intelligence — an agent getting better at its own job, one correction at a time.</p>
+      <a href="https://decrypt.co/371584/perplexity-ai-agent-brain" target="_blank" class="source-link">Full story · Decrypt</a>
+    </div>
+  </div>
+
+  <!-- STORY 3 -->
+  <div class="story-card card-sky">
+    <div class="page-chip">03</div>
+    <div class="card-routine">Deploy Infrastructure</div>
+    <h2 class="card-headline">Cloudflare Lets Agents Sign Themselves Up</h2>
+    <p class="card-deck">A new --temporary flag in Wrangler gives coding agents a 60-minute scoped Cloudflare account — no human, no OAuth flow, no copy-pasted tokens.</p>
+    <div class="card-body drop clearfix">
+      <p>An AI agent that can write a working app in seconds still hits a very human wall the moment it tries to ship it: a sign-up page. Cloudflare's answer, rolled out this week, lets any agent deploy a Worker without an account, a password, or a browser-based login.</p>
+      <p>The deployment goes live on a workers.dev URL immediately and stays claimable for 60 minutes — long enough for an agent to iterate, redeploy, and hand a human a link to make it permanent. Skip the claim, and the whole thing quietly expires.</p>
+      <p>It's a small mechanic with a large implication: Cloudflare is betting that a growing share of its traffic will arrive from background agents with no person watching the screen, and that the platforms which remove friction first are the ones agents will default to.</p>
+      <a href="https://blog.cloudflare.com/temporary-accounts/" target="_blank" class="source-link">Full story · Cloudflare</a>
+    </div>
+  </div>
+
+  <!-- STORY 4 -->
+  <div class="story-card card-cream">
+    <div class="page-chip">04</div>
+    <div class="card-routine">Productivity AI</div>
+    <h2 class="card-headline">ChatGPT Moves Into the Spreadsheet</h2>
+    <p class="card-deck">OpenAI's ChatGPT for Excel and Google Sheets is now generally available across every plan, turning plain-language prompts into live formulas and models.</p>
+    <div class="card-body drop clearfix">
+      <p>ChatGPT for Excel and Google Sheets graduated out of beta this spring and is now generally available across every paid and free tier, running on GPT-5.5 inside a sidebar that lives directly in the spreadsheet rather than a separate chat window.</p>
+      <p>The pitch is one most spreadsheet users will recognize instantly: describe what you want — a budget tracker, a cleaned-up dataset, a formula that's been silently wrong for months — and the assistant builds or fixes it in place, asking permission before it touches a cell and linking its answers back to the exact ranges it used.</p>
+      <p>It still can't touch pivot tables, macros, or Power Query, and OpenAI is upfront that outputs need a human check before anyone trusts a board deck to it. But for the unglamorous bulk of spreadsheet work, it's now a default rather than a beta.</p>
+      <a href="https://openai.com/index/chatgpt-for-excel/" target="_blank" class="source-link">Full story · OpenAI</a>
+    </div>
+  </div>
+
+  <!-- STORY 5 -->
+  <div class="story-card card-sky">
+    <div class="page-chip">05</div>
+    <div class="card-routine">Robotics</div>
+    <h2 class="card-headline">The Robot That Refuses to Look Human</h2>
+    <p class="card-deck">Genesis AI's first general-purpose robot, Eno, skips legs and a face entirely — built on wheels, with hands that match human dexterity instead.</p>
+    <div class="card-body drop clearfix">
+      <div class="stat-box">
+        <span class="stat-big">$105M</span>
+        <span class="stat-label">Seed Funding Raised</span>
+      </div>
+      <p>Every robotics company chasing humanoid form right now is implicitly betting that the future looks like us. Genesis AI's first general-purpose robot, Eno, makes the opposite bet: a wheeled base, a tower of articulated panels that folds down to roughly the size of a suitcase, and hands built to match human dexterity rather than a human face.</p>
+      <p>Industrial customers reportedly asked for the wheels themselves — flat factory and lab floors don't need legs, and legs mostly add cost and failure points. Eno's brain, a foundation model called GENE, is meant to let it hold a goal across an extended task rather than execute a single pre-scripted motion.</p>
+      <p>Genesis plans deployments to manufacturing, logistics, and lab customers before the end of 2026, including a strategic rollout partnership announced alongside the unveiling.</p>
+      <a href="https://www.fastcompany.com/91560267/genesis-ais-new-robot-design-is-not-a-fake-human" target="_blank" class="source-link">Full story · Fast Company</a>
+    </div>
+  </div>
+
+  <!-- STORY 6 -->
+  <div class="story-card card-cream">
+    <div class="page-chip">06</div>
+    <div class="card-routine">Consumer Hardware</div>
+    <h2 class="card-headline">Your Next Phone Might Have an Arm</h2>
+    <p class="card-deck">Honor's gimbal-armed Robot Phone resurfaced in high-resolution press images this month, ahead of a Q3 2026 launch.</p>
+    <div class="card-body drop clearfix">
+      <p>Honor's "Robot Phone" resurfaced in high-resolution press images this week, courtesy of a Qualcomm anniversary event — a reminder that the concept first teased at Mobile World Congress in March is still very much on track for a global launch later this year.</p>
+      <p>The whole pitch hinges on one mechanism: a robotic-arm gimbal that retracts flush into the phone's body, then pops out and unfolds with a single tap to physically reposition the camera — tracking a subject, following a face through a video call, or swinging into a cinematic angle mid-shot.</p>
+      <p>It's an unusually literal answer to "embodied AI" from a smartphone maker, built on Honor's existing foldable-hinge expertise rather than anything borrowed from humanoid robotics.</p>
+      <a href="https://technode.com/2026/05/25/honors-first-robot-smartphone-revealed-in-high-resolution-images/" target="_blank" class="source-link">Full story · TechNode</a>
+    </div>
+  </div>
+
+  <!-- STORY 7 -->
+  <div class="story-card card-sky">
+    <div class="page-chip">07</div>
+    <div class="card-routine">Mobility</div>
+    <h2 class="card-headline">Waymo Starts Charging for Loyalty</h2>
+    <p class="card-deck">A $29.99-a-month Premier tier gives Waymo's heaviest riders priority pickups and cash back — the robotaxi business growing up into a subscription.</p>
+    <div class="card-body drop clearfix">
+      <div class="stat-box">
+        <span class="stat-big">$29.99</span>
+        <span class="stat-label">Per Month</span>
+      </div>
+      <p>Waymo just did something no robotaxi operator had tried before: it launched a paid membership. Waymo Premier costs $29.99 a month, invite-only for now in San Francisco, Los Angeles, and Phoenix — the company's three longest-running markets.</p>
+      <p>Members get priority vehicle matching, up to five free cancellations a month, and 10% of every fare back as Waymo Cash, with early access promised whenever the service opens in a new city. It's a familiar loyalty playbook, borrowed straight from Uber One and Lyft Pink, just applied for the first time to a car with no driver in it.</p>
+      <p>Waymo says the price and perks were shaped directly by rider feedback. The timing isn't subtle either — the company is mid-expansion toward 20-plus cities and an international launch in London later this year, and a subscriber base gives it a built-in audience the moment each new market opens.</p>
+      <a href="https://techcrunch.com/2026/06/11/waymo-launches-a-loyalty-program-with-10-cash-back-and-free-cancellations/" target="_blank" class="source-link">Full story · TechCrunch</a>
+    </div>
+  </div>
+
+  <!-- STORY 8 -->
+  <div class="story-card card-cream">
+    <div class="page-chip">08</div>
+    <div class="card-routine">Inbox AI</div>
+    <h2 class="card-headline">Gmail Starts Reading Between the Lines</h2>
+    <p class="card-deck">Gemini-powered AI Overviews now summarize long threads and surface action items directly inside Gmail.</p>
+    <div class="card-body drop clearfix">
+      <p>Gmail's slow absorption into "the Gemini era" kept moving this year, and the most useful piece for anyone drowning in client threads is the simplest one: AI Overviews now read an entire email conversation and hand back a few sentences of what actually matters — decisions made, questions still open, who owes whom a reply.</p>
+      <p>Point it at a label instead of a single thread, and it does the same triage across everything filed under it — ask what's outstanding under "Clients," and it surfaces the people waiting on you, the documents that were promised, and the open questions, without opening a single email by hand.</p>
+      <p>It's rolling out as a free, default feature for everyone, with deeper natural-language Q&A over your whole inbox gated behind a Google AI Pro or Ultra subscription.</p>
+      <a href="https://blog.google/products-and-platforms/products/gmail/gmail-is-entering-the-gemini-era/" target="_blank" class="source-link">Full story · Google</a>
+    </div>
+  </div>
+
+  <!-- SIGNALS -->
+  <div class="section-label">5 Key Signals</div>
+  <div class="story-card card-sky">
+    <div class="page-chip">SIGNALS</div>
+    <div class="signals-grid">
+      <div class="signal-row">
+        <div class="signal-num n1">1</div>
+        <div>
+          <div class="signal-title">Agent Commerce Gets a Wallet</div>
+          <div class="signal-desc">Cloudflare's new protocol with Stripe lets agents autonomously open accounts, register domains, and start subscriptions under a spend cap.</div>
+          <a href="https://www.infoq.com/news/2026/05/cloudflare-stripe-agent-commerce/" target="_blank" class="signal-link">InfoQ ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n2">2</div>
+        <div>
+          <div class="signal-title">Eno's First Customer Is Korean</div>
+          <div class="signal-desc">Genesis AI signed a strategic deployment partnership with LG CNS to pilot Eno across manufacturing and logistics sites.</div>
+          <a href="https://www.humanoidsdaily.com/news/genesis-ai-unveils-eno-the-minimalist-robot-making-an-opposite-bet-on-humanoid-design" target="_blank" class="signal-link">Humanoids Daily ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n3">3</div>
+        <div>
+          <div class="signal-title">The Math on Waymo Premier</div>
+          <div class="signal-desc">The 10% cash-back perk roughly breaks even against the $29.99 fee around $300 in monthly robotaxi spend.</div>
+          <a href="https://www.techtimes.com/articles/318347/20260613/waymo-launches-2999-premier-robotaxi-subscription-monthly-driverless-membership-worth-it.htm" target="_blank" class="signal-link">Tech Times ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n4">4</div>
+        <div>
+          <div class="signal-title">Brain's Early Numbers</div>
+          <div class="signal-desc">Perplexity reports a 13% cost cut on tasks that depend on historical context, alongside the accuracy gain above.</div>
+          <a href="https://www.marktechpost.com/2026/06/18/perplexity-launches-brain/" target="_blank" class="signal-link">MarkTechPost ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n5">5</div>
+        <div>
+          <div class="signal-title">Artifacts Stay Inside the Walls</div>
+          <div class="signal-desc">Claude Code's new pages run under a strict policy that blocks all external network calls, keeping enterprise data from leaving the building.</div>
+          <a href="https://venturebeat.com/data/anthropics-claude-code-artifacts-update-brings-live-shared-dashboards-and-interactive-workspaces-to-enterprises" target="_blank" class="signal-link">VentureBeat ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THEMES + TOOL + SOURCES -->
+  <div class="section-label">Themes &amp; Tools</div>
+  <div class="story-card card-cream">
+    <div class="page-chip">THEMES</div>
+    <div class="card-routine">Top Themes</div>
+    <div class="themes-grid">
+      <div class="theme-item">Agent Infrastructure</div>
+      <div class="theme-item">Self-Improving Memory</div>
+      <div class="theme-item">Anti-Humanoid Design</div>
+      <div class="theme-item">Embodied Interaction</div>
+      <div class="theme-item">Subscription Robotics</div>
+      <div class="theme-item">Live Collaboration</div>
+      <div class="theme-item">Inbox Automation</div>
+    </div>
+
+    <div class="tool-week">
+      <div class="tool-week-eyebrow">Tool of the Week</div>
+      <div class="tool-week-name">Wrangler --temporary</div>
+      <div class="tool-week-desc">Deploy a live Cloudflare Worker with zero signup — point any coding agent at it and watch it ship in under a minute.</div>
+    </div>
+
+    <div class="card-routine" style="margin-top:20px;">Sources Cited</div>
+    <ul class="tp-list two-col">
+      <li><a href="https://claude.com/blog/artifacts-in-claude-code" target="_blank">Claude — claude.com</a></li>
+      <li><a href="https://decrypt.co/371584/perplexity-ai-agent-brain" target="_blank">Decrypt</a></li>
+      <li><a href="https://blog.cloudflare.com/temporary-accounts/" target="_blank">Cloudflare Blog</a></li>
+      <li><a href="https://openai.com/index/chatgpt-for-excel/" target="_blank">OpenAI</a></li>
+      <li><a href="https://www.fastcompany.com/91560267/genesis-ais-new-robot-design-is-not-a-fake-human" target="_blank">Fast Company</a></li>
+      <li><a href="https://technode.com/2026/05/25/honors-first-robot-smartphone-revealed-in-high-resolution-images/" target="_blank">TechNode</a></li>
+      <li><a href="https://techcrunch.com/2026/06/11/waymo-launches-a-loyalty-program-with-10-cash-back-and-free-cancellations/" target="_blank">TechCrunch</a></li>
+      <li><a href="https://blog.google/products-and-platforms/products/gmail/gmail-is-entering-the-gemini-era/" target="_blank">Google Blog</a></li>
+    </ul>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer-card">
+    <div class="footer-title">TIMPS PostCards</div>
+    <div class="footer-sub">June 21, 2026 · Hyderabad, India · Vol. 1 / Issue 028 · Built with the TIMPS Ecosystem</div>
+  </div>
+
+</div>
+</body>
+</html>
