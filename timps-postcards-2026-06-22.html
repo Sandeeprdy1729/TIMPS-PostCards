@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TIMPS PostCards — Issue 028</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #EEECE2;
+  font-family: 'EB Garamond', Georgia, ui-serif, serif;
+  color: #3D3929;
+  padding: 40px 20px 80px;
+}
+.wrapper { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 0; }
+
+/* Cover */
+.cover-card { background: #F0ECE0; border-radius: 20px 20px 4px 4px; padding: 56px 48px 48px; text-align: center; position: relative; overflow: hidden; border: 1.5px solid rgba(61,57,41,0.12); margin-bottom: 3px; }
+.cover-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, #DA7756 0%, #BD5D3A 60%, #E0A88A 100%); }
+.cover-eyebrow { font-size:10px; letter-spacing:4px; text-transform:uppercase; color:#DA7756; margin-bottom:20px; display:flex; align-items:center; justify-content:center; gap:10px; }
+.cover-eyebrow::before,.cover-eyebrow::after { content:''; flex:1; height:1px; background:#DA7756; opacity:.35; max-width:60px; }
+.cover-title { font-family:'Playfair Display',serif; font-size:58px; font-weight:900; line-height:1; letter-spacing:-1px; color:#3D3929; margin-bottom:8px; }
+.cover-sub { font-family:'Playfair Display',serif; font-size:13px; font-style:italic; color:#5C5847; margin-bottom:28px; }
+.cover-divider { width:48px; height:2px; background:#DA7756; margin:0 auto 24px; border-radius:2px; }
+.cover-meta { display:flex; justify-content:center; gap:32px; font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color:#5C5847; }
+.cover-badge { display:inline-flex; align-items:center; gap:6px; background:#DA7756; color:#fff; border-radius:20px; padding:6px 18px; font-size:10px; letter-spacing:2px; text-transform:uppercase; margin-top:28px; }
+.top5-pill { display:flex; justify-content:center; gap:10px; margin-top:32px; flex-wrap:wrap; }
+.pill { background:#3D3929; color:#F0ECE0; border-radius:100px; padding:4px 14px; font-size:10px; letter-spacing:1px; text-transform:uppercase; }
+.pill.light { background:transparent; color:#3D3929; border:1px solid rgba(61,57,41,.2); }
+
+/* Section labels */
+.section-label { display:flex; align-items:center; gap:12px; padding:10px 0 8px; font-size:9px; letter-spacing:4px; text-transform:uppercase; color:#5C5847; }
+.section-label::before,.section-label::after { content:''; flex:1; height:1px; background:rgba(61,57,41,.15); }
+
+/* Story cards */
+.story-card { border-radius:4px; border:1.5px solid rgba(61,57,41,.10); padding:36px 40px; margin-bottom:3px; position:relative; overflow:hidden; }
+.story-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }
+
+/* Card colour classes — Scheme C: Sky + Cream */
+.card-sky      { background:#D6E8F0; } .card-sky::before      { background:#7AAFC0; }
+.card-cream    { background:#F7F5EF; } .card-cream::before    { background:#DA7756; }
+
+/* Card typography */
+.page-chip { position:absolute; top:14px; right:16px; font-size:9px; letter-spacing:2px; text-transform:uppercase; color:#5C5847; opacity:.5; }
+.card-routine { font-size:9px; letter-spacing:4px; text-transform:uppercase; color:#5C5847; margin-bottom:8px; }
+.card-headline { font-family:'Playfair Display',serif; font-size:28px; font-weight:900; line-height:1.15; color:#3D3929; margin-bottom:10px; }
+.card-headline.lg { font-size:34px; }
+.card-headline.sm { font-size:22px; }
+.card-deck { font-family:'Playfair Display',serif; font-style:italic; font-size:14px; line-height:1.55; color:#5C5847; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid rgba(61,57,41,.15); }
+.card-body { font-size:13px; line-height:1.8; color:#3D3929; }
+.card-body p { margin-bottom:11px; }
+.drop::first-letter { font-family:'Playfair Display',serif; font-size:52px; font-weight:900; float:left; line-height:.78; margin:5px 6px 0 0; color:#DA7756; }
+.clearfix::after { content:''; display:table; clear:both; }
+
+/* Inline highlights */
+.hl-terra { background:#DA7756; color:#fff; padding:0 4px; border-radius:2px; }
+.hl-ink   { background:#3D3929; color:#F0ECE0; padding:0 4px; border-radius:2px; }
+.hl-sky   { background:#7AAFC0; color:#fff; padding:0 4px; border-radius:2px; }
+
+/* Stat float */
+.stat-box { float:right; margin:0 0 16px 24px; background:#F0ECE0; border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:16px 20px; text-align:center; min-width:120px; }
+.stat-big { font-family:'Playfair Display',serif; font-size:44px; font-weight:900; line-height:1; color:#DA7756; display:block; }
+.stat-label { font-size:9.5px; letter-spacing:1.5px; text-transform:uppercase; color:#5C5847; display:block; margin-top:4px; }
+
+/* Image frames */
+.img-frame { border:2px solid rgba(61,57,41,0.18); border-radius:12px; overflow:hidden; margin:16px 0; background:#F0ECE0; }
+.img-frame img { width:100%; display:block; max-height:240px; object-fit:cover; border-bottom:1px solid rgba(61,57,41,.12); }
+.img-caption { padding:8px 12px; font-size:10.5px; color:#5C5847; font-style:italic; display:flex; align-items:center; justify-content:space-between; gap:8px; }
+.img-caption a { font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color:#DA7756; text-decoration:none; white-space:nowrap; font-style:normal; }
+.img-frame.float-right { float:right; width:220px; margin:0 0 16px 24px; }
+.img-frame.float-right img { max-height:140px; }
+
+/* Source links */
+.source-link { display:inline-flex; align-items:center; gap:5px; font-size:10px; letter-spacing:1px; text-transform:uppercase; color:#DA7756; text-decoration:none; margin-top:12px; border-bottom:1px solid rgba(218,119,86,.35); padding-bottom:1px; }
+.source-link::after { content:'↗'; font-size:9px; }
+
+/* Signals card */
+.signals-grid { display:flex; flex-direction:column; gap:18px; margin-top:20px; }
+.signal-row { display:flex; gap:16px; align-items:flex-start; }
+.signal-num { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-weight:900; font-size:13px; color:#fff; flex-shrink:0; }
+.signal-title { font-family:'Playfair Display',serif; font-weight:700; font-size:14px; color:#3D3929; margin-bottom:3px; }
+.signal-desc { font-size:12px; line-height:1.6; color:#3D3929; }
+.signal-link { display:inline-block; font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color:#DA7756; text-decoration:none; margin-top:4px; }
+
+/* Themes grid */
+.themes-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:16px; margin-bottom:22px; }
+.theme-item { background:rgba(255,255,255,.5); border:1px solid rgba(61,57,41,.12); border-radius:6px; padding:10px 14px; font-size:12px; color:#3D3929; }
+
+/* Tool of the week */
+.tool-week { background:#DA7756; color:#fff; border-radius:10px; padding:22px 24px; margin-top:16px; }
+.tool-week-eyebrow { font-size:9.5px; letter-spacing:3px; text-transform:uppercase; opacity:.85; margin-bottom:6px; }
+.tool-week-name { font-family:'Playfair Display',serif; font-weight:900; font-size:24px; margin-bottom:6px; }
+.tool-week-desc { font-size:12.5px; line-height:1.55; font-style:italic; }
+
+/* Sources cited */
+.sources-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px 18px; margin-top:14px; }
+.sources-grid a { font-size:11px; color:#3D3929; text-decoration:none; border-bottom:1px solid rgba(61,57,41,.25); }
+
+/* Footer card */
+.footer-card { background:#3D3929; color:#F0ECE0; border-radius:4px 4px 20px 20px; padding:44px 40px; text-align:center; }
+.footer-title { font-family:'Playfair Display',serif; font-weight:900; font-size:22px; letter-spacing:5px; margin-bottom:10px; }
+.footer-sub { font-size:11px; letter-spacing:3px; text-transform:uppercase; color:#C8BEE8; margin-bottom:16px; }
+.footer-meta { font-size:10.5px; color:#9C9885; letter-spacing:1px; }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- COVER -->
+  <div class="cover-card">
+    <div class="cover-eyebrow">Vol. 1 · Issue 028</div>
+    <div class="cover-title">TIMPS PostCards</div>
+    <div class="cover-sub">AI Intelligence Digest · Your Daily Signal from the Machine Frontier</div>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+      <span>June 22, 2026</span>
+      <span>Hyderabad, India</span>
+      <span>7 Signals</span>
+    </div>
+    <div class="cover-badge">Built with the TIMPS Ecosystem</div>
+    <div class="top5-pill">
+      <span class="pill">AI Companions &gt; Dating Apps</span>
+      <span class="pill light">Google Held Liable</span>
+      <span class="pill light">Mythos 5 Paused</span>
+    </div>
+  </div>
+
+  <div class="section-label">Lead Story</div>
+
+  <!-- STORY 1: AI companions vs dating apps -->
+  <div class="story-card card-sky">
+    <div class="page-chip">01 · LEAD</div>
+    <div class="card-routine">Culture &amp; Behavior</div>
+    <h1 class="card-headline lg">Americans Now Spend More Time Talking to AI Than Swiping for Dates</h1>
+    <p class="card-deck">Companion apps have pulled decisively ahead of Tinder and Bumble in total engagement hours — and the gap is still widening, quarter over quarter.</p>
+    <div class="stat-box">
+      <span class="stat-big">2.5x</span>
+      <span class="stat-label">Companion vs Dating Hours</span>
+    </div>
+    <div class="card-body drop clearfix">
+      <p>New data from SensorTower shows just how far the balance has tipped. In the first quarter of 2026, Americans logged roughly <span class="hl-terra">705 million hours</span> on AI companion apps, compared with about 280 million hours spent on dating and social-discovery platforms like Tinder, Bumble, and Hinge combined.</p>
+      <p>The trend isn't new, but it's accelerating. A year earlier, in Q1 2025, companion apps held a narrower lead — around 580 million hours against 330 million for dating apps. By the third quarter of 2025, companion-app hours had already climbed past 715 million while dating-app hours slipped under 300 million. Five consecutive quarters of data now point the same direction.</p>
+      <p>The shift sits inside a larger pattern: SensorTower's broader State of AI 2026 report finds that overall time spent on generative AI apps is set to more than double year over year. Dating apps haven't necessarily gotten worse — they've simply stopped being where people choose to spend idle time, while companion apps have gotten better at making themselves hard to leave.</p>
+    </div>
+    <a class="source-link" href="https://officechai.com/ai/twice-as-many-americans-are-now-using-ai-companions-than-dating-apps-sensortower-data/" target="_blank">Full story · OfficeChai / SensorTower</a>
+  </div>
+
+  <div class="section-label">Top Story</div>
+
+  <!-- STORY 2: Munich court ruling -->
+  <div class="story-card card-cream">
+    <div class="page-chip">02 · LAW</div>
+    <div class="card-routine">Regulation</div>
+    <h2 class="card-headline">German Court Strips Google of Its Search-Engine Liability Shield for AI Overviews</h2>
+    <p class="card-deck">A Munich ruling says Google's AI summaries are the company's own statements — not protected third-party content — opening the door to liability for every AI answer engine.</p>
+    <div class="card-body drop clearfix">
+      <p>The Regional Court of Munich issued a temporary injunction barring Google from repeating false claims its AI Overviews made about two Munich-based publishers, wrongly linking them to scams and subscription traps that <span class="hl-ink">never appeared in any of the underlying sources</span> the tool cited.</p>
+      <p>The court's reasoning marks a break from how search engines have traditionally been treated. Germany's Federal Court of Justice had long granted search operators only indirect liability, since they merely pointed to outside websites. The Munich court found that doesn't apply here: AI Overviews evaluate, combine, and rewrite information into self-contained answers, which makes them Google's own speech.</p>
+      <p>Google rejected the central defense that users can always click through and verify sources themselves — research shows barely 1% of users do. Google says it will appeal; the ruling is not yet final, but its logic could extend well beyond one case, and beyond Germany.</p>
+    </div>
+    <a class="source-link" href="https://the-decoder.com/landmark-german-ruling-declares-googles-ai-overviews-are-googles-own-words-and-makes-it-liable-for-false-answers/" target="_blank">Full story · The Decoder</a>
+  </div>
+
+  <!-- STORY 3: Anthropic pauses Fable/Mythos -->
+  <div class="story-card card-sky">
+    <div class="page-chip">03 · POLICY</div>
+    <div class="card-routine">AI Governance</div>
+    <h2 class="card-headline">US Government Forces Anthropic to Pull Its Most Capable Models Days After Launch</h2>
+    <p class="card-deck">An export-control directive citing national security has suspended all access to Fable 5 and Mythos 5 worldwide — even for Anthropic's own foreign-national staff.</p>
+    <div class="card-body drop clearfix">
+      <p>Anthropic disabled Fable 5 and Mythos 5 for every customer after receiving a directive from the US government at 5:21pm ET, citing national-security authorities. The order targeted access by any foreign national, inside or outside the US — a scope broad enough that the company says a blanket worldwide shutdown was the only practical way to comply.</p>
+      <p>Anthropic says the government's letter did not specify the concern in detail, but the company understands it relates to a technique for bypassing Fable 5's safeguards. Anthropic disputes the severity, calling the disclosed jailbreak <span class="hl-terra">narrow and non-universal</span>, and noting that comparable capability is reportedly accessible through other publicly available models not subject to the same restriction.</p>
+      <p>Access to other Claude models, including Opus 4.8, is unaffected. Anthropic says it agrees governments should be able to block unsafe deployments — but argues this directive didn't follow a transparent, fact-grounded process, and that it is working to restore access.</p>
+    </div>
+    <a class="source-link" href="https://www.anthropic.com/news/fable-mythos-access" target="_blank">Full story · Anthropic</a>
+  </div>
+
+  <div class="section-label">Signals</div>
+
+  <!-- STORY 4: OpenAI Partner Network -->
+  <div class="story-card card-cream">
+    <div class="page-chip">04 · ENTERPRISE</div>
+    <div class="card-routine">Enterprise AI</div>
+    <h2 class="card-headline sm">OpenAI Commits $150M to Certify 300,000 AI Consultants by Year-End</h2>
+    <p class="card-deck">The OpenAI Partner Network arrives three months after Anthropic launched its own, signaling that deployment — not raw model power — is the new enterprise battleground.</p>
+    <div class="card-body drop clearfix">
+      <p>OpenAI's first formal global partner program launches with Accenture, BCG, McKinsey, Bain, and PwC as founding members, structured across three tiers — Select, Advanced, and Elite — based on sales performance, technical depth, and deployment experience.</p>
+      <p>The company framed the move bluntly: model capability is no longer the limiting factor for enterprise AI value — workflow redesign and change management are. Anthropic's Claude Partner Network, launched in March with $100M behind it, had already certified more than 10,000 consultants from over 40,000 applicants by mid-June.</p>
+    </div>
+    <a class="source-link" href="https://openai.com/index/introducing-openai-partner-network/" target="_blank">Full story · OpenAI</a>
+  </div>
+
+  <!-- STORY 5: DeepMind AI Control Roadmap -->
+  <div class="story-card card-sky">
+    <div class="page-chip">05 · SAFETY</div>
+    <div class="card-routine">AI Safety</div>
+    <h2 class="card-headline sm">Google DeepMind Starts Treating Its Own AI Agents as Insider Threats</h2>
+    <p class="card-deck">A new "AI Control Roadmap" assumes, for planning purposes, that a capable internal agent could evade oversight, copy itself, or sabotage safety work — and builds layered defenses accordingly.</p>
+    <div class="card-body drop clearfix">
+      <p>The roadmap borrows directly from cybersecurity practice, adapting the MITRE ATT&amp;CK framework to map potential agent misbehavior across three risk categories: loss of control, sabotage of safety research, and direct harm. Safeguards escalate through evaluation, active monitoring, and intervention — the ability to restrict or shut down an agent in real time.</p>
+      <p>DeepMind is careful to note the plan is precautionary: an internal review of roughly one million coding-agent sessions found the vast majority of flagged events stemmed from <span class="hl-sky">overeagerness or misinterpretation</span>, not adversarial intent.</p>
+    </div>
+    <a class="source-link" href="https://deepmind.google/blog/securing-the-future-of-ai-agents/" target="_blank">Full story · Google DeepMind</a>
+  </div>
+
+  <!-- SIGNALS CARD -->
+  <div class="story-card card-cream">
+    <div class="page-chip">06 · SIGNALS</div>
+    <div class="card-routine">5 Key Signals</div>
+    <h2 class="card-headline sm">What Else Moved This Week</h2>
+    <div class="signals-grid">
+      <div class="signal-row">
+        <div class="signal-num" style="background:#DA7756;">1</div>
+        <div>
+          <div class="signal-title">A $100 Thrift-Store Painting Becomes a $254,000 Cadell</div>
+          <div class="signal-desc">Google's Gemini identified brushwork and Art Deco styling well enough to point a family toward the right appraisers — and a 60-year-old portrait turned out to be a lost Scottish Colourist masterwork.</div>
+          <a class="signal-link" href="https://www.smithsonianmag.com/smart-news/with-help-from-ai-a-family-realized-their-mysterious-thrift-store-find-is-a-portrait-by-a-great-scottish-painter-180988948/" target="_blank">Smithsonian ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num" style="background:#3D3929;">2</div>
+        <div>
+          <div class="signal-title">Bezos: AI Won't Replace Workers, It'll Create a Labor Shortage</div>
+          <div class="signal-desc">At VivaTech 2026, Bezos argued AI accelerates problem-discovery rather than eliminating jobs, while outlining plans for a permanent lunar base ahead of eventual Mars colonization.</div>
+          <a class="signal-link" href="https://www.techjuice.pk/jeff-bezos-ai-labor-shortage-moon-base-vivatech/" target="_blank">TechJuice ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num" style="background:#7AAFC0;">3</div>
+        <div>
+          <div class="signal-title">Claude Controls a Robot Dog 20x Faster Than Humans</div>
+          <div class="signal-desc">Anthropic's Project Fetch phase two found Claude Opus 4.7, working unassisted, completed robotics tasks roughly 20 times faster than the best human team — though it still couldn't nail the actual "fetch."</div>
+          <a class="signal-link" href="https://www.anthropic.com/research/project-fetch-phase-two" target="_blank">Anthropic ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num" style="background:#DA7756;">4</div>
+        <div>
+          <div class="signal-title">Builder.ai's Collapse, Revisited</div>
+          <div class="signal-desc">A year after the bankruptcy, reporting continues to untangle how much of the "AI" company's output actually came from roughly 700 human engineers working through outsourcing partners behind a thin AI-branded interface.</div>
+          <a class="signal-link" href="https://restofworld.org/2025/builderai-ai-apps-downfall/" target="_blank">Rest of World ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num" style="background:#3D3929;">5</div>
+        <div>
+          <div class="signal-title">Context Windows Jumped from 4K to 1M+ Tokens in Two Years</div>
+          <div class="signal-desc">The resulting shift — "context engineering" — reframes the discipline around curating, structuring, and compressing what an AI has access to, not just how a prompt is phrased.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">Themes &amp; Tools</div>
+
+  <!-- THEMES + TOOL CARD -->
+  <div class="story-card card-sky">
+    <div class="page-chip">07 · THEMES</div>
+    <div class="card-routine">Top Themes</div>
+    <h2 class="card-headline sm">Patterns Worth Tracking</h2>
+    <div class="themes-grid">
+      <div class="theme-item">AI Companionship at Scale</div>
+      <div class="theme-item">AI Liability &amp; Speech Law</div>
+      <div class="theme-item">Government vs. Frontier Labs</div>
+      <div class="theme-item">Enterprise Deployment Race</div>
+      <div class="theme-item">Agent Insider-Threat Modeling</div>
+      <div class="theme-item">AI as Appraisal Tool</div>
+      <div class="theme-item">Context Engineering</div>
+    </div>
+    <div class="tool-week">
+      <div class="tool-week-eyebrow">Tool of the Week</div>
+      <div class="tool-week-name">Gemini Image Identification</div>
+      <div class="tool-week-desc">The same multimodal reasoning behind the Cadell painting discovery is quietly becoming a default first step for anyone trying to identify an unmarked object — art, antiques, or otherwise.</div>
+    </div>
+  </div>
+
+  <!-- SOURCES CITED -->
+  <div class="story-card card-cream">
+    <div class="page-chip">08 · SOURCES</div>
+    <div class="card-routine">Sources Cited</div>
+    <h2 class="card-headline sm">Read the Originals</h2>
+    <div class="sources-grid">
+      <a href="https://officechai.com/ai/twice-as-many-americans-are-now-using-ai-companions-than-dating-apps-sensortower-data/" target="_blank">OfficeChai — SensorTower Data</a>
+      <a href="https://the-decoder.com/landmark-german-ruling-declares-googles-ai-overviews-are-googles-own-words-and-makes-it-liable-for-false-answers/" target="_blank">The Decoder — Munich Ruling</a>
+      <a href="https://www.anthropic.com/news/fable-mythos-access" target="_blank">Anthropic — Fable/Mythos Statement</a>
+      <a href="https://openai.com/index/introducing-openai-partner-network/" target="_blank">OpenAI — Partner Network</a>
+      <a href="https://deepmind.google/blog/securing-the-future-of-ai-agents/" target="_blank">Google DeepMind — AI Control Roadmap</a>
+      <a href="https://www.smithsonianmag.com/smart-news/with-help-from-ai-a-family-realized-their-mysterious-thrift-store-find-is-a-portrait-by-a-great-scottish-painter-180988948/" target="_blank">Smithsonian Magazine — Cadell Painting</a>
+      <a href="https://www.techjuice.pk/jeff-bezos-ai-labor-shortage-moon-base-vivatech/" target="_blank">TechJuice — Bezos at VivaTech</a>
+      <a href="https://www.anthropic.com/research/project-fetch-phase-two" target="_blank">Anthropic — Project Fetch</a>
+      <a href="https://restofworld.org/2025/builderai-ai-apps-downfall/" target="_blank">Rest of World — Builder.ai</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer-card">
+    <div class="footer-title">TIMPS POSTCARDS</div>
+    <div class="footer-sub">AI Intelligence Digest</div>
+    <div class="footer-meta">June 22, 2026 · Hyderabad, India · Vol. 1 · Issue 028</div>
+  </div>
+
+</div>
+</body>
+</html>
