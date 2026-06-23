@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>TIMPS PostCards — Issue 029</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #EEECE2;
+  font-family: 'EB Garamond', Georgia, ui-serif, serif;
+  color: #3D3929;
+  padding: 40px 20px 80px;
+}
+.wrapper { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 0; }
+
+/* Cover */
+.cover-card { background: #F0ECE0; border-radius: 20px 20px 4px 4px; padding: 56px 48px 48px; text-align: center; position: relative; overflow: hidden; border: 1.5px solid rgba(61,57,41,0.12); margin-bottom: 3px; }
+.cover-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, #DA7756 0%, #BD5D3A 60%, #E0A88A 100%); }
+.cover-eyebrow { font-size:10px; letter-spacing:4px; text-transform:uppercase; color:#DA7756; margin-bottom:20px; display:flex; align-items:center; justify-content:center; gap:10px; }
+.cover-eyebrow::before,.cover-eyebrow::after { content:''; flex:1; height:1px; background:#DA7756; opacity:.35; max-width:60px; }
+.cover-title { font-family:'Playfair Display',serif; font-size:58px; font-weight:900; line-height:1; letter-spacing:-1px; color:#3D3929; margin-bottom:8px; }
+.cover-sub { font-family:'Playfair Display',serif; font-size:13px; font-style:italic; color:#5C5847; margin-bottom:28px; }
+.cover-divider { width:48px; height:2px; background:#DA7756; margin:0 auto 24px; border-radius:2px; }
+.cover-meta { display:flex; justify-content:center; gap:32px; font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color:#5C5847; }
+.cover-badge { display:inline-flex; align-items:center; gap:6px; background:#DA7756; color:#fff; border-radius:20px; padding:6px 18px; font-size:10px; letter-spacing:2px; text-transform:uppercase; margin-top:28px; }
+.top5-pill { display:flex; justify-content:center; gap:10px; margin-top:32px; flex-wrap:wrap; }
+.pill { background:#3D3929; color:#F0ECE0; border-radius:100px; padding:4px 14px; font-size:10px; letter-spacing:1px; text-transform:uppercase; }
+.pill.light { background:transparent; color:#3D3929; border:1px solid rgba(61,57,41,.2); }
+
+/* Section labels */
+.section-label { display:flex; align-items:center; gap:12px; padding:10px 0 8px; font-size:9px; letter-spacing:4px; text-transform:uppercase; color:#5C5847; }
+.section-label::before,.section-label::after { content:''; flex:1; height:1px; background:rgba(61,57,41,.15); }
+
+/* Story cards */
+.story-card { border-radius:4px; border:1.5px solid rgba(61,57,41,.10); padding:36px 40px; margin-bottom:3px; position:relative; overflow:hidden; }
+.story-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }
+
+/* Card colour classes */
+.card-lavender { background:#EAE6F5; } .card-lavender::before { background:#C8BEE8; }
+.card-sage     { background:#D6E4D6; } .card-sage::before     { background:#8BAF8B; }
+.card-blush    { background:#F5DDD0; } .card-blush::before    { background:#E0A88A; }
+.card-sky      { background:#D6E8F0; } .card-sky::before      { background:#7AAFC0; }
+.card-cream    { background:#F7F5EF; } .card-cream::before    { background:#DA7756; }
+
+/* Card typography */
+.page-chip { position:absolute; top:14px; right:16px; font-size:9px; letter-spacing:2px; text-transform:uppercase; color:#5C5847; opacity:.5; }
+.card-routine { font-size:9px; letter-spacing:4px; text-transform:uppercase; color:#5C5847; margin-bottom:8px; }
+.card-headline { font-family:'Playfair Display',serif; font-size:28px; font-weight:900; line-height:1.15; color:#3D3929; margin-bottom:10px; }
+.card-headline.lg { font-size:34px; }
+.card-headline.sm { font-size:22px; }
+.card-deck { font-family:'Playfair Display',serif; font-style:italic; font-size:14px; line-height:1.55; color:#5C5847; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid rgba(61,57,41,.15); }
+.card-body { font-size:13px; line-height:1.8; color:#3D3929; }
+.card-body p { margin-bottom:11px; }
+.drop::first-letter { font-family:'Playfair Display',serif; font-size:52px; font-weight:900; float:left; line-height:.78; margin:5px 6px 0 0; color:#DA7756; }
+.clearfix::after { content:''; display:table; clear:both; }
+
+/* Inline highlights */
+.hl-terra { background:#DA7756; color:#fff; padding:0 4px; border-radius:2px; }
+.hl-ink   { background:#3D3929; color:#F0ECE0; padding:0 4px; border-radius:2px; }
+.hl-sage  { background:#8BAF8B; color:#fff; padding:0 4px; border-radius:2px; }
+.hl-lav   { background:#C8BEE8; color:#3D3929; padding:0 4px; border-radius:2px; }
+
+/* Stat float */
+.stat-box { float:right; margin:0 0 16px 24px; background:#F0ECE0; border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:16px 20px; text-align:center; min-width:120px; }
+.stat-big { font-family:'Playfair Display',serif; font-size:44px; font-weight:900; line-height:1; color:#DA7756; display:block; }
+.stat-label { font-size:9.5px; letter-spacing:1.5px; text-transform:uppercase; color:#5C5847; display:block; margin-top:4px; }
+
+/* Image frames */
+.img-frame { border:2px solid rgba(61,57,41,0.18); border-radius:12px; overflow:hidden; margin:16px 0; background:#F0ECE0; }
+.img-frame img { width:100%; display:block; max-height:240px; object-fit:cover; border-bottom:1px solid rgba(61,57,41,.12); }
+.img-caption { padding:8px 12px; font-size:10.5px; color:#5C5847; font-style:italic; display:flex; align-items:center; justify-content:space-between; gap:8px; }
+.img-caption a { font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color:#DA7756; text-decoration:none; white-space:nowrap; font-style:normal; }
+.img-frame.float-right { float:right; width:220px; margin:0 0 16px 24px; }
+.img-frame.float-right img { max-height:140px; }
+
+/* Source links */
+.source-link { display:inline-flex; align-items:center; gap:5px; font-size:10px; letter-spacing:1px; text-transform:uppercase; color:#DA7756; text-decoration:none; margin-top:12px; border-bottom:1px solid rgba(218,119,86,.35); padding-bottom:1px; }
+.source-link::after { content:'↗'; font-size:9px; }
+
+/* Output card */
+.output-card { background:#F0ECE0; border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:18px 20px; margin-top:14px; }
+.output-title { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; margin-bottom:8px; color:#3D3929; }
+.output-meta { display:flex; gap:20px; font-size:10px; color:#5C5847; padding-bottom:10px; margin-bottom:10px; border-bottom:1px solid rgba(61,57,41,.12); flex-wrap:wrap; }
+.tp-list { list-style:none; padding:0; margin:0; }
+.tp-list li { padding:5px 0; font-size:11.5px; border-bottom:1px solid rgba(61,57,41,.07); display:flex; align-items:flex-start; gap:7px; }
+.tp-list li::before { content:'·'; color:#DA7756; font-size:14px; line-height:1.2; flex-shrink:0; }
+
+/* Signals */
+.signals-grid { display:flex; flex-direction:column; gap:14px; }
+.signal-row { display:flex; align-items:flex-start; gap:14px; }
+.signal-num { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-size:13px; font-weight:900; flex-shrink:0; color:#fff; }
+.signal-num.n1{background:#DA7756;} .signal-num.n2{background:#3D3929;} .signal-num.n3{background:#8BAF8B;} .signal-num.n4{background:#C8BEE8;color:#3D3929;} .signal-num.n5{background:#E0A88A;}
+.signal-title { font-family:'Playfair Display',serif; font-size:14px; font-weight:700; color:#3D3929; margin-bottom:2px; }
+.signal-desc { font-size:12px; line-height:1.65; color:#5C5847; }
+.signal-link { display:inline-block; font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color:#DA7756; text-decoration:none; margin-top:4px; border-bottom:1px solid rgba(218,119,86,.3); }
+
+/* Themes */
+.themes-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.theme-item { padding:10px 14px; border-radius:8px; font-family:'Playfair Display',serif; font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; text-align:center; border:1.5px solid rgba(61,57,41,.12); }
+
+/* Tool of week */
+.tool-week { background:#DA7756; color:#fff; border-radius:12px; padding:18px 20px; text-align:center; margin-top:14px; }
+.tool-week-eyebrow { font-size:9px; letter-spacing:4px; text-transform:uppercase; opacity:.75; margin-bottom:6px; }
+.tool-week-name { font-family:'Playfair Display',serif; font-size:22px; font-weight:900; margin-bottom:4px; }
+.tool-week-desc { font-size:11.5px; opacity:.85; font-style:italic; }
+
+/* Footer */
+.footer-card { background:#3D3929; color:#F0ECE0; border-radius:4px 4px 20px 20px; padding:28px 40px; text-align:center; margin-top:3px; }
+.footer-title { font-family:'Playfair Display',serif; font-size:15px; font-weight:900; letter-spacing:3px; text-transform:uppercase; margin-bottom:6px; }
+.footer-sub { font-size:10px; letter-spacing:2px; text-transform:uppercase; opacity:.5; }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- COVER -->
+  <div class="cover-card">
+    <div class="cover-eyebrow">AI INTELLIGENCE DIGEST</div>
+    <div class="cover-title">TIMPS PostCards</div>
+    <div class="cover-sub">Your Daily Signal from the Machine Frontier</div>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+      <span>June 23, 2026</span>
+      <span>Hyderabad, India</span>
+      <span>Issue 029</span>
+    </div>
+    <div class="cover-badge">Built with the TIMPS Ecosystem</div>
+    <div class="top5-pill">
+      <span class="pill">Issue 029</span>
+      <span class="pill light">4 Lead Stories</span>
+      <span class="pill light">5 Top Signals</span>
+    </div>
+  </div>
+
+  <div class="section-label">Lead Stories</div>
+
+  <!-- STORY 1 — LEAD -->
+  <div class="story-card card-lavender">
+    <div class="page-chip">01 · LEAD</div>
+    <div class="card-routine">Talent Wars</div>
+    <h2 class="card-headline lg">A Nobel Laureate Just Switched Sides in the AI Race</h2>
+    <div class="card-deck">AlphaFold's co-creator is leaving Google DeepMind for Anthropic, the second marquee departure from Google's AI org in a single week.</div>
+    <div class="card-body drop clearfix">
+      <p>John Jumper, who shared the 2024 Nobel Prize in Chemistry for his work on AlphaFold, announced this week that he is leaving Google DeepMind after nearly nine years to join Anthropic. Jumper led the AlphaFold team just six months after finishing his PhD, and the system he built has since predicted the structure of more than 200 million proteins, reshaping biological and medical research worldwide.</p>
+      <p>The move lands days after Noam Shazeer, co-lead of Google's Gemini models, left for OpenAI — two senior departures in quick succession that underline how thin the pool of elite AI researchers has become. Analysts say smaller, faster-moving labs like Anthropic and OpenAI can now offer a kind of focused, low-bureaucracy environment that's increasingly hard for larger firms to match.</p>
+      <p>For Anthropic, landing one of the architects behind AlphaFold strengthens its scientific bench at a moment when the company is otherwise consumed by a regulatory fight over export controls on its frontier models. A Nobel-winning scientist choosing to join anyway is being read across the industry as a vote of confidence.</p>
+    </div>
+    <a href="https://techcrunch.com/2026/06/20/nobel-laureate-john-jumper-is-leaving-deepmind-for-rival-anthropic/" target="_blank" class="source-link">Full story · TechCrunch</a>
+  </div>
+
+  <!-- STORY 2 -->
+  <div class="story-card card-sage">
+    <div class="page-chip">02 · LABOR</div>
+    <div class="card-routine">Robotics in Manufacturing</div>
+    <h2 class="card-headline">GM Laid Off 1,000 Workers. Then It Brought In 50 Robots.</h2>
+    <div class="card-deck">Factory Zero's new cage-free cobots are setting up a fight that will define the UAW's 2028 contract talks.</div>
+    <div class="stat-box">
+      <span class="stat-big">50</span>
+      <span class="stat-label">New Fanuc Cobots</span>
+    </div>
+    <div class="card-body drop clearfix">
+      <p>GM's Factory Zero plant in Detroit cut more than 1,000 workers to indefinite layoff, then installed roughly 50 new Fanuc-built cobots on the same assembly line — machines that work cage-free, right next to people, attaching body panels as vehicles move down the track. UAW Local 22 has filed formal grievances over both job displacement and safety.</p>
+      <p>The economics are blunt: after the 2023 UAW contract, GM estimated labor costs would rise roughly $500 per vehicle, and a Wayne State University professor notes that assembly already takes 50–70% fewer labor hours than it did in the 1980s. Local 22's president called the timing "a gut punch."</p>
+      <p>GM frames the cobots as a safety and ergonomics upgrade. The UAW calls it the opening move of a fight that will shape contract talks in 2028 — and a preview of how automation and AI are about to collide with organized labor well beyond the auto industry.</p>
+    </div>
+    <a href="https://www.autoblog.com/news/gm-cut-1000-workers-at-its-ev-plant-then-added-robots" target="_blank" class="source-link">Full story · Autoblog</a>
+  </div>
+
+  <!-- STORY 3 -->
+  <div class="story-card card-blush">
+    <div class="page-chip">03 · OPEN MODELS</div>
+    <div class="card-routine">Open-Weight Momentum</div>
+    <h2 class="card-headline">A Free, MIT-Licensed Model Just Topped the Open-Weight Charts</h2>
+    <div class="card-deck">GLM-5.2 ships a 1-million-token context window and benchmarks that rival closed frontier models — at a fraction of the cost.</div>
+    <div class="card-body drop clearfix">
+      <p>Z.ai (Zhipu AI) released GLM-5.2, a 744-billion-parameter mixture-of-experts model with a 1-million-token context window and fully open, MIT-licensed weights on Hugging Face — meaning unrestricted commercial use, no registration, no usage caps. It now ranks first on the independent Artificial Analysis Intelligence Index among open-weight models.</p>
+      <p>The model's architecture trick, IndexShare, reuses sparse attention indexers across transformer layers to cut compute costs at long context lengths while holding accuracy. Independent benchmarks place it competitive with GPT-5.5 on coding tasks at a fraction of the price — though the full weights run to roughly 1.5TB, so "running it locally" still means a serious GPU budget.</p>
+      <p>The release lands at a pointed moment: it shipped within days of a US export-control directive that pulled Anthropic's Mythos- and Fable-class models from foreign access, leaving an opening at the top of the open-weight field that GLM-5.2 was quick to fill.</p>
+    </div>
+    <a href="https://felloai.com/glm-5-2/" target="_blank" class="source-link">Full story · FelloAI</a>
+  </div>
+
+  <!-- STORY 4 -->
+  <div class="story-card card-lavender">
+    <div class="page-chip">04 · ORCHESTRATION</div>
+    <div class="card-routine">Multi-Agent Systems</div>
+    <h2 class="card-headline sm">One API, Many Models: Sakana AI Ships Fugu</h2>
+    <div class="card-deck">Tokyo-based Sakana AI's new orchestration model coordinates a pool of frontier LLMs behind a single endpoint — and pitches itself as a hedge against export-control risk.</div>
+    <div class="card-body drop clearfix">
+      <p>Sakana AI has moved Sakana Fugu from beta into commercial launch: a trained "conductor" model that decides, request by request, whether to answer directly or assemble a coordinated team of expert models — planner, executor, verifier, synthesizer — behind one OpenAI-compatible API. None of the internal complexity reaches the developer's code.</p>
+      <p>The flagship variant, Fugu Ultra, benchmarks near Anthropic's top-tier models on demanding reasoning and coding tests, including a result that edges Claude Opus 4.8 on Humanity's Last Exam. Sakana frames the pitch explicitly around sovereignty: frontier-level capability that routes around any single vendor's export restrictions, since the system can swap providers without the integration changing.</p>
+      <p>The work builds on two of Sakana's own ICLR 2026 papers — TRINITY and the Conductor — on learned, natural-language model coordination rather than hand-coded routing logic, positioning orchestration itself as the next architectural frontier.</p>
+    </div>
+    <a href="https://sakana.ai/fugu-release/" target="_blank" class="source-link">Full story · Sakana AI</a>
+  </div>
+
+  <div class="section-label">Top Signals</div>
+
+  <!-- SIGNALS -->
+  <div class="story-card card-lavender">
+    <div class="page-chip">05 · SIGNALS</div>
+    <h2 class="card-headline sm">5 Key Signals</h2>
+    <div class="signals-grid">
+      <div class="signal-row">
+        <div class="signal-num n1">1</div>
+        <div>
+          <div class="signal-title">Five Eyes: AI cyber risk is "months, not years"</div>
+          <div class="signal-desc">US, UK, Canada, Australia and New Zealand intelligence agencies issued a rare joint statement warning frontier AI will transform offensive cyber capabilities faster than expected, urging organizations to fix legacy systems and patching gaps now.</div>
+          <a href="https://ca.finance.yahoo.com/news/five-eyes-intelligence-alliance-warns-231707284.html" target="_blank" class="signal-link">Reuters ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n2">2</div>
+        <div>
+          <div class="signal-title">OpenAI expands its cybersecurity push</div>
+          <div class="signal-desc">OpenAI rolled out the full GPT-5.5-Cyber model, a Codex Security plugin, and "Patch the Planet" — a program with Trail of Bits and HackerOne that has already merged patches across 19 open-source projects including curl, Python, and Go.</div>
+          <a href="https://openai.com/index/daybreak-securing-the-world/" target="_blank" class="signal-link">OpenAI ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n3">3</div>
+        <div>
+          <div class="signal-title">Kalshi opens informal IPO talks</div>
+          <div class="signal-desc">The prediction-market platform's annualized revenue tripled to roughly $2 billion since November, following a $1 billion raise at a $22 billion valuation — though a Kentucky lawsuit over its sports contracts could complicate the listing math.</div>
+          <a href="https://www.pymnts.com/news/investment-tracker/ipo/2026/prediction-market-kalshi-eyes-ipo-as-revenue-triples-to-2-billion/" target="_blank" class="signal-link">PYMNTS ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n4">4</div>
+        <div>
+          <div class="signal-title">Unconfirmed GPT-5.6 Pro leaks claim one-shot game builds</div>
+          <div class="signal-desc">Testers on X report a stealth-tested model — widely believed to be GPT-5.6 Pro — producing browser games and 3D simulations in single prompts. OpenAI has not confirmed the model exists; treat the claims as early, unverified leaks.</div>
+          <a href="https://decrypt.co/371699/openai-gpt-5-6-chatgpt-stealth-testing-rumors" target="_blank" class="signal-link">Decrypt ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n5">5</div>
+        <div>
+          <div class="signal-title">Google sets a 2029 deadline for quantum-safe encryption</div>
+          <div class="signal-desc">Google is targeting full post-quantum cryptography migration by 2029 — a year ahead of NIST's own deprecation date for today's standards — and is prioritizing authentication systems first, with Android 17 shipping NIST-aligned ML-DSA signatures.</div>
+          <a href="https://blog.google/innovation-and-ai/technology/safety-security/cryptography-migration-timeline/" target="_blank" class="signal-link">Google ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">Themes &amp; Tool of the Week</div>
+
+  <!-- THEMES + TOOL + SOURCES -->
+  <div class="story-card card-blush">
+    <div class="page-chip">06 · DIGEST</div>
+    <h2 class="card-headline sm">Top Themes This Issue</h2>
+    <div class="themes-grid">
+      <div class="theme-item">Open-Weight Momentum</div>
+      <div class="theme-item">AI Cyber Risk</div>
+      <div class="theme-item">Talent Wars</div>
+      <div class="theme-item">Robotics in Manufacturing</div>
+      <div class="theme-item">Multi-Agent Orchestration</div>
+      <div class="theme-item">Prediction Markets</div>
+      <div class="theme-item">Quantum-Safe Security</div>
+    </div>
+
+    <div class="tool-week">
+      <div class="tool-week-eyebrow">Tool of the Week</div>
+      <div class="tool-week-name">GLM-5.2</div>
+      <div class="tool-week-desc">A free, MIT-licensed, 1M-context open-weight model from Z.ai — frontier-class coding performance you can self-host, fine-tune, and own outright.</div>
+    </div>
+
+    <div class="output-card">
+      <div class="output-title">Sources Cited</div>
+      <ul class="tp-list">
+        <li><a href="https://techcrunch.com/2026/06/20/nobel-laureate-john-jumper-is-leaving-deepmind-for-rival-anthropic/" target="_blank">TechCrunch — John Jumper joins Anthropic</a></li>
+        <li><a href="https://www.autoblog.com/news/gm-cut-1000-workers-at-its-ev-plant-then-added-robots" target="_blank">Autoblog — GM Factory Zero cobots</a></li>
+        <li><a href="https://felloai.com/glm-5-2/" target="_blank">FelloAI — GLM-5.2 deep dive</a></li>
+        <li><a href="https://sakana.ai/fugu-release/" target="_blank">Sakana AI — Fugu launch</a></li>
+        <li><a href="https://ca.finance.yahoo.com/news/five-eyes-intelligence-alliance-warns-231707284.html" target="_blank">Reuters — Five Eyes AI cyber warning</a></li>
+        <li><a href="https://openai.com/index/daybreak-securing-the-world/" target="_blank">OpenAI — Daybreak expansion</a></li>
+        <li><a href="https://www.pymnts.com/news/investment-tracker/ipo/2026/prediction-market-kalshi-eyes-ipo-as-revenue-triples-to-2-billion/" target="_blank">PYMNTS — Kalshi IPO talks</a></li>
+        <li><a href="https://decrypt.co/371699/openai-gpt-5-6-chatgpt-stealth-testing-rumors" target="_blank">Decrypt — GPT-5.6 Pro leak rumors</a></li>
+        <li><a href="https://blog.google/innovation-and-ai/technology/safety-security/cryptography-migration-timeline/" target="_blank">Google — Quantum migration timeline</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer-card">
+    <div class="footer-title">TIMPS PostCards</div>
+    <div class="footer-sub">June 23, 2026 · Hyderabad, India · Vol. 1 · Issue 029</div>
+  </div>
+
+</div>
+</body>
+</html>
