@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>TIMPS PostCards — Issue 030</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #EEECE2;
+  font-family: 'EB Garamond', Georgia, ui-serif, serif;
+  color: #3D3929;
+  padding: 40px 20px 80px;
+}
+.wrapper { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 0; }
+
+/* Cover */
+.cover-card { background: #F0ECE0; border-radius: 20px 20px 4px 4px; padding: 56px 48px 48px; text-align: center; position: relative; overflow: hidden; border: 1.5px solid rgba(61,57,41,0.12); margin-bottom: 3px; }
+.cover-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, #DA7756 0%, #BD5D3A 60%, #E0A88A 100%); }
+.cover-eyebrow { font-size:10px; letter-spacing:4px; text-transform:uppercase; color:#DA7756; margin-bottom:20px; display:flex; align-items:center; justify-content:center; gap:10px; }
+.cover-eyebrow::before,.cover-eyebrow::after { content:''; flex:1; height:1px; background:#DA7756; opacity:.35; max-width:60px; }
+.cover-title { font-family:'Playfair Display',serif; font-size:58px; font-weight:900; line-height:1; letter-spacing:-1px; color:#3D3929; margin-bottom:8px; }
+.cover-sub { font-family:'Playfair Display',serif; font-size:13px; font-style:italic; color:#5C5847; margin-bottom:28px; }
+.cover-divider { width:48px; height:2px; background:#DA7756; margin:0 auto 24px; border-radius:2px; }
+.cover-meta { display:flex; justify-content:center; gap:32px; font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color:#5C5847; }
+.cover-badge { display:inline-flex; align-items:center; gap:6px; background:#DA7756; color:#fff; border-radius:20px; padding:6px 18px; font-size:10px; letter-spacing:2px; text-transform:uppercase; margin-top:28px; }
+.top5-pill { display:flex; justify-content:center; gap:10px; margin-top:32px; flex-wrap:wrap; }
+.pill { background:#3D3929; color:#F0ECE0; border-radius:100px; padding:4px 14px; font-size:10px; letter-spacing:1px; text-transform:uppercase; }
+.pill.light { background:transparent; color:#3D3929; border:1px solid rgba(61,57,41,.2); }
+
+/* Section labels */
+.section-label { display:flex; align-items:center; gap:12px; padding:10px 0 8px; font-size:9px; letter-spacing:4px; text-transform:uppercase; color:#5C5847; }
+.section-label::before,.section-label::after { content:''; flex:1; height:1px; background:rgba(61,57,41,.15); }
+
+/* Story cards */
+.story-card { border-radius:4px; border:1.5px solid rgba(61,57,41,.10); padding:36px 40px; margin-bottom:3px; position:relative; overflow:hidden; }
+.story-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }
+
+/* Card colour classes */
+.card-lavender { background:#EAE6F5; } .card-lavender::before { background:#C8BEE8; }
+.card-sage     { background:#D6E4D6; } .card-sage::before     { background:#8BAF8B; }
+.card-blush    { background:#F5DDD0; } .card-blush::before    { background:#E0A88A; }
+.card-sky      { background:#D6E8F0; } .card-sky::before      { background:#7AAFC0; }
+.card-cream    { background:#F7F5EF; } .card-cream::before    { background:#DA7756; }
+
+/* Card typography */
+.page-chip { position:absolute; top:14px; right:16px; font-size:9px; letter-spacing:2px; text-transform:uppercase; color:#5C5847; opacity:.5; }
+.card-routine { font-size:9px; letter-spacing:4px; text-transform:uppercase; color:#5C5847; margin-bottom:8px; }
+.card-headline { font-family:'Playfair Display',serif; font-size:28px; font-weight:900; line-height:1.15; color:#3D3929; margin-bottom:10px; }
+.card-headline.lg { font-size:34px; }
+.card-headline.sm { font-size:22px; }
+.card-deck { font-family:'Playfair Display',serif; font-style:italic; font-size:14px; line-height:1.55; color:#5C5847; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid rgba(61,57,41,.15); }
+.card-body { font-size:13px; line-height:1.8; color:#3D3929; }
+.card-body p { margin-bottom:11px; }
+.two-col { column-count:2; column-gap:24px; column-rule:1px solid rgba(61,57,41,.12); }
+.drop::first-letter { font-family:'Playfair Display',serif; font-size:52px; font-weight:900; float:left; line-height:.78; margin:5px 6px 0 0; color:#DA7756; }
+.clearfix::after { content:''; display:table; clear:both; }
+
+/* Inline highlights */
+.hl-terra { background:#DA7756; color:#fff; padding:0 4px; border-radius:2px; }
+.hl-ink   { background:#3D3929; color:#F0ECE0; padding:0 4px; border-radius:2px; }
+.hl-sage  { background:#8BAF8B; color:#fff; padding:0 4px; border-radius:2px; }
+.hl-lav   { background:#C8BEE8; color:#3D3929; padding:0 4px; border-radius:2px; }
+
+/* Stat float */
+.stat-box { float:right; margin:0 0 16px 24px; background:#F0ECE0; border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:16px 20px; text-align:center; min-width:120px; }
+.stat-big { font-family:'Playfair Display',serif; font-size:44px; font-weight:900; line-height:1; color:#DA7756; display:block; }
+.stat-label { font-size:9.5px; letter-spacing:1.5px; text-transform:uppercase; color:#5C5847; display:block; margin-top:4px; }
+
+/* Image frames */
+.img-frame { border:2px solid rgba(61,57,41,0.18); border-radius:12px; overflow:hidden; margin:16px 0; background:#F0ECE0; }
+.img-frame img { width:100%; display:block; max-height:240px; object-fit:cover; border-bottom:1px solid rgba(61,57,41,.12); }
+.img-caption { padding:8px 12px; font-size:10.5px; color:#5C5847; font-style:italic; display:flex; align-items:center; justify-content:space-between; gap:8px; }
+.img-caption a { font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color:#DA7756; text-decoration:none; white-space:nowrap; font-style:normal; }
+.img-frame.float-right { float:right; width:220px; margin:0 0 16px 24px; }
+.img-frame.float-right img { max-height:140px; }
+
+/* Source links */
+.source-link { display:inline-flex; align-items:center; gap:5px; font-size:10px; letter-spacing:1px; text-transform:uppercase; color:#DA7756; text-decoration:none; margin-top:12px; border-bottom:1px solid rgba(218,119,86,.35); padding-bottom:1px; }
+.source-link::after { content:'↗'; font-size:9px; }
+
+/* Output card */
+.output-card { background:#F0ECE0; border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:18px 20px; margin-top:14px; }
+.output-title { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; margin-bottom:8px; color:#3D3929; }
+
+/* Signals */
+.signals-grid { display:flex; flex-direction:column; gap:14px; }
+.signal-row { display:flex; align-items:flex-start; gap:14px; }
+.signal-num { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-size:13px; font-weight:900; flex-shrink:0; color:#fff; }
+.signal-num.n1{background:#DA7756;} .signal-num.n2{background:#3D3929;} .signal-num.n3{background:#8BAF8B;} .signal-num.n4{background:#C8BEE8;color:#3D3929;} .signal-num.n5{background:#E0A88A;}
+.signal-title { font-family:'Playfair Display',serif; font-size:14px; font-weight:700; color:#3D3929; margin-bottom:2px; }
+.signal-desc { font-size:12px; line-height:1.65; color:#5C5847; }
+.signal-link { display:inline-block; font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color:#DA7756; text-decoration:none; margin-top:4px; border-bottom:1px solid rgba(218,119,86,.3); }
+
+/* Themes */
+.themes-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.theme-item { padding:10px 14px; border-radius:8px; font-family:'Playfair Display',serif; font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; text-align:center; border:1.5px solid rgba(61,57,41,.12); }
+
+/* Tool of week */
+.tool-week { background:#DA7756; color:#fff; border-radius:12px; padding:18px 20px; text-align:center; margin-top:14px; }
+.tool-week-eyebrow { font-size:9px; letter-spacing:4px; text-transform:uppercase; opacity:.75; margin-bottom:6px; }
+.tool-week-name { font-family:'Playfair Display',serif; font-size:22px; font-weight:900; margin-bottom:4px; }
+.tool-week-desc { font-size:11.5px; opacity:.85; font-style:italic; }
+
+/* Sources grid */
+.sources-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px 18px; margin-top:14px; }
+.source-item { font-size:11.5px; color:#3D3929; padding:6px 0; border-bottom:1px solid rgba(61,57,41,.08); display:flex; justify-content:space-between; gap:8px; }
+.source-item a { color:#DA7756; text-decoration:none; font-size:10px; letter-spacing:.5px; text-transform:uppercase; white-space:nowrap; }
+
+/* Footer */
+.footer-card { background:#3D3929; color:#F0ECE0; border-radius:4px 4px 20px 20px; padding:28px 40px; text-align:center; margin-top:3px; }
+.footer-title { font-family:'Playfair Display',serif; font-size:15px; font-weight:900; letter-spacing:3px; text-transform:uppercase; margin-bottom:6px; }
+.footer-sub { font-size:10px; letter-spacing:2px; text-transform:uppercase; opacity:.5; }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- COVER -->
+  <div class="cover-card">
+    <div class="cover-eyebrow">AI Intelligence Digest</div>
+    <div class="cover-title">TIMPS<br>PostCards</div>
+    <div class="cover-sub">Your Daily Signal from the Machine Frontier</div>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+      <span>June 24, 2026</span>
+      <span>Hyderabad, India</span>
+      <span>Issue 030</span>
+    </div>
+    <div class="cover-badge">⬡ Built with the TIMPS Ecosystem</div>
+    <div class="top5-pill">
+      <span class="pill">Issue 030</span>
+      <span class="pill light">8 Stories</span>
+      <span class="pill light">5 Signals</span>
+    </div>
+  </div>
+
+  <div class="section-label">The Briefing</div>
+
+  <!-- STORY 1 — LEAD -->
+  <div class="story-card card-blush">
+    <div class="page-chip">01 · LEAD</div>
+    <div class="card-routine">AI for Science</div>
+    <h1 class="card-headline lg">When the Model Understood the Cells</h1>
+    <div class="card-deck">GPT-5 Pro helped an immunologist crack a question his lab had carried for three years — by correctly predicting an experiment it had never been shown.</div>
+    <div class="card-body clearfix">
+      <p class="drop">For three years, immunologist Derya Unutmaz carried an unanswered question about T cells, the immune cells that hunt cancer and fight infection. He wanted to know how glucose shapes which job a given T cell ends up doing — and the mechanism behind one of his own lab's prior experiments, involving lymphoma-killing CD8+ cells, had never quite added up.</p>
+      <p>Late last year, he tested GPT-5 Pro against a result the model could not possibly have seen: an unpublished experiment straight from his own bench. He asked it to predict the outcome before showing it any data. The model correctly called the enhanced cancer-killing ability of those T cells, reasoning from biology rather than recalling literature.</p>
+      <p>That was the moment, by Unutmaz's own account, he felt the model had moved from pattern-matching to genuine understanding. GPT-5 Pro went further, proposing a concrete tweak — a brief metabolic pulse during cell priming — that could make CAR-T cancer therapies more effective, a hypothesis his team is now testing at the bench.</p>
+      <p>OpenAI frames cases like this as early evidence that frontier models are becoming lab collaborators rather than search engines for the literature — compressing years of trial and error into a single afternoon of correct guesses.</p>
+      <a href="https://openai.com/index/gpt-5-immunology-mystery/" target="_blank" class="source-link">Full story · OpenAI</a>
+    </div>
+  </div>
+
+  <!-- STORY 2 -->
+  <div class="story-card card-lavender">
+    <div class="page-chip">02 · TALENT</div>
+    <div class="card-routine">Talent Wars</div>
+    <h1 class="card-headline">Google Loses Two in a Week</h1>
+    <div class="card-deck">A Transformer co-author leaves for OpenAI. Two days later, a Nobel laureate leaves for Anthropic. Same employer, same week, opposite doors.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box"><span class="stat-big">2</span><span class="stat-label">Top researchers left Google DeepMind in one week</span></div>
+      <p class="drop">Noam Shazeer co-authored the 2017 paper that introduced the Transformer architecture — the foundation under every major large language model today. Less than two years after Google paid a reported $2.7 billion to bring him back from Character.AI, he announced he was leaving its Gemini team for OpenAI.</p>
+      <p>Two days later, John Jumper — who shared the 2024 Nobel Prize in Chemistry for AlphaFold — said he, too, was leaving Google DeepMind, headed for Anthropic. Both are genuine lab-to-lab defections, rarer and more consequential than ordinary hiring.</p>
+      <p>What the most coveted researchers bring isn't just technical knowledge from papers — it's judgment about which ideas are worth pursuing, and the ability to pull other sought-after scientists along with them. For researchers weighing where to work next, the calculus increasingly includes a company's path to an IPO and its odds of leading the field outright.</p>
+      <p>OpenAI's Sam Altman welcomed Shazeer publicly, calling him someone he'd wanted to work with since the company's earliest days. Google, for its part, is left explaining how a multi-billion-dollar retention deal bought less than two years of loyalty.</p>
+      <a href="https://www.axios.com/2026/06/23/ai-lab-agi-google-deepmind-departures" target="_blank" class="source-link">Full story · Axios</a>
+    </div>
+  </div>
+
+  <!-- STORY 3 -->
+  <div class="story-card card-blush">
+    <div class="page-chip">03 · COMPUTE</div>
+    <div class="card-routine">Compute Economy</div>
+    <h1 class="card-headline">Musk's Rocket Company Becomes a Compute Landlord</h1>
+    <div class="card-deck">SpaceX just signed its fourth major tenant for Colossus — proof that scarce Nvidia chips, not orbital hardware, are now its most valuable asset.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box"><span class="stat-big">$6.3B</span><span class="stat-label">Deal value through 2029</span></div>
+      <p class="drop">SpaceX has signed a computing-power agreement with Reflection AI, an open-source AI lab founded by two former Google DeepMind engineers, for access to Nvidia's latest GB300 chips at the Colossus 2 data center in Memphis.</p>
+      <p>Reflection will pay $150 million a month starting July 1, 2026, totalling roughly $6.3 billion if the deal runs its full course through 2029. Either side can walk away with 90 days' notice after the first three months.</p>
+      <p>The agreement makes Reflection the fourth major tenant at Colossus, joining Anthropic (around $45 billion through mid-2029) and Google (around $30 billion) — deals that have turned a data center built for Musk's own Grok chatbot into a multi-tenant infrastructure business worth more than $80 billion in committed revenue.</p>
+      <p>For Reflection, the deal solves the one problem money alone can't: guaranteed access to scarce hardware. The company, still without a public frontier model, is betting that governments and enterprises will pay for AI they can inspect and run on their own terms — a pitch sharpened by recent export-driven disruptions to closed AI services.</p>
+      <a href="https://www.cnbc.com/2026/06/22/spacex-ai-colossus-data-center-reflection.html" target="_blank" class="source-link">Full story · CNBC</a>
+    </div>
+  </div>
+
+  <!-- STORY 4 -->
+  <div class="story-card card-lavender">
+    <div class="page-chip">04 · SECURITY</div>
+    <div class="card-routine">Cyber Defense</div>
+    <h1 class="card-headline">From Finding Bugs to Fixing Them</h1>
+    <div class="card-deck">OpenAI says AI has already won the race to discover vulnerabilities — so it's pointing its newest model at the much harder problem of patching them.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box"><span class="stat-big">85.6%</span><span class="stat-label">CyberGym score — a record</span></div>
+      <p class="drop">OpenAI has released the full version of GPT-5.5-Cyber, a defensive-security variant of its flagship model, alongside an expanded Codex Security plugin and a new initiative called Patch the Planet aimed at open-source software.</p>
+      <p>The company argues the cybersecurity bottleneck has flipped: AI can now surface vulnerabilities faster than human teams can verify and fix them, leaving defenders buried in reports rather than short on findings. GPT-5.5-Cyber posts a record 85.6% on the CyberGym benchmark, ahead of the standard GPT-5.5's 81.8%.</p>
+      <p>Patch the Planet, founded with security firm Trail of Bits alongside HackerOne, has signed up more than 30 open-source projects — including cURL, Python, and the Go project — to move from reported bugs to deployed fixes. A new partner program lets vetted vendors such as Cisco, CrowdStrike, and IBM build the model into their own security products.</p>
+      <p>Access to GPT-5.5-Cyber itself stays tightly restricted to verified defenders. The launch lands just days after export controls disrupted access to a rival lab's own cyber-capable models — leaving OpenAI room to press its case as the safer pair of hands for the moment.</p>
+      <a href="https://openai.com/index/daybreak-securing-the-world/" target="_blank" class="source-link">Full story · OpenAI</a>
+    </div>
+  </div>
+
+  <!-- STORY 5 -->
+  <div class="story-card card-blush">
+    <div class="page-chip">05 · ETHICS</div>
+    <div class="card-routine">Workplace AI Ethics</div>
+    <h1 class="card-headline">The Watcher Got Watched</h1>
+    <div class="card-deck">Meta built a program to record employees' every keystroke for AI training. An internal leak exposed the watchers' own data — and forced a pause.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box"><span class="stat-big">1,600+</span><span class="stat-label">Employees signed the petition</span></div>
+      <p class="drop">Meta has paused its Model Capability Initiative, a program that logged employees' keystrokes, mouse movements, and screenshots to train its AI models, after an internal leak made sensitive employee data accessible across the company.</p>
+      <p>The exposed material reportedly included private conversations, performance reviews, and transcriptions — even, by one account, personal tax and medical records — spread across tens of thousands of internal data tables. Meta classified the incident a SEV 2, the second-most-severe tier on its internal scale.</p>
+      <p>The program was already contentious before the leak. More than 1,600 employees had signed an internal petition arguing that required privacy reviews were never completed, and that executives had quietly carved out their own opt-outs.</p>
+      <p>A Meta spokesperson said the program was designed with privacy safeguards and that the company has no evidence the exposed data was improperly accessed, but is pausing collection while it investigates — the latest in a string of AI-related security stumbles at the company this year.</p>
+      <a href="https://www.engadget.com/2199458/meta-is-pausing-employee-tracking-program-after-it-let-the-whole-company-see-sensitive-data/" target="_blank" class="source-link">Full story · Engadget</a>
+    </div>
+  </div>
+
+  <!-- STORY 6 -->
+  <div class="story-card card-lavender">
+    <div class="page-chip">06 · HARDWARE</div>
+    <div class="card-routine">Hardware &amp; Wearables</div>
+    <h1 class="card-headline">Meta Bets the Face Is the Next Screen</h1>
+    <div class="card-deck">Stripped of the Ray-Ban name, Meta's own-brand glasses start at $299 — priced to outrun Apple to the most personal AI device yet.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box"><span class="stat-big">26</span><span class="stat-label">Styles, starting at $299</span></div>
+      <p class="drop">Meta has launched its first fully own-branded AI glasses line, made with eyewear giant EssilorLuxottica, spanning 26 styles across three frame collections — Meta Adventurer, Meta Fury, and a Kylie Jenner collaboration called Meta Glasses by Kylie.</p>
+      <p>The glasses run on Muse Spark, the first model out of Meta Superintelligence Labs, and offer over eight hours of battery life with up to 40 more from the charging case. Live translation now covers 14 additional languages, including Mandarin, Hindi, and Korean.</p>
+      <p>Pricing starts at $299 — about $80 cheaper than the second-generation Ray-Ban Meta Wayfarer — a deliberate move to put AI eyewear within reach of a far wider audience ahead of Apple's expected entry into the category. Mark Zuckerberg has called glasses the device most people will use to access "personal superintelligence."</p>
+      <p>Snap's competing AR glasses run about $2,195 — nearly seven times the price — underscoring how aggressively Meta is using EssilorLuxottica's manufacturing and retail scale to make AI eyewear an everyday object rather than a niche gadget.</p>
+      <a href="https://about.fb.com/news/2026/06/meta-essilorluxottica-partner-launch-meta-glasses/" target="_blank" class="source-link">Full story · Meta</a>
+    </div>
+  </div>
+
+  <!-- STORY 7 -->
+  <div class="story-card card-blush">
+    <div class="page-chip">07 · INFRA</div>
+    <div class="card-routine">Data Centers</div>
+    <h1 class="card-headline sm">Nvidia Says It Solved AI's Water Problem</h1>
+    <div class="card-deck">A new closed-loop design lets racks run nearly 30 degrees hotter than today's chillers — turning waste heat into the reason data centers might not need water at all.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box"><span class="stat-big">100%</span><span class="stat-label">Claimed water reduction</span></div>
+      <p class="drop">Nvidia has unveiled a fully liquid-cooled reference design for its next-generation Rubin chips, claiming the new closed-loop system can cut data center water use dramatically while also reducing power draw.</p>
+      <p>The trick is temperature. Instead of demanding the cold water that conventional chillers rely on, the system circulates a water-and-propylene-glycol coolant at around 45°C (113°F) — hot enough that, in most climates, outdoor radiators alone can carry the heat away without chillers, towers, or fans running at all.</p>
+      <p>Coolant is added once and recirculated for the facility's lifetime rather than continuously drawn from local supply — notable timing, given a recent UN projection that AI-related water consumption could rival the needs of 1.3 billion people by decade's end.</p>
+      <p>Independent engineers caution the design works best in temperate climates — facilities in places like Phoenix will still need backup chillers on the hottest days — and that most of AI's water footprint actually traces back to the power plants generating its electricity, not the data centers themselves.</p>
+      <a href="https://fortune.com/2026/06/22/nvidia-new-data-center-design-ai-water-problem-cooling/" target="_blank" class="source-link">Full story · Fortune</a>
+    </div>
+  </div>
+
+  <!-- STORY 8 -->
+  <div class="story-card card-lavender">
+    <div class="page-chip">08 · VIDEO</div>
+    <div class="card-routine">Generative Video</div>
+    <h1 class="card-headline sm">Five Minutes, No Stitching, Just Conversation</h1>
+    <div class="card-deck">OpenArt's new tool turns a single chat into a complete short film — coining the term "vibe directing" for an audience that just wants to describe a story and watch it appear.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box"><span class="stat-big">5 min</span><span class="stat-label">Longest continuous AI film</span></div>
+      <p class="drop">OpenArt has launched Director, a tool that builds continuous AI-generated films up to five minutes long from a single conversation — far beyond the five-to-fifteen-second clips most video models produce.</p>
+      <p>Rather than generating isolated clips a person then has to stitch together, Director develops a story's structure, characters, and visual style upfront, then produces a finished piece with consistent faces, voices, and settings carried across every scene.</p>
+      <p>OpenArt's CEO, Coco Mao, has likened the experience to "vibe coding" for filmmaking — describing intent in plain language and letting the system handle everything technical in between. Early testers report the workflow speeding up production by two to three times over juggling separate image, video, and editing tools.</p>
+      <p>The launch arrives as the video-generation field reshuffles: OpenAI shut down its Sora app to focus elsewhere, and ByteDance paused Seedance 2.0's international rollout amid Hollywood copyright disputes — leaving an opening that OpenArt, Google's Veo, and Alibaba's HappyHorse are all racing to fill.</p>
+      <a href="https://www.hollywoodreporter.com/business/digital/open-art-new-tool-model-ai-director-vibe-directing-1236628188/" target="_blank" class="source-link">Full story · The Hollywood Reporter</a>
+    </div>
+  </div>
+
+  <div class="section-label">Key Signals</div>
+
+  <!-- SIGNALS -->
+  <div class="story-card card-blush">
+    <div class="page-chip">SIGNALS</div>
+    <div class="card-routine">5 Things Moving Fast</div>
+    <h1 class="card-headline sm">The Week in Five Signals</h1>
+    <div class="signals-grid">
+      <div class="signal-row">
+        <div class="signal-num n1">1</div>
+        <div>
+          <div class="signal-title">HappyHorse climbs to No. 2 worldwide</div>
+          <div class="signal-desc">Alibaba's HappyHorse video model now ranks No. 2 across every Artificial Analysis leaderboard, even as OpenAI's Sora shut down and ByteDance's Seedance 2.0 stalled on copyright disputes.</div>
+          <a href="https://venturebeat.com/technology/alibabas-ai-video-model-rises-to-no-2-in-global-rankings-as-openais-sora-and-bytedances-seedance-fall-away" target="_blank" class="signal-link">VentureBeat ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n2">2</div>
+        <div>
+          <div class="signal-title">Cursor ships three products in one keynote</div>
+          <div class="signal-desc">Origin, a Git-hosting platform built for AI agents; a new 1.5-trillion-parameter model; and a Cursor Mobile app — all unveiled at Cursor's first Compile conference, the same day SpaceX confirmed its acquisition of the company.</div>
+          <a href="https://finance.biggo.com/news/979fe270-a07e-4684-b99e-f1af5d31317e" target="_blank" class="signal-link">BigGo Finance ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n3">3</div>
+        <div>
+          <div class="signal-title">Codex learns by watching, not reading prompts</div>
+          <div class="signal-desc">OpenAI's Record &amp; Replay lets you demonstrate a repetitive workflow once on a Mac; Codex turns the demo into a reusable, editable skill it can run again on demand.</div>
+          <a href="https://developers.openai.com/codex/record-and-replay" target="_blank" class="signal-link">OpenAI Developers ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n4">4</div>
+        <div>
+          <div class="signal-title">ElevenLabs localizes your ad budget</div>
+          <div class="signal-desc">Ads Engine connects to Google, Meta, and LinkedIn ad accounts and localizes existing campaigns — text, image, and dubbed video — across more than 50 languages.</div>
+          <a href="https://elevenlabs.io/ads-engine" target="_blank" class="signal-link">ElevenLabs ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n5">5</div>
+        <div>
+          <div class="signal-title">Sakana bets against single-vendor AI</div>
+          <div class="signal-desc">Fugu orchestrates a swappable pool of frontier LLMs behind one API — pitched explicitly as a hedge against the kind of export-driven disruption that has recently hit rival closed models.</div>
+          <a href="https://sakana.ai/fugu-release/" target="_blank" class="signal-link">Sakana AI ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">Themes, Tools &amp; Sources</div>
+
+  <!-- THEMES + TOOL + SOURCES -->
+  <div class="story-card card-lavender">
+    <div class="page-chip">CLOSER</div>
+    <div class="card-routine">Top Themes This Issue</div>
+    <div class="themes-grid">
+      <div class="theme-item">AI for Science</div>
+      <div class="theme-item">Talent Wars</div>
+      <div class="theme-item">Compute Economy</div>
+      <div class="theme-item">Cyber Defense</div>
+      <div class="theme-item">Workplace AI Ethics</div>
+      <div class="theme-item">Generative Video</div>
+      <div class="theme-item">AI Sovereignty</div>
+    </div>
+
+    <div class="tool-week">
+      <div class="tool-week-eyebrow">Tool of the Week</div>
+      <div class="tool-week-name">Ideabrowser — Upload My Business</div>
+      <div class="tool-week-desc">Point it at your live website and it analyzes your ICP, offer, and pricing, then hands back ranked growth ideas across reach, revenue, and retention.</div>
+    </div>
+
+    <div class="output-card">
+      <div class="output-title">Sources Cited</div>
+      <div class="sources-grid">
+        <div class="source-item">OpenAI <a href="https://openai.com" target="_blank">openai.com ↗</a></div>
+        <div class="source-item">Axios <a href="https://axios.com" target="_blank">axios.com ↗</a></div>
+        <div class="source-item">CNBC <a href="https://cnbc.com" target="_blank">cnbc.com ↗</a></div>
+        <div class="source-item">Engadget <a href="https://engadget.com" target="_blank">engadget.com ↗</a></div>
+        <div class="source-item">Meta <a href="https://about.fb.com" target="_blank">about.fb.com ↗</a></div>
+        <div class="source-item">Fortune <a href="https://fortune.com" target="_blank">fortune.com ↗</a></div>
+        <div class="source-item">Hollywood Reporter <a href="https://hollywoodreporter.com" target="_blank">hollywoodreporter.com ↗</a></div>
+        <div class="source-item">VentureBeat <a href="https://venturebeat.com" target="_blank">venturebeat.com ↗</a></div>
+        <div class="source-item">BigGo Finance <a href="https://finance.biggo.com" target="_blank">finance.biggo.com ↗</a></div>
+        <div class="source-item">ElevenLabs <a href="https://elevenlabs.io" target="_blank">elevenlabs.io ↗</a></div>
+        <div class="source-item">Sakana AI <a href="https://sakana.ai" target="_blank">sakana.ai ↗</a></div>
+        <div class="source-item">Ideabrowser <a href="https://www.ideabrowser.com" target="_blank">ideabrowser.com ↗</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer-card">
+    <div class="footer-title">TIMPS PostCards</div>
+    <div class="footer-sub">Hyderabad, India · Vol 1, Issue 030 · Built with the TIMPS Ecosystem</div>
+  </div>
+
+</div>
+</body>
+</html>
