@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>TIMPS PostCards — Issue 031</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #EEECE2;
+  font-family: 'EB Garamond', Georgia, ui-serif, serif;
+  color: #3D3929;
+  padding: 40px 20px 80px;
+}
+.wrapper { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 0; }
+
+/* Cover */
+.cover-card { background: #F0ECE0; border-radius: 20px 20px 4px 4px; padding: 56px 48px 48px; text-align: center; position: relative; overflow: hidden; border: 1.5px solid rgba(61,57,41,0.12); margin-bottom: 3px; }
+.cover-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, #DA7756 0%, #BD5D3A 60%, #E0A88A 100%); }
+.cover-eyebrow { font-size:10px; letter-spacing:4px; text-transform:uppercase; color:#DA7756; margin-bottom:20px; display:flex; align-items:center; justify-content:center; gap:10px; }
+.cover-eyebrow::before,.cover-eyebrow::after { content:''; flex:1; height:1px; background:#DA7756; opacity:.35; max-width:60px; }
+.cover-title { font-family:'Playfair Display',serif; font-size:58px; font-weight:900; line-height:1; letter-spacing:-1px; color:#3D3929; margin-bottom:8px; }
+.cover-sub { font-family:'Playfair Display',serif; font-size:13px; font-style:italic; color:#5C5847; margin-bottom:28px; }
+.cover-divider { width:48px; height:2px; background:#DA7756; margin:0 auto 24px; border-radius:2px; }
+.cover-meta { display:flex; justify-content:center; gap:32px; font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color:#5C5847; }
+.cover-badge { display:inline-flex; align-items:center; gap:6px; background:#DA7756; color:#fff; border-radius:20px; padding:6px 18px; font-size:10px; letter-spacing:2px; text-transform:uppercase; margin-top:28px; }
+.top5-pill { display:flex; justify-content:center; gap:10px; margin-top:32px; flex-wrap:wrap; }
+.pill { background:#3D3929; color:#F0ECE0; border-radius:100px; padding:4px 14px; font-size:10px; letter-spacing:1px; text-transform:uppercase; }
+.pill.light { background:transparent; color:#3D3929; border:1px solid rgba(61,57,41,.2); }
+
+/* Section labels */
+.section-label { display:flex; align-items:center; gap:12px; padding:10px 0 8px; font-size:9px; letter-spacing:4px; text-transform:uppercase; color:#5C5847; }
+.section-label::before,.section-label::after { content:''; flex:1; height:1px; background:rgba(61,57,41,.15); }
+
+/* Story cards */
+.story-card { border-radius:4px; border:1.5px solid rgba(61,57,41,.10); padding:36px 40px; margin-bottom:3px; position:relative; overflow:hidden; }
+.story-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }
+
+/* Card colour classes */
+.card-lavender { background:#EAE6F5; } .card-lavender::before { background:#C8BEE8; }
+.card-sage     { background:#D6E4D6; } .card-sage::before     { background:#8BAF8B; }
+.card-blush    { background:#F5DDD0; } .card-blush::before    { background:#E0A88A; }
+.card-sky      { background:#D6E8F0; } .card-sky::before      { background:#7AAFC0; }
+.card-cream    { background:#F7F5EF; } .card-cream::before    { background:#DA7756; }
+
+/* Card typography */
+.page-chip { position:absolute; top:14px; right:16px; font-size:9px; letter-spacing:2px; text-transform:uppercase; color:#5C5847; opacity:.5; }
+.card-routine { font-size:9px; letter-spacing:4px; text-transform:uppercase; color:#5C5847; margin-bottom:8px; }
+.card-headline { font-family:'Playfair Display',serif; font-size:28px; font-weight:900; line-height:1.15; color:#3D3929; margin-bottom:10px; }
+.card-headline.lg { font-size:34px; }
+.card-headline.sm { font-size:22px; }
+.card-deck { font-family:'Playfair Display',serif; font-style:italic; font-size:14px; line-height:1.55; color:#5C5847; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid rgba(61,57,41,.15); }
+.card-body { font-size:13px; line-height:1.8; color:#3D3929; }
+.card-body p { margin-bottom:11px; }
+.two-col { column-count:2; column-gap:24px; column-rule:1px solid rgba(61,57,41,.12); }
+.drop::first-letter { font-family:'Playfair Display',serif; font-size:52px; font-weight:900; float:left; line-height:.78; margin:5px 6px 0 0; color:#DA7756; }
+.clearfix::after { content:''; display:table; clear:both; }
+
+/* Inline highlights */
+.hl-terra { background:#DA7756; color:#fff; padding:0 4px; border-radius:2px; }
+.hl-ink   { background:#3D3929; color:#F0ECE0; padding:0 4px; border-radius:2px; }
+.hl-sage  { background:#8BAF8B; color:#fff; padding:0 4px; border-radius:2px; }
+.hl-lav   { background:#C8BEE8; color:#3D3929; padding:0 4px; border-radius:2px; }
+
+/* Stat float */
+.stat-box { float:right; margin:0 0 16px 24px; background:#F0ECE0; border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:16px 20px; text-align:center; min-width:120px; }
+.stat-big { font-family:'Playfair Display',serif; font-size:44px; font-weight:900; line-height:1; color:#DA7756; display:block; }
+.stat-label { font-size:9.5px; letter-spacing:1.5px; text-transform:uppercase; color:#5C5847; display:block; margin-top:4px; }
+
+/* Image frames */
+.img-frame { border:2px solid rgba(61,57,41,0.18); border-radius:12px; overflow:hidden; margin:16px 0; background:#F0ECE0; }
+.img-frame img { width:100%; display:block; max-height:240px; object-fit:cover; border-bottom:1px solid rgba(61,57,41,.12); }
+.img-caption { padding:8px 12px; font-size:10.5px; color:#5C5847; font-style:italic; display:flex; align-items:center; justify-content:space-between; gap:8px; }
+.img-caption a { font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color:#DA7756; text-decoration:none; white-space:nowrap; font-style:normal; }
+.img-frame.float-right { float:right; width:220px; margin:0 0 16px 24px; }
+.img-frame.float-right img { max-height:140px; }
+
+/* Source links */
+.source-link { display:inline-flex; align-items:center; gap:5px; font-size:10px; letter-spacing:1px; text-transform:uppercase; color:#DA7756; text-decoration:none; margin-top:12px; border-bottom:1px solid rgba(218,119,86,.35); padding-bottom:1px; }
+.source-link::after { content:'↗'; font-size:9px; }
+
+/* Output card */
+.output-card { background:#F0ECE0; border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:18px 20px; margin-top:14px; }
+.output-title { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; margin-bottom:8px; color:#3D3929; }
+.output-meta { display:flex; gap:20px; font-size:10px; color:#5C5847; padding-bottom:10px; margin-bottom:10px; border-bottom:1px solid rgba(61,57,41,.12); flex-wrap:wrap; }
+.tp-list { list-style:none; padding:0; margin:0; }
+.tp-list li { padding:5px 0; font-size:11.5px; border-bottom:1px solid rgba(61,57,41,.07); display:flex; align-items:flex-start; gap:7px; }
+.tp-list li::before { content:'·'; color:#DA7756; font-size:14px; line-height:1.2; flex-shrink:0; }
+
+/* Signals */
+.signals-grid { display:flex; flex-direction:column; gap:14px; }
+.signal-row { display:flex; align-items:flex-start; gap:14px; }
+.signal-num { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-size:13px; font-weight:900; flex-shrink:0; color:#fff; }
+.signal-num.n1{background:#DA7756;} .signal-num.n2{background:#3D3929;} .signal-num.n3{background:#8BAF8B;} .signal-num.n4{background:#C8BEE8;color:#3D3929;} .signal-num.n5{background:#E0A88A;}
+.signal-title { font-family:'Playfair Display',serif; font-size:14px; font-weight:700; color:#3D3929; margin-bottom:2px; }
+.signal-desc { font-size:12px; line-height:1.65; color:#5C5847; }
+.signal-link { display:inline-block; font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color:#DA7756; text-decoration:none; margin-top:4px; border-bottom:1px solid rgba(218,119,86,.3); }
+
+/* Themes */
+.themes-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.theme-item { padding:10px 14px; border-radius:8px; font-family:'Playfair Display',serif; font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; text-align:center; border:1.5px solid rgba(61,57,41,.12); }
+
+/* Tool of week */
+.tool-week { background:#DA7756; color:#fff; border-radius:12px; padding:18px 20px; text-align:center; margin-top:14px; }
+.tool-week-eyebrow { font-size:9px; letter-spacing:4px; text-transform:uppercase; opacity:.75; margin-bottom:6px; }
+.tool-week-name { font-family:'Playfair Display',serif; font-size:22px; font-weight:900; margin-bottom:4px; }
+.tool-week-desc { font-size:11.5px; opacity:.85; font-style:italic; }
+
+/* Footer */
+.footer-card { background:#3D3929; color:#F0ECE0; border-radius:4px 4px 20px 20px; padding:28px 40px; text-align:center; margin-top:3px; }
+.footer-title { font-family:'Playfair Display',serif; font-size:15px; font-weight:900; letter-spacing:3px; text-transform:uppercase; margin-bottom:6px; }
+.footer-sub { font-size:10px; letter-spacing:2px; text-transform:uppercase; opacity:.5; }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- COVER -->
+  <div class="cover-card">
+    <div class="cover-eyebrow">AI Intelligence Digest</div>
+    <div class="cover-title">TIMPS<br>PostCards</div>
+    <div class="cover-sub">Your Daily Signal from the Machine Frontier</div>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+      <span>June 25, 2026</span>
+      <span>Issue 031</span>
+      <span>Hyderabad, India</span>
+    </div>
+    <div class="cover-badge">⬡ Built with the TIMPS Ecosystem</div>
+    <div class="top5-pill">
+      <span class="pill">Issue 031</span>
+      <span class="pill light">June 19–25</span>
+      <span class="pill light">5 Top Signals</span>
+    </div>
+  </div>
+
+  <div class="section-label">Lead Story</div>
+
+  <!-- STORY 1 — LEAD -->
+  <div class="story-card card-blush">
+    <div class="page-chip">01 · LEAD</div>
+    <div class="card-routine">Hardware · Infrastructure</div>
+    <div class="card-headline lg">OpenAI Ships Its First Chip — and Stops Renting the Whole Stack</div>
+    <div class="card-deck">Jalapeño, an inference-only ASIC built with Broadcom in a record nine-month cycle, marks OpenAI's first real step away from total Nvidia dependence.</div>
+    <div class="stat-box">
+      <span class="stat-big">9</span>
+      <span class="stat-label">Months, Design to Tape-Out</span>
+    </div>
+    <div class="card-body drop clearfix">
+      <p>OpenAI and Broadcom unveiled <span class="hl-terra">Jalapeño</span>, OpenAI's first custom-designed AI accelerator — an "Intelligence Processor" built specifically for inference rather than training. Unlike a general-purpose GPU, Jalapeño is an application-specific chip (ASIC) tuned around OpenAI's own understanding of how its models actually serve traffic: kernels, memory movement, and scheduling, all shaped by years of running ChatGPT and Codex at scale.</p>
+      <p>The chip reached tape-out in roughly nine months, a pace OpenAI calls the fastest ASIC development cycle ever achieved at this scale — accelerated in part by OpenAI's own models helping engineers draft and optimize the design. Engineering samples are already running production workloads in the lab, including GPT-5.3-Codex-Spark, with Broadcom CEO Hock Tan citing early performance-per-watt gains of roughly 50% over standard GPUs.</p>
+      <p>Gigawatt-scale deployment with Microsoft and other data-center partners is targeted for late 2026, under the umbrella of the broader Broadcom partnership (codenamed Project Nexus) announced last October. OpenAI still leans on Nvidia, AMD, and Cerebras for training and overflow capacity — this is a bet on owning the serving layer, not abandoning suppliers.</p>
+    </div>
+    <a href="https://techcrunch.com/2026/06/24/openai-unveils-its-first-custom-chip-built-by-broadcom/" target="_blank" class="source-link">Full story · TechCrunch</a>
+  </div>
+
+  <div class="section-label">Top Stories</div>
+
+  <!-- STORY 2 -->
+  <div class="story-card card-lavender">
+    <div class="page-chip">02 · ENTERPRISE AI</div>
+    <div class="card-routine">Workplace</div>
+    <div class="card-headline">Claude Tag Turns Anthropic's Model Into a Shared Slack Coworker</div>
+    <div class="card-deck">A single, always-on @Claude identity now lives inside Slack channels — remembering context, picking up tasks mid-thread, and occasionally speaking up unprompted.</div>
+    <div class="card-body drop clearfix">
+      <p>Anthropic launched <span class="hl-terra">Claude Tag</span>, a beta feature for Slack that drops a persistent, channel-level @Claude into team workspaces. Unlike a personal assistant, Tag is a shared identity: anyone in the channel can delegate to it, watch its work in progress, and pick up where a teammate left off without re-explaining the task.</p>
+      <p>Admins grant per-channel access to tools, data, and codebases, and the assistant accumulates context the longer it stays in a channel — Anthropic says 65% of its own product team's code now comes from internal use of the same pattern. An optional "ambient" mode lets Claude post unprompted: surfacing a thread that's gone quiet, flagging a decision, or announcing a completed deploy.</p>
+      <p>Claude Tag replaces the older Claude-in-Slack app, which retires August 3, with a 30-day migration window for admins. It's a direct shot at the "AI coworker" category Microsoft Copilot, Glean, and Salesforce are all chasing from different angles.</p>
+    </div>
+    <a href="https://techcrunch.com/2026/06/23/anthropics-claude-tag-is-learning-your-company-one-slack-message-at-a-time/" target="_blank" class="source-link">Full story · TechCrunch</a>
+  </div>
+
+  <!-- STORY 3 -->
+  <div class="story-card card-blush">
+    <div class="page-chip">03 · INFRASTRUCTURE</div>
+    <div class="card-routine">Compute Markets</div>
+    <div class="card-headline">SpaceX Turns Its Idle Grok Cluster Into a $6.3B Landlord Business</div>
+    <div class="card-deck">Open-source lab Reflection AI becomes the fourth tenant on SpaceX's Colossus data centers, as compute itself hardens into a tradeable commodity.</div>
+    <div class="stat-box">
+      <span class="stat-big">$6.3B</span>
+      <span class="stat-label">Deal Value Through 2029</span>
+    </div>
+    <div class="card-body drop clearfix">
+      <p>SpaceX signed a compute-leasing agreement with <span class="hl-terra">Reflection AI</span>, an open-weight model startup founded by former Google DeepMind researchers, for access to Nvidia GB300 chips at SpaceX's Colossus 2 facility in Memphis. Reflection will pay $150 million a month starting July 1, totaling up to $6.3 billion if the contract runs its full term through 2029.</p>
+      <p>Colossus was originally built to train Musk's Grok chatbot under xAI, now part of SpaceX. As that internal workload has plateaued, SpaceX has repositioned the site as a multi-tenant compute platform, having already signed larger deals with Anthropic (~$45B) and Google (~$30B), plus an arrangement with Cursor, which SpaceX is separately acquiring.</p>
+      <p>For Reflection, the deal is partly a statement: the startup is positioning open-weight models as a hedge against the kind of access restrictions large closed labs can impose. Both sides can exit with 90 days' notice after an initial three-month period.</p>
+    </div>
+    <a href="https://techcrunch.com/2026/06/22/spacex-inks-compute-deal-with-reflection-ai-an-open-source-ai-lab/" target="_blank" class="source-link">Full story · TechCrunch</a>
+  </div>
+
+  <!-- STORY 4 -->
+  <div class="story-card card-lavender">
+    <div class="page-chip">04 · AGENT INFRA</div>
+    <div class="card-routine">Open Source</div>
+    <div class="card-headline sm">Databricks Bets the "Agent Cloud" Needs a Governance Layer, Not Another Model</div>
+    <div class="card-deck">Co-founders Matei Zaharia and Reynold Xin argue the next real bottleneck in agentic AI is control, not capability — and open-sourced a meta-harness to prove it.</div>
+    <div class="card-body drop clearfix">
+      <p>In a long-form conversation on building what Databricks calls the <span class="hl-terra">Agent Cloud</span>, CTO Matei Zaharia and Chief Architect Reynold Xin laid out why they think frontier AI infrastructure has to stay open. Their new framework, Omnigent, is a "meta-harness" that sits above existing coding agents — including Claude Code, OpenAI's Codex, and Inflection's Pi — giving teams one place to enforce cost budgets, permissions, and collaboration without touching what's underneath.</p>
+      <p>Zaharia points to a recurring pattern across Databricks' own 5,000-engineer org: production agent setups almost always mix harnesses and models — a cheap worker model paired with a frontier "advisor," or several models splitting planning, search, and generation in one flow. No single vendor's harness can express that natively, which is the gap Omnigent is built to fill.</p>
+      <p>The framework shipped under Apache 2.0, a licensing choice Xin frames as deliberate: removing the usual enterprise procurement objection to adopting infrastructure-layer tooling, and inviting the community to extend it directly.</p>
+    </div>
+    <a href="https://www.startuphub.ai/ai-news/artificial-intelligence/2026/databricks-matei-zaharia-reynold-xin-on-the-agent-cloud" target="_blank" class="source-link">Full story · Latent.Space</a>
+  </div>
+
+  <!-- STORY 5 -->
+  <div class="story-card card-blush">
+    <div class="page-chip">05 · CONSUMER AI</div>
+    <div class="card-routine">Wearables</div>
+    <div class="card-headline sm">Google's $99 Fitbit Air Bets Health Coaching Beats a Screen</div>
+    <div class="card-deck">A screenless tracker paired with a Gemini-powered Health Coach pushes AI wellness advice toward mass-market pricing — and into its first credibility test.</div>
+    <div class="card-body drop clearfix">
+      <p>Google's <span class="hl-terra">Fitbit Air</span> launched at $99, paired with the Gemini-grounded Google Health Coach bundled into Google Health Premium at $9.99/month or $99/year — free for Google AI Pro and Ultra subscribers. The screenless, week-long-battery tracker exists mainly to feed the coach: continuous heart rate, SpO2, and sleep-stage data that personalizes its fitness, sleep, and recovery guidance.</p>
+      <p>Google says the coach was built against an internal "SHARP" evaluation framework — safety, helpfulness, accuracy, relevance, personalization — developed with a clinical advisory panel, and explicitly will not feed Fitbit health data into Google Ads.</p>
+      <p>Early reviews are split: praise for comfort and battery life sits alongside reports of the AI coach making accuracy mistakes and occasional hallucinated advice, a reminder that consumer health AI is being shipped at consumer prices before it's fully proven.</p>
+    </div>
+    <a href="https://techcrunch.com/2026/05/07/googles-9-99-per-month-ai-health-coach-launches-may-19/" target="_blank" class="source-link">Full story · TechCrunch</a>
+  </div>
+
+  <div class="section-label">Signals & Themes</div>
+
+  <!-- SIGNALS -->
+  <div class="story-card card-blush">
+    <div class="page-chip">06 · SIGNALS</div>
+    <div class="card-routine">5 Key Signals</div>
+    <div class="card-headline sm">What Else Moved This Week</div>
+    <div class="signals-grid">
+      <div class="signal-row">
+        <div class="signal-num n1">1</div>
+        <div>
+          <div class="signal-title">Full-stack verticalization is now the norm, not the exception</div>
+          <div class="signal-desc">With Jalapeño, OpenAI joins Google and Amazon in designing its own inference silicon — model labs increasingly want to own the chip layer, not just rent it.</div>
+          <a href="https://openai.com/index/openai-broadcom-jalapeno-inference-chip/" target="_blank" class="signal-link">OpenAI ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n2">2</div>
+        <div>
+          <div class="signal-title">Compute leasing has become a standalone business line</div>
+          <div class="signal-desc">SpaceX's Colossus now counts Anthropic, Google, Cursor, and Reflection as tenants — turning an internal Grok cluster into an AI infrastructure platform worth tens of billions.</div>
+          <a href="https://www.cnbc.com/2026/06/22/spacex-ai-colossus-data-center-reflection.html" target="_blank" class="signal-link">CNBC ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n3">3</div>
+        <div>
+          <div class="signal-title">Agent governance is splitting off as its own layer</div>
+          <div class="signal-desc">Databricks' open-sourced Omnigent treats cost, permissions, and multi-harness orchestration as infrastructure problems sitting above the model — not features baked into any one agent.</div>
+          <a href="https://www.techtimes.com/articles/318419/20260615/ai-agent-orchestration-gets-control-plane-databricks-open-sources-omnigent.htm" target="_blank" class="signal-link">Tech Times ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n4">4</div>
+        <div>
+          <div class="signal-title">"AI coworker" framing is converging across vendors</div>
+          <div class="signal-desc">Anthropic's Claude Tag, with its persistent shared identity and ambient behavior, mirrors a broader push to make AI assistants feel like standing team members rather than per-prompt tools.</div>
+          <a href="https://theprint.in/feature/claude-is-your-newest-coworker-you-can-now-tag-it-on-slack/2969435/" target="_blank" class="signal-link">ThePrint ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n5">5</div>
+        <div>
+          <div class="signal-title">Consumer health AI is shipping ahead of its accuracy bar</div>
+          <div class="signal-desc">Google's $99 Fitbit Air pairs cheap hardware with Gemini coaching that reviewers say still stumbles on basic accuracy — a preview of the tension between AI-health hype and reliability.</div>
+          <a href="https://easternherald.com/2026/05/26/google-fitbit-air-review-ai-health-coach-problems/" target="_blank" class="signal-link">Eastern Herald ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THEMES + TOOL OF WEEK -->
+  <div class="story-card card-lavender">
+    <div class="page-chip">07 · THEMES</div>
+    <div class="card-routine">Top Themes</div>
+    <div class="card-headline sm">This Week, In Seven Words</div>
+    <div class="themes-grid">
+      <div class="theme-item">Full-Stack Verticalization</div>
+      <div class="theme-item">Compute-as-Platform</div>
+      <div class="theme-item">Agent Governance Layers</div>
+      <div class="theme-item">AI Coworkers</div>
+      <div class="theme-item">Consumer Health AI</div>
+      <div class="theme-item">Open vs Closed Models</div>
+      <div class="theme-item">Ambient Agents</div>
+    </div>
+    <div class="tool-week">
+      <div class="tool-week-eyebrow">Tool of the Week</div>
+      <div class="tool-week-name">Omnigent</div>
+      <div class="tool-week-desc">Databricks' Apache-2.0 meta-harness for governing cost, permissions, and collaboration across Claude Code, Codex, and other agents — without rewriting any of them.</div>
+    </div>
+  </div>
+
+  <!-- SOURCES -->
+  <div class="story-card card-blush">
+    <div class="page-chip">08 · SOURCES</div>
+    <div class="card-routine">Sources Cited</div>
+    <div class="card-headline sm">Primary Outlets, Not Newsletters</div>
+    <div class="themes-grid">
+      <div class="theme-item" style="text-transform:none; font-family:'EB Garamond',serif; font-weight:400; letter-spacing:0;"><a href="https://techcrunch.com/2026/06/24/openai-unveils-its-first-custom-chip-built-by-broadcom/" style="color:#3D3929; text-decoration:none;">TechCrunch — OpenAI / Jalapeño ↗</a></div>
+      <div class="theme-item" style="text-transform:none; font-family:'EB Garamond',serif; font-weight:400; letter-spacing:0;"><a href="https://openai.com/index/openai-broadcom-jalapeno-inference-chip/" style="color:#3D3929; text-decoration:none;">OpenAI — Official Announcement ↗</a></div>
+      <div class="theme-item" style="text-transform:none; font-family:'EB Garamond',serif; font-weight:400; letter-spacing:0;"><a href="https://techcrunch.com/2026/06/23/anthropics-claude-tag-is-learning-your-company-one-slack-message-at-a-time/" style="color:#3D3929; text-decoration:none;">TechCrunch — Claude Tag ↗</a></div>
+      <div class="theme-item" style="text-transform:none; font-family:'EB Garamond',serif; font-weight:400; letter-spacing:0;"><a href="https://www.cnbc.com/2026/06/22/spacex-ai-colossus-data-center-reflection.html" style="color:#3D3929; text-decoration:none;">CNBC — SpaceX / Reflection AI ↗</a></div>
+      <div class="theme-item" style="text-transform:none; font-family:'EB Garamond',serif; font-weight:400; letter-spacing:0;"><a href="https://www.startuphub.ai/ai-news/artificial-intelligence/2026/databricks-matei-zaharia-reynold-xin-on-the-agent-cloud" style="color:#3D3929; text-decoration:none;">Latent.Space — Databricks Agent Cloud ↗</a></div>
+      <div class="theme-item" style="text-transform:none; font-family:'EB Garamond',serif; font-weight:400; letter-spacing:0;"><a href="https://www.techtimes.com/articles/318419/20260615/ai-agent-orchestration-gets-control-plane-databricks-open-sources-omnigent.htm" style="color:#3D3929; text-decoration:none;">Tech Times — Omnigent ↗</a></div>
+      <div class="theme-item" style="text-transform:none; font-family:'EB Garamond',serif; font-weight:400; letter-spacing:0;"><a href="https://techcrunch.com/2026/05/07/googles-9-99-per-month-ai-health-coach-launches-may-19/" style="color:#3D3929; text-decoration:none;">TechCrunch — Fitbit Air ↗</a></div>
+      <div class="theme-item" style="text-transform:none; font-family:'EB Garamond',serif; font-weight:400; letter-spacing:0;"><a href="https://blog.google/products-and-platforms/devices/fitbit/fitbit-air/" style="color:#3D3929; text-decoration:none;">Google — Fitbit Air Announcement ↗</a></div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer-card">
+    <div class="footer-title">TIMPS PostCards</div>
+    <div class="footer-sub">Issue 031 · June 25, 2026 · Hyderabad, India · Built with the TIMPS Ecosystem</div>
+  </div>
+
+</div>
+</body>
+</html>
