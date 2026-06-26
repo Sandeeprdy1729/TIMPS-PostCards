@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TIMPS PostCards · Issue 032 · June 26, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream:        #EEECE2;
+  --cream-warm:   #F0ECE0;
+  --cream-paper:  #F7F5EF;
+  --terra:        #DA7756;
+  --terra-dark:   #BD5D3A;
+  --ink:          #3D3929;
+  --ink-mid:      #5C5847;
+  --lavender:     #EAE6F5;
+  --lavender-mid: #C8BEE8;
+  --sage:         #D6E4D6;
+  --sage-dark:    #8BAF8B;
+  --blush:        #F5DDD0;
+  --blush-dark:   #E0A88A;
+  --sky:          #D6E8F0;
+  --sky-dark:     #7AAFC0;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #EEECE2;
+  font-family: 'EB Garamond', Georgia, ui-serif, serif;
+  color: #3D3929;
+  padding: 40px 20px 80px;
+}
+.wrapper { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 0; }
+
+/* Cover */
+.cover-card { background: #F0ECE0; border-radius: 20px 20px 4px 4px; padding: 56px 48px 48px; text-align: center; position: relative; overflow: hidden; border: 1.5px solid rgba(61,57,41,0.12); margin-bottom: 3px; }
+.cover-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, #DA7756 0%, #BD5D3A 60%, #E0A88A 100%); }
+.cover-eyebrow { font-size:10px; letter-spacing:4px; text-transform:uppercase; color:#DA7756; margin-bottom:20px; display:flex; align-items:center; justify-content:center; gap:10px; }
+.cover-eyebrow::before,.cover-eyebrow::after { content:''; flex:1; height:1px; background:#DA7756; opacity:.35; max-width:60px; }
+.cover-title { font-family:'Playfair Display',serif; font-size:58px; font-weight:900; line-height:1; letter-spacing:-1px; color:#3D3929; margin-bottom:8px; }
+.cover-sub { font-family:'Playfair Display',serif; font-size:13px; font-style:italic; color:#5C5847; margin-bottom:28px; }
+.cover-divider { width:48px; height:2px; background:#DA7756; margin:0 auto 24px; border-radius:2px; }
+.cover-meta { display:flex; justify-content:center; gap:32px; font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color:#5C5847; }
+.cover-badge { display:inline-flex; align-items:center; gap:6px; background:#DA7756; color:#fff; border-radius:20px; padding:6px 18px; font-size:10px; letter-spacing:2px; text-transform:uppercase; margin-top:28px; }
+.top5-pill { display:flex; justify-content:center; gap:10px; margin-top:32px; flex-wrap:wrap; }
+.pill { background:#3D3929; color:#F0ECE0; border-radius:100px; padding:4px 14px; font-size:10px; letter-spacing:1px; text-transform:uppercase; }
+.pill.light { background:transparent; color:#3D3929; border:1px solid rgba(61,57,41,.2); }
+
+/* Section labels */
+.section-label { display:flex; align-items:center; gap:12px; padding:10px 0 8px; font-size:9px; letter-spacing:4px; text-transform:uppercase; color:#5C5847; }
+.section-label::before,.section-label::after { content:''; flex:1; height:1px; background:rgba(61,57,41,.15); }
+
+/* Story cards */
+.story-card { border-radius:4px; border:1.5px solid rgba(61,57,41,.10); padding:36px 40px; margin-bottom:3px; position:relative; overflow:hidden; }
+.story-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }
+
+/* Scheme B: sage → sky → blush */
+.card-sage     { background:#D6E4D6; } .card-sage::before     { background:#8BAF8B; }
+.card-sky      { background:#D6E8F0; } .card-sky::before      { background:#7AAFC0; }
+.card-blush    { background:#F5DDD0; } .card-blush::before    { background:#E0A88A; }
+.card-lavender { background:#EAE6F5; } .card-lavender::before { background:#C8BEE8; }
+.card-cream    { background:#F7F5EF; } .card-cream::before    { background:#DA7756; }
+
+/* Card typography */
+.page-chip { position:absolute; top:14px; right:16px; font-size:9px; letter-spacing:2px; text-transform:uppercase; color:#5C5847; opacity:.5; }
+.card-routine { font-size:9px; letter-spacing:4px; text-transform:uppercase; color:#5C5847; margin-bottom:8px; }
+.card-headline { font-family:'Playfair Display',serif; font-size:28px; font-weight:900; line-height:1.15; color:#3D3929; margin-bottom:10px; }
+.card-headline.lg { font-size:34px; }
+.card-headline.sm { font-size:22px; }
+.card-deck { font-family:'Playfair Display',serif; font-style:italic; font-size:14px; line-height:1.55; color:#5C5847; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid rgba(61,57,41,.15); }
+.card-body { font-size:13px; line-height:1.8; color:#3D3929; }
+.card-body p { margin-bottom:11px; }
+.two-col { column-count:2; column-gap:24px; column-rule:1px solid rgba(61,57,41,.12); }
+.drop::first-letter { font-family:'Playfair Display',serif; font-size:52px; font-weight:900; float:left; line-height:.78; margin:5px 6px 0 0; color:#DA7756; }
+.clearfix::after { content:''; display:table; clear:both; }
+
+/* Inline highlights */
+.hl-terra { background:#DA7756; color:#fff; padding:0 4px; border-radius:2px; }
+.hl-ink   { background:#3D3929; color:#F0ECE0; padding:0 4px; border-radius:2px; }
+.hl-sage  { background:#8BAF8B; color:#fff; padding:0 4px; border-radius:2px; }
+.hl-lav   { background:#C8BEE8; color:#3D3929; padding:0 4px; border-radius:2px; }
+
+/* Stat float */
+.stat-box { float:right; margin:0 0 16px 24px; background:#F0ECE0; border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:16px 20px; text-align:center; min-width:120px; }
+.stat-big { font-family:'Playfair Display',serif; font-size:44px; font-weight:900; line-height:1; color:#DA7756; display:block; }
+.stat-label { font-size:9.5px; letter-spacing:1.5px; text-transform:uppercase; color:#5C5847; display:block; margin-top:4px; }
+
+/* Image frames */
+.img-frame { border:2px solid rgba(61,57,41,0.18); border-radius:12px; overflow:hidden; margin:16px 0; background:#F0ECE0; }
+.img-frame img { width:100%; display:block; max-height:240px; object-fit:cover; border-bottom:1px solid rgba(61,57,41,.12); }
+.img-caption { padding:8px 12px; font-size:10.5px; color:#5C5847; font-style:italic; display:flex; align-items:center; justify-content:space-between; gap:8px; }
+.img-caption a { font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color:#DA7756; text-decoration:none; white-space:nowrap; font-style:normal; }
+.img-frame.float-right { float:right; width:220px; margin:0 0 16px 24px; }
+.img-frame.float-right img { max-height:140px; }
+
+/* Source links */
+.source-link { display:inline-flex; align-items:center; gap:5px; font-size:10px; letter-spacing:1px; text-transform:uppercase; color:#DA7756; text-decoration:none; margin-top:12px; border-bottom:1px solid rgba(218,119,86,.35); padding-bottom:1px; }
+.source-link::after { content:'↗'; font-size:9px; }
+
+/* Signals */
+.signals-grid { display:flex; flex-direction:column; gap:14px; }
+.signal-row { display:flex; align-items:flex-start; gap:14px; }
+.signal-num { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-size:13px; font-weight:900; flex-shrink:0; color:#fff; }
+.signal-num.n1{background:#DA7756;} .signal-num.n2{background:#3D3929;} .signal-num.n3{background:#8BAF8B;} .signal-num.n4{background:#C8BEE8;color:#3D3929;} .signal-num.n5{background:#E0A88A;}
+.signal-title { font-family:'Playfair Display',serif; font-size:14px; font-weight:700; color:#3D3929; margin-bottom:2px; }
+.signal-desc { font-size:12px; line-height:1.65; color:#5C5847; }
+.signal-link { display:inline-block; font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color:#DA7756; text-decoration:none; margin-top:4px; border-bottom:1px solid rgba(218,119,86,.3); }
+
+/* Themes */
+.themes-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.theme-item { padding:10px 14px; border-radius:8px; font-family:'Playfair Display',serif; font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; text-align:center; border:1.5px solid rgba(61,57,41,.12); }
+
+/* Tool of week */
+.tool-week { background:#DA7756; color:#fff; border-radius:12px; padding:18px 20px; text-align:center; margin-top:14px; }
+.tool-week-eyebrow { font-size:9px; letter-spacing:4px; text-transform:uppercase; opacity:.75; margin-bottom:6px; }
+.tool-week-name { font-family:'Playfair Display',serif; font-size:22px; font-weight:900; margin-bottom:4px; }
+.tool-week-desc { font-size:11.5px; opacity:.85; font-style:italic; }
+
+/* Sources */
+.sources-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:14px; }
+.source-item a { font-size:11px; color:#DA7756; text-decoration:none; letter-spacing:.5px; }
+.source-item a:hover { text-decoration:underline; }
+
+/* Footer */
+.footer-card { background:#3D3929; color:#F0ECE0; border-radius:4px 4px 20px 20px; padding:28px 40px; text-align:center; margin-top:3px; }
+.footer-title { font-family:'Playfair Display',serif; font-size:15px; font-weight:900; letter-spacing:3px; text-transform:uppercase; margin-bottom:6px; }
+.footer-sub { font-size:10px; letter-spacing:2px; text-transform:uppercase; opacity:.5; }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+<!-- ═══ COVER ═══ -->
+<div class="cover-card">
+  <div class="cover-eyebrow">TIMPS PostCards</div>
+  <div class="cover-title">TIMPS<br>PostCards</div>
+  <div class="cover-sub">AI Intelligence Digest · Your Daily Signal from the Machine Frontier</div>
+  <div class="cover-divider"></div>
+  <div class="cover-meta">
+    <span>June 26, 2026</span>
+    <span>Vol. II · Issue 032</span>
+    <span>Hyderabad, India</span>
+  </div>
+  <div class="cover-badge">⬡ Built with the TIMPS Ecosystem</div>
+  <div class="top5-pill">
+    <span class="pill">Issue 032</span>
+    <span class="pill light">June 24–26, 2026</span>
+    <span class="pill light">8 Signals</span>
+    <span class="pill light">Scheme B</span>
+  </div>
+</div>
+
+<!-- ═══ SECTION: LEAD ═══ -->
+<div class="section-label">Lead Story</div>
+
+<!-- Card 1 — Jalapeño Chip (LEAD, sage) -->
+<div class="story-card card-sage">
+  <div class="page-chip">01 · Lead</div>
+  <div class="card-routine">Infrastructure · Silicon</div>
+  <div class="card-headline lg">OpenAI and Broadcom Unveil Jalapeño — The First Custom AI Inference Chip</div>
+  <div class="card-deck">Built from scratch in nine months, Jalapeño signals OpenAI's decisive push into custom silicon — aiming to cut inference costs and reduce reliance on Nvidia GPUs.</div>
+
+  <div class="img-frame float-right">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/OpenAI_Logo.svg/500px-OpenAI_Logo.svg.png" alt="OpenAI logo" onerror="this.style.display='none'">
+    <div class="img-caption">OpenAI · <a href="https://openai.com/index/openai-broadcom-jalapeno-inference-chip/" target="_blank">Official Blog ↗</a></div>
+  </div>
+
+  <div class="card-body clearfix">
+    <p class="drop">On June 24, 2026, OpenAI and Broadcom unveiled Jalapeño — OpenAI's first Intelligence Processor, an ASIC built specifically around the demands of large language model inference. The chip went from initial design to manufacturing tape-out in just nine months, a development cycle that both companies describe as potentially the fastest ever achieved for a high-performance advanced semiconductor.</p>
+    <p>The architecture is purpose-built to reduce data movement between compute and off-chip memory, achieving realized utilization far closer to theoretical peak than conventional GPU alternatives. Engineering samples running GPT-5.3-Codex-Spark workloads already show <span class="hl-terra">~50% lower cost per inference token</span> versus current state-of-the-art, according to Broadcom CEO Hock Tan.</p>
+    <p>Manufactured at TSMC's 3nm node with eight HBM stacks, Jalapeño sits at the core of a multi-generation platform. Initial deployment in gigawatt-scale data centers with Microsoft and partners is targeted by end of 2026 — Microsoft is expected to purchase roughly 40% of the first production run. OpenAI's own models assisted in the chip design process, creating a self-reinforcing loop where AI is now accelerating the infrastructure used to run future AI.</p>
+    <p>OpenAI President Greg Brockman called the effort part of a <span class="hl-ink">"full-stack infrastructure strategy"</span> — spanning chip architecture, kernels, memory, networking, and deployment. By controlling the inference pipeline, OpenAI aims to match the unit-economics advantages long held by Google (TPUs) and Amazon (Trainium).</p>
+  </div>
+
+  <div class="stat-box">
+    <span class="stat-big">9</span>
+    <span class="stat-label">Months Design<br>to Tape-Out</span>
+  </div>
+
+  <a href="https://techcrunch.com/2026/06/24/openai-unveils-its-first-custom-chip-built-by-broadcom/" target="_blank" class="source-link">Full Story · TechCrunch</a>
+</div>
+
+<!-- ═══ SECTION: SECURITY ═══ -->
+<div class="section-label">Security &amp; Geopolitics</div>
+
+<!-- Card 2 — Anthropic vs Alibaba (sky) -->
+<div class="story-card card-sky">
+  <div class="page-chip">02 · Security</div>
+  <div class="card-routine">AI Security · US-China</div>
+  <div class="card-headline">Anthropic Accuses Alibaba of the Largest Known Distillation Attack on Claude</div>
+  <div class="card-deck">In a letter to US senators, Anthropic alleges Alibaba used 25,000 fraudulent accounts and 28.8 million Claude exchanges to illicitly harvest frontier model capabilities for Qwen.</div>
+
+  <div class="card-body">
+    <p class="drop">Anthropic sent a letter to the US Senate Banking Committee accusing Chinese tech giant Alibaba and its Qwen AI lab of conducting <span class="hl-terra">"the largest known distillation attack"</span> on the company to date. Between April 22 and June 5, 2026, operators affiliated with Alibaba generated over 28.8 million exchanges with Claude through nearly 25,000 fraudulent accounts — systematically extracting the model's capabilities in advanced coding, multi-step reasoning, and long-horizon agentic tasks.</p>
+    <p>Distillation attacks train a less capable model on the outputs of a more advanced one, allowing a competitor to inherit frontier capabilities without incurring the underlying research and compute costs. Anthropic estimates the effort targeted capabilities approaching those of its Mythos Preview model — the same model the US government subsequently placed under export controls on national security grounds.</p>
+    <p>This follows Anthropic's February disclosure of distillation campaigns by DeepSeek, Moonshot, and MiniMax. Alibaba shares fell nearly 4% in Hong Kong trading on the news. An Alibaba spokesperson did not immediately respond to requests for comment.</p>
+  </div>
+
+  <a href="https://www.cnbc.com/2026/06/24/anthropic-alibaba-distillation-campaign.html" target="_blank" class="source-link">Full Story · CNBC</a>
+</div>
+
+<!-- ═══ SECTION: MODELS ═══ -->
+<div class="section-label">Model Launches</div>
+
+<!-- Card 3 — Gemini 3.5 Flash Computer Use (blush) -->
+<div class="story-card card-blush">
+  <div class="page-chip">03 · Models</div>
+  <div class="card-routine">Google · Agentic AI</div>
+  <div class="card-headline">Gemini 3.5 Flash Now Has Native Computer Use — at a Third of GPT-5.5's Cost</div>
+  <div class="card-deck">Google has embedded computer-use capability directly into Gemini 3.5 Flash, giving developers a single model that can see, click, and navigate screens while simultaneously using Search and Maps grounding.</div>
+
+  <div class="card-body">
+    <p class="drop">Announced June 24, 2026, computer use is now a built-in tool inside Gemini 3.5 Flash — not a separate model, but a native capability alongside function calling and Search grounding. Developers building automation agents can now handle screen interactions, web navigation, and knowledge retrieval in a single model call. On OSWorld-Verified, Gemini 3.5 Flash scores <span class="hl-sage">78.4%</span>, just 0.3 points behind GPT-5.5's 78.7%.</p>
+    <p>The pricing gap is the sharper story: Gemini 3.5 Flash costs $1.50 per million input tokens versus GPT-5.5's $5, and $9 per million output tokens versus $30 — roughly 3x cheaper on output for high-volume agentic workloads. Google has also introduced adversarial training and optional enterprise safeguards that require human confirmation before irreversible actions and auto-halt on detected prompt injection.</p>
+    <p>The feature is available immediately through the Gemini API and the Gemini Enterprise Agent Platform. Reference implementations are on GitHub, and early adopters are already using it for continuous software testing and enterprise knowledge workflows.</p>
+  </div>
+
+  <a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-computer-use-gemini-3-5-flash/" target="_blank" class="source-link">Full Story · Google Blog</a>
+</div>
+
+<!-- ═══ SECTION: ROBOTICS ═══ -->
+<div class="section-label">Robotics &amp; Physical AI</div>
+
+<!-- Card 4 — Agility Robotics SPAC (sage) -->
+<div class="story-card card-sage">
+  <div class="page-chip">04 · Robotics</div>
+  <div class="card-routine">Robotics · IPO</div>
+  <div class="card-headline">Agility Robotics Goes Public at $2.5B via SPAC, Foxconn Leads $200M Tranche</div>
+  <div class="card-deck">The maker of the Digit humanoid robot is heading to public markets, backed by over $620 million in proceeds and already deployed at nine commercial customer sites.</div>
+
+  <div class="card-body">
+    <p class="drop">Agility Robotics is going public via SPAC at a <span class="hl-terra">$2.5 billion valuation</span>, raising more than $620 million in the process. A Foxconn-led investor group is contributing approximately $200 million to the round — a significant signal from the world's largest contract manufacturer, which has been publicly exploring robotics as a hedge against rising labor costs.</p>
+    <p>The Digit robot is already deployed at nine customer sites, with over 65,000 logged operating hours — one of the largest real-world deployment datasets for any bipedal robot. The public listing positions Agility among the first wave of humanoid robotics companies to reach public markets, ahead of several better-capitalized rivals still in pre-commercial development.</p>
+    <p>The move reflects accelerating investor confidence in physical AI commercialization: robots that can perform warehouse and logistics tasks at scale without purpose-built infrastructure are drawing production commitments, not just pilot contracts.</p>
+  </div>
+
+  <a href="https://www.therundown.ai/p/agility-robotics-ipo-spac-2026" target="_blank" class="source-link">Full Story · The Rundown Robotics</a>
+</div>
+
+<!-- ═══ SECTION: TALENT ═══ -->
+<div class="section-label">Talent &amp; Competition</div>
+
+<!-- Card 5 — AI Talent War (sky) -->
+<div class="story-card card-sky">
+  <div class="page-chip">05 · Talent</div>
+  <div class="card-routine">AI Labs · Talent</div>
+  <div class="card-headline">Transformer Co-Author Shazeer Joins OpenAI; AlphaFold Stars Head to Anthropic</div>
+  <div class="card-deck">Three landmark researcher moves in 48 hours underscore that talent is now the most contested resource in the AI race — with Google DeepMind bearing the highest losses.</div>
+
+  <div class="card-body">
+    <p class="drop">Noam Shazeer — co-author of the 2017 "Attention Is All You Need" paper that introduced the Transformer architecture underpinning every major AI model — announced he is leaving Google DeepMind to join OpenAI as Lead for Architecture Research. Google paid approximately $2.7 billion in 2024 to bring him back from Character.AI. He lasted under 22 months. Sam Altman called it a hire he had <span class="hl-ink">"wanted since the very beginning."</span></p>
+    <p>Separately, Jonas Adler and Alexander Pritzel — both senior researchers with ties to the AlphaFold protein-structure program — are reportedly preparing to join Anthropic. The combination of departures signals that DeepMind's research talent pipeline is under significant pressure from labs offering more autonomous research environments and more direct equity upside ahead of anticipated IPOs.</p>
+    <p>OpenAI's Codex usage data released this week provides context for what this talent is being recruited to build: median internal output tokens grew <span class="hl-terra">56×</span> between November 2025 and June 2026 across Engineering, Research, Customer Support, and Legal teams.</p>
+  </div>
+
+  <a href="https://www.superhuman.ai" target="_blank" class="source-link">Full Story · Superhuman AI</a>
+</div>
+
+<!-- ═══ SECTION: FUNDING ═══ -->
+<div class="section-label">Funding &amp; Infrastructure</div>
+
+<!-- Card 6 — Sail Research $80M (blush) — NEW -->
+<div class="story-card card-blush">
+  <div class="page-chip">06 · Funding</div>
+  <div class="card-routine">Inference · Startup</div>
+  <div class="card-headline">Sail Research Emerges from Stealth with $80M to Power Long-Horizon AI Agents</div>
+  <div class="card-deck">Founded by ex-NVIDIA, Apple, and Together AI engineers, Sail has rebuilt the inference stack from scratch for agents that run for hours — not seconds — claiming up to 10× lower cost per token than alternatives.</div>
+
+  <div class="card-body">
+    <p class="drop">Sail Research, a San Francisco infrastructure startup purpose-built for long-horizon AI agents, launched from stealth on June 25 with <span class="hl-terra">$80 million</span> in seed and Series A funding at a $450 million valuation. The Series A was led by Kleiner Perkins; the seed by Sequoia. Additional investors include Redpoint, Theory Ventures, CRV, and angels including Alphabet Chairman John Hennessy and Intel CEO Lip-Bu Tan.</p>
+    <p>The core insight: current inference infrastructure was designed to minimize latency on a single conversational request. Agents that spend hours reading entire codebases, screening hundreds of candidates, or running deep research tasks are a fundamentally different workload — one that needs throughput and sustained parallel compute, not first-token speed. Sail rebuilt the inference stack around that constraint and wraps it in Sailboxes, persistent sandbox environments that run for hours or days and charge only for active compute time.</p>
+    <p>The platform already processes trillions of tokens per week, with paying customers including Detail.dev (AI code review agents that audit entire codebases) and Parallel Web Systems. On BrowseComp-Plus deep research evaluation, Sail scored 90.72% accuracy at <span class="hl-sage">up to 10× lower cost</span> than leading alternatives.</p>
+  </div>
+
+  <div class="stat-box">
+    <span class="stat-big">$80M</span>
+    <span class="stat-label">Seed + Series A<br>$450M Valuation</span>
+  </div>
+
+  <a href="https://fortune.com/2026/06/25/exclusive-sail-apple-kleiner-perkins-gpu-token-nvdia-sequoia-80-million/" target="_blank" class="source-link">Full Story · Fortune</a>
+</div>
+
+<!-- ═══ SECTION: ENTERPRISE ═══ -->
+<div class="section-label">Enterprise &amp; Agents</div>
+
+<!-- Card 7 — Claude Code in Slack + Codex surge (sage) -->
+<div class="story-card card-sage">
+  <div class="page-chip">07 · Enterprise</div>
+  <div class="card-routine">Agents · Workplace</div>
+  <div class="card-headline">Claude Code Lands in Slack as OpenAI Codex Usage Surges 56× Internally</div>
+  <div class="card-deck">AI agent integrations are moving from developer tooling into the daily communication layer — as internal adoption data from OpenAI reveals explosive growth across every business function.</div>
+
+  <div class="card-body">
+    <p class="drop">Anthropic's Claude Code is now available as a Slack integration — enabling engineering teams to trigger, monitor, and collaborate on agentic coding tasks directly from within Slack channels without leaving their primary communication tool. The integration arrives alongside Notion's developer platform and Figma Config 2026 updates, all pointing toward a shared trend: the agent layer is collapsing into the workspace layer.</p>
+    <p>OpenAI's internal Codex data adds quantitative weight to this shift. Median internal output tokens grew <span class="hl-terra">56×</span> between November 2025 and June 2026 — with Research, Engineering, Customer Support, and Legal all showing material adoption. The data frames AI-assisted workflows not as experimental adoption but as operational infrastructure at frontier labs.</p>
+    <p>The Gemini Enterprise Agent Platform, relaunched from Vertex AI, and beehiiv's new Group Subscriptions feature — targeting company-wide newsletter distribution — both reflect the same dynamic: AI tooling is being productized for organizational buyers, not just individual users.</p>
+  </div>
+
+  <a href="https://bensbites.com" target="_blank" class="source-link">Full Story · Ben's Bites</a>
+</div>
+
+<!-- ═══ SECTION: SIGNALS ═══ -->
+<div class="section-label">Five Critical Signals</div>
+
+<!-- Signals Card (sage) -->
+<div class="story-card card-sage">
+  <div class="page-chip">08 · Signals</div>
+  <div class="card-routine">Intelligence · Digest</div>
+  <div class="card-headline sm">What Moved the Machine Frontier Today</div>
+  <div class="card-deck">Five signals from the last 24 hours that builders, researchers, and strategists need to know.</div>
+
+  <div class="signals-grid">
+    <div class="signal-row">
+      <div class="signal-num n1">1</div>
+      <div>
+        <div class="signal-title">Custom Silicon Economics Are Now Real</div>
+        <div class="signal-desc">Jalapeño's ~50% lower cost-per-token claim, if validated in production, changes the financial model for LLM inference. GPUs were never designed for this workload; ASICs designed around it have structural advantages that compound at scale.</div>
+        <a href="https://techcrunch.com/2026/06/24/openai-unveils-its-first-custom-chip-built-by-broadcom/" target="_blank" class="signal-link">TechCrunch ↗</a>
+      </div>
+    </div>
+    <div class="signal-row">
+      <div class="signal-num n2">2</div>
+      <div>
+        <div class="signal-title">Distillation Is a National Security Issue Now</div>
+        <div class="signal-desc">Anthropic's letter to the Senate Banking Committee elevates model extraction from IP dispute to geopolitical risk. When a company accuses a foreign rival of a 28.8M-exchange industrial attack, regulators listen differently.</div>
+        <a href="https://www.cnbc.com/2026/06/24/anthropic-alibaba-distillation-campaign.html" target="_blank" class="signal-link">CNBC ↗</a>
+      </div>
+    </div>
+    <div class="signal-row">
+      <div class="signal-num n3">3</div>
+      <div>
+        <div class="signal-title">Computer Use Is Now Commodity Infrastructure</div>
+        <div class="signal-desc">Google baking computer use into Gemini 3.5 Flash at a fraction of GPT-5.5's cost is the kind of move that collapses a category. Expect browser and desktop automation to stop being a premium add-on and start being a table-stakes API tool.</div>
+        <a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-computer-use-gemini-3-5-flash/" target="_blank" class="signal-link">Google Blog ↗</a>
+      </div>
+    </div>
+    <div class="signal-row">
+      <div class="signal-num n4">4</div>
+      <div>
+        <div class="signal-title">Humanoid Robotics Is Entering the Capital Markets Cycle</div>
+        <div class="signal-desc">Agility's $2.5B SPAC with a Foxconn anchor is the first major humanoid robotics public listing. When the world's largest contract manufacturer bets $200M on a bipedal robot with 65K operating hours, it's no longer a demo — it's a supply chain.</div>
+        <a href="https://robotics.therundown.ai" target="_blank" class="signal-link">The Rundown Robotics ↗</a>
+      </div>
+    </div>
+    <div class="signal-row">
+      <div class="signal-num n5">5</div>
+      <div>
+        <div class="signal-title">Long-Horizon Agents Need Their Own Infrastructure Layer</div>
+        <div class="signal-desc">Sail Research's $80M round at $450M validates that the existing inference stack was built for the wrong workload. A new infrastructure category — high-throughput, persistent, cost-optimized for hours-long agent runs — is now well-funded and live in production.</div>
+        <a href="https://fortune.com/2026/06/25/exclusive-sail-apple-kleiner-perkins-gpu-token-nvdia-sequoia-80-million/" target="_blank" class="signal-link">Fortune ↗</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ THEMES + TOOL + SOURCES ═══ -->
+<div class="section-label">Themes · Tool · Sources</div>
+
+<!-- Themes + Tool + Sources Card (sky) -->
+<div class="story-card card-sky">
+  <div class="page-chip">09 · Themes</div>
+  <div class="card-routine">Analysis · Digest</div>
+  <div class="card-headline sm">Top Themes This Issue</div>
+
+  <div class="themes-grid" style="margin-bottom:20px;">
+    <div class="theme-item" style="background:#D6E4D6;">Custom Silicon</div>
+    <div class="theme-item" style="background:#F5DDD0;">Model Distillation</div>
+    <div class="theme-item" style="background:#D6E8F0;">Computer Use Agents</div>
+    <div class="theme-item" style="background:#D6E4D6;">Physical AI</div>
+    <div class="theme-item" style="background:#F5DDD0;">Talent Competition</div>
+    <div class="theme-item" style="background:#D6E8F0;">Agent Infrastructure</div>
+    <div class="theme-item" style="background:#D6E4D6;">US–China AI Race</div>
+    <div class="theme-item" style="background:#F5DDD0;">Enterprise Adoption</div>
+  </div>
+
+  <div class="tool-week">
+    <div class="tool-week-eyebrow">Tool of the Week</div>
+    <div class="tool-week-name">Sail Research</div>
+    <div class="tool-week-desc">The first inference platform built specifically for long-horizon agents — offering persistent sandboxes (Sailboxes) and up to 10× lower cost per token for workloads that run for hours, not seconds.</div>
+  </div>
+
+  <div style="margin-top:18px;">
+    <div class="card-routine" style="margin-bottom:10px;">Sources Cited</div>
+    <div class="sources-grid">
+      <div class="source-item"><a href="https://openai.com/index/openai-broadcom-jalapeno-inference-chip/" target="_blank">openai.com ↗</a></div>
+      <div class="source-item"><a href="https://www.cnbc.com/2026/06/24/openai-unveils-its-first-custom-chip-built-by-broadcom/" target="_blank">cnbc.com ↗</a></div>
+      <div class="source-item"><a href="https://techcrunch.com/2026/06/24/openai-unveils-its-first-custom-chip-built-by-broadcom/" target="_blank">techcrunch.com ↗</a></div>
+      <div class="source-item"><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-computer-use-gemini-3-5-flash/" target="_blank">blog.google ↗</a></div>
+      <div class="source-item"><a href="https://fortune.com/2026/06/25/exclusive-sail-apple-kleiner-perkins-gpu-token-nvdia-sequoia-80-million/" target="_blank">fortune.com ↗</a></div>
+      <div class="source-item"><a href="https://investors.broadcom.com/news-releases/news-release-details/openai-and-broadcom-unveil-llm-optimized-intelligence-processor" target="_blank">broadcom.com ↗</a></div>
+      <div class="source-item"><a href="https://thenextweb.com/news/sail-research-80m-ai-agent-inference" target="_blank">thenextweb.com ↗</a></div>
+      <div class="source-item"><a href="https://www.prnewswire.com/news-releases/sail-research-raises-80-million-302810497.html" target="_blank">prnewswire.com ↗</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<div class="footer-card">
+  <div class="footer-title">TIMPS PostCards</div>
+  <div class="footer-sub" style="margin-bottom:8px;">AI Intelligence Digest · Issue 032 · June 26, 2026</div>
+  <div class="footer-sub">Hyderabad, India · Built with the TIMPS Ecosystem · timps.dev</div>
+</div>
+
+</div><!-- /wrapper -->
+</body>
+</html>
