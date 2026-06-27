@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>TIMPS PostCards — Issue 033</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #EEECE2;
+  font-family: 'EB Garamond', Georgia, ui-serif, serif;
+  color: #3D3929;
+  padding: 40px 20px 80px;
+}
+.wrapper { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 0; }
+
+/* Cover */
+.cover-card { background: #F0ECE0; border-radius: 20px 20px 4px 4px; padding: 56px 48px 48px; text-align: center; position: relative; overflow: hidden; border: 1.5px solid rgba(61,57,41,0.12); margin-bottom: 3px; }
+.cover-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, #DA7756 0%, #BD5D3A 60%, #E0A88A 100%); }
+.cover-eyebrow { font-size:10px; letter-spacing:4px; text-transform:uppercase; color:#DA7756; margin-bottom:20px; display:flex; align-items:center; justify-content:center; gap:10px; }
+.cover-eyebrow::before,.cover-eyebrow::after { content:''; flex:1; height:1px; background:#DA7756; opacity:.35; max-width:60px; }
+.cover-title { font-family:'Playfair Display',serif; font-size:58px; font-weight:900; line-height:1; letter-spacing:-1px; color:#3D3929; margin-bottom:8px; }
+.cover-sub { font-family:'Playfair Display',serif; font-size:13px; font-style:italic; color:#5C5847; margin-bottom:28px; }
+.cover-divider { width:48px; height:2px; background:#DA7756; margin:0 auto 24px; border-radius:2px; }
+.cover-meta { display:flex; justify-content:center; gap:32px; font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color:#5C5847; }
+.cover-badge { display:inline-flex; align-items:center; gap:6px; background:#DA7756; color:#fff; border-radius:20px; padding:6px 18px; font-size:10px; letter-spacing:2px; text-transform:uppercase; margin-top:28px; }
+.top5-pill { display:flex; justify-content:center; gap:10px; margin-top:32px; flex-wrap:wrap; }
+.pill { background:#3D3929; color:#F0ECE0; border-radius:100px; padding:4px 14px; font-size:10px; letter-spacing:1px; text-transform:uppercase; }
+.pill.light { background:transparent; color:#3D3929; border:1px solid rgba(61,57,41,.2); }
+
+/* Section labels */
+.section-label { display:flex; align-items:center; gap:12px; padding:10px 0 8px; font-size:9px; letter-spacing:4px; text-transform:uppercase; color:#5C5847; }
+.section-label::before,.section-label::after { content:''; flex:1; height:1px; background:rgba(61,57,41,.15); }
+
+/* Story cards */
+.story-card { border-radius:4px; border:1.5px solid rgba(61,57,41,.10); padding:36px 40px; margin-bottom:3px; position:relative; overflow:hidden; }
+.story-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }
+
+/* Card colour classes */
+.card-lavender { background:#EAE6F5; } .card-lavender::before { background:#C8BEE8; }
+.card-sage     { background:#D6E4D6; } .card-sage::before     { background:#8BAF8B; }
+.card-blush    { background:#F5DDD0; } .card-blush::before    { background:#E0A88A; }
+.card-sky      { background:#D6E8F0; } .card-sky::before      { background:#7AAFC0; }
+.card-cream    { background:#F7F5EF; } .card-cream::before    { background:#DA7756; }
+
+/* Card typography */
+.page-chip { position:absolute; top:14px; right:16px; font-size:9px; letter-spacing:2px; text-transform:uppercase; color:#5C5847; opacity:.5; }
+.card-routine { font-size:9px; letter-spacing:4px; text-transform:uppercase; color:#5C5847; margin-bottom:8px; }
+.card-headline { font-family:'Playfair Display',serif; font-size:28px; font-weight:900; line-height:1.15; color:#3D3929; margin-bottom:10px; }
+.card-headline.lg { font-size:34px; }
+.card-headline.sm { font-size:22px; }
+.card-deck { font-family:'Playfair Display',serif; font-style:italic; font-size:14px; line-height:1.55; color:#5C5847; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid rgba(61,57,41,.15); }
+.card-body { font-size:13px; line-height:1.8; color:#3D3929; }
+.card-body p { margin-bottom:11px; }
+.two-col { column-count:2; column-gap:24px; column-rule:1px solid rgba(61,57,41,.12); }
+.drop::first-letter { font-family:'Playfair Display',serif; font-size:52px; font-weight:900; float:left; line-height:.78; margin:5px 6px 0 0; color:#DA7756; }
+.clearfix::after { content:''; display:table; clear:both; }
+
+/* Inline highlights */
+.hl-terra { background:#DA7756; color:#fff; padding:0 4px; border-radius:2px; }
+.hl-ink   { background:#3D3929; color:#F0ECE0; padding:0 4px; border-radius:2px; }
+.hl-sage  { background:#8BAF8B; color:#fff; padding:0 4px; border-radius:2px; }
+.hl-lav   { background:#C8BEE8; color:#3D3929; padding:0 4px; border-radius:2px; }
+
+/* Stat float */
+.stat-box { float:right; margin:0 0 16px 24px; background:#F0ECE0; border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:16px 20px; text-align:center; min-width:120px; }
+.stat-big { font-family:'Playfair Display',serif; font-size:44px; font-weight:900; line-height:1; color:#DA7756; display:block; }
+.stat-label { font-size:9.5px; letter-spacing:1.5px; text-transform:uppercase; color:#5C5847; display:block; margin-top:4px; }
+
+/* Image frames */
+.img-frame { border:2px solid rgba(61,57,41,0.18); border-radius:12px; overflow:hidden; margin:16px 0; background:#F0ECE0; }
+.img-frame img { width:100%; display:block; max-height:240px; object-fit:cover; border-bottom:1px solid rgba(61,57,41,.12); }
+.img-caption { padding:8px 12px; font-size:10.5px; color:#5C5847; font-style:italic; display:flex; align-items:center; justify-content:space-between; gap:8px; }
+.img-caption a { font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color:#DA7756; text-decoration:none; white-space:nowrap; font-style:normal; }
+.img-frame.float-right { float:right; width:220px; margin:0 0 16px 24px; }
+.img-frame.float-right img { max-height:140px; }
+
+/* Source links */
+.source-link { display:inline-flex; align-items:center; gap:5px; font-size:10px; letter-spacing:1px; text-transform:uppercase; color:#DA7756; text-decoration:none; margin-top:12px; border-bottom:1px solid rgba(218,119,86,.35); padding-bottom:1px; }
+.source-link::after { content:'↗'; font-size:9px; }
+
+/* Output card */
+.output-card { background:#F0ECE0; border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:18px 20px; margin-top:14px; }
+.output-title { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; margin-bottom:8px; color:#3D3929; }
+.output-meta { display:flex; gap:20px; font-size:10px; color:#5C5847; padding-bottom:10px; margin-bottom:10px; border-bottom:1px solid rgba(61,57,41,.12); flex-wrap:wrap; }
+.tp-list { list-style:none; padding:0; margin:0; }
+.tp-list li { padding:5px 0; font-size:11.5px; border-bottom:1px solid rgba(61,57,41,.07); display:flex; align-items:flex-start; gap:7px; }
+.tp-list li::before { content:'·'; color:#DA7756; font-size:14px; line-height:1.2; flex-shrink:0; }
+
+/* Signals */
+.signals-grid { display:flex; flex-direction:column; gap:14px; }
+.signal-row { display:flex; align-items:flex-start; gap:14px; }
+.signal-num { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-size:13px; font-weight:900; flex-shrink:0; color:#fff; }
+.signal-num.n1{background:#DA7756;} .signal-num.n2{background:#3D3929;} .signal-num.n3{background:#8BAF8B;} .signal-num.n4{background:#C8BEE8;color:#3D3929;} .signal-num.n5{background:#E0A88A;}
+.signal-title { font-family:'Playfair Display',serif; font-size:14px; font-weight:700; color:#3D3929; margin-bottom:2px; }
+.signal-desc { font-size:12px; line-height:1.65; color:#5C5847; }
+.signal-link { display:inline-block; font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color:#DA7756; text-decoration:none; margin-top:4px; border-bottom:1px solid rgba(218,119,86,.3); }
+
+/* Themes */
+.themes-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.theme-item { padding:10px 14px; border-radius:8px; font-family:'Playfair Display',serif; font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; text-align:center; border:1.5px solid rgba(61,57,41,.12); }
+
+/* Tool of week */
+.tool-week { background:#DA7756; color:#fff; border-radius:12px; padding:18px 20px; text-align:center; margin-top:14px; }
+.tool-week-eyebrow { font-size:9px; letter-spacing:4px; text-transform:uppercase; opacity:.75; margin-bottom:6px; }
+.tool-week-name { font-family:'Playfair Display',serif; font-size:22px; font-weight:900; margin-bottom:4px; }
+.tool-week-desc { font-size:11.5px; opacity:.85; font-style:italic; }
+
+/* Footer */
+.footer-card { background:#3D3929; color:#F0ECE0; border-radius:4px 4px 20px 20px; padding:28px 40px; text-align:center; margin-top:3px; }
+.footer-title { font-family:'Playfair Display',serif; font-size:15px; font-weight:900; letter-spacing:3px; text-transform:uppercase; margin-bottom:6px; }
+.footer-sub { font-size:10px; letter-spacing:2px; text-transform:uppercase; opacity:.5; }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- COVER -->
+  <div class="cover-card">
+    <div class="cover-eyebrow">ISSUE 033 · JUNE 27, 2026</div>
+    <div class="cover-title">TIMPS PostCards</div>
+    <div class="cover-sub">AI Intelligence Digest · Your Daily Signal from the Machine Frontier</div>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+      <span>Hyderabad, India</span>
+      <span>Vol. 03 · No. 033</span>
+      <span>7 Lead Stories</span>
+    </div>
+    <div class="cover-badge">⬡ Built with the TIMPS Ecosystem</div>
+    <div class="top5-pill">
+      <span class="pill">Memory Chip Crunch</span>
+      <span class="pill light">Frontier Model Oversight</span>
+      <span class="pill light">$1B+ Funding Week</span>
+    </div>
+  </div>
+
+  <div class="section-label">Lead Story</div>
+
+  <!-- STORY 1 — LEAD — Apple -->
+  <div class="story-card card-lavender">
+    <div class="page-chip">01 · LEAD</div>
+    <div class="card-routine">Markets · Hardware</div>
+    <h1 class="card-headline lg">The Memory Crunch Finally Reaches Your Cart</h1>
+    <div class="card-deck">Apple spent a year shielding customers from soaring AI-driven chip costs. This week, for the first time in its modern history, it stopped.</div>
+    <div class="img-frame">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Aerial%20view%20of%20Apple%20Park%20dllu.jpg" alt="Aerial view of Apple Park, Cupertino" onerror="this.style.display='none'">
+      <div class="img-caption">Apple Park, Cupertino — staging ground for the company's broadest mid-cycle price action in years. <a href="https://commons.wikimedia.org/wiki/File:Aerial_view_of_Apple_Park_dllu.jpg" target="_blank">Source ↗</a></div>
+    </div>
+    <div class="card-body clearfix">
+      <p class="drop">Apple raised prices across roughly fifteen product lines this week — Macs, iPads, the Vision Pro, HomePod, and Apple TV — the most sweeping mid-cycle price action in the company's modern history. The MacBook Neo jumped from $599 to $699, the MacBook Air rose to $1,299, and the 14-inch MacBook Pro climbed $300 to $1,999.</p>
+      <p>Outgoing CEO Tim Cook told <em>The Wall Street Journal</em> the situation had become unsustainable, describing the global memory and storage shortage as a <span class="hl-terra">"hundred-year flood"</span> unlike anything he'd seen in over four decades in the business.</p>
+      <p>The root cause sits upstream. DRAM and high-bandwidth memory suppliers are redirecting capacity toward AI data centers, where demand has become effectively bottomless. Counterpoint Research pegs the price increase at roughly fourfold over the past three quarters, and memory maker Micron's gross margin has rocketed from 39% to nearly 85% — eclipsing both Nvidia and Meta.</p>
+      <p>Analysts read the move as a preview, not an isolated event. With the iPhone untouched for now, expectations are building for a price increase when the iPhone 18 launches this fall — DRAM that cost Apple roughly $39 per unit in last year's Pro model could run closer to $145 this time around.</p>
+    </div>
+    <a href="https://www.inc.com/jason-aten/apples-price-increase-is-finally-here-its-about-branding-as-much-as-ram/91365742" target="_blank" class="source-link">Full story · Inc.</a>
+  </div>
+
+  <div class="section-label">Policy &amp; Governance</div>
+
+  <!-- STORY 2 — White House / GPT-5.6 -->
+  <div class="story-card card-blush">
+    <div class="page-chip">02 · POLICY</div>
+    <div class="card-routine">AI Governance</div>
+    <h2 class="card-headline">Washington Puts a Leash on GPT-5.6</h2>
+    <div class="card-deck">For the first time, the U.S. government has asked an American AI lab to limit a frontier model's release before it ever reaches the public.</div>
+    <div class="card-body clearfix">
+      <p class="drop">The White House's Office of the National Cyber Director and Office of Science and Technology Policy asked OpenAI to release GPT-5.6 only to a small group of government-approved partners, rather than the general public, citing the model's advanced capabilities.</p>
+      <p>CEO Sam Altman told staff the government would be approving access <span class="hl-ink">"customer by customer"</span> during a preview period, with a broader rollout expected in a couple of weeks. Commerce Secretary Howard Lutnick reportedly pressed Altman directly to hold off until relevant agencies signed off.</p>
+      <p>The intervention follows the Commerce Department's June 12 export-control order forcing Anthropic to pull its Fable 5 and Mythos 5 models offline for foreign nationals, after officials judged both labs' newest models to carry comparable cybersecurity capability.</p>
+      <p>Altman was blunt that the arrangement isn't one he wants to repeat for future launches — even as he agreed to it for now. The episode lands without any finished federal framework: Trump's AI security executive order calls for a voluntary 30-day pre-release review, but the mechanics remain unbuilt weeks later.</p>
+    </div>
+    <a href="https://www.axios.com/2026/06/25/trump-administration-openai-gpt-model-release" target="_blank" class="source-link">Full story · Axios</a>
+  </div>
+
+  <!-- STORY 3 — Anthropic / Alibaba -->
+  <div class="story-card card-lavender">
+    <div class="page-chip">03 · SECURITY</div>
+    <div class="card-routine">AI Security · Policy</div>
+    <h2 class="card-headline">Anthropic Tells the Senate: Alibaba Ran the Biggest Claude Heist Yet</h2>
+    <div class="card-deck">A letter to two senators accuses Alibaba's Qwen lab of harvesting tens of millions of Claude exchanges through fraudulent accounts.</div>
+    <div class="stat-box">
+      <span class="stat-big">28.8M</span>
+      <span class="stat-label">Unauthorized Exchanges</span>
+    </div>
+    <div class="card-body">
+      <p class="drop">In a June 10 letter to the Senate Banking Committee, Anthropic accused operators tied to Alibaba's Qwen lab of running what it called the largest known distillation attack against Claude to date — nearly 29 million exchanges over six weeks through roughly 25,000 fraudulent accounts.</p>
+      <p>Anthropic's head of policy told senators the campaign was carried out <span class="hl-lav">"illicitly, systematically, and at industrial scale"</span> to harvest U.S. AI capability without bearing the training cost involved.</p>
+      <p>The scale dwarfs Anthropic's prior disclosures. In February, the company flagged a combined 16 million exchanges across DeepSeek, Moonshot AI, and MiniMax. The alleged Alibaba operation alone exceeds that combined total by nearly 75%.</p>
+      <p>Two days after the letter, the Commerce Department issued the export-control order pulling Anthropic's own Fable 5 and Mythos 5 offline for foreign nationals — a timing coincidence fueling debate over whether national-security framing is settling a commercial dispute Congress, not courts, is now being asked to referee.</p>
+    </div>
+    <a href="https://www.cnbc.com/2026/06/24/anthropic-alibaba-distillation-campaign.html" target="_blank" class="source-link">Full story · CNBC</a>
+  </div>
+
+  <div class="section-label">Funding</div>
+
+  <!-- STORY 4 — General Intuition -->
+  <div class="story-card card-blush">
+    <div class="page-chip">04 · FUNDING</div>
+    <div class="card-routine">Funding · Robotics</div>
+    <h2 class="card-headline">From Fortnite to Forklifts: $320M for an AI That Learned to Act by Watching Gamers</h2>
+    <div class="card-deck">General Intuition is teaching one model to play battle royale and pilot a quadruped robot — investors just priced that bet at $2.3 billion.</div>
+    <div class="stat-box">
+      <span class="stat-big">$2.3B</span>
+      <span class="stat-label">Valuation</span>
+    </div>
+    <div class="card-body">
+      <p class="drop">General Intuition closed a $320 million round at a $2.3 billion valuation, led by Khosla Ventures with Jeff Bezos, Eric Schmidt, and General Catalyst joining in — just three months after a $134 million seed.</p>
+      <p>The startup, spun out of gaming clip platform Medal, trains its models on hundreds of millions of hours of gameplay footage carrying exact button-press action labels — not just video — teaching spatial and temporal reasoning that transfers from virtual worlds into physical ones.</p>
+      <p>The proof point: the same underlying model that's been playing a Fortnite-style game for over 100 hours straight also drives a quadrupedal robot that learned to navigate an unfamiliar office after just eight minutes of real-world fine-tuning.</p>
+      <p>CEO Pim de Witte has turned down a reported $500 million data-acquisition offer from OpenAI and multiple later approaches, betting that the company's action-labeled gameplay dataset makes it a foundational model provider for robotics and autonomous systems rather than an acqui-hire target.</p>
+    </div>
+    <a href="https://techcrunch.com/2026/06/25/general-intuitions-2-3b-bet-that-video-games-can-train-ai-agents-for-the-real-world/" target="_blank" class="source-link">Full story · TechCrunch</a>
+  </div>
+
+  <div class="section-label">Research</div>
+
+  <!-- STORY 5 — Microsoft quantum -->
+  <div class="story-card card-lavender">
+    <div class="page-chip">05 · RESEARCH</div>
+    <div class="card-routine">Research · Quantum</div>
+    <h2 class="card-headline sm">A Physicist Says Microsoft's Quantum Breakthrough Might Just Be Noise</h2>
+    <div class="card-deck">A peer-reviewed critique in <em>Nature</em> argues the data behind Microsoft's topological qubit claim doesn't show what the company says it shows.</div>
+    <div class="card-body">
+      <p class="drop">University of St Andrews physicist Henry Legg published a formal critique in <em>Nature</em> arguing that Microsoft's February 2025 Majorana paper relied on a flawed detection protocol and selective presentation of data that, in raw form, looks more like disorder than proof of a topological qubit.</p>
+      <p>Legg's analysis says Microsoft's plotting code was set to highlight only the most favorable region of its results, and that when reviewers asked about other regions, the company said it had examined only the one that passed its own protocol.</p>
+      <p>Microsoft is standing by its work. Technical Fellow Chetan Nayak said the company remains <span class="hl-terra">confident in its roadmap</span> and pointed to continued evaluation under DARPA's Quantum Benchmarking Initiative, which has moved Microsoft into its final assessment phase.</p>
+      <p>It's the third round of controversy for Microsoft's two-decade bet on topological qubits, following two prior <em>Nature</em> retractions in 2018 and 2021 — and it lands just as rivals Google and IBM keep advancing a different, superconducting-qubit architecture.</p>
+    </div>
+    <a href="https://www.scientificamerican.com/article/top-quantum-computer-expert-claims-microsofts-topological-qubit-doesnt-hold-up/" target="_blank" class="source-link">Full story · Scientific American</a>
+  </div>
+
+  <!-- STORY 6 — Groq -->
+  <div class="story-card card-blush">
+    <div class="page-chip">06 · FUNDING</div>
+    <div class="card-routine">Funding · AI Chips</div>
+    <h2 class="card-headline">Groq Loses Its Founder to Nvidia, Then Raises $650M Anyway</h2>
+    <div class="card-deck">Six months after a $20 billion not-acquisition stripped its leadership, the inference chipmaker is betting its comeback on cloud, not silicon.</div>
+    <div class="stat-box">
+      <span class="stat-big">$650M</span>
+      <span class="stat-label">New Funding</span>
+    </div>
+    <div class="card-body">
+      <p class="drop">Groq confirmed a $650 million round led by existing backers Disruptive and Infinitum, roughly six months after Nvidia paid an estimated $20 billion for a non-exclusive license to Groq's chip technology and hired away founder-CEO Jonathan Ross, president Sunny Madra, and several senior engineers.</p>
+      <p>Rather than competing head-on with Nvidia in hardware, new CEO Doug Wightman is pushing Groq's "neocloud" business — renting out inference capacity across 13 data centers that already serve more than five million developers and process trillions of tokens a week.</p>
+      <p>The rebuilt leadership leans heavily on outside operators: COO Alan Rice arrives via xAI and Meta by way of the U.S. Navy, while new CTO Sinclair Schuller and CPO Rakesh Malhotra previously built and sold an enterprise software firm to EY.</p>
+      <p>The math is still unsettled. Nvidia has folded Groq's licensed IP into its own inference hardware, and falling per-token pricing across the industry — DeepSeek recently cut its V4 Pro rate by 75% — means Groq's comeback now hinges on execution in a market it no longer controls alone.</p>
+    </div>
+    <a href="https://techcrunch.com/2026/06/22/ai-chipmaker-groq-confirms-650m-raise-re-staffs-after-nvidias-20b-not-acqui-hire-deal/" target="_blank" class="source-link">Full story · TechCrunch</a>
+  </div>
+
+  <div class="section-label">Enterprise AI</div>
+
+  <!-- STORY 7 — OpenAI Codex -->
+  <div class="story-card card-lavender">
+    <div class="page-chip">07 · ADOPTION</div>
+    <div class="card-routine">Enterprise AI · Adoption</div>
+    <h2 class="card-headline sm">OpenAI's Own Researchers Are Now 56x Deeper Into Codex</h2>
+    <div class="card-deck">A new internal report turns OpenAI itself into the case study for how fast agentic coding tools spread once they leave the engineering org.</div>
+    <div class="stat-box">
+      <span class="stat-big">56x</span>
+      <span class="stat-label">Research Growth</span>
+    </div>
+    <div class="card-body">
+      <p class="drop">OpenAI says median internal Codex output-token usage has grown 56 times in its Research function since November 2025, with Customer Support up 32 times, Engineering up 27 times, and even Legal — a department with no obvious coding workload — up 13 times.</p>
+      <p>The company frames Codex's spread as a leading indicator for how agentic tools change work generally: tasks are getting longer-running, more cross-functional, and less confined to a single department's toolkit.</p>
+      <p>Non-developer adoption is the more striking trend line. OpenAI reports individual non-developer usage of Codex up 137 times and organizational non-developer usage up 189 times since August 2025, with non-developers now making up roughly a fifth of Codex's weekly users — adopting three times faster than engineers.</p>
+      <p>The numbers are self-reported by the company selling the product, a caveat worth holding onto. But directionally, they echo what builders elsewhere are already describing: agentic coding tools quietly becoming general-purpose work tools, not just developer tools.</p>
+    </div>
+    <a href="https://openai.com/index/how-agents-are-transforming-work" target="_blank" class="source-link">Full story · OpenAI</a>
+  </div>
+
+  <div class="section-label">5 Key Signals</div>
+
+  <!-- SIGNALS CARD -->
+  <div class="story-card card-lavender">
+    <div class="page-chip">08 · SIGNALS</div>
+    <div class="card-routine">This Week's Quick Hits</div>
+    <h2 class="card-headline sm">5 Key Signals</h2>
+    <div class="signals-grid">
+      <div class="signal-row">
+        <div class="signal-num n1">1</div>
+        <div>
+          <div class="signal-title">Gradial closes $65M Series C at a $675M valuation</div>
+          <div class="signal-desc">Insight Partners leads the round for the enterprise-marketing agent platform, whose ARR has grown more than 10x in the past year.</div>
+          <a href="https://www.axios.com/2026/06/18/gradial-ai-agents-marketing" target="_blank" class="signal-link">Axios ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n2">2</div>
+        <div>
+          <div class="signal-title">OpenAI and Broadcom unveil Jalapeño, OpenAI's first custom chip</div>
+          <div class="signal-desc">The inference-only ASIC reportedly cuts compute costs by roughly 50% versus comparable GPUs, after a nine-month design cycle.</div>
+          <a href="https://www.cnbc.com/2026/06/24/openai-and-broadcom-reveal-jalapeno-first-ai-chip-in-partnership.html" target="_blank" class="signal-link">CNBC ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n3">3</div>
+        <div>
+          <div class="signal-title">Claude Tag turns Claude into a persistent Slack teammate</div>
+          <div class="signal-desc">Anthropic says 65% of its own product team's code now runs through the internal version of the tool, including most of what built Claude Tag itself.</div>
+          <a href="https://venturebeat.com/technology/anthropic-launches-claude-tag-replacing-its-slack-app-with-a-persistent-ai-teammate-that-learns-monitors-and-works-autonomously" target="_blank" class="signal-link">VentureBeat ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n4">4</div>
+        <div>
+          <div class="signal-title">Micron's margins triple as the memory crunch turns into a windfall</div>
+          <div class="signal-desc">Gross margin jumped from 39% to nearly 85% in a year, putting the chipmaker ahead of both Nvidia and Meta on that measure.</div>
+          <a href="https://finance.yahoo.com/technology/news/apple-stock-in-the-spotlight-after-reportedly-raising-mac-ipad-prices-tim-cook-calls-it-a-hundred-year-flood/" target="_blank" class="signal-link">Yahoo Finance ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n5">5</div>
+        <div>
+          <div class="signal-title">DeepSeek cuts inference pricing 75% on V4 Pro</div>
+          <div class="signal-desc">The move intensifies a token-price war that's squeezing Groq and other inference-focused chip makers just as they try to rebuild.</div>
+          <a href="https://mlq.ai/news/groq-raises-650m-from-existing-backers-to-build-ai-inference-cloud-after-nvidias-20b-deal/" target="_blank" class="signal-link">MLQ News ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">Themes, Tool &amp; Sources</div>
+
+  <!-- THEMES + TOOL + SOURCES CARD -->
+  <div class="story-card card-blush">
+    <div class="page-chip">09 · CLOSE</div>
+    <div class="card-routine">Top Themes This Week</div>
+    <div class="themes-grid">
+      <div class="theme-item">AI Governance</div>
+      <div class="theme-item">Memory Chip Crunch</div>
+      <div class="theme-item">Frontier Model Oversight</div>
+      <div class="theme-item">Funding Surge</div>
+      <div class="theme-item">Model Distillation</div>
+      <div class="theme-item">Quantum Skepticism</div>
+      <div class="theme-item">Agentic Enterprise Adoption</div>
+    </div>
+
+    <div class="tool-week">
+      <div class="tool-week-eyebrow">Tool of the Week</div>
+      <div class="tool-week-name">Claude Tag</div>
+      <div class="tool-week-desc">Anthropic's persistent @Claude teammate inside Slack — one shared identity per channel, with memory, tool access, and the receipts to show 65% of its own product team's code now flows through it.</div>
+    </div>
+
+    <div class="output-card">
+      <div class="output-title">Sources Cited</div>
+      <ul class="tp-list">
+        <li>Inc. — Apple's price increase, explained</li>
+        <li>Axios — White House asks OpenAI to limit GPT-5.6</li>
+        <li>CNBC — Anthropic accuses Alibaba of Claude extraction</li>
+        <li>TechCrunch — General Intuition's $2.3B bet</li>
+        <li>Scientific American — Microsoft's quantum claims questioned</li>
+        <li>TechCrunch — Groq confirms $650M raise</li>
+        <li>OpenAI — How agents are transforming work</li>
+        <li>VentureBeat — Claude Tag launches in Slack</li>
+        <li>CNBC — OpenAI &amp; Broadcom unveil Jalapeño</li>
+        <li>MLQ News — Groq's inference-market pricing pressure</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer-card">
+    <div class="footer-title">TIMPS PostCards</div>
+    <div class="footer-sub">June 27, 2026 · Hyderabad, India · Vol. 03 · Issue 033 · Built with the TIMPS Ecosystem</div>
+  </div>
+
+</div>
+</body>
+</html>

@@ -21,10 +21,15 @@ def extract_issue_info(filepath):
         content = f.read()
     date_match = re.search(r'<span>(\w+ \d+, \d{4})</span>', content)
     if not date_match:
+        date_match = re.search(r'(\w+ \d+, \d{4})', content)
+    if not date_match:
         print(f"Error: Could not find date in {filepath}")
         sys.exit(1)
     date_str = date_match.group(1)
-    issue_match = re.search(r'Issue (\d+)', content)
+    date_str = date_str[0].upper() + date_str[1:].lower() if date_str.isupper() else date_str
+    issue_match = re.search(r'[Ii]ssue (\d+)', content)
+    if not issue_match:
+        issue_match = re.search(r'No\. (\d+)', content)
     if not issue_match:
         print(f"Error: Could not find issue number in {filepath}")
         sys.exit(1)
