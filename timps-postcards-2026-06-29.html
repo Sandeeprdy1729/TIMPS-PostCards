@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TIMPS PostCards — Issue 035</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #EEECE2;
+  font-family: 'EB Garamond', Georgia, ui-serif, serif;
+  color: #3D3929;
+  padding: 40px 20px 80px;
+}
+.wrapper { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 0; }
+
+/* Cover */
+.cover-card { background: #F0ECE0; border-radius: 20px 20px 4px 4px; padding: 56px 48px 48px; text-align: center; position: relative; overflow: hidden; border: 1.5px solid rgba(61,57,41,0.12); margin-bottom: 3px; }
+.cover-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, #DA7756 0%, #BD5D3A 60%, #E0A88A 100%); }
+.cover-eyebrow { font-size:10px; letter-spacing:4px; text-transform:uppercase; color:#DA7756; margin-bottom:20px; display:flex; align-items:center; justify-content:center; gap:10px; }
+.cover-eyebrow::before,.cover-eyebrow::after { content:''; flex:1; height:1px; background:#DA7756; opacity:.35; max-width:60px; }
+.cover-title { font-family:'Playfair Display',serif; font-size:58px; font-weight:900; line-height:1; letter-spacing:-1px; color:#3D3929; margin-bottom:8px; }
+.cover-sub { font-family:'Playfair Display',serif; font-size:13px; font-style:italic; color:#5C5847; margin-bottom:28px; }
+.cover-divider { width:48px; height:2px; background:#DA7756; margin:0 auto 24px; border-radius:2px; }
+.cover-meta { display:flex; justify-content:center; gap:32px; font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color:#5C5847; }
+.cover-badge { display:inline-flex; align-items:center; gap:6px; background:#DA7756; color:#fff; border-radius:20px; padding:6px 18px; font-size:10px; letter-spacing:2px; text-transform:uppercase; margin-top:28px; }
+.top5-pill { display:flex; justify-content:center; gap:10px; margin-top:32px; flex-wrap:wrap; }
+.pill { background:#3D3929; color:#F0ECE0; border-radius:100px; padding:4px 14px; font-size:10px; letter-spacing:1px; text-transform:uppercase; }
+.pill.light { background:transparent; color:#3D3929; border:1px solid rgba(61,57,41,.2); }
+
+/* Section labels */
+.section-label { display:flex; align-items:center; gap:12px; padding:10px 0 8px; font-size:9px; letter-spacing:4px; text-transform:uppercase; color:#5C5847; }
+.section-label::before,.section-label::after { content:''; flex:1; height:1px; background:rgba(61,57,41,.15); }
+
+/* Story cards */
+.story-card { border-radius:4px; border:1.5px solid rgba(61,57,41,.10); padding:36px 40px; margin-bottom:3px; position:relative; overflow:hidden; }
+.story-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }
+
+/* Card colour classes */
+.card-lavender { background:#EAE6F5; } .card-lavender::before { background:#C8BEE8; }
+.card-sage     { background:#D6E4D6; } .card-sage::before     { background:#8BAF8B; }
+.card-blush    { background:#F5DDD0; } .card-blush::before    { background:#E0A88A; }
+.card-sky      { background:#D6E8F0; } .card-sky::before      { background:#7AAFC0; }
+.card-cream    { background:#F7F5EF; } .card-cream::before    { background:#DA7756; }
+
+/* Card typography */
+.page-chip { position:absolute; top:14px; right:16px; font-size:9px; letter-spacing:2px; text-transform:uppercase; color:#5C5847; opacity:.5; }
+.card-routine { font-size:9px; letter-spacing:4px; text-transform:uppercase; color:#5C5847; margin-bottom:8px; }
+.card-headline { font-family:'Playfair Display',serif; font-size:28px; font-weight:900; line-height:1.15; color:#3D3929; margin-bottom:10px; }
+.card-headline.lg { font-size:34px; }
+.card-headline.sm { font-size:22px; }
+.card-deck { font-family:'Playfair Display',serif; font-style:italic; font-size:14px; line-height:1.55; color:#5C5847; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid rgba(61,57,41,.15); }
+.card-body { font-size:13px; line-height:1.8; color:#3D3929; }
+.card-body p { margin-bottom:11px; }
+.two-col { column-count:2; column-gap:24px; column-rule:1px solid rgba(61,57,41,.12); }
+.drop::first-letter { font-family:'Playfair Display',serif; font-size:52px; font-weight:900; float:left; line-height:.78; margin:5px 6px 0 0; color:#DA7756; }
+.clearfix::after { content:''; display:table; clear:both; }
+
+/* Inline highlights */
+.hl-terra { background:#DA7756; color:#fff; padding:0 4px; border-radius:2px; }
+.hl-ink   { background:#3D3929; color:#F0ECE0; padding:0 4px; border-radius:2px; }
+.hl-sage  { background:#8BAF8B; color:#fff; padding:0 4px; border-radius:2px; }
+.hl-lav   { background:#C8BEE8; color:#3D3929; padding:0 4px; border-radius:2px; }
+
+/* Stat float */
+.stat-box { float:right; margin:0 0 16px 24px; background:#F0ECE0; border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:16px 20px; text-align:center; min-width:120px; }
+.stat-big { font-family:'Playfair Display',serif; font-size:44px; font-weight:900; line-height:1; color:#DA7756; display:block; }
+.stat-label { font-size:9.5px; letter-spacing:1.5px; text-transform:uppercase; color:#5C5847; display:block; margin-top:4px; }
+
+/* Source links */
+.source-link { display:inline-flex; align-items:center; gap:5px; font-size:10px; letter-spacing:1px; text-transform:uppercase; color:#DA7756; text-decoration:none; margin-top:12px; border-bottom:1px solid rgba(218,119,86,.35); padding-bottom:1px; }
+.source-link::after { content:'↗'; font-size:9px; }
+
+/* Output card (not used here but kept for parity) */
+.output-card { background:#F0ECE0; border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:18px 20px; margin-top:14px; }
+.output-title { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; margin-bottom:8px; color:#3D3929; }
+.output-meta { display:flex; gap:20px; font-size:10px; color:#5C5847; padding-bottom:10px; margin-bottom:10px; border-bottom:1px solid rgba(61,57,41,.12); flex-wrap:wrap; }
+.tp-list { list-style:none; padding:0; margin:0; }
+.tp-list li { padding:5px 0; font-size:11.5px; border-bottom:1px solid rgba(61,57,41,.07); display:flex; align-items:flex-start; gap:7px; }
+.tp-list li::before { content:'·'; color:#DA7756; font-size:14px; line-height:1.2; flex-shrink:0; }
+
+/* Signals */
+.signals-grid { display:flex; flex-direction:column; gap:14px; }
+.signal-row { display:flex; align-items:flex-start; gap:14px; }
+.signal-num { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-size:13px; font-weight:900; flex-shrink:0; color:#fff; }
+.signal-num.n1{background:#DA7756;} .signal-num.n2{background:#3D3929;} .signal-num.n3{background:#8BAF8B;} .signal-num.n4{background:#C8BEE8;color:#3D3929;} .signal-num.n5{background:#E0A88A;}
+.signal-title { font-family:'Playfair Display',serif; font-size:14px; font-weight:700; color:#3D3929; margin-bottom:2px; }
+.signal-desc { font-size:12px; line-height:1.65; color:#5C5847; }
+.signal-link { display:inline-block; font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color:#DA7756; text-decoration:none; margin-top:4px; border-bottom:1px solid rgba(218,119,86,.3); }
+
+/* Themes */
+.themes-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.theme-item { padding:10px 14px; border-radius:8px; font-family:'Playfair Display',serif; font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; text-align:center; border:1.5px solid rgba(61,57,41,.12); }
+
+/* Tool of week */
+.tool-week { background:#DA7756; color:#fff; border-radius:12px; padding:18px 20px; text-align:center; margin-top:14px; }
+.tool-week-eyebrow { font-size:9px; letter-spacing:4px; text-transform:uppercase; opacity:.75; margin-bottom:6px; }
+.tool-week-name { font-family:'Playfair Display',serif; font-size:22px; font-weight:900; margin-bottom:4px; }
+.tool-week-desc { font-size:11.5px; opacity:.85; font-style:italic; }
+
+/* Sources grid */
+.sources-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px 20px; margin-top:14px; }
+.sources-grid a { font-size:11px; color:#3D3929; text-decoration:none; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:2px; line-height:1.5; }
+
+/* Footer */
+.footer-card { background:#3D3929; color:#F0ECE0; border-radius:4px 4px 20px 20px; padding:28px 40px; text-align:center; margin-top:3px; }
+.footer-title { font-family:'Playfair Display',serif; font-size:15px; font-weight:900; letter-spacing:3px; text-transform:uppercase; margin-bottom:6px; }
+.footer-sub { font-size:10px; letter-spacing:2px; text-transform:uppercase; opacity:.5; }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- COVER -->
+  <div class="cover-card">
+    <div class="cover-eyebrow">Issue 035 · June 29, 2026</div>
+    <div class="cover-title">TIMPS PostCards</div>
+    <div class="cover-sub">AI Intelligence Digest · Your Daily Signal from the Machine Frontier</div>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+      <span>Hyderabad, India</span>
+      <span>Vol. 03 · No. 035</span>
+      <span>6 Lead Stories</span>
+    </div>
+    <div class="cover-badge">⬡ Built with the TIMPS Ecosystem</div>
+    <div class="top5-pill">
+      <span class="pill">Cyber Risk Warning</span>
+      <span class="pill light">$648B Chip Bet</span>
+      <span class="pill light">AI at the World Cup</span>
+    </div>
+  </div>
+
+  <div class="section-label">Lead Stories</div>
+
+  <!-- STORY 1 — LEAD: Five Eyes warning -->
+  <div class="story-card card-blush clearfix">
+    <div class="page-chip">01 · LEAD</div>
+    <div class="card-routine">Security · Policy</div>
+    <h1 class="card-headline lg">Five Spy Agencies Just Told the World: The AI Cyber Threat Is Months Away, Not Years</h1>
+    <p class="card-deck">A rare joint warning from the US, UK, Canada, Australia and New Zealand says frontier models are about to outpace cyber defenses — and names Anthropic's Fable 5 and OpenAI's Daybreak as the bar adversaries are racing toward.</p>
+    <div class="card-body drop">
+      <p>The Five Eyes intelligence alliance issued a joint statement this week warning that frontier AI models are improving fast enough to overwhelm current cybersecurity practices within months. "The timeline is not years, it is months," the agencies wrote, signed by leaders including the NSA's Cybersecurity Directorate and the UK's National Cyber Security Centre.</p>
+      <p>The alliance expects offensive capability on par with Anthropic's Fable 5 and OpenAI's Daybreak to reach the general public within twelve months, even as labs try to restrict access — because open-source releases have historically trailed commercial frontier models by only about half a year. The warning follows a US directive ordering Anthropic to suspend foreign-national access to its Mythos and Fable 5 models, and a tightened CISA patch mandate cutting the federal response window to 72 hours.</p>
+      <p>Rather than addressing IT departments, the statement is aimed squarely at boards and executives, framing AI-driven cyber risk as a business continuity issue rather than a technical one. "Breaches will occur," the agencies wrote. "Preparedness helps you contain them quickly."</p>
+    </div>
+    <a href="https://cyberscoop.com/five-eyes-alliance-say-advanced-ai-hacking-models-months-away/" target="_blank" class="source-link">Full story · CyberScoop</a>
+  </div>
+
+  <!-- STORY 2 — Samsung $648B -->
+  <div class="story-card card-lavender clearfix">
+    <div class="page-chip">02 · HARDWARE</div>
+    <div class="card-routine">Markets · Semiconductors</div>
+    <h2 class="card-headline">Samsung Readies a $648 Billion Bet to Win the AI Hardware Decade</h2>
+    <p class="card-deck">A decade-long, 1,000 trillion won commitment to memory chips, AI data centres and new fabs outside Seoul is the largest investment pledge any South Korean company has ever made.</p>
+    <div class="stat-box">
+      <span class="stat-big">$648B</span>
+      <span class="stat-label">Decade-Long Pledge</span>
+    </div>
+    <div class="card-body drop">
+      <p>Samsung Group formally announced a 1,000 trillion won — roughly $648 billion — investment plan this week at a briefing chaired by President Lee Jae Myung, covering AI data centres, batteries, displays and a possible 300 trillion won push to build new semiconductor fabs in the country's southwest. The presidential office framed it alongside SK Hynix's own commitments as one of three "mega-projects," spanning semiconductors, AI data centres and robotics.</p>
+      <p>The scale reflects how fast AI-driven memory demand has outrun previous roadmaps: South Korea's government had projected roughly $471 billion in sector-wide spending through 2047, but officials now say AI demand for high-bandwidth memory is growing so quickly that fabs originally planned for the 2040s may need to open in the mid-2030s instead. Samsung remains the world's largest DRAM producer by revenue with a 38% market share, ahead of SK Hynix at 29% and Micron at 22%.</p>
+      <p>The plan has become politically charged at home — moving production away from Seoul is meant to ease space, power and water bottlenecks, but opposition lawmakers argue the southwest site placement is being driven by regional politics rather than pure engineering logic.</p>
+    </div>
+    <a href="https://www.business-standard.com/amp/world-news/samsung-to-unveil-648-bn-investment-plan-as-ai-boom-reshapes-south-korea-126062600299_1.html" target="_blank" class="source-link">Full story · Business Standard / Reuters</a>
+  </div>
+
+  <!-- STORY 3 — AI Drone Rescue -->
+  <div class="story-card card-blush clearfix">
+    <div class="page-chip">03 · PUBLIC SAFETY</div>
+    <div class="card-routine">Robotics · Search &amp; Rescue</div>
+    <h2 class="card-headline">A Thermal-Imaging Drone Found Two Lost Hikers in the Dark — In Under Five Hours</h2>
+    <p class="card-deck">Fire and Rescue NSW's first operational use of an AI detection system turned what could have been a multi-day search in Kosciuszko National Park into a same-night rescue.</p>
+    <div class="stat-box">
+      <span class="stat-big">5hrs</span>
+      <span class="stat-label">Reported Missing To Rescued</span>
+    </div>
+    <div class="card-body drop">
+      <p>Two hikers in their 20s went missing near the Dead Horse Gap trail in Kosciuszko National Park after failing to return to a rendezvous point on Tuesday evening. Firefighters from Jindabyne launched a remotely piloted drone fitted with thermal imaging and an AI detection system, which spotted the pair roughly 500 metres off the walking track in the dark.</p>
+      <p>The AI software flagged the heat signatures first; the thermal camera then zoomed in to confirm the find, while the hikers — unable to be reached by radio — signalled back using a red light from a mobile phone. The drone's onboard spotlight then guided ground crews from NSW Police and the State Emergency Service in for the final approach.</p>
+      <p>Fire and Rescue NSW says this marked the first successful operational use of the drone's AI detection system for a live rescue, and that it will keep refining the technology for future emergency callouts. Both hikers suffered mild exposure but declined medical treatment.</p>
+    </div>
+    <a href="https://www.fire.nsw.gov.au/media/news/2026/20260625-fire-and-rescue-nsw-drone-team-locates-missing-hikers-using-ai-technology" target="_blank" class="source-link">Full story · Fire and Rescue NSW</a>
+  </div>
+
+  <!-- STORY 4 — Slash Vibe Coding -->
+  <div class="story-card card-lavender clearfix">
+    <div class="page-chip">04 · GOVERNANCE</div>
+    <div class="card-routine">Cost Control · Vibe Coding</div>
+    <h2 class="card-headline">A Fintech Told Staff to "Vibe Code" More. One Employee Burned $81,267 in a Week.</h2>
+    <p class="card-deck">Slash's head of strategic verticals built a viral meme shooter game with AI coding tools — and an internal usage dashboard showing the real cost of letting an agent run unsupervised.</p>
+    <div class="stat-box">
+      <span class="stat-big">$81K</span>
+      <span class="stat-label">In One Week, One Employee</span>
+    </div>
+    <div class="card-body drop">
+      <p>San Francisco-based fintech startup Slash encouraged its team to experiment more with AI-assisted "vibe coding" last week. Nicolas Brillante, the company's head of strategic verticals, took that literally: he spent a day building <span class="hl-terra">Brainrot Shooter</span>, a Minecraft-style game where players fight meme characters like Skibidi Toilet, using Anthropic's Claude to write and rewrite the code.</p>
+      <p>By the end of the week, his AI usage dashboard showed total spend of $81,267 — racked up largely from repeated rounds of asking Claude to analyze and rewrite large amounts of code. "This was a genuine accident, i underestimated my own ability," Brillante posted on X, later joking he might become "a case study for how AI spend can get out of control."</p>
+      <p>Slash posted the bill publicly and is now reviewing its AI coding policy, joining Uber, Coinbase and Walmart, which have all imposed spending caps after similar runaway-token incidents. Data from fintech firm Ramp shows the top 1% of companies already spend about $7,500 per employee per month on AI tools — against a median of just $11.38.</p>
+    </div>
+    <a href="https://www.explainx.ai/blog/slash-fintech-80k-ai-bill-claude-token-cost-control-2026" target="_blank" class="source-link">Full story · explainx.ai</a>
+  </div>
+
+  <!-- STORY 5 — Mistral OCR 4 -->
+  <div class="story-card card-blush clearfix">
+    <div class="page-chip">05 · DOCUMENT AI</div>
+    <div class="card-routine">Enterprise · Infrastructure</div>
+    <h2 class="card-headline sm">Mistral's New OCR Model Doesn't Just Read Documents — It Maps Them</h2>
+    <p class="card-deck">OCR 4 returns bounding boxes, block types and per-word confidence scores in 170 languages, and ships in a single self-hosted container for regulated industries that can't send data to the cloud.</p>
+    <div class="stat-box">
+      <span class="stat-big">170</span>
+      <span class="stat-label">Languages Supported</span>
+    </div>
+    <div class="card-body drop">
+      <p>Mistral released OCR 4 this week, its fourth document-intelligence generation in roughly fifteen months. Rather than returning flat text, it classifies every block on a page — title, table, equation, signature — with a localized bounding box and a confidence score, output that previously required a separate layout-analysis step bolted onto raw OCR text.</p>
+      <p>Mistral reports a 93.07 score on OmniDocBench and a 72% average win rate against rival systems in blind human evaluation across 600-plus documents in 12-plus languages, while flagging its own benchmark limitations around ground-truth errors and equation-formatting mismatches. Pricing starts at $4 per 1,000 pages, undercutting some hyperscaler structured-extraction tiers by up to 15x.</p>
+      <p>The single-container self-hosting option is the headline for regulated buyers: healthcare, finance and legal teams that can't route sensitive documents through a US-jurisdiction cloud API now have a path to keep document intelligence entirely on-premises.</p>
+    </div>
+    <a href="https://venturebeat.com/data/mistral-launches-ocr-4-turning-document-extraction-into-a-full-enterprise-ai-play" target="_blank" class="source-link">Full story · VentureBeat</a>
+  </div>
+
+  <!-- STORY 6 — FIFA AI Offside -->
+  <div class="story-card card-lavender clearfix">
+    <div class="page-chip">06 · SPORTS TECH</div>
+    <div class="card-routine">Computer Vision · Officiating</div>
+    <h2 class="card-headline sm">A Smart Ball Just Overruled a Linesman at the World Cup — And Got It Right</h2>
+    <p class="card-deck">In Monterrey, a sensor inside the match ball caught a touch the human eye and the cameras both missed, reversing an offside call and restoring a goal.</p>
+    <div class="card-body drop">
+      <p>During Sweden's June 15 match against Tunisia, substitute Mattias Svanberg scored with his first touch — only for the linesman's flag to call it back for offside. Video review overturned the call: the official Adidas Trionda match ball, fitted with a 500Hz motion sensor, had registered a faint flick off Alexander Isak that reset the play and left Svanberg legally onside, a touch no camera angle had caught.</p>
+      <p>FIFA's semi-automated offside system fuses that ball-sensor timing with more than 150 million player-tracking points per match from stadium cameras, plus individually 3D-scanned digital twins of all 1,248 tournament players, to reconstruct exactly where every body part was at the instant of a pass. The system is deliberately narrow: it measures position, not intent, leaving the judgment of whether a player interfered with play to the human referee.</p>
+      <p>It's the clearest public demonstration yet of a pattern repeating across this tournament — AI handling the objective measurement at machine speed, while accountability for the final call stays with a person.</p>
+    </div>
+    <a href="https://www.geekwire.com/2026/etzioni-on-ai-what-the-world-cup-tells-us-about-the-best-roles-for-humans-and-machines/" target="_blank" class="source-link">Full story · GeekWire</a>
+  </div>
+
+  <div class="section-label">5 Key Signals</div>
+
+  <!-- SIGNALS CARD -->
+  <div class="story-card card-blush">
+    <div class="page-chip">07 · SIGNALS</div>
+    <div class="card-routine">This Week's Quick Hits</div>
+    <h2 class="card-headline sm">5 Key Signals</h2>
+    <div class="signals-grid" style="margin-top:18px;">
+      <div class="signal-row">
+        <div class="signal-num n1">1</div>
+        <div>
+          <div class="signal-title">SK Hynix now outvalues Samsung Electronics</div>
+          <div class="signal-desc">SK Hynix's market cap has surpassed Samsung's, reaching roughly $1.35 trillion, as both race to capture AI-driven demand for high-bandwidth memory.</div>
+          <a href="https://parameter.io/south-koreas-tech-giants-set-to-unveil-massive-648b-chip-manufacturing-initiative/" target="_blank" class="signal-link">Parameter ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n2">2</div>
+        <div>
+          <div class="signal-title">Uber, Coinbase and Walmart now cap employee AI spend</div>
+          <div class="signal-desc">All three have introduced limits on AI coding tool usage after runaway-token incidents, with Walmart citing repetitive, unnecessary vibe coding specifically.</div>
+          <a href="https://coinedition.com/ai-coding-experiment-leaves-fintech-startup-with-80k-bill/" target="_blank" class="signal-link">Coin Edition ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n3">3</div>
+        <div>
+          <div class="signal-title">FRNSW says it will keep refining drone AI for other emergencies</div>
+          <div class="signal-desc">Officials credited the thermal-AI system with likely turning what could have been a multi-day search into a single-night rescue.</div>
+          <a href="https://letsdatascience.com/news/fire-and-rescue-nsw-uses-ai-drone-to-locate-lost-hikers-e39cb79b" target="_blank" class="signal-link">Let's Data Science ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n4">4</div>
+        <div>
+          <div class="signal-title">Mistral OCR 4 undercuts hyperscaler structured extraction</div>
+          <div class="signal-desc">At $4 per 1,000 pages, OCR 4's structured tier comes in well below Azure's comparable custom document tier — by as much as 15x on some estimates.</div>
+          <a href="https://www.digitalapplied.com/blog/mistral-ocr-4-document-ai-business-automation-2026" target="_blank" class="signal-link">Digital Applied ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n5">5</div>
+        <div>
+          <div class="signal-title">FIFA's offside cameras log 150M+ tracking points per match</div>
+          <div class="signal-desc">Sixteen optical cameras per stadium, a 500Hz ball sensor, and 29-point digital skeletons per player power officiating that resolves disputed offsides in seconds, not minutes.</div>
+          <a href="https://labelyourdata.com/articles/world-cup-offside-ai-technology" target="_blank" class="signal-link">Label Your Data ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">Themes, Tool &amp; Sources</div>
+
+  <!-- THEMES + TOOL + SOURCES CARD -->
+  <div class="story-card card-lavender">
+    <div class="page-chip">08 · CLOSE</div>
+    <div class="card-routine">Top Themes This Week</div>
+    <div class="themes-grid">
+      <div class="theme-item">Cyber Risk Acceleration</div>
+      <div class="theme-item">AI Hardware Supercycle</div>
+      <div class="theme-item">Search &amp; Rescue Automation</div>
+      <div class="theme-item">Vibe Coding Cost Governance</div>
+      <div class="theme-item">Document Intelligence</div>
+      <div class="theme-item">Memory Chip Investment Race</div>
+      <div class="theme-item">AI-Officiated Sports</div>
+    </div>
+
+    <div class="tool-week">
+      <div class="tool-week-eyebrow">Tool of the Week</div>
+      <div class="tool-week-name">Claude Code</div>
+      <div class="tool-week-desc">The agentic coding tool behind this week's $81,267 cautionary tale — genuinely powerful for shipping fast, genuinely worth putting a spend cap on before you hand someone the keys.</div>
+    </div>
+
+    <div class="card-routine" style="margin-top:22px;">Sources Cited</div>
+    <div class="sources-grid">
+      <a href="https://cyberscoop.com/five-eyes-alliance-say-advanced-ai-hacking-models-months-away/" target="_blank">CyberScoop — Five Eyes AI cyber warning</a>
+      <a href="https://www.business-standard.com/amp/world-news/samsung-to-unveil-648-bn-investment-plan-as-ai-boom-reshapes-south-korea-126062600299_1.html" target="_blank">Business Standard — Samsung $648B plan</a>
+      <a href="https://www.fire.nsw.gov.au/media/news/2026/20260625-fire-and-rescue-nsw-drone-team-locates-missing-hikers-using-ai-technology" target="_blank">Fire and Rescue NSW — AI drone rescue</a>
+      <a href="https://www.explainx.ai/blog/slash-fintech-80k-ai-bill-claude-token-cost-control-2026" target="_blank">explainx.ai — Slash $81K token bill</a>
+      <a href="https://venturebeat.com/data/mistral-launches-ocr-4-turning-document-extraction-into-a-full-enterprise-ai-play" target="_blank">VentureBeat — Mistral OCR 4</a>
+      <a href="https://www.geekwire.com/2026/etzioni-on-ai-what-the-world-cup-tells-us-about-the-best-roles-for-humans-and-machines/" target="_blank">GeekWire — AI at the World Cup</a>
+      <a href="https://parameter.io/south-koreas-tech-giants-set-to-unveil-massive-648b-chip-manufacturing-initiative/" target="_blank">Parameter — SK Hynix valuation</a>
+      <a href="https://coinedition.com/ai-coding-experiment-leaves-fintech-startup-with-80k-bill/" target="_blank">Coin Edition — Corporate AI spend caps</a>
+      <a href="https://letsdatascience.com/news/fire-and-rescue-nsw-uses-ai-drone-to-locate-lost-hikers-e39cb79b" target="_blank">Let's Data Science — FRNSW drone detail</a>
+      <a href="https://www.digitalapplied.com/blog/mistral-ocr-4-document-ai-business-automation-2026" target="_blank">Digital Applied — Mistral OCR 4 pricing</a>
+      <a href="https://labelyourdata.com/articles/world-cup-offside-ai-technology" target="_blank">Label Your Data — World Cup offside AI</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer-card">
+    <div class="footer-title">TIMPS PostCards</div>
+    <div class="footer-sub">June 29, 2026 · Hyderabad, India · Vol. 03 · Issue 035 · Built with the TIMPS Ecosystem</div>
+  </div>
+
+</div>
+</body>
+</html>
