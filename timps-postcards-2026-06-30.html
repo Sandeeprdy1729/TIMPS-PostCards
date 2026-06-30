@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>TIMPS PostCards — Issue 036</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #EEECE2;
+  font-family: 'EB Garamond', Georgia, ui-serif, serif;
+  color: #3D3929;
+  padding: 40px 20px 80px;
+}
+.wrapper { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 0; }
+
+/* Cover */
+.cover-card { background: #F0ECE0; border-radius: 20px 20px 4px 4px; padding: 56px 48px 48px; text-align: center; position: relative; overflow: hidden; border: 1.5px solid rgba(61,57,41,0.12); margin-bottom: 3px; }
+.cover-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, #DA7756 0%, #BD5D3A 60%, #E0A88A 100%); }
+.cover-eyebrow { font-size:10px; letter-spacing:4px; text-transform:uppercase; color:#DA7756; margin-bottom:20px; display:flex; align-items:center; justify-content:center; gap:10px; }
+.cover-eyebrow::before,.cover-eyebrow::after { content:''; flex:1; height:1px; background:#DA7756; opacity:.35; max-width:60px; }
+.cover-title { font-family:'Playfair Display',serif; font-size:58px; font-weight:900; line-height:1; letter-spacing:-1px; color:#3D3929; margin-bottom:8px; }
+.cover-sub { font-family:'Playfair Display',serif; font-size:13px; font-style:italic; color:#5C5847; margin-bottom:28px; }
+.cover-divider { width:48px; height:2px; background:#DA7756; margin:0 auto 24px; border-radius:2px; }
+.cover-meta { display:flex; justify-content:center; gap:32px; font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color:#5C5847; }
+.cover-badge { display:inline-flex; align-items:center; gap:6px; background:#DA7756; color:#fff; border-radius:20px; padding:6px 18px; font-size:10px; letter-spacing:2px; text-transform:uppercase; margin-top:28px; }
+.top5-pill { display:flex; justify-content:center; gap:10px; margin-top:32px; flex-wrap:wrap; }
+.pill { background:#3D3929; color:#F0ECE0; border-radius:100px; padding:4px 14px; font-size:10px; letter-spacing:1px; text-transform:uppercase; }
+.pill.light { background:transparent; color:#3D3929; border:1px solid rgba(61,57,41,.2); }
+
+/* Section labels */
+.section-label { display:flex; align-items:center; gap:12px; padding:10px 0 8px; font-size:9px; letter-spacing:4px; text-transform:uppercase; color:#5C5847; }
+.section-label::before,.section-label::after { content:''; flex:1; height:1px; background:rgba(61,57,41,.15); }
+
+/* Story cards */
+.story-card { border-radius:4px; border:1.5px solid rgba(61,57,41,.10); padding:36px 40px; margin-bottom:3px; position:relative; overflow:hidden; }
+.story-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }
+
+/* Card colour classes */
+.card-lavender { background:#EAE6F5; } .card-lavender::before { background:#C8BEE8; }
+.card-sage     { background:#D6E4D6; } .card-sage::before     { background:#8BAF8B; }
+.card-blush    { background:#F5DDD0; } .card-blush::before    { background:#E0A88A; }
+.card-sky      { background:#D6E8F0; } .card-sky::before      { background:#7AAFC0; }
+.card-cream    { background:#F7F5EF; } .card-cream::before    { background:#DA7756; }
+
+/* Card typography */
+.page-chip { position:absolute; top:14px; right:16px; font-size:9px; letter-spacing:2px; text-transform:uppercase; color:#5C5847; opacity:.5; }
+.card-routine { font-size:9px; letter-spacing:4px; text-transform:uppercase; color:#5C5847; margin-bottom:8px; }
+.card-headline { font-family:'Playfair Display',serif; font-size:28px; font-weight:900; line-height:1.15; color:#3D3929; margin-bottom:10px; }
+.card-headline.lg { font-size:34px; }
+.card-headline.sm { font-size:22px; }
+.card-deck { font-family:'Playfair Display',serif; font-style:italic; font-size:14px; line-height:1.55; color:#5C5847; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid rgba(61,57,41,.15); }
+.card-body { font-size:13px; line-height:1.8; color:#3D3929; }
+.card-body p { margin-bottom:11px; }
+.two-col { column-count:2; column-gap:24px; column-rule:1px solid rgba(61,57,41,.12); }
+.drop::first-letter { font-family:'Playfair Display',serif; font-size:52px; font-weight:900; float:left; line-height:.78; margin:5px 6px 0 0; color:#DA7756; }
+.clearfix::after { content:''; display:table; clear:both; }
+
+/* Inline highlights */
+.hl-terra { background:#DA7756; color:#fff; padding:0 4px; border-radius:2px; }
+.hl-ink   { background:#3D3929; color:#F0ECE0; padding:0 4px; border-radius:2px; }
+.hl-sage  { background:#8BAF8B; color:#fff; padding:0 4px; border-radius:2px; }
+.hl-lav   { background:#C8BEE8; color:#3D3929; padding:0 4px; border-radius:2px; }
+
+/* Stat float */
+.stat-box { float:right; margin:0 0 16px 24px; background:#F0ECE0; border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:16px 20px; text-align:center; min-width:120px; }
+.stat-big { font-family:'Playfair Display',serif; font-size:44px; font-weight:900; line-height:1; color:#DA7756; display:block; }
+.stat-label { font-size:9.5px; letter-spacing:1.5px; text-transform:uppercase; color:#5C5847; display:block; margin-top:4px; }
+
+/* Image frames */
+.img-frame { border:2px solid rgba(61,57,41,0.18); border-radius:12px; overflow:hidden; margin:16px 0; background:#F0ECE0; }
+.img-frame img { width:100%; display:block; max-height:240px; object-fit:cover; border-bottom:1px solid rgba(61,57,41,.12); }
+.img-caption { padding:8px 12px; font-size:10.5px; color:#5C5847; font-style:italic; display:flex; align-items:center; justify-content:space-between; gap:8px; }
+.img-caption a { font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color:#DA7756; text-decoration:none; white-space:nowrap; font-style:normal; }
+.img-frame.float-right { float:right; width:220px; margin:0 0 16px 24px; }
+.img-frame.float-right img { max-height:140px; }
+
+/* Source links */
+.source-link { display:inline-flex; align-items:center; gap:5px; font-size:10px; letter-spacing:1px; text-transform:uppercase; color:#DA7756; text-decoration:none; margin-top:12px; border-bottom:1px solid rgba(218,119,86,.35); padding-bottom:1px; }
+.source-link::after { content:'↗'; font-size:9px; }
+
+/* Signals */
+.signals-card { background:#EAE6F5; border-radius:4px; border:1.5px solid rgba(61,57,41,.10); padding:36px 40px; margin-bottom:3px; position:relative; }
+.signals-grid { display:flex; flex-direction:column; gap:18px; margin-top:18px; }
+.signal-row { display:flex; gap:14px; align-items:flex-start; }
+.signal-num { width:30px; height:30px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-weight:900; font-size:13px; color:#fff; flex-shrink:0; }
+.signal-title { font-family:'Playfair Display',serif; font-weight:700; font-size:14px; color:#3D3929; margin-bottom:3px; }
+.signal-desc { font-size:12px; line-height:1.6; color:#3D3929; }
+.signal-link { display:inline-block; font-size:10px; letter-spacing:1px; text-transform:uppercase; color:#DA7756; text-decoration:none; margin-top:4px; }
+
+/* Themes + tool + sources */
+.themes-card { background:#F5DDD0; border-radius:4px; border:1.5px solid rgba(61,57,41,.10); padding:36px 40px; margin-bottom:3px; }
+.themes-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:14px; margin-bottom:24px; }
+.theme-item { background:rgba(255,255,255,.4); border-radius:8px; padding:10px 14px; font-size:12px; font-weight:600; color:#3D3929; text-align:center; }
+.tool-week { background:#DA7756; color:#fff; border-radius:12px; padding:22px 24px; margin-top:6px; }
+.tool-week-eyebrow { font-size:9px; letter-spacing:3px; text-transform:uppercase; opacity:.85; margin-bottom:6px; }
+.tool-week-name { font-family:'Playfair Display',serif; font-size:24px; font-weight:900; margin-bottom:6px; }
+.tool-week-desc { font-size:12.5px; line-height:1.55; opacity:.95; }
+.sources-title { font-family:'Playfair Display',serif; font-weight:700; font-size:13px; margin:24px 0 10px; color:#3D3929; }
+.sources-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px 18px; }
+.sources-grid a { font-size:11px; color:#3D3929; text-decoration:none; border-bottom:1px solid rgba(61,57,41,.25); }
+
+/* Footer */
+.footer-card { background:#3D3929; color:#F0ECE0; border-radius:4px 4px 20px 20px; padding:44px 40px; text-align:center; }
+.footer-title { font-family:'Playfair Display',serif; font-size:18px; letter-spacing:4px; text-transform:uppercase; margin-bottom:8px; }
+.footer-sub { font-size:11px; letter-spacing:2px; text-transform:uppercase; opacity:.7; }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- COVER -->
+  <div class="cover-card">
+    <div class="cover-eyebrow">AI Intelligence Digest</div>
+    <div class="cover-title">TIMPS<br>PostCards</div>
+    <div class="cover-sub">Your Daily Signal from the Machine Frontier</div>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+      <span>Issue 036</span>
+      <span>June 30, 2026</span>
+      <span>Hyderabad, India</span>
+    </div>
+    <div class="cover-badge">Built with the TIMPS Ecosystem</div>
+    <div class="top5-pill">
+      <span class="pill">Frontier Access Control</span>
+      <span class="pill light">Compute Crunch</span>
+      <span class="pill light">5 Signals</span>
+    </div>
+  </div>
+
+  <div class="section-label">Lead Story</div>
+
+  <!-- STORY 1 — LEAD -->
+  <div class="story-card card-lavender">
+    <div class="page-chip">01 · LEAD</div>
+    <div class="card-routine">Frontier Models &amp; Access Control</div>
+    <h1 class="card-headline lg">AI Now Ships Like Enriched Uranium</h1>
+    <div class="card-deck">OpenAI limited its newest GPT-5.6 family to a short list of government-vetted partners — the second time in two weeks Washington has decided who gets to touch a frontier model.</div>
+    <div class="card-body drop clearfix">
+      <p>OpenAI released its GPT-5.6 lineup — Sol, Terra and Luna — on Friday, but only to roughly twenty partners whose access had been cleared in advance with the Trump administration. The company called Sol its strongest model yet, with major gains in coding, biology and cybersecurity, and said it intends to widen access "in the coming weeks." For now, though, the rollout looks less like a product launch and more like an export-licensing process.</p>
+      <p>The request came from the White House two weeks after the Commerce Department ordered <span class="hl-terra">Anthropic</span> to pull its Fable 5 and Mythos 5 models offline entirely, over fears that their cybersecurity capabilities could be misused if accessed by foreign nationals. Officials reportedly view GPT-5.6 Sol as carrying similar risk. OpenAI says the model is "better at helping people find and fix vulnerabilities than reliably carrying out end-to-end attacks," and that it stays below the company's own "Cyber Critical" threshold.</p>
+      <p>In its own blog post, OpenAI pushed back gently on the precedent being set: <span class="hl-ink">"We don't believe this kind of government access process should become the long-term default."</span> No formal review framework exists yet — the administration's executive order from earlier this month only asks labs to voluntarily submit frontier models for assessment 30 days ahead of release. Commentators have started describing the result as a strategic-materials regime applied to software: the most capable models are gated less by subscription tier now than by government comfort.</p>
+    </div>
+    <a href="https://techcrunch.com/2026/06/26/openai-limits-gpt-5-6-rollout-after-government-request-says-restrictions-shouldnt-be-the-norm/" target="_blank" class="source-link">Full story · TechCrunch</a>
+  </div>
+
+  <div class="section-label">Industry &amp; Infrastructure</div>
+
+  <!-- STORY 2 -->
+  <div class="story-card card-blush">
+    <div class="page-chip">02 · INFRASTRUCTURE</div>
+    <div class="card-routine">Compute Capacity</div>
+    <h2 class="card-headline">Google Caps Meta's Gemini Access — Even Big Tech Can't Buy Enough Compute</h2>
+    <div class="card-deck">Meta asked for more Gemini capacity than Google could supply, and the shortfall reportedly delayed several of Meta's internal AI projects.</div>
+    <div class="card-body drop clearfix">
+      <p>Google told Meta around March that it could not meet the full Gemini compute quota Meta wanted to purchase, according to the Financial Times. Other Google Cloud customers were affected too, but Meta — by far Google's heaviest Gemini user — took the brunt of it, and has since told staff to use AI tokens more efficiently.</p>
+      <p>The episode lands alongside Google Cloud's own numbers: revenue hit roughly $20 billion last quarter, yet CEO Sundar Pichai has said compute constraints capped even faster growth and contributed to a backlog that has nearly doubled. The takeaway for builders is blunt — even the companies selling the picks and shovels are short of capacity right now.</p>
+    </div>
+    <a href="https://www.cnbc.com/2026/06/28/google-limits-metas-use-of-its-gemini-ai-models-ft-reports.html" target="_blank" class="source-link">Full story · CNBC / Reuters</a>
+  </div>
+
+  <!-- STORY 3 -->
+  <div class="story-card card-lavender">
+    <div class="page-chip">03 · HARDWARE</div>
+    <div class="card-routine">Memory Supply Chain</div>
+    <h2 class="card-headline">CXMT Locks In $2.94B Tencent Deal Ahead of Landmark IPO</h2>
+    <div class="card-deck">China's largest DRAM maker secured a multi-year memory supply contract with Tencent, days before its Shanghai stock market debut.</div>
+    <div class="card-body drop clearfix">
+      <div class="stat-box">
+        <span class="stat-big">$2.94B</span>
+        <span class="stat-label">Contract Value</span>
+      </div>
+      <p>ChangXin Memory Technologies has signed a long-term agreement to supply Tencent with server DRAM worth more than 20 billion yuan, running anywhere from three to five years depending on the source. The deal arrives just as CXMT prepares to raise 29.5 billion yuan on Shanghai's STAR Market, and gives the Hefei-based chipmaker one of its strongest commercial endorsements yet.</p>
+      <p>DRAM has been in a severe global squeeze — contract prices jumped roughly 95% quarter-on-quarter in early 2026, and UBS expects the upcycle to run until at least late 2027. CXMT's revenue rose 700% year-on-year on the back of it. The Tencent contract is also a quiet signal of China's push toward a domestic memory supply chain that can hold up under continued US-China tech restrictions.</p>
+    </div>
+    <a href="https://finance.yahoo.com/technology/articles/exclusive-chinas-cxmt-wins-3-070237888.html" target="_blank" class="source-link">Full story · Reuters</a>
+  </div>
+
+  <!-- STORY 4 -->
+  <div class="story-card card-blush">
+    <div class="page-chip">04 · HARDWARE</div>
+    <div class="card-routine">Personal AI Computing</div>
+    <h2 class="card-headline">NVIDIA's RTX Spark Turns Windows PCs Into Agent Machines</h2>
+    <div class="card-deck">A new GPU-CPU superchip from NVIDIA and Microsoft promises 1 petaflop of on-device AI performance — enough to run 120-billion-parameter models locally.</div>
+    <div class="card-body drop clearfix">
+      <p>NVIDIA's RTX Spark fuses a 20-core Arm CPU with a Blackwell GPU and up to 128GB of unified memory on a single chip, connected over NVLink-C2C. NVIDIA says it can run large local agents with context windows stretching to a million tokens, render huge 3D scenes, and edit 12K video — all without a cloud round trip. "For forty years, you launched apps. Click. Type," said NVIDIA CEO Jensen Huang. "With RTX Spark and Microsoft Windows, you ask — and the PC does the work."</p>
+      <p>Microsoft is building native Windows agent support around the chip, including new security primitives and an "OpenShell" framework so local agents only touch the data and tools a user has explicitly approved. Dell, HP, Lenovo, Asus, MSI and Microsoft's own Surface line will ship RTX Spark laptops and small desktops starting fall 2026. Analysts cited by Reuters caution that premium pricing and the ongoing memory shortage could limit it to a niche category rather than a mass upgrade cycle.</p>
+    </div>
+    <a href="https://nvidianews.nvidia.com/news/nvidia-microsoft-windows-pcs-agents-rtx-spark" target="_blank" class="source-link">Full story · NVIDIA Newsroom</a>
+  </div>
+
+  <!-- STORY 5 -->
+  <div class="story-card card-lavender">
+    <div class="page-chip">05 · AGENTS</div>
+    <div class="card-routine">Enterprise Autonomy</div>
+    <h2 class="card-headline sm">Microsoft's Scout Wants to Run Your Inbox Before You Wake Up</h2>
+    <div class="card-deck">Built on Work IQ, Microsoft's new "Autopilot" agent schedules meetings, preps materials, and flags stalled decisions across Teams and Outlook — without being asked.</div>
+    <div class="card-body drop clearfix">
+      <p>Microsoft Scout is the company's first entry in a new category it calls Autopilots: agents with their own Entra identity that act continuously in the background rather than waiting for a prompt. It is grounded by <span class="hl-terra">Work IQ</span>, a workplace intelligence layer that reads signals from email, chats, files, meetings and calendars to figure out what a person actually cares about. "Work IQ is the intelligence layer that understands your data, your tools, and your organization," said Charles Lamanna, Microsoft's EVP of Copilot, Agents and Platform.</p>
+      <p>Scout is built on the open-source OpenClaw framework, with Microsoft contributing governance and policy-conformance code back upstream. It is currently in Frontier preview, with general availability targeted for October 2026, and Work IQ's own APIs went generally available on June 16 — meaning any third-party agent built on Copilot Studio or Foundry can now tap the same organizational context layer Scout uses natively.</p>
+    </div>
+    <a href="https://www.microsoft.com/en-us/microsoft-365/blog/2026/06/02/introducing-microsoft-scout-your-always-on-personal-agent/" target="_blank" class="source-link">Full story · Microsoft 365 Blog</a>
+  </div>
+
+  <div class="section-label">Research &amp; Scientific Advances</div>
+
+  <!-- STORY 6 -->
+  <div class="story-card card-blush">
+    <div class="page-chip">06 · RESEARCH</div>
+    <div class="card-routine">Photonic Computing</div>
+    <h2 class="card-headline sm">Penn Physicists Get Light to Do Computing's Dirty Work</h2>
+    <div class="card-deck">A new hybrid light-matter particle could let future AI chips switch signals using almost no energy at all — without ever converting light back into electricity.</div>
+    <div class="card-body drop clearfix">
+      <p>Eighty years after Penn researchers built ENIAC, the world's first general-purpose electronic computer, a different Penn team led by physicist Bo Zhen has demonstrated all-light switching using "exciton-polaritons" — hybrid quasiparticles formed when photons couple strongly with electrons inside an atomically thin semiconductor. The switching used about 4 quadrillionths of a joule of energy, far less than it takes to briefly power a small LED.</p>
+      <p>Most photonic AI chips already use light for raw speed, but still have to convert optical signals back into electrons for any decision-making step — a costly round trip. If the Penn approach scales, it could let chips process light directly from cameras, cut the power bill of large AI systems, and even support basic quantum computing functions on the same hardware.</p>
+    </div>
+    <a href="https://penntoday.upenn.edu/news/making-light-work-computing" target="_blank" class="source-link">Full story · Penn Today</a>
+  </div>
+
+  <div class="section-label">Key Signals</div>
+
+  <!-- SIGNALS -->
+  <div class="signals-card">
+    <div class="page-chip">07 · SIGNALS</div>
+    <div class="card-routine">5 Things Worth Knowing</div>
+    <div class="signals-grid">
+      <div class="signal-row">
+        <div class="signal-num" style="background:#DA7756;">1</div>
+        <div>
+          <div class="signal-title">Brain MRIs Read in Seconds, 97.5% Accuracy</div>
+          <div class="signal-desc">Michigan's "Prima" model was trained on 200,000+ MRI studies and now flags strokes and hemorrhages for urgent triage faster than human radiologists can.</div>
+          <a href="https://www.michiganmedicine.org/health-lab/ai-model-can-read-and-diagnose-brain-mri-seconds" target="_blank" class="signal-link">Michigan Medicine ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num" style="background:#3D3929;">2</div>
+        <div>
+          <div class="signal-title">EU Gives Final Green Light to Simplify the AI Act</div>
+          <div class="signal-desc">High-risk AI obligations are pushed to December 2027 / August 2028, while a new ban on AI-generated non-consensual intimate content and CSAM takes effect this December.</div>
+          <a href="https://www.consilium.europa.eu/en/press/press-releases/2026/06/29/artificial-intelligence-council-gives-final-green-light-to-simplify-and-streamline-rules/" target="_blank" class="signal-link">Council of the EU ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num" style="background:#8BAF8B;">3</div>
+        <div>
+          <div class="signal-title">ServiceNow &amp; Accenture Target Legacy Risk Platforms</div>
+          <div class="signal-desc">A new joint offering uses agentic AI to automate migration off legacy cybersecurity tools, as breach costs hit a record $10.22M per incident in the US.</div>
+          <a href="https://newsroom.accenture.com/news/2026/servicenow-and-accenture-launch-ai-powered-services-to-accelerate-the-shift-from-legacy-risk-platforms-to-agentic-ai" target="_blank" class="signal-link">Accenture Newsroom ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num" style="background:#C8BEE8;">4</div>
+        <div>
+          <div class="signal-title">NASA's New Space Chip Tests 500x Faster</div>
+          <div class="signal-desc">The radiation-hardened HPSC processor, built with Microchip Technology, is designed to let spacecraft make AI-driven decisions without waiting on Earth.</div>
+          <a href="https://www.nasa.gov/technology/hello-universe-nasas-next-gen-space-processor-undergoes-testing/" target="_blank" class="signal-link">NASA ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num" style="background:#E0A88A;">5</div>
+        <div>
+          <div class="signal-title">Microsoft Ships MAI-Thinking-1 Reasoning Model</div>
+          <div class="signal-desc">A 35-billion-parameter in-house reasoning model with a 256K context window entered private preview on Foundry alongside the Scout launch.</div>
+          <a href="https://mlq.ai/news/microsoft-launches-scout-an-always-on-ai-agent-for-microsoft-365-and-teams/" target="_blank" class="signal-link">MLQ ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">This Week in Focus</div>
+
+  <!-- THEMES + TOOL + SOURCES -->
+  <div class="themes-card">
+    <div class="page-chip">08 · THEMES</div>
+    <div class="card-routine">Top Themes</div>
+    <div class="themes-grid">
+      <div class="theme-item">Government-Gated AI Access</div>
+      <div class="theme-item">Compute Capacity Crunch</div>
+      <div class="theme-item">Domestic Chip Supply Chains</div>
+      <div class="theme-item">Agentic Windows PCs</div>
+      <div class="theme-item">Always-On Workplace Agents</div>
+      <div class="theme-item">Photonic AI Hardware</div>
+      <div class="theme-item">AI Regulatory Recalibration</div>
+    </div>
+
+    <div class="tool-week">
+      <div class="tool-week-eyebrow">Tool of the Week</div>
+      <div class="tool-week-name">NVIDIA RTX Spark</div>
+      <div class="tool-week-desc">A petaflop-class superchip that brings 120B-parameter local agents to a Windows laptop — the clearest signal yet that serious AI work is moving from the data center back to the desk.</div>
+    </div>
+
+    <div class="sources-title">Sources Cited</div>
+    <div class="sources-grid">
+      <a href="https://techcrunch.com/2026/06/26/openai-limits-gpt-5-6-rollout-after-government-request-says-restrictions-shouldnt-be-the-norm/" target="_blank">TechCrunch</a>
+      <a href="https://www.cnbc.com/2026/06/28/google-limits-metas-use-of-its-gemini-ai-models-ft-reports.html" target="_blank">CNBC</a>
+      <a href="https://finance.yahoo.com/technology/articles/exclusive-chinas-cxmt-wins-3-070237888.html" target="_blank">Reuters</a>
+      <a href="https://nvidianews.nvidia.com/news/nvidia-microsoft-windows-pcs-agents-rtx-spark" target="_blank">NVIDIA Newsroom</a>
+      <a href="https://www.microsoft.com/en-us/microsoft-365/blog/2026/06/02/introducing-microsoft-scout-your-always-on-personal-agent/" target="_blank">Microsoft 365 Blog</a>
+      <a href="https://penntoday.upenn.edu/news/making-light-work-computing" target="_blank">Penn Today</a>
+      <a href="https://www.michiganmedicine.org/health-lab/ai-model-can-read-and-diagnose-brain-mri-seconds" target="_blank">Michigan Medicine</a>
+      <a href="https://www.consilium.europa.eu/en/press/press-releases/2026/06/29/artificial-intelligence-council-gives-final-green-light-to-simplify-and-streamline-rules/" target="_blank">Council of the EU</a>
+      <a href="https://newsroom.accenture.com/news/2026/servicenow-and-accenture-launch-ai-powered-services-to-accelerate-the-shift-from-legacy-risk-platforms-to-agentic-ai" target="_blank">Accenture Newsroom</a>
+      <a href="https://www.nasa.gov/technology/hello-universe-nasas-next-gen-space-processor-undergoes-testing/" target="_blank">NASA</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer-card">
+    <div class="footer-title">TIMPS PostCards</div>
+    <div class="footer-sub">Issue 036 · June 30, 2026 · Hyderabad, India · Built with the TIMPS Ecosystem</div>
+  </div>
+
+</div>
+</body>
+</html>
