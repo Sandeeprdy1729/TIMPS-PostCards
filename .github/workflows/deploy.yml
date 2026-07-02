@@ -42,4 +42,5 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
         with:
+          # 30 minutes in milliseconds; queued Pages deployments can exceed 10 minutes.
           timeout: 1800000
