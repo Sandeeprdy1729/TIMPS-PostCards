@@ -12,6 +12,9 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    concurrency:
+      group: "pages"
+      cancel-in-progress: true
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
