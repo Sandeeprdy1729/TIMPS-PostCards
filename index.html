@@ -298,8 +298,8 @@
   /* Post cards */
   .post-list {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
   }
 
   .post-card {
@@ -328,23 +328,20 @@
   .post-card:nth-child(8)  { background: #F8E0C8; } /* peach */
   .post-card:nth-child(9)  { background: #E8F8D4; } /* pale lime */
 
-  /* Top banner strip */
+  /* Thumbnail image */
   .post-thumb {
     width: 100%;
-    height: 88px;
+    height: 120px;
     flex-shrink: 0;
-    background: var(--forest);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 16px;
+    overflow: hidden;
     border-bottom: 2.5px solid var(--forest);
   }
-  .post-thumb svg { width: 36px; height: 36px; opacity: .85; }
-
-  /* latest: lime top strip */
-  .post-card.latest .post-thumb { background: var(--forest); }
-  .post-card.latest .post-thumb svg { opacity: 1; }
+  .post-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
 
   .post-content {
     padding: 20px 20px 18px;
@@ -558,8 +555,7 @@
     .footer { padding: 36px 24px; flex-direction: column; align-items: flex-start; }
     .footer-right { text-align: left; }
     .post-list { grid-template-columns: 1fr; }
-    .post-thumb { height: 70px; }
-    .post-thumb svg { width: 28px; height: 28px; }
+    .post-thumb { height: 80px; }
   }
   @media (max-width: 480px) {
     .nav-logo span { display: none; }
@@ -668,11 +664,7 @@
     <!-- Issue 038 – Latest -->
     <a href="timps-postcards-2026-07-02.html" class="post-card latest">
       <div class="post-thumb">
-        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="8" y="10" width="44" height="8" rx="3" fill="#1C2E22"/>
-          <rect x="24" y="18" width="12" height="34" rx="3" fill="#1C2E22"/>
-        </svg>
-      </div>
+        <img src="thumbs/thumb-2026-07-02.svg" alt="TIMPS PostCard"></div>
       <div class="post-content">
         <div class="post-meta-row">
           <span class="post-date">July 2, 2026</span>
@@ -693,11 +685,7 @@
     <!-- Issue 037 – Latest -->
     <a href="" class="post-card">
       <div class="post-thumb">
-        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="8" y="10" width="44" height="8" rx="3" fill="#1C2E22"/>
-          <rect x="24" y="18" width="12" height="34" rx="3" fill="#1C2E22"/>
-        </svg>
-      </div>
+        <img src="thumbs/thumb-2026-07-01.svg" alt="TIMPS PostCard"></div>
       <div class="post-content">
         <div class="post-meta-row">
           <span class="post-date">July 1, 2026</span>
@@ -718,11 +706,7 @@
     <!-- Issue 036 – Latest -->
     <a href="" class="post-card">
       <div class="post-thumb">
-        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="8" y="10" width="44" height="8" rx="3" fill="#1C2E22"/>
-          <rect x="24" y="18" width="12" height="34" rx="3" fill="#1C2E22"/>
-        </svg>
-      </div>
+        <img src="thumbs/thumb-2026-06-30.svg" alt="TIMPS PostCard"></div>
       <div class="post-content">
         <div class="post-meta-row">
           <span class="post-date">June 30, 2026</span>
@@ -743,11 +727,7 @@
     <!-- Issue 035 – Latest -->
     <a href="" class="post-card">
       <div class="post-thumb">
-        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="8" y="10" width="44" height="8" rx="3" fill="#1C2E22"/>
-          <rect x="24" y="18" width="12" height="34" rx="3" fill="#1C2E22"/>
-        </svg>
-      </div>
+        <img src="thumbs/thumb-2026-06-29.svg" alt="TIMPS PostCard"></div>
       <div class="post-content">
         <div class="post-meta-row">
           <span class="post-date">June 29, 2026</span>
@@ -768,11 +748,7 @@
     <!-- Issue 034 – Latest -->
     <a href="" class="post-card">
       <div class="post-thumb">
-        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="8" y="10" width="44" height="8" rx="3" fill="#1C2E22"/>
-          <rect x="24" y="18" width="12" height="34" rx="3" fill="#1C2E22"/>
-        </svg>
-      </div>
+        <img src="thumbs/thumb-2026-06-28.svg" alt="TIMPS PostCard"></div>
       <div class="post-content">
         <div class="post-meta-row">
           <span class="post-date">June 28, 2026</span>
@@ -793,11 +769,7 @@
     <!-- Issue 033 – Latest -->
     <a href="" class="post-card">
       <div class="post-thumb">
-        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="8" y="10" width="44" height="8" rx="3" fill="#1C2E22"/>
-          <rect x="24" y="18" width="12" height="34" rx="3" fill="#1C2E22"/>
-        </svg>
-      </div>
+        <img src="thumbs/thumb-2026-06-27.svg" alt="TIMPS PostCard"></div>
       <div class="post-content">
         <div class="post-meta-row">
           <span class="post-date">June 27, 2026</span>
@@ -818,11 +790,7 @@
     <!-- Issue 032 – Latest -->
     <a href="" class="post-card">
       <div class="post-thumb">
-        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="8" y="10" width="44" height="8" rx="3" fill="#1C2E22"/>
-          <rect x="24" y="18" width="12" height="34" rx="3" fill="#1C2E22"/>
-        </svg>
-      </div>
+        <img src="thumbs/thumb-2026-06-26.svg" alt="TIMPS PostCard"></div>
       <div class="post-content">
         <div class="post-meta-row">
           <span class="post-date">June 26, 2026</span>
@@ -843,11 +811,7 @@
     <!-- Issue 031 – Latest -->
     <a href="" class="post-card">
       <div class="post-thumb">
-        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="8" y="10" width="44" height="8" rx="3" fill="#1C2E22"/>
-          <rect x="24" y="18" width="12" height="34" rx="3" fill="#1C2E22"/>
-        </svg>
-      </div>
+        <img src="thumbs/thumb-2026-06-25.svg" alt="TIMPS PostCard"></div>
       <div class="post-content">
         <div class="post-meta-row">
           <span class="post-date">June 25, 2026</span>
@@ -868,11 +832,7 @@
     <!-- Issue 030 – Latest -->
     <a href="" class="post-card">
       <div class="post-thumb">
-        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="8" y="10" width="44" height="8" rx="3" fill="#1C2E22"/>
-          <rect x="24" y="18" width="12" height="34" rx="3" fill="#1C2E22"/>
-        </svg>
-      </div>
+        <img src="thumbs/thumb-2026-06-24.svg" alt="TIMPS PostCard"></div>
       <div class="post-content">
         <div class="post-meta-row">
           <span class="post-date">June 24, 2026</span>
@@ -893,11 +853,7 @@
     <!-- Issue 029 – Latest -->
     <a href="" class="post-card">
       <div class="post-thumb">
-        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="8" y="10" width="44" height="8" rx="3" fill="#1C2E22"/>
-          <rect x="24" y="18" width="12" height="34" rx="3" fill="#1C2E22"/>
-        </svg>
-      </div>
+        <img src="thumbs/thumb-2026-06-23.svg" alt="TIMPS PostCard"></div>
       <div class="post-content">
         <div class="post-meta-row">
           <span class="post-date">June 23, 2026</span>
@@ -918,11 +874,7 @@
     <!-- Issue 028 – Latest -->
     <a href="" class="post-card">
       <div class="post-thumb">
-        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="8" y="10" width="44" height="8" rx="3" fill="#1C2E22"/>
-          <rect x="24" y="18" width="12" height="34" rx="3" fill="#1C2E22"/>
-        </svg>
-      </div>
+        <img src="thumbs/thumb-2026-06-22.svg" alt="TIMPS PostCard"></div>
       <div class="post-content">
         <div class="post-meta-row">
           <span class="post-date">June 22, 2026</span>
@@ -943,11 +895,7 @@
     <!-- Issue 028 – Latest -->
     <a href="" class="post-card">
       <div class="post-thumb">
-        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="8" y="10" width="44" height="8" rx="3" fill="#1C2E22"/>
-          <rect x="24" y="18" width="12" height="34" rx="3" fill="#1C2E22"/>
-        </svg>
-      </div>
+        <img src="thumbs/thumb-2026-06-21.svg" alt="TIMPS PostCard"></div>
       <div class="post-content">
         <div class="post-meta-row">
           <span class="post-date">June 21, 2026</span>
@@ -968,11 +916,7 @@
     <!-- Issue 027 – Latest -->
     <a href="" class="post-card">
       <div class="post-thumb">
-        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="8" y="10" width="44" height="8" rx="3" fill="#1C2E22"/>
-          <rect x="24" y="18" width="12" height="34" rx="3" fill="#1C2E22"/>
-        </svg>
-      </div>
+        <img src="thumbs/thumb-2026-06-20.svg" alt="TIMPS PostCard"></div>
       <div class="post-content">
         <div class="post-meta-row">
           <span class="post-date">June 20, 2026</span>
@@ -993,11 +937,7 @@
     <!-- Issue 026 – Latest -->
     <a href="" class="post-card">
       <div class="post-thumb">
-        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="8" y="10" width="44" height="8" rx="3" fill="#1C2E22"/>
-          <rect x="24" y="18" width="12" height="34" rx="3" fill="#1C2E22"/>
-        </svg>
-      </div>
+        <img src="thumbs/thumb-2026-06-19.svg" alt="TIMPS PostCard"></div>
       <div class="post-content">
         <div class="post-meta-row">
           <span class="post-date">June 19, 2026</span>
@@ -1018,11 +958,7 @@
     <!-- Issue 025 – Latest -->
     <a href="" class="post-card">
       <div class="post-thumb">
-        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="8" y="10" width="44" height="8" rx="3" fill="#1C2E22"/>
-          <rect x="24" y="18" width="12" height="34" rx="3" fill="#1C2E22"/>
-        </svg>
-      </div>
+        <img src="thumbs/thumb-2026-06-18.svg" alt="TIMPS PostCard"></div>
       <div class="post-content">
         <div class="post-meta-row">
           <span class="post-date">June 18, 2026</span>
@@ -1044,11 +980,7 @@
     <!-- Issue 048 – Latest -->
     <a href="" class="post-card">
       <div class="post-thumb">
-        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="8" y="10" width="44" height="8" rx="3" fill="#1C2E22"/>
-          <rect x="24" y="18" width="12" height="34" rx="3" fill="#1C2E22"/>
-        </svg>
-      </div>
+        <img src="thumbs/thumb-2026-05-23.svg" alt="TIMPS PostCard"></div>
       <div class="post-content">
         <div class="post-meta-row">
           <span class="post-date">May 23, 2026</span>
@@ -1068,11 +1000,7 @@
     <!-- Issue 047 -->
     <a href="#" class="post-card">
       <div class="post-thumb">
-        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="8" y="10" width="44" height="8" rx="3" fill="white" opacity=".8"/>
-          <rect x="24" y="18" width="12" height="34" rx="3" fill="white" opacity=".8"/>
-        </svg>
-      </div>
+        <img src="thumbs/thumb-2026-05-16.svg" alt="TIMPS PostCard"></div>
       <div class="post-content">
         <div class="post-meta-row">
           <span class="post-date">May 16, 2026</span>
@@ -1092,11 +1020,7 @@
     <!-- Issue 046 -->
     <a href="#" class="post-card">
       <div class="post-thumb">
-        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="8" y="10" width="44" height="8" rx="3" fill="white" opacity=".8"/>
-          <rect x="24" y="18" width="12" height="34" rx="3" fill="white" opacity=".8"/>
-        </svg>
-      </div>
+        <img src="thumbs/thumb-2026-05-09.svg" alt="TIMPS PostCard"></div>
       <div class="post-content">
         <div class="post-meta-row">
           <span class="post-date">May 9, 2026</span>
@@ -1116,11 +1040,7 @@
     <!-- Issue 045 -->
     <a href="#" class="post-card">
       <div class="post-thumb">
-        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="8" y="10" width="44" height="8" rx="3" fill="white" opacity=".8"/>
-          <rect x="24" y="18" width="12" height="34" rx="3" fill="white" opacity=".8"/>
-        </svg>
-      </div>
+        <img src="thumbs/thumb-2026-05-02.svg" alt="TIMPS PostCard"></div>
       <div class="post-content">
         <div class="post-meta-row">
           <span class="post-date">May 2, 2026</span>
@@ -1140,11 +1060,7 @@
     <!-- Issue 044 -->
     <a href="#" class="post-card">
       <div class="post-thumb">
-        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="8" y="10" width="44" height="8" rx="3" fill="white" opacity=".8"/>
-          <rect x="24" y="18" width="12" height="34" rx="3" fill="white" opacity=".8"/>
-        </svg>
-      </div>
+        <img src="thumbs/thumb-2026-04-25.svg" alt="TIMPS PostCard"></div>
       <div class="post-content">
         <div class="post-meta-row">
           <span class="post-date">Apr 25, 2026</span>
@@ -1164,11 +1080,7 @@
     <!-- Issue 043 -->
     <a href="#" class="post-card">
       <div class="post-thumb">
-        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="8" y="10" width="44" height="8" rx="3" fill="white" opacity=".8"/>
-          <rect x="24" y="18" width="12" height="34" rx="3" fill="white" opacity=".8"/>
-        </svg>
-      </div>
+        <img src="thumbs/thumb-2026-04-18.svg" alt="TIMPS PostCard"></div>
       <div class="post-content">
         <div class="post-meta-row">
           <span class="post-date">Apr 18, 2026</span>
@@ -1188,11 +1100,7 @@
     <!-- Issue 042 -->
     <a href="#" class="post-card">
       <div class="post-thumb">
-        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="8" y="10" width="44" height="8" rx="3" fill="white" opacity=".8"/>
-          <rect x="24" y="18" width="12" height="34" rx="3" fill="white" opacity=".8"/>
-        </svg>
-      </div>
+        <img src="thumbs/thumb-2026-04-11.svg" alt="TIMPS PostCard"></div>
       <div class="post-content">
         <div class="post-meta-row">
           <span class="post-date">Apr 11, 2026</span>
@@ -1212,11 +1120,7 @@
     <!-- Issue 041 -->
     <a href="#" class="post-card">
       <div class="post-thumb">
-        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="8" y="10" width="44" height="8" rx="3" fill="white" opacity=".8"/>
-          <rect x="24" y="18" width="12" height="34" rx="3" fill="white" opacity=".8"/>
-        </svg>
-      </div>
+        <img src="thumbs/thumb-2026-04-04.svg" alt="TIMPS PostCard"></div>
       <div class="post-content">
         <div class="post-meta-row">
           <span class="post-date">Apr 4, 2026</span>
@@ -1236,11 +1140,7 @@
     <!-- Issue 040 -->
     <a href="#" class="post-card">
       <div class="post-thumb">
-        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="8" y="10" width="44" height="8" rx="3" fill="white" opacity=".8"/>
-          <rect x="24" y="18" width="12" height="34" rx="3" fill="white" opacity=".8"/>
-        </svg>
-      </div>
+        <img src="thumbs/thumb-2026-03-28.svg" alt="TIMPS PostCard"></div>
       <div class="post-content">
         <div class="post-meta-row">
           <span class="post-date">Mar 28, 2026</span>
