@@ -1,0 +1,190 @@
+{
+  "summary": "Web search for 'AI agents agentic AI autonomous systems Claude Code Cursor May 2026': 10 results from duckduckgo=ok (10); synthesised 1572-char answervia LLM.",
+  "query": "AI agents agentic AI autonomous systems Claude Code Cursor May 2026",
+  "refined_queries": [
+    "Claude Code Cursor agentic AI autonomous systems 2026",
+    "Claude Code Cursor agentic AI autonomous systems roadmap 2026",
+    "Claude Code Cursor agentic AI autonomous systems news May 2026"
+  ],
+  "engines_used": [
+    "duckduckgo"
+  ],
+  "engine_status": {
+    "duckduckgo": "ok (10)"
+  },
+  "recency": "any",
+  "content_type": "general",
+  "locale": "en-US",
+  "max_results": 10,
+  "raw_count": 10,
+  "deduped_count": 10,
+  "fetched_count": 5,
+  "results": [
+    {
+      "title": "AI Coding Agents 2026: How Cursor, Claude Code, and GitHub Copilot Are ...",
+      "url": "https://www.programming-helper.com/tech/ai-coding-agents-2026-cursor-claude-copilot-enterprise-comparison",
+      "snippet": "The AI coding agent landscape has exploded in 2026 , with three major platforms competing for developer mindshare. Cursor claims $2 billion recurring revenue and Gartner leadership, Anthropic&#x27;s Claude Code integrates with VS Code and terminals, and GitHub Copilot transitions to usage-based billing. This comprehensive analysis explores how each platform differentiates, their pricing models, and ...",
+      "source_engine": "duckduckgo",
+      "position": 2,
+      "engine_priority": 1,
+      "content_type": "general",
+      "content": " AI Coding Agents 2026: How Cursor, Claude Code, and GitHub Copilot Are Reshaping Developer Productivity | Programming Helper Tech {\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"name\":\"Programming Helper\",\"url\":\"https://www.programming-helper.com\",\"logo\":{\"url\":\"https://www.programming-helper.com/logo.svg\",\"width\":600,\"height\":60},\"sameAs\":[\"https://www.programming-helper.com\"]} {\"@context\":\"https://schema.org\",\"@type\":\"BlogPosting\",\"datePublished\":\"2026-06-06\",\"description\":\"The AI coding agent landscape has exploded in 2026, with three major platforms competing for developer mindshare. Cursor claims $2 billion recurring revenue and Gartner leadership, Anthropic&apos;s Claude Code integrates with VS Code and terminals, and GitHub Copilot transitions to usage-based billing. This comprehensive analysis explores how each platform differentiates, their pricing models, and which developers should choose what in an era of autonomous code generation.\",\"mainEntityOfPage\":{\"@type\":\"WebPage\",\"@id\":\"https://www.programming-helper.com/tech/ai-coding-agents-2026-cursor-claude-copilot-enterprise-comparison\"},\"headline\":\"AI Coding Agents 2026: How Cursor, Claude Code, and GitHub Copilot Are Reshaping Developer Productivity\",\"image\":[\"/images/blog/featured-hero-3.webp\"],\"dateModified\":\"2026-06-06\",\"author\":{\"@type\":\"Person\",\"name\":\"Sarah Chen\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Programming Helper\",\"logo\":{\"@type\":\"ImageObject\",\"url\":\"https://www.programming-helper.com/logo.svg\"}}} {\"@context\":\"https://schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"item\":{\"@id\":\"https://www.programming-helper.com\",\"name\":\"Home\"}},{\"@type\":\"ListItem\",\"position\":2,\"item\":{\"@id\":\"https://www.programming-helper.com/tech\",\"name\":\"Tech\"}},{\"@type\":\"ListItem\",\"position\":3,\"item\":{\"@id\":\"https://www.programming-helper.com/tech/ai-coding-agents-2026-cursor-claude-copilot-enterprise-comparison\",\"name\":\"AI Coding Agents 2026: How Cursor, Claude Code, and GitHub Copilot Are Reshaping Developer Productivity\"}}]} Workflow Open main menu Home Tech {\"@context\":\"https://schema.org\",\"@type\":\"NewsArticle\",\"headline\":\"AI Coding Agents 2026: How Cursor, Claude Code, and GitHub Copilot Are Reshaping Developer Productivity\",\"image\":{\"@type\":\"ImageObject\",\"url\":\"/images/blog/featured-hero-3.webp\",\"width\":1200,\"height\":630},\"datePublished\":\"2026-06-06T0",
+      "fetched_at": "20260702_141243"
+    },
+    {
+      "title": "Claude Code | Anthropic&#x27;s agentic coding system",
+      "url": "https://www.anthropic.com/product/claude-code",
+      "snippet": "Claude Code is an agentic coding system that reads your codebase, makes changes across files, runs tests, and delivers committed code . For builders without an engineering background, it&#x27;s an entry point to software development that didn&#x27;t exist until recently.",
+      "source_engine": "duckduckgo",
+      "position": 6,
+      "engine_priority": 1,
+      "content_type": "general",
+      "content": " Claude Code | Anthropic&#x27;s agentic coding system \\ Anthropic Skip to main content Skip to footer Research Policy Commitments Learn News Try Claude Claude Code by Anthropic Claude Code is an agentic coding system that reads your codebase, makes changes across files, runs tests, and delivers committed code. For builders without an engineering background, it&#x27;s an entry point to software development that didn&#x27;t exist until recently. Get started Agentic, not autocomplete Describe what you want to build, test, iterate, or ship. Claude Code handles the rest. Explore Claude Code If you can describe it, you can build it The tools engineers use to build software are now capable of building software themselves. That changes what it means to be an engineer. At Anthropic, the majority of code is now written by Claude Code . Engineers focus on architecture, product thinking, and continuous orchestration: managing multiple agents in parallel, giving direction, and making the decisions that shape what gets built. Claude Code extends that capability to anyone who can describe what they want to build. Common use cases for Claude Code 01 Navigating unfamiliar code Deep knowledge of systems and architecture that was previously held by a few engineers becomes accessible to the whole team with Claude Code. It searches codebases, traces dependencies, and helps new members get up to speed on projects in minutes. 02 Developing across the whole codebase Claude Code searches directories to build context and understand how modules connect. It creates and edits files across a codebase, taking on ambitious work like building new features or executing multi-file refactors at a scale, saving days of work. 03 Executing across your toolchain Developers don&#x27;t need to memorize commands for git, Kubernetes, or other CLI tools. They describe what they want and Claude Code uses tools like the GitHub CLI natively, running the right commands with the right syntax. 04 Running tests and managing CI failures When tests fail, Claude Code reads the errors, fixes the code, and runs the suite again until everything passes. It monitors CI pipelines on GitHub and GitLab and commits fixes automatically. Democratizing who builds software Claude Code makes development accessible to anyone with an idea. The ability to describe a goal in plain language and get working software back has opened",
+      "fetched_at": "20260702_141249"
+    },
+    {
+      "title": "Using AI Coding Agents: Claude Code vs. Copilot CLI vs. Cursor - A ...",
+      "url": "https://www.linkedin.com/pulse/using-ai-coding-agents-claude-code-vs-copilot-cli-cursor-rahmanian-a3uzc",
+      "snippet": "Executive Summary: AI coding assistants are maturing rapidly. Claude Code (Anthropic) is a terminal-first coding agent with powerful automation (hooks, monitors, MCP support) and explicit project ...",
+      "source_engine": "duckduckgo",
+      "position": 8,
+      "engine_priority": 1,
+      "content_type": "general",
+      "content": " function getDfd() {let yFn,nFn;const p=new Promise(function(y, n){yFn=y;nFn=n;});p.resolve=yFn;p.reject=nFn;return p;} window.lazyloader = getDfd(); window.tracking = getDfd(); window.impressionTracking = getDfd(); window.ingraphTracking = getDfd(); window.appDetection = getDfd(); window.pemTracking = getDfd(); window.appRedirectCompleted = getDfd(); Using AI Coding Agents: Claude Code vs. Copilot CLI vs. Cursor \u2013 A Practical Guide {\"@context\":\"http://schema.org\",\"@type\":\"Article\",\"headline\":\"Executive Summary: AI coding assistants are maturing rapidly. Claude Code (Anthropic) is a terminal-first coding agent with powerful automation (hooks, monitors, MCP support) and explicit project memory (CLAUDE.\",\"url\":\"https://www.linkedin.com/pulse/using-ai-coding-agents-claude-code-vs-copilot-cli-cursor-rahmanian-a3uzc\",\"publisher\":null,\"name\":\"Using AI Coding Agents: Claude Code vs. Copilot CLI vs. Cursor \u2013 A Practical Guide\",\"commentCount\":0,\"interactionStatistic\":[{\"@type\":\"InteractionCounter\",\"interactionType\":\"http://schema.org/LikeAction\",\"userInteractionCount\":10},{\"@type\":\"InteractionCounter\",\"interactionType\":\"http://schema.org/CommentAction\",\"userInteractionCount\":0}],\"datePublished\":\"2026-04-15T22:34:55.000+00:00\",\"mainEntityOfPage\":\"https://www.linkedin.com/pulse/using-ai-coding-agents-claude-code-vs-copilot-cli-cursor-rahmanian-a3uzc\",\"isAccessibleForFree\":true,\"image\":{\"@type\":\"ImageObject\",\"url\":\"https://media.licdn.com/dms/image/v2/D5612AQGBKUdFavJUBQ/article-cover_image-shrink_720_1280/B56Z2TQjGiGsAM-/0/1776292083276?e=2147483647&v=beta&t=S-xU7ibTxiWwTOYhnjd4_FKAvO5HHqn8BC7S6QgL_Cs\"},\"dateModified\":\"2026-06-06T23:33:37.000+00:00\",\"author\":{\"@type\":\"Person\",\"image\":\"https://media.licdn.com/dms/image/v2/D4D03AQF6I_deVDHHkg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1731890386529?e=2147483647&v=beta&t=IBPEp_3y1qnXuxehO8BWW33iul6CYqWTc1e6m_mIlqg\",\"interactionStatistic\":{\"@type\":\"InteractionCounter\",\"interactionType\":\"https://schema.org/FollowAction\",\"name\":\"Followers\",\"userInteractionCount\":1752},\"name\":\"Meysam Rahmanian\",\"url\":\"https://ca.linkedin.com/in/meysam-rahmanian\"}} Agree & Join LinkedIn By clicking Continue to join or sign in, you agree to LinkedIn\u2019s User Agreement , Privacy Policy , and Cookie Policy . Sign in to view more content Create your free account or sign in to continue your search Email or phone Passwor",
+      "fetched_at": "20260702_141250"
+    },
+    {
+      "title": "AI Coding Agents 2026: Claude Code, Cursor 3.5, Copilot, OpenCode",
+      "url": "https://codersera.com/blog/ai-coding-agents-complete-guide-2026/",
+      "snippet": "Comprehensive 2026 guide to the major AI coding agents \u2014 Cursor , Claude Code , Cline, Aider, OpenCode, Windsurf, Void AI \u2014 with real pricing, model support, and workflow tradeoffs.",
+      "source_engine": "duckduckgo",
+      "position": 1,
+      "engine_priority": 1,
+      "content_type": "general",
+      "content": " AI Coding Agents 2026: Claude Code, Cursor 3.5, Copilot, OpenCode window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-W1N0NMH6RL'); { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"publisher\": { \"@type\": \"Organization\", \"name\": \"Codersera Blogs\", \"url\": \"https://codersera.com/blog/\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://codersera.com/blog/content/images/size/w256h256/2024/02/logo-1.png\", \"width\": 60, \"height\": 60 } }, \"author\": { \"@type\": \"Person\", \"name\": \"John\", \"url\": \"https://codersera.com/blog/author/john/\", \"sameAs\": [] }, \"headline\": \"AI Coding Agents 2026: Claude Code, Cursor 3.5, Copilot, OpenCode\", \"url\": \"https://codersera.com/blog/ai-coding-agents-complete-guide-2026/\", \"datePublished\": \"2026-05-01T07:15:53.000Z\", \"dateModified\": \"2026-06-15T07:05:14.000Z\", \"description\": \"Comprehensive 2026 guide to the major AI coding agents \u2014 Cursor, Claude Code, Cline, Aider, OpenCode, Windsurf, Void AI \u2014 with real pricing, model support, and workflow tradeoffs.\", \"mainEntityOfPage\": \"https://codersera.com/blog/ai-coding-agents-complete-guide-2026/\" } .gh-post-upgrade-cta-content, .gh-post-upgrade-cta { display: flex; flex-direction: column; align-items: center; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; text-align: center; width: 100%; color: #ffffff; font-size: 16px; } .gh-post-upgrade-cta-content { border-radius: 8px; padding: 40px 4vw; } .gh-post-upgrade-cta h2 { color: #ffffff; font-size: 28px; letter-spacing: -0.2px; margin: 0; padding: 0; } .gh-post-upgrade-cta p { margin: 20px 0 0; padding: 0; } .gh-post-upgrade-cta small { font-size: 16px; letter-spacing: -0.2px; } .gh-post-upgrade-cta a { color: #ffffff; cursor: pointer; font-weight: 500; box-shadow: none; text-decoration: underline; } .gh-post-upgrade-cta a:hover { color: #ffffff; opacity: 0.8; box-shadow: none; text-decoration: underline; } .gh-post-upgrade-cta a.gh-btn { display: block; background: #ffffff; text-decoration: none; margin: 28px 0 0; padding: 8px 18px; border-radius: 4px; font-size: 16px; font-weight: 600; } .gh-post-upgrade-cta a.gh-btn:hover { opacity: 0.92; } :root {--ghost-accent-color: #011034;} .faqs-ques { cursor: pointer; margin-bottom: 8px; display: block; } .faqs-h3 { color: #34598b",
+      "fetched_at": "20260702_141251"
+    },
+    {
+      "title": "Coding Agents Compared: Claude Code vs Cursor vs Windsurf vs Devin",
+      "url": "https://agentmarketcap.ai/blog/2026/04/05/coding-agents-compared-claude-code-cursor-windsurf-devin",
+      "snippet": "A data-driven comparison of the four leading AI coding agents in 2026 \u2014 Claude Code , Cursor , Windsurf, and Devin \u2014 covering benchmarks, pricing, and which one to choose.",
+      "source_engine": "duckduckgo",
+      "position": 10,
+      "engine_priority": 1,
+      "content_type": "general",
+      "content": " Coding Agents Compared: Claude Code vs Cursor vs Windsurf vs Devin | AgentMarketCap (function(){try{var s=localStorage.getItem(\"agentmarketcap-theme\");var t;if(s===\"light\"||s===\"dark\"){t=s}else if(s===\"system\"){t=window.matchMedia(\"(prefers-color-scheme: dark)\").matches?\"dark\":\"light\"}else{t=\"dark\"}var r=document.documentElement;r.classList.remove(\"light\",\"dark\");r.classList.add(t)}catch(e){document.documentElement.classList.add(\"dark\")}})(); @layer properties{@supports (((-webkit-hyphens:none)) and (not (margin-trim:inline))) or ((-moz-orient:inline) and (not (color:rgb(from red r g b)))){*,:before,:after,::backdrop{--tw-scale-x:1;--tw-scale-y:1;--tw-scale-z:1;--tw-rotate-x:initial;--tw-rotate-y:initial;--tw-rotate-z:initial;--tw-skew-x:initial;--tw-skew-y:initial;--tw-space-y-reverse:0;--tw-divide-x-reverse:0;--tw-border-style:solid;--tw-gradient-position:initial;--tw-gradient-from:#0000;--tw-gradient-via:#0000;--tw-gradient-to:#0000;--tw-gradient-stops:initial;--tw-gradient-via-stops:initial;--tw-gradient-from-position:0%;--tw-gradient-via-position:50%;--tw-gradient-to-position:100%;--tw-leading:initial;--tw-font-weight:initial;--tw-tracking:initial;--tw-ordinal:initial;--tw-slashed-zero:initial;--tw-numeric-figure:initial;--tw-numeric-spacing:initial;--tw-numeric-fraction:initial;--tw-shadow:0 0 #0000;--tw-shadow-color:initial;--tw-shadow-alpha:100%;--tw-inset-shadow:0 0 #0000;--tw-inset-shadow-color:initial;--tw-inset-shadow-alpha:100%;--tw-ring-color:initial;--tw-ring-shadow:0 0 #0000;--tw-inset-ring-color:initial;--tw-inset-ring-shadow:0 0 #0000;--tw-ring-inset:initial;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-offset-shadow:0 0 #0000;--tw-outline-style:solid;--tw-blur:initial;--tw-brightness:initial;--tw-contrast:initial;--tw-grayscale:initial;--tw-hue-rotate:initial;--tw-invert:initial;--tw-opacity:initial;--tw-saturate:initial;--tw-sepia:initial;--tw-drop-shadow:initial;--tw-drop-shadow-color:initial;--tw-drop-shadow-alpha:100%;--tw-drop-shadow-size:initial;--tw-backdrop-blur:initial;--tw-backdrop-brightness:initial;--tw-backdrop-contrast:initial;--tw-backdrop-grayscale:initial;--tw-backdrop-hue-rotate:initial;--tw-backdrop-invert:initial;--tw-backdrop-opacity:initial;--tw-backdrop-saturate:initial;--tw-backdrop-sepia:initial;--tw-duration:initial;--tw-translate-x:0;--tw-translate-y:0;--tw-translate-z:0;--tw-animation-delay:0",
+      "fetched_at": "20260702_141252"
+    },
+    {
+      "title": "Best AI Note-Taking Apps 2026 \u2014 Notion, Mem, Obsidian",
+      "url": "https://scihub101.com/ai-tools/ai-coding-agents-2026",
+      "snippet": "AI coding agents 2026 : Devin, Cursor Agent , Claude Code , Replit Agent . Autonomous coding capabilities, where they shine, where they fail. State of the art.",
+      "source_engine": "duckduckgo",
+      "position": 9,
+      "engine_priority": 1,
+      "content_type": "general",
+      "content": "",
+      "fetched_at": null
+    },
+    {
+      "title": "AI Coding Agents 2026: Devin, Cursor & Claude Code Compared",
+      "url": "https://precisionpulse.co/ai-coding-agents-2026/",
+      "snippet": "AI coding agents 2026 are reshaping software teams. Compare Devin, Cursor , Claude Code , Windsurf & Copilot Workspace plus productivity data and rollout.",
+      "source_engine": "duckduckgo",
+      "position": 4,
+      "engine_priority": 1,
+      "content_type": "general",
+      "content": "",
+      "fetched_at": null
+    },
+    {
+      "title": "AI Coding Agents: Claude Code vs Cursor vs Codex 2026",
+      "url": "https://www.digitalapplied.com/blog/ai-coding-agents-claude-code-cursor-codex-replit-2026",
+      "snippet": "Five-way comparison \u2014 Claude Code , Cursor , Codex Desktop, Replit Agent 3, Devin. Pricing, agent autonomy, MCP, eval scores, and reference workloads.",
+      "source_engine": "duckduckgo",
+      "position": 7,
+      "engine_priority": 1,
+      "content_type": "general",
+      "content": "",
+      "fetched_at": null
+    },
+    {
+      "title": "Claude Code by Anthropic | AI Coding Agent, Terminal, IDE",
+      "url": "https://claude.com/product/claude-code",
+      "snippet": "Anthropic&#x27;s agentic coding tool for developers. Claude Code understands your codebase, edits files, runs commands, and helps you ship faster.",
+      "source_engine": "duckduckgo",
+      "position": 5,
+      "engine_priority": 1,
+      "content_type": "general",
+      "content": "",
+      "fetched_at": null
+    },
+    {
+      "title": "How enterprises are building AI agents in 2026 | Claude by Anthropic",
+      "url": "https://claude.com/blog/how-enterprises-are-building-ai-agents-in-2026",
+      "snippet": "New research from 500+ technical leaders reveals how enterprises are deploying AI agents in 2026\u2014and why 80% already report measurable ROI.",
+      "source_engine": "duckduckgo",
+      "position": 3,
+      "engine_priority": 1,
+      "content_type": "general",
+      "content": "",
+      "fetched_at": null
+    }
+  ],
+  "answer": "By May 2026, the landscape of AI agents, particularly in coding, has significantly evolved, with tools like Claude Code and Cursor being prominent players [1, 4]. These systems are characterized by their \"agentic\" and \"autonomous\" capabilities, moving beyond simple autocomplete to perform complex development tasks [1, 2, 6].\n\nClaude Code, developed by Anthropic, is an agentic coding system designed to understand a codebase, make changes across multiple files, run tests, and deliver committed code [2, 9]. It is described as \"Agentic, not autocomplete,\" handling tasks like building, testing, iterating, or shipping based on user descriptions [2]. Claude Code integrates with VS Code and terminals, functioning as a terminal-first coding agent with powerful automation and explicit project memory [1, 3]. Anthropic itself uses Claude Code for the majority of its internal coding, allowing engineers to focus on architecture and product thinking [2]. Its use cases include navigating unfamiliar code, tracing dependencies, and developing across entire codebases [2].\n\nCursor is also identified as a major AI coding agent competing in the 2026 market [1, 4, 5, 7, 8]. One source notes Cursor's significant market presence, claiming $2 billion in recurring revenue and Gartner leadership [1].\n\nThe broader trend in 2026 indicates that AI coding agents are reshaping developer productivity and software teams, enabling an era of autonomous code generation [1, 7]. Enterprises are actively deploying these AI agents, with 80% reporting measurable return on investment [10].",
+  "citations": [
+    {
+      "index": 1,
+      "title": "AI Coding Agents 2026: How Cursor, Claude Code, and GitHub Copilot Are ...",
+      "url": "https://www.programming-helper.com/tech/ai-coding-agents-2026-cursor-claude-copilot-enterprise-comparison"
+    },
+    {
+      "index": 4,
+      "title": "AI Coding Agents 2026: Claude Code, Cursor 3.5, Copilot, OpenCode",
+      "url": "https://codersera.com/blog/ai-coding-agents-complete-guide-2026/"
+    },
+    {
+      "index": 2,
+      "title": "Claude Code | Anthropic&#x27;s agentic coding system",
+      "url": "https://www.anthropic.com/product/claude-code"
+    },
+    {
+      "index": 6,
+      "title": "Best AI Note-Taking Apps 2026 \u2014 Notion, Mem, Obsidian",
+      "url": "https://scihub101.com/ai-tools/ai-coding-agents-2026"
+    },
+    {
+      "index": 9,
+      "title": "Claude Code by Anthropic | AI Coding Agent, Terminal, IDE",
+      "url": "https://claude.com/product/claude-code"
+    },
+    {
+      "index": 3,
+      "title": "Using AI Coding Agents: Claude Code vs. Copilot CLI vs. Cursor - A ...",
+      "url": "https://www.linkedin.com/pulse/using-ai-coding-agents-claude-code-vs-copilot-cli-cursor-rahmanian-a3uzc"
+    },
+    {
+      "index": 5,
+      "title": "Coding Agents Compared: Claude Code vs Cursor vs Windsurf vs Devin",
+      "url": "https://agentmarketcap.ai/blog/2026/04/05/coding-agents-compared-claude-code-cursor-windsurf-devin"
+    },
+    {
+      "index": 7,
+      "title": "AI Coding Agents 2026: Devin, Cursor & Claude Code Compared",
+      "url": "https://precisionpulse.co/ai-coding-agents-2026/"
+    },
+    {
+      "index": 8,
+      "title": "AI Coding Agents: Claude Code vs Cursor vs Codex 2026",
+      "url": "https://www.digitalapplied.com/blog/ai-coding-agents-claude-code-cursor-codex-replit-2026"
+    },
+    {
+      "index": 10,
+      "title": "How enterprises are building AI agents in 2026 | Claude by Anthropic",
+      "url": "https://claude.com/blog/how-enterprises-are-building-ai-agents-in-2026"
+    }
+  ],
+  "llm_used": true,
+  "log_dir": "generated/web_search/20260702T141241Z_ai_agents_agentic_ai_autonomous_systems_claude_code_cursor_m",
+  "generated_at": "20260702_141317"
+}

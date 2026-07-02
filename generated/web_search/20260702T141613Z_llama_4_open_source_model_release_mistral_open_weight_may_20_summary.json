@@ -1,0 +1,135 @@
+{
+  "summary": "Web search for 'Llama 4 open source model release Mistral open weight May 2026': 10 results from duckduckgo=ok (10); no LLM synthesis.",
+  "query": "Llama 4 open source model release Mistral open weight May 2026",
+  "refined_queries": [],
+  "engines_used": [
+    "duckduckgo"
+  ],
+  "engine_status": {
+    "duckduckgo": "ok (10)"
+  },
+  "recency": "any",
+  "content_type": "general",
+  "locale": "en-US",
+  "max_results": 10,
+  "raw_count": 10,
+  "deduped_count": 10,
+  "fetched_count": 5,
+  "results": [
+    {
+      "title": "Open Source LLMs in 2026: The Complete Guide to Llama 4, Mistral ...",
+      "url": "https://greyarealabs.co/2026/02/25/open-source-llms-in-2026-the-complete-guide-to-llama-4-mistral-deepseek-and-the-new-stack/",
+      "snippet": "The State of Open Source LLMs in 2026 : Quick Landscape The open-source LLM ecosystem has gone from fragmented to stratified. You have a few clear tiers now. At the top tier, you have models that compete with the best closed- source options. Llama 4 from Meta, Mistral models , and DeepSeek&#x27;s latest release are all in this category. These models are trained on hundreds of billions of parameters ...",
+      "source_engine": "duckduckgo",
+      "position": 10,
+      "engine_priority": 1,
+      "content_type": "general",
+      "content": " Open Source LLMs in 2026: The Complete Guide to Llama 4, Mistral, DeepSeek and the New Stack - Grey Area Labs {\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":[\"Person\",\"Organization\"],\"@id\":\"https://greyarealabs.co/#person\",\"name\":\"Grey Area Labs\"},{\"@type\":\"WebSite\",\"@id\":\"https://greyarealabs.co/#website\",\"url\":\"https://greyarealabs.co\",\"name\":\"Grey Area Labs\",\"publisher\":{\"@id\":\"https://greyarealabs.co/#person\"},\"inLanguage\":\"en-US\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https://greyarealabs.co/2026/02/25/open-source-llms-in-2026-the-complete-guide-to-llama-4-mistral-deepseek-and-the-new-stack/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":\"1\",\"item\":{\"@id\":\"https://greyarealabs.co\",\"name\":\"Home\"}},{\"@type\":\"ListItem\",\"position\":\"2\",\"item\":{\"@id\":\"https://greyarealabs.co/category/ai-for-science/\",\"name\":\"AI for Science\"}},{\"@type\":\"ListItem\",\"position\":\"3\",\"item\":{\"@id\":\"https://greyarealabs.co/2026/02/25/open-source-llms-in-2026-the-complete-guide-to-llama-4-mistral-deepseek-and-the-new-stack/\",\"name\":\"Open Source LLMs in 2026: The Complete Guide to Llama 4, Mistral, DeepSeek and the New Stack\"}}]},{\"@type\":\"WebPage\",\"@id\":\"https://greyarealabs.co/2026/02/25/open-source-llms-in-2026-the-complete-guide-to-llama-4-mistral-deepseek-and-the-new-stack/#webpage\",\"url\":\"https://greyarealabs.co/2026/02/25/open-source-llms-in-2026-the-complete-guide-to-llama-4-mistral-deepseek-and-the-new-stack/\",\"name\":\"Open Source LLMs in 2026: The Complete Guide to Llama 4, Mistral, DeepSeek and the New Stack - Grey Area Labs\",\"datePublished\":\"2026-02-25T15:55:36-05:00\",\"dateModified\":\"2026-02-25T15:55:36-05:00\",\"isPartOf\":{\"@id\":\"https://greyarealabs.co/#website\"},\"inLanguage\":\"en-US\",\"breadcrumb\":{\"@id\":\"https://greyarealabs.co/2026/02/25/open-source-llms-in-2026-the-complete-guide-to-llama-4-mistral-deepseek-and-the-new-stack/#breadcrumb\"}},{\"@type\":\"Person\",\"@id\":\"https://greyarealabs.co/author/ryanbethencourt/\",\"name\":\"Ryan Bethencourt\",\"url\":\"https://greyarealabs.co/author/ryanbethencourt/\",\"image\":{\"@type\":\"ImageObject\",\"@id\":\"https://secure.gravatar.com/avatar/f182885c2f8868a0e83abc18aaf017de68257ba599502a54be992a2615aef9b5?s=96&d=identicon&r=g\",\"url\":\"https://secure.gravatar.com/avatar/f182885c2f8868a0e83abc18aaf017de68257ba599502a54be992a2615aef9b5?s=96&d=identicon&r=g\",\"caption\":\"Ryan Bethencourt\",\"inLanguage\":\"en-US\"},\"sameAs\":[\"https://greyarealabs",
+      "fetched_at": "20260702_141614"
+    },
+    {
+      "title": "Llama 4 Guide: Scout, Maverick, Behemoth Status & Muse Spark (2026)",
+      "url": "https://codersera.com/blog/llama-4-complete-guide-2026/",
+      "snippet": "Cross-references for the broader picture: our open-source LLMs landscape pillar for the May 2026 open-weights leaderboard, DeepSeek V4 guide for the current open coding leader, Qwen guide for the 3.6 / 3.7 Max story, and Apple Silicon LLMs guide for running Llama 4 locally on Mac. Last updated: May 1, 2026 Llama 4 is the open-weight model family that forced every other lab to publish a serious ...",
+      "source_engine": "duckduckgo",
+      "position": 2,
+      "engine_priority": 1,
+      "content_type": "general",
+      "content": " Llama 4 Guide: Scout, Maverick, Behemoth Status & Muse Spark (2026) window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-W1N0NMH6RL'); { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"publisher\": { \"@type\": \"Organization\", \"name\": \"Codersera Blogs\", \"url\": \"https://codersera.com/blog/\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://codersera.com/blog/content/images/size/w256h256/2024/02/logo-1.png\", \"width\": 60, \"height\": 60 } }, \"author\": { \"@type\": \"Person\", \"name\": \"John\", \"url\": \"https://codersera.com/blog/author/john/\", \"sameAs\": [] }, \"headline\": \"Llama 4 Guide: Scout, Maverick, Behemoth Status & Muse Spark (2026)\", \"url\": \"https://codersera.com/blog/llama-4-complete-guide-2026/\", \"datePublished\": \"2026-05-01T07:16:20.000Z\", \"dateModified\": \"2026-05-27T20:19:26.000Z\", \"description\": \"Definitive 2026 guide to Meta&#x27;s Llama 4: variants, real benchmarks, license restrictions, hosted-provider pricing, self-hosting, and competition vs DeepSeek V4, Qwen 3.5, and Gemma 4.\", \"mainEntityOfPage\": \"https://codersera.com/blog/llama-4-complete-guide-2026/\" } .gh-post-upgrade-cta-content, .gh-post-upgrade-cta { display: flex; flex-direction: column; align-items: center; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; text-align: center; width: 100%; color: #ffffff; font-size: 16px; } .gh-post-upgrade-cta-content { border-radius: 8px; padding: 40px 4vw; } .gh-post-upgrade-cta h2 { color: #ffffff; font-size: 28px; letter-spacing: -0.2px; margin: 0; padding: 0; } .gh-post-upgrade-cta p { margin: 20px 0 0; padding: 0; } .gh-post-upgrade-cta small { font-size: 16px; letter-spacing: -0.2px; } .gh-post-upgrade-cta a { color: #ffffff; cursor: pointer; font-weight: 500; box-shadow: none; text-decoration: underline; } .gh-post-upgrade-cta a:hover { color: #ffffff; opacity: 0.8; box-shadow: none; text-decoration: underline; } .gh-post-upgrade-cta a.gh-btn { display: block; background: #ffffff; text-decoration: none; margin: 28px 0 0; padding: 8px 18px; border-radius: 4px; font-size: 16px; font-weight: 600; } .gh-post-upgrade-cta a.gh-btn:hover { opacity: 0.92; } :root {--ghost-accent-color: #011034;} .faqs-ques { cursor: pointer; margin-bottom: 8px; display: block; } .faqs-h3 { color: #34598b; fon",
+      "fetched_at": "20260702_141615"
+    },
+    {
+      "title": "Llama 4 in 2026: Meta&#x27;s Open-Weight Comeback for AI Creators",
+      "url": "https://www.versely.studio/blog/llama-4-meta-open-source-comeback-ai-content-2026",
+      "snippet": "When Meta dropped Llama 4 Scout and Maverick on April 5, 2025, the headline number nobody expected was the context window: 10 million tokens on Scout, the largest publicly released context length on any open-weight model at launch. A year and a month later \u2014 May 2026 \u2014 Scout still holds 95%+ retrieval accuracy out to 8M tokens before dropping to 89% at the full 10M limit, per third-party ...",
+      "source_engine": "duckduckgo",
+      "position": 4,
+      "engine_priority": 1,
+      "content_type": "general",
+      "content": " Llama 4 in 2026: Meta&#x27;s Open-Weight Comeback for AI Creators | Versely (function(){try{var t=localStorage.getItem('theme');var d=t==='dark'||(t!=='light'&&window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches);document.documentElement.classList.toggle('dark',d);document.documentElement.style.colorScheme=d?'dark':'light';}catch(e){document.documentElement.classList.add('dark');}})(); {\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"name\":\"Versely\",\"legalName\":\"Versely Studio\",\"url\":\"https://versely.studio\",\"logo\":\"https://versely.studio/icon.png\",\"email\":\"contact@versely.studio\",\"description\":\"Create viral social media content in seconds with AI. Generate images, videos, voiceovers, lipsync, music, and full animated stories \u2014 then publish to 10+ platforms from one app.\",\"sameAs\":[\"https://twitter.com/Versely\",\"https://instagram.com/versely\",\"https://youtube.com/@versely\",\"https://tiktok.com/@versely\"]} {\"@context\":\"https://schema.org\",\"@type\":\"WebSite\",\"name\":\"Versely\",\"url\":\"https://versely.studio\",\"description\":\"Create viral social media content in seconds with AI. Generate images, videos, voiceovers, lipsync, music, and full animated stories \u2014 then publish to 10+ platforms from one app.\",\"inLanguage\":\"en-US\",\"publisher\":{\"@type\":\"Organization\",\"name\":\"Versely\",\"url\":\"https://versely.studio\"},\"potentialAction\":{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https://versely.studio/blog?q={search_term_string}\"},\"query-input\":\"required name=search_term_string\"}} {\"@context\":\"https://schema.org\",\"@type\":\"Article\",\"headline\":\"Llama 4 in 2026: Meta's Open-Weight Comeback for AI Creators\",\"description\":\"Llama 4 Scout, Maverick and the still-unreleased Behemoth pushed Meta back into the open-weight conversation. Here's what the family actually ships in May 2026, how it compares to DeepSeek V4 and Qwen 3.5, and what creators can build with it.\",\"datePublished\":\"2026-05-15\",\"dateModified\":\"2026-05-15\",\"author\":{\"@type\":\"Person\",\"name\":\"Versely Team\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Versely\",\"logo\":{\"@type\":\"ImageObject\",\"url\":\"https://versely.studio/icon.png\"}},\"image\":[\"https://versely.studio/blog/llama-4-meta-open-source-comeback-ai-content-2026/opengraph-image\"],\"mainEntityOfPage\":{\"@type\":\"WebPage\",\"@id\":\"https://versely.studio/blog/llama-4-meta-open-source-comeback-ai-content-2026\"},\"keywords",
+      "fetched_at": "20260702_141616"
+    },
+    {
+      "title": "Meta Llama 4: The Open-Source AI That Changes Everything",
+      "url": "https://aifirstfounders.com/blog/llama-4-complete-guide-2026.html",
+      "snippet": "Meta&#x27;s Llama 4 is the most powerful open-source AI model family ever released. With 10 million token context, 128 mixture-of-experts, and native multimodal support, it&#x27;s changing how founders build AI products. Here&#x27;s everything you need to know.",
+      "source_engine": "duckduckgo",
+      "position": 9,
+      "engine_priority": 1,
+      "content_type": "general",
+      "content": "",
+      "fetched_at": null
+    },
+    {
+      "title": "The Complete Guide to Open-Source AI Models in 2026: Llama 4, Mistral ...",
+      "url": "https://www.aipricingmaster.com/blog/Guide-to-Open-Source-AI-Models-in-2026",
+      "snippet": "The Complete Guide to Open-Source AI Models in 2026 : Llama 4 , Mistral , DeepSeek & Beyond Compare open-source LLM costs, benchmarks, and deployment options. Llama 4 , DeepSeek-V3, Mistral , Qwen pricing with self-hosting ROI calculator and GPU requirements.",
+      "source_engine": "duckduckgo",
+      "position": 7,
+      "engine_priority": 1,
+      "content_type": "general",
+      "content": " The Complete Guide to Open-Source AI Models in 2026: Llama 4, Mistral, DeepSeek & Beyond - AI Pricing Master AI Pricing Master Home Tools Blog News About Compare Free Home / Blog / The Complete Guide to Open-Source AI Models in 2026: Llama 4, Mistral, DeepSeek & Beyond Guide January 24, 2026 \u2022 11 min read \u2022 By AI Pricing Master The Complete Guide to Open-Source AI Models in 2026: Llama 4, Mistral, DeepSeek & Beyond Compare open-source LLM costs, benchmarks, and deployment options. Llama 4, DeepSeek-V3, Mistral, Qwen pricing with self-hosting ROI calculator and GPU requirements. Share: Twitter LinkedIn Copy Link Free & Low-Cost AI Models: Pricing, Performance, and Deployment Economics Open-source AI models have reached a pivotal inflection point where they now match or exceed proprietary alternatives at 10-50x lower cost . DeepSeek R1 delivers GPT-4-class reasoning for $0.55 per million input tokens\u201427 times cheaper than Claude Opus\u2014while Llama 4 Maverick outperforms GPT-4o on major benchmarks at just $0.30 per million tokens. For engineering leaders evaluating their AI infrastructure strategy, the economics have fundamentally shifted: self-hosting breaks even at approximately 2 million tokens daily, and companies implementing hybrid routing architectures are achieving 60-83% cost reductions without sacrificing quality. This guide provides the specific numbers, configurations, and decision frameworks needed to optimize your AI spending in 2026. The Open-Source Model Landscape Has Fundamentally Changed The release of DeepSeek-V3 in December 2024 marked a watershed moment\u2014a 671B parameter model trained for under $6 million that matched GPT-4 on most benchmarks. This triggered an acceleration that has now delivered models matching or exceeding proprietary alternatives across every major category. Llama 4 arrived in April 2025 with three variants using Mixture-of-Experts (MoE) architecture. Scout packs 109B total parameters with only 17B active, enabling deployment on a single H100 GPU while supporting an industry-leading 10 million token context window. Maverick scales to 400B total parameters (17B active) across 128 experts, achieving 80.5% on MMLU-Pro\u2014surpassing GPT-4o&#x27;s 73.3%. The unreleased Behemoth previews 2 trillion parameters with 288B active, already outperforming GPT-4.5 on STEM benchmarks during training. Meta&#x27;s Llama Community License perm",
+      "fetched_at": "20260702_141619"
+    },
+    {
+      "title": "Best Open-Source LLMs May 2026: Llama 4, Qwen 3, DeepSeek",
+      "url": "https://www.web3aiblog.com/blog/best-open-source-llms-llama-4-qwen-3-deepseek-v3-mistral-large-3-may-2026",
+      "snippet": "Key Insight In May 2026 the open-weight LLM landscape is led by Llama 4 (best ecosystem and tooling), Qwen 3 (best all-rounder and multilingual), DeepSeek-V3 (best reasoning per dollar), and Mistral Large 3 (best European-licensed option for enterprise).",
+      "source_engine": "duckduckgo",
+      "position": 3,
+      "engine_priority": 1,
+      "content_type": "general",
+      "content": " Best Open-Source LLMs May 2026: Llama 4, Qwen 3, DeepSeek ((a,b,c,d,e,f,g,h)=>{let i=document.documentElement,j=[\"light\",\"dark\"];function k(b){var c;(Array.isArray(a)?a:[a]).forEach(a=>{let c=\"class\"===a,d=c&&f?e.map(a=>f[a]||a):e;c?(i.classList.remove(...d),i.classList.add(f&&f[b]?f[b]:b)):i.setAttribute(a,b)}),c=b,h&&j.includes(c)&&(i.style.colorScheme=c)}if(d)k(d);else try{let a=localStorage.getItem(b)||c,d=g&&\"system\"===a?window.matchMedia(\"(prefers-color-scheme: dark)\").matches?\"dark\":\"light\":a;k(d)}catch(a){}})(\"class\",\"theme\",\"dark\",null,[\"light\",\"dark\"],null,true,true) Web3 AI Blog .com Home Blog Tools Categories Tags About Contact Editorial Policy {\"@context\":\"https://schema.org\",\"@type\":\"Article\",\"headline\":\"Best Open-Source LLMs May 2026: Llama 4 vs Qwen 3 vs DeepSeek-V3 vs Mistral Large 3\",\"description\":\"The leading open-weight large language models of May 2026 \u2014 Llama 4, Qwen 3, DeepSeek-V3, and Mistral Large 3 \u2014 compared on reasoning, coding, context, multilingual ability, and the real cost of self-hosting, using published benchmarks and the practitioner record.\",\"abstract\":\"In May 2026 the open-weight LLM landscape is led by Llama 4 (best ecosystem and tooling), Qwen 3 (best all-rounder and multilingual), DeepSeek-V3 (best reasoning per dollar), and Mistral Large 3 (best European-licensed option for enterprise). The gap to closed frontier models has narrowed to roughly 6-9 months \u2014 open weights now handle most production workloads. Pick by constraint: Llama 4 for ecosystem, Qwen 3 for breadth, DeepSeek-V3 for reasoning value, Mistral Large 3 for clean enterprise licensing.\",\"image\":\"https://images.unsplash.com/photo-1686061594225-3e92c0cd51b0?w=1200&h=630&fit=crop\",\"url\":\"https://www.web3aiblog.com/blog/best-open-source-llms-llama-4-qwen-3-deepseek-v3-mistral-large-3-may-2026\",\"isAccessibleForFree\":true,\"author\":{\"@type\":\"Person\",\"name\":\"Fatima Al-Hassan\",\"url\":\"https://www.web3aiblog.com/author/fatima-al-hassan\",\"jobTitle\":\"Security & Privacy Editorial Desk\",\"image\":\"https://www.web3aiblog.com/images/authors/fatima-al-hassan.jpg\",\"sameAs\":[\"https://x.com/web3aiblog\",\"https://www.linkedin.com/company/web3-ai-blog/\"]},\"publisher\":{\"@id\":\"https://www.web3aiblog.com/#organization\",\"@type\":\"Organization\",\"name\":\"Web3AIBlog\"},\"datePublished\":\"2026-05-21\",\"dateModified\":\"2026-05-21\",\"mainEntityOfPage\":{\"@type\":\"WebPage\",\"@id\":\"https://www.web3aiblo",
+      "fetched_at": "20260702_141619"
+    },
+    {
+      "title": "Local LLMs in 2026: Are Llama 4 - aitoolradar.io",
+      "url": "https://aitoolradar.io/blog/local-llms-2026-reality-check",
+      "snippet": "Home Blog Local LLMs in 2026 : Are Llama 4 Practical Guides Local LLMs in 2026 : Are Llama 4 Llama 4 launched April 2025 with Scout, Maverick, and Behemoth. DeepSeek V3 runs 671B params at $0.27/$1.10 per million. Mistral Large 3 is a 675B MoE.",
+      "source_engine": "duckduckgo",
+      "position": 6,
+      "engine_priority": 1,
+      "content_type": "general",
+      "content": "",
+      "fetched_at": null
+    },
+    {
+      "title": "Open-Source LLMs Landscape: Qwen, Llama, DeepSeek, Kimi (May 2026)",
+      "url": "https://codersera.com/blog/open-source-llms-landscape-2026/",
+      "snippet": "The Open-Source LLM Landscape in 2026 The full open-weight LLM landscape in 2026 \u2014 DeepSeek V4, Llama 4 , Qwen 3.5, Gemma 4 , Mistral , Phi-4 \u2014 with real benchmarks, license analysis, and a decision framework.",
+      "source_engine": "duckduckgo",
+      "position": 1,
+      "engine_priority": 1,
+      "content_type": "general",
+      "content": "",
+      "fetched_at": null
+    },
+    {
+      "title": "The Llama 4 herd: The beginning of a new era of natively multimodal AI ...",
+      "url": "https://ai.meta.com/blog/llama-4-multimodal-intelligence/",
+      "snippet": "We&#x27;re introducing Llama 4 Scout and Llama 4 Maverick, the first open-weight natively multimodal models with unprecedented context support and our first built using a mixture-of-experts (MoE) architecture.",
+      "source_engine": "duckduckgo",
+      "position": 8,
+      "engine_priority": 1,
+      "content_type": "general",
+      "content": "",
+      "fetched_at": null
+    },
+    {
+      "title": "Llama 4 Guide 2026 | Meta&#x27;s Latest Open-Source LLM",
+      "url": "https://guzli.com/learn/ai-assistants/llama-4-guide/",
+      "snippet": "Everything about Meta&#x27;s Llama 4 , the latest open-source foundation model . Access options, fine-tuning, and running locally with Ollama or vLLM.",
+      "source_engine": "duckduckgo",
+      "position": 5,
+      "engine_priority": 1,
+      "content_type": "general",
+      "content": "",
+      "fetched_at": null
+    }
+  ],
+  "answer": "",
+  "citations": [],
+  "llm_used": true,
+  "log_dir": "generated/web_search/20260702T141613Z_llama_4_open_source_model_release_mistral_open_weight_may_20",
+  "generated_at": "20260702_141640"
+}

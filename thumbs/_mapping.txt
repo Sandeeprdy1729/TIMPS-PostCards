@@ -1,0 +1,24 @@
+2026-03-28	040	thumb-2026-03-28.svg	Federal Judge Blocks Pentagon's Anthropic Ban in Landmark First Amendment Ruling
+2026-04-04	041	thumb-2026-04-04.svg	OpenAI Closes Record $122 Billion Round at $852 Billion Valuation — IPO Next
+2026-04-11	042	thumb-2026-04-11.svg	Meta Launches Muse Spark — A Multimodal AI Powering the Entire Social Ecosystem
+2026-04-18	043	thumb-2026-04-18.svg	Cerebras Files for IPO — The Nvidia Challenger's $26.6 Billion Bet Against the GPU
+2026-04-25	044	thumb-2026-04-25.svg	Musk v. OpenAI Trial Opens — The 'Terminator Warning' and the Battle for AI's Founding Story
+2026-05-02	045	thumb-2026-05-02.svg	GPT-5.4 and Gemini 3.1 Push Context Windows Past 10 Million Tokens — But Who Actually Needs It?
+2026-05-09	046	thumb-2026-05-09.svg	DeepSeek V3.2 and GLM-5.1 Match Frontier Proprietary Models at a Fraction of the Cost
+2026-05-16	047	thumb-2026-05-16.svg	Anthropic's Mythos Proves Frontier Models Are Too Dangerous to Release — and Too Valuable to Hide
+2026-05-23	048	thumb-2026-05-23.svg	Gartner Predicts 40% of Enterprise Apps Will Have AI Agents by Year-End — Up From 5% in 2025
+2026-06-18	2026-06-18	thumb-2026-06-18.svg	SpaceX Buys Cursor for $60 Billion — AI Coding's Biggest Deal Ever
+2026-06-19	2026-06-19	thumb-2026-06-19.svg	Midjourney Builds a Full-Body Scanner — and Calls It Medicine
+2026-06-20	2026-06-20	thumb-2026-06-20.svg	Midjourney Builds a Body Scanner
+2026-06-21	2026-06-21	thumb-2026-06-21.svg	Claude Code Learns to Show Its Work
+2026-06-22	2026-06-22	thumb-2026-06-22.svg	Americans Now Spend More Time Talking to AI Than Swiping for Dates
+2026-06-23	029	thumb-2026-06-23.svg	A Nobel Laureate Just Switched Sides in the AI Race
+2026-06-24	030	thumb-2026-06-24.svg	When the Model Understood the Cells
+2026-06-25	031	thumb-2026-06-25.svg	OpenAI Ships Its First Chip — and Stops Renting the Whole Stack
+2026-06-26	2026-06-26	thumb-2026-06-26.svg	OpenAI and Broadcom Unveil Jalapeño — The First Custom AI Inference Chip
+2026-06-27	2026-06-27	thumb-2026-06-27.svg	The Memory Crunch Finally Reaches Your Cart
+2026-06-28	2026-06-28	thumb-2026-06-28.svg	Wall Street Gets Its First Pure-Play Humanoid Robot Stock
+2026-06-29	2026-06-29	thumb-2026-06-29.svg	Five Spy Agencies Just Told the World: The AI Cyber Threat Is Months Away, Not Years
+2026-06-30	036	thumb-2026-06-30.svg	AI Now Ships Like Enriched Uranium
+2026-07-01	037	thumb-2026-07-01.svg	Claude Fable 5 and Mythos 5 Are Coming Back Online
+2026-07-02	038	thumb-2026-07-02.svg	Meta Turns Its AI Overspend Into a Cloud Business

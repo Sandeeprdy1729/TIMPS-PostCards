@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TIMPS PostCards — Issue 043</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream:  #EEECE2;
+    --forest: #3D3929;
+    --terra:  #DA7756;
+    --terra-d:#BD5D3A;
+    --black:  #111111;
+    --card-bg:#F0ECE0;
+    --mono:   'Space Mono', 'Courier New', monospace;
+    --serif:  'TIMPS', 'Playfair Display', Georgia, serif;
+  }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Black.woff2') format('woff2'); font-weight:900; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Bold.woff2') format('woff2'); font-weight:700; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-SemiBold.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--cream);
+    background-image:
+      linear-gradient(rgba(61,57,41,.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.07) 1px, transparent 1px);
+    background-size: 38px 38px;
+    font-family: 'Space Mono', 'Courier New', monospace;
+    color: var(--forest);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { text-decoration: none; color: inherit; }
+
+  /* Nav */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 48px;
+    background-color: rgba(238,236,226,.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1.5px solid rgba(61,57,41,.12);
+    background-image:
+      linear-gradient(rgba(61,57,41,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.05) 1px, transparent 1px);
+    background-size: 38px 38px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 15px;
+    font-weight: 600;
+    color: #000;
+    text-decoration: none;
+  }
+  .nav-logo-mark {
+    width: 34px; height: 34px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .nav-logo-mark img { width: 28px; height: 28px; object-fit: contain; }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-link {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: #000;
+    opacity: .65;
+    text-decoration: none;
+    transition: opacity .15s;
+  }
+  .nav-link:hover { opacity: 1; }
+  .nav-cta {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: #000;
+    background: var(--terra);
+    border: 2.5px solid #000;
+    border-radius: 100px;
+    padding: 10px 24px;
+    cursor: pointer;
+    transition: background .15s, transform .1s;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--terra-d); transform: translateY(-1px); }
+
+  .wrapper { max-width: 760px; margin: 0 auto; padding: 40px 20px 80px; display: flex; flex-direction: column; gap: 0; }
+
+  /* Cover */
+  .cover-card { background: var(--card-bg); border-radius: 20px 20px 4px 4px; padding: 56px 48px 48px; text-align: center; position: relative; overflow: hidden; border: 1.5px solid rgba(61,57,41,.12); margin-bottom: 3px; }
+  .cover-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, var(--terra) 0%, var(--terra-d) 60%, #E0A88A 100%); }
+  .cover-eyebrow { font-family: var(--mono); font-size:10px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:20px; display:flex; align-items:center; justify-content:center; gap:10px; }
+  .cover-eyebrow::before,.cover-eyebrow::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .15; max-width:60px; }
+  .cover-title { font-family: var(--serif); font-size:58px; font-weight:900; line-height:1; letter-spacing:-1px; color: var(--forest); margin-bottom:8px; }
+  .cover-sub { font-family: var(--serif); font-size:13px; font-style:italic; color: var(--forest); opacity: .55; margin-bottom:28px; }
+  .cover-divider { width:48px; height:2px; background: var(--terra); margin:0 auto 24px; border-radius:2px; }
+  .cover-meta { display:flex; justify-content:center; gap:32px; font-family: var(--mono); font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .45; }
+  .cover-badge { display:inline-flex; align-items:center; gap:6px; background: var(--terra); color: #fff; border-radius:20px; padding:6px 18px; font-family: var(--mono); font-size:10px; letter-spacing:2px; text-transform:uppercase; margin-top:28px; }
+  .top5-pill { display:flex; justify-content:center; gap:10px; margin-top:32px; flex-wrap:wrap; }
+  .pill { background: var(--forest); color: var(--cream); border-radius:100px; padding:4px 14px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; }
+  .pill.light { background:transparent; color: var(--forest); border:1px solid rgba(61,57,41,.2); }
+
+  /* Section labels */
+  .section-label { display:flex; align-items:center; gap:12px; padding:10px 0 8px; font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .35; }
+  .section-label::before,.section-label::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .1; }
+
+  /* Story cards */
+  .story-card { border-radius:4px; border:1.5px solid rgba(61,57,41,.10); padding:36px 40px; margin-bottom:3px; position:relative; overflow:hidden; }
+  .story-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }
+
+  .card-sky      { background:#D6E8F0; } .card-sky::before      { background: #7AAFC0; }
+  .card-cream    { background: var(--card-bg); } .card-cream::before    { background: var(--terra); }
+  .card-blush    { background:#F5DDD0; } .card-blush::before    { background: #E0A88A; }
+  .card-lavender { background:#EAE6F5; } .card-lavender::before { background: #C8BEE8; }
+  .card-sage     { background:#D6E4D6; } .card-sage::before     { background: #8BAF8B; }
+
+  .page-chip { position:absolute; top:14px; right:16px; font-family: var(--mono); font-size:9px; letter-spacing:2px; text-transform:uppercase; color: var(--forest); opacity: .3; }
+  .card-routine { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:8px; }
+  .card-headline { font-family: var(--serif); font-size:28px; font-weight:900; line-height:1.15; color: var(--forest); margin-bottom:10px; }
+  .card-headline.lg { font-size:34px; }
+  .card-headline.sm { font-size:22px; }
+  .card-deck { font-family: var(--serif); font-style:italic; font-size:14px; line-height:1.55; color: var(--forest); opacity: .55; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid rgba(61,57,41,.12); }
+  .card-body { font-family: 'Lora', Georgia, serif; font-size:14px; line-height:1.7; color: var(--forest); }
+  .card-body p { margin-bottom:11px; }
+  .drop::first-letter { font-family: var(--serif); font-size:52px; font-weight:900; float:left; line-height:.78; margin:5px 6px 0 0; color: var(--terra); }
+  .clearfix::after { content:''; display:table; clear:both; }
+  .two-col { column-count:2; column-gap:24px; column-rule:1px solid rgba(61,57,41,.12); }
+
+  .hl-lime { background: var(--terra); color: var(--forest); padding:0 4px; border-radius:2px; }
+  .hl-ink  { background: var(--forest); color: var(--cream); padding:0 4px; border-radius:2px; }
+
+  .stat-box { float:right; margin:0 0 16px 24px; background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:16px 20px; text-align:center; min-width:120px; }
+  .stat-big { font-family: var(--serif); font-size:44px; font-weight:900; line-height:1; color: var(--forest); display:block; }
+  .stat-label { font-family: var(--mono); font-size:9.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .5; display:block; margin-top:4px; }
+
+  .icon-frame { border:2px solid rgba(61,57,41,0.12); border-radius:12px; overflow:hidden; margin:16px 0; background: var(--cream); padding:18px; display:flex; align-items:center; justify-content:center; }
+  .icon-frame svg { width:100%; height:auto; max-height:140px; }
+  .icon-frame.float-right { float:right; width:180px; margin:0 0 16px 24px; }
+
+  .img-frame { border:2px solid rgba(61,57,41,0.18); border-radius:12px; overflow:hidden; margin:16px 0; background: var(--cream); }
+  .img-frame img { width:100%; display:block; max-height:240px; object-fit:cover; border-bottom:1px solid rgba(61,57,41,.12); }
+  .img-caption { padding:8px 12px; font-family: var(--mono); font-size:10.5px; color: var(--forest); opacity: .7; font-style:italic; display:flex; align-items:center; justify-content:space-between; gap:8px; }
+  .img-caption a { font-family: var(--mono); font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--terra); text-decoration:none; white-space:nowrap; font-style:normal; }
+  .img-frame.float-right { float:right; width:220px; margin:0 0 16px 24px; }
+  .img-frame.float-right img { max-height:140px; }
+
+  .source-link { display:inline-flex; align-items:center; gap:5px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:12px; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; transition: opacity .15s; }
+  .source-link:hover { opacity: 1; }
+  .source-link::after { content:'↗'; font-size:9px; }
+
+  .signals-card { background:#EAE6F5; border-radius:4px; border:1.5px solid rgba(61,57,41,.10); padding:36px 40px; margin-bottom:3px; position:relative; }
+  .signals-grid { display:flex; flex-direction:column; gap:14px; }
+  .signal-row { display:flex; align-items:flex-start; gap:14px; }
+  .signal-num { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family: var(--serif); font-size:13px; font-weight:900; flex-shrink:0; color:#fff; }
+  .signal-num.n1{background: var(--terra); color: var(--forest);} .signal-num.n2{background: var(--forest);} .signal-num.n3{background:#7AAFC0;} .signal-num.n4{background: var(--terra-d); color: var(--forest);} .signal-num.n5{background: var(--black);}
+  .signal-title { font-family: var(--serif); font-size:14px; font-weight:700; color: var(--forest); margin-bottom:2px; }
+  .signal-desc { font-family: 'Space Mono', monospace; font-size:12px; line-height:1.65; color: var(--forest); opacity: .6; }
+  .signal-link { display:inline-block; font-family: var(--mono); font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .5; text-decoration:none; margin-top:4px; border-bottom:1px solid rgba(61,57,41,.2); transition: opacity .15s; }
+  .signal-link:hover { opacity: 1; }
+
+  .themes-card { background:#F5DDD0; border-radius:4px; border:1.5px solid rgba(61,57,41,.10); padding:36px 40px; margin-bottom:3px; }
+  .themes-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .theme-item { padding:10px 14px; border-radius:8px; font-family: var(--serif); font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; text-align:center; border:1.5px solid rgba(61,57,41,.12); background: var(--cream); }
+
+  .tool-week { background: var(--forest); color: var(--cream); border-radius:12px; padding:18px 20px; text-align:center; margin-top:14px; }
+  .tool-week-eyebrow { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; opacity: .55; margin-bottom:6px; }
+  .tool-week-name { font-family: var(--serif); font-size:22px; font-weight:900; margin-bottom:4px; }
+  .tool-week-desc { font-family: 'Space Mono', monospace; font-size:11.5px; opacity: .7; font-style:italic; }
+
+  .sources-title { font-family: var(--serif); font-weight:700; font-size:13px; margin:24px 0 10px; color: var(--forest); }
+  .output-card { background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:18px 20px; margin-top:14px; }
+  .output-title { font-family: var(--serif); font-size:18px; font-weight:700; margin-bottom:8px; color: var(--forest); }
+  .sources-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px 20px; }
+  .sources-grid a { font-family: var(--mono); font-size:11px; color: var(--forest); opacity: .55; text-decoration:none; border-bottom:1px solid rgba(61,57,41,.15); padding-bottom:1px; transition: opacity .15s; }
+  .sources-grid a:hover { opacity: 1; }
+
+  /* Footer */
+  .footer {
+    background: var(--black);
+    padding: 28px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    border-radius: 4px 4px 20px 20px;
+    margin-top: 3px;
+  }
+  .footer-logo { display: flex; align-items: center; gap: 10px; }
+  .footer-mark { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; }
+  .footer-mark img { width: 24px; height: 24px; object-fit: contain; filter: brightness(10); }
+  .footer-brand { font-family: var(--mono); font-size: 13px; font-weight: 700; color: #fff; }
+  .footer-center { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.4); text-align: center; line-height: 1.6; }
+  .footer-right { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.3); text-align: right; line-height: 2; }
+  .footer-right a { color: rgba(255,255,255,.5); transition: color .15s; }
+  .footer-right a:hover { color: #fff; }
+
+  /* TOC Sidebar */
+  .page-layout { display: flex; align-items: flex-start; gap: 0; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+  .toc-sidebar { position: sticky; top: 80px; width: 170px; flex-shrink: 0; padding: 48px 0 0 0; }
+  .toc-nav { display: flex; flex-direction: column; gap: 0; }
+  .toc-link { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.5px; text-transform: uppercase; color: #000; opacity: .45; text-decoration: none; padding: 7px 12px; border-left: 2px solid transparent; transition: opacity .15s, border-color .15s; line-height: 1.3; }
+  .toc-link:hover { opacity: .85; }
+  .toc-link.active { opacity: 1; border-left-color: var(--terra); }
+  .section-anchor { scroll-margin-top: 80px; }
+
+  @media (max-width: 900px) {
+    .toc-sidebar { display: none; }
+    .page-layout { max-width: 760px; }
+  }
+
+  @media (max-width: 720px) {
+    .nav { padding: 12px 24px; }
+    .nav-links { display: none; }
+    .wrapper { padding: 20px 14px 60px; }
+    .cover-card { padding: 40px 24px; }
+    .story-card { padding: 28px 20px; }
+    .footer { padding: 24px; flex-direction: column; align-items: flex-start; }
+    .footer-center, .footer-right { text-align: left; }
+    .stat-box { float: none; margin: 0 0 16px 0; }
+    .icon-frame.float-right { float: none; width: 100%; margin: 16px 0; }
+  }
+  @media (max-width: 480px) {
+    .nav-logo span { display: none; }
+    .cover-title { font-size: 40px; }
+    .card-headline.lg { font-size: 28px; }
+    .card-headline { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-mark">
+      <img src="timps_logo.svg" alt="TIMPS">
+    </div>
+    <span>TIMPS PostCards</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html#archive" class="nav-link">Archive</a>
+    <a href="timps-postcards-2026-04-18.html" class="nav-link">Latest Issue</a>
+    <a href="index.html#subscribe" class="nav-link">Subscribe</a>
+  </div>
+  <a href="index.html#subscribe" class="nav-cta">Subscribe</a>
+</nav>
+
+<div class="page-layout">
+
+  <!-- TOC SIDEBAR -->
+  <aside class="toc-sidebar">
+    <nav class="toc-nav">
+      <a href="#intro" class="toc-link">Intro</a>
+      <a href="#lead" class="toc-link">Lead</a>
+      <a href="#markets" class="toc-link">Markets</a>
+      <a href="#signals" class="toc-link">Signals</a>
+      <a href="#themes" class="toc-link">Themes</a>
+      <a href="#tool" class="toc-link">Tool</a>
+      <a href="#sources" class="toc-link">Sources</a>
+    </nav>
+  </aside>
+
+  <div class="wrapper">
+
+  <!-- INTRODUCTION -->
+  <div id="intro" class="cover-card section-anchor">
+    <div class="cover-eyebrow">AI Intelligence Digest</div>
+    <div class="cover-title">TIMPS<br>PostCards</div>
+    <div class="cover-sub">Chip Wars: NVIDIA's Next Bet & the Custom Silicon Insurgency</div>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+      <span>Issue 043</span>
+      <span>April 18, 2026</span>
+      <span>Hyderabad, India</span>
+    </div>
+    <div class="cover-badge">⬡ Built with the TIMPS Ecosystem</div>
+    <div class="top5-pill">
+      <span class="pill light">Latest Issue</span>
+    </div>
+  </div>
+
+    <!-- CONTENT -->
+  <div id="lead" class="story-card card-sky section-anchor">
+    <div class="page-chip">01 · LEAD</div>
+    <div class="card-routine">Hardware & Silicon</div>
+    <h1 class="card-headline lg">Cerebras Files for IPO — The Nvidia Challenger's $26.6 Billion Bet Against the GPU</h1>
+    <div class="card-deck">The wafer-scale chip maker filed its S-1 on April 17, revealing $510 million in revenue, a $10 billion OpenAI compute deal, and a chip 57x larger than Nvidia's H100 — setting up the most consequential AI chip IPO of the year.</div>
+    <div class="stat-box">
+      <span class="stat-big">$510M</span>
+      <span class="stat-label">2025 revenue; $24.6B backlog</span>
+    </div>
+    <div class="card-body drop clearfix">
+      <p>Cerebras Systems filed its S-1 registration statement with the SEC on April 17, targeting a Nasdaq listing under ticker CBRS at a $22-26 billion valuation. The filing revealed $510 million in 2025 revenue (up 76% YoY), a non-GAAP net income of $237.8 million, and a revenue backlog of $24.6 billion. The centerpiece is a multi-year compute agreement with OpenAI valued at over $10 billion, under which OpenAI will deploy 750 megawatts of Cerebras WSE-3 chips. OpenAI also loaned Cerebras $1 billion secured by warrants allowing OpenAI to buy over 33 million shares.</p>
+      <p>The WSE-3 is the third generation of Cerebras's wafer-scale engine — a single chip 57x larger than Nvidia's H100, with 4 trillion transistors, 900,000 AI-optimized cores, and 44GB of on-chip SRAM delivering 21 PB/s of bandwidth. The chip targets inference workloads, where the AI hardware market has been rotating since 2025. 'Obviously Nvidia didn't want to lose the fast inference business at OpenAI, and we took that from them,' CEO Andrew Feldman told the WSJ. Morgan Stanley, Citigroup, Barclays, and UBS are lead underwriters.</p>
+    </div>
+    <a href="#" class="source-link">TechCrunch, WSJ, SEC Filing, CNBC</a>
+  </div>
+
+  <!-- ARTIFACTS -->
+  <div id="markets" class="story-card card-cream section-anchor">
+    <div class="page-chip">02 · CAPITAL</div>
+    <div class="card-routine">Market Dynamics</div>
+    <h2 class="card-headline">NVIDIA Faces the Inference Shift as Groq and Cerebras Eat Into the GPU Moat</h2>
+    <div class="card-deck">The AI industry's pivot from training to inference is reshaping the chip landscape: NVIDIA spent billions on Groq technology licensing and Cerebras won OpenAI's inference business, as Jensen Huang acknowledged the transition is 'the biggest opportunity — and challenge — in NVIDIA's history.'</div>
+    <div class="stat-box">
+      <span class="stat-big">$20B</span>
+      <span class="stat-label">NVIDIA's Groq tech licensing deal</span>
+    </div>
+    <div class="card-body drop clearfix">
+      <p>The GPU Technology Conference this quarter marked a turning point for NVIDIA: for the first time, Jensen Huang devoted the majority of his keynote to inference computing rather than training. The shift reflects a structural change in the AI market — as models move from development to production, the compute demand profile flips from training (dominated by NVIDIA) to inference (where custom chips are competitive). NVIDIA's $20 billion technology licensing deal with Groq and the loss of OpenAI's inference business to Cerebras underscore the competitive pressure.</p>
+      <p>NVIDIA's response is the Vera Rubin platform, already in full production, featuring the Vera CPU and Rubin GPU with six breakthrough chips co-designed for inference workloads. The platform includes 6th-gen NVLink switches, ConnectX-9 networking, and the world's first 200Gb Ethernet co-packaged optics. Despite the challenges, NVIDIA's data center revenue continues to grow, but the margin structure is shifting as inference-optimized chips command different pricing than training GPUs.</p>
+    </div>
+    <a href="#" class="source-link">NVIDIA GTC, PCMag, CNBC, Reuters</a>
+  </div>
+
+  <!-- STORY 3 -->
+    <div class="story-card card-sky">
+    <div class="page-chip">03 · CUSTOM SILICON</div>
+    <div class="card-routine">Custom Silicon</div>
+    <h2 class="card-headline">OpenAI and Broadcom Unveil Jalapeño — An LLM-Optimized Inference Chip</h2>
+    <div class="card-deck">The custom chip, designed in collaboration with Broadcom, marks OpenAI's first foray into silicon and signals a broader trend of AI labs building their own hardware to escape NVIDIA's pricing and supply constraints.</div>
+    <div class="stat-box">
+      <span class="stat-big">Custom</span>
+      <span class="stat-label">First OpenAI-designed inference chip</span>
+    </div>
+    <div class="card-body drop clearfix">
+      <p>OpenAI and Broadcom unveiled the Jalapeño inference chip on June 24 (development details emerged in April), a custom ASIC optimized specifically for transformer-based LLM inference. The chip is designed to reduce inference costs by up to 75% compared to NVIDIA H100s for ChatGPT workloads, with a focus on low-latency token generation rather than raw training throughput. OpenAI has been quietly building a silicon team led by former Google TPU and Apple A-series engineers since 2024.</p>
+      <p>The Jalapeño chip represents a strategic hedge: while OpenAI's $122 billion funding round includes $30 billion from NVIDIA and commitments to purchase 5GW of NVIDIA compute, the company simultaneously invests in reducing its dependency. The chip will initially be deployed for internal ChatGPT inference before being offered to API customers. OpenAI joins Google (TPU), Amazon (Trainium/Inferentia), Microsoft (MAI), and Meta (MTIA) in building custom silicon optimized for its specific workload profile.</p>
+    </div>
+    <a href="#" class="source-link">OpenAI Blog, The Information, Bloomberg</a>
+  </div>
+
+  <!-- PERCEPTIONS -->
+  <div id="signals" class="story-card card-sky section-anchor">
+    <div class="page-chip">04 · SIGNALS</div>
+    <div class="card-routine">5 Things Worth Knowing</div>
+    <h2 class="card-headline sm">5 Key Signals</h2>
+    <div class="signals-grid">
+      <div class="signal-row">
+        <div class="signal-num n1">01</div>
+        <div>
+          <div class="signal-title">Nvidia preparing a new China-market AI chip variant to comply with US export controls while maintaining sales</div>
+          <a href="#" class="signal-link">Reuters ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n2">02</div>
+        <div>
+          <div class="signal-title">AMD reports 80% YoY growth in data center GPU revenue as MI300X gains enterprise traction</div>
+          <a href="#" class="signal-link">AMD Earnings ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n3">03</div>
+        <div>
+          <div class="signal-title">TSMC's advanced-node and packaging capacity sold out through 2027 amid insatiable AI chip demand</div>
+          <a href="#" class="signal-link">Supply Chain Reports ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n4">04</div>
+        <div>
+          <div class="signal-title">Apple developing its own AI server chip codenamed 'Baltra' in partnership with Broadcom</div>
+          <a href="#" class="signal-link">Bloomberg ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n5">05</div>
+        <div>
+          <div class="signal-title">Huawei's 950PR chip wins orders from ByteDance and Alibaba as China's domestic AI chip ecosystem accelerates</div>
+          <a href="#" class="signal-link">Reuters ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DISCUSSION -->
+  <div id="themes" class="story-card card-cream section-anchor">
+    <div class="page-chip">05 · THEMES</div>
+    <div class="card-routine">This Week in Focus</div>
+    <h2 class="card-headline sm">Top Themes</h2>
+    <div class="themes-grid">
+      <div class="theme-item">Inference-First Design</div>
+      <div class="theme-item">Custom Silicon Proliferation</div>
+      <div class="theme-item">NVIDIA's Moat Under Pressure</div>
+      <div class="theme-item">AI Chip IPOs</div>
+      <div class="theme-item">Geopolitical Chip Supply</div>    </div>
+
+    <div id="tool" class="tool-week section-anchor">
+      <div class="tool-week-eyebrow">Tool of the Week</div>
+      <div class="tool-week-name">Cerebras WSE-3</div>
+      <div class="tool-week-desc">The world's largest AI chip — 4 trillion transistors, 900K cores, 44GB on-chip SRAM, 21 PB/s bandwidth — purpose-built for fast inference.</div>
+    </div>
+
+    <div id="sources" class="output-card section-anchor">
+      <div class="output-title">Sources Cited</div>
+      <div class="sources-grid">
+        <a href="#">Inference-First Design</a>
+        <a href="#">Custom Silicon Proliferation</a>
+        <a href="#">NVIDIA's Moat Under Pressure</a>
+        <a href="#">AI Chip IPOs</a>
+        <a href="#">Geopolitical Chip Supply</a>      </div>
+    </div>
+  </div>
+<!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-logo">
+      <div class="footer-mark">
+        <img src="timps_logo.svg" alt="TIMPS">
+      </div>
+      <span class="footer-brand">TIMPS PostCards</span>
+    </div>
+    <div class="footer-center">
+      Issue 043 · April 18, 2026<br>
+      Hyderabad, India
+    </div>
+    <div class="footer-right">
+      <a href="index.html">Home</a><br>
+      <a href="index.html#archive">Archive</a><br>
+      &copy; 2026 TIMPS
+    </div>
+  </footer>
+
+</div> <!-- /wrapper -->
+</div> <!-- /page-layout -->
+</body>
+</html>

@@ -1,0 +1,135 @@
+{
+  "summary": "Web search for 'open source AI models open weight releases Llama Mistral May 2026': 10 results from duckduckgo=ok (10); no LLM synthesis.",
+  "query": "open source AI models open weight releases Llama Mistral May 2026",
+  "refined_queries": [],
+  "engines_used": [
+    "duckduckgo"
+  ],
+  "engine_status": {
+    "duckduckgo": "ok (10)"
+  },
+  "recency": "any",
+  "content_type": "general",
+  "locale": "en-US",
+  "max_results": 10,
+  "raw_count": 10,
+  "deduped_count": 10,
+  "fetched_count": 5,
+  "results": [
+    {
+      "title": "Open Source AI Models 2026: Llama vs Mistral vs Qwen Comparison ...",
+      "url": "https://www.evoart.ai/blog/the-open-source-ai-landscape-in-2026-llama-mistral-and-qwen-compared",
+      "snippet": "The Open Source AI Landscape in 2026 : Llama , Mistral , and Qwen Compared As open-source AI models mature in 2026 , developers face a crucial choice between Meta&#x27;s Llama 4, Europe&#x27;s Mistral 3, and China&#x27;s Qwen 3.5. This comprehensive analysis examines capabilities, licensing, and use cases for each major player.",
+      "source_engine": "duckduckgo",
+      "position": 8,
+      "engine_priority": 1,
+      "content_type": "general",
+      "content": " (function(){const GA_MEASUREMENT_ID = \"G-8DYH82NWRQ\"; window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', GA_MEASUREMENT_ID); })(); Open Source AI Models 2026: Llama vs Mistral vs Qwen Comparison | EvoArt.ai: Evolve Your Creativity with AI {\"@context\":\"https://schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Blog\",\"item\":{\"@type\":\"Thing\",\"@id\":\"https://www.evoart.ai/blog\",\"name\":\"Blog\"}},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"AI Models\",\"item\":{\"@type\":\"Thing\",\"@id\":\"https://www.evoart.ai/blog/category/ai-models\",\"name\":\"AI Models\"}},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"The Open Source AI Landscape in 2026: Llama, Mistral, and Qwen Compared\",\"item\":{\"@type\":\"Thing\",\"@id\":\"https://www.evoart.ai/blog/the-open-source-ai-landscape-in-2026-llama-mistral-and-qwen-compared\",\"name\":\"The Open Source AI Landscape in 2026: Llama, Mistral, and Qwen Compared\"}}]} {\"@context\":\"https://schema.org\",\"@type\":\"BlogPosting\",\"headline\":\"Open Source AI Models 2026: Llama vs Mistral vs Qwen Comparison\",\"description\":\"Compare the leading open source AI models in 2026: Llama 4, Mistral 3, and Qwen 3.5. Learn about capabilities, licensing, and which model fits your needs.\",\"author\":{\"@type\":\"Person\",\"name\":{\"name\":\"Elena Vance\",\"avatar\":\"/blog-images/1773968143904-9t7n4t.jpeg\",\"slug\":\"elena-vance\",\"bio\":\"I\u00e2\u0080\u0099m a machine learning engineer working on enterprise AI deployments. My day job involves auditing models for bias and reliability, and my blog is where I share what I\u00e2\u0080\u0099ve learned about evaluation metrics, responsible AI guardrails, and how to actually ship models that stakeholders can trust.\"},\"email\":\"DamonCote7@gmail.com\",\"url\":\"https://damoncote.com\",\"sameAs\":[\"https://twitter.com/DamonCote7\",\"https://github.com/DamonCote\",\"https://damoncote.com\"]},\"datePublished\":\"April 27, 2026\",\"dateModified\":\"May 02, 2026\",\"image\":\"https://www.evoart.ai/uploads/20260502/22fdd293-91dc-475a-897b-3315b6730516.webp\",\"url\":\"https://www.evoart.ai\",\"publisher\":{\"@type\":\"Organization\",\"name\":\"EvoArt.ai\",\"logo\":{\"@type\":\"ImageObject\",\"url\":\"https://www.evoart.ai/og-image.jpg\"}},\"mainEntityOfPage\":{\"@type\":\"WebPage\",\"@id\":\"https://www.evoart.ai\"}} Home Blog Tags About / AI Models / The Open Source AI Landscape in 2026: Llama, Mistral, and Qwen Compared AI Models \u00e2\u0080\u00a2 April ",
+      "fetched_at": "20260702_141146"
+    },
+    {
+      "title": "Open Source LLM Comparison Table (2026) - ComputingForGeeks",
+      "url": "https://computingforgeeks.com/open-source-llm-comparison/",
+      "snippet": "Running the largest of them locally now fits on a mini PC for local AI . This reference covers every major open-source and open-weight large language model available as of March 2026 , with verified benchmark scores, license terms, hardware requirements, and hands-on performance data from real self-hosting tests.",
+      "source_engine": "duckduckgo",
+      "position": 10,
+      "engine_priority": 1,
+      "content_type": "general",
+      "content": " window.ezstandalone = window.ezstandalone || {}; ezstandalone.cmd = ezstandalone.cmd || []; Open Source LLM Comparison Table (2026) | ComputingForGeeks {\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"Organization\",\"@id\":\"https://computingforgeeks.com/#organization\",\"name\":\"ComputingForGeeks\",\"logo\":{\"@type\":\"ImageObject\",\"@id\":\"https://computingforgeeks.com/#logo\",\"url\":\"https://computingforgeeks.com/wp-content/uploads/2020/02/computingforgeeks-logo.png\",\"contentUrl\":\"https://computingforgeeks.com/wp-content/uploads/2020/02/computingforgeeks-logo.png\",\"caption\":\"ComputingForGeeks\",\"inLanguage\":\"en-US\",\"width\":\"272\",\"height\":\"90\"}},{\"@type\":\"WebSite\",\"@id\":\"https://computingforgeeks.com/#website\",\"url\":\"https://computingforgeeks.com\",\"name\":\"ComputingForGeeks\",\"publisher\":{\"@id\":\"https://computingforgeeks.com/#organization\"},\"inLanguage\":\"en-US\"},{\"@type\":\"ImageObject\",\"@id\":\"https://computingforgeeks.com/wp-content/uploads/2026/03/featured-llm.png\",\"url\":\"https://computingforgeeks.com/wp-content/uploads/2026/03/featured-llm.png\",\"width\":\"1200\",\"height\":\"630\",\"caption\":\"Open source LLM comparison table covering Llama Qwen DeepSeek Gemma Mistral Phi models\",\"inLanguage\":\"en-US\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https://computingforgeeks.com/open-source-llm-comparison/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":\"1\",\"item\":{\"@id\":\"https://computingforgeeks.com\",\"name\":\"Home\"}},{\"@type\":\"ListItem\",\"position\":\"2\",\"item\":{\"@id\":\"https://computingforgeeks.com/open-source-llm-comparison/\",\"name\":\"Open Source LLM Comparison Table (2026)\"}}]},{\"@type\":\"WebPage\",\"@id\":\"https://computingforgeeks.com/open-source-llm-comparison/#webpage\",\"url\":\"https://computingforgeeks.com/open-source-llm-comparison/\",\"name\":\"Open Source LLM Comparison Table (2026) | ComputingForGeeks\",\"datePublished\":\"2026-03-28T10:53:41+03:00\",\"dateModified\":\"2026-06-19T13:03:23+03:00\",\"isPartOf\":{\"@id\":\"https://computingforgeeks.com/#website\"},\"primaryImageOfPage\":{\"@id\":\"https://computingforgeeks.com/wp-content/uploads/2026/03/featured-llm.png\"},\"inLanguage\":\"en-US\",\"breadcrumb\":{\"@id\":\"https://computingforgeeks.com/open-source-llm-comparison/#breadcrumb\"}},{\"@type\":\"Person\",\"@id\":\"https://computingforgeeks.com/author/mutai-josphat/\",\"name\":\"Josphat Mutai\",\"description\":\"Linux server configurations,Openstack cloud administration,RHEL and CentOS optimization and configurations,",
+      "fetched_at": "20260702_141147"
+    },
+    {
+      "title": "Open LLM Leaderboard 2026 - Compare Open Source LLM Rankings",
+      "url": "https://llm-stats.com/leaderboards/open-llm-leaderboard",
+      "snippet": "Open LLM Leaderboard highlights Independent ranking of open-weight large language models \u2014 Llama , Qwen, GLM, DeepSeek, Mistral , Kimi and more \u2014 by coding-arena score, GPQA Diamond, throughput, latency, and per-token pricing. Updated continuously from provider APIs and verified benchmarks.",
+      "source_engine": "duckduckgo",
+      "position": 7,
+      "engine_priority": 1,
+      "content_type": "general",
+      "content": " Open LLM Leaderboard 2026 - Compare Open Source LLM Rankings (self.__next_s=self.__next_s||[]).push([0,{\"children\":\"(function () {\\n try {\\n var STORAGE_KEY = \\\"ze:last-chunk-reload\\\";\\n var MIN_INTERVAL_MS = 20000;\\n\\n var PATTERNS = [\\n /Loading chunk [^\\\\s]+ failed/i,\\n /Loading CSS chunk/i,\\n /ChunkLoadError/i,\\n /(Failed to fetch|error loading|Importing a module script failed)[^]*dynamically imported module/i,\\n /Cannot read properties of undefined \\\\(reading 'call'\\\\)/,\\n /undefined is not an object \\\\(evaluating '[^']*\\\\.call'\\\\)/,\\n /can't access property \\\"call\\\"/\\n ];\\n\\n function isRecoverable(message) {\\n if (!message) return false;\\n for (var i = 0; i \\u003c PATTERNS.length; i++) {\\n if (PATTERNS[i].test(message)) return true;\\n }\\n return false;\\n }\\n\\n function reloadOnce() {\\n var now = Date.now();\\n var last = 0;\\n try { last = parseInt(window.sessionStorage.getItem(STORAGE_KEY) || \\\"0\\\", 10) || 0; } catch (e) {}\\n if (now - last \\u003c MIN_INTERVAL_MS) return;\\n try { window.sessionStorage.setItem(STORAGE_KEY, String(now)); } catch (e) {}\\n window.location.reload();\\n }\\n\\n window.addEventListener(\\\"error\\\", function (event) {\\n var msg = event \\u0026\\u0026 (event.message || (event.error \\u0026\\u0026 event.error.message));\\n if (isRecoverable(msg)) reloadOnce();\\n });\\n\\n window.addEventListener(\\\"unhandledrejection\\\", function (event) {\\n var reason = event \\u0026\\u0026 event.reason;\\n var msg = reason \\u0026\\u0026 (typeof reason === \\\"string\\\" ? reason : reason.message);\\n if (isRecoverable(msg)) reloadOnce();\\n });\\n } catch (e) {}\\n})();\",\"id\":\"chunk-error-recovery\"}]) {\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"Organization\",\"@id\":\"https://llm-stats.com/#organization\",\"name\":\"LLM Stats\",\"url\":\"https://llm-stats.com\",\"logo\":{\"@type\":\"ImageObject\",\"url\":\"https://llm-stats.com/logo.svg\"},\"description\":\"AI & LLM leaderboard and comparison platform\",\"sameAs\":[\"https://x.com/LlmStats\",\"https://github.com/zeroeval\",\"https://www.linkedin.com/company/llm-stats\"],\"knowsAbout\":[\"Large Language Models\",\"AI Model Benchmarks\",\"Machine Learning Evaluation\",\"AI Model Pricing\",\"Generative AI\",\"Natural Language Processing\"],\"founder\":{\"@type\":\"Person\",\"name\":\"Jonathan Chavez\",\"jobTitle\":\"Co-Founder\",\"url\":\"https://llm-stats.com/authors/jonathan-chavez\",\"description\":\"Co-founded LLM Stats to build independent, reproducible measurement infrastru",
+      "fetched_at": "20260702_141148"
+    },
+    {
+      "title": "Best Open Source LLMs in 2026: Llama, DeepSeek V4, Mistral, Qwen ...",
+      "url": "https://tensorfeed.ai/best-open-source-llms",
+      "snippet": "The best open-source LLMs in 2026 are Meta&#x27;s Llama 4 (best overall performance), DeepSeek V4 Pro (near-frontier quality under MIT license), and Mistral models (best for European compliance). All can be run locally with tools like Ollama, vLLM, or Hugging Face Transformers.",
+      "source_engine": "duckduckgo",
+      "position": 3,
+      "engine_priority": 1,
+      "content_type": "general",
+      "content": " Best Open Source LLMs in 2026: Llama, DeepSeek V4, Mistral, Qwen, Cohere Command A+ & More | TensorFeed | TensorFeed.ai (function(){var m=document.cookie.match(/(^| )theme=([^;]+)/);var t=m?m[2]:'dark';document.documentElement.setAttribute('data-theme',t);var v=document.cookie.match(/(^| )view-mode=([^;]+)/);document.documentElement.setAttribute('data-view-mode',v&&v[2]==='agent'?'agent':'human')})() Skip to content {\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"name\":\"TensorFeed\",\"url\":\"https://tensorfeed.ai/\",\"logo\":\"https://tensorfeed.ai/tensorfeed-logo.png\",\"sameAs\":[\"https://x.com/tensorfeed\",\"https://github.com/RipperMercs/tensorfeed\"],\"description\":\"Real-time AI news, model tracking, and ecosystem data for the AI industry.\"} {\"@context\":\"https://schema.org\",\"@type\":\"WebSite\",\"name\":\"TensorFeed\",\"url\":\"https://tensorfeed.ai/\",\"potentialAction\":{\"@type\":\"SearchAction\",\"target\":\"https://tensorfeed.ai/search?q={search_term_string}\",\"query-input\":\"required name=search_term_string\"}} TENSOR FEED .ai Status Feed Today Models Hardware Gear Benchmarks Research Agents Podcasts Originals Live Guides Agent API Status Feed Today Models Hardware Gear Benchmarks Research Agents Podcasts Originals Live Guides What is AI? AGI & ASI Hub Frontier Model Wars Best AI Tools Best AI Chatbots AI API Pricing Guide What are AI Agents? Best Open Source LLMs CLAUDE.md Guide AI Cost Calculator Outage Alerts Incident History AI Timeline API Docs Agent API All systems operational 0 AI provider s monitored, polled every 2 minutes Live status {\"@context\":\"https://schema.org\",\"@type\":\"NewsArticle\",\"headline\":\"Best Open Source LLMs in 2026\",\"description\":\"Compare the best open source large language models in 2026: Llama 4, DeepSeek V4, Mistral, Qwen, Phi-4, Gemma, Cohere Command A+, and Command R. Includes benchmarks, licensing, and how to run locally.\",\"author\":{\"@type\":\"Person\",\"name\":\"Adrian Vale\",\"url\":\"https://tensorfeed.ai/authors/adrian-vale\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"TensorFeed.ai\",\"url\":\"https://tensorfeed.ai\",\"logo\":{\"@type\":\"ImageObject\",\"url\":\"https://tensorfeed.ai/tensorfeed-logo.png\",\"width\":1024,\"height\":1024}},\"datePublished\":\"2025-05-01\",\"dateModified\":\"2026-06-07\",\"image\":[\"https://tensorfeed.ai/tensorfeed-logo.png\"]} {\"@context\":\"https://schema.org\",\"@type\":\"ItemList\",\"name\":\"Best Open Source LLMs in 2026\",\"numberOfItems\":12,\"itemListEle",
+      "fetched_at": "20260702_141149"
+    },
+    {
+      "title": "Best Open-Source LLMs May 2026: Llama 4, Qwen 3, DeepSeek",
+      "url": "https://www.web3aiblog.com/blog/best-open-source-llms-llama-4-qwen-3-deepseek-v3-mistral-large-3-may-2026",
+      "snippet": "Key Insight In May 2026 the open-weight LLM landscape is led by Llama 4 (best ecosystem and tooling), Qwen 3 (best all-rounder and multilingual), DeepSeek-V3 (best reasoning per dollar), and Mistral Large 3 (best European-licensed option for enterprise).",
+      "source_engine": "duckduckgo",
+      "position": 9,
+      "engine_priority": 1,
+      "content_type": "general",
+      "content": " Best Open-Source LLMs May 2026: Llama 4, Qwen 3, DeepSeek ((a,b,c,d,e,f,g,h)=>{let i=document.documentElement,j=[\"light\",\"dark\"];function k(b){var c;(Array.isArray(a)?a:[a]).forEach(a=>{let c=\"class\"===a,d=c&&f?e.map(a=>f[a]||a):e;c?(i.classList.remove(...d),i.classList.add(f&&f[b]?f[b]:b)):i.setAttribute(a,b)}),c=b,h&&j.includes(c)&&(i.style.colorScheme=c)}if(d)k(d);else try{let a=localStorage.getItem(b)||c,d=g&&\"system\"===a?window.matchMedia(\"(prefers-color-scheme: dark)\").matches?\"dark\":\"light\":a;k(d)}catch(a){}})(\"class\",\"theme\",\"dark\",null,[\"light\",\"dark\"],null,true,true) Web3 AI Blog .com Home Blog Tools Categories Tags About Contact Editorial Policy {\"@context\":\"https://schema.org\",\"@type\":\"Article\",\"headline\":\"Best Open-Source LLMs May 2026: Llama 4 vs Qwen 3 vs DeepSeek-V3 vs Mistral Large 3\",\"description\":\"The leading open-weight large language models of May 2026 \u2014 Llama 4, Qwen 3, DeepSeek-V3, and Mistral Large 3 \u2014 compared on reasoning, coding, context, multilingual ability, and the real cost of self-hosting, using published benchmarks and the practitioner record.\",\"abstract\":\"In May 2026 the open-weight LLM landscape is led by Llama 4 (best ecosystem and tooling), Qwen 3 (best all-rounder and multilingual), DeepSeek-V3 (best reasoning per dollar), and Mistral Large 3 (best European-licensed option for enterprise). The gap to closed frontier models has narrowed to roughly 6-9 months \u2014 open weights now handle most production workloads. Pick by constraint: Llama 4 for ecosystem, Qwen 3 for breadth, DeepSeek-V3 for reasoning value, Mistral Large 3 for clean enterprise licensing.\",\"image\":\"https://images.unsplash.com/photo-1686061594225-3e92c0cd51b0?w=1200&h=630&fit=crop\",\"url\":\"https://www.web3aiblog.com/blog/best-open-source-llms-llama-4-qwen-3-deepseek-v3-mistral-large-3-may-2026\",\"isAccessibleForFree\":true,\"author\":{\"@type\":\"Person\",\"name\":\"Fatima Al-Hassan\",\"url\":\"https://www.web3aiblog.com/author/fatima-al-hassan\",\"jobTitle\":\"Security & Privacy Editorial Desk\",\"image\":\"https://www.web3aiblog.com/images/authors/fatima-al-hassan.jpg\",\"sameAs\":[\"https://x.com/web3aiblog\",\"https://www.linkedin.com/company/web3-ai-blog/\"]},\"publisher\":{\"@id\":\"https://www.web3aiblog.com/#organization\",\"@type\":\"Organization\",\"name\":\"Web3AIBlog\"},\"datePublished\":\"2026-05-21\",\"dateModified\":\"2026-05-21\",\"mainEntityOfPage\":{\"@type\":\"WebPage\",\"@id\":\"https://www.web3aiblo",
+      "fetched_at": "20260702_141150"
+    },
+    {
+      "title": "Best Open-Source LLM 2026: Llama 4, DeepSeek V4, Qwen, Kimi",
+      "url": "https://codersera.com/blog/best-open-source-llm-2026-llama-4-qwen-3-5-deepseek-v4-gemma-4-mistral/",
+      "snippet": "Best Open-Source LLM 2026 : Llama 4, DeepSeek V4, Qwen, Kimi Five frontier-class open-weight LLMs shipped in 30 days. Real benchmarks, licenses, hosting costs, and a decision matrix for CTOs picking their 2026 stack.",
+      "source_engine": "duckduckgo",
+      "position": 5,
+      "engine_priority": 1,
+      "content_type": "general",
+      "content": "",
+      "fetched_at": null
+    },
+    {
+      "title": "Open-Source LLMs Landscape: Qwen, Llama, DeepSeek, Kimi (May 2026)",
+      "url": "https://codersera.com/blog/open-source-llms-landscape-2026/",
+      "snippet": "The Open-Source LLM Landscape in 2026 The full open-weight LLM landscape in 2026 \u2014 DeepSeek V4, Llama 4, Qwen 3.5, Gemma 4, Mistral , Phi-4 \u2014 with real benchmarks, license analysis, and a decision framework.",
+      "source_engine": "duckduckgo",
+      "position": 1,
+      "engine_priority": 1,
+      "content_type": "general",
+      "content": "",
+      "fetched_at": null
+    },
+    {
+      "title": "Open Source AI Models 2026: Llama, Mistral, DeepSeek & The Complete Guide",
+      "url": "https://aiunpacking.com/guides/open-source-ai-models-2026-llama-mistral-deepseek/",
+      "snippet": "A current guide to open and open-weight AI models in 2026 , including Llama 5, Mistral Large 3, DeepSeek V4, licensing, deployment, fine-tuning, and enterprise selection.",
+      "source_engine": "duckduckgo",
+      "position": 2,
+      "engine_priority": 1,
+      "content_type": "general",
+      "content": "",
+      "fetched_at": null
+    },
+    {
+      "title": "Open Source AI Models 2026: Llama, Mistral, Gemma, DeepSeek",
+      "url": "https://precisionaiacademy.com/blog/open-source-ai-models-guide-2026",
+      "snippet": "The complete 2026 guide to open source AI models \u2014 Llama 4, Mistral , Gemma 3, DeepSeek, Qwen, and more. Learn when to use open source vs proprietary APIs,.",
+      "source_engine": "duckduckgo",
+      "position": 4,
+      "engine_priority": 1,
+      "content_type": "general",
+      "content": "",
+      "fetched_at": null
+    },
+    {
+      "title": "Open Source LLMs 2026 \u2014 Llama, Mistral, Qwen, DeepSeek",
+      "url": "https://scihub101.com/machine-learning/open-source-llms-2026-comparison",
+      "snippet": "Honest 2026 comparison of open-source LLMs \u2014 Llama 3.3, Mistral , Qwen, DeepSeek-V3, and others \u2014 for cost, quality, fine-tuning, and self-hosting.",
+      "source_engine": "duckduckgo",
+      "position": 6,
+      "engine_priority": 1,
+      "content_type": "general",
+      "content": "",
+      "fetched_at": null
+    }
+  ],
+  "answer": "",
+  "citations": [],
+  "llm_used": true,
+  "log_dir": "generated/web_search/20260702T141143Z_open_source_ai_models_open_weight_releases_llama_mistral_may",
+  "generated_at": "20260702_141212"
+}

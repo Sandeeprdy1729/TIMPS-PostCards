@@ -1,0 +1,135 @@
+{
+  "summary": "Web search for 'AI news April 6-11 2026 agent launches multi-modal models': 10 results from duckduckgo=ok (10); no LLM synthesis.",
+  "query": "AI news April 6-11 2026 agent launches multi-modal models",
+  "refined_queries": [],
+  "engines_used": [
+    "duckduckgo"
+  ],
+  "engine_status": {
+    "duckduckgo": "ok (10)"
+  },
+  "recency": "any",
+  "content_type": "general",
+  "locale": "en-US",
+  "max_results": 10,
+  "raw_count": 10,
+  "deduped_count": 10,
+  "fetched_count": 5,
+  "results": [
+    {
+      "title": "AI in April 2026: Biggest Breakthroughs, Models & Industry Shifts",
+      "url": "https://kersai.com/ai-breakthroughs-april-2026-models-funding-shifts/",
+      "snippet": "Section 1 \u2014 The Model Wars: April 2026&#x27;s Unprecedented Release Window April 2026 has become the densest AI model release window in the industry&#x27;s history. Three frontier labs \u2014 OpenAI, Anthropic, and Google DeepMind \u2014 have each launched or confirmed major new models within weeks of each other. The benchmarks tell a story of rapid, simultaneous advancement across multiple capability ...",
+      "source_engine": "duckduckgo",
+      "position": 10,
+      "engine_priority": 1,
+      "content_type": "general",
+      "content": " var litespeed_docref=sessionStorage.getItem(\"litespeed_docref\");litespeed_docref&&(Object.defineProperty(document,\"referrer\",{get:function(){return litespeed_docref}}),sessionStorage.removeItem(\"litespeed_docref\")); AI in April 2026: Biggest Breakthroughs, Models & Industry Shifts | Kersai {\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebSite\",\"@id\":\"https://kersai.com/#/schema/WebSite\",\"url\":\"https://kersai.com/\",\"name\":\"Kersai\",\"description\":\"Kersai\",\"inLanguage\":\"en-US\",\"potentialAction\":{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https://kersai.com/search/{search_term_string}/\"},\"query-input\":\"required name=search_term_string\"},\"publisher\":{\"@type\":\"Organization\",\"@id\":\"https://kersai.com/#/schema/Organization\",\"name\":\"Kersai\",\"url\":\"https://kersai.com/\"}},{\"@type\":\"WebPage\",\"@id\":\"https://kersai.com/ai-breakthroughs-april-2026-models-funding-shifts/\",\"url\":\"https://kersai.com/ai-breakthroughs-april-2026-models-funding-shifts/\",\"name\":\"AI in April 2026: Biggest Breakthroughs, Models & Industry Shifts | Kersai\",\"description\":\"GPT-5.4 hits 83% GDPval. SpaceX buys xAI for $250B. Q1 funding hits $297B. Agentic AI goes mainstream. The complete guide to AI in April 2026.\",\"inLanguage\":\"en-US\",\"isPartOf\":{\"@id\":\"https://kersai.com/#/schema/WebSite\"},\"breadcrumb\":{\"@type\":\"BreadcrumbList\",\"@id\":\"https://kersai.com/#/schema/BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"item\":\"https://kersai.com/\",\"name\":\"Kersai\"},{\"@type\":\"ListItem\",\"position\":2,\"item\":\"https://kersai.com/category/articles/\",\"name\":\"Category: Articles\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"AI in April 2026: Biggest Breakthroughs, Models & Industry Shifts\"}]},\"potentialAction\":{\"@type\":\"ReadAction\",\"target\":\"https://kersai.com/ai-breakthroughs-april-2026-models-funding-shifts/\"},\"datePublished\":\"2026-04-16\",\"dateModified\":\"2026-04-16\",\"author\":{\"@type\":\"Person\",\"@id\":\"https://kersai.com/#/schema/Person/586644390a62f0734d89d47277ac9627\",\"name\":\"AI Consultants\"}}]} document.documentElement.classList.remove('no-js') img:is([sizes=auto i],[sizes^=\"auto,\" i]){contain-intrinsic-size:3000px 1500px} /*# sourceURL=wp-img-auto-sizes-contain-inline-css */ :root{--wp-block-synced-color:#7a00df;--wp-block-synced-color--rgb:122,0,223;--wp-bound-block-color:var(--wp-block-synced-color);--wp-editor-canvas-background:#ddd;--wp-admin-theme-color:#007cba;-",
+      "fetched_at": "20260702_140953"
+    },
+    {
+      "title": "AI Agents News: April 2026 Roundup of Launches, Funding,... - OpusClip Blog",
+      "url": "https://www.opus.pro/blog/ai-agents-news-april-2026",
+      "snippet": "OpenAI shipped a model -native harness as an Agents SDK update (15 April ), Anthropic launched Managed Agents in public beta at $0.08 per session-hour (8 April ), Google rebranded Vertex AI to the Gemini Enterprise Agent Platform at Cloud Next 2026 , and Microsoft shipped its Agent Governance Toolkit as an open-source seven-package release.",
+      "source_engine": "duckduckgo",
+      "position": 5,
+      "engine_priority": 1,
+      "content_type": "general",
+      "content": " AI Agents News: April 2026 Roundup of Launches, Funding,... - OpusClip Blog WebFont.load({ google: { families: [\"Lora:300,400,500,600,700\"] }}); !function(o,c){var n=c.documentElement,t=\" w-mod-\";n.className+=t+\"js\",(\"ontouchstart\"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+\"touch\")}(window,document); 'use strict' ;(function () { const url = window.location.href //const isSpanishPage = url.includes('es-es') const hasQueryParam = url.includes('?') const hasHashInUrl = url.includes('#') if (hasQueryParam || hasHashInUrl) { const noIndexMetaTag = document.createElement('meta') noIndexMetaTag.name = 'robots' noIndexMetaTag.content = 'noindex' document.head.appendChild(noIndexMetaTag) } //console.log('isSpanishPage is' + ' ' + isSpanishPage) console.log('hasQueryParam is' + ' ' + hasQueryParam) console.log('hasHashInUrl is' + ' ' + hasHashInUrl) })() /* \"use strict\"; (function () { const isSpanishPage = window.location.href.includes('es-es'); if (isSpanishPage) { const noIndexMetaTag = document.createElement('meta'); noIndexMetaTag.name = 'robots'; noIndexMetaTag.content = 'noindex'; document.head.appendChild(noIndexMetaTag); } })(); */ function fetchApiBlockAdvicePromise() { return fetch('https://api.opus.pro/api/client-access-control?q=ipRisk') .then((resp) => resp.json()) .then((json) => { // set opusIPInfo (oIP) window._oIP ||= json.data.detail window.dispatchEvent(new CustomEvent('ipInfoLoaded', json.data.detail)) return json.data.shouldBlock && json.data.blockReason == 'country' }) } const getCtas = () => document.querySelectorAll('.a_header_form-block,.a_nav_form-block') function onBlockAdvice(shouldBlockByIp) { const allowedUaRegex = /Googlebot|Bingbot|Slurp|DuckDuckBot|facebot|facebookexternalhit|Applebot|LinkedInBot|Twitterbot/i const exemptPaths = [ '/terms-of-service', '/privacy-policy', '/not-available', '/supported-countries', '/pricing-early', '/pricing', '/no-capacity', ] const countryAllowed = !shouldBlockByIp const pageAllowed = exemptPaths.includes(location.pathname) const uaAllowed = allowedUaRegex.test(navigator.userAgent) if (countryAllowed || pageAllowed || uaAllowed) return getCtas().forEach((it) => (it.style.visibility = 'hidden')) window.location.replace('/not-available') } fetchApiBlockAdvicePromise().then(onBlockAdvice) const fallbackBlockList = ['CN', 'TW', 'HK'] function countryip(data) { onBlockAdvice(fallba",
+      "fetched_at": "20260702_140954"
+    },
+    {
+      "title": "Google AI announcements from April 2026 - The Keyword",
+      "url": "https://blog.google/innovation-and-ai/technology/ai/google-ai-updates-april-2026/",
+      "snippet": "Here&#x27;s a look back at some of our AI announcements from April . April 2026 was a huge month for AI at Google. Cloud Next &#x27;26 was all about helping businesses make the most of agentic AI with new releases like the Gemini Enterprise Agent Platform and our eighth-generation TPUs \u2014 two specialized chips designed for the agentic era.",
+      "source_engine": "duckduckgo",
+      "position": 2,
+      "engine_priority": 1,
+      "content_type": "general",
+      "content": " Google AI announcements from April 2026 { \"@context\": \"https://schema.org\", \"@type\": \"NewsArticle\", \"mainEntityOfPage\": \"https://blog.google/innovation-and-ai/technology/ai/google-ai-updates-april-2026/\", \"headline\": \"The latest AI news we announced in April 2026\", \"datePublished\": \"2026-05-04T17:00:00+00:00\", \"dateModified\": \"2026-05-04T17:18:03.763123+00:00\", \"description\": \"Here are Google\u2019s latest AI updates from April 2026\", \"author\": { \"@type\": \"Person\", \"name\": \"Blog Team\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Google\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://blog.google/static/blogv2/images/google-1000x1000.png?version=pr20260624-1707\", \"width\": \"200\", \"height\": \"200\" } }, \"image\": { \"@type\": \"ImageObject\", \"url\": \"https://storage.googleapis.com/gweb-uniblog-publish-prod/images/April_2026_AI_Recap_still.width-1300.png\", \"width\": \"1440\", \"height\": \"810\" }, \"speakable\": { \"@type\": \"SpeakableSpecification\" } } @keyframes showAndTranslateLeft{0%{left:0;opacity:0}to{left:36px;opacity:1}}@keyframes showAndTranslateRight{0%{opacity:0;right:0}to{opacity:1;right:36px}}@keyframes dash{0%{stroke-dashoffset:187}50%{stroke-dashoffset:46.75;transform:rotate(135deg)}to{stroke-dashoffset:187;transform:rotate(450deg)}}@keyframes slideInFromRight{0%{opacity:0;transform:translateX(2%)}to{opacity:1;transform:translateX(0)}}html{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;--google-font-family:\"Google Sans\",roboto,arial,helvetica;--roboto-font-family:\"Google Sans\",roboto,arial,helvetica;--roboto-mono-font-family:\"Roboto mono\",monospace,arial,helvetica;--noto-color-emoji:\"Noto Color Emoji\",sans-serif;--uni-waze-boing-regular:\"WazeBoingRegular\";font-family:sans-serif;font-size:18px}body{word-wrap:break-word;background:#fff;color:#5f6368;cursor:auto;display:flex;flex-direction:column;font-family:Google Sans,roboto,arial,helvetica;font-family:var(--roboto-font-family);font-size:1em;font-style:normal;font-weight:300;line-height:1.444;margin:0;min-height:100vh;overflow-x:hidden;padding:0}article,figcaption,figure,footer,header,main,nav,section{display:block}audio,video{display:inline-block;vertical-align:initial}audio:not([controls]){display:none;height:0}[hidden]{display:none}a{background:0 0;color:#1a73e8;-webkit-text-decoration:none;text-decoration:none}a:hover,main{outline:0}b{font-weight:700}small{font-size:80%}sup{font-size:75%;line-hei",
+      "fetched_at": "20260702_140955"
+    },
+    {
+      "title": "AI Agents in 2026: From Prototypes to Autonomous Workflow Orchestrators",
+      "url": "https://cleardatascience.com/en/ai-agents-in-2026-from-prototypes-to-autonomous-workflow-orchestrators/",
+      "snippet": "Conclusion: Orchestration as a Competitive Core CES 2026 showcased the hardware that will run the agents ; the real business advantage lies in the software that defines their intelligence. By moving AI agents from prototypes to autonomous workflow orchestrators, companies stop automating tasks and start automating operations.",
+      "source_engine": "duckduckgo",
+      "position": 6,
+      "engine_priority": 1,
+      "content_type": "general",
+      "content": " AI Agents in 2026: From Prototypes to Autonomous Workflow Orchestrators - Clear Data Science Limited {\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"Article\",\"@id\":\"https:\\/\\/cleardatascience.com\\/en\\/ai-agents-in-2026-from-prototypes-to-autonomous-workflow-orchestrators\\/#article\",\"isPartOf\":{\"@id\":\"https:\\/\\/cleardatascience.com\\/en\\/ai-agents-in-2026-from-prototypes-to-autonomous-workflow-orchestrators\\/\"},\"author\":{\"name\":\"webeditor2\",\"@id\":\"https:\\/\\/cleardatascience.com\\/zh-hant\\/#\\/schema\\/person\\/11263e5c1853e7d0c9ba2bfcc0b7dce3\"},\"headline\":\"AI Agents in 2026: From Prototypes to Autonomous Workflow Orchestrators\",\"datePublished\":\"2026-01-29T16:00:14+00:00\",\"dateModified\":\"2026-02-06T02:15:28+00:00\",\"mainEntityOfPage\":{\"@id\":\"https:\\/\\/cleardatascience.com\\/en\\/ai-agents-in-2026-from-prototypes-to-autonomous-workflow-orchestrators\\/\"},\"wordCount\":1064,\"commentCount\":0,\"publisher\":{\"@id\":\"https:\\/\\/cleardatascience.com\\/zh-hant\\/#organization\"},\"image\":{\"@id\":\"https:\\/\\/cleardatascience.com\\/en\\/ai-agents-in-2026-from-prototypes-to-autonomous-workflow-orchestrators\\/#primaryimage\"},\"thumbnailUrl\":\"https:\\/\\/cleardatascience.com\\/wp-content\\/uploads\\/2026\\/01\\/gear_flow_chart.png\",\"keywords\":[\"AI Agent\",\"Orchestration\",\"Prototypes\",\"Workflow\"],\"articleSection\":[\"Data Science\"],\"inLanguage\":\"en-US\",\"potentialAction\":[{\"@type\":\"CommentAction\",\"name\":\"Comment\",\"target\":[\"https:\\/\\/cleardatascience.com\\/en\\/ai-agents-in-2026-from-prototypes-to-autonomous-workflow-orchestrators\\/#respond\"]}]},{\"@type\":\"WebPage\",\"@id\":\"https:\\/\\/cleardatascience.com\\/en\\/ai-agents-in-2026-from-prototypes-to-autonomous-workflow-orchestrators\\/\",\"url\":\"https:\\/\\/cleardatascience.com\\/en\\/ai-agents-in-2026-from-prototypes-to-autonomous-workflow-orchestrators\\/\",\"name\":\"AI Agents in 2026: From Prototypes to Autonomous Workflow Orchestrators - Clear Data Science Limited\",\"isPartOf\":{\"@id\":\"https:\\/\\/cleardatascience.com\\/zh-hant\\/#website\"},\"primaryImageOfPage\":{\"@id\":\"https:\\/\\/cleardatascience.com\\/en\\/ai-agents-in-2026-from-prototypes-to-autonomous-workflow-orchestrators\\/#primaryimage\"},\"image\":{\"@id\":\"https:\\/\\/cleardatascience.com\\/en\\/ai-agents-in-2026-from-prototypes-to-autonomous-workflow-orchestrators\\/#primaryimage\"},\"thumbnailUrl\":\"https:\\/\\/cleardatascience.com\\/wp-content\\/uploads\\/2026\\/01\\/gear_flow_chart.png\",\"datePublished\":\"2026-01-29T16:00:14+00:00\",\"d",
+      "fetched_at": "20260702_140957"
+    },
+    {
+      "title": "Zijian-Ni/awesome-ai-agents-2026 - GitHub",
+      "url": "https://github.com/Zijian-Ni/awesome-ai-agents-2026",
+      "snippet": "The definitive curated list of AI models , agent frameworks, tools, protocols, and resources for 2026 \u2014 the year agents went mainstream and AI became infrastructure. Covering foundation models , multimodal AI , agent protocols (MCP/A2A), coding agents , computer use, generative AI , and more.",
+      "source_engine": "duckduckgo",
+      "position": 4,
+      "engine_priority": 1,
+      "content_type": "general",
+      "content": " :root { --tab-size-preference: 4; } pre, code { tab-size: var(--tab-size-preference); } {\"locale\":\"en\",\"featureFlags\":[\"actions_custom_images_storage_billing_ui_visibility\",\"actions_enable_background_steps\",\"actions_image_version_event\",\"actions_workflow_language_service_allow_concurrency_queue\",\"agent_author_search_expansion\",\"agent_author_search_expansion_ui_pulls\",\"agent_conflict_resolution\",\"alternate_user_config_repo\",\"artifact_ui_v2\",\"billing_billable_licenses_cost_center_bucket_fix\",\"billing_cost_center_user_level_budgets\",\"billing_discount_threshold_notification\",\"billing_user_level_budgets\",\"billing_user_level_budgets_manage\",\"code_scanning_dfa_degraded_experience_notice\",\"code_view_raf_sticky_lines\",\"codespaces_prebuild_region_target_update\",\"codeview_sidebar_combined_payload\",\"coding_agent_model_selection\",\"coding_agent_model_selection_all_skus\",\"comment_viewer_copy_raw_markdown\",\"contentful_primer_code_blocks\",\"copilot_agent_snippy\",\"copilot_api_agentic_issue_marshal_yaml\",\"copilot_ask_mode_dropdown\",\"copilot_automation_suggest_tools_enabled\",\"copilot_automations_pagination\",\"copilot_automations_suggested_automations\",\"copilot_chat_attach_multiple_images\",\"copilot_chat_auto_mode_picker_paid\",\"copilot_chat_category_rate_limit_messages\",\"copilot_chat_clear_model_selection_for_default_change\",\"copilot_chat_contextual_suggestions_updated\",\"copilot_chat_docked_panel\",\"copilot_chat_enable_tool_call_logs\",\"copilot_chat_input_commands\",\"copilot_chat_interspersed_tool_calls\",\"copilot_chat_max_upsell\",\"copilot_chat_model_picker_info_popover\",\"copilot_chat_models_browser_cache\",\"copilot_chat_opening_thread_switch\",\"copilot_chat_prettify_pasted_code\",\"copilot_chat_reduce_quota_checks\",\"copilot_chat_vision_dotcom_chat_ga_gate\",\"copilot_chat_vision_in_claude\",\"copilot_chat_vision_preview_gate\",\"copilot_cli_install_cta_max_plan\",\"copilot_cloud_agent_always_categorize_models_in_model_picker\",\"copilot_custom_copilots\",\"copilot_custom_copilots_feature_preview\",\"copilot_diff_explain_conversation_intent\",\"copilot_diff_reference_context\",\"copilot_duplicate_thread\",\"copilot_extensions_removal_on_marketplace\",\"copilot_file_block_ref_matching\",\"copilot_fix_blank_side_panel\",\"copilot_fix_failed_workflows\",\"copilot_fix_failed_workflows_all_skus\",\"copilot_ftp_hyperspace_upgrade_prompt\",\"copilot_hide_hovercard\",\"copilot_immersive_code_block_transition_wrap\",\"copilot_immers",
+      "fetched_at": "20260702_140958"
+    },
+    {
+      "title": "AI Models in April 2026: Every Major Release, Leak, and Future ...",
+      "url": "https://af.net/realtime/ai-models-in-april-2026-every-major-release-leak-and-future-developments/",
+      "snippet": "The article outlines significant advancements in AI models released in April 2026 , highlighting GPT-5.4, Claude Mythos, Gemini 3.1 Pro, and Llama 4, alongside innovations in token context windows, benchmarks, and multi - agent architectures.",
+      "source_engine": "duckduckgo",
+      "position": 3,
+      "engine_priority": 1,
+      "content_type": "general",
+      "content": "",
+      "fetched_at": null
+    },
+    {
+      "title": "April 2026 AI Models: Every Major Release Reviewed - Medium",
+      "url": "https://medium.com/@sanjeevpatel3007/april-2026-ai-models-every-major-release-reviewed-6ea03d7bc0b7",
+      "snippet": "Full Model Comparison Table \u2014 April 1-17, 2026 Every major AI model released between April 1 and April 17, 2026 \u2014 with context window, SWE-Bench score, price, and open-source status at a glance.",
+      "source_engine": "duckduckgo",
+      "position": 7,
+      "engine_priority": 1,
+      "content_type": "general",
+      "content": "",
+      "fetched_at": null
+    },
+    {
+      "title": "AI Infra Brief\uff5cGPT-6 Release, Multimodal Agent Governance & Open Source ...",
+      "url": "https://ai-infra.jimmysong.io/brief/2026-04-11/",
+      "snippet": "Apr 9-11, 2026 \u2014 GPT-6 unveiled igniting multimodal architecture race, Microsoft ships AI Agent Governance Toolkit, ClawBench and agent eval frameworks emerge.",
+      "source_engine": "duckduckgo",
+      "position": 1,
+      "engine_priority": 1,
+      "content_type": "general",
+      "content": "",
+      "fetched_at": null
+    },
+    {
+      "title": "April 2026 AI News Digest: Models, Platforms, Money",
+      "url": "https://joulyan.com/en/blog/april-2026-ai-news-digest-the-biggest-model-releases-platfor",
+      "snippet": "Catch up on April 2026 AI news : major model releases, platform shifts, and monetization moves\u2014plus what to measure beyond benchmarks.",
+      "source_engine": "duckduckgo",
+      "position": 9,
+      "engine_priority": 1,
+      "content_type": "general",
+      "content": "",
+      "fetched_at": null
+    },
+    {
+      "title": "Top AI News for April 2026: Breakthroughs, Launches & Trends You Can&#x27;t ...",
+      "url": "https://www.aiapps.com/blog/ai-news-breakthroughs-launches-and-trends-you-cant-miss/",
+      "snippet": "April 2026 roundup of major AI model launches , infrastructure gains, and agentic AI trends that cut costs and boost capability.",
+      "source_engine": "duckduckgo",
+      "position": 8,
+      "engine_priority": 1,
+      "content_type": "general",
+      "content": "",
+      "fetched_at": null
+    }
+  ],
+  "answer": "",
+  "citations": [],
+  "llm_used": true,
+  "log_dir": "generated/web_search/20260702T140950Z_ai_news_april_6_11_2026_agent_launches_multi_modal_models",
+  "generated_at": "20260702_141007"
+}

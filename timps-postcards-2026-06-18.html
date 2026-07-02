@@ -4,125 +4,286 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TIMPS PostCards · Vol. I Issue 025 · June 18, 2026</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <style>
+
+  :root {
+    --cream:  #EEECE2;
+    --forest: #3D3929;
+    --terra:  #DA7756;
+    --terra-d:#BD5D3A;
+    --black:  #111111;
+    --card-bg:#F0ECE0;
+    --mono:   'Space Mono', 'Courier New', monospace;
+    --serif:  'TIMPS', 'Playfair Display', Georgia, serif;
+  }
   @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Black.woff2') format('woff2'); font-weight:900; font-style:normal; font-display:swap; }
   @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Bold.woff2') format('woff2'); font-weight:700; font-style:normal; font-display:swap; }
   @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-SemiBold.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
   @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-body {
-  background: #EEECE2;
-  font-family: 'EB Garamond', Georgia, ui-serif, serif;
-  color: #3D3929;
-  padding: 40px 20px 80px;
-}
-.wrapper { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 0; }
+  html { scroll-behavior: smooth; }
 
-/* Cover */
-.cover-card { background: #F0ECE0; border-radius: 20px 20px 4px 4px; padding: 56px 48px 48px; text-align: center; position: relative; overflow: hidden; border: 1.5px solid rgba(61,57,41,0.12); margin-bottom: 3px; }
-.cover-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, #DA7756 0%, #BD5D3A 60%, #E0A88A 100%); }
-.cover-eyebrow { font-size:10px; letter-spacing:4px; text-transform:uppercase; color:#DA7756; margin-bottom:20px; display:flex; align-items:center; justify-content:center; gap:10px; }
-.cover-eyebrow::before,.cover-eyebrow::after { content:''; flex:1; height:1px; background:#DA7756; opacity:.35; max-width:60px; }
-.cover-title { font-family:'TIMPS','Playfair Display',serif; font-size:58px; font-weight:900; line-height:1; letter-spacing:-1px; color:#3D3929; margin-bottom:8px; }
-.cover-sub { font-family:'TIMPS','Playfair Display',serif; font-size:13px; font-style:italic; color:#5C5847; margin-bottom:28px; }
-.cover-divider { width:48px; height:2px; background:#DA7756; margin:0 auto 24px; border-radius:2px; }
-.cover-meta { display:flex; justify-content:center; gap:32px; font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color:#5C5847; }
-.cover-badge { display:inline-flex; align-items:center; gap:6px; background:#DA7756; color:#fff; border-radius:20px; padding:6px 18px; font-size:10px; letter-spacing:2px; text-transform:uppercase; margin-top:28px; }
-.top5-pill { display:flex; justify-content:center; gap:10px; margin-top:32px; flex-wrap:wrap; }
-.pill { background:#3D3929; color:#F0ECE0; border-radius:100px; padding:4px 14px; font-size:10px; letter-spacing:1px; text-transform:uppercase; }
-.pill.light { background:transparent; color:#3D3929; border:1px solid rgba(61,57,41,.2); }
+  body {
+    background-color: var(--cream);
+    background-image:
+      linear-gradient(rgba(61,57,41,.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.07) 1px, transparent 1px);
+    background-size: 38px 38px;
+    font-family: 'Space Mono', 'Courier New', monospace;
+    color: var(--forest);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { text-decoration: none; color: inherit; }
 
-/* Section labels */
-.section-label { display:flex; align-items:center; gap:12px; padding:10px 0 8px; font-size:9px; letter-spacing:4px; text-transform:uppercase; color:#5C5847; }
-.section-label::before,.section-label::after { content:''; flex:1; height:1px; background:rgba(61,57,41,.15); }
+  /* Nav */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 48px;
+    background-color: rgba(238,236,226,.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1.5px solid rgba(61,57,41,.12);
+    background-image:
+      linear-gradient(rgba(61,57,41,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.05) 1px, transparent 1px);
+    background-size: 38px 38px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 15px;
+    font-weight: 600;
+    color: #000;
+    text-decoration: none;
+  }
+  .nav-logo-mark {
+    width: 34px; height: 34px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .nav-logo-mark img { width: 28px; height: 28px; object-fit: contain; }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-link {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: #000;
+    opacity: .65;
+    text-decoration: none;
+    transition: opacity .15s;
+  }
+  .nav-link:hover { opacity: 1; }
+  .nav-cta {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: #000;
+    background: var(--terra);
+    border: 2.5px solid #000;
+    border-radius: 100px;
+    padding: 10px 24px;
+    cursor: pointer;
+    transition: background .15s, transform .1s;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--terra-d); transform: translateY(-1px); }
 
-/* Story cards */
-.story-card { border-radius:4px; border:1.5px solid rgba(61,57,41,.10); padding:36px 40px; margin-bottom:3px; position:relative; overflow:hidden; }
-.story-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }
+  .wrapper { max-width: 760px; margin: 0 auto; padding: 40px 20px 80px; display: flex; flex-direction: column; gap: 0; }
 
-/* Card colour classes — Scheme E: Blush + Lavender alternating */
-.card-lavender { background:#EAE6F5; } .card-lavender::before { background:#C8BEE8; }
-.card-sage     { background:#D6E4D6; } .card-sage::before     { background:#8BAF8B; }
-.card-blush    { background:#F5DDD0; } .card-blush::before    { background:#E0A88A; }
-.card-sky      { background:#D6E8F0; } .card-sky::before      { background:#7AAFC0; }
-.card-cream    { background:#F7F5EF; } .card-cream::before    { background:#DA7756; }
+  /* Cover */
+  .cover-card { background: var(--card-bg); border-radius: 20px 20px 4px 4px; padding: 56px 48px 48px; text-align: center; position: relative; overflow: hidden; border: 1.5px solid rgba(61,57,41,.12); margin-bottom: 3px; }
+  .cover-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, var(--terra) 0%, var(--terra-d) 60%, #E0A88A 100%); }
+  .cover-eyebrow { font-family: var(--mono); font-size:10px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:20px; display:flex; align-items:center; justify-content:center; gap:10px; }
+  .cover-eyebrow::before,.cover-eyebrow::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .15; max-width:60px; }
+  .cover-title { font-family: var(--serif); font-size:58px; font-weight:900; line-height:1; letter-spacing:-1px; color: var(--forest); margin-bottom:8px; }
+  .cover-sub { font-family: var(--serif); font-size:13px; font-style:italic; color: var(--forest); opacity: .55; margin-bottom:28px; }
+  .cover-divider { width:48px; height:2px; background: var(--terra); margin:0 auto 24px; border-radius:2px; }
+  .cover-meta { display:flex; justify-content:center; gap:32px; font-family: var(--mono); font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .45; }
+  .cover-badge { display:inline-flex; align-items:center; gap:6px; background: var(--terra); color: #fff; border-radius:20px; padding:6px 18px; font-family: var(--mono); font-size:10px; letter-spacing:2px; text-transform:uppercase; margin-top:28px; }
+  .top5-pill { display:flex; justify-content:center; gap:10px; margin-top:32px; flex-wrap:wrap; }
+  .pill { background: var(--forest); color: var(--cream); border-radius:100px; padding:4px 14px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; }
+  .pill.light { background:transparent; color: var(--forest); border:1px solid rgba(61,57,41,.2); }
 
-/* Card typography */
-.page-chip { position:absolute; top:14px; right:16px; font-size:9px; letter-spacing:2px; text-transform:uppercase; color:#5C5847; opacity:.5; }
-.card-routine { font-size:9px; letter-spacing:4px; text-transform:uppercase; color:#5C5847; margin-bottom:8px; }
-.card-headline { font-family:'TIMPS','Playfair Display',serif; font-size:28px; font-weight:900; line-height:1.15; color:#3D3929; margin-bottom:10px; }
-.card-headline.lg { font-size:34px; }
-.card-headline.sm { font-size:22px; }
-.card-deck { font-family:'TIMPS','Playfair Display',serif; font-style:italic; font-size:14px; line-height:1.55; color:#5C5847; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid rgba(61,57,41,.15); }
-.card-body { font-size:13px; line-height:1.8; color:#3D3929; }
-.card-body p { margin-bottom:11px; }
-.two-col { column-count:2; column-gap:24px; column-rule:1px solid rgba(61,57,41,.12); }
-.drop::first-letter { font-family:'TIMPS','Playfair Display',serif; font-size:52px; font-weight:900; float:left; line-height:.78; margin:5px 6px 0 0; color:#DA7756; }
-.clearfix::after { content:''; display:table; clear:both; }
+  /* Section labels */
+  .section-label { display:flex; align-items:center; gap:12px; padding:10px 0 8px; font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .35; }
+  .section-label::before,.section-label::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .1; }
 
-/* Inline highlights */
-.hl-terra { background:#DA7756; color:#fff; padding:0 4px; border-radius:2px; }
-.hl-ink   { background:#3D3929; color:#F0ECE0; padding:0 4px; border-radius:2px; }
-.hl-sage  { background:#8BAF8B; color:#fff; padding:0 4px; border-radius:2px; }
-.hl-lav   { background:#C8BEE8; color:#3D3929; padding:0 4px; border-radius:2px; }
+  /* Story cards */
+  .story-card { border-radius:4px; border:1.5px solid rgba(61,57,41,.10); padding:36px 40px; margin-bottom:3px; position:relative; overflow:hidden; }
+  .story-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }
 
-/* Stat float */
-.stat-box { float:right; margin:0 0 16px 24px; background:#F0ECE0; border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:16px 20px; text-align:center; min-width:120px; }
-.stat-big { font-family:'TIMPS','Playfair Display',serif; font-size:44px; font-weight:900; line-height:1; color:#DA7756; display:block; }
-.stat-label { font-size:9.5px; letter-spacing:1.5px; text-transform:uppercase; color:#5C5847; display:block; margin-top:4px; }
+  .card-sky      { background:#D6E8F0; } .card-sky::before      { background: #7AAFC0; }
+  .card-cream    { background: var(--card-bg); } .card-cream::before    { background: var(--terra); }
+  .card-blush    { background:#F5DDD0; } .card-blush::before    { background: #E0A88A; }
+  .card-lavender { background:#EAE6F5; } .card-lavender::before { background: #C8BEE8; }
+  .card-sage     { background:#D6E4D6; } .card-sage::before     { background: #8BAF8B; }
 
-/* Image frames */
-.img-frame { border:2px solid rgba(61,57,41,0.18); border-radius:12px; overflow:hidden; margin:16px 0; background:#F0ECE0; }
-.img-frame img { width:100%; display:block; max-height:240px; object-fit:cover; border-bottom:1px solid rgba(61,57,41,.12); }
-.img-caption { padding:8px 12px; font-size:10.5px; color:#5C5847; font-style:italic; display:flex; align-items:center; justify-content:space-between; gap:8px; }
-.img-caption a { font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color:#DA7756; text-decoration:none; white-space:nowrap; font-style:normal; }
-.img-frame.float-right { float:right; width:220px; margin:0 0 16px 24px; }
-.img-frame.float-right img { max-height:140px; }
+  .page-chip { position:absolute; top:14px; right:16px; font-family: var(--mono); font-size:9px; letter-spacing:2px; text-transform:uppercase; color: var(--forest); opacity: .3; }
+  .card-routine { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:8px; }
+  .card-headline { font-family: var(--serif); font-size:28px; font-weight:900; line-height:1.15; color: var(--forest); margin-bottom:10px; }
+  .card-headline.lg { font-size:34px; }
+  .card-headline.sm { font-size:22px; }
+  .card-deck { font-family: var(--serif); font-style:italic; font-size:14px; line-height:1.55; color: var(--forest); opacity: .55; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid rgba(61,57,41,.12); }
+  .card-body { font-family: 'Lora', Georgia, serif; font-size:14px; line-height:1.7; color: var(--forest); }
+  .card-body p { margin-bottom:11px; }
+  .drop::first-letter { font-family: var(--serif); font-size:52px; font-weight:900; float:left; line-height:.78; margin:5px 6px 0 0; color: var(--terra); }
+  .clearfix::after { content:''; display:table; clear:both; }
+  .two-col { column-count:2; column-gap:24px; column-rule:1px solid rgba(61,57,41,.12); }
 
-/* Source links */
-.source-link { display:inline-flex; align-items:center; gap:5px; font-size:10px; letter-spacing:1px; text-transform:uppercase; color:#DA7756; text-decoration:none; margin-top:12px; border-bottom:1px solid rgba(218,119,86,.35); padding-bottom:1px; }
-.source-link::after { content:'↗'; font-size:9px; }
+  .hl-lime { background: var(--terra); color: var(--forest); padding:0 4px; border-radius:2px; }
+  .hl-ink  { background: var(--forest); color: var(--cream); padding:0 4px; border-radius:2px; }
 
-/* Signals */
-.signals-grid { display:flex; flex-direction:column; gap:14px; }
-.signal-row { display:flex; align-items:flex-start; gap:14px; }
-.signal-num { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'TIMPS','Playfair Display',serif; font-size:13px; font-weight:900; flex-shrink:0; color:#fff; }
-.signal-num.n1{background:#DA7756;} .signal-num.n2{background:#3D3929;} .signal-num.n3{background:#8BAF8B;} .signal-num.n4{background:#C8BEE8;color:#3D3929;} .signal-num.n5{background:#E0A88A;}
-.signal-title { font-family:'TIMPS','Playfair Display',serif; font-size:14px; font-weight:700; color:#3D3929; margin-bottom:2px; }
-.signal-desc { font-size:12px; line-height:1.65; color:#5C5847; }
-.signal-link { display:inline-block; font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color:#DA7756; text-decoration:none; margin-top:4px; border-bottom:1px solid rgba(218,119,86,.3); }
+  .stat-box { float:right; margin:0 0 16px 24px; background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:16px 20px; text-align:center; min-width:120px; }
+  .stat-big { font-family: var(--serif); font-size:44px; font-weight:900; line-height:1; color: var(--forest); display:block; }
+  .stat-label { font-family: var(--mono); font-size:9.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .5; display:block; margin-top:4px; }
 
-/* Themes */
-.themes-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:18px; }
-.theme-item { padding:10px 14px; border-radius:8px; font-family:'TIMPS','Playfair Display',serif; font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; text-align:center; border:1.5px solid rgba(61,57,41,.12); }
+  .icon-frame { border:2px solid rgba(61,57,41,0.12); border-radius:12px; overflow:hidden; margin:16px 0; background: var(--cream); padding:18px; display:flex; align-items:center; justify-content:center; }
+  .icon-frame svg { width:100%; height:auto; max-height:140px; }
+  .icon-frame.float-right { float:right; width:180px; margin:0 0 16px 24px; }
 
-/* Tool of week */
-.tool-week { background:#DA7756; color:#fff; border-radius:12px; padding:18px 20px; text-align:center; margin-top:14px; }
-.tool-week-eyebrow { font-size:9px; letter-spacing:4px; text-transform:uppercase; opacity:.75; margin-bottom:6px; }
-.tool-week-name { font-family:'TIMPS','Playfair Display',serif; font-size:22px; font-weight:900; margin-bottom:4px; }
-.tool-week-desc { font-size:11.5px; opacity:.85; font-style:italic; }
+  .img-frame { border:2px solid rgba(61,57,41,0.18); border-radius:12px; overflow:hidden; margin:16px 0; background: var(--cream); }
+  .img-frame img { width:100%; display:block; max-height:240px; object-fit:cover; border-bottom:1px solid rgba(61,57,41,.12); }
+  .img-caption { padding:8px 12px; font-family: var(--mono); font-size:10.5px; color: var(--forest); opacity: .7; font-style:italic; display:flex; align-items:center; justify-content:space-between; gap:8px; }
+  .img-caption a { font-family: var(--mono); font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--terra); text-decoration:none; white-space:nowrap; font-style:normal; }
+  .img-frame.float-right { float:right; width:220px; margin:0 0 16px 24px; }
+  .img-frame.float-right img { max-height:140px; }
 
-/* Sources grid */
-.sources-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:14px; }
-.source-item { padding:8px 12px; background:#F0ECE0; border-radius:8px; border:1px solid rgba(61,57,41,.10); font-size:10.5px; }
-.source-item a { color:#DA7756; text-decoration:none; display:flex; align-items:center; gap:4px; }
-.source-item a::after { content:'↗'; font-size:9px; }
+  .source-link { display:inline-flex; align-items:center; gap:5px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:12px; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; transition: opacity .15s; }
+  .source-link:hover { opacity: 1; }
+  .source-link::after { content:'↗'; font-size:9px; }
 
-/* Footer */
-.footer-card { background:#3D3929; color:#F0ECE0; border-radius:4px 4px 20px 20px; padding:28px 40px; text-align:center; margin-top:3px; }
-.footer-title { font-family:'TIMPS','Playfair Display',serif; font-size:15px; font-weight:900; letter-spacing:3px; text-transform:uppercase; margin-bottom:6px; }
-.footer-sub { font-size:10px; letter-spacing:2px; text-transform:uppercase; opacity:.5; }
+  .signals-card { background:#EAE6F5; border-radius:4px; border:1.5px solid rgba(61,57,41,.10); padding:36px 40px; margin-bottom:3px; position:relative; }
+  .signals-grid { display:flex; flex-direction:column; gap:14px; }
+  .signal-row { display:flex; align-items:flex-start; gap:14px; }
+  .signal-num { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family: var(--serif); font-size:13px; font-weight:900; flex-shrink:0; color:#fff; }
+  .signal-num.n1{background: var(--terra); color: var(--forest);} .signal-num.n2{background: var(--forest);} .signal-num.n3{background:#7AAFC0;} .signal-num.n4{background: var(--terra-d); color: var(--forest);} .signal-num.n5{background: var(--black);}
+  .signal-title { font-family: var(--serif); font-size:14px; font-weight:700; color: var(--forest); margin-bottom:2px; }
+  .signal-desc { font-family: 'Space Mono', monospace; font-size:12px; line-height:1.65; color: var(--forest); opacity: .6; }
+  .signal-link { display:inline-block; font-family: var(--mono); font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .5; text-decoration:none; margin-top:4px; border-bottom:1px solid rgba(61,57,41,.2); transition: opacity .15s; }
+  .signal-link:hover { opacity: 1; }
+
+  .themes-card { background:#F5DDD0; border-radius:4px; border:1.5px solid rgba(61,57,41,.10); padding:36px 40px; margin-bottom:3px; }
+  .themes-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .theme-item { padding:10px 14px; border-radius:8px; font-family: var(--serif); font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; text-align:center; border:1.5px solid rgba(61,57,41,.12); background: var(--cream); }
+
+  .tool-week { background: var(--forest); color: var(--cream); border-radius:12px; padding:18px 20px; text-align:center; margin-top:14px; }
+  .tool-week-eyebrow { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; opacity: .55; margin-bottom:6px; }
+  .tool-week-name { font-family: var(--serif); font-size:22px; font-weight:900; margin-bottom:4px; }
+  .tool-week-desc { font-family: 'Space Mono', monospace; font-size:11.5px; opacity: .7; font-style:italic; }
+
+  .sources-title { font-family: var(--serif); font-weight:700; font-size:13px; margin:24px 0 10px; color: var(--forest); }
+  .output-card { background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:18px 20px; margin-top:14px; }
+  .output-title { font-family: var(--serif); font-size:18px; font-weight:700; margin-bottom:8px; color: var(--forest); }
+  .sources-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px 20px; }
+  .sources-grid a { font-family: var(--mono); font-size:11px; color: var(--forest); opacity: .55; text-decoration:none; border-bottom:1px solid rgba(61,57,41,.15); padding-bottom:1px; transition: opacity .15s; }
+  .sources-grid a:hover { opacity: 1; }
+
+  /* Footer */
+  .footer {
+    background: var(--black);
+    padding: 28px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    border-radius: 4px 4px 20px 20px;
+    margin-top: 3px;
+  }
+  .footer-logo { display: flex; align-items: center; gap: 10px; }
+  .footer-mark { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; }
+  .footer-mark img { width: 24px; height: 24px; object-fit: contain; filter: brightness(10); }
+  .footer-brand { font-family: var(--mono); font-size: 13px; font-weight: 700; color: #fff; }
+  .footer-center { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.4); text-align: center; line-height: 1.6; }
+  .footer-right { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.3); text-align: right; line-height: 2; }
+  .footer-right a { color: rgba(255,255,255,.5); transition: color .15s; }
+  .footer-right a:hover { color: #fff; }
+
+  /* TOC Sidebar */
+  .page-layout { display: flex; align-items: flex-start; gap: 0; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+  .toc-sidebar { position: sticky; top: 80px; width: 170px; flex-shrink: 0; padding: 48px 0 0 0; }
+  .toc-nav { display: flex; flex-direction: column; gap: 0; }
+  .toc-link { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.5px; text-transform: uppercase; color: #000; opacity: .45; text-decoration: none; padding: 7px 12px; border-left: 2px solid transparent; transition: opacity .15s, border-color .15s; line-height: 1.3; }
+  .toc-link:hover { opacity: .85; }
+  .toc-link.active { opacity: 1; border-left-color: var(--terra); }
+  .section-anchor { scroll-margin-top: 80px; }
+
+  @media (max-width: 900px) {
+    .toc-sidebar { display: none; }
+    .page-layout { max-width: 760px; }
+  }
+
+  @media (max-width: 720px) {
+    .nav { padding: 12px 24px; }
+    .nav-links { display: none; }
+    .wrapper { padding: 20px 14px 60px; }
+    .cover-card { padding: 40px 24px; }
+    .story-card { padding: 28px 20px; }
+    .footer { padding: 24px; flex-direction: column; align-items: flex-start; }
+    .footer-center, .footer-right { text-align: left; }
+    .stat-box { float: none; margin: 0 0 16px 0; }
+    .icon-frame.float-right { float: none; width: 100%; margin: 16px 0; }
+  }
+  @media (max-width: 480px) {
+    .nav-logo span { display: none; }
+    .cover-title { font-size: 40px; }
+    .card-headline.lg { font-size: 28px; }
+    .card-headline { font-size: 24px; }
+  }
+
 </style>
 </head>
 <body>
-<div class="wrapper">
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-mark">
+      <img src="timps_logo.svg" alt="TIMPS">
+    </div>
+    <span>TIMPS PostCards</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html#archive" class="nav-link">Archive</a>
+    <a href="timps-postcards-2026-07-02.html" class="nav-link">Latest Issue</a>
+    <a href="index.html#subscribe" class="nav-link">Subscribe</a>
+  </div>
+  <a href="index.html#subscribe" class="nav-cta">Subscribe</a>
+</nav>
 
+
+
+<div class="page-layout">
+
+  <!-- TOC SIDEBAR -->
+  <aside class="toc-sidebar">
+    <nav class="toc-nav">
+      <a href="#intro" class="toc-link">Intro</a>
+      <a href="#lead" class="toc-link">Lead</a>
+      <a href="#markets" class="toc-link">Markets</a>
+      <a href="#signals" class="toc-link">Signals</a>
+      <a href="#themes" class="toc-link">Themes</a>
+      <a href="#tool" class="toc-link">Tool</a>
+      <a href="#sources" class="toc-link">Sources</a>
+    </nav>
+  </aside>
+
+  <div class="wrapper">
+
+  
   <!-- ══════════════════════════════════════════════════════ -->
   <!--  CARD 1 — COVER                                        -->
   <!-- ══════════════════════════════════════════════════════ -->
-  <div class="cover-card">
+  <div id="intro" class="cover-card section-anchor">
     <div class="cover-eyebrow">AI Intelligence Digest</div>
     <div class="cover-title">TIMPS PostCards</div>
     <div class="cover-sub">Your Daily Signal from the Machine Frontier</div>
@@ -147,7 +308,7 @@ body {
   <!--  CARD 2 — LEAD: SpaceX Acquires Cursor for $60B        -->
   <!--  Scheme E: starts with Blush                           -->
   <!-- ══════════════════════════════════════════════════════ -->
-  <div class="story-card card-blush">
+  <div id="lead" class="story-card section-anchor card-blush">
     <span class="page-chip">01 · LEAD</span>
     <div class="card-routine">Acquisition · Developer Tools</div>
     <h2 class="card-headline lg">SpaceX Buys Cursor for $60 Billion — AI Coding's Biggest Deal Ever</h2>
@@ -159,7 +320,7 @@ body {
     </div>
 
     <div class="card-body drop clearfix">
-      <p>SpaceX has officially completed its acquisition of Cursor, the AI-assisted coding editor, in an all-stock deal valued at <span class="hl-terra">$60 billion</span> — funded directly by the company's record-breaking initial public offering, widely regarded as the largest IPO in history. The transaction marks a tectonic shift in who controls AI developer infrastructure.</p>
+      <p>SpaceX has officially completed its acquisition of Cursor, the AI-assisted coding editor, in an all-stock deal valued at <span class="hl-lime">$60 billion</span> — funded directly by the company's record-breaking initial public offering, widely regarded as the largest IPO in history. The transaction marks a tectonic shift in who controls AI developer infrastructure.</p>
       <p>For Cursor, the deal brings an injection of capital and aerospace-grade engineering ambition. The company will retain its London offices as a European hub, with approximately 200 new hires planned to expand its engineering and product teams. Cursor's core editor product will continue as a standalone offering, though deeper integration with SpaceX's data and compute stack is anticipated in the months ahead.</p>
       <p>The acquisition directly challenges Anthropic and OpenAI in the developer tools category, where both companies have invested heavily in coding assistants. With this deal, SpaceX enters that market not as a toolkit provider but as a platform owner — a position that could reshape how developers interact with AI at the IDE layer and beyond.</p>
     </div>
@@ -172,14 +333,14 @@ body {
   <!--  CARD 3 — GLM-5.2: China's Open Coding Champion        -->
   <!--  Lavender (alternating)                                -->
   <!-- ══════════════════════════════════════════════════════ -->
-  <div class="story-card card-lavender">
+  <div id="markets" class="story-card section-anchor card-lavender">
     <span class="page-chip">02 · MODEL</span>
     <div class="card-routine">Open Source · AI Models · China</div>
     <h2 class="card-headline">GLM-5.2 Arrives with a 1M Token Window — and Beats Claude in Blind Tests</h2>
     <p class="card-deck">Z.ai's GLM-5.2 debuts with 753 billion parameters, an MIT licence, and a coding benchmark ranking that upstages both Claude Opus 4.7 and 4.8 globally.</p>
     <div class="card-body drop clearfix">
-      <p>Z.ai launched <span class="hl-lav">GLM-5.2</span>, a massive open-source language model featuring a 1-million-token context window and a parameter count of 753 billion — with only 40 billion active at inference time via a mixture-of-experts architecture. Released under the MIT Licence, the model is freely usable for commercial and research purposes without royalty requirements.</p>
-      <p>In third-party coding evaluations, GLM-5.2 ranked <span class="hl-terra">second globally</span>, surpassing Claude Opus 4.7 and 4.8 and placing just behind the top proprietary model in several blind test categories. Z.ai designed the model specifically for long-horizon coding tasks — multi-file refactors, agent loops, and deep repository reasoning — where context length matters most.</p>
+      <p>Z.ai launched <span class="hl-lime">GLM-5.2</span>, a massive open-source language model featuring a 1-million-token context window and a parameter count of 753 billion — with only 40 billion active at inference time via a mixture-of-experts architecture. Released under the MIT Licence, the model is freely usable for commercial and research purposes without royalty requirements.</p>
+      <p>In third-party coding evaluations, GLM-5.2 ranked <span class="hl-lime">second globally</span>, surpassing Claude Opus 4.7 and 4.8 and placing just behind the top proprietary model in several blind test categories. Z.ai designed the model specifically for long-horizon coding tasks — multi-file refactors, agent loops, and deep repository reasoning — where context length matters most.</p>
       <p>The release arrives as the open-source coding model category intensifies following the discontinuation of Claude Fable 5, which had briefly held a strong position in developer benchmarks. GLM-5.2's performance and permissive licensing position it as a significant tool for self-hosted developer workflows.</p>
     </div>
     <a href="https://venturebeat.com" target="_blank" class="source-link">Full story · VentureBeat</a>
@@ -222,7 +383,7 @@ body {
     </div>
 
     <div class="card-body clearfix">
-      <p>DeepSeek has closed a <span class="hl-terra">$7.4 billion</span> fundraising round, making it one of the largest single capital events in AI history. The company built its reputation by delivering model performance comparable to top-tier Western labs at a fraction of the inference cost — a position that rattled markets earlier this year and forced pricing recalibrations across the industry.</p>
+      <p>DeepSeek has closed a <span class="hl-lime">$7.4 billion</span> fundraising round, making it one of the largest single capital events in AI history. The company built its reputation by delivering model performance comparable to top-tier Western labs at a fraction of the inference cost — a position that rattled markets earlier this year and forced pricing recalibrations across the industry.</p>
       <p>This round gives DeepSeek the financial runway to scale its research, expand model deployment infrastructure, and potentially subsidise API pricing to grow developer adoption internationally. The competitive pressure on OpenAI, Anthropic, and Google's model businesses is expected to intensify through 2026 as a result.</p>
     </div>
     <a href="https://www.bloomberg.com" target="_blank" class="source-link">Full story · Bloomberg</a>
@@ -240,7 +401,7 @@ body {
     <h2 class="card-headline sm">ChatGPT's Voice Goes Human. A Developer Gives It a Body.</h2>
     <p class="card-deck">OpenAI's updated voice system adds natural prosody and emotional range, while a community developer pairs it with a physical robot chassis — turning a language model into a room-presence entity.</p>
     <div class="card-body drop clearfix">
-      <p>OpenAI announced significant upgrades to ChatGPT's voice system, focusing on <span class="hl-terra">prosody</span> — the rhythm, intonation, and emotional colouring of speech — to close the gap between AI-generated voice and natural human conversation. Previous versions drew criticism for flat, robotic delivery; the updated model introduces breathing cadence, hesitation, and micro-emotional cues.</p>
+      <p>OpenAI announced significant upgrades to ChatGPT's voice system, focusing on <span class="hl-lime">prosody</span> — the rhythm, intonation, and emotional colouring of speech — to close the gap between AI-generated voice and natural human conversation. Previous versions drew criticism for flat, robotic delivery; the updated model introduces breathing cadence, hesitation, and micro-emotional cues.</p>
       <p>Separately, an independent developer published a project that pairs ChatGPT with a robot body, enabling the model to perceive and interact with physical spaces. While not an official OpenAI product, the project signals growing developer interest in embodied AI built on top of large language models — a direction that robotics companies including Figure and 1X have pursued at the hardware layer.</p>
     </div>
     <a href="https://openai.com/blog" target="_blank" class="source-link">Full story · OpenAI Blog</a>
@@ -258,7 +419,7 @@ body {
     <h2 class="card-headline sm">Mobbin's MCP Brings 621,500 Real App Screens Into Your AI Coding Agent</h2>
     <p class="card-deck">Design reference is now a tool call away — Mobbin's new MCP server pipes real UI screens from production apps directly into Claude, Cursor, and Lovable during live coding sessions.</p>
     <div class="card-body drop clearfix">
-      <p>Mobbin launched an MCP (Model Context Protocol) server that connects AI coding agents to its library of <span class="hl-lav">621,500+ real app screens</span> from production applications including Vercel, Juicebox, and Leonardo AI. The integration allows agents like Claude and Cursor to query real-world design patterns mid-session, without the developer needing to manually browse and paste reference material.</p>
+      <p>Mobbin launched an MCP (Model Context Protocol) server that connects AI coding agents to its library of <span class="hl-lime">621,500+ real app screens</span> from production applications including Vercel, Juicebox, and Leonardo AI. The integration allows agents like Claude and Cursor to query real-world design patterns mid-session, without the developer needing to manually browse and paste reference material.</p>
       <p>In practice, the server enables a workflow where an AI-generated dashboard can be immediately compared against production UI conventions, then refactored toward proper spacing, hierarchy, and interaction patterns — automatically. Mobbin describes it as "design on autopilot" for vibe-coded interfaces. For independent builders rapidly prototyping apps, this closes a significant quality gap between AI-generated scaffolding and shipped product design.</p>
     </div>
     <a href="https://mobbin.com" target="_blank" class="source-link">Full story · Mobbin Blog</a>
@@ -276,7 +437,7 @@ body {
     <h2 class="card-headline sm">Android 17 Gets MCP, ElevenLabs Goes On-Device, and Google Launches AI Avatars</h2>
     <p class="card-deck">A wave of platform-layer updates — Android's native MCP support, ElevenLabs' mobile voice stack, and Google Vids' AI avatar generation — signals the ecosystem catching up to frontier model capability.</p>
     <div class="card-body drop clearfix">
-      <p>Android 17 introduced native <span class="hl-terra">MCP capabilities</span>, enabling mobile AI agents to interface with device-side tools and APIs through the Model Context Protocol — bringing the agentic infrastructure pattern that has dominated desktop AI to smartphones at the OS level.</p>
+      <p>Android 17 introduced native <span class="hl-lime">MCP capabilities</span>, enabling mobile AI agents to interface with device-side tools and APIs through the Model Context Protocol — bringing the agentic infrastructure pattern that has dominated desktop AI to smartphones at the OS level.</p>
       <p>ElevenLabs announced on-device voice generation tools for mobile, reducing latency and enabling private voice AI interactions without cloud round-trips. The move mirrors a broader industry push toward edge inference, where sensitive audio data need not leave the device. Google, meanwhile, introduced AI avatars in Google Vids, allowing users to generate video content with synthetic presenters — a capability that collapses the production gap between text content and video output for individual creators.</p>
     </div>
     <a href="https://developer.android.com" target="_blank" class="source-link">Android 17 · Developer Docs</a>
@@ -357,7 +518,7 @@ body {
       <div class="theme-item card-blush">Edge Intelligence</div>
     </div>
 
-    <div class="tool-week">
+    <div id="tool" class="tool-week section-anchor">
       <div class="tool-week-eyebrow">Tool of the Week</div>
       <div class="tool-week-name">Mobbin MCP</div>
       <div class="tool-week-desc">621,500 real production UI screens, piped directly into your AI coding agent — the design reference layer that vibe-coded interfaces were missing.</div>
@@ -381,12 +542,26 @@ body {
   <!-- ══════════════════════════════════════════════════════ -->
   <!--  FOOTER CARD                                           -->
   <!-- ══════════════════════════════════════════════════════ -->
-  <div class="footer-card">
-    <div class="footer-title">TIMPS PostCards</div>
-    <div class="footer-sub">AI Intelligence Digest · Vol. I Issue 025 · June 18, 2026 · Hyderabad, India</div>
-    <div style="margin-top:12px; font-size:9.5px; opacity:.35; letter-spacing:1.5px; text-transform:uppercase;">Built with the TIMPS Ecosystem · timps.dev</div>
-  </div>
 
-</div>
-</body>
+    <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-logo">
+      <div class="footer-mark">
+        <img src="timps_logo.svg" alt="TIMPS">
+      </div>
+      <span class="footer-brand">TIMPS PostCards</span>
+    </div>
+    <div class="footer-center">
+      Vol. I Issue 025 · June 18, 2026<br>
+      Hyderabad, India
+    </div>
+    <div class="footer-right">
+      <a href="index.html">Home</a><br>
+      <a href="index.html#archive">Archive</a><br>
+      &copy; 2026 TIMPS
+    </div>
+  </footer>
+
+</div> <!-- /wrapper -->
+</div> <!-- /page-layout -->
 </html>
