@@ -4,5 +4,8 @@
 # Generated local config — created from .env by running: source .env && echo "window.BEEHIIV_PUB_ID='pub_$BEEHIVE_ID';" > config.js
 config.js
 
+# TIMPS font files (large binaries)
+TIMPS-Family-v2/
+
 # macOS
 .DS_Store
