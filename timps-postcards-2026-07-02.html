@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TIMPS PostCards — Issue 038</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #EEECE2;
+  font-family: 'EB Garamond', Georgia, ui-serif, serif;
+  color: #3D3929;
+  padding: 40px 20px 80px;
+}
+.wrapper { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 0; }
+
+/* Cover */
+.cover-card { background: #F0ECE0; border-radius: 20px 20px 4px 4px; padding: 56px 48px 48px; text-align: center; position: relative; overflow: hidden; border: 1.5px solid rgba(61,57,41,0.12); margin-bottom: 3px; }
+.cover-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, #DA7756 0%, #BD5D3A 60%, #E0A88A 100%); }
+.cover-eyebrow { font-size:10px; letter-spacing:4px; text-transform:uppercase; color:#DA7756; margin-bottom:20px; display:flex; align-items:center; justify-content:center; gap:10px; }
+.cover-eyebrow::before,.cover-eyebrow::after { content:''; flex:1; height:1px; background:#DA7756; opacity:.35; max-width:60px; }
+.cover-title { font-family:'Playfair Display',serif; font-size:58px; font-weight:900; line-height:1; letter-spacing:-1px; color:#3D3929; margin-bottom:8px; }
+.cover-sub { font-family:'Playfair Display',serif; font-size:13px; font-style:italic; color:#5C5847; margin-bottom:28px; }
+.cover-divider { width:48px; height:2px; background:#DA7756; margin:0 auto 24px; border-radius:2px; }
+.cover-meta { display:flex; justify-content:center; gap:32px; font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color:#5C5847; }
+.cover-badge { display:inline-flex; align-items:center; gap:6px; background:#DA7756; color:#fff; border-radius:20px; padding:6px 18px; font-size:10px; letter-spacing:2px; text-transform:uppercase; margin-top:28px; }
+.top5-pill { display:flex; justify-content:center; gap:10px; margin-top:32px; flex-wrap:wrap; }
+.pill { background:#3D3929; color:#F0ECE0; border-radius:100px; padding:4px 14px; font-size:10px; letter-spacing:1px; text-transform:uppercase; }
+.pill.light { background:transparent; color:#3D3929; border:1px solid rgba(61,57,41,.2); }
+
+/* Section labels */
+.section-label { display:flex; align-items:center; gap:12px; padding:10px 0 8px; font-size:9px; letter-spacing:4px; text-transform:uppercase; color:#5C5847; }
+.section-label::before,.section-label::after { content:''; flex:1; height:1px; background:rgba(61,57,41,.15); }
+
+/* Story cards */
+.story-card { border-radius:4px; border:1.5px solid rgba(61,57,41,.10); padding:36px 40px; margin-bottom:3px; position:relative; overflow:hidden; }
+.story-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }
+
+/* Card colour classes (Scheme C — Sky + Cream) */
+.card-sky      { background:#D6E8F0; } .card-sky::before      { background:#7AAFC0; }
+.card-cream    { background:#F7F5EF; } .card-cream::before    { background:#DA7756; }
+
+/* Card typography */
+.page-chip { position:absolute; top:14px; right:16px; font-size:9px; letter-spacing:2px; text-transform:uppercase; color:#5C5847; opacity:.5; }
+.card-routine { font-size:9px; letter-spacing:4px; text-transform:uppercase; color:#5C5847; margin-bottom:8px; }
+.card-headline { font-family:'Playfair Display',serif; font-size:28px; font-weight:900; line-height:1.15; color:#3D3929; margin-bottom:10px; }
+.card-headline.lg { font-size:34px; }
+.card-headline.sm { font-size:22px; }
+.card-deck { font-family:'Playfair Display',serif; font-style:italic; font-size:14px; line-height:1.55; color:#5C5847; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid rgba(61,57,41,.15); }
+.card-body { font-size:13px; line-height:1.8; color:#3D3929; }
+.card-body p { margin-bottom:11px; }
+.drop::first-letter { font-family:'Playfair Display',serif; font-size:52px; font-weight:900; float:left; line-height:.78; margin:5px 6px 0 0; color:#DA7756; }
+.clearfix::after { content:''; display:table; clear:both; }
+
+/* Inline highlights */
+.hl-terra { background:#DA7756; color:#fff; padding:0 4px; border-radius:2px; }
+.hl-ink   { background:#3D3929; color:#F0ECE0; padding:0 4px; border-radius:2px; }
+
+/* Stat float */
+.stat-box { float:right; margin:0 0 16px 24px; background:#F0ECE0; border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:16px 20px; text-align:center; min-width:120px; }
+.stat-big { font-family:'Playfair Display',serif; font-size:44px; font-weight:900; line-height:1; color:#DA7756; display:block; }
+.stat-label { font-size:9.5px; letter-spacing:1.5px; text-transform:uppercase; color:#5C5847; display:block; margin-top:4px; }
+
+/* Icon frames (inline SVG, no network dependency) */
+.icon-frame { border:2px solid rgba(61,57,41,0.18); border-radius:12px; overflow:hidden; margin:16px 0; background:#F0ECE0; padding:18px; display:flex; align-items:center; justify-content:center; }
+.icon-frame svg { width:100%; height:auto; max-height:140px; }
+.icon-frame.float-right { float:right; width:180px; margin:0 0 16px 24px; }
+.icon-caption { padding:8px 12px 0; font-size:10.5px; color:#5C5847; font-style:italic; text-align:center; }
+
+/* Source links */
+.source-link { display:inline-flex; align-items:center; gap:5px; font-size:10px; letter-spacing:1px; text-transform:uppercase; color:#DA7756; text-decoration:none; margin-top:12px; border-bottom:1px solid rgba(218,119,86,.35); padding-bottom:1px; }
+.source-link::after { content:'↗'; font-size:9px; }
+
+/* Signals */
+.signals-grid { display:flex; flex-direction:column; gap:14px; }
+.signal-row { display:flex; align-items:flex-start; gap:14px; }
+.signal-num { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-size:13px; font-weight:900; flex-shrink:0; color:#fff; }
+.signal-num.n1{background:#DA7756;} .signal-num.n2{background:#3D3929;} .signal-num.n3{background:#7AAFC0;} .signal-num.n4{background:#BD5D3A;} .signal-num.n5{background:#5C5847;}
+.signal-title { font-family:'Playfair Display',serif; font-size:14px; font-weight:700; color:#3D3929; margin-bottom:2px; }
+.signal-desc { font-size:12px; line-height:1.65; color:#5C5847; }
+.signal-link { display:inline-block; font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color:#DA7756; text-decoration:none; margin-top:4px; border-bottom:1px solid rgba(218,119,86,.3); }
+
+/* Themes */
+.themes-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.theme-item { padding:10px 14px; border-radius:8px; font-family:'Playfair Display',serif; font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; text-align:center; border:1.5px solid rgba(61,57,41,.12); background:#EEECE2; }
+
+/* Tool of week */
+.tool-week { background:#DA7756; color:#fff; border-radius:12px; padding:18px 20px; text-align:center; margin-top:14px; }
+.tool-week-eyebrow { font-size:9px; letter-spacing:4px; text-transform:uppercase; opacity:.75; margin-bottom:6px; }
+.tool-week-name { font-family:'Playfair Display',serif; font-size:22px; font-weight:900; margin-bottom:4px; }
+.tool-week-desc { font-size:11.5px; opacity:.85; font-style:italic; }
+
+/* Sources */
+.output-card { background:#F0ECE0; border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:18px 20px; margin-top:14px; }
+.output-title { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; margin-bottom:8px; color:#3D3929; }
+.sources-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px 20px; }
+.sources-grid a { font-size:11.5px; color:#3D3929; text-decoration:none; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; }
+
+/* Footer */
+.footer-card { background:#3D3929; color:#F0ECE0; border-radius:4px 4px 20px 20px; padding:28px 40px; text-align:center; margin-top:3px; }
+.footer-title { font-family:'Playfair Display',serif; font-size:15px; font-weight:900; letter-spacing:3px; text-transform:uppercase; margin-bottom:6px; }
+.footer-sub { font-size:10px; letter-spacing:2px; text-transform:uppercase; opacity:.5; }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- COVER -->
+  <div class="cover-card">
+    <div class="cover-eyebrow">AI Intelligence Digest</div>
+    <div class="cover-title">TIMPS<br>PostCards</div>
+    <div class="cover-sub">Your Daily Signal from the Machine Frontier</div>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+      <span>Issue 038</span>
+      <span>July 2, 2026</span>
+      <span>Hyderabad, India</span>
+    </div>
+    <div class="cover-badge">⬡ Built with the TIMPS Ecosystem</div>
+    <div class="top5-pill">
+      <span class="pill">Meta Turns Seller</span>
+      <span class="pill light">$49B MGX Fund</span>
+      <span class="pill light">South Korea's $518B Bet</span>
+    </div>
+  </div>
+
+  <!-- STORY 1 : LEAD -->
+  <div class="story-card card-sky">
+    <div class="page-chip">01 · LEAD</div>
+    <div class="card-routine">Big Tech &amp; Cloud Economics</div>
+    <h1 class="card-headline lg">Meta Turns Its AI Overspend Into a Cloud Business</h1>
+    <div class="card-deck">Facing hard questions about the payoff on hundreds of billions in AI capex, Meta is quietly building a plan to rent out its surplus computing power — a page borrowed straight from Amazon's AWS origin story.</div>
+    <div class="stat-box">
+      <span class="stat-big">+10%</span>
+      <span class="stat-label">Meta share jump on the report</span>
+    </div>
+    <div class="card-body drop clearfix">
+      <p>Meta shares jumped as much as 10% on Wednesday after Bloomberg reported the company is developing a cloud infrastructure unit, internally called Meta Compute, that would sell access to spare AI computing capacity and to hosted AI models such as its Muse Spark family. The plan, still unconfirmed by Meta, would put the company in direct competition with AWS, Microsoft Azure and Google Cloud — the very firms it currently pays to cover compute it can't build fast enough itself.</p>
+      <p>Meta expects to spend up to <span class="hl-terra">$145 billion</span> on AI infrastructure this year, on top of $70 billion in 2025, and has already committed $21 billion to CoreWeave alone. A pivot toward selling capacity rather than only buying it would test whether that spending is a hedge or a genuine new revenue line. The reaction elsewhere in the "neocloud" market was immediate: CoreWeave fell as much as 14% and Nebius dropped 17% on fears a hyperscaler-scale seller would undercut their pricing. The effort is reportedly led by infrastructure chief Santosh Janardhan alongside Meta Superintelligence Labs' Daniel Gross and Meta president Dina Powell McCormick.</p>
+    </div>
+    <a href="https://siliconangle.com/2026/07/01/meta-shares-jump-9-reported-plan-offer-ai-infrastructure-services/" target="_blank" class="source-link">Full story · SiliconANGLE</a>
+  </div>
+
+  <!-- STORY 2 -->
+  <div class="story-card card-cream">
+    <div class="page-chip">02 · CAPITAL</div>
+    <div class="card-routine">Sovereign AI Investment</div>
+    <h2 class="card-headline">MGX Closes a $49 Billion War Chest for AI Dealmaking</h2>
+    <div class="card-deck">The two-year-old Abu Dhabi fund raised more than its $45 billion target, vaulting it into the top ranks of the world's most consequential AI investors — and it has already started spending.</div>
+    <div class="stat-box">
+      <span class="stat-big">$49B</span>
+      <span class="stat-label">New AI-dedicated fund</span>
+    </div>
+    <div class="card-body drop clearfix">
+      <p>MGX, the Abu Dhabi-based investment firm, said this week it had closed one of the largest funds ever dedicated to artificial intelligence deals, drawing institutional and private investors from the Middle East, North America, Asia and Europe. The raise exceeded its original $45 billion target, and Bloomberg reported the firm has already deployed capital from the fund in recent weeks.</p>
+      <p>MGX has emerged over the past two years as one of the most active sovereign-linked vehicles in AI, backing ventures spanning frontier labs, data centers and chip supply — part of a broader Gulf push to convert oil wealth into a stake in the AI buildout. The size of the raise underscores how much non-U.S. capital is now chasing the same scarce assets, compute, power and frontier-model equity, that American hyperscalers are racing to lock up.</p>
+    </div>
+    <a href="https://news.bloomberglaw.com/mergers-and-acquisitions/mgx-raises-49-billion-for-one-of-the-biggest-ever-ai-funds" target="_blank" class="source-link">Full story · Bloomberg Law</a>
+  </div>
+
+  <!-- STORY 3 -->
+  <div class="story-card card-sky">
+    <div class="page-chip">03 · FINANCE</div>
+    <div class="card-routine">Industry &amp; Finance</div>
+    <h2 class="card-headline">SoftBank Wants to Borrow $10 Billion Against Its OpenAI Stake</h2>
+    <div class="card-deck">After banks balked at unsecured terms, Masayoshi Son is offering to personally guarantee repayment — a sign of how hard it still is to turn a paper AI fortune into cash.</div>
+    <div class="card-body drop clearfix">
+      <p>SoftBank Group has reopened talks with a lending consortium expected to include Goldman Sachs, JPMorgan Chase and Mizuho Financial Group for a $10 billion margin loan secured by its OpenAI stake, Reuters reported, after an earlier attempt stalled over the difficulty of valuing a private company. To win the banks over, SoftBank is now offering a repayment guarantee that gives lenders recourse to the parent company itself if the pledged shares lose value — a concession it did not make the first time, when the ask reportedly shrank from $10 billion to about $6 billion for lack of interest.</p>
+      <p>SoftBank has committed more than <span class="hl-terra">$60 billion</span> to OpenAI and related infrastructure including the Stargate data center venture, and separately faces a March 2027 deadline to repay a $40 billion bridge loan tied to the same bet. OpenAI's confidential June IPO filing could eventually make the stake easier to value and sell, but for now Son is financing one of history's biggest AI wagers the same way SoftBank financed its Arm stake — by borrowing against paper gains before they're realized.</p>
+    </div>
+    <a href="https://www.usnews.com/news/top-news/articles/2026-07-01/exclusive-softbank-renews-talks-for-10-billion-loan-against-openai-stake-adds-concessions-sources-say" target="_blank" class="source-link">Full story · Reuters</a>
+  </div>
+
+  <!-- STORY 4 -->
+  <div class="story-card card-cream">
+    <div class="page-chip">04 · SUPPLY CHAIN</div>
+    <div class="card-routine">Hardware &amp; Supply Chain</div>
+    <h2 class="card-headline">South Korea Bets $518 Billion to Own the Memory Chip Stack</h2>
+    <div class="card-deck">Samsung and SK Hynix will build four new fabs as Seoul frames semiconductors, physical AI and data centers as a single "triple axis" race it says it cannot afford to lose.</div>
+    <div class="stat-box">
+      <span class="stat-big">$518B</span>
+      <span class="stat-label">Samsung + SK Hynix commitment</span>
+    </div>
+    <div class="card-body drop clearfix">
+      <p>President Lee Jae-myung unveiled a national investment drive this week worth more than 800 trillion won ($518 billion) from Samsung Electronics and SK Hynix, the world's two largest memory chipmakers, alongside suppliers, to build two new fabrication sites apiece in the country's southwest. A further 81 trillion won ($52.5 billion) is earmarked for a chip-packaging cluster near Seoul. "We must secure the core elements of AI faster than any other country," Lee said, framing the buildout as existential rather than merely commercial.</p>
+      <p>The announcement lands as the global AI chip supply chain strains under a well-documented crunch: TSMC's advanced-node and packaging capacity is sold out through 2027, HBM memory is being rationed toward AI accelerators at the expense of conventional RAM, and server CPU lead times have stretched to six months in some markets. South Korea's bet is that owning more of the memory layer it already leads globally is the surest way to stay indispensable as the AI buildout accelerates.</p>
+    </div>
+    <a href="https://www.aljazeera.com/news/2026/6/29/south-korea-announces-more-than-1-trillion-ai-chip-investment-drive" target="_blank" class="source-link">Full story · Al Jazeera</a>
+  </div>
+
+  <!-- STORY 5 -->
+  <div class="story-card card-sky">
+    <div class="page-chip">05 · PHYSICAL AI</div>
+    <div class="card-routine">Industry &amp; Infrastructure</div>
+    <h2 class="card-headline">NVIDIA Backs Verkada to Put World Models Behind Every Camera</h2>
+    <div class="icon-frame float-right">
+      <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="60" cy="60" r="34" fill="none" stroke="#7AAFC0" stroke-width="4"/>
+        <circle cx="60" cy="60" r="14" fill="#DA7756"/>
+        <circle cx="60" cy="14" r="5" fill="#3D3929"/>
+        <circle cx="60" cy="106" r="5" fill="#3D3929"/>
+        <circle cx="14" cy="60" r="5" fill="#3D3929"/>
+        <circle cx="106" cy="60" r="5" fill="#3D3929"/>
+        <line x1="60" y1="26" x2="60" y2="46" stroke="#3D3929" stroke-width="2"/>
+        <line x1="60" y1="74" x2="60" y2="94" stroke="#3D3929" stroke-width="2"/>
+        <line x1="26" y1="60" x2="46" y2="60" stroke="#3D3929" stroke-width="2"/>
+        <line x1="74" y1="60" x2="94" y2="60" stroke="#3D3929" stroke-width="2"/>
+      </svg>
+    </div>
+    <div class="card-deck">A new equity investment and technical partnership pairs NVIDIA's Cosmos world models with Verkada's 2.4 million security devices — and the search accuracy gains are already showing up.</div>
+    <div class="stat-box">
+      <span class="stat-big">68%</span>
+      <span class="stat-label">mAP gain in video search</span>
+    </div>
+    <div class="card-body drop clearfix">
+      <p>Physical-security company Verkada announced this week that NVIDIA has taken an equity stake and is collaborating with it to bring more capable AI to the built environment, following an earlier strategic investment from Alphabet's CapitalG. The partnership applies NVIDIA's Cosmos world foundation models and its Physical AI Data Factory synthetic-data toolkit to the models behind Verkada's video search — finding a specific person, object or moment across recordings from more than 2.4 million connected devices in 170 countries.</p>
+      <p>Since the collaboration began, Verkada says mean average precision for spatial-temporal search queries has climbed 68%, and the company is now building a multi-model search agent aimed at flagging safety incidents on factory floors and shrinkage in retail stores. "Verkada has been building and deploying Physical AI before the term existed," said co-founder and CEO Filip Kaliszan.</p>
+    </div>
+    <a href="https://siliconangle.com/2026/07/01/verkada-takes-nvidia-investment-expand-physical-ai-platform/" target="_blank" class="source-link">Full story · SiliconANGLE</a>
+  </div>
+
+  <!-- STORY 6 -->
+  <div class="story-card card-cream">
+    <div class="page-chip">06 · REGULATION</div>
+    <div class="card-routine">Policy &amp; Regulation</div>
+    <h2 class="card-headline sm">Apple's Siri Delay Turns Into a Full-Blown Brussels Standoff</h2>
+    <div class="card-deck">The EU's technology chief is pressing Tim Cook directly after Apple blamed the Digital Markets Act for holding back its upgraded Siri in Europe — a preview of how AI rollouts and platform rules will keep colliding.</div>
+    <div class="card-body drop clearfix">
+      <p>European Commissioner Henna Virkkunen held talks with Apple CEO Tim Cook this week after Apple delayed the European rollout of its upgraded, more AI-capable Siri, citing privacy and security complications tied to the Digital Markets Act's interoperability requirements. The Commission counters that the DMA's rules, designed to force dominant gatekeepers to open their platforms to competitors, are not optional, and that Apple must find a way to comply rather than withhold features from EU users.</p>
+      <p>The standoff is becoming a template case for a wider tension: as AI assistants gain deeper access to a device's data and other apps to be useful, they run directly into the same interoperability and data-sharing obligations regulators imposed to curb Big Tech gatekeeping power. Neither side has signaled a near-term resolution, and how it's settled will likely shape how fast, and on what terms, the next generation of AI assistants reaches European users.</p>
+    </div>
+    <a href="https://techstartups.com/2026/07/01/top-tech-news-today-july-1-2026/" target="_blank" class="source-link">Full story · Tech Startups</a>
+  </div>
+
+  <!-- SIGNALS -->
+  <div class="story-card card-sky">
+    <div class="page-chip">07 · SIGNALS</div>
+    <div class="card-routine">5 Things Worth Knowing</div>
+    <h2 class="card-headline sm">5 Key Signals</h2>
+    <div class="signals-grid">
+      <div class="signal-row">
+        <div class="signal-num n1">01</div>
+        <div>
+          <div class="signal-title">The UN Convenes an "AI for Good" Commission of CEOs and Heads of State</div>
+          <div class="signal-desc">Salesforce's Marc Benioff and Rwanda's Paul Kagame co-chair a body that includes Jensen Huang, Brad Smith and Anthropic's Jack Clark; first meeting is July 8 in Geneva.</div>
+          <a href="https://www.axios.com/2026/07/01/un-ai-commission-ceos-world-leaders" target="_blank" class="signal-link">Axios ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n2">02</div>
+        <div>
+          <div class="signal-title">Together AI Doubles Its Valuation to $8.3 Billion</div>
+          <div class="signal-desc">An $800M round led by Aramco Ventures backs the open-weight inference cloud, whose bookings crossed $1.15B a quarter as customers flee closed-model pricing.</div>
+          <a href="https://techcrunch.com/2026/07/01/neocloud-together-ai-raises-800m-leaps-to-8-3b-valuation/" target="_blank" class="signal-link">TechCrunch ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n3">03</div>
+        <div>
+          <div class="signal-title">Musk Denies SpaceX Showed Investors an AI Handset Before Its IPO</div>
+          <div class="signal-desc">A WSJ report described a Snapdragon-powered, xAI-infused device shown pre-listing; Musk called it "utterly false" as SpaceX shares dipped on the conflicting accounts.</div>
+          <a href="https://finance.yahoo.com/markets/stocks/articles/elon-musk-sends-spacex-shares-194119661.html" target="_blank" class="signal-link">Reuters ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n4">04</div>
+        <div>
+          <div class="signal-title">GPT-5.6's Government-Gated Access Is Set to Widen</div>
+          <div class="signal-desc">Sol, Terra and Luna remain limited to roughly 20 vetted partners under a White House review; OpenAI has told the government it expects broader access within weeks.</div>
+          <a href="https://www.axios.com/2026/06/26/openai-gpt-sol-terra-luna-trump" target="_blank" class="signal-link">Axios ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n5">05</div>
+        <div>
+          <div class="signal-title">Microsoft 365's AI-Bundled Pricing Becomes Permanent</div>
+          <div class="signal-desc">Business Standard and Premium with Copilot lock in as standard SKUs from July 1, turning AI features into a recurring line item across Microsoft's productivity suite.</div>
+          <a href="https://learn.microsoft.com/en-us/partner-center/announcements/2026-june" target="_blank" class="signal-link">Microsoft ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THEMES + TOOL + SOURCES -->
+  <div class="story-card card-cream">
+    <div class="page-chip">08 · THEMES</div>
+    <div class="card-routine">This Week in Focus</div>
+    <h2 class="card-headline sm">Top Themes</h2>
+    <div class="themes-grid">
+      <div class="theme-item">Sovereign AI Capital</div>
+      <div class="theme-item">Compute Reseller Economics</div>
+      <div class="theme-item">Physical AI Investment</div>
+      <div class="theme-item">Chip Nationalism</div>
+      <div class="theme-item">Fragmented AI Governance</div>
+      <div class="theme-item">Platform Regulatory Friction</div>
+      <div class="theme-item">Open-Source Inference Boom</div>
+    </div>
+
+    <div class="tool-week">
+      <div class="tool-week-eyebrow">Tool of the Week</div>
+      <div class="tool-week-name">Together AI</div>
+      <div class="tool-week-desc">The AI-native cloud making open-weight inference cheap enough — 6 to 60x cheaper than closed APIs — to bet a production business on.</div>
+    </div>
+
+    <div class="output-card">
+      <div class="output-title">Sources Cited</div>
+      <div class="sources-grid">
+        <a href="https://siliconangle.com/2026/07/01/meta-shares-jump-9-reported-plan-offer-ai-infrastructure-services/" target="_blank">SiliconANGLE</a>
+        <a href="https://news.bloomberglaw.com/mergers-and-acquisitions/mgx-raises-49-billion-for-one-of-the-biggest-ever-ai-funds" target="_blank">Bloomberg Law</a>
+        <a href="https://www.usnews.com/news/top-news/articles/2026-07-01/exclusive-softbank-renews-talks-for-10-billion-loan-against-openai-stake-adds-concessions-sources-say" target="_blank">Reuters</a>
+        <a href="https://www.aljazeera.com/news/2026/6/29/south-korea-announces-more-than-1-trillion-ai-chip-investment-drive" target="_blank">Al Jazeera</a>
+        <a href="https://siliconangle.com/2026/07/01/verkada-takes-nvidia-investment-expand-physical-ai-platform/" target="_blank">SiliconANGLE</a>
+        <a href="https://techstartups.com/2026/07/01/top-tech-news-today-july-1-2026/" target="_blank">Tech Startups</a>
+        <a href="https://www.axios.com/2026/07/01/un-ai-commission-ceos-world-leaders" target="_blank">Axios</a>
+        <a href="https://techcrunch.com/2026/07/01/neocloud-together-ai-raises-800m-leaps-to-8-3b-valuation/" target="_blank">TechCrunch</a>
+        <a href="https://finance.yahoo.com/markets/stocks/articles/elon-musk-sends-spacex-shares-194119661.html" target="_blank">Reuters</a>
+        <a href="https://learn.microsoft.com/en-us/partner-center/announcements/2026-june" target="_blank">Microsoft</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer-card">
+    <div class="footer-title">TIMPS PostCards</div>
+    <div class="footer-sub">Issue 038 · July 2, 2026 · Hyderabad, India · Built with the TIMPS Ecosystem</div>
+  </div>
+
+</div>
+</body>
+</html>
