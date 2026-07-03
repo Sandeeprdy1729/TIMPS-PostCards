@@ -17,7 +17,7 @@ jobs:
       cancel-in-progress: true
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deploy-attempt.outputs.page_url || steps.deployment.outputs.page_url }}
 
     steps:
       - name: Checkout
@@ -39,8 +39,21 @@ jobs:
           path: '.'
 
       - name: Deploy to GitHub Pages
-        id: deployment
+        id: deploy-attempt
+        continue-on-error: true
         uses: actions/deploy-pages@v4
         with:
-          # 30 minutes in milliseconds; queued Pages deployments can exceed 10 minutes.
-          timeout: 1800000
+          # 10 minutes in milliseconds; this is the maximum value GitHub allows.
+          timeout: 600000
+
+      - name: Wait before retry
+        if: steps.deploy-attempt.outcome == 'failure'
+        run: sleep 30
+
+      - name: Deploy to GitHub Pages (Retry)
+        id: deployment
+        if: steps.deploy-attempt.outcome == 'failure'
+        uses: actions/deploy-pages@v4
+        with:
+          # 10 minutes in milliseconds; this is the maximum value GitHub allows.
+          timeout: 600000
