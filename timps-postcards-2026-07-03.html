@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TIMPS PostCards — Issue 039</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #EEECE2;
+  font-family: 'EB Garamond', Georgia, ui-serif, serif;
+  color: #3D3929;
+  padding: 40px 20px 80px;
+}
+.wrapper { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 0; }
+
+/* Cover */
+.cover-card { background: #F0ECE0; border-radius: 20px 20px 4px 4px; padding: 56px 48px 48px; text-align: center; position: relative; overflow: hidden; border: 1.5px solid rgba(61,57,41,0.12); margin-bottom: 3px; }
+.cover-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, #DA7756 0%, #BD5D3A 60%, #E0A88A 100%); }
+.cover-eyebrow { font-size:10px; letter-spacing:4px; text-transform:uppercase; color:#DA7756; margin-bottom:20px; display:flex; align-items:center; justify-content:center; gap:10px; }
+.cover-eyebrow::before,.cover-eyebrow::after { content:''; flex:1; height:1px; background:#DA7756; opacity:.35; max-width:60px; }
+.cover-title { font-family:'Playfair Display',serif; font-size:58px; font-weight:900; line-height:1; letter-spacing:-1px; color:#3D3929; margin-bottom:8px; }
+.cover-sub { font-family:'Playfair Display',serif; font-size:13px; font-style:italic; color:#5C5847; margin-bottom:28px; }
+.cover-divider { width:48px; height:2px; background:#DA7756; margin:0 auto 24px; border-radius:2px; }
+.cover-meta { display:flex; justify-content:center; gap:32px; font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color:#5C5847; }
+.cover-badge { display:inline-flex; align-items:center; gap:6px; background:#DA7756; color:#fff; border-radius:20px; padding:6px 18px; font-size:10px; letter-spacing:2px; text-transform:uppercase; margin-top:28px; }
+.top5-pill { display:flex; justify-content:center; gap:10px; margin-top:32px; flex-wrap:wrap; }
+.pill { background:#3D3929; color:#F0ECE0; border-radius:100px; padding:4px 14px; font-size:10px; letter-spacing:1px; text-transform:uppercase; }
+.pill.light { background:transparent; color:#3D3929; border:1px solid rgba(61,57,41,.2); }
+
+/* Section labels */
+.section-label { display:flex; align-items:center; gap:12px; padding:10px 0 8px; font-size:9px; letter-spacing:4px; text-transform:uppercase; color:#5C5847; }
+.section-label::before,.section-label::after { content:''; flex:1; height:1px; background:rgba(61,57,41,.15); }
+
+/* Story cards */
+.story-card { border-radius:4px; border:1.5px solid rgba(61,57,41,.10); padding:36px 40px; margin-bottom:3px; position:relative; overflow:hidden; }
+.story-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }
+
+/* Card colour classes */
+.card-lavender { background:#EAE6F5; } .card-lavender::before { background:#C8BEE8; }
+.card-sage     { background:#D6E4D6; } .card-sage::before     { background:#8BAF8B; }
+.card-blush    { background:#F5DDD0; } .card-blush::before    { background:#E0A88A; }
+.card-sky      { background:#D6E8F0; } .card-sky::before      { background:#7AAFC0; }
+.card-cream    { background:#F7F5EF; } .card-cream::before    { background:#DA7756; }
+
+/* Card typography */
+.page-chip { position:absolute; top:14px; right:16px; font-size:9px; letter-spacing:2px; text-transform:uppercase; color:#5C5847; opacity:.5; }
+.card-routine { font-size:9px; letter-spacing:4px; text-transform:uppercase; color:#5C5847; margin-bottom:8px; }
+.card-headline { font-family:'Playfair Display',serif; font-size:28px; font-weight:900; line-height:1.15; color:#3D3929; margin-bottom:10px; }
+.card-headline.lg { font-size:34px; }
+.card-headline.sm { font-size:22px; }
+.card-deck { font-family:'Playfair Display',serif; font-style:italic; font-size:14px; line-height:1.55; color:#5C5847; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid rgba(61,57,41,.15); }
+.card-body { font-size:13px; line-height:1.8; color:#3D3929; }
+.card-body p { margin-bottom:11px; }
+.drop::first-letter { font-family:'Playfair Display',serif; font-size:52px; font-weight:900; float:left; line-height:.78; margin:5px 6px 0 0; color:#DA7756; }
+.clearfix::after { content:''; display:table; clear:both; }
+
+/* Inline highlights */
+.hl-terra { background:#DA7756; color:#fff; padding:0 4px; border-radius:2px; }
+.hl-ink   { background:#3D3929; color:#F0ECE0; padding:0 4px; border-radius:2px; }
+.hl-sage  { background:#8BAF8B; color:#fff; padding:0 4px; border-radius:2px; }
+.hl-lav   { background:#C8BEE8; color:#3D3929; padding:0 4px; border-radius:2px; }
+
+/* Stat float */
+.stat-box { float:right; margin:0 0 16px 24px; background:#F0ECE0; border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:16px 20px; text-align:center; min-width:120px; }
+.stat-big { font-family:'Playfair Display',serif; font-size:44px; font-weight:900; line-height:1; color:#DA7756; display:block; }
+.stat-label { font-size:9.5px; letter-spacing:1.5px; text-transform:uppercase; color:#5C5847; display:block; margin-top:4px; }
+
+/* Image frames */
+.img-frame { border:2px solid rgba(61,57,41,0.18); border-radius:12px; overflow:hidden; margin:16px 0; background:#F0ECE0; }
+.img-frame img { width:100%; display:block; max-height:240px; object-fit:cover; border-bottom:1px solid rgba(61,57,41,.12); }
+.img-caption { padding:8px 12px; font-size:10.5px; color:#5C5847; font-style:italic; display:flex; align-items:center; justify-content:space-between; gap:8px; }
+.img-caption a { font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color:#DA7756; text-decoration:none; white-space:nowrap; font-style:normal; }
+.img-frame.float-right { float:right; width:220px; margin:0 0 16px 24px; }
+.img-frame.float-right img { max-height:140px; }
+
+/* Source links */
+.source-link { display:inline-flex; align-items:center; gap:5px; font-size:10px; letter-spacing:1px; text-transform:uppercase; color:#DA7756; text-decoration:none; margin-top:12px; border-bottom:1px solid rgba(218,119,86,.35); padding-bottom:1px; }
+.source-link::after { content:'↗'; font-size:9px; }
+
+/* Output card */
+.output-card { background:#F0ECE0; border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:18px 20px; margin-top:14px; }
+.output-title { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; margin-bottom:8px; color:#3D3929; }
+
+/* Signals */
+.signals-grid { display:flex; flex-direction:column; gap:14px; }
+.signal-row { display:flex; align-items:flex-start; gap:14px; }
+.signal-num { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-size:13px; font-weight:900; flex-shrink:0; color:#fff; }
+.signal-num.n1{background:#DA7756;} .signal-num.n2{background:#3D3929;} .signal-num.n3{background:#8BAF8B;} .signal-num.n4{background:#C8BEE8;color:#3D3929;} .signal-num.n5{background:#E0A88A;}
+.signal-title { font-family:'Playfair Display',serif; font-size:14px; font-weight:700; color:#3D3929; margin-bottom:2px; }
+.signal-desc { font-size:12px; line-height:1.65; color:#5C5847; }
+.signal-link { display:inline-block; font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color:#DA7756; text-decoration:none; margin-top:4px; border-bottom:1px solid rgba(218,119,86,.3); }
+
+/* Themes */
+.themes-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.theme-item { padding:10px 14px; border-radius:8px; font-family:'Playfair Display',serif; font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; text-align:center; border:1.5px solid rgba(61,57,41,.12); }
+
+/* Tool of week */
+.tool-week { background:#DA7756; color:#fff; border-radius:12px; padding:18px 20px; text-align:center; margin-top:14px; }
+.tool-week-eyebrow { font-size:9px; letter-spacing:4px; text-transform:uppercase; opacity:.75; margin-bottom:6px; }
+.tool-week-name { font-family:'Playfair Display',serif; font-size:22px; font-weight:900; margin-bottom:4px; }
+.tool-week-desc { font-size:11.5px; opacity:.85; font-style:italic; }
+
+/* Sources cited */
+.sources-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px 16px; margin-top:14px; }
+.sources-grid a { font-size:11px; color:#3D3929; text-decoration:none; border-bottom:1px solid rgba(61,57,41,.25); padding-bottom:1px; }
+
+/* Footer */
+.footer-card { background:#3D3929; color:#F0ECE0; border-radius:4px 4px 20px 20px; padding:28px 40px; text-align:center; margin-top:3px; }
+.footer-title { font-family:'Playfair Display',serif; font-size:15px; font-weight:900; letter-spacing:3px; text-transform:uppercase; margin-bottom:6px; }
+.footer-sub { font-size:10px; letter-spacing:2px; text-transform:uppercase; opacity:.5; }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- COVER -->
+  <div class="cover-card">
+    <div class="cover-eyebrow">AI Intelligence Digest</div>
+    <div class="cover-title">TIMPS<br>PostCards</div>
+    <div class="cover-sub">Your Daily Signal from the Machine Frontier</div>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+      <span>Issue 039</span>
+      <span>July 3, 2026</span>
+      <span>Hyderabad, India</span>
+    </div>
+    <div class="cover-badge">⬡ Built with the TIMPS Ecosystem</div>
+    <div class="top5-pill">
+      <span class="pill">Teen Hacker Extradited</span>
+      <span class="pill light">Robot Park Opens</span>
+      <span class="pill light">GCash's $1.5B IPO</span>
+    </div>
+  </div>
+
+  <!-- CARD 1 - LEAD -->
+  <div class="story-card card-lavender">
+    <div class="page-chip">01 · LEAD</div>
+    <div class="card-routine">Cybercrime & Justice</div>
+    <h1 class="card-headline lg">A Teenage "Scattered Spider" Hacker Faces US Justice</h1>
+    <div class="card-deck">Nineteen-year-old Peter Stokes was pulled off a Helsinki-bound flight to Japan in April carrying hard drives of evidence — the latest arrest in a crackdown on the extortion crew blamed for over $100 million in ransoms.</div>
+    <div class="card-body drop clearfix">
+      <p>A federal complaint unsealed in Chicago this week charges Peter Stokes, a 19-year-old dual US-Estonian citizen who allegedly used the online handles "Bouquet" and "Spencer," with conspiracy, computer intrusion and fraud tied to his membership in Scattered Spider. Finnish authorities arrested him in April under an Interpol Red Notice as he tried to board a flight to Japan; he was extradited last week and ordered detained after his first Chicago court appearance on Tuesday.</p>
+      <p>Prosecutors say Stokes has been active in the group since it formed in 2022, and tie him to at least four breaches, including a <span class="hl-terra">$8M ransom demand</span> against a luxury jewelry retailer in May 2025 that the company refused to pay after evicting the intruders. Scattered Spider — also tracked as Octo Tempest and UNC3944 — has been linked to more than 100 intrusions and over $100 million in ransom payments from victims including MGM Resorts, Caesars, Marks & Spencer and Transport for London.</p>
+      <p>The case is part of the FBI's Operation Riptide, an ongoing campaign against cybercriminal networks, following several UK and Spanish arrests of alleged Scattered Spider members in 2025. Officials say Americans reported over $20 billion in cybercrime losses last year — a 26% jump from 2024 — underscoring why authorities are treating a teenager's arrest as a marquee case.</p>
+    </div>
+    <a href="https://cyberscoop.com/scattered-spider-peter-stokes-cybercrime-extradition/" target="_blank" class="source-link">Full story · CyberScoop</a>
+  </div>
+
+  <!-- CARD 2 -->
+  <div class="story-card card-sage">
+    <div class="page-chip">02 · ROBOTICS</div>
+    <div class="card-routine">Physical AI & Manufacturing</div>
+    <h2 class="card-headline">Apptronik Opens a 90,000-Square-Foot "Robot Park" to Teach Humanoids Their Jobs</h2>
+    <div class="card-deck">The Austin facility puts fleets of Apollo 2 robots through real logistics and retail tasks around the clock, turning physical labor into training data for Google DeepMind's Gemini Robotics models.</div>
+    <div class="card-body drop clearfix">
+      <p>Apptronik has opened an expanded Robot Park across the street from its Austin headquarters, where bipedal and wheeled versions of its Apollo 2 humanoid perform logistics, manufacturing and retail tasks purely to generate the real-world data that AI chatbots get for free from internet text. "We're focused on what they can do every day on the job," said CEO Jeff Cardenas, describing the site as "a robot learning playground."</p>
+      <p>The data feeds a research partnership with Google DeepMind's Gemini Robotics models and supports development of the commercial Apollo 3, expected in 2027. Apptronik, valued at roughly $5 billion after a $520 million February raise, is also running Robot Park-style deployments at Mercedes-Benz and logistics firm GXO, while rivals Figure AI, Agility Robotics, 1X and Tesla race toward the same goal: proving customers will actually pay for humanoid labor, not just watch demos.</p>
+    </div>
+    <a href="https://www.briefs.co/news/apptronik-s-5-5b-robot-park-opens-for-humanoid-training/" target="_blank" class="source-link">Full story · Briefs</a>
+  </div>
+
+  <!-- CARD 3 -->
+  <div class="story-card card-blush">
+    <div class="page-chip">03 · FINTECH</div>
+    <div class="card-routine">Southeast Asian Capital Markets</div>
+    <h2 class="card-headline">GCash's Parent Files for the Philippines' Biggest-Ever IPO</h2>
+    <div class="stat-box">
+      <span class="stat-big">$1.5B</span>
+      <span class="stat-label">Target IPO Raise</span>
+    </div>
+    <div class="card-deck">Mynt is asking public markets to value its 94-million-user mobile wallet above the country's biggest bank — a test of whether Southeast Asian fintech can command private-round prices in public markets again.</div>
+    <div class="card-body">
+      <p>Mynt, the Ayala- and Ant Group-backed operator of GCash, is targeting up to 92.3 billion pesos ($1.5 billion) in a fourth-quarter Manila listing, surpassing Monde Nissin's 2021 record. At the top price of 10 pesos a share, the company would be valued near $10.9 billion, ahead of BDO Unibank, the Philippines' largest lender.</p>
+      <p>GCash processed 17 trillion pesos in transactions last year across its 40 million monthly active users, with net income up 56% to 17.3 billion pesos. Globe Telecom and Ayala Corp gain a way to unlock the wallet's value directly, while Ant Group gets a rare clean exit outside China's regulatory reach — though Deloitte data shows Southeast Asian tech IPOs are only just recovering from a nine-year low.</p>
+    </div>
+    <a href="https://www.forbes.com/sites/iansayson/2026/06/29/fintech-unicorn-gcash-to-raise-15-billion-in-what-could-be-the-philippines-biggest-ipo/" target="_blank" class="source-link">Full story · Forbes</a>
+  </div>
+
+  <!-- CARD 4 -->
+  <div class="story-card card-lavender">
+    <div class="page-chip">04 · MODELS</div>
+    <div class="card-routine">Frontier Model Economics</div>
+    <h2 class="card-headline">Fable 5's Free Ride Ends July 7, and Developers Are Racing the Clock</h2>
+    <div class="card-deck">Claude Fable 5 returned this week folded into existing subscriptions, but only for six days — after that, every token moves to metered credits at full API rates.</div>
+    <div class="card-body drop clearfix">
+      <p>Pro, Max, Team and select Enterprise plans get Fable 5 for up to 50% of weekly usage limits through July 7; from July 8 it shifts entirely to pay-as-you-go usage credits. Because Fable 5 draws down a plan's shared token pool faster than Opus 4.8 for equivalent work, the practical advice circulating among developers is to front-load hard, ambiguous or judgment-heavy work into the window and hand routine implementation to cheaper models afterward.</p>
+      <p>Early reception has split along task difficulty: coding platform Cursor said Fable 5 leads every model on its benchmark despite being the priciest per task, while independent testers describe strong results on vision and long, hard technical problems but stalls on ambitious, days-long agent runs. The new safety classifier — built after Amazon researchers flagged a jailbreak that triggered a government-mandated shutdown in June — occasionally reroutes ordinary coding requests to Opus 4.8, which Anthropic says users can flag via feedback.</p>
+    </div>
+    <a href="https://www.digitalapplied.com/blog/claude-fable-5-before-july-7-six-day-window-playbook" target="_blank" class="source-link">Full story · Digital Applied</a>
+  </div>
+
+  <!-- CARD 5 -->
+  <div class="story-card card-sage">
+    <div class="page-chip">05 · VOICE AI</div>
+    <div class="card-routine">Agent Infrastructure</div>
+    <h2 class="card-headline">xAI Undercuts the Voice-Agent Market at 5 Cents a Minute</h2>
+    <div class="card-deck">Grok Voice Agent Builder collapses the usual three-vendor stack — speech-to-text, a language model, text-to-speech — into one interface, and prices it below ElevenLabs and Vapi.</div>
+    <div class="card-body">
+      <p>xAI's new no-code platform, launched in beta July 1, lets businesses configure a production phone agent in about two minutes: describe the call flow in plain language, attach documents and guardrails, and go live with a free phone number or an existing one over SIP. Pricing runs $0.05 per minute of agent audio plus $0.01 per minute of telephony — against the $0.10–$0.20 a minute teams typically pay stitching together separate vendors.</p>
+      <p>The underlying model, Grok Voice Think Fast 1.0, scored 67.3% on the independent τ-voice benchmark for noisy, real-world phone calls, ahead of Google's Gemini 3.1 Flash Live (43.8%) and OpenAI's GPT Realtime 1.5 (35.3%), though the figures are self-reported pending outside verification. The platform supports 25+ languages, 80+ voices, SOC 2 and HIPAA-eligible guardrails, and MCP connections into calendars, CRMs and internal tools.</p>
+    </div>
+    <a href="https://x.ai/news/grok-voice-agent-builder" target="_blank" class="source-link">Full story · xAI</a>
+  </div>
+
+  <!-- CARD 6 -->
+  <div class="story-card card-blush">
+    <div class="page-chip">06 · REGULATION</div>
+    <div class="card-routine">Crypto & Payments Policy</div>
+    <h2 class="card-headline">UK Halves Stablecoin Capital Rules to Undercut the EU</h2>
+    <div class="card-deck">The FCA's final crypto rulebook cuts the reserve-capital bar for stablecoin issuers to 1% of circulation, half of what Brussels requires under MiCA — a deliberate bid to make London the cheaper place to issue.</div>
+    <div class="card-body">
+      <p>Britain's Financial Conduct Authority finalized its long-awaited cryptoasset framework this week, bringing exchanges, custodians and stablecoin issuers under one licensing regime for the first time. The headline change: the capital an issuer must hold against circulating stablecoins drops from a proposed 2% to 1%, meaning a $1 billion issuer now needs $10 million in reserve capital instead of $20 million. A £350,000 minimum capital floor still applies.</p>
+      <p>The move follows the Bank of England's separate decision to scrap a planned £20,000 cap on individual stablecoin holdings, and lands alongside longer redemption windows and fewer public disclosure requirements. Authorization applications open September 30, 2026, with the full regime taking effect October 25, 2027 — giving UK-based issuers roughly 15 months to compete for business before the rules fully bind.</p>
+    </div>
+    <a href="https://www.coindesk.com/policy/2026/06/30/uk-to-lower-stablecoin-capital-buffers-undercutting-eu-s-mica-requirements" target="_blank" class="source-link">Full story · CoinDesk</a>
+  </div>
+
+  <!-- SIGNALS -->
+  <div class="story-card card-lavender">
+    <div class="page-chip">07 · SIGNALS</div>
+    <div class="card-routine">5 Things Worth Knowing</div>
+    <h2 class="card-headline sm">5 Key Signals</h2>
+    <div class="signals-grid">
+      <div class="signal-row">
+        <div class="signal-num n1">01</div>
+        <div>
+          <div class="signal-title">Figure 03 Gets a New Job at BMW's Spartanburg Plant</div>
+          <div class="signal-desc">After Figure 02 helped assemble 30,000 BMW X3s, the successor robot now handles complex parts-sequencing in logistics using real-time Helix 02 reasoning.</div>
+          <a href="https://www.assemblymag.com/articles/100183-humanoids-take-on-new-role-at-bmws-us-assembly-plant" target="_blank" class="signal-link">ASSEMBLY ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n2">02</div>
+        <div>
+          <div class="signal-title">Anthropic's Platform Engineering Chief on What "AI-Native" Really Means</div>
+          <div class="signal-desc">Katelyn Lesse says engineers still make the architectural calls; AI agents handle implementation once the design is clear — and PM headcount is rising, not shrinking.</div>
+          <a href="https://newsletter.eng-leadership.com/p/how-anthropic-builds-ai-native-engineering" target="_blank" class="signal-link">Engineering Leadership ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n3">03</div>
+        <div>
+          <div class="signal-title">Payment Processors Brace for a Post-Final World Cup Chargeback Wave</div>
+          <div class="signal-desc">ACI Worldwide says fraud tied to ticket and travel sales is climbing ahead of the July 19 final, with disputes typically surfacing weeks after fans travel.</div>
+          <a href="https://www.paymentsdive.com/news/world-cup-chargebacks-coming/823962/" target="_blank" class="signal-link">Payments Dive ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n4">04</div>
+        <div>
+          <div class="signal-title">Meta FAIR Trains an AI Agent to Build Its Own Training Data</div>
+          <div class="signal-desc">Autodata's "Agentic Self-Instruct" method lets a model act as its own data scientist, lifting validated data quality from 62% to nearly 80% without manual prompt tuning.</div>
+          <a href="https://arxiv.org/abs/2606.25996" target="_blank" class="signal-link">arXiv ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n5">05</div>
+        <div>
+          <div class="signal-title">Bubble's AI Agent Finally Reaches Existing Apps</div>
+          <div class="signal-desc">Previously limited to apps built through Bubble's AI-generation flow, the no-code Agent is rolling out to older projects this month, with mobile support targeted for mid-July.</div>
+          <a href="https://bubble.io/blog/may-2026-founder-ama/" target="_blank" class="signal-link">Bubble ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THEMES + TOOL + SOURCES -->
+  <div class="story-card card-blush">
+    <div class="page-chip">08 · THEMES</div>
+    <div class="card-routine">This Week in Focus</div>
+    <h2 class="card-headline sm">Top Themes</h2>
+    <div class="themes-grid">
+      <div class="theme-item">Youth-Led Cybercrime</div>
+      <div class="theme-item">Humanoid Data Factories</div>
+      <div class="theme-item">SE Asian Fintech IPOs</div>
+      <div class="theme-item">Included-Usage Windows</div>
+      <div class="theme-item">Voice-Native Agents</div>
+      <div class="theme-item">Lighter-Touch Crypto Rules</div>
+      <div class="theme-item">Self-Improving Synthetic Data</div>
+    </div>
+    <div class="tool-week">
+      <div class="tool-week-eyebrow">Tool of the Week</div>
+      <div class="tool-week-name">Voice Agent Builder</div>
+      <div class="tool-week-desc">xAI's no-code way to ship a production phone agent in two minutes — telephony, guardrails and observability included, for a nickel a minute.</div>
+    </div>
+    <div class="card-routine" style="margin-top:20px;">Sources Cited</div>
+    <div class="sources-grid">
+      <a href="https://cyberscoop.com/scattered-spider-peter-stokes-cybercrime-extradition/" target="_blank">CyberScoop</a>
+      <a href="https://www.briefs.co/news/apptronik-s-5-5b-robot-park-opens-for-humanoid-training/" target="_blank">Briefs</a>
+      <a href="https://www.forbes.com/sites/iansayson/2026/06/29/fintech-unicorn-gcash-to-raise-15-billion-in-what-could-be-the-philippines-biggest-ipo/" target="_blank">Forbes</a>
+      <a href="https://www.digitalapplied.com/blog/claude-fable-5-before-july-7-six-day-window-playbook" target="_blank">Digital Applied</a>
+      <a href="https://x.ai/news/grok-voice-agent-builder" target="_blank">xAI</a>
+      <a href="https://www.coindesk.com/policy/2026/06/30/uk-to-lower-stablecoin-capital-buffers-undercutting-eu-s-mica-requirements" target="_blank">CoinDesk</a>
+      <a href="https://www.assemblymag.com/articles/100183-humanoids-take-on-new-role-at-bmws-us-assembly-plant" target="_blank">ASSEMBLY</a>
+      <a href="https://newsletter.eng-leadership.com/p/how-anthropic-builds-ai-native-engineering" target="_blank">Engineering Leadership</a>
+      <a href="https://www.paymentsdive.com/news/world-cup-chargebacks-coming/823962/" target="_blank">Payments Dive</a>
+      <a href="https://arxiv.org/abs/2606.25996" target="_blank">arXiv</a>
+      <a href="https://bubble.io/blog/may-2026-founder-ama/" target="_blank">Bubble</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer-card">
+    <div class="footer-title">TIMPS PostCards</div>
+    <div class="footer-sub">Issue 039 · July 3, 2026 · Hyderabad, India</div>
+  </div>
+
+</div>
+</body>
+</html>
