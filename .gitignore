@@ -7,5 +7,13 @@ config.js
 # TIMPS font source files (large TTF binaries — keep the smaller WOFF2 copies)
 TIMPS-Family-v2/*.ttf
 
+# Python cache
+__pycache__/
+*.pyc
+
+# Standalone scripts (not part of the site build)
+send_to_beehiiv.py
+convert_issues.py
+
 # macOS
 .DS_Store
