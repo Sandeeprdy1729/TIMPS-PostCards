@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TIMPS PostCards — Issue 040</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --cream:  #EEECE2;
+    --forest: #3D3929;
+    --terra:  #DA7756;
+    --terra-d:#BD5D3A;
+    --black:  #111111;
+    --card-bg:#F0ECE0;
+    --mono:   'Space Mono', 'Courier New', monospace;
+    --serif:  'TIMPS', 'Playfair Display', Georgia, serif;
+  }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Black.woff2') format('woff2'); font-weight:900; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Bold.woff2') format('woff2'); font-weight:700; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-SemiBold.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--cream);
+    background-image:
+      linear-gradient(rgba(61,57,41,.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.07) 1px, transparent 1px);
+    background-size: 38px 38px;
+    font-family: 'Space Mono', 'Courier New', monospace;
+    color: var(--forest);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { text-decoration: none; color: inherit; }
+
+  /* Nav */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 48px;
+    background-color: rgba(238,236,226,.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1.5px solid rgba(61,57,41,.12);
+    background-image:
+      linear-gradient(rgba(61,57,41,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.05) 1px, transparent 1px);
+    background-size: 38px 38px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 15px;
+    font-weight: 600;
+    color: #000;
+    text-decoration: none;
+  }
+  .nav-logo-mark {
+    width: 34px; height: 34px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .nav-logo-mark img { width: 28px; height: 28px; object-fit: contain; }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-link {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: #000;
+    opacity: .65;
+    text-decoration: none;
+    transition: opacity .15s;
+  }
+  .nav-link:hover { opacity: 1; }
+  .nav-cta {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: #000;
+    background: var(--terra);
+    border: 2.5px solid #000;
+    border-radius: 100px;
+    padding: 10px 24px;
+    cursor: pointer;
+    transition: background .15s, transform .1s;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--terra-d); transform: translateY(-1px); }
+
+  .wrapper { max-width: 760px; margin: 0 auto; padding: 40px 20px 80px; display: flex; flex-direction: column; gap: 0; }
+
+  /* Cover */
+  .cover-card { background: var(--card-bg); border-radius: 20px 20px 4px 4px; padding: 56px 48px 48px; text-align: center; position: relative; overflow: hidden; border: 1.5px solid rgba(61,57,41,.12); margin-bottom: 3px; }
+  .cover-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, var(--terra) 0%, var(--terra-d) 60%, #E0A88A 100%); }
+  .cover-eyebrow { font-family: var(--mono); font-size:10px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:20px; display:flex; align-items:center; justify-content:center; gap:10px; }
+  .cover-eyebrow::before,.cover-eyebrow::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .15; max-width:60px; }
+  .cover-title { font-family: var(--serif); font-size:58px; font-weight:900; line-height:1; letter-spacing:-1px; color: var(--forest); margin-bottom:8px; }
+  .cover-sub { font-family: var(--serif); font-size:13px; font-style:italic; color: var(--forest); opacity: .55; margin-bottom:28px; }
+  .cover-divider { width:48px; height:2px; background: var(--terra); margin:0 auto 24px; border-radius:2px; }
+  .cover-meta { display:flex; justify-content:center; gap:32px; font-family: var(--mono); font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .45; }
+  .cover-badge { display:inline-flex; align-items:center; gap:6px; background: var(--terra); color: #fff; border-radius:20px; padding:6px 18px; font-family: var(--mono); font-size:10px; letter-spacing:2px; text-transform:uppercase; margin-top:28px; }
+  .top5-pill { display:flex; justify-content:center; gap:10px; margin-top:32px; flex-wrap:wrap; }
+  .pill { background: var(--forest); color: var(--cream); border-radius:100px; padding:4px 14px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; }
+  .pill.light { background:transparent; color: var(--forest); border:1px solid rgba(61,57,41,.2); }
+
+  /* Section labels */
+  .section-label { display:flex; align-items:center; gap:12px; padding:10px 0 8px; font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .35; }
+  .section-label::before,.section-label::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .1; }
+
+  /* Story cards */
+  .story-card { border-radius:4px; border:1.5px solid rgba(61,57,41,.10); padding:36px 40px; margin-bottom:3px; position:relative; overflow:hidden; }
+  .story-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }
+
+  .card-sky      { background:#D6E8F0; } .card-sky::before      { background: #7AAFC0; }
+  .card-cream    { background: var(--card-bg); } .card-cream::before    { background: var(--terra); }
+  .card-blush    { background:#F5DDD0; } .card-blush::before    { background: #E0A88A; }
+  .card-lavender { background:#EAE6F5; } .card-lavender::before { background: #C8BEE8; }
+  .card-sage     { background:#D6E4D6; } .card-sage::before     { background: #8BAF8B; }
+
+  .page-chip { position:absolute; top:14px; right:16px; font-family: var(--mono); font-size:9px; letter-spacing:2px; text-transform:uppercase; color: var(--forest); opacity: .3; }
+  .card-routine { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:8px; }
+  .card-headline { font-family: var(--serif); font-size:28px; font-weight:900; line-height:1.15; color: var(--forest); margin-bottom:10px; }
+  .card-headline.lg { font-size:34px; }
+  .card-headline.sm { font-size:22px; }
+  .card-deck { font-family: var(--serif); font-style:italic; font-size:14px; line-height:1.55; color: var(--forest); opacity: .55; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid rgba(61,57,41,.12); }
+  .card-body { font-family: 'Lora', Georgia, serif; font-size:14px; line-height:1.7; color: var(--forest); }
+  .card-body p { margin-bottom:11px; }
+  .drop::first-letter { font-family: var(--serif); font-size:52px; font-weight:900; float:left; line-height:.78; margin:5px 6px 0 0; color: var(--terra); }
+  .clearfix::after { content:''; display:table; clear:both; }
+  .two-col { column-count:2; column-gap:24px; column-rule:1px solid rgba(61,57,41,.12); }
+
+  .hl-lime { background: var(--terra); color: var(--forest); padding:0 4px; border-radius:2px; }
+  .hl-ink  { background: var(--forest); color: var(--cream); padding:0 4px; border-radius:2px; }
+
+  .stat-box { float:right; margin:0 0 16px 24px; background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:16px 20px; text-align:center; min-width:120px; }
+  .stat-big { font-family: var(--serif); font-size:44px; font-weight:900; line-height:1; color: var(--forest); display:block; }
+  .stat-label { font-family: var(--mono); font-size:9.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .5; display:block; margin-top:4px; }
+
+  .icon-frame { border:2px solid rgba(61,57,41,0.12); border-radius:12px; overflow:hidden; margin:16px 0; background: var(--cream); padding:18px; display:flex; align-items:center; justify-content:center; }
+  .icon-frame svg { width:100%; height:auto; max-height:140px; }
+  .icon-frame.float-right { float:right; width:180px; margin:0 0 16px 24px; }
+
+  .source-link { display:inline-flex; align-items:center; gap:5px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:12px; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; transition: opacity .15s; }
+  .source-link:hover { opacity: 1; }
+  .source-link::after { content:'↗'; font-size:9px; }
+
+  .signals-grid { display:flex; flex-direction:column; gap:14px; }
+  .signal-row { display:flex; align-items:flex-start; gap:14px; }
+  .signal-num { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family: var(--serif); font-size:13px; font-weight:900; flex-shrink:0; color:#fff; }
+  .signal-num.n1{background: var(--terra); color: var(--forest);} .signal-num.n2{background: var(--forest);} .signal-num.n3{background:#7AAFC0;} .signal-num.n4{background: var(--terra-d); color: var(--forest);} .signal-num.n5{background: var(--black);}
+  .signal-title { font-family: var(--serif); font-size:14px; font-weight:700; color: var(--forest); margin-bottom:2px; }
+  .signal-desc { font-family: 'Space Mono', monospace; font-size:12px; line-height:1.65; color: var(--forest); opacity: .6; }
+  .signal-link { display:inline-block; font-family: var(--mono); font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .5; text-decoration:none; margin-top:4px; border-bottom:1px solid rgba(61,57,41,.2); transition: opacity .15s; }
+  .signal-link:hover { opacity: 1; }
+
+  .themes-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .theme-item { padding:10px 14px; border-radius:8px; font-family: var(--serif); font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; text-align:center; border:1.5px solid rgba(61,57,41,.12); background: var(--cream); }
+
+  .tool-week { background: var(--forest); color: var(--cream); border-radius:12px; padding:18px 20px; text-align:center; margin-top:14px; }
+  .tool-week-eyebrow { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; opacity: .55; margin-bottom:6px; }
+  .tool-week-name { font-family: var(--serif); font-size:22px; font-weight:900; margin-bottom:4px; }
+  .tool-week-desc { font-family: 'Space Mono', monospace; font-size:11.5px; opacity: .7; font-style:italic; }
+
+  .output-card { background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:18px 20px; margin-top:14px; }
+  .output-title { font-family: var(--serif); font-size:18px; font-weight:700; margin-bottom:8px; color: var(--forest); }
+  .sources-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px 20px; }
+  .sources-grid a { font-family: var(--mono); font-size:11px; color: var(--forest); opacity: .55; text-decoration:none; border-bottom:1px solid rgba(61,57,41,.15); padding-bottom:1px; transition: opacity .15s; }
+  .sources-grid a:hover { opacity: 1; }
+
+  /* Footer */
+  .footer {
+    background: var(--black);
+    padding: 28px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    border-radius: 4px 4px 20px 20px;
+    margin-top: 3px;
+  }
+  .footer-logo { display: flex; align-items: center; gap: 10px; }
+  .footer-mark { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; }
+  .footer-mark img { width: 24px; height: 24px; object-fit: contain; filter: brightness(10); }
+  .footer-brand { font-family: var(--mono); font-size: 13px; font-weight: 700; color: #fff; }
+  .footer-center { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.4); text-align: center; line-height: 1.6; }
+  .footer-right { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.3); text-align: right; line-height: 2; }
+  .footer-right a { color: rgba(255,255,255,.5); transition: color .15s; }
+  .footer-right a:hover { color: #fff; }
+
+  /* TOC Sidebar */
+  .page-layout { display: flex; align-items: flex-start; gap: 0; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+  .toc-sidebar { position: sticky; top: 80px; width: 170px; flex-shrink: 0; padding: 48px 0 0 0; }
+  .toc-nav { display: flex; flex-direction: column; gap: 0; }
+  .toc-link { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.5px; text-transform: uppercase; color: #000; opacity: .45; text-decoration: none; padding: 7px 12px; border-left: 2px solid transparent; transition: opacity .15s, border-color .15s; line-height: 1.3; }
+  .toc-link:hover { opacity: .85; }
+  .toc-link.active { opacity: 1; border-left-color: var(--terra); }
+  .section-anchor { scroll-margin-top: 80px; }
+
+  @media (max-width: 900px) {
+    .toc-sidebar { display: none; }
+    .page-layout { max-width: 760px; }
+  }
+
+  @media (max-width: 720px) {
+    .nav { padding: 12px 24px; }
+    .nav-links { display: none; }
+    .wrapper { padding: 20px 14px 60px; }
+    .cover-card { padding: 40px 24px; }
+    .story-card { padding: 28px 20px; }
+    .footer { padding: 24px; flex-direction: column; align-items: flex-start; }
+    .footer-center, .footer-right { text-align: left; }
+    .stat-box { float: none; margin: 0 0 16px 0; }
+    .icon-frame.float-right { float: none; width: 100%; margin: 16px 0; }
+  }
+  @media (max-width: 480px) {
+    .nav-logo span { display: none; }
+    .cover-title { font-size: 40px; }
+    .card-headline.lg { font-size: 28px; }
+    .card-headline { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-mark">
+      <img src="timps_logo.svg" alt="TIMPS">
+    </div>
+    <span>TIMPS PostCards</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html#archive" class="nav-link">Archive</a>
+    <a href="timps-postcards-2026-07-04.html" class="nav-link">Latest Issue</a>
+    <a href="index.html#subscribe" class="nav-link">Subscribe</a>
+  </div>
+  <a href="index.html#subscribe" class="nav-cta">Subscribe</a>
+</nav>
+
+<div class="page-layout">
+
+  <!-- TOC SIDEBAR -->
+  <aside class="toc-sidebar">
+    <nav class="toc-nav">
+      <a href="#intro" class="toc-link">Intro</a>
+      <a href="#lead" class="toc-link">Lead</a>
+      <a href="#security" class="toc-link">Security</a>
+      <a href="#hardware" class="toc-link">Hardware</a>
+      <a href="#signals" class="toc-link">Signals</a>
+      <a href="#themes" class="toc-link">Themes</a>
+      <a href="#tool" class="toc-link">Tool</a>
+      <a href="#sources" class="toc-link">Sources</a>
+    </nav>
+  </aside>
+
+  <div class="wrapper">
+
+  <!-- INTRODUCTION -->
+  <div id="intro" class="cover-card section-anchor">
+    <div class="cover-eyebrow">AI Intelligence Digest</div>
+    <div class="cover-title">TIMPS<br>PostCards</div>
+    <div class="cover-sub">Your Daily Signal from the Machine Frontier</div>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+      <span>Issue 040</span>
+      <span>July 4, 2026</span>
+      <span>Hyderabad, India</span>
+    </div>
+    <div class="cover-badge">⬡ Built with the TIMPS Ecosystem</div>
+    <div class="top5-pill">
+      <span class="pill">OpenAI's $42.6B Offer</span>
+      <span class="pill light">Agentic Ransomware</span>
+      <span class="pill light">Anthropic Custom Chip</span>
+    </div>
+  </div>
+
+  <!-- CARD 1 - LEAD -->
+  <div id="lead" class="story-card card-sky section-anchor">
+    <div class="page-chip">01 · LEAD</div>
+    <div class="card-routine">Policy &amp; Capital</div>
+    <h1 class="card-headline lg">OpenAI Offers Washington a $42.6B Slice of Itself</h1>
+    <div class="card-deck">Sam Altman has floated handing the U.S. government a 5% equity stake in OpenAI — and wants every major American AI lab to do the same, funneled into an Alaska-style sovereign wealth fund.</div>
+    <div class="stat-box">
+      <span class="stat-big">$42.6B</span>
+      <span class="stat-label">Value of Proposed Stake</span>
+    </div>
+    <div class="card-body drop clearfix">
+      <p>OpenAI has begun preliminary talks about giving the U.S. government a 5% stake in the company, the Financial Times reported, worth roughly <span class="hl-lime">$42.6 billion</span> at OpenAI's March valuation of $852 billion. The pitch, reportedly made directly to President Trump, Commerce Secretary Howard Lutnick, and Treasury Secretary Scott Bessent, would model a sovereign vehicle on the Alaska Permanent Fund — paying dividends to ordinary Americans the way Alaska pays residents from oil revenue.</p>
+      <p>Altman's ask doesn't stop at OpenAI: the proposal reportedly wants Anthropic, Google, and Meta to hand over a similar 5% cut too. None have agreed, and any such arrangement would likely need an act of Congress. The move follows a well-worn precedent — Washington already holds a roughly 10% stake in Intel after an $8.9B investment last August.</p>
+      <p>The timing isn't neutral. Both OpenAI and Anthropic have filed confidentially for IPOs, and Washington has spent the past month actively intervening in both companies' model releases — restricting GPT-5.6's rollout and forcing Anthropic to temporarily disable Fable 5 and Mythos 5 under export controls. A government equity stake, some analysts warn, could also invite other jurisdictions to demand the same as a condition of market access.</p>
+    </div>
+    <a href="https://www.cnbc.com/2026/07/02/openai-proposes-us-government-own-5percent-stake-to-address-political-blowback.html" target="_blank" class="source-link">Full story · CNBC</a>
+  </div>
+
+  <!-- CARD 2 -->
+  <div id="security" class="story-card card-cream section-anchor">
+    <div class="page-chip">02 · SECURITY</div>
+    <div class="card-routine">Autonomous Threats</div>
+    <h2 class="card-headline">The First Ransomware Attack Run Entirely by an AI Agent</h2>
+    <div class="card-deck">Sysdig says an LLM agent it calls JADEPUFFER exploited a Langflow vulnerability and ran a full extortion operation — break-in to database destruction — without a human at the keyboard.</div>
+    <div class="card-body drop clearfix">
+      <p>Sysdig's Threat Research Team documented what it believes is the first ransomware operation carried out end-to-end by an <span class="hl-ink">AI agent</span>, not a human-driven toolkit. The operator, dubbed JADEPUFFER, exploited CVE-2025-3248 — a missing-authentication flaw in Langflow, an open-source LLM app framework — to run arbitrary code with no login required.</p>
+      <p>Once inside, the agent harvested API keys, cloud credentials, and crypto wallets, then pivoted to a separate production server running MySQL and Alibaba Nacos, ultimately encrypting 1,342 configuration items and dropping a ransom note. Researchers say the strongest evidence of genuine autonomy was speed: when an admin login failed, the agent diagnosed the problem and fixed it in 31 seconds, and its payloads carried self-narrating, plain-language reasoning that human attackers rarely bother to write.</p>
+      <p>None of the individual techniques were novel. What's new, Sysdig argues, is that a model chained them into a complete operation on its own — dropping the skill floor for ransomware to whatever it costs to rent an agent.</p>
+    </div>
+    <a href="https://www.sysdig.com/blog/jadepuffer-agentic-ransomware-for-automated-database-extortion" target="_blank" class="source-link">Full story · Sysdig</a>
+  </div>
+
+  <!-- CARD 3 -->
+  <div id="hardware" class="story-card card-sky section-anchor">
+    <div class="page-chip">03 · HARDWARE</div>
+    <div class="card-routine">Custom Silicon</div>
+    <h2 class="card-headline">Anthropic Explores a Custom Chip With Samsung's 2nm Foundry</h2>
+    <div class="card-deck">Anthropic has begun early-stage work on its own AI chip and held talks with Samsung about manufacturing it — following OpenAI's Broadcom-built "Jalapeño" inference chip by just over a week.</div>
+    <div class="card-body drop clearfix">
+      <p>Anthropic is reportedly in early discussions with Samsung Electronics about manufacturing a custom AI chip on Samsung's 2-nanometer process, using its advanced packaging to place compute closer to memory. The project is nascent — Anthropic hasn't yet defined what the chip does, how powerful it will be, or how it fits into a server, and the company may not proceed at all.</p>
+      <p>Anthropic told TechCrunch that a diversified hardware stack spanning Google, Amazon, and Nvidia chips remains pivotal to its compute strategy, declining to elaborate further on Samsung. The talks follow Anthropic's May fundraising round, in which Samsung, SK Hynix, and Micron all participated as "strategic infrastructure partners."</p>
+      <p>The move mirrors a broader industry pattern: Google, Amazon, Meta, and Microsoft have all pursued proprietary silicon to cut reliance on Nvidia, which still holds an estimated 74% of the AI chip market despite the rush toward custom ASICs.</p>
+    </div>
+    <a href="https://techcrunch.com/2026/07/02/anthropic-is-discussing-a-new-custom-chip-with-samsung/" target="_blank" class="source-link">Full story · TechCrunch</a>
+  </div>
+
+  <!-- CARD 4 -->
+  <div class="story-card card-cream">
+    <div class="page-chip">04 · MODELS</div>
+    <div class="card-routine">Frontier Race</div>
+    <h2 class="card-headline sm">Claude Sonnet 5 Lands as the Cost-Conscious Agentic Model</h2>
+    <div class="card-deck">Anthropic's newest release closes in on Opus-class performance at a lower price point, arriving as the company gears up for an IPO later this year.</div>
+    <div class="card-body drop clearfix">
+      <p>Anthropic has launched Claude Sonnet 5, positioning it as a cost-efficient option for agentic work — capable of finishing complex, multi-step tasks and checking its own output without being explicitly asked, according to the company. While not as capable as Claude Fable 5 or Mythos 5, Sonnet 5 is described as a clear step up from Sonnet 4.6 and close to Opus 4.8 on performance.</p>
+      <p>The release comes weeks after Fable 5 and Mythos 5 were temporarily pulled offline under a federal export-control directive, before access was restored on July 1. Sonnet 5 ships with cybersecurity safeguards similar to those on Opus 4.7 and 4.8, despite not being purpose-trained for security tasks.</p>
+    </div>
+    <a href="https://finance.yahoo.com/technology/article/anthropic-launches-cheaper-claude-sonnet-5-model-as-tech-searches-for-ai-savings-180000821.html" target="_blank" class="source-link">Full story · Yahoo Finance</a>
+  </div>
+
+  <!-- SIGNALS -->
+  <div id="signals" class="story-card card-sky section-anchor">
+    <div class="page-chip">05 · SIGNALS</div>
+    <div class="card-routine">Today's 5 Critical Signals</div>
+    <h2 class="card-headline sm">What Moved the Machine Frontier Today</h2>
+    <div class="signals-grid">
+      <div class="signal-row">
+        <div class="signal-num n1">1</div>
+        <div>
+          <div class="signal-title">Sony Reportedly Ends PlayStation Discs</div>
+          <div class="signal-desc">New PlayStation releases are said to shift to digital-only starting January 2028, marking a major step away from physical game media.</div>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n2">2</div>
+        <div>
+          <div class="signal-title">Meta's Superintelligence Chief Claims Parity With GPT-5.5</div>
+          <div class="signal-desc">An unreleased Meta model is said to have caught up with OpenAI's GPT-5.5, intensifying the frontier-model race.</div>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n3">3</div>
+        <div>
+          <div class="signal-title">Cloudflare Moves to Block AI Crawlers</div>
+          <div class="signal-desc">Cloudflare is rolling out blocking for mixed-use web crawlers that train AI models, giving site owners more control over their content.</div>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n4">4</div>
+        <div>
+          <div class="signal-title">Microsoft Commits $2.5B and 6,000 Engineers to AI Deployment</div>
+          <div class="signal-desc">A large-scale enterprise push signals how aggressively Microsoft is staffing and funding AI rollout across its business.</div>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n5">5</div>
+        <div>
+          <div class="signal-title">Europe Wins €4.1B Ruling Against Google</div>
+          <div class="signal-desc">A regulatory decision hands phone owners a multi-billion-euro win over Google, adding to mounting antitrust pressure on the platform.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THEMES + TOOL + SOURCES -->
+  <div id="themes" class="story-card card-cream section-anchor">
+    <div class="page-chip">06 · THEMES</div>
+    <div class="card-routine">Top Themes This Issue</div>
+    <h2 class="card-headline sm">The Signal Beneath the Noise</h2>
+    <div class="themes-grid">
+      <div class="theme-item">Gov't Equity in AI</div>
+      <div class="theme-item">Agentic Cyber Risk</div>
+      <div class="theme-item">Custom AI Silicon</div>
+      <div class="theme-item">Frontier Model Race</div>
+      <div class="theme-item">Platform Regulation</div>
+      <div class="theme-item">Enterprise AI Spend</div>
+      <div class="theme-item">Digital Media Shift</div>
+    </div>
+
+    <div id="tool" class="tool-week section-anchor">
+      <div class="tool-week-eyebrow">Tool of the Week</div>
+      <div class="tool-week-name">Claude Sonnet 5</div>
+      <div class="tool-week-desc">Anthropic's new agentic workhorse — near-Opus performance, built for tasks that finish themselves.</div>
+    </div>
+
+    <div id="sources" class="output-card section-anchor">
+      <div class="output-title">Sources Cited</div>
+      <div class="sources-grid">
+        <a href="https://www.cnbc.com/2026/07/02/openai-proposes-us-government-own-5percent-stake-to-address-political-blowback.html" target="_blank">CNBC</a>
+        <a href="https://www.cnn.com/2026/07/02/business/openai-trump-stake-intl" target="_blank">CNN Business</a>
+        <a href="https://decrypt.co/372715/openai-offers-us-government-42-billion-slice" target="_blank">Decrypt</a>
+        <a href="https://www.sysdig.com/blog/jadepuffer-agentic-ransomware-for-automated-database-extortion" target="_blank">Sysdig</a>
+        <a href="https://thehackernews.com/2026/07/ai-agent-exploits-langflow-rce-to.html" target="_blank">The Hacker News</a>
+        <a href="https://www.theregister.com/security/2026/07/02/smooth-ai-criminal-drives-first-end-to-end-agentic-ransomware-attack/5266073" target="_blank">The Register</a>
+        <a href="https://techcrunch.com/2026/07/02/anthropic-is-discussing-a-new-custom-chip-with-samsung/" target="_blank">TechCrunch</a>
+        <a href="https://www.theinformation.com/articles/anthropic-talks-samsung-manufacture-custom-ai-chip" target="_blank">The Information</a>
+        <a href="https://finance.yahoo.com/technology/article/anthropic-launches-cheaper-claude-sonnet-5-model-as-tech-searches-for-ai-savings-180000821.html" target="_blank">Yahoo Finance</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-logo">
+      <div class="footer-mark">
+        <img src="timps_logo.svg" alt="TIMPS">
+      </div>
+      <span class="footer-brand">TIMPS PostCards</span>
+    </div>
+    <div class="footer-center">
+      Issue 040 · July 4, 2026<br>
+      Hyderabad, India
+    </div>
+    <div class="footer-right">
+      <a href="index.html">Home</a><br>
+      <a href="index.html#archive">Archive</a><br>
+      &copy; 2026 TIMPS
+    </div>
+  </footer>
+
+</div> <!-- /wrapper -->
+</div> <!-- /page-layout -->
+</body>
+</html>
