@@ -3,6 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TIMPS">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
 <title>TIMPS PostCards — AI Intelligence Digest</title>
 <!-- config.js is gitignored; generate it with: source .env && echo "window.BEEHIIV_PUB_ID='pub_${BEEHIVE_ID}';" > config.js -->
 <script src="config.js"></script>
@@ -544,8 +549,51 @@
   .footer-right a { color: rgba(255,255,255,.5); transition: color .15s; }
   .footer-right a:hover { color: #fff; }
 
+  /* ─── INSTALL STRIP ─── */
+  .install-strip {
+    border-bottom: 2px solid var(--forest);
+    padding: 20px 48px;
+    display: flex;
+    justify-content: center;
+  }
+  .install-inner {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .install-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .install-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: .5;
+  }
+  .install-desc {
+    font-family: var(--mono);
+    font-size: 13px;
+    opacity: .6;
+  }
+  .install-qr {
+    width: 64px;
+    height: 64px;
+    border-radius: 8px;
+    border: 1.5px solid var(--forest);
+    cursor: pointer;
+    transition: transform .15s;
+  }
+  .install-qr:hover { transform: scale(1.08); }
+  .install-qr.hidden { display: none !important; }
+
   /* ─── RESPONSIVE ─── */
   @media (max-width: 720px) {
+    .install-strip { padding: 16px 24px; }
+    .install-qr { display: none; }
     .nav { padding: 12px 24px; }
     .nav-links { display: none; }
     .hero-btns { bottom: 24px; }
@@ -588,8 +636,10 @@
     <a href="#archive" class="nav-link">Archive</a>
     <a href="timps-postcards-2026-07-05.html" class="nav-link">Latest Issue</a>
     <a href="#subscribe" class="nav-link">Subscribe</a>
+    <a href="#" class="nav-link" id="installBtn" style="display:none">Install App</a>
   </div>
   <a href="#subscribe" class="nav-cta">Subscribe</a>
+  <a href="#" class="btn-chunky lime" id="installBtnMobile" style="display:none;padding:10px 18px;font-size:13px;">+ Install</a>
 </nav>
 
 <!-- HERO -->
@@ -622,6 +672,17 @@
 </div>
 
 
+
+<!-- INSTALL APP (QR) -->
+<div class="install-strip">
+  <div class="install-inner">
+    <div class="install-info">
+      <span class="install-label">Install App</span>
+      <span class="install-desc">Add TIMPS PostCards to your homescreen for quick access.</span>
+    </div>
+    <img src="qrcode-install.png" alt="QR Code to install" class="install-qr" id="installQr">
+  </div>
+</div>
 
 <!-- ARCHIVE -->
 <section class="archive" id="archive">
@@ -1028,6 +1089,76 @@
       c.style.display = (!val || c.textContent.toLowerCase().includes(val)) ? '' : 'none';
     });
   }
+
+  // ─── PWA: Service Worker ──────────────────────────────────────────
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js');
+  }
+
+  // ─── PWA: One-Click Install ───────────────────────────────────────
+  let deferredPrompt;
+  const installBtn = document.getElementById('installBtn');
+  const installBtnMobile = document.getElementById('installBtnMobile');
+
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    installBtn.style.display = '';
+    installBtnMobile.style.display = '';
+  });
+
+  function triggerInstall() {
+    if (!deferredPrompt) return;
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(() => {
+      deferredPrompt = null;
+      installBtn.style.display = 'none';
+      installBtnMobile.style.display = 'none';
+    });
+  }
+
+  installBtn.addEventListener('click', (e) => { e.preventDefault(); triggerInstall(); });
+  installBtnMobile.addEventListener('click', (e) => { e.preventDefault(); triggerInstall(); });
+
+  // ─── Hide QR code once app is installed ──────────────────────────
+  if (window.matchMedia('(display-mode: standalone)').matches) {
+    document.getElementById('installQr')?.classList.add('hidden');
+    document.querySelector('.install-strip')?.remove();
+  }
+
+  // ─── iOS: Show install hint if standalone-capable but not installed ──
+  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+  const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+  const isStandalone = window.matchMedia('(display-mode: standalone)').matches;
+  if (isIOS && !isStandalone && !isSafari) {
+    const toast = document.createElement('div');
+    toast.id = 'ios-install-toast';
+    toast.innerHTML = 'Tap <b>Share</b> &rarr; <b>Add to Home Screen</b>';
+    document.body.appendChild(toast);
+  }
 </script>
+
+<style>
+  #ios-install-toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--forest, #1C2E22);
+    color: #fff;
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    padding: 14px 24px;
+    border-radius: 100px;
+    z-index: 999;
+    box-shadow: 0 4px 20px rgba(0,0,0,.25);
+    animation: toast-in .3s ease;
+    white-space: nowrap;
+  }
+  @keyframes toast-in {
+    from { opacity: 0; transform: translateX(-50%) translateY(12px); }
+    to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+  }
+</style>
 </body>
 </html>
