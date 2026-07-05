@@ -549,51 +549,116 @@
   .footer-right a { color: rgba(255,255,255,.5); transition: color .15s; }
   .footer-right a:hover { color: #fff; }
 
-  /* ─── INSTALL STRIP ─── */
-  .install-strip {
-    border-bottom: 2px solid var(--forest);
-    padding: 20px 48px;
-    display: flex;
-    justify-content: center;
-  }
-  .install-inner {
+  /* ─── INSTALL OVERLAY ─── */
+  .install-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: var(--cream);
     display: flex;
     align-items: center;
-    gap: 20px;
-  }
-  .install-info {
-    display: flex;
+    justify-content: center;
     flex-direction: column;
-    gap: 2px;
+    padding: 40px 24px;
+    animation: fade-in .4s ease;
   }
-  .install-label {
-    font-family: var(--mono);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    opacity: .5;
+  .install-overlay.hidden { display: none; }
+  .install-card {
+    text-align: center;
+    max-width: 380px;
+    width: 100%;
   }
-  .install-desc {
+  .install-card-icon {
+    width: 100px;
+    height: 100px;
+    border-radius: 24px;
+    margin: 0 auto 28px;
+    display: block;
+    box-shadow: 0 8px 40px rgba(0,0,0,.12);
+  }
+  .install-card-title {
+    font-family: var(--serif);
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--forest);
+    letter-spacing: -.5px;
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+  .install-card-sub {
     font-family: var(--mono);
     font-size: 13px;
-    opacity: .6;
+    opacity: .5;
+    line-height: 1.6;
+    margin-bottom: 36px;
   }
-  .install-qr {
-    width: 64px;
-    height: 64px;
-    border-radius: 8px;
-    border: 1.5px solid var(--forest);
+  .install-btn-main {
+    display: block;
+    width: 100%;
+    padding: 18px;
+    font-family: var(--mono);
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    background: var(--forest);
+    border: 2.5px solid var(--forest);
+    border-radius: 100px;
     cursor: pointer;
-    transition: transform .15s;
+    transition: transform .1s, box-shadow .15s;
+    margin-bottom: 14px;
   }
-  .install-qr:hover { transform: scale(1.08); }
-  .install-qr.hidden { display: none !important; }
+  .install-btn-main:active { transform: scale(.97); }
+  .install-btn-main.loading { opacity: .6; pointer-events: none; }
+  .install-btn-skip {
+    font-family: var(--mono);
+    font-size: 13px;
+    opacity: .4;
+    cursor: pointer;
+    background: none;
+    border: none;
+    text-decoration: underline;
+    color: var(--forest);
+  }
+  .install-btn-skip:hover { opacity: .8; }
+
+  /* iOS instructions — hidden by default */
+  .install-ios-steps {
+    display: none;
+    text-align: left;
+    margin-bottom: 36px;
+  }
+  .install-ios-steps.show { display: block; }
+  .install-ios-step {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(28,46,34,.08);
+    font-family: var(--mono);
+    font-size: 14px;
+    color: var(--forest);
+  }
+  .install-ios-step:last-child { border-bottom: none; }
+  .install-ios-step-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: var(--lime);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+    border: 1.5px solid var(--forest);
+  }
+
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
 
   /* ─── RESPONSIVE ─── */
   @media (max-width: 720px) {
-    .install-strip { padding: 16px 24px; }
-    .install-qr { display: none; }
     .nav { padding: 12px 24px; }
     .nav-links { display: none; }
     .hero-btns { bottom: 24px; }
@@ -636,10 +701,8 @@
     <a href="#archive" class="nav-link">Archive</a>
     <a href="timps-postcards-2026-07-05.html" class="nav-link">Latest Issue</a>
     <a href="#subscribe" class="nav-link">Subscribe</a>
-    <a href="#" class="nav-link" id="installBtn" style="display:none">Install App</a>
   </div>
   <a href="#subscribe" class="nav-cta">Subscribe</a>
-  <a href="#" class="btn-chunky lime" id="installBtnMobile" style="display:none;padding:10px 18px;font-size:13px;">+ Install</a>
 </nav>
 
 <!-- HERO -->
@@ -673,14 +736,30 @@
 
 
 
-<!-- INSTALL APP (QR) -->
-<div class="install-strip">
-  <div class="install-inner">
-    <div class="install-info">
-      <span class="install-label">Install App</span>
-      <span class="install-desc">Add TIMPS PostCards to your homescreen for quick access.</span>
+<!-- INSTALL OVERLAY (hidden after first visit or when installed) -->
+<div class="install-overlay" id="installOverlay">
+  <div class="install-card">
+    <img src="icon-192.png" alt="" class="install-card-icon">
+    <h1 class="install-card-title">TIMPS PostCards</h1>
+    <p class="install-card-sub">Five signals from the AI landscape, every Friday.</p>
+
+    <div class="install-ios-steps" id="iosSteps">
+      <div class="install-ios-step">
+        <div class="install-ios-step-icon">&uarr;</div>
+        <span>Tap the <b>Share</b> button in Safari</span>
+      </div>
+      <div class="install-ios-step">
+        <div class="install-ios-step-icon">+</div>
+        <span>Scroll down and tap <b>Add to Home Screen</b></span>
+      </div>
+      <div class="install-ios-step">
+        <div class="install-ios-step-icon">&#10003;</div>
+        <span>Tap <b>Add</b> in the top-right corner</span>
+      </div>
     </div>
-    <img src="qrcode-install.png" alt="QR Code to install" class="install-qr" id="installQr">
+
+    <button class="install-btn-main" id="installBtnMain">Install App</button>
+    <button class="install-btn-skip" id="installBtnSkip">Continue to site</button>
   </div>
 </div>
 
@@ -1095,70 +1174,64 @@
     navigator.serviceWorker.register('sw.js');
   }
 
-  // ─── PWA: One-Click Install ───────────────────────────────────────
-  let deferredPrompt;
-  const installBtn = document.getElementById('installBtn');
-  const installBtnMobile = document.getElementById('installBtnMobile');
+  // ─── PWA: Install Overlay ─────────────────────────────────────────
+  const overlay = document.getElementById('installOverlay');
+  const installBtn = document.getElementById('installBtnMain');
+  const skipBtn = document.getElementById('installBtnSkip');
+  const iosSteps = document.getElementById('iosSteps');
 
-  window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-    installBtn.style.display = '';
-    installBtnMobile.style.display = '';
-  });
+  const isStandalone = window.matchMedia('(display-mode: standalone)').matches;
+  const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+  const visited = sessionStorage.getItem('timps-install-dismissed');
 
-  function triggerInstall() {
-    if (!deferredPrompt) return;
-    deferredPrompt.prompt();
-    deferredPrompt.userChoice.then(() => {
-      deferredPrompt = null;
-      installBtn.style.display = 'none';
-      installBtnMobile.style.display = 'none';
+  if (isStandalone || visited) {
+    overlay.classList.add('hidden');
+  } else if (isIOS) {
+    // iOS: show overlay immediately with step-by-step guide
+    iosSteps.classList.add('show');
+    installBtn.textContent = 'Open in Safari to Install';
+    installBtn.addEventListener('click', () => {
+      overlay.classList.add('hidden');
+      sessionStorage.setItem('timps-install-dismissed', '1');
+    });
+    skipBtn.addEventListener('click', () => {
+      overlay.classList.add('hidden');
+      sessionStorage.setItem('timps-install-dismissed', '1');
+    });
+  } else {
+    // Android/Desktop: hide overlay initially, show only when browser fires beforeinstallprompt
+    overlay.classList.add('hidden');
+    let deferredPrompt;
+    installBtn.textContent = 'Checking...';
+    installBtn.classList.add('loading');
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      overlay.classList.remove('hidden');
+      installBtn.textContent = 'Install App';
+      installBtn.classList.remove('loading');
+    });
+
+    installBtn.addEventListener('click', () => {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then(() => {
+          deferredPrompt = null;
+          overlay.classList.add('hidden');
+        });
+      } else {
+        installBtn.textContent = 'Not available on this browser';
+        installBtn.classList.add('loading');
+      }
+    });
+
+    skipBtn.addEventListener('click', () => {
+      overlay.classList.add('hidden');
+      sessionStorage.setItem('timps-install-dismissed', '1');
     });
   }
-
-  installBtn.addEventListener('click', (e) => { e.preventDefault(); triggerInstall(); });
-  installBtnMobile.addEventListener('click', (e) => { e.preventDefault(); triggerInstall(); });
-
-  // ─── Hide QR code once app is installed ──────────────────────────
-  if (window.matchMedia('(display-mode: standalone)').matches) {
-    document.getElementById('installQr')?.classList.add('hidden');
-    document.querySelector('.install-strip')?.remove();
-  }
-
-  // ─── iOS: Show install hint if standalone-capable but not installed ──
-  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-  const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
-  const isStandalone = window.matchMedia('(display-mode: standalone)').matches;
-  if (isIOS && !isStandalone && !isSafari) {
-    const toast = document.createElement('div');
-    toast.id = 'ios-install-toast';
-    toast.innerHTML = 'Tap <b>Share</b> &rarr; <b>Add to Home Screen</b>';
-    document.body.appendChild(toast);
-  }
 </script>
-
-<style>
-  #ios-install-toast {
-    position: fixed;
-    bottom: 24px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--forest, #1C2E22);
-    color: #fff;
-    font-family: 'Space Mono', monospace;
-    font-size: 13px;
-    padding: 14px 24px;
-    border-radius: 100px;
-    z-index: 999;
-    box-shadow: 0 4px 20px rgba(0,0,0,.25);
-    animation: toast-in .3s ease;
-    white-space: nowrap;
-  }
-  @keyframes toast-in {
-    from { opacity: 0; transform: translateX(-50%) translateY(12px); }
-    to   { opacity: 1; transform: translateX(-50%) translateY(0); }
-  }
-</style>
 </body>
 </html>
