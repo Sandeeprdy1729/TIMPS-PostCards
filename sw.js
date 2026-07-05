@@ -40,3 +40,40 @@ self.addEventListener("activate", (event) => {
   );
   self.clients.claim();
 });
+
+self.addEventListener("push", (event) => {
+  if (!event.data) return;
+  try {
+    const data = event.data.json();
+    self.registration.showNotification(data.title || "TIMPS PostCards", {
+      body: data.body || "New update available",
+      icon: data.icon || "icon-192.png",
+      badge: "icon-192.png",
+      data: { url: data.url || "." },
+      actions: data.actions || []
+    });
+  } catch {
+    self.registration.showNotification("TIMPS PostCards", {
+      body: event.data.text(),
+      icon: "icon-192.png",
+      badge: "icon-192.png"
+    });
+  }
+});
+
+self.addEventListener("notificationclick", (event) => {
+  event.notification.close();
+  const url = event.notification.data?.url || ".";
+  event.waitUntil(
+    clients.matchAll({ type: "window", includeUncontrolled: true }).then((clientsList) => {
+      for (const client of clientsList) {
+        if (client.url.includes(url) && "focus" in client) {
+          return client.focus();
+        }
+      }
+      if (clients.openWindow) {
+        return clients.openWindow(url);
+      }
+    })
+  );
+});

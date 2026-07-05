@@ -1184,11 +1184,42 @@
   const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
   const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
   const visited = sessionStorage.getItem('timps-install-dismissed');
+  const notifAsked = localStorage.getItem('timps-notif-asked');
 
-  if (isStandalone || visited) {
+  // ─── Request notification permission ────────────────────────────
+  function requestNotif() {
+    if (!('Notification' in window)) return;
+    if (Notification.permission !== 'default') return;
+    if (notifAsked) return;
+    localStorage.setItem('timps-notif-asked', '1');
+    Notification.requestPermission();
+  }
+
+  // ─── Show start-at-login hint (once) ────────────────────────────
+  function showStartHint() {
+    if (localStorage.getItem('timps-start-hint')) return;
+    localStorage.setItem('timps-start-hint', '1');
+    const el = document.createElement('div');
+    el.id = 'startup-hint';
+    el.innerHTML =
+      '<b>Tip:</b> Right-click the TIMPS app &rarr; <b>Start when you sign in</b>';
+    document.body.appendChild(el);
+  }
+
+  // ─── Post-install actions ────────────────────────────────────────
+  function onInstalled() {
+    setTimeout(requestNotif, 1000);
+    const isDesktop = !(/android|iphone|ipad|ipod/i.test(navigator.userAgent));
+    if (isDesktop) setTimeout(showStartHint, 2000);
+  }
+
+  // ─── Already installed? Request notif if not asked yet ──────────
+  if (isStandalone) {
+    overlay.classList.add('hidden');
+    if (!notifAsked) setTimeout(requestNotif, 3000);
+  } else if (visited) {
     overlay.classList.add('hidden');
   } else if (isIOS) {
-    // iOS: show overlay immediately with step-by-step guide
     iosSteps.classList.add('show');
     installBtn.textContent = 'Open in Safari to Install';
     installBtn.addEventListener('click', () => {
@@ -1200,12 +1231,8 @@
       sessionStorage.setItem('timps-install-dismissed', '1');
     });
   } else {
-    // Android/Desktop: hide overlay initially, show only when browser fires beforeinstallprompt
     overlay.classList.add('hidden');
     let deferredPrompt;
-    installBtn.textContent = 'Checking...';
-    installBtn.classList.add('loading');
-
     window.addEventListener('beforeinstallprompt', (e) => {
       e.preventDefault();
       deferredPrompt = e;
@@ -1217,9 +1244,10 @@
     installBtn.addEventListener('click', () => {
       if (deferredPrompt) {
         deferredPrompt.prompt();
-        deferredPrompt.userChoice.then(() => {
+        deferredPrompt.userChoice.then((res) => {
           deferredPrompt = null;
           overlay.classList.add('hidden');
+          if (res.outcome === 'accepted') onInstalled();
         });
       } else {
         installBtn.textContent = 'Not available on this browser';
@@ -1233,5 +1261,30 @@
     });
   }
 </script>
+
+<style>
+  #startup-hint {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--forest, #1C2E22);
+    color: #fff;
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    padding: 14px 24px;
+    border-radius: 100px;
+    z-index: 999;
+    box-shadow: 0 4px 20px rgba(0,0,0,.25);
+    animation: hint-in .3s ease;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  #startup-hint b { color: var(--lime, #DCF07A); }
+  @keyframes hint-in {
+    from { opacity: 0; transform: translateX(-50%) translateY(12px); }
+    to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+  }
+</style>
 </body>
 </html>
