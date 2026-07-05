@@ -5,8 +5,10 @@
   "start_url": ".",
   "scope": "./",
   "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
   "background_color": "#EDE8DA",
   "theme_color": "#1C2E22",
+  "categories": ["news", "education"],
   "icons": [
     {
       "src": "icon-192.png",
