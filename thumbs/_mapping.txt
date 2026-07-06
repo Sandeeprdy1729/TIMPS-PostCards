@@ -25,3 +25,4 @@
 2026-07-03	039	thumb-2026-07-03.svg	A Teenage "Scattered Spider" Hacker Faces US Justice
 2026-07-04	040	thumb-2026-07-04.svg	OpenAI Offers Washington a $42.6B Slice of Itself
 2026-07-05	041	thumb-2026-07-05.svg	A Cloned Voice, A Crying Daughter, $18,000 Gone in an Afternoon
+2026-07-06	042	thumb-2026-07-06.svg	Anthropic Ships Its Most Agentic Sonnet Yet — And Prices It to Undercut Opus
