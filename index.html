@@ -151,6 +151,11 @@
     z-index: 1;
   }
   .hero-btns {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -659,14 +664,17 @@
 
   /* ─── RESPONSIVE ─── */
   @media (max-width: 720px) {
+    .hero { height: 280px; }
+    .signal-cell { padding: 20px 20px; }
+    .signal-num { font-size: 36px; }
     .nav { padding: 12px 24px; }
     .nav-links { display: none; }
-    .hero-btns { bottom: 24px; }
+    .hero-btns { bottom: 20px; }
     .signals-strip { grid-template-columns: repeat(2, 1fr); }
     .signal-cell:nth-child(2) { border-right: none; }
-    .archive { padding: 60px 24px; }
-    .subscribe { padding: 72px 24px; }
-    .footer { padding: 36px 24px; flex-direction: column; align-items: flex-start; }
+    .archive { padding: 40px 24px; }
+    .subscribe { padding: 56px 24px; }
+    .footer { padding: 28px 24px; flex-direction: column; align-items: flex-start; }
     .footer-right { text-align: left; }
     .pub-row { grid-template-columns: 36px 1fr; gap: 14px; }
     .pub-date { display: none; }
@@ -674,16 +682,29 @@
     .pub-preview { display: none; }
     .pub-featured { grid-template-columns: 1fr; }
     .pub-featured-thumb img { height: 80px; }
+    .install-overlay { padding: 24px 20px; }
+    .install-card-icon { width: 72px; height: 72px; margin-bottom: 20px; }
+    .install-card-title { font-size: 26px; }
+    .install-ios-step { font-size: 13px; }
+    #startup-hint { white-space: normal; max-width: 90vw; text-align: center; }
   }
   @media (max-width: 480px) {
+    .hero { height: 220px; }
+    .signal-num { font-size: 28px; }
+    .signal-cell { padding: 16px 14px; }
     .nav-logo span { display: none; }
     .nav-logo-mark { width: 28px; height: 28px; }
     .nav-logo-mark img { width: 24px; height: 24px; }
-    .hero-btns { bottom: 16px; gap: 10px; }
-    .hero-btns .btn-chunky { padding: 10px 18px; font-size: 12px; }
-    .btn-chunky { padding: 12px 22px; font-size: 13px; }
+    .hero-btns { bottom: 14px; gap: 8px; }
+    .hero-btns .btn-chunky { padding: 8px 14px; font-size: 11px; }
+    .btn-chunky { padding: 10px 18px; font-size: 12px; }
     .pub-title { font-size: 14px; }
-    .archive-h { font-size: 32px; }
+    .archive-h { font-size: 28px; }
+    .subscribe-h { font-size: 32px; }
+    .subscribe-form input { min-width: 100%; }
+    .install-card-title { font-size: 22px; }
+    .install-card-icon { width: 60px; height: 60px; border-radius: 16px; }
+    .install-btn-main { padding: 14px; font-size: 14px; }
   }
 </style>
 </head>
@@ -708,7 +729,7 @@
 <!-- HERO -->
 <section class="hero">
   <img class="hero-bg" src="timps-hero-banner.png" alt="TIMPS Hero">
-  <div class="hero-btns" style="position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); z-index: 2;">
+  <div class="hero-btns">
     <a href="timps-postcards-2026-07-06.html" class="btn-chunky filled">Read Latest Issue</a>
     <a href="#archive" class="btn-chunky lime">Browse Archive</a>
   </div>
