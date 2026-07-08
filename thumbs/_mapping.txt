@@ -26,3 +26,5 @@
 2026-07-04	040	thumb-2026-07-04.svg	OpenAI Offers Washington a $42.6B Slice of Itself
 2026-07-05	041	thumb-2026-07-05.svg	A Cloned Voice, A Crying Daughter, $18,000 Gone in an Afternoon
 2026-07-06	042	thumb-2026-07-06.svg	Anthropic Ships Its Most Agentic Sonnet Yet — And Prices It to Undercut Opus
+2026-07-07	043	thumb-2026-07-07.svg	Meta Says Its Next Model Has Caught Up To GPT&#8209;5.5
+2026-07-08	044	thumb-2026-07-08.svg	Anthropic Finds a Hidden Workspace Inside Claude's Reasoning
