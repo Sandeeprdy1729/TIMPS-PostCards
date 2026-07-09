@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TIMPS">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>TIMPS PostCards — Issue 045</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --cream:  #EEECE2;
+    --forest: #3D3929;
+    --terra:  #DA7756;
+    --terra-d:#BD5D3A;
+    --black:  #111111;
+    --card-bg:#F0ECE0;
+    --mono:   'Space Mono', 'Courier New', monospace;
+    --serif:  'TIMPS', 'Playfair Display', Georgia, serif;
+  }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Black.woff2') format('woff2'); font-weight:900; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Bold.woff2') format('woff2'); font-weight:700; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-SemiBold.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--cream);
+    background-image:
+      linear-gradient(rgba(61,57,41,.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.07) 1px, transparent 1px);
+    background-size: 38px 38px;
+    font-family: 'Space Mono', 'Courier New', monospace;
+    color: var(--forest);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { text-decoration: none; color: inherit; }
+
+  /* Nav */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 48px;
+    background-color: rgba(238,236,226,.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1.5px solid rgba(61,57,41,.12);
+    background-image:
+      linear-gradient(rgba(61,57,41,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.05) 1px, transparent 1px);
+    background-size: 38px 38px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 15px;
+    font-weight: 600;
+    color: #000;
+    text-decoration: none;
+  }
+  .nav-logo-mark {
+    width: 34px; height: 34px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .nav-logo-mark img { width: 28px; height: 28px; object-fit: contain; }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-link {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: #000;
+    opacity: .65;
+    text-decoration: none;
+    transition: opacity .15s;
+  }
+  .nav-link:hover { opacity: 1; }
+  .nav-cta {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: #000;
+    background: var(--terra);
+    border: 2.5px solid #000;
+    border-radius: 100px;
+    padding: 10px 24px;
+    cursor: pointer;
+    transition: background .15s, transform .1s;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--terra-d); transform: translateY(-1px); }
+
+  .wrapper { max-width: 760px; margin: 0 auto; padding: 40px 20px 80px; display: flex; flex-direction: column; gap: 0; }
+
+  /* Cover */
+  .cover-card { background: var(--card-bg); border-radius: 20px 20px 4px 4px; padding: 56px 48px 48px; text-align: center; position: relative; overflow: hidden; border: 1.5px solid rgba(61,57,41,.12); margin-bottom: 3px; }
+  .cover-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, var(--terra) 0%, var(--terra-d) 60%, #E0A88A 100%); }
+  .cover-eyebrow { font-family: var(--mono); font-size:10px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:20px; display:flex; align-items:center; justify-content:center; gap:10px; }
+  .cover-eyebrow::before,.cover-eyebrow::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .15; max-width:60px; }
+  .cover-title { font-family: var(--serif); font-size:58px; font-weight:900; line-height:1; letter-spacing:-1px; color: var(--forest); margin-bottom:8px; }
+  .cover-sub { font-family: var(--serif); font-size:13px; font-style:italic; color: var(--forest); opacity: .55; margin-bottom:28px; }
+  .cover-divider { width:48px; height:2px; background: var(--terra); margin:0 auto 24px; border-radius:2px; }
+  .cover-meta { display:flex; justify-content:center; gap:32px; font-family: var(--mono); font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .45; }
+  .cover-badge { display:inline-flex; align-items:center; gap:6px; background: var(--terra); color: #fff; border-radius:20px; padding:6px 18px; font-family: var(--mono); font-size:10px; letter-spacing:2px; text-transform:uppercase; margin-top:28px; }
+  .top5-pill { display:flex; justify-content:center; gap:10px; margin-top:32px; flex-wrap:wrap; }
+  .pill { background: var(--forest); color: var(--cream); border-radius:100px; padding:4px 14px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; }
+  .pill.light { background:transparent; color: var(--forest); border:1px solid rgba(61,57,41,.2); }
+
+  /* Section labels */
+  .section-label { display:flex; align-items:center; gap:12px; padding:10px 0 8px; font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .35; }
+  .section-label::before,.section-label::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .1; }
+
+  /* Story cards */
+  .story-card { border-radius:4px; border:1.5px solid rgba(61,57,41,.10); padding:36px 40px; margin-bottom:3px; position:relative; overflow:hidden; }
+  .story-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }
+
+  .card-sky      { background:#D6E8F0; } .card-sky::before      { background: #7AAFC0; }
+  .card-cream    { background: var(--card-bg); } .card-cream::before    { background: var(--terra); }
+  .card-blush    { background:#F5DDD0; } .card-blush::before    { background: #E0A88A; }
+  .card-lavender { background:#EAE6F5; } .card-lavender::before { background: #C8BEE8; }
+  .card-sage     { background:#D6E4D6; } .card-sage::before     { background: #8BAF8B; }
+
+  .page-chip { position:absolute; top:14px; right:16px; font-family: var(--mono); font-size:9px; letter-spacing:2px; text-transform:uppercase; color: var(--forest); opacity: .3; }
+  .card-routine { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:8px; }
+  .card-headline { font-family: var(--serif); font-size:28px; font-weight:900; line-height:1.15; color: var(--forest); margin-bottom:10px; }
+  .card-headline.lg { font-size:34px; }
+  .card-headline.sm { font-size:22px; }
+  .card-deck { font-family: var(--serif); font-style:italic; font-size:14px; line-height:1.55; color: var(--forest); opacity: .55; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid rgba(61,57,41,.12); }
+  .card-body { font-family: 'Lora', Georgia, serif; font-size:14px; line-height:1.7; color: var(--forest); }
+  .card-body p { margin-bottom:11px; }
+  .drop::first-letter { font-family: var(--serif); font-size:52px; font-weight:900; float:left; line-height:.78; margin:5px 6px 0 0; color: var(--terra); }
+  .clearfix::after { content:''; display:table; clear:both; }
+
+  .hl-lime { background: var(--terra); color: var(--forest); padding:0 4px; border-radius:2px; }
+  .hl-ink  { background: var(--forest); color: var(--cream); padding:0 4px; border-radius:2px; }
+
+  .stat-box { float:right; margin:0 0 16px 24px; background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:16px 20px; text-align:center; min-width:120px; }
+  .stat-big { font-family: var(--serif); font-size:44px; font-weight:900; line-height:1; color: var(--forest); display:block; }
+  .stat-label { font-family: var(--mono); font-size:9.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .5; display:block; margin-top:4px; }
+
+  .source-link { display:inline-flex; align-items:center; gap:5px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:12px; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; transition: opacity .15s; }
+  .source-link:hover { opacity: 1; }
+  .source-link::after { content:'↗'; font-size:9px; }
+
+  .signals-grid { display:flex; flex-direction:column; gap:14px; }
+  .signal-row { display:flex; align-items:flex-start; gap:14px; }
+  .signal-num { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family: var(--serif); font-size:13px; font-weight:900; flex-shrink:0; color:#fff; }
+  .signal-num.n1{background: var(--terra); color: var(--forest);} .signal-num.n2{background: var(--forest);} .signal-num.n3{background:#7AAFC0;} .signal-num.n4{background: var(--terra-d); color: var(--forest);} .signal-num.n5{background: var(--black);}
+  .signal-title { font-family: var(--serif); font-size:14px; font-weight:700; color: var(--forest); margin-bottom:2px; }
+  .signal-desc { font-family: 'Space Mono', monospace; font-size:12px; line-height:1.65; color: var(--forest); opacity: .6; }
+  .signal-link { display:inline-block; font-family: var(--mono); font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .5; text-decoration:none; margin-top:4px; border-bottom:1px solid rgba(61,57,41,.2); transition: opacity .15s; }
+  .signal-link:hover { opacity: 1; }
+
+  .themes-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .theme-item { padding:10px 14px; border-radius:8px; font-family: var(--serif); font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; text-align:center; border:1.5px solid rgba(61,57,41,.12); background: var(--cream); }
+
+  .tool-week { background: var(--forest); color: var(--cream); border-radius:12px; padding:18px 20px; text-align:center; margin-top:14px; }
+  .tool-week-eyebrow { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; opacity: .55; margin-bottom:6px; }
+  .tool-week-name { font-family: var(--serif); font-size:22px; font-weight:900; margin-bottom:4px; }
+  .tool-week-desc { font-family: 'Space Mono', monospace; font-size:11.5px; opacity: .7; font-style:italic; }
+
+  .output-card { background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:18px 20px; margin-top:14px; }
+  .output-title { font-family: var(--serif); font-size:18px; font-weight:700; margin-bottom:8px; color: var(--forest); }
+  .sources-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px 20px; }
+  .sources-grid a { font-family: var(--mono); font-size:11px; color: var(--forest); opacity: .55; text-decoration:none; border-bottom:1px solid rgba(61,57,41,.15); padding-bottom:1px; transition: opacity .15s; }
+  .sources-grid a:hover { opacity: 1; }
+
+  /* Footer */
+  .footer {
+    background: var(--black);
+    padding: 28px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    border-radius: 4px 4px 20px 20px;
+    margin-top: 3px;
+  }
+  .footer-logo { display: flex; align-items: center; gap: 10px; }
+  .footer-mark { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; }
+  .footer-mark img { width: 24px; height: 24px; object-fit: contain; filter: brightness(10); }
+  .footer-brand { font-family: var(--mono); font-size: 13px; font-weight: 700; color: #fff; }
+  .footer-center { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.4); text-align: center; line-height: 1.6; }
+  .footer-right { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.3); text-align: right; line-height: 2; }
+  .footer-right a { color: rgba(255,255,255,.5); transition: color .15s; }
+  .footer-right a:hover { color: #fff; }
+
+  /* TOC Sidebar */
+  .page-layout { display: flex; align-items: flex-start; gap: 0; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+  .toc-sidebar { position: sticky; top: 80px; width: 170px; flex-shrink: 0; padding: 48px 0 0 0; }
+  .toc-nav { display: flex; flex-direction: column; gap: 0; }
+  .toc-link { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.5px; text-transform: uppercase; color: #000; opacity: .45; text-decoration: none; padding: 7px 12px; border-left: 2px solid transparent; transition: opacity .15s, border-color .15s; line-height: 1.3; }
+  .toc-link:hover { opacity: .85; }
+  .toc-link.active { opacity: 1; border-left-color: var(--terra); }
+  .section-anchor { scroll-margin-top: 80px; }
+
+  @media (max-width: 900px) {
+    .toc-sidebar { display: none; }
+    .page-layout { max-width: 760px; }
+  }
+
+  @media (max-width: 720px) {
+    .nav { padding: 12px 24px; }
+    .nav-links { display: none; }
+    .wrapper { padding: 20px 14px 60px; }
+    .cover-card { padding: 40px 24px; }
+    .story-card { padding: 28px 20px; }
+    .footer { padding: 24px; flex-direction: column; align-items: flex-start; }
+    .footer-center, .footer-right { text-align: left; }
+    .stat-box { float: none; margin: 0 0 16px 0; }
+  }
+  @media (max-width: 480px) {
+    .nav-logo span { display: none; }
+    .cover-title { font-size: 40px; }
+    .card-headline.lg { font-size: 28px; }
+    .card-headline { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-mark">
+      <img src="timps_logo.svg" alt="TIMPS">
+    </div>
+    <span>TIMPS PostCards</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html#archive" class="nav-link">Archive</a>
+    <a href="timps-postcards-2026-07-09.html" class="nav-link">Latest Issue</a>
+    <a href="index.html#subscribe" class="nav-link">Subscribe</a>
+  </div>
+  <a href="index.html#subscribe" class="nav-cta">Subscribe</a>
+</nav>
+
+<div class="page-layout">
+
+  <!-- TOC SIDEBAR -->
+  <aside class="toc-sidebar">
+    <nav class="toc-nav">
+      <a href="#intro" class="toc-link">Intro</a>
+      <a href="#lead" class="toc-link">Lead</a>
+      <a href="#frontier" class="toc-link">Frontier</a>
+      <a href="#infrastructure" class="toc-link">Infrastructure</a>
+      <a href="#models" class="toc-link">Models</a>
+      <a href="#funding" class="toc-link">Funding</a>
+      <a href="#signals" class="toc-link">Signals</a>
+      <a href="#themes" class="toc-link">Themes</a>
+      <a href="#tool" class="toc-link">Tool</a>
+      <a href="#sources" class="toc-link">Sources</a>
+    </nav>
+  </aside>
+
+  <div class="wrapper">
+
+  <!-- INTRODUCTION -->
+  <div id="intro" class="cover-card section-anchor">
+    <div class="cover-eyebrow">AI Intelligence Digest</div>
+    <div class="cover-title">TIMPS<br>PostCards</div>
+    <div class="cover-sub">Your Daily Signal from the Machine Frontier</div>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+      <span>Issue 045</span>
+      <span>July 9, 2026</span>
+      <span>Hyderabad, India</span>
+    </div>
+    <div class="cover-badge">⬡ Built with the TIMPS Ecosystem</div>
+    <div class="top5-pill">
+      <span class="pill">Grok 4.5 Public</span>
+      <span class="pill light">GPT-5.6 GA</span>
+      <span class="pill light">SambaNova $1B</span>
+    </div>
+  </div>
+
+  <!-- CARD 1 - LEAD -->
+  <div id="lead" class="story-card card-sky section-anchor">
+    <div class="page-chip">01 · LEAD</div>
+    <div class="card-routine">Models · Release</div>
+    <h1 class="card-headline lg">Grok 4.5 Goes Public — Musk Calls It "Opus-Class," the Benchmarks Say It's Complicated</h1>
+    <div class="card-deck">SpaceXAI's new flagship splits four published head-to-head benchmarks 2-2 against Claude Opus 4.8, but undercuts it by roughly 4x on price.</div>
+    <div class="stat-box">
+      <span class="stat-big">$2/$6</span>
+      <span class="stat-label">Grok 4.5 per 1M tokens vs Opus 4.8 $5/$25</span>
+    </div>
+    <div class="card-body drop clearfix">
+      <p>SpaceXAI released Grok 4.5 to the public today, July 9, following a limited private beta with SpaceX and Tesla engineering teams. Built on a new 1.5-trillion-parameter "V9" foundation and fine-tuned on real developer session data from Cursor — the coding editor SpaceX is acquiring for roughly $60B — the model is priced at $2 input / $6 output per million tokens, well below Claude Opus 4.8's $5/$25 and GPT-5.6 Sol's $5/$30.</p>
+      <p>Elon Musk called it <span class="hl-lime">"an Opus-class model, but faster, more token-efficient and lower cost,"</span> though his more precise internal comparison put it closer to Opus 4.7. Of the four benchmarks SpaceXAI chose to publish, Grok 4.5 beats Opus 4.8 on two (DeepSWE 1.0, Terminal-Bench 2.1) and loses on two (DeepSWE 1.1, SWE-Bench Pro) — a genuine split, not the "beats Opus" framing that spread across launch-day coverage. Independent evaluator Artificial Analysis ranks it #4 overall on its Intelligence Index, behind Claude Fable 5, Opus 4.8 and GPT-5.5.</p>
+      <p>The clearer edge is efficiency: xAI reports Grok 4.5 resolves SWE-Bench Pro tasks using roughly 4.2x fewer output tokens than Opus 4.8 in "max" mode, at about 80 tokens per second. None of the launch-day benchmark numbers have independent third-party verification yet.</p>
+    </div>
+    <a href="https://decrypt.co/373094/grok-4-5-elon-musk-claude-opus" target="_blank" class="source-link">Full story · Decrypt</a>
+  </div>
+
+  <!-- CARD 2 - FRONTIER -->
+  <div id="frontier" class="story-card card-cream section-anchor">
+    <div class="page-chip">02 · FRONTIER RACE</div>
+    <div class="card-routine">Models · General Availability</div>
+    <h2 class="card-headline">GPT-5.6's Sol, Terra and Luna Clear Government Review, Go Fully Public</h2>
+    <div class="card-deck">The 13-day vetted-partner preview that began June 26 ends today — GPT-5.6 is now live in ChatGPT, the API and Codex for everyone.</div>
+    <div class="card-body drop clearfix">
+      <p>OpenAI's three-tier GPT-5.6 family — Sol ($5/$30 per million tokens), Terra ($2.50/$15) and Luna ($1/$6) — moved from a roughly 20-organization vetted preview to full public availability today, July 9, after the Commerce Department's Center for AI Standards and Innovation completed additional testing requested under a June 2 executive order on AI safety review.</p>
+      <p>This is the same day Grok 4.5 launched publicly — the first time since Claude Fable 5's export-control suspension began June 12 that every major U.S. frontier lab has a model publicly available simultaneously. OpenAI says the <code>gpt-5.5-latest</code> endpoint will not auto-migrate; developers need to pin explicit model IDs (<code>gpt-5.6-sol</code>, <code>-terra</code>, <code>-luna</code>) to pick up the new prompt-caching system.</p>
+      <p>Terra, priced to match GPT-5.5-class performance at half the cost, is expected to see the fastest early enterprise adoption given its price parity with several near-frontier competitors now live the same week.</p>
+    </div>
+    <a href="https://www.engadget.com/2210308/openai-rolls-out-gpt5-6-july-9/" target="_blank" class="source-link">Full story · Engadget</a>
+  </div>
+
+  <!-- CARD 3 - INFRASTRUCTURE -->
+  <div id="infrastructure" class="story-card card-sky section-anchor">
+    <div class="page-chip">03 · INFRASTRUCTURE</div>
+    <div class="card-routine">Infrastructure · Funding</div>
+    <h2 class="card-headline sm">SambaNova Raises $1B at $11B Valuation, Lands JPMorgan as Inference Partner</h2>
+    <div class="card-deck">A Series F led by General Atlantic pushes the AI chip startup back into growth mode after a rocky 2025.</div>
+    <div class="stat-box">
+      <span class="stat-big">$11B</span>
+      <span class="stat-label">New SambaNova valuation</span>
+    </div>
+    <div class="card-body drop clearfix">
+      <p>SambaNova Systems has closed a $1B Series F led by General Atlantic, with participation from T. Rowe Price, Capital Group, BlackRock-managed funds, Intel Capital and the Qatar Investment Authority, pushing its valuation to $11B. The round comes months after reports the Palo Alto chipmaker was exploring a sale amid fundraising struggles.</p>
+      <p>Alongside the raise, JPMorgan Chase confirmed it has selected SambaNova as an inference infrastructure partner, deploying its SN40 and SN50 chip systems to support the bank's generative AI workloads — a marquee enterprise win as banks scale up AI inference spend.</p>
+      <p>The new capital will go toward compute capacity, global deployment and continued development across SambaNova's chip, systems and software stack, positioning it as a smaller but resurgent Nvidia inference competitor.</p>
+    </div>
+    <a href="https://techstartups.com/2026/07/08/ai-chip-startup-sambanova-raises-1-billion-at-11-billion-valuation-to-expand-ai-inference-infrastructure/" target="_blank" class="source-link">Full story · Tech Startups</a>
+  </div>
+
+  <!-- CARD 4 - MODELS -->
+  <div id="models" class="story-card card-cream section-anchor">
+    <div class="page-chip">04 · MODELS</div>
+    <div class="card-routine">Models · Delay</div>
+    <h2 class="card-headline sm">Gemini 3.5 Pro Slips Again — Still No General Availability Date</h2>
+    <div class="card-deck">With GPT-5.6 and Grok 4.5 both now public, Google's strongest competitive answer stays stuck in enterprise preview.</div>
+    <div class="card-body drop clearfix">
+      <p>Google has pushed Gemini 3.5 Pro past its original I/O commitment window, citing token-efficiency issues and coding-performance gaps flagged by enterprise testers during extended agentic tasks. As of today, the model remains in limited Vertex AI enterprise preview with no confirmed general-availability date.</p>
+      <p>The delay is increasingly conspicuous: today marks the first day every other major U.S. frontier lab — OpenAI, Anthropic and now SpaceXAI — has a current flagship model publicly accessible at the same time. Gemini 2.5 Pro with Deep Think remains available separately through the Gemini API and AI Studio.</p>
+      <p>Each additional day of delay narrows Google's window to respond competitively on pricing and benchmark positioning before rivals lock in developer mindshare for the current release cycle.</p>
+    </div>
+    <a href="https://www.buildfastwithai.com/blogs/ai-news-today-july-9-2026" target="_blank" class="source-link">Full story · Build Fast with AI</a>
+  </div>
+
+  <!-- CARD 5 - FUNDING -->
+  <div id="funding" class="story-card card-sky section-anchor">
+    <div class="page-chip">05 · FUNDING</div>
+    <div class="card-routine">Funding · Compute</div>
+    <h2 class="card-headline sm">Prime Intellect Hits $1B Valuation on a $130M Round for "Rent-an-Agent" Training</h2>
+    <div class="card-deck">The two-year-old startup sells the compute and tooling to train custom AI agents — no frontier lab required.</div>
+    <div class="card-body drop clearfix">
+      <p>Prime Intellect closed a $130M Series A on July 8, led by Radical Ventures with Nvidia Ventures and Intel Capital participating, pushing its valuation to $1B, TechCrunch reported. The company sells computing power and training tooling that lets other companies train their own AI agents without depending on OpenAI, Anthropic or Google's frontier stacks.</p>
+      <p>The round lands in the same 24-hour window as several other AI infrastructure and agent-training raises, part of a broader pattern of capital moving toward the "picks and shovels" layer beneath the frontier-model race rather than new foundation models themselves.</p>
+      <p>Prime Intellect's pitch — democratized training infrastructure for teams that want agent capability without frontier-lab dependency — positions it as a bet on decentralized compute at a moment when Nvidia GPU access remains the industry's tightest bottleneck.</p>
+    </div>
+    <a href="https://thenextweb.com/news/ai-deep-tech-funding-rounds-roundup-oratomic-prime-intellect-gradium" target="_blank" class="source-link">Full story · The Next Web</a>
+  </div>
+
+  <!-- SIGNALS -->
+  <div id="signals" class="story-card card-cream section-anchor">
+    <div class="page-chip">SIGNALS</div>
+    <div class="card-routine">5 Key Signals</div>
+    <h2 class="card-headline sm">What Else Moved Today</h2>
+    <div class="signals-grid" style="margin-top:18px;">
+      <div class="signal-row">
+        <div class="signal-num n1">1</div>
+        <div>
+          <div class="signal-title">xAI Publicly Rebrands as SpaceXAI</div>
+          <div class="signal-desc">A brand-level signal, not an architecture change — API keys, base URLs and model IDs are unaffected for now.</div>
+          <a href="https://www.buildfastwithai.com/blogs/ai-news-today-july-9-2026" target="_blank" class="signal-link">Build Fast with AI ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n2">2</div>
+        <div>
+          <div class="signal-title">DeepSeek Closes Its First-Ever External Round: $7B</div>
+          <div class="signal-desc">The largest single AI fundraise in China's history, breaking the company's long-held "no fundraising" stance amid talent-retention pressure.</div>
+          <a href="https://pandaily.com" target="_blank" class="signal-link">Pandaily ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n3">3</div>
+        <div>
+          <div class="signal-title">Grok 4.5 API Pricing Still Unconfirmed for Enterprise Buyers</div>
+          <div class="signal-desc">Only the SuperGrok Heavy subscription tier ($99–149/mo) has published pricing as of launch day.</div>
+          <a href="https://www.buildfastwithai.com/blogs/ai-news-today-july-9-2026" target="_blank" class="signal-link">Build Fast with AI ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n4">4</div>
+        <div>
+          <div class="signal-title">Oratomic Raises $300M for Fault-Tolerant Quantum Computing</div>
+          <div class="signal-desc">One of the sector's largest early rounds, co-led by ARCH Venture Partners, Spark Capital and Khosla Ventures.</div>
+          <a href="https://thenextweb.com" target="_blank" class="signal-link">The Next Web ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n5">5</div>
+        <div>
+          <div class="signal-title">UN Global Dialogue on AI Governance Wraps in Geneva</div>
+          <div class="signal-desc">Scientists including Yoshua Bengio warned science "cannot guarantee" frontier AI won't cause catastrophic harm.</div>
+          <a href="https://news.un.org" target="_blank" class="signal-link">UN News ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THEMES + TOOL + SOURCES -->
+  <div id="themes" class="story-card card-sky section-anchor">
+    <div class="page-chip">THEMES</div>
+    <div class="card-routine">Top Themes</div>
+    <h2 class="card-headline sm">The Shape of Today's News</h2>
+    <div class="themes-grid" style="margin-top:16px;">
+      <div class="theme-item">Frontier Launch Convergence</div>
+      <div class="theme-item">Price-vs-Performance Wars</div>
+      <div class="theme-item">Inference Infrastructure Capital</div>
+      <div class="theme-item">Government Model Review</div>
+      <div class="theme-item">Decentralized Agent Training</div>
+      <div class="theme-item">China Capital Consolidation</div>
+      <div class="theme-item">Global AI Governance</div>
+    </div>
+
+    <div id="tool" class="tool-week section-anchor">
+      <div class="tool-week-eyebrow">Tool of the Week</div>
+      <div class="tool-week-name">Grok 4.5 (Grok Build)</div>
+      <div class="tool-week-desc">Roughly 4x cheaper than Opus 4.8 with 4.2x fewer output tokens per resolved task — the sharpest cost/efficiency pick to A/B this week.</div>
+    </div>
+
+    <div id="sources" class="output-card section-anchor">
+      <div class="output-title">Sources Cited</div>
+      <div class="sources-grid">
+        <a href="https://decrypt.co/373094/grok-4-5-elon-musk-claude-opus" target="_blank">Decrypt</a>
+        <a href="https://apidog.com/blog/grok-4-5-vs-claude-opus-4-8/" target="_blank">Apidog</a>
+        <a href="https://www.engadget.com/2210308/openai-rolls-out-gpt5-6-july-9/" target="_blank">Engadget</a>
+        <a href="https://techstartups.com/2026/07/08/ai-chip-startup-sambanova-raises-1-billion-at-11-billion-valuation-to-expand-ai-inference-infrastructure/" target="_blank">Tech Startups</a>
+        <a href="https://www.buildfastwithai.com/blogs/ai-news-today-july-9-2026" target="_blank">Build Fast with AI</a>
+        <a href="https://thenextweb.com/news/ai-deep-tech-funding-rounds-roundup-oratomic-prime-intellect-gradium" target="_blank">The Next Web</a>
+        <a href="https://pandaily.com/deepseek-record-funding-domestic-compute-agi-jul2026" target="_blank">Pandaily</a>
+        <a href="https://news.un.org/en/story/2026/07/1167862" target="_blank">UN News</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-logo">
+      <div class="footer-mark">
+        <img src="timps_logo.svg" alt="TIMPS">
+      </div>
+      <span class="footer-brand">TIMPS PostCards</span>
+    </div>
+    <div class="footer-center">
+      Issue 045 · July 9, 2026<br>
+      Hyderabad, India
+    </div>
+    <div class="footer-right">
+      <a href="index.html">Home</a><br>
+      <a href="index.html#archive">Archive</a><br>
+      &copy; 2026 TIMPS
+    </div>
+  </footer>
+
+</div> <!-- /wrapper -->
+</div> <!-- /page-layout -->
+</body>
+</html>
