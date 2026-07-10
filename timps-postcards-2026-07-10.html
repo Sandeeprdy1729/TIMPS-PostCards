@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TIMPS">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>TIMPS PostCards — Issue 046</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --cream:  #EEECE2;
+    --forest: #3D3929;
+    --terra:  #DA7756;
+    --terra-d:#BD5D3A;
+    --black:  #111111;
+    --card-bg:#F0ECE0;
+    --mono:   'Space Mono', 'Courier New', monospace;
+    --serif:  'TIMPS', 'Playfair Display', Georgia, serif;
+  }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Black.woff2') format('woff2'); font-weight:900; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Bold.woff2') format('woff2'); font-weight:700; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-SemiBold.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--cream);
+    background-image:
+      linear-gradient(rgba(61,57,41,.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.07) 1px, transparent 1px);
+    background-size: 38px 38px;
+    font-family: 'Space Mono', 'Courier New', monospace;
+    color: var(--forest);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { text-decoration: none; color: inherit; }
+
+  /* Nav */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 48px;
+    background-color: rgba(238,236,226,.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1.5px solid rgba(61,57,41,.12);
+    background-image:
+      linear-gradient(rgba(61,57,41,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.05) 1px, transparent 1px);
+    background-size: 38px 38px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 15px;
+    font-weight: 600;
+    color: #000;
+    text-decoration: none;
+  }
+  .nav-logo-mark {
+    width: 34px; height: 34px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .nav-logo-mark img { width: 28px; height: 28px; object-fit: contain; }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-link {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: #000;
+    opacity: .65;
+    text-decoration: none;
+    transition: opacity .15s;
+  }
+  .nav-link:hover { opacity: 1; }
+  .nav-cta {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: #000;
+    background: var(--terra);
+    border: 2.5px solid #000;
+    border-radius: 100px;
+    padding: 10px 24px;
+    cursor: pointer;
+    transition: background .15s, transform .1s;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--terra-d); transform: translateY(-1px); }
+
+  .wrapper { max-width: 760px; margin: 0 auto; padding: 40px 20px 80px; display: flex; flex-direction: column; gap: 0; }
+
+  /* Cover */
+  .cover-card { background: var(--card-bg); border-radius: 20px 20px 4px 4px; padding: 56px 48px 48px; text-align: center; position: relative; overflow: hidden; border: 1.5px solid rgba(61,57,41,.12); margin-bottom: 3px; }
+  .cover-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, var(--terra) 0%, var(--terra-d) 60%, #E0A88A 100%); }
+  .cover-eyebrow { font-family: var(--mono); font-size:10px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:20px; display:flex; align-items:center; justify-content:center; gap:10px; }
+  .cover-eyebrow::before,.cover-eyebrow::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .15; max-width:60px; }
+  .cover-title { font-family: var(--serif); font-size:58px; font-weight:900; line-height:1; letter-spacing:-1px; color: var(--forest); margin-bottom:8px; }
+  .cover-sub { font-family: var(--serif); font-size:13px; font-style:italic; color: var(--forest); opacity: .55; margin-bottom:28px; }
+  .cover-divider { width:48px; height:2px; background: var(--terra); margin:0 auto 24px; border-radius:2px; }
+  .cover-meta { display:flex; justify-content:center; gap:32px; font-family: var(--mono); font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .45; }
+  .cover-badge { display:inline-flex; align-items:center; gap:6px; background: var(--terra); color: #fff; border-radius:20px; padding:6px 18px; font-family: var(--mono); font-size:10px; letter-spacing:2px; text-transform:uppercase; margin-top:28px; }
+  .top5-pill { display:flex; justify-content:center; gap:10px; margin-top:32px; flex-wrap:wrap; }
+  .pill { background: var(--forest); color: var(--cream); border-radius:100px; padding:4px 14px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; }
+  .pill.light { background:transparent; color: var(--forest); border:1px solid rgba(61,57,41,.2); }
+
+  /* Section labels */
+  .section-label { display:flex; align-items:center; gap:12px; padding:10px 0 8px; font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .35; }
+  .section-label::before,.section-label::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .1; }
+
+  /* Story cards */
+  .story-card { border-radius:4px; border:1.5px solid rgba(61,57,41,.10); padding:36px 40px; margin-bottom:3px; position:relative; overflow:hidden; }
+  .story-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }
+
+  .card-sky      { background:#D6E8F0; } .card-sky::before      { background: #7AAFC0; }
+  .card-cream    { background: var(--card-bg); } .card-cream::before    { background: var(--terra); }
+  .card-blush    { background:#F5DDD0; } .card-blush::before    { background: #E0A88A; }
+  .card-lavender { background:#EAE6F5; } .card-lavender::before { background: #C8BEE8; }
+  .card-sage     { background:#D6E4D6; } .card-sage::before     { background: #8BAF8B; }
+
+  .page-chip { position:absolute; top:14px; right:16px; font-family: var(--mono); font-size:9px; letter-spacing:2px; text-transform:uppercase; color: var(--forest); opacity: .3; }
+  .card-routine { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:8px; }
+  .card-headline { font-family: var(--serif); font-size:28px; font-weight:900; line-height:1.15; color: var(--forest); margin-bottom:10px; }
+  .card-headline.lg { font-size:34px; }
+  .card-headline.sm { font-size:22px; }
+  .card-deck { font-family: var(--serif); font-style:italic; font-size:14px; line-height:1.55; color: var(--forest); opacity: .55; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid rgba(61,57,41,.12); }
+  .card-body { font-family: 'Lora', Georgia, serif; font-size:14px; line-height:1.7; color: var(--forest); }
+  .card-body p { margin-bottom:11px; }
+  .drop::first-letter { font-family: var(--serif); font-size:52px; font-weight:900; float:left; line-height:.78; margin:5px 6px 0 0; color: var(--terra); }
+  .clearfix::after { content:''; display:table; clear:both; }
+
+  .hl-lime { background: var(--terra); color: var(--forest); padding:0 4px; border-radius:2px; }
+  .hl-ink  { background: var(--forest); color: var(--cream); padding:0 4px; border-radius:2px; }
+
+  .stat-box { float:right; margin:0 0 16px 24px; background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:16px 20px; text-align:center; min-width:120px; }
+  .stat-big { font-family: var(--serif); font-size:44px; font-weight:900; line-height:1; color: var(--forest); display:block; }
+  .stat-label { font-family: var(--mono); font-size:9.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .5; display:block; margin-top:4px; }
+
+  .source-link { display:inline-flex; align-items:center; gap:5px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:12px; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; transition: opacity .15s; }
+  .source-link:hover { opacity: 1; }
+  .source-link::after { content:'↗'; font-size:9px; }
+
+  .signals-grid { display:flex; flex-direction:column; gap:14px; }
+  .signal-row { display:flex; align-items:flex-start; gap:14px; }
+  .signal-num { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family: var(--serif); font-size:13px; font-weight:900; flex-shrink:0; color:#fff; }
+  .signal-num.n1{background: var(--terra); color: var(--forest);} .signal-num.n2{background: var(--forest);} .signal-num.n3{background:#7AAFC0;} .signal-num.n4{background: var(--terra-d); color: var(--forest);} .signal-num.n5{background: var(--black);}
+  .signal-title { font-family: var(--serif); font-size:14px; font-weight:700; color: var(--forest); margin-bottom:2px; }
+  .signal-desc { font-family: 'Space Mono', monospace; font-size:12px; line-height:1.65; color: var(--forest); opacity: .6; }
+  .signal-link { display:inline-block; font-family: var(--mono); font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .5; text-decoration:none; margin-top:4px; border-bottom:1px solid rgba(61,57,41,.2); transition: opacity .15s; }
+  .signal-link:hover { opacity: 1; }
+
+  .themes-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .theme-item { padding:10px 14px; border-radius:8px; font-family: var(--serif); font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; text-align:center; border:1.5px solid rgba(61,57,41,.12); background: var(--cream); }
+
+  .tool-week { background: var(--forest); color: var(--cream); border-radius:12px; padding:18px 20px; text-align:center; margin-top:14px; }
+  .tool-week-eyebrow { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; opacity: .55; margin-bottom:6px; }
+  .tool-week-name { font-family: var(--serif); font-size:22px; font-weight:900; margin-bottom:4px; }
+  .tool-week-desc { font-family: 'Space Mono', monospace; font-size:11.5px; opacity: .7; font-style:italic; }
+
+  .output-card { background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:18px 20px; margin-top:14px; }
+  .output-title { font-family: var(--serif); font-size:18px; font-weight:700; margin-bottom:8px; color: var(--forest); }
+  .sources-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px 20px; }
+  .sources-grid a { font-family: var(--mono); font-size:11px; color: var(--forest); opacity: .55; text-decoration:none; border-bottom:1px solid rgba(61,57,41,.15); padding-bottom:1px; transition: opacity .15s; }
+  .sources-grid a:hover { opacity: 1; }
+
+  /* Footer */
+  .footer {
+    background: var(--black);
+    padding: 28px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    border-radius: 4px 4px 20px 20px;
+    margin-top: 3px;
+  }
+  .footer-logo { display: flex; align-items: center; gap: 10px; }
+  .footer-mark { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; }
+  .footer-mark img { width: 24px; height: 24px; object-fit: contain; filter: brightness(10); }
+  .footer-brand { font-family: var(--mono); font-size: 13px; font-weight: 700; color: #fff; }
+  .footer-center { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.4); text-align: center; line-height: 1.6; }
+  .footer-right { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.3); text-align: right; line-height: 2; }
+  .footer-right a { color: rgba(255,255,255,.5); transition: color .15s; }
+  .footer-right a:hover { color: #fff; }
+
+  /* TOC Sidebar */
+  .page-layout { display: flex; align-items: flex-start; gap: 0; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+  .toc-sidebar { position: sticky; top: 80px; width: 170px; flex-shrink: 0; padding: 48px 0 0 0; }
+  .toc-nav { display: flex; flex-direction: column; gap: 0; }
+  .toc-link { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.5px; text-transform: uppercase; color: #000; opacity: .45; text-decoration: none; padding: 7px 12px; border-left: 2px solid transparent; transition: opacity .15s, border-color .15s; line-height: 1.3; }
+  .toc-link:hover { opacity: .85; }
+  .toc-link.active { opacity: 1; border-left-color: var(--terra); }
+  .section-anchor { scroll-margin-top: 80px; }
+
+  @media (max-width: 900px) {
+    .toc-sidebar { display: none; }
+    .page-layout { max-width: 760px; }
+  }
+
+  @media (max-width: 720px) {
+    .nav { padding: 12px 24px; }
+    .nav-links { display: none; }
+    .wrapper { padding: 20px 14px 60px; }
+    .cover-card { padding: 40px 24px; }
+    .story-card { padding: 28px 20px; }
+    .footer { padding: 24px; flex-direction: column; align-items: flex-start; }
+    .footer-center, .footer-right { text-align: left; }
+    .stat-box { float: none; margin: 0 0 16px 0; }
+  }
+  @media (max-width: 480px) {
+    .nav-logo span { display: none; }
+    .cover-title { font-size: 40px; }
+    .card-headline.lg { font-size: 28px; }
+    .card-headline { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-mark">
+      <img src="timps_logo.svg" alt="TIMPS">
+    </div>
+    <span>TIMPS PostCards</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html#archive" class="nav-link">Archive</a>
+    <a href="timps-postcards-2026-07-10.html" class="nav-link">Latest Issue</a>
+    <a href="index.html#subscribe" class="nav-link">Subscribe</a>
+  </div>
+  <a href="index.html#subscribe" class="nav-cta">Subscribe</a>
+</nav>
+
+<div class="page-layout">
+
+  <!-- TOC SIDEBAR -->
+  <aside class="toc-sidebar">
+    <nav class="toc-nav">
+      <a href="#intro" class="toc-link">Intro</a>
+      <a href="#lead" class="toc-link">Lead</a>
+      <a href="#frontier" class="toc-link">Frontier</a>
+      <a href="#open-weights" class="toc-link">Open Weights</a>
+      <a href="#signals" class="toc-link">Signals</a>
+      <a href="#themes" class="toc-link">Themes</a>
+      <a href="#tool" class="toc-link">Tool</a>
+      <a href="#sources" class="toc-link">Sources</a>
+    </nav>
+  </aside>
+
+  <div class="wrapper">
+
+  <!-- INTRODUCTION -->
+  <div id="intro" class="cover-card section-anchor">
+    <div class="cover-eyebrow">AI Intelligence Digest</div>
+    <div class="cover-title">TIMPS<br>PostCards</div>
+    <div class="cover-sub">Your Daily Signal from the Machine Frontier</div>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+      <span>Issue 046</span>
+      <span>July 10, 2026</span>
+      <span>Hyderabad, India</span>
+    </div>
+    <div class="cover-badge">⬡ Built with the TIMPS Ecosystem</div>
+    <div class="top5-pill">
+      <span class="pill">GPT-5.6 GA</span>
+      <span class="pill light">ChatGPT Work</span>
+      <span class="pill light">Ollama $65M</span>
+    </div>
+  </div>
+
+  <!-- CARD 1 - LEAD -->
+  <div id="lead" class="story-card card-sky section-anchor">
+    <div class="page-chip">01 · LEAD</div>
+    <div class="card-routine">Model Release</div>
+    <h1 class="card-headline lg">OpenAI Ships GPT-5.6 and a New Agent Called ChatGPT Work</h1>
+    <div class="card-deck">Three model sizes, one workplace agent, and a token-efficiency pitch aimed squarely at enterprise spend anxiety.</div>
+    <div class="stat-box">
+      <span class="stat-big">54%</span>
+      <span class="stat-label">More token-efficient on agentic coding</span>
+    </div>
+    <div class="card-body drop clearfix">
+      <p>OpenAI released the GPT-5.6 family in three flavors — Sol, its most powerful model; Luna, built for speed; and Terra, tuned to balance the two for everyday work. A new "ultra" mode inside Sol lets the system delegate work to submodels for the hardest tasks.</p>
+      <p>Alongside the models, OpenAI launched <span class="hl-lime">ChatGPT Work</span>, an agent built on Codex that pulls context across a team's connected apps and files to produce finished spreadsheets, decks, and documents, rolling out first to Mac and Windows desktop apps.</p>
+      <p>CEO Sam Altman told CNBC that Sol is 54% more token-efficient on agentic coding tasks, framing it as a direct answer to enterprise cost scrutiny. Early reactions from builders were split — some found GPT-5.6 more reliable for everyday tasks, while others said Anthropic's Fable 5 still edges it on raw creative intelligence.</p>
+    </div>
+    <a href="https://www.axios.com/2026/07/09/ai-openai-gpt-release" target="_blank" class="source-link">Full story · Axios</a>
+  </div>
+
+  <!-- CARD 2 - FRONTIER -->
+  <div id="frontier" class="story-card card-cream section-anchor">
+    <div class="page-chip">02 · FRONTIER RACE</div>
+    <div class="card-routine">Frontier Release</div>
+    <h2 class="card-headline">SpaceXAI Releases Grok 4.5, Calls It an "Opus-Class" Model — But Faster and Cheaper</h2>
+    <div class="card-deck">xAI's first model built jointly with Cursor trades benchmark supremacy for token efficiency, undercutting frontier pricing by a wide margin.</div>
+    <div class="stat-box">
+      <span class="stat-big">80</span>
+      <span class="stat-label">Tokens / Second</span>
+    </div>
+    <div class="card-body drop clearfix">
+      <p>SpaceXAI's Grok 4.5 is the company's first major release since going public and acquiring the AI coding editor Cursor. Elon Musk described it on X as <span class="hl-ink">"an Opus-class model, but faster, more token-efficient and lower cost,"</span> positioning it against Anthropic's flagship reasoning model rather than chasing benchmark supremacy outright.</p>
+      <p>The model runs at roughly 80 tokens per second and claims close to double the token efficiency of comparable leading models, priced at $2 per million input tokens and $6 per million output tokens through the SpaceXAI API — well below most frontier competitors.</p>
+      <p>It's now the default model in Grok Build, available across all Cursor plans, and live via the SpaceXAI developer console — explicitly targeting the coding-agent market Anthropic, OpenAI, and Cursor-style tools have dominated.</p>
+    </div>
+    <a href="https://techcrunch.com/2026/07/08/spacexai-releases-grok-4-5-which-elon-describes-as-an-opus-class-model/" target="_blank" class="source-link">Full story · TechCrunch</a>
+  </div>
+
+  <!-- CARD 3 - OPEN WEIGHTS -->
+  <div id="open-weights" class="story-card card-sky section-anchor">
+    <div class="page-chip">03 · OPEN WEIGHTS</div>
+    <div class="card-routine">Series B</div>
+    <h2 class="card-headline sm">Ollama Raises $65M as Open-Model Usage Nears 9 Million Developers</h2>
+    <div class="card-deck">Theory Ventures leads a Series B that values the open-weight runner as the platform layer everything else may plug into.</div>
+    <div class="card-body drop clearfix">
+      <p>Ollama has raised a $65 million Series B led by Theory Ventures, with Benchmark, 8VC, Y Combinator, and others joining, bringing its total funding to $88 million. The 14-person company says it's now used by 8.9 million developers monthly and sits inside 85% of the Fortune 500.</p>
+      <p>Founders Jeff Morgan and Michael Chiang previously built Kitematic, which Docker acquired in 2015 — work that became Docker Desktop. Ollama applies the same "hide the messy setup" playbook to running open-weight models locally or in its own cloud, billing by GPU time rather than per token.</p>
+      <p>Benchmark's Peter Fenton called open-weight models a shift, not a war: firms with heavy inference bills now have a real reason to run open models locally and lean on closed frontier labs like Anthropic only when needed.</p>
+    </div>
+    <a href="https://techcrunch.com/2026/07/09/popular-open-source-ai-developer-tool-ollama-raises-65m-grows-to-nearly-9m-users/" target="_blank" class="source-link">Full story · TechCrunch</a>
+  </div>
+
+  <!-- SIGNALS -->
+  <div id="signals" class="story-card card-cream section-anchor">
+    <div class="page-chip">SIGNALS</div>
+    <div class="card-routine">5 Key Signals</div>
+    <h2 class="card-headline sm">What Else Moved Today</h2>
+    <div class="signals-grid" style="margin-top:18px;">
+      <div class="signal-row">
+        <div class="signal-num n1">1</div>
+        <div>
+          <div class="signal-title">GPT-5.6 general availability lands mid model-release week</div>
+          <div class="signal-desc">OpenAI's public rollout follows a limited government-shared preview, arriving days after Anthropic restored Fable 5 and Mythos 5 access post export-control lift.</div>
+          <a href="https://www.cnbc.com/2026/07/08/openai-expanding-gpt-5point6-ai-model-release-ending-government-limits.html" target="_blank" class="signal-link">CNBC ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n2">2</div>
+        <div>
+          <div class="signal-title">Grok 4.5 targets the coding-agent economy, not the chat market</div>
+          <div class="signal-desc">Built with Cursor and trained on tens of thousands of NVIDIA GB300 GPUs, it's free for a limited time inside Grok Build and Cursor.</div>
+          <a href="https://www.fonearena.com/blog/487083/spacexai-grok-4-5-features.html" target="_blank" class="signal-link">Fonearena ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n3">3</div>
+        <div>
+          <div class="signal-title">Open-weight models are closing in on the majority of tokens run</div>
+          <div class="signal-desc">Benchmark's Peter Fenton projects open-weight models will generate the supermajority of AI tokens within 18–24 months — the thesis behind Ollama's raise.</div>
+          <a href="https://lasvegassun.com/news/2026/jul/09/ollama-raises-65m-series-b-funding-to-grow-its-ope/" target="_blank" class="signal-link">Las Vegas Sun ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n4">4</div>
+        <div>
+          <div class="signal-title">GPT-Live brings full-duplex voice to ChatGPT</div>
+          <div class="signal-desc">OpenAI's newest voice model generation powers a more natural, human-like conversational mode across ChatGPT Voice.</div>
+          <a href="https://openai.com/index/introducing-gpt-live/" target="_blank" class="signal-link">OpenAI ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n5">5</div>
+        <div>
+          <div class="signal-title">Agent cost attribution is now the hard problem, not model choice</div>
+          <div class="signal-desc">As pricing structures bill tokens, runtime, and tool calls simultaneously across providers, teams are finding FinOps for agents doesn't map to any existing cloud billing construct.</div>
+          <a href="https://amitkoth.com/managed-agents-cost-crossover/" target="_blank" class="signal-link">Amit Kothari ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THEMES + TOOL + SOURCES -->
+  <div id="themes" class="story-card card-sky section-anchor">
+    <div class="page-chip">THEMES</div>
+    <div class="card-routine">Top Themes</div>
+    <h2 class="card-headline sm">The Shape of Today's News</h2>
+    <div class="themes-grid" style="margin-top:16px;">
+      <div class="theme-item">Model Release Frenzy</div>
+      <div class="theme-item">Token Efficiency</div>
+      <div class="theme-item">Open-Weight Momentum</div>
+      <div class="theme-item">Agent Economics</div>
+      <div class="theme-item">Workplace Agents</div>
+      <div class="theme-item">Voice Interfaces</div>
+      <div class="theme-item">Coding Agents</div>
+    </div>
+
+    <div id="tool" class="tool-week section-anchor">
+      <div class="tool-week-eyebrow">Tool of the Week</div>
+      <div class="tool-week-name">Ollama</div>
+      <div class="tool-week-desc">Run open-weight models locally with one command, or burst to the cloud without changing your workflow.</div>
+    </div>
+
+    <div id="sources" class="output-card section-anchor">
+      <div class="output-title">Sources Cited</div>
+      <div class="sources-grid">
+        <a href="https://www.axios.com/2026/07/09/ai-openai-gpt-release" target="_blank">Axios</a>
+        <a href="https://openai.com/chatgpt-work/" target="_blank">OpenAI</a>
+        <a href="https://www.cnbc.com/2026/07/08/openai-expanding-gpt-5point6-ai-model-release-ending-government-limits.html" target="_blank">CNBC</a>
+        <a href="https://techcrunch.com/2026/07/08/spacexai-releases-grok-4-5-which-elon-describes-as-an-opus-class-model/" target="_blank">TechCrunch</a>
+        <a href="https://techcrunch.com/2026/07/09/popular-open-source-ai-developer-tool-ollama-raises-65m-grows-to-nearly-9m-users/" target="_blank">TechCrunch</a>
+        <a href="https://www.fonearena.com/blog/487083/spacexai-grok-4-5-features.html" target="_blank">Fonearena</a>
+        <a href="https://lasvegassun.com/news/2026/jul/09/ollama-raises-65m-series-b-funding-to-grow-its-ope/" target="_blank">Las Vegas Sun</a>
+        <a href="https://openai.com/index/introducing-gpt-live/" target="_blank">OpenAI</a>
+        <a href="https://amitkoth.com/managed-agents-cost-crossover/" target="_blank">Amit Kothari</a>
+        <a href="https://www.forbes.com/sites/madhulika-pathak/2026/07/09/openai-debuts-chatgpt-work-workplace-ai-agent-with-gpt-56/" target="_blank">Forbes</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-logo">
+      <div class="footer-mark">
+        <img src="timps_logo.svg" alt="TIMPS">
+      </div>
+      <span class="footer-brand">TIMPS PostCards</span>
+    </div>
+    <div class="footer-center">
+      Issue 046 · July 10, 2026<br>
+      Hyderabad, India
+    </div>
+    <div class="footer-right">
+      <a href="index.html">Home</a><br>
+      <a href="index.html#archive">Archive</a><br>
+      &copy; 2026 TIMPS
+    </div>
+  </footer>
+
+</div> <!-- /wrapper -->
+</div> <!-- /page-layout -->
+</body>
+</html>

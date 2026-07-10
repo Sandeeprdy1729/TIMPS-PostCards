@@ -29,3 +29,4 @@
 2026-07-07	043	thumb-2026-07-07.svg	Meta Says Its Next Model Has Caught Up To GPT&#8209;5.5
 2026-07-08	044	thumb-2026-07-08.svg	Anthropic Finds a Hidden Workspace Inside Claude's Reasoning
 2026-07-09	045	thumb-2026-07-09.svg	Grok 4.5 Goes Public — Musk Calls It "Opus-Class," the Benchmarks Say It's Complicated
+2026-07-10	046	thumb-2026-07-10.svg	OpenAI Ships GPT-5.6 and a New Agent Called ChatGPT Work
