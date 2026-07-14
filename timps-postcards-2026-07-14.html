@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TIMPS">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>TIMPS PostCards — Issue 050</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --cream:  #EEECE2;
+    --forest: #3D3929;
+    --terra:  #DA7756;
+    --terra-d:#BD5D3A;
+    --black:  #111111;
+    --card-bg:#F0ECE0;
+    --mono:   'Space Mono', 'Courier New', monospace;
+    --serif:  'TIMPS', 'Playfair Display', Georgia, serif;
+  }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Black.woff2') format('woff2'); font-weight:900; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Bold.woff2') format('woff2'); font-weight:700; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-SemiBold.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--cream);
+    background-image:
+      linear-gradient(rgba(61,57,41,.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.07) 1px, transparent 1px);
+    background-size: 38px 38px;
+    font-family: 'Space Mono', 'Courier New', monospace;
+    color: var(--forest);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { text-decoration: none; color: inherit; }
+
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 48px;
+    background-color: rgba(238,236,226,.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1.5px solid rgba(61,57,41,.12);
+    background-image:
+      linear-gradient(rgba(61,57,41,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.05) 1px, transparent 1px);
+    background-size: 38px 38px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 15px;
+    font-weight: 600;
+    color: #000;
+    text-decoration: none;
+  }
+  .nav-logo-mark {
+    width: 34px; height: 34px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .nav-logo-mark img { width: 28px; height: 28px; object-fit: contain; }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-link {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: #000;
+    opacity: .65;
+    text-decoration: none;
+    transition: opacity .15s;
+  }
+  .nav-link:hover { opacity: 1; }
+  .nav-cta {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: #000;
+    background: var(--terra);
+    border: 2.5px solid #000;
+    border-radius: 100px;
+    padding: 10px 24px;
+    cursor: pointer;
+    transition: background .15s, transform .1s;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--terra-d); transform: translateY(-1px); }
+
+  .wrapper { max-width: 760px; margin: 0 auto; padding: 40px 20px 80px; display: flex; flex-direction: column; gap: 0; }
+
+  .cover-card { background: var(--card-bg); border-radius: 20px 20px 4px 4px; padding: 56px 48px 48px; text-align: center; position: relative; overflow: hidden; border: 1.5px solid rgba(61,57,41,.12); margin-bottom: 3px; }
+  .cover-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, var(--terra) 0%, var(--terra-d) 60%, #E0A88A 100%); }
+  .cover-eyebrow { font-family: var(--mono); font-size:10px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:20px; display:flex; align-items:center; justify-content:center; gap:10px; }
+  .cover-eyebrow::before,.cover-eyebrow::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .15; max-width:60px; }
+  .cover-title { font-family: var(--serif); font-size:58px; font-weight:900; line-height:1; letter-spacing:-1px; color: var(--forest); margin-bottom:8px; }
+  .cover-sub { font-family: var(--serif); font-size:13px; font-style:italic; color: var(--forest); opacity: .55; margin-bottom:28px; }
+  .cover-divider { width:48px; height:2px; background: var(--terra); margin:0 auto 24px; border-radius:2px; }
+  .cover-meta { display:flex; justify-content:center; gap:32px; font-family: var(--mono); font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .45; }
+  .cover-badge { display:inline-flex; align-items:center; gap:6px; background: var(--terra); color: #fff; border-radius:20px; padding:6px 18px; font-family: var(--mono); font-size:10px; letter-spacing:2px; text-transform:uppercase; margin-top:28px; }
+  .top5-pill { display:flex; justify-content:center; gap:10px; margin-top:32px; flex-wrap:wrap; }
+  .pill { background: var(--forest); color: var(--cream); border-radius:100px; padding:4px 14px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; }
+  .pill.light { background:transparent; color: var(--forest); border:1px solid rgba(61,57,41,.2); }
+
+  .section-label { display:flex; align-items:center; gap:12px; padding:10px 0 8px; font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .35; }
+  .section-label::before,.section-label::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .1; }
+
+  .story-card { border-radius:4px; border:1.5px solid rgba(61,57,41,.10); padding:36px 40px; margin-bottom:3px; position:relative; overflow:hidden; }
+  .story-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }
+
+  .card-sky      { background:#D6E8F0; } .card-sky::before      { background: #7AAFC0; }
+  .card-cream    { background: var(--card-bg); } .card-cream::before    { background: var(--terra); }
+  .card-blush    { background:#F5DDD0; } .card-blush::before    { background: #E0A88A; }
+  .card-lavender { background:#EAE6F5; } .card-lavender::before { background: #C8BEE8; }
+  .card-sage     { background:#D6E4D6; } .card-sage::before     { background: #8BAF8B; }
+
+  .page-chip { position:absolute; top:14px; right:16px; font-family: var(--mono); font-size:9px; letter-spacing:2px; text-transform:uppercase; color: var(--forest); opacity: .3; }
+  .card-routine { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:8px; }
+  .card-headline { font-family: var(--serif); font-size:28px; font-weight:900; line-height:1.15; color: var(--forest); margin-bottom:10px; }
+  .card-headline.lg { font-size:34px; }
+  .card-headline.sm { font-size:22px; }
+  .card-deck { font-family: var(--serif); font-style:italic; font-size:14px; line-height:1.55; color: var(--forest); opacity: .55; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid rgba(61,57,41,.12); }
+  .card-body { font-family: 'Lora', Georgia, serif; font-size:14px; line-height:1.7; color: var(--forest); }
+  .card-body p { margin-bottom:11px; }
+  .drop::first-letter { font-family: var(--serif); font-size:52px; font-weight:900; float:left; line-height:.78; margin:5px 6px 0 0; color: var(--terra); }
+  .clearfix::after { content:''; display:table; clear:both; }
+
+  .hl-lime { background: var(--terra); color: var(--forest); padding:0 4px; border-radius:2px; }
+  .hl-ink  { background: var(--forest); color: var(--cream); padding:0 4px; border-radius:2px; }
+
+  .stat-box { float:right; margin:0 0 16px 24px; background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:16px 20px; text-align:center; min-width:120px; }
+  .stat-big { font-family: var(--serif); font-size:44px; font-weight:900; line-height:1; color: var(--forest); display:block; }
+  .stat-label { font-family: var(--mono); font-size:9.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .5; display:block; margin-top:4px; }
+
+  .source-link { display:inline-flex; align-items:center; gap:5px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:12px; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; transition: opacity .15s; }
+  .source-link:hover { opacity: 1; }
+  .source-link::after { content:'↗'; font-size:9px; }
+
+  .signals-grid { display:flex; flex-direction:column; gap:14px; }
+  .signal-row { display:flex; align-items:flex-start; gap:14px; }
+  .signal-num { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family: var(--serif); font-size:13px; font-weight:900; flex-shrink:0; color:#fff; }
+  .signal-num.n1{background: var(--terra); color: var(--forest);} .signal-num.n2{background: var(--forest);} .signal-num.n3{background:#7AAFC0;} .signal-num.n4{background: var(--terra-d); color: var(--forest);} .signal-num.n5{background: var(--black);}
+  .signal-title { font-family: var(--serif); font-size:14px; font-weight:700; color: var(--forest); margin-bottom:2px; }
+  .signal-desc { font-family: 'Space Mono', monospace; font-size:12px; line-height:1.65; color: var(--forest); opacity: .6; }
+  .signal-link { display:inline-block; font-family: var(--mono); font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .5; text-decoration:none; margin-top:4px; border-bottom:1px solid rgba(61,57,41,.2); transition: opacity .15s; }
+  .signal-link:hover { opacity: 1; }
+
+  .themes-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .theme-item { padding:10px 14px; border-radius:8px; font-family: var(--serif); font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; text-align:center; border:1.5px solid rgba(61,57,41,.12); background: var(--cream); }
+
+  .tool-week { background: var(--forest); color: var(--cream); border-radius:12px; padding:18px 20px; text-align:center; margin-top:14px; }
+  .tool-week-eyebrow { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; opacity: .55; margin-bottom:6px; }
+  .tool-week-name { font-family: var(--serif); font-size:22px; font-weight:900; margin-bottom:4px; }
+  .tool-week-desc { font-family: 'Space Mono', monospace; font-size:11.5px; opacity: .7; font-style:italic; }
+
+  .output-card { background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:18px 20px; margin-top:14px; }
+  .output-title { font-family: var(--serif); font-size:18px; font-weight:700; margin-bottom:8px; color: var(--forest); }
+  .sources-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px 20px; }
+  .sources-grid a { font-family: var(--mono); font-size:11px; color: var(--forest); opacity: .55; text-decoration:none; border-bottom:1px solid rgba(61,57,41,.15); padding-bottom:1px; transition: opacity .15s; }
+  .sources-grid a:hover { opacity: 1; }
+
+  .footer {
+    background: var(--black);
+    padding: 28px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    border-radius: 4px 4px 20px 20px;
+    margin-top: 3px;
+  }
+  .footer-logo { display: flex; align-items: center; gap: 10px; }
+  .footer-mark { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; }
+  .footer-mark img { width: 24px; height: 24px; object-fit: contain; filter: brightness(10); }
+  .footer-brand { font-family: var(--mono); font-size: 13px; font-weight: 700; color: #fff; }
+  .footer-center { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.4); text-align: center; line-height: 1.6; }
+  .footer-right { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.3); text-align: right; line-height: 2; }
+  .footer-right a { color: rgba(255,255,255,.5); transition: color .15s; }
+  .footer-right a:hover { color: #fff; }
+
+  .page-layout { display: flex; align-items: flex-start; gap: 0; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+  .toc-sidebar { position: sticky; top: 80px; width: 170px; flex-shrink: 0; padding: 48px 0 0 0; }
+  .toc-nav { display: flex; flex-direction: column; gap: 0; }
+  .toc-link { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.5px; text-transform: uppercase; color: #000; opacity: .45; text-decoration: none; padding: 7px 12px; border-left: 2px solid transparent; transition: opacity .15s, border-color .15s; line-height: 1.3; }
+  .toc-link:hover { opacity: .85; }
+  .toc-link.active { opacity: 1; border-left-color: var(--terra); }
+  .section-anchor { scroll-margin-top: 80px; }
+
+  @media (max-width: 900px) {
+    .toc-sidebar { display: none; }
+    .page-layout { max-width: 760px; }
+  }
+
+  @media (max-width: 720px) {
+    .nav { padding: 12px 24px; }
+    .nav-links { display: none; }
+    .wrapper { padding: 20px 14px 60px; }
+    .cover-card { padding: 40px 24px; }
+    .story-card { padding: 28px 20px; }
+    .footer { padding: 24px; flex-direction: column; align-items: flex-start; }
+    .footer-center, .footer-right { text-align: left; }
+    .stat-box { float: none; margin: 0 0 16px 0; }
+  }
+  @media (max-width: 480px) {
+    .nav-logo span { display: none; }
+    .cover-title { font-size: 40px; }
+    .card-headline.lg { font-size: 28px; }
+    .card-headline { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-mark">
+      <img src="timps_logo.svg" alt="TIMPS">
+    </div>
+    <span>TIMPS PostCards</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html#archive" class="nav-link">Archive</a>
+    <a href="timps-postcards-2026-07-14.html" class="nav-link">Latest Issue</a>
+    <a href="index.html#subscribe" class="nav-link">Subscribe</a>
+  </div>
+  <a href="index.html#subscribe" class="nav-cta">Subscribe</a>
+</nav>
+
+<div class="page-layout">
+
+  <!-- TOC SIDEBAR -->
+  <aside class="toc-sidebar">
+    <nav class="toc-nav">
+      <a href="#intro" class="toc-link">Intro</a>
+      <a href="#lead" class="toc-link">Lead</a>
+      <a href="#hardware" class="toc-link">Hardware</a>
+      <a href="#search" class="toc-link">Search</a>
+      <a href="#research" class="toc-link">Research</a>
+      <a href="#signals" class="toc-link">Signals</a>
+      <a href="#themes" class="toc-link">Themes</a>
+      <a href="#tool" class="toc-link">Tool</a>
+      <a href="#sources" class="toc-link">Sources</a>
+    </nav>
+  </aside>
+
+  <div class="wrapper">
+
+  <!-- INTRODUCTION -->
+  <div id="intro" class="cover-card section-anchor">
+    <div class="cover-eyebrow">AI Intelligence Digest</div>
+    <div class="cover-title">TIMPS<br>PostCards</div>
+    <div class="cover-sub">Your Daily Signal from the Machine Frontier</div>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+      <span>Issue 050</span>
+      <span>July 14, 2026</span>
+      <span>Hyderabad, India</span>
+    </div>
+    <div class="cover-badge">⬡ Built with the TIMPS Ecosystem</div>
+    <div class="top5-pill">
+      <span class="pill">Apple v. OpenAI</span>
+      <span class="pill light">SK Hynix Shortage</span>
+      <span class="pill light">Google Search Signals</span>
+    </div>
+  </div>
+
+  <!-- CARD 1 - LEAD -->
+  <div id="lead" class="story-card card-sky section-anchor">
+    <div class="page-chip">01 · LEAD</div>
+    <div class="card-routine">Legal · Big Tech</div>
+    <h1 class="card-headline lg">Apple Says OpenAI Stole More Than Just Employees</h1>
+    <div class="card-deck">A sweeping lawsuit names more than 400 former Apple engineers now at OpenAI — alleging a coordinated campaign of trade-secret theft that goes far beyond hiring, into the heart of Apple's device and AI ambitions.</div>
+    <div class="card-body drop clearfix">
+      <p>Apple has escalated its legal war with OpenAI, filing suit alleging that OpenAI systematically poached Apple talent while extracting trade secrets embedded in their institutional knowledge. The complaint, covered by The Rundown AI and Perplexity's research digest, names OpenAI, hardware chief <span class="hl-lime">Tang Tan</span>, and the io devices unit — the division behind OpenAI's unreleased consumer hardware line.</p>
+      <p>At the centre of the dispute is a staggering number: more than <span class="hl-ink">400 former Apple employees</span> now work at OpenAI. Apple alleges that departing staff carried confidential designs, internal codenames, and engineering know-how across the divide — with Tan allegedly using Apple's own internal terminology to recruit former colleagues during the transition.</p>
+      <p>The filing coincides with OpenAI's push into ChatGPT Work and Codex, as well as broader industry concern about the thinning wall between partnership and competition. Apple's own Siri now runs on Google's Gemini rather than OpenAI's models — a shift that underscores just how dramatically the landscape has turned.</p>
+    </div>
+    <a href="https://www.daily.therundown.ai" target="_blank" class="source-link">The Rundown AI</a>
+  </div>
+
+  <!-- CARD 2 - HARDWARE -->
+  <div id="hardware" class="story-card card-blush section-anchor">
+    <div class="page-chip">02 · HARDWARE</div>
+    <div class="card-routine">Memory · Semiconductors</div>
+    <h2 class="card-headline">SK Hynix Warns the Memory Shortage Could Last Until 2030</h2>
+    <div class="card-deck">The world's second-largest memory chip maker says shortages may peak in 2027 but won't ease for years — a timeline that threatens to strangle AI hardware ambitions and PC/mobile refresh cycles well into the next decade.</div>
+    <div class="stat-box">
+      <span class="stat-big">2030</span>
+      <span class="stat-label">Shortage end date</span>
+    </div>
+    <div class="card-body drop clearfix">
+      <p>SK Hynix, the primary supplier of high-bandwidth memory (HBM) to NVIDIA and a critical player in the global AI infrastructure chain, has issued a stark warning: the current memory shortage is not a blip but a structural shift. The company projects that shortages will <span class="hl-lime">peak in 2027</span> and persist through 2030, driven by insatiable demand from AI training clusters, edge inference, and the rapid expansion of HBM3E into consumer and enterprise hardware.</p>
+      <p>The implications ripple far beyond GPU supply. HBM shortages constrain everything from cloud AI capacity to smartphone pricing and automotive compute platforms. SK Hynix's forecast suggests that the AI hardware boom, rather than easing supply pressures, is creating a new normal where <span class="hl-ink">memory is the bottleneck</span> — not silicon logic, not packaging, not energy.</p>
+      <p>For chip-dependent companies building AI products today, the message is clear: plan for constrained memory availability at elevated prices through the end of the decade.</p>
+    </div>
+    <a href="https://newsletter.theneurondaily.com" target="_blank" class="source-link">The Neuron</a>
+  </div>
+
+  <!-- CARD 3 - SEARCH -->
+  <div id="search" class="story-card card-cream section-anchor">
+    <div class="page-chip">03 · SEARCH</div>
+    <div class="card-routine">SEO · Publishing · AI Controls</div>
+    <h2 class="card-headline sm">Google Tightens the Screws: AI Disclosures in Ads, robots.txt Enforcement, and Cloudflare Signals</h2>
+    <div class="card-deck">A multi-front update reshaping how search, ads, and AI-generated content coexist — with robots.txt enforcement, Cloudflare content signals, and mandatory AI disclosures in advertising now part of the same push.</div>
+    <div class="card-body drop clearfix">
+      <p>Google's latest search-ecosystem update lands on several fronts at once. The headline change: <span class="hl-lime">AI-generated content in ads</span> now requires explicit disclosure — a move that formalises what many advertisers were already doing informally but now makes auditable and enforceable at platform level.</p>
+      <p>Alongside the advertising policy, Google is strengthening its treatment of <span class="hl-ink">robots.txt</span> as a binding contract. Sites that flag AI crawlers via robots.txt will see those directives enforced more strictly in indexing and ranking, closing a gap that allowed some AI labs to index content their publishers explicitly blocked.</p>
+      <p>Third, Cloudflare's content-signals system — which lets publishers flag whether a page contains AI-generated material — is now being surfaced directly in search results. The convergence of these three levers (ads policy, crawling rules, and content provenance signals) suggests Google is building a full-stack answer to the AI content flood, one that shapes what gets indexed, how it's labelled, and who profits from it.</p>
+    </div>
+    <a href="https://mail.google.com/mail/u/0/#all/19f5b270128fd5a1" target="_blank" class="source-link">Newsletter Digest</a>
+  </div>
+
+  <!-- CARD 4 - RESEARCH -->
+  <div id="research" class="story-card card-lavender section-anchor">
+    <div class="page-chip">04 · RESEARCH</div>
+    <div class="card-routine">Foundation Models · Agents</div>
+    <h2 class="card-headline">NeuroVFM Trains on 5.24M Raw Hospital Scans; Stanford TRACE Turns Agent Failures Into Training Signal</h2>
+    <div class="card-deck">Two research breakthroughs from Marktechpost highlight the week's deepest technical advances — one pushing medical foundation models to new scale, the other fixing the broken agents that keep failing in production.</div>
+    <div class="card-body drop clearfix">
+      <p><span class="hl-lime">NeuroVFM</span> is a new vision foundation model trained on <span class="hl-ink">5.24 million raw hospital scans</span> — the largest such dataset assembled for medical imaging. The model aims to serve as a general-purpose backbone for radiology, pathology, and diagnostic workflows, learning directly from unlabelled clinical data rather than curated research datasets. Early benchmarks suggest meaningful improvements over existing medical AI across multiple imaging modalities.</p>
+      <p>Meanwhile, Stanford's <span class="hl-lime">TRACE</span> framework tackles a very different problem: why AI agents keep breaking in production. TRACE treats agent failures — tool errors, state corruption, hallucinated actions — not as bugs to patch but as structured training signal. Failed trajectories are captured, annotated, and fed back into the model as negative examples, creating a closed loop where the agent gets measurably better each time it breaks.</p>
+      <p>Together, these projects represent two poles of the current AI research agenda: scaling foundation models to new domains, and making the agents built on top of them actually reliable.</p>
+    </div>
+    <a href="https://mail.beehiiv.com" target="_blank" class="source-link">Marktechpost AI</a>
+  </div>
+
+  <!-- CARD 5 - INDUSTRY -->
+  <div id="industry" class="story-card card-sage section-anchor">
+    <div class="page-chip">05 · INDUSTRY</div>
+    <div class="card-routine">Models · Safety · Platforms</div>
+    <h2 class="card-headline">Meta Pauses Instagram AI Image Tool; OpenAI Safety Shakeup; DeepMind Builds Delegation Framework</h2>
+    <div class="card-deck">A trio of platform moves — Meta pulling back on generative images, OpenAI reorganising its safety leadership, and DeepMind releasing a delegation framework — show the industry recalibrating ambition against risk.</div>
+    <div class="card-body drop clearfix">
+      <p>Meta has paused a planned AI image-generation tool for Instagram after internal concerns about misuse and community backlash, according to Perplexity's research digest. The tool would have allowed users to generate synthetic images directly in Stories and Reels — a feature already controversial on competing platforms. The pause signals Meta's growing sensitivity to the reputational cost of shipping generative features without robust safeguards.</p>
+      <p>Separately, <span class="hl-ink">OpenAI has reorganised its safety leadership</span>, with key roles shifting as the company prepares for its hardware launch and IPO. The changes coincide with Microsoft routing some Copilot prompts to internal models — a move that reduces OpenAI's footprint inside its largest customer and raises questions about long-term model exclusivity.</p>
+      <p>Google DeepMind, meanwhile, released a <span class="hl-lime">delegation framework</span> for multi-agent AI systems — defining how agents should hand off tasks, negotiate authority, and fail gracefully when sub-agents underperform. The framework adds formal structure to a problem every production agent team already faces: when you have multiple agents, who decides what?</p>
+    </div>
+    <a href="https://www.perplexity.ai" target="_blank" class="source-link">Perplexity Research Digest</a>
+  </div>
+
+  <!-- SIGNALS -->
+  <div id="signals" class="story-card card-sky section-anchor">
+    <div class="page-chip">SIGNALS</div>
+    <div class="card-routine">5 Key Signals</div>
+    <h2 class="card-headline sm">What Else Moved Today</h2>
+    <div class="signals-grid" style="margin-top:18px;">
+      <div class="signal-row">
+        <div class="signal-num n1">1</div>
+        <div>
+          <div class="signal-title">400+ Apple engineers now at OpenAI</div>
+          <div class="signal-desc">Apple's lawsuit reveals the scale of talent migration — more than a hiring wave, it's a complete brain drain of hardware expertise.</div>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n2">2</div>
+        <div>
+          <div class="signal-title">HBM shortage reshapes AI economics</div>
+          <div class="signal-desc">SK Hynix's 2030 forecast means memory costs stay elevated — GPU pricing, cloud capacity, and edge device margins all affected.</div>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n3">3</div>
+        <div>
+          <div class="signal-title">Google formalises AI content controls</div>
+          <div class="signal-desc">Robots.txt enforcement, Cloudflare signals, and ad disclosures are converging into a single content-governance stack.</div>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n4">4</div>
+        <div>
+          <div class="signal-title">Microsoft routes Copilot away from OpenAI</div>
+          <div class="signal-desc">Some Copilot prompts now run on Microsoft's internal models — a quiet decoupling that could reshape the partnership.</div>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n5">5</div>
+        <div>
+          <div class="signal-title">OpenAI safety leadership in flux</div>
+          <div class="signal-desc">Key safety roles shift as OpenAI prepares for hardware launch and IPO — a critical moment for safety governance.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THEMES + TOOL + SOURCES -->
+  <div id="themes" class="story-card card-cream section-anchor">
+    <div class="page-chip">THEMES</div>
+    <div class="card-routine">Top Themes</div>
+    <h2 class="card-headline sm">The Shape of Today's News</h2>
+    <div class="themes-grid" style="margin-top:16px;">
+      <div class="theme-item">Platform Litigation</div>
+      <div class="theme-item">Memory Economics</div>
+      <div class="theme-item">Search Governance</div>
+      <div class="theme-item">Medical AI Scale</div>
+      <div class="theme-item">Agent Reliability</div>
+      <div class="theme-item">Safety Governance</div>
+      <div class="theme-item">Talent Warfare</div>
+    </div>
+
+    <div id="tool" class="tool-week section-anchor">
+      <div class="tool-week-eyebrow">Tool of the Week</div>
+      <div class="tool-week-name">Cloudflare Content Signals</div>
+      <div class="tool-week-desc">A publisher-controlled provenance layer that lets you flag AI-generated content at the CDN edge — now surfaced in Google search results and becoming the de facto standard for content attribution.</div>
+    </div>
+
+    <div id="sources" class="output-card section-anchor">
+      <div class="output-title">Sources Cited</div>
+      <div class="sources-grid">
+        <a href="https://www.daily.therundown.ai" target="_blank">The Rundown AI</a>
+        <a href="https://newsletter.theneurondaily.com" target="_blank">The Neuron</a>
+        <a href="https://mail.beehiiv.com" target="_blank">Marktechpost AI</a>
+        <a href="https://www.perplexity.ai" target="_blank">Perplexity Research</a>
+        <a href="https://techcrunch.com" target="_blank">TechCrunch</a>
+        <a href="https://www.securityweek.com" target="_blank">SecurityWeek</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-logo">
+      <div class="footer-mark">
+        <img src="timps_logo.svg" alt="TIMPS">
+      </div>
+      <span class="footer-brand">TIMPS PostCards</span>
+    </div>
+    <div class="footer-center">
+      Issue 050 · July 14, 2026<br>
+      Hyderabad, India
+    </div>
+    <div class="footer-right">
+      <a href="index.html">Home</a><br>
+      <a href="index.html#archive">Archive</a><br>
+      &copy; 2026 TIMPS
+    </div>
+  </footer>
+
+</div> <!-- /wrapper -->
+</div> <!-- /page-layout -->
+</body>
+</html>
