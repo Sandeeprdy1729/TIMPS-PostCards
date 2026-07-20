@@ -35,3 +35,8 @@
 2026-07-13	049	thumb-2026-07-13.svg	Apple Sues OpenAI, Alleges Trade-Secret Theft "At Every Level"
 2026-07-14	050	thumb-2026-07-14.svg	Apple Says OpenAI Stole More Than Just Employees
 2026-07-15	051	thumb-2026-07-15.svg	200+ Economists, 16 Nobel Laureates Warn: "We Must Act Now" on AI's Economic Shock
+2026-07-16	052	thumb-2026-07-16.svg	Anthropic Strikes Multi-Gigawatt Compute Deal With Google and Broadcom
+2026-07-17	053	thumb-2026-07-17.svg	Gemini 3.5 Pro Finally Lands — Six Weeks Late, Straight Into the Busiest Week AI Has Ever Had
+2026-07-18	054	thumb-2026-07-18.svg	Oracle Cuts Up to 30,000 Jobs to Fund the $500B Stargate Buildout
+2026-07-19	055	thumb-2026-07-19.svg	India's Cab Service to Orbit Just Had Its First Pickup
+2026-07-20	056	thumb-2026-07-20.svg	Google Delays Gemini 3.5 Pro Again as Alphabet Shares Slide
