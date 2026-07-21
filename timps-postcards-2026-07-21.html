@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TIMPS PostCards — Issue 057</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #EEECE2;
+  font-family: 'EB Garamond', Georgia, ui-serif, serif;
+  color: #3D3929;
+  padding: 40px 20px 80px;
+}
+.wrapper { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 0; }
+
+/* Cover */
+.cover-card { background: #F0ECE0; border-radius: 20px 20px 4px 4px; padding: 56px 48px 48px; text-align: center; position: relative; overflow: hidden; border: 1.5px solid rgba(61,57,41,0.12); margin-bottom: 3px; }
+.cover-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, #DA7756 0%, #BD5D3A 60%, #E0A88A 100%); }
+.cover-eyebrow { font-size:10px; letter-spacing:4px; text-transform:uppercase; color:#DA7756; margin-bottom:20px; display:flex; align-items:center; justify-content:center; gap:10px; }
+.cover-eyebrow::before,.cover-eyebrow::after { content:''; flex:1; height:1px; background:#DA7756; opacity:.35; max-width:60px; }
+.cover-title { font-family:'Playfair Display',serif; font-size:58px; font-weight:900; line-height:1; letter-spacing:-1px; color:#3D3929; margin-bottom:8px; }
+.cover-sub { font-family:'Playfair Display',serif; font-size:13px; font-style:italic; color:#5C5847; margin-bottom:28px; }
+.cover-divider { width:48px; height:2px; background:#DA7756; margin:0 auto 24px; border-radius:2px; }
+.cover-meta { display:flex; justify-content:center; gap:32px; font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color:#5C5847; }
+.cover-badge { display:inline-flex; align-items:center; gap:6px; background:#DA7756; color:#fff; border-radius:20px; padding:6px 18px; font-size:10px; letter-spacing:2px; text-transform:uppercase; margin-top:28px; }
+.top5-pill { display:flex; justify-content:center; gap:10px; margin-top:32px; flex-wrap:wrap; }
+.pill { background:#3D3929; color:#F0ECE0; border-radius:100px; padding:4px 14px; font-size:10px; letter-spacing:1px; text-transform:uppercase; }
+.pill.light { background:transparent; color:#3D3929; border:1px solid rgba(61,57,41,.2); }
+
+/* Section labels */
+.section-label { display:flex; align-items:center; gap:12px; padding:10px 0 8px; font-size:9px; letter-spacing:4px; text-transform:uppercase; color:#5C5847; }
+.section-label::before,.section-label::after { content:''; flex:1; height:1px; background:rgba(61,57,41,.15); }
+
+/* Story cards */
+.story-card { border-radius:4px; border:1.5px solid rgba(61,57,41,.10); padding:36px 40px; margin-bottom:3px; position:relative; overflow:hidden; }
+.story-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }
+
+/* Card colour classes */
+.card-lavender { background:#EAE6F5; } .card-lavender::before { background:#C8BEE8; }
+.card-sage     { background:#D6E4D6; } .card-sage::before     { background:#8BAF8B; }
+.card-blush    { background:#F5DDD0; } .card-blush::before    { background:#E0A88A; }
+.card-sky      { background:#D6E8F0; } .card-sky::before      { background:#7AAFC0; }
+.card-cream    { background:#F7F5EF; } .card-cream::before    { background:#DA7756; }
+
+/* Card typography */
+.page-chip { position:absolute; top:14px; right:16px; font-size:9px; letter-spacing:2px; text-transform:uppercase; color:#5C5847; opacity:.5; }
+.card-routine { font-size:9px; letter-spacing:4px; text-transform:uppercase; color:#5C5847; margin-bottom:8px; }
+.card-headline { font-family:'Playfair Display',serif; font-size:28px; font-weight:900; line-height:1.15; color:#3D3929; margin-bottom:10px; }
+.card-headline.lg { font-size:34px; }
+.card-headline.sm { font-size:22px; }
+.card-deck { font-family:'Playfair Display',serif; font-style:italic; font-size:14px; line-height:1.55; color:#5C5847; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid rgba(61,57,41,.15); }
+.card-body { font-size:13px; line-height:1.8; color:#3D3929; }
+.card-body p { margin-bottom:11px; }
+.drop::first-letter { font-family:'Playfair Display',serif; font-size:52px; font-weight:900; float:left; line-height:.78; margin:5px 6px 0 0; color:#DA7756; }
+.clearfix::after { content:''; display:table; clear:both; }
+
+/* Inline highlights */
+.hl-terra { background:#DA7756; color:#fff; padding:0 4px; border-radius:2px; }
+.hl-ink   { background:#3D3929; color:#F0ECE0; padding:0 4px; border-radius:2px; }
+.hl-sage  { background:#8BAF8B; color:#fff; padding:0 4px; border-radius:2px; }
+.hl-lav   { background:#C8BEE8; color:#3D3929; padding:0 4px; border-radius:2px; }
+
+/* Stat float */
+.stat-box { float:right; margin:0 0 16px 24px; background:#F0ECE0; border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:16px 20px; text-align:center; min-width:120px; }
+.stat-big { font-family:'Playfair Display',serif; font-size:44px; font-weight:900; line-height:1; color:#DA7756; display:block; }
+.stat-label { font-size:9.5px; letter-spacing:1.5px; text-transform:uppercase; color:#5C5847; display:block; margin-top:4px; }
+
+/* Image frames */
+.img-frame { border:2px solid rgba(61,57,41,0.18); border-radius:12px; overflow:hidden; margin:16px 0; background:#F0ECE0; }
+.img-frame img { width:100%; display:block; max-height:240px; object-fit:cover; border-bottom:1px solid rgba(61,57,41,.12); }
+.img-caption { padding:8px 12px; font-size:10.5px; color:#5C5847; font-style:italic; display:flex; align-items:center; justify-content:space-between; gap:8px; }
+.img-caption a { font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color:#DA7756; text-decoration:none; white-space:nowrap; font-style:normal; }
+.img-frame.float-right { float:right; width:220px; margin:0 0 16px 24px; }
+.img-frame.float-right img { max-height:140px; }
+
+/* Source links */
+.source-link { display:inline-flex; align-items:center; gap:5px; font-size:10px; letter-spacing:1px; text-transform:uppercase; color:#DA7756; text-decoration:none; margin-top:12px; border-bottom:1px solid rgba(218,119,86,.35); padding-bottom:1px; }
+.source-link::after { content:'↗'; font-size:9px; }
+
+/* Signals */
+.signals-grid { display:flex; flex-direction:column; gap:14px; }
+.signal-row { display:flex; align-items:flex-start; gap:14px; }
+.signal-num { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-size:13px; font-weight:900; flex-shrink:0; color:#fff; }
+.signal-num.n1{background:#DA7756;} .signal-num.n2{background:#3D3929;} .signal-num.n3{background:#8BAF8B;} .signal-num.n4{background:#C8BEE8;color:#3D3929;} .signal-num.n5{background:#E0A88A;}
+.signal-title { font-family:'Playfair Display',serif; font-size:14px; font-weight:700; color:#3D3929; margin-bottom:2px; }
+.signal-desc { font-size:12px; line-height:1.65; color:#5C5847; }
+.signal-link { display:inline-block; font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color:#DA7756; text-decoration:none; margin-top:4px; border-bottom:1px solid rgba(218,119,86,.3); }
+
+/* Themes */
+.themes-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.theme-item { padding:10px 14px; border-radius:8px; font-family:'Playfair Display',serif; font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; text-align:center; border:1.5px solid rgba(61,57,41,.12); }
+
+/* Tool of week */
+.tool-week { background:#DA7756; color:#fff; border-radius:12px; padding:18px 20px; text-align:center; margin-top:14px; }
+.tool-week-eyebrow { font-size:9px; letter-spacing:4px; text-transform:uppercase; opacity:.75; margin-bottom:6px; }
+.tool-week-name { font-family:'Playfair Display',serif; font-size:22px; font-weight:900; margin-bottom:4px; }
+.tool-week-desc { font-size:11.5px; opacity:.85; font-style:italic; }
+
+/* Footer */
+.footer-card { background:#3D3929; color:#F0ECE0; border-radius:4px 4px 20px 20px; padding:28px 40px; text-align:center; margin-top:3px; }
+.footer-title { font-family:'Playfair Display',serif; font-size:15px; font-weight:900; letter-spacing:3px; text-transform:uppercase; margin-bottom:6px; }
+.footer-sub { font-size:10px; letter-spacing:2px; text-transform:uppercase; opacity:.5; }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- COVER -->
+  <div class="cover-card">
+    <div class="cover-eyebrow">AI Intelligence Digest</div>
+    <div class="cover-title">TIMPS<br>PostCards</div>
+    <div class="cover-sub">Your Daily Signal from the Machine Frontier</div>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+      <span>Issue 057 · July 21, 2026</span>
+      <span>Hyderabad, India</span>
+    </div>
+    <div class="cover-badge">⬡ Built with the TIMPS Ecosystem</div>
+    <div class="top5-pill">
+      <span class="pill">Open-Source Ban Revived</span>
+      <span class="pill">$25 GPT Finds $500K Bug</span>
+      <span class="pill">Airbus Quits AWS</span>
+    </div>
+  </div>
+
+  <div class="section-label">Today's Lead</div>
+
+  <!-- STORY 1 — LEAD — sage -->
+  <div class="story-card card-sage">
+    <div class="page-chip">01 · LEAD</div>
+    <div class="card-routine">Policy · Regulation</div>
+    <h1 class="card-headline lg">Washington Quietly Revives a Plan to Wall Off Foreign Open-Source AI</h1>
+    <div class="card-deck">Chinese open-weight releases like Kimi K3 and Qwen 3.8 are accelerating a White House push toward an executive order and federal procurement bans — even as lawyers warn a weights-level ban may not survive the First Amendment.</div>
+    <div class="card-body drop clearfix">
+      <p>Parts of the Trump administration are reviving efforts to impose de facto restrictions on foreign open-source AI models, according to Axios, with recent Chinese releases sharpening the sense of urgency inside the White House. Options reportedly under discussion include an executive order targeting open-source AI distribution and federal procurement bans on Chinese-origin models.</p>
+      <p>The push is a distinct policy track from an earlier framework that would have capped US open-model releases at the capability level of Chinese peers — this one goes further, aiming at access and distribution rather than a ceiling on domestic labs. Legal experts cited in the reporting flag First Amendment obstacles to any ban that reaches the level of published model weights, which courts have previously treated as a form of protected expression.</p>
+      <p>The timing is not incidental. Moonshot AI's Kimi K3 — a 2.8-trillion-parameter open model — and Alibaba's Qwen 3.8 have both landed hard on Western benchmarks in the past week, prompting American labs and investors to publicly reassess how far ahead the closed frontier really is. For builders, the story to watch isn't the ban itself but whether procurement rules quietly reshape which open weights enterprise teams are allowed to touch.</p>
+    </div>
+    <a href="https://www.axios.com/2026/07/20/ai-us-china-open-source-kimi" target="_blank" class="source-link">Full story · Axios</a>
+  </div>
+
+  <div class="section-label">Security & Capability</div>
+
+  <!-- STORY 2 — sky -->
+  <div class="story-card card-sky">
+    <div class="page-chip">02 · SECURITY</div>
+    <div class="card-routine">AI Capability · Cybersecurity</div>
+    <h1 class="card-headline">$25 of GPT-5.6 Finds a WordPress Bug Worth $500,000</h1>
+    <div class="card-deck">A single researcher ran roughly ten hours of autonomous multi-agent code analysis for about $25 in tokens — and surfaced a pre-authenticated exploit chain affecting half a billion WordPress installs.</div>
+    <div class="card-body drop clearfix">
+      <div class="stat-box">
+        <span class="stat-big">20,000x</span>
+        <span class="stat-label">cost-to-payout ratio</span>
+      </div>
+      <p>Searchlight Cyber's Adam Kues set GPT-5.6 Sol Ultra loose on default WordPress with a multi-agent code-analysis workflow, and the model discovered a pre-authenticated SQL-injection-to-remote-code-execution chain affecting more than 500 million instances. The bug abuses a validation-and-execution desync in the batch API, combined with cache poisoning and customize_changeset manipulation.</p>
+      <p>Exploit brokers openly pay up to $500,000 for a WordPress pre-auth RCE of this class — meaning roughly $25 of inference produced a finding worth 20,000 times its cost. It's a small, sharp data point in a much larger vulnerability-research story: AI security acquisitions have nearly tripled this year, and CISA has separately warned that autonomous agents are opening new identity-management gaps even as they help close old ones.</p>
+    </div>
+    <a href="https://slcyber.io/research-center/exploit-brokers-pay-500000-for-a-wordpress-rce-i-found-one-with-gpt5-6/" target="_blank" class="source-link">Full story · Searchlight Cyber</a>
+  </div>
+
+  <div class="section-label">Enterprise & Sovereignty</div>
+
+  <!-- STORY 3 — blush -->
+  <div class="story-card card-blush">
+    <div class="page-chip">03 · SOVEREIGNTY</div>
+    <div class="card-routine">Cloud Infrastructure · Digital Sovereignty</div>
+    <h1 class="card-headline">Airbus Quits AWS for France's Scaleway, Citing AI-Era Sovereignty Risk</h1>
+    <div class="card-deck">Roughly 900 applications are moving off Amazon's cloud to a French provider — with Airbus deliberately keeping frontier AI out of the critical systems it's relocating.</div>
+    <div class="card-body drop clearfix">
+      <p>Airbus is relocating around 900 applications from AWS to French cloud provider Scaleway, with 70 critical systems — ERP, CRM, and manufacturing platforms among them — prioritized for immediate transfer. The Register frames the move as digital sovereignty becoming a commercial driver rather than political rhetoric, amid concerns that US-headquartered clouds cannot fully shield sensitive European data from US government access requests.</p>
+      <p>Notably, Airbus is deliberately avoiding frontier AI models inside the critical systems it's moving, limiting AI use to knowledge extraction, support chatbots, decision support, and flight automation — a narrower posture than most enterprises adopting agentic AI this year. The relocation lands the same week Europe's sovereignty debate intensified over the EU's binding order for Google to open Android to rival AI assistants.</p>
+    </div>
+    <a href="https://www.theregister.com/columnists/2026/07/20/airbus-takes-flight-from-aws-what-happens-next-is-critical/5274109" target="_blank" class="source-link">Full story · The Register</a>
+  </div>
+
+  <div class="section-label">Compute & Infrastructure</div>
+
+  <!-- STORY 4 — sage -->
+  <div class="story-card card-sage">
+    <div class="page-chip">04 · COMPUTE</div>
+    <div class="card-routine">Memory Supply · Global Compute</div>
+    <h1 class="card-headline sm">SK Chair: The AI Memory Shortage Is Now "Economic Security"</h1>
+    <div class="card-deck">Speaking in Jeju, SK Group's Chey Tae-won said foreign governments now treat memory-chip access as a national-security question — with customers already asking for 60–100% more capacity in 2027.</div>
+    <div class="card-body drop clearfix">
+      <p>Speaking at the Korea Chamber of Commerce and Industry's Jeju Forum on July 19, SK Group Chair Chey Tae-won said foreign governments now treat AI memory access as "economic security," warning that customers are asking for 60–100% more AI memory in 2027 while, in his words, "no company has meaningful new capacity" coming online fast enough to meet it.</p>
+      <p>The warning lands the same week the Financial Times reported memory stocks sliding as investors split on whether new capacity expansion from SK Hynix, Samsung, and Micron will trigger the industry's next glut — or whether AI demand has finally broken memory's classic boom-and-bust cycle. SanDisk and Seagate both fell double digits last week on related concerns, even as SK's own leadership argues the shortage, not oversupply, is the real multi-year risk.</p>
+    </div>
+    <a href="https://www.koreaherald.com/article/10812835" target="_blank" class="source-link">Full story · The Korea Herald</a>
+  </div>
+
+  <div class="section-label">AI Safety & Guardrails</div>
+
+  <!-- STORY 5 — sky -->
+  <div class="story-card card-sky">
+    <div class="page-chip">05 · SAFETY</div>
+    <div class="card-routine">AI Safety · Guardrails</div>
+    <h1 class="card-headline sm">Hugging Face's Own Breach Probe Was Blocked — by AI Safety Guardrails</h1>
+    <div class="card-deck">Commercial frontier models refused to analyze the attack payloads used against Hugging Face's own systems, forcing its blue team to switch to an open Chinese model to do the forensic work.</div>
+    <div class="card-body drop clearfix">
+      <p>Hugging Face disclosed that during a recent agentic AI-driven intrusion into its internal pipeline, its blue team first tried frontier models behind commercial APIs to analyze attack commands, exploit payloads, and command-and-control artifacts — and those requests were blocked outright by the providers' own safety guardrails. Unable to get the forensic analysis it needed, the team switched to the open-weight Chinese model GLM 5.2 to process more than 17,000 attack events.</p>
+      <p>Public models, datasets, and Spaces were not tampered with in the breach, but internal datasets and service credentials were compromised, and Hugging Face is telling users to rotate access tokens. The episode is a pointed case study in a tension the industry hasn't resolved: the same guardrails built to stop misuse of frontier models can also stop legitimate defenders from doing incident response — and open weights, precisely because nobody can block the request, filled the gap.</p>
+    </div>
+    <a href="https://www.thestack.technology/hugging-face-hacked-turned-to-chinese-llm-for-help-after-us-models-blocked-blue-team/" target="_blank" class="source-link">Full story · The Stack</a>
+  </div>
+
+  <div class="section-label">The Signal Board</div>
+
+  <!-- SIGNALS -->
+  <div class="story-card card-sage">
+    <div class="card-routine">Signals</div>
+    <h2 class="card-headline sm">What Else Moved Today</h2>
+    <div class="signals-grid" style="margin-top:16px;">
+      <div class="signal-row">
+        <div class="signal-num n1">1</div>
+        <div>
+          <div class="signal-title">Current AI Raises $400M for Public AI Infrastructure</div>
+          <div class="signal-desc">CEO Ayah Bdeir's nonprofit lands $100M from the French government plus Ford Foundation, MacArthur Foundation, DeepMind, and Salesforce to build open AI infrastructure.</div>
+          <a href="https://techcrunch.com/2026/07/19/nonprofit-current-ai-is-racing-to-build-the-world-wide-web-of-ai-free-for-all/" target="_blank" class="signal-link">TechCrunch ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n2">2</div>
+        <div>
+          <div class="signal-title">Looped Transformer "Loopie" Claims IMO and IPhO Gold</div>
+          <div class="signal-desc">A new Mixture-of-Experts looped Transformer reaches gold-medal performance on both olympiads without tool use, challenging assumptions about parameter scaling versus depth.</div>
+          <a href="https://huggingface.co/papers/2607.16051" target="_blank" class="signal-link">Hugging Face ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n3">3</div>
+        <div>
+          <div class="signal-title">Big Tech's $725B AI Spend Faces a Reckoning</div>
+          <div class="signal-desc">Chip stocks fell 10% last week — their worst since April 2025 — as Kimi K3's launch reignites investor doubts about hyperscaler capex.</div>
+          <a href="https://www.bloomberg.com/news/articles/2026-07-19/big-tech-needs-to-justify-ai-spending-as-investors-dump-stocks" target="_blank" class="signal-link">Bloomberg ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n4">4</div>
+        <div>
+          <div class="signal-title">VCs Pile Into Anthropic Without Demanding Board Seats</div>
+          <div class="signal-desc">Spark Capital, Gigafund, and Greenoaks write large late-stage checks with no governance rights — a break from traditional venture terms as frontier-lab allocation stays scarce.</div>
+          <a href="https://www.wsj.com/finance/venture-capital-anthropic-spark-yasmin-razavi-93dd6041" target="_blank" class="signal-link">WSJ ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n5">5</div>
+        <div>
+          <div class="signal-title">CuspAI Raises $450M for AI-Driven Materials Discovery</div>
+          <div class="signal-desc">The Cambridge startup launches a Bezos-backed coalition applying AI to chip-adjacent materials discovery, following a $520M Series A last September.</div>
+          <a href="https://www.bloomberg.com/news/articles/2026-07-20/bezos-backs-startup-focused-on-material-discovery-for-chipmaking" target="_blank" class="signal-link">Bloomberg ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THEMES + TOOL -->
+  <div class="story-card card-sky">
+    <div class="card-routine">Themes</div>
+    <h2 class="card-headline sm">The Shape of Today's News</h2>
+    <div class="themes-grid" style="margin-top:14px;">
+      <div class="theme-item">Open-Source Policy</div>
+      <div class="theme-item">AI-Assisted Security</div>
+      <div class="theme-item">Data Sovereignty</div>
+      <div class="theme-item">Compute Shortage</div>
+      <div class="theme-item">Safety Guardrails</div>
+      <div class="theme-item">Frontier Funding</div>
+      <div class="theme-item">Chip Selloff</div>
+      <div class="theme-item">Materials AI</div>
+    </div>
+    <div class="tool-week">
+      <div class="tool-week-eyebrow">Tool of the Day</div>
+      <div class="tool-week-name">GLM 5.2</div>
+      <div class="tool-week-desc">The open-weight model Hugging Face's own security team turned to when commercial frontier APIs refused to analyze its breach data.</div>
+    </div>
+  </div>
+
+  <!-- SOURCES -->
+  <div class="story-card card-blush">
+    <div class="card-routine">Sources Cited</div>
+    <h2 class="card-headline sm">Where Today's Signal Came From</h2>
+    <div class="themes-grid" style="margin-top:14px; grid-template-columns:1fr 1fr;">
+      <div class="theme-item" style="text-transform:none; font-family:'EB Garamond',serif; font-weight:600; font-size:12.5px;"><a href="https://www.axios.com/2026/07/20/ai-us-china-open-source-kimi" target="_blank" style="color:#3D3929; text-decoration:none;">Axios</a></div>
+      <div class="theme-item" style="text-transform:none; font-family:'EB Garamond',serif; font-weight:600; font-size:12.5px;"><a href="https://slcyber.io/research-center/exploit-brokers-pay-500000-for-a-wordpress-rce-i-found-one-with-gpt5-6/" target="_blank" style="color:#3D3929; text-decoration:none;">Searchlight Cyber</a></div>
+      <div class="theme-item" style="text-transform:none; font-family:'EB Garamond',serif; font-weight:600; font-size:12.5px;"><a href="https://www.theregister.com/columnists/2026/07/20/airbus-takes-flight-from-aws-what-happens-next-is-critical/5274109" target="_blank" style="color:#3D3929; text-decoration:none;">The Register</a></div>
+      <div class="theme-item" style="text-transform:none; font-family:'EB Garamond',serif; font-weight:600; font-size:12.5px;"><a href="https://www.koreaherald.com/article/10812835" target="_blank" style="color:#3D3929; text-decoration:none;">The Korea Herald</a></div>
+      <div class="theme-item" style="text-transform:none; font-family:'EB Garamond',serif; font-weight:600; font-size:12.5px;"><a href="https://www.thestack.technology/hugging-face-hacked-turned-to-chinese-llm-for-help-after-us-models-blocked-blue-team/" target="_blank" style="color:#3D3929; text-decoration:none;">The Stack</a></div>
+      <div class="theme-item" style="text-transform:none; font-family:'EB Garamond',serif; font-weight:600; font-size:12.5px;"><a href="https://techcrunch.com/2026/07/19/nonprofit-current-ai-is-racing-to-build-the-world-wide-web-of-ai-free-for-all/" target="_blank" style="color:#3D3929; text-decoration:none;">TechCrunch</a></div>
+      <div class="theme-item" style="text-transform:none; font-family:'EB Garamond',serif; font-weight:600; font-size:12.5px;"><a href="https://www.bloomberg.com/news/articles/2026-07-19/big-tech-needs-to-justify-ai-spending-as-investors-dump-stocks" target="_blank" style="color:#3D3929; text-decoration:none;">Bloomberg</a></div>
+      <div class="theme-item" style="text-transform:none; font-family:'EB Garamond',serif; font-weight:600; font-size:12.5px;"><a href="https://www.wsj.com/finance/venture-capital-anthropic-spark-yasmin-razavi-93dd6041" target="_blank" style="color:#3D3929; text-decoration:none;">WSJ</a></div>
+      <div class="theme-item" style="text-transform:none; font-family:'EB Garamond',serif; font-weight:600; font-size:12.5px;"><a href="https://huggingface.co/papers/2607.16051" target="_blank" style="color:#3D3929; text-decoration:none;">Hugging Face</a></div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer-card">
+    <div class="footer-title">TIMPS PostCards</div>
+    <div class="footer-sub">Issue 057 · July 21, 2026 · Hyderabad, India</div>
+  </div>
+
+</div>
+</body>
+</html>
