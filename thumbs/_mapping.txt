@@ -40,3 +40,4 @@
 2026-07-18	054	thumb-2026-07-18.svg	Oracle Cuts Up to 30,000 Jobs to Fund the $500B Stargate Buildout
 2026-07-19	055	thumb-2026-07-19.svg	India's Cab Service to Orbit Just Had Its First Pickup
 2026-07-20	056	thumb-2026-07-20.svg	Google Delays Gemini 3.5 Pro Again as Alphabet Shares Slide
+2026-07-21	2026-07-21	thumb-2026-07-21.svg	Washington Quietly Revives a Plan to Wall Off Foreign Open-Source AI
