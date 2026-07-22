@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TIMPS">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>TIMPS PostCards — Issue 058</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --cream:  #EEECE2;
+    --forest: #3D3929;
+    --terra:  #DA7756;
+    --terra-d:#BD5D3A;
+    --black:  #111111;
+    --card-bg:#F0ECE0;
+    --mono:   'Space Mono', 'Courier New', monospace;
+    --serif:  'TIMPS', 'Playfair Display', Georgia, serif;
+  }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Black.woff2') format('woff2'); font-weight:900; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Bold.woff2') format('woff2'); font-weight:700; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-SemiBold.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--cream);
+    background-image:
+      linear-gradient(rgba(61,57,41,.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.07) 1px, transparent 1px);
+    background-size: 38px 38px;
+    font-family: 'Space Mono', 'Courier New', monospace;
+    color: var(--forest);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { text-decoration: none; color: inherit; }
+
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 48px;
+    background-color: rgba(238,236,226,.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1.5px solid rgba(61,57,41,.12);
+    background-image:
+      linear-gradient(rgba(61,57,41,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.05) 1px, transparent 1px);
+    background-size: 38px 38px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 15px;
+    font-weight: 600;
+    color: #000;
+    text-decoration: none;
+  }
+  .nav-logo-mark {
+    width: 34px; height: 34px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .nav-logo-mark img { width: 28px; height: 28px; object-fit: contain; }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-link {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: #000;
+    opacity: .65;
+    text-decoration: none;
+    transition: opacity .15s;
+  }
+  .nav-link:hover { opacity: 1; }
+  .nav-cta {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: #000;
+    background: var(--terra);
+    border: 2.5px solid #000;
+    border-radius: 100px;
+    padding: 10px 24px;
+    cursor: pointer;
+    transition: background .15s, transform .1s;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--terra-d); transform: translateY(-1px); }
+
+  .wrapper { max-width: 760px; margin: 0 auto; padding: 40px 20px 80px; display: flex; flex-direction: column; gap: 0; }
+
+  .cover-card { background: var(--card-bg); border-radius: 20px 20px 4px 4px; padding: 56px 48px 48px; text-align: center; position: relative; overflow: hidden; border: 1.5px solid rgba(61,57,41,.12); margin-bottom: 3px; }
+  .cover-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, var(--terra) 0%, var(--terra-d) 60%, #E0A88A 100%); }
+  .cover-eyebrow { font-family: var(--mono); font-size:10px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:20px; display:flex; align-items:center; justify-content:center; gap:10px; }
+  .cover-eyebrow::before,.cover-eyebrow::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .15; max-width:60px; }
+  .cover-title { font-family: var(--serif); font-size:58px; font-weight:900; line-height:1; letter-spacing:-1px; color: var(--forest); margin-bottom:8px; }
+  .cover-sub { font-family: var(--serif); font-size:13px; font-style:italic; color: var(--forest); opacity: .55; margin-bottom:28px; }
+  .cover-divider { width:48px; height:2px; background: var(--terra); margin:0 auto 24px; border-radius:2px; }
+  .cover-meta { display:flex; justify-content:center; gap:32px; font-family: var(--mono); font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .45; }
+  .cover-badge { display:inline-flex; align-items:center; gap:6px; background: var(--terra); color: #fff; border-radius:20px; padding:6px 18px; font-family: var(--mono); font-size:10px; letter-spacing:2px; text-transform:uppercase; margin-top:28px; }
+  .top5-pill { display:flex; justify-content:center; gap:10px; margin-top:32px; flex-wrap:wrap; }
+  .pill { background: var(--forest); color: var(--cream); border-radius:100px; padding:4px 14px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; }
+  .pill.light { background:transparent; color: var(--forest); border:1px solid rgba(61,57,41,.2); }
+
+  .section-label { display:flex; align-items:center; gap:12px; padding:10px 0 8px; font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .35; }
+  .section-label::before,.section-label::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .1; }
+
+  .story-card { border-radius:4px; border:1.5px solid rgba(61,57,41,.10); padding:36px 40px; margin-bottom:3px; position:relative; overflow:hidden; }
+  .story-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }
+
+  .card-sky      { background:#D6E8F0; } .card-sky::before      { background: #7AAFC0; }
+  .card-cream    { background: var(--card-bg); } .card-cream::before    { background: var(--terra); }
+  .card-blush    { background:#F5DDD0; } .card-blush::before    { background: #E0A88A; }
+  .card-lavender { background:#EAE6F5; } .card-lavender::before { background: #C8BEE8; }
+  .card-sage     { background:#D6E4D6; } .card-sage::before     { background: #8BAF8B; }
+
+  .page-chip { position:absolute; top:14px; right:16px; font-family: var(--mono); font-size:9px; letter-spacing:2px; text-transform:uppercase; color: var(--forest); opacity: .3; }
+  .card-routine { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:8px; }
+  .card-headline { font-family: var(--serif); font-size:28px; font-weight:900; line-height:1.15; color: var(--forest); margin-bottom:10px; }
+  .card-headline.lg { font-size:34px; }
+  .card-headline.sm { font-size:22px; }
+  .card-deck { font-family: var(--serif); font-style:italic; font-size:14px; line-height:1.55; color: var(--forest); opacity: .55; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid rgba(61,57,41,.12); }
+  .card-body { font-family: 'Lora', Georgia, serif; font-size:14px; line-height:1.7; color: var(--forest); }
+  .card-body p { margin-bottom:11px; }
+  .drop::first-letter { font-family: var(--serif); font-size:52px; font-weight:900; float:left; line-height:.78; margin:5px 6px 0 0; color: var(--terra); }
+  .clearfix::after { content:''; display:table; clear:both; }
+
+  .hl-lime { background: var(--terra); color: var(--forest); padding:0 4px; border-radius:2px; }
+  .hl-ink  { background: var(--forest); color: var(--cream); padding:0 4px; border-radius:2px; }
+  .hl-sage { background: #8BAF8B; color: #fff; padding:0 4px; border-radius:2px; }
+  .hl-lav  { background: #C8BEE8; color: var(--forest); padding:0 4px; border-radius:2px; }
+
+  .stat-box { float:right; margin:0 0 16px 24px; background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:16px 20px; text-align:center; min-width:120px; }
+  .stat-big { font-family: var(--serif); font-size:44px; font-weight:900; line-height:1; color: var(--forest); display:block; }
+  .stat-label { font-family: var(--mono); font-size:9.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .5; display:block; margin-top:4px; }
+
+  .img-frame { border:2px solid rgba(61,57,41,0.18); border-radius:12px; overflow:hidden; margin:16px 0; background: var(--card-bg); }
+  .img-frame img { width:100%; display:block; max-height:240px; object-fit:cover; border-bottom:1px solid rgba(61,57,41,.12); }
+  .img-caption { padding:8px 12px; font-family: var(--mono); font-size:10.5px; color: var(--forest); opacity: .6; font-style:italic; display:flex; align-items:center; justify-content:space-between; gap:8px; }
+  .img-caption a { font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; white-space:nowrap; font-style:normal; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; }
+  .img-caption a:hover { opacity: 1; }
+
+  .source-link { display:inline-flex; align-items:center; gap:5px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:12px; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; transition: opacity .15s; }
+  .source-link:hover { opacity: 1; }
+  .source-link::after { content:'↗'; font-size:9px; }
+
+  .signals-grid { display:flex; flex-direction:column; gap:14px; }
+  .signal-row { display:flex; align-items:flex-start; gap:14px; }
+  .signal-num { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family: var(--serif); font-size:13px; font-weight:900; flex-shrink:0; color:#fff; }
+  .signal-num.n1{background: var(--terra); color: var(--forest);} .signal-num.n2{background: var(--forest);} .signal-num.n3{background:#7AAFC0;} .signal-num.n4{background: var(--terra-d); color: var(--forest);} .signal-num.n5{background: var(--black);}
+  .signal-title { font-family: var(--serif); font-size:14px; font-weight:700; color: var(--forest); margin-bottom:2px; }
+  .signal-desc { font-family: 'Space Mono', monospace; font-size:12px; line-height:1.65; color: var(--forest); opacity: .6; }
+
+  .themes-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .theme-item { padding:10px 14px; border-radius:8px; font-family: var(--serif); font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; text-align:center; border:1.5px solid rgba(61,57,41,.12); background: var(--cream); }
+
+  .tool-week { background: var(--forest); color: var(--cream); border-radius:12px; padding:18px 20px; text-align:center; margin-top:14px; }
+  .tool-week-eyebrow { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; opacity: .55; margin-bottom:6px; }
+  .tool-week-name { font-family: var(--serif); font-size:22px; font-weight:900; margin-bottom:4px; }
+  .tool-week-desc { font-family: 'Space Mono', monospace; font-size:11.5px; opacity: .7; font-style:italic; }
+
+  .output-card { background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:18px 20px; margin-top:14px; }
+  .output-title { font-family: var(--serif); font-size:18px; font-weight:700; margin-bottom:8px; color: var(--forest); }
+  .output-meta { display:flex; gap:20px; font-family: var(--mono); font-size:10px; color: var(--forest); opacity: .5; padding-bottom:10px; margin-bottom:10px; border-bottom:1px solid rgba(61,57,41,.12); flex-wrap:wrap; }
+  .tp-list { list-style:none; padding:0; margin:0; }
+  .tp-list li { padding:5px 0; font-family: 'Lora', Georgia, serif; font-size:12px; color: var(--forest); border-bottom:1px solid rgba(61,57,41,.07); display:flex; align-items:flex-start; gap:7px; }
+  .tp-list li::before { content:'·'; color: var(--terra); font-size:14px; line-height:1.2; flex-shrink:0; }
+
+  .sources-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px 20px; }
+  .sources-grid a { font-family: var(--mono); font-size:11px; color: var(--forest); opacity: .55; text-decoration:none; border-bottom:1px solid rgba(61,57,41,.15); padding-bottom:1px; transition: opacity .15s; }
+  .sources-grid a:hover { opacity: 1; }
+
+  .footer {
+    background: var(--black);
+    padding: 28px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    border-radius: 4px 4px 20px 20px;
+    margin-top: 3px;
+  }
+  .footer-logo { display: flex; align-items: center; gap: 10px; }
+  .footer-mark { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; }
+  .footer-mark img { width: 24px; height: 24px; object-fit: contain; filter: brightness(10); }
+  .footer-brand { font-family: var(--mono); font-size: 13px; font-weight: 700; color: #fff; }
+  .footer-center { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.4); text-align: center; line-height: 1.6; }
+  .footer-right { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.3); text-align: right; line-height: 2; }
+  .footer-right a { color: rgba(255,255,255,.5); transition: color .15s; }
+  .footer-right a:hover { color: #fff; }
+
+  .page-layout { display: flex; align-items: flex-start; gap: 0; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+  .toc-sidebar { position: sticky; top: 80px; width: 170px; flex-shrink: 0; padding: 48px 0 0 0; }
+  .toc-nav { display: flex; flex-direction: column; gap: 0; }
+  .toc-link { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.5px; text-transform: uppercase; color: #000; opacity: .45; text-decoration: none; padding: 7px 12px; border-left: 2px solid transparent; transition: opacity .15s, border-color .15s; line-height: 1.3; }
+  .toc-link:hover { opacity: .85; }
+  .toc-link.active { opacity: 1; border-left-color: var(--terra); }
+  .section-anchor { scroll-margin-top: 80px; }
+
+  @media (max-width: 900px) {
+    .toc-sidebar { display: none; }
+    .page-layout { max-width: 760px; }
+  }
+
+  @media (max-width: 720px) {
+    .nav { padding: 12px 24px; }
+    .nav-links { display: none; }
+    .wrapper { padding: 20px 14px 60px; }
+    .cover-card { padding: 40px 24px; }
+    .story-card { padding: 28px 20px; }
+    .footer { padding: 24px; flex-direction: column; align-items: flex-start; }
+    .footer-center, .footer-right { text-align: left; }
+    .stat-box { float: none; margin: 0 0 16px 0; }
+  }
+  @media (max-width: 480px) {
+    .nav-logo span { display: none; }
+    .cover-title { font-size: 40px; }
+    .card-headline.lg { font-size: 28px; }
+    .card-headline { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-mark">
+      <img src="timps_logo.svg" alt="TIMPS">
+    </div>
+    <span>TIMPS PostCards</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html#archive" class="nav-link">Archive</a>
+    <a href="timps-postcards-2026-07-22.html" class="nav-link">Latest Issue</a>
+    <a href="index.html#subscribe" class="nav-link">Subscribe</a>
+  </div>
+  <a href="index.html#subscribe" class="nav-cta">Subscribe</a>
+</nav>
+
+<div class="page-layout">
+
+  <aside class="toc-sidebar">
+    <nav class="toc-nav">
+      <a href="#intro" class="toc-link">Intro</a>
+      <a href="#lead" class="toc-link">Lead</a>
+      <a href="#friction" class="toc-link">Friction</a>
+      <a href="#geopolitics" class="toc-link">Geopolitics</a>
+      <a href="#sovereignty" class="toc-link">Sovereignty</a>
+      <a href="#platform" class="toc-link">Platform</a>
+      <a href="#signals" class="toc-link">Signals</a>
+      <a href="#themes" class="toc-link">Themes</a>
+      <a href="#tool" class="toc-link">Tool</a>
+      <a href="#sources" class="toc-link">Sources</a>
+    </nav>
+  </aside>
+
+  <div class="wrapper">
+
+  <!-- INTRODUCTION -->
+  <div id="intro" class="cover-card section-anchor">
+    <div class="cover-eyebrow">AI Intelligence Digest</div>
+    <div class="cover-title">TIMPS<br>PostCards</div>
+    <div class="cover-sub">Your Daily Signal from the Machine Frontier</div>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+      <span>Issue 058</span>
+      <span>July 22, 2026</span>
+      <span>Hyderabad, India</span>
+    </div>
+    <div class="cover-badge">⬡ Built with the TIMPS Ecosystem</div>
+    <div class="top5-pill">
+      <span class="pill">Gemini 3.6 Flash Ships</span>
+      <span class="pill light">Nadella vs Fable 5</span>
+      <span class="pill light">AWS Bahrain Struck</span>
+    </div>
+  </div>
+
+  <!-- CARD 1 - LEAD -->
+  <div id="lead" class="story-card card-sage section-anchor">
+    <div class="page-chip">01 · LEAD</div>
+    <div class="card-routine">Frontier Models</div>
+    <h1 class="card-headline lg">Google Finally Ships Gemini 3.6 Flash — And Quietly Starts Building Gemini 4</h1>
+    <div class="card-deck">Three new models land while the flagship Pro stays dark, and Google admits the delay may be getting absorbed into a bigger generational leap.</div>
+    <div class="img-frame">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Google_Gemini_logo.svg" alt="Google Gemini logo" onerror="this.style.display='none'">
+      <div class="img-caption">Gemini 3.6 Flash: $1.50/$7.50 per million tokens <a href="https://aitoolsrecap.com/Blog/gemini-3-6-flash-launch-specs-pricing-2026" target="_blank">Source ↗</a></div>
+    </div>
+    <div class="card-body drop clearfix">
+      <p>Google shipped three new Gemini models on July 21 — 3.6 Flash, 3.5 Flash-Lite, and a restricted 3.5 Flash Cyber for governments and trusted partners — while <span class="hl-lime">Gemini 3.5 Pro, the flagship, remained conspicuously absent</span> for the third missed deadline running.</p>
+      <p>Gemini 3.6 Flash prices in at $1.50/$7.50 per million tokens with 17% fewer output tokens than its predecessor and a knowledge cutoff pushed to March 2026. It ships with Computer Use built in and an Artificial Analysis Index score of 50. Harvey and Hebbia are named as early adopters, and Google's CodeMender security tool entered preview with Salesforce, Robinhood, and Palo Alto Networks. Flash-Lite undercuts everything at $0.30/$2.50 per million tokens — the cheapest tier Google has ever shipped.</p>
+      <p>The bigger tell came buried in the same announcement: Google confirmed it has begun <span class="hl-ink">"our most ambitious pre-training run yet"</span> for Gemini 4 — suggesting the Pro delay isn't a bug being fixed, but a generation being skipped.</p>
+    </div>
+    <a class="source-link" href="https://aitoolsrecap.com/Blog/gemini-3-6-flash-launch-specs-pricing-2026" target="_blank">Full story · AI Tools Recap</a>
+  </div>
+
+  <!-- CARD 2 - FRICTION -->
+  <div id="friction" class="story-card card-sky section-anchor">
+    <div class="page-chip">02 · FRICTION</div>
+    <div class="card-routine">Partner Tension</div>
+    <h2 class="card-headline">Nadella Calls Anthropic's Fable 5 "Editorially Controlled" — Despite Microsoft's $5B Stake</h2>
+    <div class="card-deck">The Microsoft CEO told his own Copilot engineers that Fable refuses too much, then took a swing at the entire two-lab token economy.</div>
+    <div class="card-body drop clearfix">
+      <p>Satya Nadella told Copilot engineers in an internal meeting on July 16 that Anthropic's Fable 5 model places unreasonable limits on what users can ask it. <span class="hl-lime">"When was the last time you had a creation tool that was so editorially controlled? It doesn't make sense,"</span> he said — remarkable given the team he was addressing builds Copilot on top of Claude models.</p>
+      <p>Nadella went further, questioning industry concentration itself: "It can't be that there are only two companies in the world with token capital, and everybody else is renting it." Microsoft has invested $5B in Anthropic, and Anthropic has committed $30B to Azure — making this an unusually public airing of friction between deeply entangled partners. Anthropic declined to comment.</p>
+    </div>
+    <a class="source-link" href="https://aitoolsrecap.com/Blog/satya-nadella-anthropic-fable-editorially-controlled-2026" target="_blank">Full story · AI Tools Recap</a>
+  </div>
+
+  <!-- CARD 3 - GEOPOLITICS -->
+  <div id="geopolitics" class="story-card card-blush section-anchor">
+    <div class="page-chip">03 · GEOPOLITICS</div>
+    <div class="card-routine">Infrastructure Under Fire</div>
+    <h2 class="card-headline">Iran's IRGC Claims Cruise Missile Strike Destroyed an AWS Data Center in Bahrain</h2>
+    <div class="card-deck">A third claimed hit on the same cloud facility since March turns commercial compute into a declared military target in the Gulf conflict.</div>
+    <div class="img-frame">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" alt="Amazon Web Services logo" onerror="this.style.display='none'">
+      <div class="img-caption">AWS Bahrain (ME-South-1): "Disrupted" since March 2026 <a href="https://www.euronews.com/2026/07/21/irans-irgc-claims-attack-on-amazons-main-data-hub-in-bahrain" target="_blank">Source ↗</a></div>
+    </div>
+    <div class="card-body drop clearfix">
+      <p>Iran's Islamic Revolutionary Guard Corps said Tuesday its Aerospace Force targeted and <span class="hl-lime">"destroyed"</span> Amazon's central data infrastructure in Bahrain using several cruise missiles, framing it as retaliation for a U.S. strike on the Darkhovin nuclear facility two days earlier. The IRGC packaged the claim alongside hits on U.S. radar and Patriot air-defense positions at Muharraq and Riffa — treating Amazon's commercial cloud as operationally equivalent to military targets.</p>
+      <p>Neither Amazon, Bahraini officials, nor U.S. CENTCOM have confirmed damage, and Bahrain has said it intercepted the attack. AWS's ME-South-1 region has shown as "Disrupted" on its health dashboard since a wave of drone strikes in March — this would mark at least the third kinetic action against the same facility, and the first reported use of cruise missiles against commercial cloud infrastructure in the conflict.</p>
+    </div>
+    <a class="source-link" href="https://www.euronews.com/2026/07/21/irans-irgc-claims-attack-on-amazons-main-data-hub-in-bahrain" target="_blank">Full story · Euronews</a>
+  </div>
+
+  <!-- CARD 4 - SOVEREIGNTY -->
+  <div id="sovereignty" class="story-card card-sage section-anchor">
+    <div class="page-chip">04 · SOVEREIGNTY</div>
+    <div class="card-routine">Government AI</div>
+    <h2 class="card-headline sm">South Korea Plans a Free National AI Chatbot to Cut Reliance on ChatGPT and Claude</h2>
+    <div class="card-deck">Seoul becomes the third government this month to treat AI access as public infrastructure rather than a product rented from U.S. labs.</div>
+    <div class="card-body drop clearfix">
+      <p>South Korea announced plans to launch a free, domestically-built AI chatbot service this year, aiming to reduce the country's dependence on foreign platforms. The move follows Current AI's $400M public infrastructure fund (July 13, led by a $100M French commitment) and the EU Parliament's EPGenAI Hub, which promised MEPs access to OpenAI, Anthropic, Meta, and Mistral models by September 2026.</p>
+      <p>The pattern across all three: governments are increasingly unwilling to treat frontier AI as a rented utility, and are instead building or subsidizing sovereign alternatives — a trend that sits uneasily next to Nadella's own complaint, above, about <span class="hl-ink">a token economy controlled by just two companies.</span></p>
+    </div>
+    <a class="source-link" href="https://aitoolsrecap.com/Blog/south-korea-free-national-ai-chatbot-2026" target="_blank">Full story · AI Tools Recap</a>
+  </div>
+
+  <!-- CARD 5 - PLATFORM -->
+  <div id="platform" class="story-card card-sky section-anchor">
+    <div class="page-chip">05 · PLATFORM</div>
+    <div class="card-routine">AI Moderation</div>
+    <h2 class="card-headline sm">Meta Says Its AI Moderator Beats Humans on Accuracy — It Also Deleted a Business With 1M Followers</h2>
+    <div class="card-deck">A New York Times investigation finds real businesses erased by automated enforcement, with appeals reviewed by the same system that made the mistake.</div>
+    <div class="card-body drop clearfix">
+      <div class="stat-box">
+        <span class="stat-big">13%</span>
+        <span class="stat-label">Fewer Errors Claimed vs. Humans</span>
+      </div>
+      <p>Meta says its newer AI moderation models make 13% fewer errors than human reviewers and catch 10% more genuine policy violations. But The New York Times documented Instagram and Facebook users — including a business with nearly a million followers teaching English online — whose accounts were deleted over false fraud and child-exploitation claims, with appeals handled by the same AI system that issued the original ban, leaving no path to a human reviewer.</p>
+      <p>Some accounts were restored only after journalists intervened. Meta says the specific cases examined were banned by older moderation systems, not its newest AI tools — a distinction that offers little comfort to a small business owner who described losing the account as watching "somebody just shut down your storefront."</p>
+    </div>
+    <a class="source-link" href="https://www.newswireexplorer.com/what-happened-when-meta-used-a-i-to-ban-accounts-on-facebook-and-instagram/" target="_blank">Full story · The New York Times</a>
+  </div>
+
+  <!-- SIGNALS -->
+  <div id="signals" class="story-card card-cream section-anchor">
+    <div class="page-chip">SIGNALS</div>
+    <div class="card-routine">5 Key Signals</div>
+    <h2 class="card-headline sm">What Else Moved Today</h2>
+    <div class="signals-grid" style="margin-top:18px;">
+      <div class="signal-row">
+        <div class="signal-num n1">1</div>
+        <div>
+          <div class="signal-title">Anthropic's Q2 Lobbying Spend Hits $1.97M</div>
+          <div class="signal-desc">Up 26% QoQ, nearly matching Oracle's $2M and outspending Nvidia; combined AI-lab lobbying hit $3.17M for the quarter.</div>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n2">2</div>
+        <div>
+          <div class="signal-title">DeepSeek API Migration Deadline Is Tomorrow</div>
+          <div class="signal-desc">deepseek-chat and deepseek-reasoner aliases retire July 24 at 15:59 UTC; V4-Flash defaults to thinking-on.</div>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n3">3</div>
+        <div>
+          <div class="signal-title">Substack Adds AI-Text Detection via Pangram</div>
+          <div class="signal-desc">Users can scan posts over 100 words for AI-content estimates; Epoch AI found detectors miss up to 18% of imitated-style AI text.</div>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n4">4</div>
+        <div>
+          <div class="signal-title">US and China Prepare High-Stakes AI Talks</div>
+          <div class="signal-desc">Washington weighs further curbs on Chinese model use by American firms as both sides ready negotiations next month.</div>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n5">5</div>
+        <div>
+          <div class="signal-title">Gemini 3.5 Flash-Lite Undercuts the Field</div>
+          <div class="signal-desc">Priced at $0.30/$2.50 per million tokens — the cheapest tier in Google's newly expanded Gemini lineup.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THEMES + TOOL + SOURCES -->
+  <div id="themes" class="story-card card-sage section-anchor">
+    <div class="page-chip">THEMES</div>
+    <div class="card-routine">Top Themes</div>
+    <h2 class="card-headline sm">The Shape of Today's News</h2>
+    <div class="themes-grid" style="margin-top:16px;">
+      <div class="theme-item">Model Ship Cadence</div>
+      <div class="theme-item">Partner Friction</div>
+      <div class="theme-item">Cloud Under Fire</div>
+      <div class="theme-item">AI Sovereignty</div>
+      <div class="theme-item">Platform Moderation</div>
+      <div class="theme-item">Lobbying Spend</div>
+      <div class="theme-item">Migration Deadlines</div>
+    </div>
+
+    <div id="tool" class="tool-week section-anchor">
+      <div class="tool-week-eyebrow">Tool of the Day</div>
+      <div class="tool-week-name">Gemini 3.6 Flash</div>
+      <div class="tool-week-desc">Agentic and multimodal work at $1.50/$7.50 per million tokens, with 17% fewer output tokens and Computer Use built in.</div>
+    </div>
+
+    <div id="sources" class="output-card section-anchor">
+      <div class="output-title">Sources Cited</div>
+      <div class="sources-grid">
+        <a href="https://aitoolsrecap.com/Blog/gemini-3-6-flash-launch-specs-pricing-2026" target="_blank">AI Tools Recap</a>
+        <a href="https://aitoolsrecap.com/Blog/satya-nadella-anthropic-fable-editorially-controlled-2026" target="_blank">AI Tools Recap</a>
+        <a href="https://www.euronews.com/2026/07/21/irans-irgc-claims-attack-on-amazons-main-data-hub-in-bahrain" target="_blank">Euronews</a>
+        <a href="https://aitoolsrecap.com/Blog/south-korea-free-national-ai-chatbot-2026" target="_blank">AI Tools Recap</a>
+        <a href="https://www.newswireexplorer.com/what-happened-when-meta-used-a-i-to-ban-accounts-on-facebook-and-instagram/" target="_blank">The New York Times</a>
+        <a href="https://aiweekly.co/ai-news-today" target="_blank">AI Weekly</a>
+        <a href="https://techstartups.com/2026/07/21/top-tech-news-today-july-21-2026-anthropic-blackrock-tesla/" target="_blank">Tech Startups</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-logo">
+      <div class="footer-mark">
+        <img src="timps_logo.svg" alt="TIMPS">
+      </div>
+      <span class="footer-brand">TIMPS PostCards</span>
+    </div>
+    <div class="footer-center">
+      Issue 058 · July 22, 2026<br>
+      Hyderabad, India
+    </div>
+    <div class="footer-right">
+      <a href="index.html">Home</a><br>
+      <a href="index.html#archive">Archive</a><br>
+      &copy; 2026 TIMPS
+    </div>
+  </footer>
+
+</div> <!-- /wrapper -->
+</div> <!-- /page-layout -->
+</body>
+</html>
