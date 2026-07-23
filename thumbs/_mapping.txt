@@ -42,3 +42,4 @@
 2026-07-20	056	thumb-2026-07-20.svg	Google Delays Gemini 3.5 Pro Again as Alphabet Shares Slide
 2026-07-21	057	thumb-2026-07-21.svg	Washington Quietly Revives a Plan to Wall Off Foreign Open-Source AI
 2026-07-22	058	thumb-2026-07-22.svg	Google Finally Ships Gemini 3.6 Flash — And Quietly Starts Building Gemini 4
+2026-07-23	059	thumb-2026-07-23.svg	AMD Bets $5 Billion and 2 Gigawatts on Anthropic

@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TIMPS">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>TIMPS PostCards — Issue 059</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --cream:  #EEECE2;
+    --forest: #3D3929;
+    --terra:  #DA7756;
+    --terra-d:#BD5D3A;
+    --black:  #111111;
+    --card-bg:#F0ECE0;
+    --mono:   'Space Mono', 'Courier New', monospace;
+    --serif:  'TIMPS', 'Playfair Display', Georgia, serif;
+  }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Black.woff2') format('woff2'); font-weight:900; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Bold.woff2') format('woff2'); font-weight:700; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-SemiBold.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--cream);
+    background-image:
+      linear-gradient(rgba(61,57,41,.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.07) 1px, transparent 1px);
+    background-size: 38px 38px;
+    font-family: 'Space Mono', 'Courier New', monospace;
+    color: var(--forest);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { text-decoration: none; color: inherit; }
+
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 48px;
+    background-color: rgba(238,236,226,.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1.5px solid rgba(61,57,41,.12);
+    background-image:
+      linear-gradient(rgba(61,57,41,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.05) 1px, transparent 1px);
+    background-size: 38px 38px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 15px;
+    font-weight: 600;
+    color: #000;
+    text-decoration: none;
+  }
+  .nav-logo-mark {
+    width: 34px; height: 34px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .nav-logo-mark img { width: 28px; height: 28px; object-fit: contain; }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-link {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: #000;
+    opacity: .65;
+    text-decoration: none;
+    transition: opacity .15s;
+  }
+  .nav-link:hover { opacity: 1; }
+  .nav-cta {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: #000;
+    background: var(--terra);
+    border: 2.5px solid #000;
+    border-radius: 100px;
+    padding: 10px 24px;
+    cursor: pointer;
+    transition: background .15s, transform .1s;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--terra-d); transform: translateY(-1px); }
+
+  .wrapper { max-width: 760px; margin: 0 auto; padding: 40px 20px 80px; display: flex; flex-direction: column; gap: 0; }
+
+  .cover-card { background: var(--card-bg); border-radius: 20px 20px 4px 4px; padding: 56px 48px 48px; text-align: center; position: relative; overflow: hidden; border: 1.5px solid rgba(61,57,41,.12); margin-bottom: 3px; }
+  .cover-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, var(--terra) 0%, var(--terra-d) 60%, #E0A88A 100%); }
+  .cover-eyebrow { font-family: var(--mono); font-size:10px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:20px; display:flex; align-items:center; justify-content:center; gap:10px; }
+  .cover-eyebrow::before,.cover-eyebrow::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .15; max-width:60px; }
+  .cover-title { font-family: var(--serif); font-size:58px; font-weight:900; line-height:1; letter-spacing:-1px; color: var(--forest); margin-bottom:8px; }
+  .cover-sub { font-family: var(--serif); font-size:13px; font-style:italic; color: var(--forest); opacity: .55; margin-bottom:28px; }
+  .cover-divider { width:48px; height:2px; background: var(--terra); margin:0 auto 24px; border-radius:2px; }
+  .cover-meta { display:flex; justify-content:center; gap:32px; font-family: var(--mono); font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .45; }
+  .cover-badge { display:inline-flex; align-items:center; gap:6px; background: var(--terra); color: #fff; border-radius:20px; padding:6px 18px; font-family: var(--mono); font-size:10px; letter-spacing:2px; text-transform:uppercase; margin-top:28px; }
+  .top5-pill { display:flex; justify-content:center; gap:10px; margin-top:32px; flex-wrap:wrap; }
+  .pill { background: var(--forest); color: var(--cream); border-radius:100px; padding:4px 14px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; }
+  .pill.light { background:transparent; color: var(--forest); border:1px solid rgba(61,57,41,.2); }
+
+  .section-label { display:flex; align-items:center; gap:12px; padding:10px 0 8px; font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .35; }
+  .section-label::before,.section-label::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .1; }
+
+  .story-card { border-radius:4px; border:1.5px solid rgba(61,57,41,.10); padding:36px 40px; margin-bottom:3px; position:relative; overflow:hidden; }
+  .story-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }
+
+  .card-sky      { background:#D6E8F0; } .card-sky::before      { background: #7AAFC0; }
+  .card-cream    { background: var(--card-bg); } .card-cream::before    { background: var(--terra); }
+  .card-blush    { background:#F5DDD0; } .card-blush::before    { background: #E0A88A; }
+  .card-lavender { background:#EAE6F5; } .card-lavender::before { background: #C8BEE8; }
+  .card-sage     { background:#D6E4D6; } .card-sage::before     { background: #8BAF8B; }
+
+  .page-chip { position:absolute; top:14px; right:16px; font-family: var(--mono); font-size:9px; letter-spacing:2px; text-transform:uppercase; color: var(--forest); opacity: .3; }
+  .card-routine { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:8px; }
+  .card-headline { font-family: var(--serif); font-size:28px; font-weight:900; line-height:1.15; color: var(--forest); margin-bottom:10px; }
+  .card-headline.lg { font-size:34px; }
+  .card-headline.sm { font-size:22px; }
+  .card-deck { font-family: var(--serif); font-style:italic; font-size:14px; line-height:1.55; color: var(--forest); opacity: .55; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid rgba(61,57,41,.12); }
+  .card-body { font-family: 'Lora', Georgia, serif; font-size:14px; line-height:1.7; color: var(--forest); }
+  .card-body p { margin-bottom:11px; }
+  .drop::first-letter { font-family: var(--serif); font-size:52px; font-weight:900; float:left; line-height:.78; margin:5px 6px 0 0; color: var(--terra); }
+  .clearfix::after { content:''; display:table; clear:both; }
+
+  .hl-lime { background: var(--terra); color: var(--forest); padding:0 4px; border-radius:2px; }
+  .hl-ink  { background: var(--forest); color: var(--cream); padding:0 4px; border-radius:2px; }
+  .hl-sage { background: #8BAF8B; color: #fff; padding:0 4px; border-radius:2px; }
+  .hl-lav  { background: #C8BEE8; color: var(--forest); padding:0 4px; border-radius:2px; }
+
+  .stat-box { float:right; margin:0 0 16px 24px; background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:16px 20px; text-align:center; min-width:120px; }
+  .stat-big { font-family: var(--serif); font-size:44px; font-weight:900; line-height:1; color: var(--forest); display:block; }
+  .stat-label { font-family: var(--mono); font-size:9.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .5; display:block; margin-top:4px; }
+
+  .img-frame { border:2px solid rgba(61,57,41,0.18); border-radius:12px; overflow:hidden; margin:16px 0; background: var(--card-bg); }
+  .img-frame img { width:100%; display:block; max-height:240px; object-fit:cover; border-bottom:1px solid rgba(61,57,41,.12); }
+  .img-caption { padding:8px 12px; font-family: var(--mono); font-size:10.5px; color: var(--forest); opacity: .6; font-style:italic; display:flex; align-items:center; justify-content:space-between; gap:8px; }
+  .img-caption a { font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; white-space:nowrap; font-style:normal; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; }
+  .img-caption a:hover { opacity: 1; }
+  .img-frame.float-right { float:right; width:220px; margin:0 0 16px 24px; }
+  .img-frame.float-right img { max-height:140px; }
+
+  .source-link { display:inline-flex; align-items:center; gap:5px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:12px; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; transition: opacity .15s; }
+  .source-link:hover { opacity: 1; }
+  .source-link::after { content:'↗'; font-size:9px; }
+
+  .signals-grid { display:flex; flex-direction:column; gap:14px; }
+  .signal-row { display:flex; align-items:flex-start; gap:14px; }
+  .signal-num { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family: var(--serif); font-size:13px; font-weight:900; flex-shrink:0; color:#fff; }
+  .signal-num.n1{background: var(--terra); color: var(--forest);} .signal-num.n2{background: var(--forest);} .signal-num.n3{background:#7AAFC0;} .signal-num.n4{background: var(--terra-d); color: var(--forest);} .signal-num.n5{background: var(--black);}
+  .signal-title { font-family: var(--serif); font-size:14px; font-weight:700; color: var(--forest); margin-bottom:2px; }
+  .signal-desc { font-family: 'Space Mono', monospace; font-size:12px; line-height:1.65; color: var(--forest); opacity: .6; }
+
+  .themes-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .theme-item { padding:10px 14px; border-radius:8px; font-family: var(--serif); font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; text-align:center; border:1.5px solid rgba(61,57,41,.12); background: var(--cream); }
+
+  .tool-week { background: var(--forest); color: var(--cream); border-radius:12px; padding:18px 20px; text-align:center; margin-top:14px; }
+  .tool-week-eyebrow { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; opacity: .55; margin-bottom:6px; }
+  .tool-week-name { font-family: var(--serif); font-size:22px; font-weight:900; margin-bottom:4px; }
+  .tool-week-desc { font-family: 'Space Mono', monospace; font-size:11.5px; opacity: .7; font-style:italic; }
+
+  .output-card { background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:18px 20px; margin-top:14px; }
+  .output-title { font-family: var(--serif); font-size:18px; font-weight:700; margin-bottom:8px; color: var(--forest); }
+  .output-meta { display:flex; gap:20px; font-family: var(--mono); font-size:10px; color: var(--forest); opacity: .5; padding-bottom:10px; margin-bottom:10px; border-bottom:1px solid rgba(61,57,41,.12); flex-wrap:wrap; }
+  .tp-list { list-style:none; padding:0; margin:0; }
+  .tp-list li { padding:5px 0; font-family: 'Lora', Georgia, serif; font-size:12px; color: var(--forest); border-bottom:1px solid rgba(61,57,41,.07); display:flex; align-items:flex-start; gap:7px; }
+  .tp-list li::before { content:'·'; color: var(--terra); font-size:14px; line-height:1.2; flex-shrink:0; }
+
+  .sources-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px 20px; }
+  .sources-grid a { font-family: var(--mono); font-size:11px; color: var(--forest); opacity: .55; text-decoration:none; border-bottom:1px solid rgba(61,57,41,.15); padding-bottom:1px; transition: opacity .15s; }
+  .sources-grid a:hover { opacity: 1; }
+
+  .footer {
+    background: var(--black);
+    padding: 28px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    border-radius: 4px 4px 20px 20px;
+    margin-top: 3px;
+  }
+  .footer-logo { display: flex; align-items: center; gap: 10px; }
+  .footer-mark { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; }
+  .footer-mark img { width: 24px; height: 24px; object-fit: contain; filter: brightness(10); }
+  .footer-brand { font-family: var(--mono); font-size: 13px; font-weight: 700; color: #fff; }
+  .footer-center { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.4); text-align: center; line-height: 1.6; }
+  .footer-right { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.3); text-align: right; line-height: 2; }
+  .footer-right a { color: rgba(255,255,255,.5); transition: color .15s; }
+  .footer-right a:hover { color: #fff; }
+
+  .page-layout { display: flex; align-items: flex-start; gap: 0; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+  .toc-sidebar { position: sticky; top: 80px; width: 170px; flex-shrink: 0; padding: 48px 0 0 0; }
+  .toc-nav { display: flex; flex-direction: column; gap: 0; }
+  .toc-link { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.5px; text-transform: uppercase; color: #000; opacity: .45; text-decoration: none; padding: 7px 12px; border-left: 2px solid transparent; transition: opacity .15s, border-color .15s; line-height: 1.3; }
+  .toc-link:hover { opacity: .85; }
+  .toc-link.active { opacity: 1; border-left-color: var(--terra); }
+  .section-anchor { scroll-margin-top: 80px; }
+
+  @media (max-width: 900px) {
+    .toc-sidebar { display: none; }
+    .page-layout { max-width: 760px; }
+  }
+
+  @media (max-width: 720px) {
+    .nav { padding: 12px 24px; }
+    .nav-links { display: none; }
+    .wrapper { padding: 20px 14px 60px; }
+    .cover-card { padding: 40px 24px; }
+    .story-card { padding: 28px 20px; }
+    .footer { padding: 24px; flex-direction: column; align-items: flex-start; }
+    .footer-center, .footer-right { text-align: left; }
+    .stat-box { float: none; margin: 0 0 16px 0; }
+  }
+  @media (max-width: 480px) {
+    .nav-logo span { display: none; }
+    .cover-title { font-size: 40px; }
+    .card-headline.lg { font-size: 28px; }
+    .card-headline { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-mark">
+      <img src="timps_logo.svg" alt="TIMPS">
+    </div>
+    <span>TIMPS PostCards</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html#archive" class="nav-link">Archive</a>
+    <a href="timps-postcards-2026-07-23.html" class="nav-link">Latest Issue</a>
+    <a href="index.html#subscribe" class="nav-link">Subscribe</a>
+  </div>
+  <a href="index.html#subscribe" class="nav-cta">Subscribe</a>
+</nav>
+
+<div class="page-layout">
+
+  <aside class="toc-sidebar">
+    <nav class="toc-nav">
+      <a href="#intro" class="toc-link">Intro</a>
+      <a href="#lead" class="toc-link">Lead</a>
+      <a href="#geopolitics" class="toc-link">Geopolitics</a>
+      <a href="#markets" class="toc-link">Markets</a>
+      <a href="#research" class="toc-link">Research</a>
+      <a href="#safety" class="toc-link">Safety</a>
+      <a href="#signals" class="toc-link">Signals</a>
+      <a href="#themes" class="toc-link">Themes</a>
+      <a href="#tool" class="toc-link">Tool</a>
+      <a href="#sources" class="toc-link">Sources</a>
+    </nav>
+  </aside>
+
+  <div class="wrapper">
+
+  <!-- INTRODUCTION -->
+  <div id="intro" class="cover-card section-anchor">
+    <div class="cover-eyebrow">AI Intelligence Digest</div>
+    <div class="cover-title">TIMPS<br>PostCards</div>
+    <div class="cover-sub">Your Daily Signal from the Machine Frontier</div>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+      <span>Issue 059</span>
+      <span>July 23, 2026</span>
+      <span>Hyderabad, India</span>
+    </div>
+    <div class="cover-badge">⬡ Built with the TIMPS Ecosystem</div>
+    <div class="top5-pill">
+      <span class="pill">AMD × Anthropic $5B</span>
+      <span class="pill light">Fable Distillation Claim</span>
+      <span class="pill light">Alphabet Q2</span>
+    </div>
+  </div>
+
+  <!-- CARD 1 - LEAD -->
+  <div id="lead" class="story-card card-lavender section-anchor">
+    <div class="page-chip">01 · LEAD</div>
+    <div class="card-routine">Compute Partnerships</div>
+    <h1 class="card-headline lg">AMD Bets $5 Billion and 2 Gigawatts on Anthropic</h1>
+    <div class="card-deck">The chipmaker's largest AI wager yet pairs MI450 GPUs with Claude, turning a supplier relationship into a strategic stake.</div>
+    <div class="card-body drop clearfix">
+      <div class="stat-box">
+        <span class="stat-big">2 GW</span>
+        <span class="stat-label">MI450 GPUs Committed</span>
+      </div>
+      <p>AMD and Anthropic announced a strategic partnership on July 22 at AMD's Advancing AI event in San Francisco, agreeing to deploy up to 2 gigawatts of AMD Instinct MI450 Series GPUs inside AMD Helios rack-scale systems, with the first gigawatt coming online in the first half of 2027.</p>
+      <p>As part of the deal, AMD will make a strategic equity investment of <span class="hl-lime">up to $5 billion</span> in Anthropic — turning what began as a chip-supply relationship into a direct financial stake in one of the two labs Satya Nadella complained about controlling the world's "token capital" just a day earlier.</p>
+      <p>The systems pair MI455X GPUs with AMD's newly launched 256-core EPYC "Venice" CPUs and Pensando networking, and Anthropic says it will use Claude itself to help accelerate development of AMD's open ROCm software stack — quietly extending Claude's reach into chip tooling well beyond the chatbot.</p>
+      <p>CEO Lisa Su called it "the full strength of AMD high-performance computing" meeting "Anthropic's leadership in frontier AI" — a framing that puts AMD alongside Nvidia, Google and Amazon as a genuine multi-silicon backer of Anthropic's compute roadmap.</p>
+    </div>
+    <a href="https://www.manilatimes.net/2026/07/22/tmt-newswire/globenewswire/amd-and-anthropic-announce-strategic-partnership-to-deploy-up-to-2-gigawatts-of-amd-instinct-mi450-series-gpus/2389443" target="_blank" class="source-link">Full story · Manila Times / GlobeNewswire</a>
+  </div>
+
+  <!-- CARD 2 - GEOPOLITICS -->
+  <div id="geopolitics" class="story-card card-sage section-anchor">
+    <div class="page-chip">02 · GEOPOLITICS</div>
+    <div class="card-routine">IP & Distillation Dispute</div>
+    <h2 class="card-headline">White House Accuses Moonshot of Distilling Fable to Build Kimi K3</h2>
+    <div class="card-deck">A senior US official names a specific American model as the source of an alleged "covert industrial distillation" — the sharpest accusation yet in the China AI dispute.</div>
+    <div class="card-body drop clearfix">
+      <p>White House Office of Science and Technology Policy Director Michael Kratsios posted on X on July 22 that "we have information that Moonshot AI distilled Anthropic's Fable for the development of its K3 model," calling it <span class="hl-ink">"covert industrial distillation aimed at stealing proprietary U.S. technology."</span></p>
+      <p>It is the first time a senior US official has publicly tied a specific Chinese model to a specific American one by name, sharpening a debate that has run since Kimi K3's July 16 release, when the 2.8-trillion-parameter open model briefly topped a major coding leaderboard and rattled American labs and investors.</p>
+      <p>Kratsios's post offered no supporting evidence, and OpenAI President Greg Brockman struck a more cautious tone the same day, telling Bloomberg that K3 is "pretty good" but that it's "too early" to conclude whether Moonshot distilled from any US model.</p>
+      <p>The accusation lands as Washington and Beijing prepare high-stakes AI talks next month, with US officials weighing further curbs on American firms' use of Chinese models — meaning this claim, evidence or not, is likely to shape the terms of that negotiation.</p>
+    </div>
+    <a href="https://www.investing.com/news/economy-news/chinas-moonshot-tapped-anthropics-fable-for-latest-ai-model-official-says-4806427" target="_blank" class="source-link">Full story · Investing.com</a>
+  </div>
+
+  <!-- CARD 3 - MARKETS -->
+  <div id="markets" class="story-card card-blush section-anchor">
+    <div class="page-chip">03 · MARKETS</div>
+    <div class="card-routine">Cloud Earnings</div>
+    <h2 class="card-headline">Alphabet's Cloud Business Jumps 82% as Gemini Passes 950 Million Users</h2>
+    <div class="card-deck">A blowout quarter shows Google converting its AI spending into paying customers even as capex doubles and the flagship Gemini 3.5 Pro stays unreleased.</div>
+    <div class="card-body drop clearfix">
+      <div class="stat-box">
+        <span class="stat-big">82%</span>
+        <span class="stat-label">Cloud Revenue Growth, YoY</span>
+      </div>
+      <p>Alphabet reported second-quarter revenue of $119.8 billion, up 24% year-over-year, with Google Cloud accelerating to $24.77 billion and its cloud backlog reaching $514 billion, up from $462 billion in the first quarter.</p>
+      <p>The Gemini app hit 950 million monthly active users, up from 900 million in May and 750 million at the end of last year, and Google says its models now process 22 billion API tokens every minute — a scale that dwarfs most rivals regardless of who currently holds the leaderboard crown.</p>
+      <p>Capital expenditure doubled to $44.9 billion for the quarter as Google races to keep pace with demand, while YouTube advertising revenue rose 13% to $11.06 billion — a reminder that Alphabet's AI bet still rides on a very large, very profitable core business.</p>
+      <p>The numbers land the same week Gemini 3.5 Pro remains conspicuously unshipped for a third consecutive deadline, suggesting investors are, for now, rewarding Google's infrastructure and distribution over its frontier-model cadence.</p>
+    </div>
+    <a href="https://9to5google.com/2026/07/22/alphabet-q2-2026-earnings/" target="_blank" class="source-link">Full story · 9to5Google</a>
+  </div>
+
+  <!-- CARD 4 - RESEARCH -->
+  <div id="research" class="story-card card-sky section-anchor">
+    <div class="page-chip">04 · RESEARCH</div>
+    <div class="card-routine">AI-Verified Mathematics</div>
+    <h2 class="card-headline sm">A Fields Medalist Credits AI in Public Math for the First Time</h2>
+    <div class="card-deck">Terence Tao's writeup of a landmark counterexample includes a rare, explicit disclosure — he used a chatbot to check his work.</div>
+    <div class="card-body drop clearfix">
+      <p>Fields Medalist Terence Tao published a post on July 21 titled "A digestion of the Jacobian conjecture counterexample," walking through an explicit polynomial map from complex 3-space to itself with a constant, nonzero Jacobian determinant that is locally invertible everywhere yet not globally invertible — a long-sought counterexample bearing on one of mathematics' notable open conjectures.</p>
+      <p>What made the post travel beyond mathematics circles was a single line near the end: Tao wrote that he <span class="hl-sage">"used an AI chatbot to discuss various aspects of this problem and to confirm several of the calculations made here,"</span> and linked directly to the underlying conversation.</p>
+      <p>It is one of the first times a mathematician of Tao's stature has documented, in public and by name, using an AI system as a working tool for verifying a serious result — rather than merely commenting on AI's capabilities from a distance. The post climbed the front page of Hacker News within hours.</p>
+      <p>For a field that has spent two years arguing over whether language models can do real mathematics, Tao's quiet, unglamorous disclosure — cited as a checking tool, not a co-author — may be a more consequential data point than any single benchmark score.</p>
+    </div>
+    <a href="https://terrytao.wordpress.com/" target="_blank" class="source-link">Full story · Terence Tao's Blog</a>
+  </div>
+
+  <!-- CARD 5 - SAFETY -->
+  <div id="safety" class="story-card card-lavender section-anchor">
+    <div class="page-chip">05 · SAFETY</div>
+    <div class="card-routine">Health-AI Litigation</div>
+    <h2 class="card-headline sm">A Pastor Says ChatGPT Reassured Him Through a Near-Fatal Embolism. Now He's Suing.</h2>
+    <div class="card-deck">A new lawsuit accuses OpenAI of practicing medicine without a license after a chatbot allegedly downplayed the warning signs of a life-threatening condition.</div>
+    <div class="card-body drop clearfix">
+      <p>Pastor Scott Winters filed suit against OpenAI and Sam Altman in San Francisco Superior Court on July 22, alleging negligence and the unauthorized practice of medicine after he says ChatGPT-4o repeatedly reassured him that his symptoms were "not something dangerous" and at one point suggested "recliner-based micro-recovery."</p>
+      <p>The complaint quotes the chatbot telling Winters that <span class="hl-lime">"God did not design your body to endlessly fail"</span> — language the suit says delayed him from seeking emergency care. Winters was admitted to intensive care on July 13, 2025, with what doctors determined was a massive pulmonary embolism.</p>
+      <p>The lawsuit seeks damages and, notably, a court order halting ChatGPT Health pending an independent safety review — a more sweeping ask than the monetary claims alone, putting a specific consumer health feature, not just the general chatbot, in a judge's sights.</p>
+      <p>OpenAI's response was brief: "ChatGPT is not a doctor and should never be used as a substitute for medical care." The case adds to a small but growing docket testing how much responsibility AI companies bear when users treat a chatbot's reassurance as medical advice.</p>
+    </div>
+    <a href="https://gvwire.com/2026/07/22/chatgpt-led-to-a-mans-near-fatal-health-crisis-lawsuit-claims/" target="_blank" class="source-link">Full story · GV Wire</a>
+  </div>
+
+  <!-- SIGNALS -->
+  <div id="signals" class="story-card card-cream section-anchor">
+    <div class="page-chip">SIGNALS</div>
+    <div class="card-routine">5 Key Signals</div>
+    <h2 class="card-headline sm">What Else Moved Today</h2>
+    <div class="signals-grid" style="margin-top:18px;">
+      <div class="signal-row">
+        <div class="signal-num n1">1</div>
+        <div>
+          <div class="signal-title">Trump Admin Launches $5B Genesis Mission for AI Science</div>
+          <div class="signal-desc">Whole-of-government initiative spans 15+ agencies led by DOE; 278 project awards worth $293M across 142 universities and 157 companies.</div>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n2">2</div>
+        <div>
+          <div class="signal-title">Anthropic Doubles Its AI-Policy PAC Bet to $40M</div>
+          <div class="signal-desc">Additional $20M to Public First Action, positioned as a counterweight to a16z-backed "Leading the Future" ahead of the 2026 midterms.</div>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n3">3</div>
+        <div>
+          <div class="signal-title">Claude Cowork Learns Skills From Screen Recordings</div>
+          <div class="signal-desc">New "Record a Skill" feature lets users film and narrate a task while Claude turns it into a reusable agent skill — no hand-written instructions required.</div>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n4">4</div>
+        <div>
+          <div class="signal-title">OpenAI Ships Presence, an Enterprise Agent Platform</div>
+          <div class="signal-desc">Bundles guardrails and evaluation tooling for voice and chat agents; OpenAI says it already resolves 75% of its own inbound support calls.</div>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n5">5</div>
+        <div>
+          <div class="signal-title">Amazon Cuts Jobs in Its Nova-Building AGI Unit</div>
+          <div class="signal-desc">Layoffs confirmed but headcount undisclosed; framed as reallocation toward projects with "tangible benefits" amid competition with Microsoft and OpenAI.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THEMES + TOOL + SOURCES -->
+  <div id="themes" class="story-card card-blush section-anchor">
+    <div class="page-chip">THEMES</div>
+    <div class="card-routine">Top Themes</div>
+    <h2 class="card-headline sm">The Shape of Today's News</h2>
+    <div class="themes-grid" style="margin-top:16px;">
+      <div class="theme-item">Compute Partnerships</div>
+      <div class="theme-item">IP & Distillation Disputes</div>
+      <div class="theme-item">Cloud Earnings</div>
+      <div class="theme-item">AI-Verified Research</div>
+      <div class="theme-item">Health-AI Litigation</div>
+      <div class="theme-item">Government AI Funding</div>
+      <div class="theme-item">Agent Platforms</div>
+    </div>
+
+    <div id="tool" class="tool-week section-anchor">
+      <div class="tool-week-eyebrow">Tool of the Day</div>
+      <div class="tool-week-name">Claude Cowork — Record a Skill</div>
+      <div class="tool-week-desc">Film a task, narrate it once, and Claude turns clicks and voice into a reusable agent skill — no hand-written instructions needed.</div>
+    </div>
+
+    <div id="sources" class="output-card section-anchor">
+      <div class="output-title">Sources Cited</div>
+      <div class="sources-grid">
+        <a href="https://www.manilatimes.net/2026/07/22/tmt-newswire/globenewswire/amd-and-anthropic-announce-strategic-partnership-to-deploy-up-to-2-gigawatts-of-amd-instinct-mi450-series-gpus/2389443" target="_blank">Manila Times / GlobeNewswire</a>
+        <a href="https://www.investing.com/news/economy-news/chinas-moonshot-tapped-anthropics-fable-for-latest-ai-model-official-says-4806427" target="_blank">Investing.com</a>
+        <a href="https://9to5google.com/2026/07/22/alphabet-q2-2026-earnings/" target="_blank">9to5Google</a>
+        <a href="https://terrytao.wordpress.com/" target="_blank">Terence Tao's Blog</a>
+        <a href="https://gvwire.com/2026/07/22/chatgpt-led-to-a-mans-near-fatal-health-crisis-lawsuit-claims/" target="_blank">GV Wire</a>
+        <a href="https://www.whitehouse.gov/releases/2026/07/45502/" target="_blank">The White House</a>
+        <a href="https://thehill.com/homenews/5982007-anthropic-pours-millions-midterms/" target="_blank">The Hill</a>
+        <a href="https://the-decoder.com/claude-cowork-learns-new-skills-through-screen-recordings-and-voice-over-explanations/" target="_blank">The Decoder</a>
+        <a href="https://www.helpnetsecurity.com/2026/07/22/openai-presence-ai-agent-platform/" target="_blank">Help Net Security</a>
+        <a href="https://cryptobriefing.com/amazon-job-cuts-agi-unit/" target="_blank">Crypto Briefing</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-logo">
+      <div class="footer-mark">
+        <img src="timps_logo.svg" alt="TIMPS">
+      </div>
+      <span class="footer-brand">TIMPS PostCards</span>
+    </div>
+    <div class="footer-center">
+      Issue 059 · July 23, 2026<br>
+      Hyderabad, India
+    </div>
+    <div class="footer-right">
+      <a href="index.html">Home</a><br>
+      <a href="index.html#archive">Archive</a><br>
+      &copy; 2026 TIMPS
+    </div>
+  </footer>
+
+</div> <!-- /wrapper -->
+</div> <!-- /page-layout -->
+</body>
+</html>
