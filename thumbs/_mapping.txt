@@ -1,47 +1,47 @@
-2026-03-28	040	thumb-2026-03-28.svg	Federal Judge Blocks Pentagon's Anthropic Ban in Landmark First Amendment Ruling
-2026-04-04	041	thumb-2026-04-04.svg	OpenAI Closes Record $122 Billion Round at $852 Billion Valuation — IPO Next
-2026-04-11	042	thumb-2026-04-11.svg	Meta Launches Muse Spark — A Multimodal AI Powering the Entire Social Ecosystem
-2026-04-18	043	thumb-2026-04-18.svg	Cerebras Files for IPO — The Nvidia Challenger's $26.6 Billion Bet Against the GPU
-2026-04-25	044	thumb-2026-04-25.svg	Musk v. OpenAI Trial Opens — The 'Terminator Warning' and the Battle for AI's Founding Story
-2026-05-02	045	thumb-2026-05-02.svg	GPT-5.4 and Gemini 3.1 Push Context Windows Past 10 Million Tokens — But Who Actually Needs It?
-2026-05-09	046	thumb-2026-05-09.svg	DeepSeek V3.2 and GLM-5.1 Match Frontier Proprietary Models at a Fraction of the Cost
-2026-05-16	047	thumb-2026-05-16.svg	Anthropic's Mythos Proves Frontier Models Are Too Dangerous to Release — and Too Valuable to Hide
-2026-05-23	048	thumb-2026-05-23.svg	Gartner Predicts 40% of Enterprise Apps Will Have AI Agents by Year-End — Up From 5% in 2025
-2026-06-18	2026-06-18	thumb-2026-06-18.svg	SpaceX Buys Cursor for $60 Billion — AI Coding's Biggest Deal Ever
-2026-06-19	2026-06-19	thumb-2026-06-19.svg	Midjourney Builds a Full-Body Scanner — and Calls It Medicine
-2026-06-20	2026-06-20	thumb-2026-06-20.svg	Midjourney Builds a Body Scanner
-2026-06-21	2026-06-21	thumb-2026-06-21.svg	Claude Code Learns to Show Its Work
-2026-06-22	2026-06-22	thumb-2026-06-22.svg	Americans Now Spend More Time Talking to AI Than Swiping for Dates
-2026-06-23	029	thumb-2026-06-23.svg	A Nobel Laureate Just Switched Sides in the AI Race
-2026-06-24	030	thumb-2026-06-24.svg	When the Model Understood the Cells
-2026-06-25	031	thumb-2026-06-25.svg	OpenAI Ships Its First Chip — and Stops Renting the Whole Stack
-2026-06-26	2026-06-26	thumb-2026-06-26.svg	OpenAI and Broadcom Unveil Jalapeño — The First Custom AI Inference Chip
-2026-06-27	2026-06-27	thumb-2026-06-27.svg	The Memory Crunch Finally Reaches Your Cart
-2026-06-28	2026-06-28	thumb-2026-06-28.svg	Wall Street Gets Its First Pure-Play Humanoid Robot Stock
-2026-06-29	2026-06-29	thumb-2026-06-29.svg	Five Spy Agencies Just Told the World: The AI Cyber Threat Is Months Away, Not Years
-2026-06-30	036	thumb-2026-06-30.svg	AI Now Ships Like Enriched Uranium
-2026-07-01	037	thumb-2026-07-01.svg	Claude Fable 5 and Mythos 5 Are Coming Back Online
-2026-07-02	038	thumb-2026-07-02.svg	Meta Turns Its AI Overspend Into a Cloud Business
-2026-07-03	039	thumb-2026-07-03.svg	A Teenage "Scattered Spider" Hacker Faces US Justice
-2026-07-04	040	thumb-2026-07-04.svg	OpenAI Offers Washington a $42.6B Slice of Itself
-2026-07-05	041	thumb-2026-07-05.svg	A Cloned Voice, A Crying Daughter, $18,000 Gone in an Afternoon
-2026-07-06	042	thumb-2026-07-06.svg	Anthropic Ships Its Most Agentic Sonnet Yet — And Prices It to Undercut Opus
-2026-07-07	043	thumb-2026-07-07.svg	Meta Says Its Next Model Has Caught Up To GPT&#8209;5.5
-2026-07-08	044	thumb-2026-07-08.svg	Anthropic Finds a Hidden Workspace Inside Claude's Reasoning
-2026-07-09	045	thumb-2026-07-09.svg	Grok 4.5 Goes Public — Musk Calls It "Opus-Class," the Benchmarks Say It's Complicated
-2026-07-10	046	thumb-2026-07-10.svg	OpenAI Ships GPT-5.6 and a New Agent Called ChatGPT Work
-2026-07-11	047	thumb-2026-07-11.svg	OpenAI Ships GPT-5.6 — and an Agent That Wants Your Whole Job
-2026-07-12	048	thumb-2026-07-12.svg	Apple Sues OpenAI, Alleging a Coordinated Campaign to Steal Its Hardware Secrets
-2026-07-13	049	thumb-2026-07-13.svg	Apple Sues OpenAI, Alleges Trade-Secret Theft "At Every Level"
-2026-07-14	050	thumb-2026-07-14.svg	Apple Says OpenAI Stole More Than Just Employees
-2026-07-15	051	thumb-2026-07-15.svg	200+ Economists, 16 Nobel Laureates Warn: "We Must Act Now" on AI's Economic Shock
-2026-07-16	052	thumb-2026-07-16.svg	Anthropic Strikes Multi-Gigawatt Compute Deal With Google and Broadcom
-2026-07-17	053	thumb-2026-07-17.svg	Gemini 3.5 Pro Finally Lands — Six Weeks Late, Straight Into the Busiest Week AI Has Ever Had
-2026-07-18	054	thumb-2026-07-18.svg	Oracle Cuts Up to 30,000 Jobs to Fund the $500B Stargate Buildout
-2026-07-19	055	thumb-2026-07-19.svg	India's Cab Service to Orbit Just Had Its First Pickup
-2026-07-20	056	thumb-2026-07-20.svg	Google Delays Gemini 3.5 Pro Again as Alphabet Shares Slide
-2026-07-21	057	thumb-2026-07-21.svg	Washington Quietly Revives a Plan to Wall Off Foreign Open-Source AI
-2026-07-22	058	thumb-2026-07-22.svg	Google Finally Ships Gemini 3.6 Flash — And Quietly Starts Building Gemini 4
-2026-07-23	059	thumb-2026-07-23.svg	AMD Bets $5 Billion and 2 Gigawatts on Anthropic
-2026-07-24	060	thumb-2026-07-24.svg	The Model That Wouldn't Stay Contained
-2026-07-25	060	thumb-2026-07-25.svg	Anthropic Ships Claude Opus 5 at Half the Price of Fable 5
+2026-03-28	040	thumb-2026-03-28.svg	Federal Judge Blocks Pentagon's Anthropic Ban in Landmark First Amendment Ruling	gavel
+2026-04-04	041	thumb-2026-04-04.svg	OpenAI Closes Record $122 Billion Round at $852 Billion Valuation — IPO Next	funding
+2026-04-11	042	thumb-2026-04-11.svg	Meta Launches Muse Spark — A Multimodal AI Powering the Entire Social Ecosystem	satellite
+2026-04-18	043	thumb-2026-04-18.svg	Cerebras Files for IPO — The Nvidia Challenger's $26.6 Billion Bet Against the GPU	funding
+2026-04-25	044	thumb-2026-04-25.svg	Musk v. OpenAI Trial Opens — The 'Terminator Warning' and the Battle for AI's Founding Story	chip
+2026-05-02	045	thumb-2026-05-02.svg	GPT-5.4 and Gemini 3.1 Push Context Windows Past 10 Million Tokens — But Who Actually Needs It?	coin
+2026-05-09	046	thumb-2026-05-09.svg	DeepSeek V3.2 and GLM-5.1 Match Frontier Proprietary Models at a Fraction of the Cost	brain
+2026-05-16	047	thumb-2026-05-16.svg	Anthropic's Mythos Proves Frontier Models Are Too Dangerous to Release — and Too Valuable to Hide	brain
+2026-05-23	048	thumb-2026-05-23.svg	Gartner Predicts 40% of Enterprise Apps Will Have AI Agents by Year-End — Up From 5% in 2025	robot
+2026-06-18	2026-06-18	thumb-2026-06-18.svg	SpaceX Buys Cursor for $60 Billion — AI Coding's Biggest Deal Ever	funding
+2026-06-19	2026-06-19	thumb-2026-06-19.svg	Midjourney Builds a Full-Body Scanner — and Calls It Medicine	chip
+2026-06-20	2026-06-20	thumb-2026-06-20.svg	Midjourney Builds a Body Scanner	chip
+2026-06-21	2026-06-21	thumb-2026-06-21.svg	Claude Code Learns to Show Its Work	brain
+2026-06-22	2026-06-22	thumb-2026-06-22.svg	Americans Now Spend More Time Talking to AI Than Swiping for Dates	chip
+2026-06-23	029	thumb-2026-06-23.svg	A Nobel Laureate Just Switched Sides in the AI Race	terminal
+2026-06-24	030	thumb-2026-06-24.svg	When the Model Understood the Cells	brain
+2026-06-25	031	thumb-2026-06-25.svg	OpenAI Ships Its First Chip — and Stops Renting the Whole Stack	chip
+2026-06-26	2026-06-26	thumb-2026-06-26.svg	OpenAI and Broadcom Unveil Jalapeño — The First Custom AI Inference Chip	chip
+2026-06-27	2026-06-27	thumb-2026-06-27.svg	The Memory Crunch Finally Reaches Your Cart	chip
+2026-06-28	2026-06-28	thumb-2026-06-28.svg	Wall Street Gets Its First Pure-Play Humanoid Robot Stock	robot
+2026-06-29	2026-06-29	thumb-2026-06-29.svg	Five Spy Agencies Just Told the World: The AI Cyber Threat Is Months Away, Not Years	shield
+2026-06-30	036	thumb-2026-06-30.svg	AI Now Ships Like Enriched Uranium	chip
+2026-07-01	037	thumb-2026-07-01.svg	Claude Fable 5 and Mythos 5 Are Coming Back Online	brain
+2026-07-02	038	thumb-2026-07-02.svg	Meta Turns Its AI Overspend Into a Cloud Business	server
+2026-07-03	039	thumb-2026-07-03.svg	A Teenage "Scattered Spider" Hacker Faces US Justice	justice
+2026-07-04	040	thumb-2026-07-04.svg	OpenAI Offers Washington a $42.6B Slice of Itself	globe
+2026-07-05	041	thumb-2026-07-05.svg	A Cloned Voice, A Crying Daughter, $18,000 Gone in an Afternoon	megaphone
+2026-07-06	042	thumb-2026-07-06.svg	Anthropic Ships Its Most Agentic Sonnet Yet — And Prices It to Undercut Opus	brain
+2026-07-07	043	thumb-2026-07-07.svg	Meta Says Its Next Model Has Caught Up To GPT&#8209;5.5	brain
+2026-07-08	044	thumb-2026-07-08.svg	Anthropic Finds a Hidden Workspace Inside Claude's Reasoning	brain
+2026-07-09	045	thumb-2026-07-09.svg	Grok 4.5 Goes Public — Musk Calls It "Opus-Class," the Benchmarks Say It's Complicated	brain
+2026-07-10	046	thumb-2026-07-10.svg	OpenAI Ships GPT-5.6 and a New Agent Called ChatGPT Work	brain
+2026-07-11	047	thumb-2026-07-11.svg	OpenAI Ships GPT-5.6 — and an Agent That Wants Your Whole Job	brain
+2026-07-12	048	thumb-2026-07-12.svg	Apple Sues OpenAI, Alleging a Coordinated Campaign to Steal Its Hardware Secrets	gavel
+2026-07-13	049	thumb-2026-07-13.svg	Apple Sues OpenAI, Alleges Trade-Secret Theft "At Every Level"	gavel
+2026-07-14	050	thumb-2026-07-14.svg	Apple Says OpenAI Stole More Than Just Employees	chip
+2026-07-15	051	thumb-2026-07-15.svg	200+ Economists, 16 Nobel Laureates Warn: "We Must Act Now" on AI's Economic Shock	chip
+2026-07-16	052	thumb-2026-07-16.svg	Anthropic Strikes Multi-Gigawatt Compute Deal With Google and Broadcom	deal
+2026-07-17	053	thumb-2026-07-17.svg	Gemini 3.5 Pro Finally Lands — Six Weeks Late, Straight Into the Busiest Week AI Has Ever Had	brain
+2026-07-18	054	thumb-2026-07-18.svg	Oracle Cuts Up to 30,000 Jobs to Fund the $500B Stargate Buildout	server
+2026-07-19	055	thumb-2026-07-19.svg	India's Cab Service to Orbit Just Had Its First Pickup	satellite
+2026-07-20	056	thumb-2026-07-20.svg	Google Delays Gemini 3.5 Pro Again as Alphabet Shares Slide	brain
+2026-07-21	057	thumb-2026-07-21.svg	Washington Quietly Revives a Plan to Wall Off Foreign Open-Source AI	terminal
+2026-07-22	058	thumb-2026-07-22.svg	Google Finally Ships Gemini 3.6 Flash — And Quietly Starts Building Gemini 4	brain
+2026-07-23	059	thumb-2026-07-23.svg	AMD Bets $5 Billion and 2 Gigawatts on Anthropic	funding
+2026-07-24	060	thumb-2026-07-24.svg	The Model That Wouldn't Stay Contained	brain
+2026-07-25	060	thumb-2026-07-25.svg	Anthropic Ships Claude Opus 5 at Half the Price of Fable 5	brain

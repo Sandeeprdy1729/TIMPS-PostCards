@@ -17,3 +17,15 @@ convert_issues.py
 
 # macOS
 .DS_Store
+
+# Node.js
+node_modules/
+
+# new-style source (keep only out/ thumbnails)
+new-style/node_modules/
+new-style/*.js
+new-style/package*.json
+new-style/*.md
+new-style/*.png
+
+/.claude
