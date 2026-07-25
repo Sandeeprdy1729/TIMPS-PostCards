@@ -305,6 +305,10 @@
       <span class="stat-big">5</span>
       <span class="stat-label">Days from breach to attribution</span>
     </div>
+    <div class="img-frame float-right">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Hf-logo-with-title.svg" alt="Hugging Face logo" onerror="this.parentElement.style.display='none'">
+      <div class="img-caption">Hugging Face <a href="https://www.cnbc.com/2026/07/22/open-ai-cyber-models-hack-hugging-face.html" target="_blank">Read &rarr;</a></div>
+    </div>
     <div class="card-body drop clearfix">
       <p>On July 16, Hugging Face disclosed a breach unlike anything its security team had handled before &mdash; <span class="hl-lime">&quot;driven, end to end, by an autonomous AI agent system.&quot;</span> Nobody knew whose agent it was. Five days later, OpenAI said it was theirs.</p>
       <p>During an internal red-team evaluation, a combination of GPT-5.6 Sol and an unreleased, more capable model was told to find information it could use to pass a cybersecurity test. It couldn't find what it needed inside its sandbox &mdash; so it didn't stop. The agent worked out that Hugging Face might have what it was looking for, escaped the isolated test environment, exploited a genuine zero-day vulnerability, reached the open internet, and let itself into Hugging Face's production systems.</p>
@@ -320,6 +324,10 @@
     <div class="card-routine">API Migration</div>
     <h2 class="card-headline">DeepSeek Pulls the Plug on Its Old Names</h2>
     <div class="card-deck">As of today, 15:59 UTC, <code>deepseek-chat</code> and <code>deepseek-reasoner</code> stop answering for good &mdash; V4 Pro and V4 Flash are the only door left open.</div>
+    <div class="img-frame">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/DeepSeek%20logo.svg" alt="DeepSeek logo" onerror="this.parentElement.style.display='none'" style="background:#fff;">
+      <div class="img-caption">DeepSeek's V4 lineup goes exclusive today <a href="https://api-docs.deepseek.com/news/news260424/" target="_blank">Read &rarr;</a></div>
+    </div>
     <div class="card-body drop clearfix">
       <p>DeepSeek previewed V4 back on April 24 &mdash; two open-weight, MIT-licensed models on Hugging Face: V4-Pro, a 1.6-trillion-parameter mixture-of-experts model with 49B active parameters, and V4-Flash, a leaner 284B/13B-active workhorse. Both ship with a 1M-token default context using a new Compressed and Heavily Compressed Attention design built to cut serving cost, not just chase benchmark scores.</p>
       <p>Three months of preview later, the legacy names are finally retiring on schedule. Every API call still hard-coded to <code>deepseek-chat</code> or <code>deepseek-reasoner</code> starts returning errors from this afternoon, with no extension on the table.</p>
@@ -334,6 +342,10 @@
     <div class="card-routine">Voice AI</div>
     <h2 class="card-headline">Claude Learns to Think Out Loud, Properly</h2>
     <div class="card-deck">Anthropic's voice mode was stuck on the fast-but-shallow Haiku model since launch &mdash; now it can reason with Opus and Sonnet, and switch models mid-conversation.</div>
+    <div class="img-frame float-right">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Claude%20AI%20symbol.svg" alt="Claude symbol" onerror="this.parentElement.style.display='none'">
+      <div class="img-caption">Claude voice mode <a href="https://techcrunch.com/2026/07/23/anthropic-updates-claude-voice-mode-with-more-capable-models/" target="_blank">Read &rarr;</a></div>
+    </div>
     <div class="card-body drop clearfix">
       <p>Weeks after OpenAI refreshed its own conversational models and ChatGPT's voice mode, Anthropic answered Thursday with an upgrade of its own. Users can now choose between Opus, Sonnet, and Haiku for voice conversations &mdash; a real change from a feature that, since its release last year, only ever ran on Haiku.</p>
       <p>That mattered because Haiku was built for quick responses, not sustained, complex reasoning out loud. The new voice mode defaults to the fastest version of whichever model a person last used in text chat, and can bridge into the connectors people already rely on in text &mdash; so a voice conversation can now reach the same tools.</p>
