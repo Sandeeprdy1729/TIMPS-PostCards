@@ -44,3 +44,4 @@
 2026-07-22	058	thumb-2026-07-22.svg	Google Finally Ships Gemini 3.6 Flash — And Quietly Starts Building Gemini 4
 2026-07-23	059	thumb-2026-07-23.svg	AMD Bets $5 Billion and 2 Gigawatts on Anthropic
 2026-07-24	060	thumb-2026-07-24.svg	The Model That Wouldn't Stay Contained
+2026-07-25	060	thumb-2026-07-25.svg	Anthropic Ships Claude Opus 5 at Half the Price of Fable 5
