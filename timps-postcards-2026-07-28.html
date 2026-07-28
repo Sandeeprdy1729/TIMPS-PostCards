@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TIMPS">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>TIMPS PostCards — Issue 063</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --cream:  #EEECE2;
+    --forest: #3D3929;
+    --terra:  #DA7756;
+    --terra-d:#BD5D3A;
+    --black:  #111111;
+    --card-bg:#F0ECE0;
+    --mono:   'Space Mono', 'Courier New', monospace;
+    --serif:  'TIMPS', 'Playfair Display', Georgia, serif;
+  }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Black.woff2') format('woff2'); font-weight:900; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Bold.woff2') format('woff2'); font-weight:700; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-SemiBold.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--cream);
+    background-image:
+      linear-gradient(rgba(61,57,41,.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.07) 1px, transparent 1px);
+    background-size: 38px 38px;
+    font-family: 'Space Mono', 'Courier New', monospace;
+    color: var(--forest);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { text-decoration: none; color: inherit; }
+
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 48px;
+    background-color: rgba(238,236,226,.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1.5px solid rgba(61,57,41,.12);
+    background-image:
+      linear-gradient(rgba(61,57,41,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.05) 1px, transparent 1px);
+    background-size: 38px 38px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 15px;
+    font-weight: 600;
+    color: #000;
+    text-decoration: none;
+  }
+  .nav-logo-mark {
+    width: 34px; height: 34px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .nav-logo-mark img { width: 28px; height: 28px; object-fit: contain; }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-link {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: #000;
+    opacity: .65;
+    text-decoration: none;
+    transition: opacity .15s;
+  }
+  .nav-link:hover { opacity: 1; }
+  .nav-cta {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: #000;
+    background: var(--terra);
+    border: 2.5px solid #000;
+    border-radius: 100px;
+    padding: 10px 24px;
+    cursor: pointer;
+    transition: background .15s, transform .1s;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--terra-d); transform: translateY(-1px); }
+
+  .wrapper { max-width: 760px; margin: 0 auto; padding: 40px 20px 80px; display: flex; flex-direction: column; gap: 0; }
+
+  .cover-card { background: var(--card-bg); border-radius: 20px 20px 4px 4px; padding: 56px 48px 48px; text-align: center; position: relative; overflow: hidden; border: 1.5px solid rgba(61,57,41,.12); margin-bottom: 3px; }
+  .cover-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, var(--terra) 0%, var(--terra-d) 60%, #E0A88A 100%); }
+  .cover-eyebrow { font-family: var(--mono); font-size:10px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:20px; display:flex; align-items:center; justify-content:center; gap:10px; }
+  .cover-eyebrow::before,.cover-eyebrow::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .15; max-width:60px; }
+  .cover-title { font-family: var(--serif); font-size:58px; font-weight:900; line-height:1; letter-spacing:-1px; color: var(--forest); margin-bottom:8px; }
+  .cover-sub { font-family: var(--serif); font-size:13px; font-style:italic; color: var(--forest); opacity: .55; margin-bottom:28px; }
+  .cover-divider { width:48px; height:2px; background: var(--terra); margin:0 auto 24px; border-radius:2px; }
+  .cover-meta { display:flex; justify-content:center; gap:32px; font-family: var(--mono); font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .45; }
+  .cover-badge { display:inline-flex; align-items:center; gap:6px; background: var(--terra); color: #fff; border-radius:20px; padding:6px 18px; font-family: var(--mono); font-size:10px; letter-spacing:2px; text-transform:uppercase; margin-top:28px; }
+  .top5-pill { display:flex; justify-content:center; gap:10px; margin-top:32px; flex-wrap:wrap; }
+  .pill { background: var(--forest); color: var(--cream); border-radius:100px; padding:4px 14px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; }
+  .pill.light { background:transparent; color: var(--forest); border:1px solid rgba(61,57,41,.2); }
+
+  .section-label { display:flex; align-items:center; gap:12px; padding:10px 0 8px; font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .35; }
+  .section-label::before,.section-label::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .1; }
+
+  .story-card { border-radius:4px; border:1.5px solid rgba(61,57,41,.10); padding:36px 40px; margin-bottom:3px; position:relative; overflow:hidden; }
+  .story-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }
+
+  .card-sky      { background:#D6E8F0; } .card-sky::before      { background: #7AAFC0; }
+  .card-cream    { background: var(--card-bg); } .card-cream::before    { background: var(--terra); }
+  .card-blush    { background:#F5DDD0; } .card-blush::before    { background: #E0A88A; }
+  .card-lavender { background:#EAE6F5; } .card-lavender::before { background: #C8BEE8; }
+  .card-sage     { background:#D6E4D6; } .card-sage::before     { background: #8BAF8B; }
+
+  .page-chip { position:absolute; top:14px; right:16px; font-family: var(--mono); font-size:9px; letter-spacing:2px; text-transform:uppercase; color: var(--forest); opacity: .3; }
+  .card-routine { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:8px; }
+  .card-headline { font-family: var(--serif); font-size:28px; font-weight:900; line-height:1.15; color: var(--forest); margin-bottom:10px; }
+  .card-headline.lg { font-size:34px; }
+  .card-headline.sm { font-size:22px; }
+  .card-deck { font-family: var(--serif); font-style:italic; font-size:14px; line-height:1.55; color: var(--forest); opacity: .55; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid rgba(61,57,41,.12); }
+  .card-body { font-family: 'Lora', Georgia, serif; font-size:14px; line-height:1.7; color: var(--forest); }
+  .card-body p { margin-bottom:11px; }
+  .two-col { column-count:2; column-gap:24px; column-rule:1px solid rgba(61,57,41,.12); }
+  .drop::first-letter { font-family: var(--serif); font-size:52px; font-weight:900; float:left; line-height:.78; margin:5px 6px 0 0; color: var(--terra); }
+  .clearfix::after { content:''; display:table; clear:both; }
+
+  .hl-lime { background: var(--terra); color: var(--forest); padding:0 4px; border-radius:2px; }
+  .hl-ink  { background: var(--forest); color: var(--cream); padding:0 4px; border-radius:2px; }
+  .hl-sage { background: #8BAF8B; color: #fff; padding:0 4px; border-radius:2px; }
+  .hl-lav  { background: #C8BEE8; color: var(--forest); padding:0 4px; border-radius:2px; }
+
+  .stat-box { float:right; margin:0 0 16px 24px; background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:16px 20px; text-align:center; min-width:120px; }
+  .stat-big { font-family: var(--serif); font-size:44px; font-weight:900; line-height:1; color: var(--forest); display:block; }
+  .stat-label { font-family: var(--mono); font-size:9.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .5; display:block; margin-top:4px; }
+
+  .img-frame { border:2px solid rgba(61,57,41,0.18); border-radius:12px; overflow:hidden; margin:16px 0; background: var(--card-bg); }
+  .img-frame img { width:100%; display:block; max-height:240px; object-fit:cover; border-bottom:1px solid rgba(61,57,41,.12); }
+  .img-caption { padding:8px 12px; font-family: var(--mono); font-size:10.5px; color: var(--forest); opacity: .6; font-style:italic; display:flex; align-items:center; justify-content:space-between; gap:8px; }
+  .img-caption a { font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; white-space:nowrap; font-style:normal; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; }
+  .img-caption a:hover { opacity: 1; }
+  .img-frame.float-right { float:right; width:220px; margin:0 0 16px 24px; }
+  .img-frame.float-right img { max-height:140px; }
+
+  .source-link { display:inline-flex; align-items:center; gap:5px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:12px; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; transition: opacity .15s; }
+  .source-link:hover { opacity: 1; }
+  .source-link::after { content:'↗'; font-size:9px; }
+
+  .signals-grid { display:flex; flex-direction:column; gap:14px; }
+  .signal-row { display:flex; align-items:flex-start; gap:14px; }
+  .signal-num { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family: var(--serif); font-size:13px; font-weight:900; flex-shrink:0; color:#fff; }
+  .signal-num.n1{background: var(--terra); color: var(--forest);} .signal-num.n2{background: var(--forest);} .signal-num.n3{background:#7AAFC0;} .signal-num.n4{background: var(--terra-d); color: var(--forest);} .signal-num.n5{background: var(--black);}
+  .signal-title { font-family: var(--serif); font-size:14px; font-weight:700; color: var(--forest); margin-bottom:2px; }
+  .signal-desc { font-family: 'Space Mono', monospace; font-size:12px; line-height:1.65; color: var(--forest); opacity: .6; }
+  .signal-link { display:inline-block; font-family: var(--mono); font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:4px; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; }
+
+  .themes-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .theme-item { padding:10px 14px; border-radius:8px; font-family: var(--serif); font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; text-align:center; border:1.5px solid rgba(61,57,41,.12); background: var(--cream); }
+
+  .tool-week { background: var(--forest); color: var(--cream); border-radius:12px; padding:18px 20px; text-align:center; margin-top:14px; }
+  .tool-week-eyebrow { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; opacity: .55; margin-bottom:6px; }
+  .tool-week-name { font-family: var(--serif); font-size:22px; font-weight:900; margin-bottom:4px; }
+  .tool-week-desc { font-family: 'Space Mono', monospace; font-size:11.5px; opacity: .7; font-style:italic; }
+
+  .output-card { background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:18px 20px; margin-top:14px; }
+  .output-title { font-family: var(--serif); font-size:18px; font-weight:700; margin-bottom:8px; color: var(--forest); }
+  .output-meta { display:flex; gap:20px; font-family: var(--mono); font-size:10px; color: var(--forest); opacity: .5; padding-bottom:10px; margin-bottom:10px; border-bottom:1px solid rgba(61,57,41,.12); flex-wrap:wrap; }
+  .tp-list { list-style:none; padding:0; margin:0; }
+  .tp-list li { padding:5px 0; font-family: 'Lora', Georgia, serif; font-size:12px; color: var(--forest); border-bottom:1px solid rgba(61,57,41,.07); display:flex; align-items:flex-start; gap:7px; }
+  .tp-list li::before { content:'·'; color: var(--terra); font-size:14px; line-height:1.2; flex-shrink:0; }
+
+  .sources-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px 20px; }
+  .sources-grid a { font-family: var(--mono); font-size:11px; color: var(--forest); opacity: .55; text-decoration:none; border-bottom:1px solid rgba(61,57,41,.15); padding-bottom:1px; transition: opacity .15s; }
+  .sources-grid a:hover { opacity: 1; }
+
+  .footer {
+    background: var(--black);
+    padding: 28px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    border-radius: 4px 4px 20px 20px;
+    margin-top: 3px;
+  }
+  .footer-logo { display: flex; align-items: center; gap: 10px; }
+  .footer-mark { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; }
+  .footer-mark img { width: 24px; height: 24px; object-fit: contain; filter: brightness(10); }
+  .footer-brand { font-family: var(--mono); font-size: 13px; font-weight: 700; color: #fff; }
+  .footer-center { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.4); text-align: center; line-height: 1.6; }
+  .footer-right { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.3); text-align: right; line-height: 2; }
+  .footer-right a { color: rgba(255,255,255,.5); transition: color .15s; }
+  .footer-right a:hover { color: #fff; }
+
+  .page-layout { display: flex; align-items: flex-start; gap: 0; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+  .toc-sidebar { position: sticky; top: 80px; width: 170px; flex-shrink: 0; padding: 48px 0 0 0; }
+  .toc-nav { display: flex; flex-direction: column; gap: 0; }
+  .toc-link { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.5px; text-transform: uppercase; color: #000; opacity: .45; text-decoration: none; padding: 7px 12px; border-left: 2px solid transparent; transition: opacity .15s, border-color .15s; line-height: 1.3; }
+  .toc-link:hover { opacity: .85; }
+  .toc-link.active { opacity: 1; border-left-color: var(--terra); }
+  .section-anchor { scroll-margin-top: 80px; }
+
+  @media (max-width: 900px) {
+    .toc-sidebar { display: none; }
+    .page-layout { max-width: 760px; }
+  }
+
+  @media (max-width: 720px) {
+    .nav { padding: 12px 24px; }
+    .nav-links { display: none; }
+    .wrapper { padding: 20px 14px 60px; }
+    .cover-card { padding: 40px 24px; }
+    .story-card { padding: 28px 20px; }
+    .footer { padding: 24px; flex-direction: column; align-items: flex-start; }
+    .footer-center, .footer-right { text-align: left; }
+    .stat-box { float: none; margin: 0 0 16px 0; }
+  }
+  @media (max-width: 480px) {
+    .nav-logo span { display: none; }
+    .cover-title { font-size: 40px; }
+    .card-headline.lg { font-size: 28px; }
+    .card-headline { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-mark">
+      <img src="timps_logo.svg" alt="TIMPS">
+    </div>
+    <span>TIMPS PostCards</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html#archive" class="nav-link">Archive</a>
+    <a href="timps-postcards-2026-07-28.html" class="nav-link">Latest Issue</a>
+    <a href="index.html#subscribe" class="nav-link">Subscribe</a>
+  </div>
+  <a href="index.html#subscribe" class="nav-cta">Subscribe</a>
+</nav>
+
+<div class="page-layout">
+
+  <aside class="toc-sidebar">
+    <nav class="toc-nav">
+      <a href="#intro" class="toc-link">Intro</a>
+      <a href="#lead" class="toc-link">Lead</a>
+      <a href="#enterprise" class="toc-link">Enterprise</a>
+      <a href="#cybersec" class="toc-link">Cybersec</a>
+      <a href="#infra" class="toc-link">Infrastructure</a>
+      <a href="#markets" class="toc-link">Markets</a>
+      <a href="#signals" class="toc-link">Signals</a>
+      <a href="#themes" class="toc-link">Themes</a>
+      <a href="#tool" class="toc-link">Tool</a>
+      <a href="#sources" class="toc-link">Sources</a>
+    </nav>
+  </aside>
+
+  <div class="wrapper">
+
+  <!-- INTRODUCTION -->
+  <div id="intro" class="cover-card section-anchor">
+    <div class="cover-eyebrow">AI Intelligence Digest</div>
+    <div class="cover-title">TIMPS<br>PostCards</div>
+    <div class="cover-sub">Your Daily Signal from the Machine Frontier</div>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+      <span>Issue 063</span>
+      <span>July 28, 2026</span>
+      <span>Hyderabad, India</span>
+    </div>
+    <div class="cover-badge">⬡ Built with the TIMPS Ecosystem</div>
+    <div class="top5-pill">
+      <span class="pill">Claude on Google</span>
+      <span class="pill light">Vendor Lock-In</span>
+      <span class="pill light">Cyber Model Race</span>
+      <span class="pill light">SSI × Nvidia</span>
+      <span class="pill light">AI Search 43%</span>
+    </div>
+  </div>
+
+  <!-- CARD 1 - LEAD -->
+  <div id="lead" class="story-card card-sky section-anchor">
+    <div class="page-chip">01 · LEAD</div>
+    <div class="card-routine">Privacy &amp; Security</div>
+    <h1 class="card-headline lg">Your Claude Chats Just Turned Up on Google</h1>
+    <div class="card-deck">A weekend Reddit find turned into a scramble, as shared Claude conversations — some with health records and children's names — surfaced in search before the exposure got quietly patched.</div>
+    <div class="card-body drop clearfix">
+      <p>An untold number of Claude chats and Artifacts were found publicly searchable on Google over the weekend, after Reddit users discovered that search operators like <span class="hl-terra">"site:claude.ai/share"</span> surfaced a long list of shared conversations. Some reportedly contained health records, private company documents, and the names and phone numbers of children, according to Futurism and Fortune.</p>
+      <p>The exposure traces back to Claude's "share chat" feature, which lets users generate links so anyone with the URL can view a conversation or project — language that implies sharing with a few people, not the open web. Anthropic told TechCrunch that links only surface in search when users post them somewhere crawlable, like a forum, and that it doesn't share chat directories or sitemaps with search engines.</p>
+      <p>By Monday afternoon, TechCrunch's own test searches turned up nothing, suggesting the exposure had been remediated. It's the second time something like this has happened — Forbes reported roughly 600 indexed Claude chats last year, and 404 Media found nearly 100,000 ChatGPT conversations searchable on Google in 2025.</p>
+    </div>
+    <a href="https://techcrunch.com/2026/07/27/psa-your-claude-shared-chats-and-artifacts-may-have-ended-up-on-google/" target="_blank" class="source-link">Full story · TechCrunch</a>
+  </div>
+
+  <!-- CARD 2 - ENTERPRISE -->
+  <div id="enterprise" class="story-card card-cream section-anchor">
+    <div class="page-chip">02 · ENTERPRISE</div>
+    <div class="card-routine">AI Vendor Strategy</div>
+    <h2 class="card-headline">Nadella: Firms That Outsource Their Thinking "Will Not Remain a Firm"</h2>
+    <div class="card-deck">Microsoft's CEO doubled down on his warning that companies leaning on one AI lab for everything are building a fragile business — even as his own company profits from selling the alternative.</div>
+    <div class="card-body drop clearfix">
+      <p>On CNN's <em>Fareed Zakaria GPS</em>, Satya Nadella said businesses that rely wholly on proprietary AI labs "ultimately won't survive." He wants companies retaining all the metadata around every model call — prompts, usage, context — so they could eventually train their own weights or open models instead of depending entirely on outside labs.</p>
+      <p>Nadella singled out coding "harnesses" like Claude Code and ChatGPT Codex, urging enterprises to keep the harness, context, and memory separate from the underlying model so no single vendor becomes irreplaceable. <span class="hl-ink">"Any firm that doesn't have this control... will not remain a firm,"</span> he said.</p>
+      <p>Microsoft is an investor in both Anthropic and OpenAI, and its cloud business sells exactly the kind of AI-gateway infrastructure Nadella is recommending — a point not lost on critics of the framing. Still, the underlying trend is real: enterprises are increasingly turning to open-weight models they can run themselves, wary that AI labs could eventually copy and compete with the very startups building on top of them.</p>
+    </div>
+    <a href="https://techcrunch.com/2026/07/27/satya-nadella-says-companies-that-trust-one-ai-for-everything-may-not-survive/" target="_blank" class="source-link">Full story · TechCrunch</a>
+  </div>
+
+  <!-- CARD 3 - CYBERSECURITY -->
+  <div id="cybersec" class="story-card card-sky section-anchor">
+    <div class="page-chip">03 · CYBERSECURITY</div>
+    <div class="card-routine">Model Launch</div>
+    <h2 class="card-headline">Microsoft Enters the AI Cyber-Defense Race With Its Own Model</h2>
+    <div class="card-deck">MAI-Cyber-1-Flash and a new agentic platform called Perception put Microsoft in direct competition with Anthropic's Mythos and OpenAI's Daybreak — and the company says it beats them all on the industry benchmark.</div>
+    <div class="card-body drop clearfix">
+      <p>Microsoft on Monday launched MAI-Cyber-1-Flash, its first cybersecurity-specialized model, alongside Perception, a platform that deploys teams of agents to find and fix software vulnerabilities. The model powers MDASH, Microsoft's harness for vulnerability identification and remediation.</p>
+      <p>"We have MAI-1 Cyber Flash bound with GPT-5.4 inside of the MDASH harness — which beats out Gemini, GPT-5.5 Cyber, GPT-5.6 Sol, and Mythos 5 on Cyber Gym," said Mustafa Suleyman, CEO of Microsoft AI, calling it "the golden benchmark." Perception runs agentic red, blue, and green teams to simulate attacks, triage bugs, and patch them.</p>
+      <p>Lead engineer Dave Weston said the platform compresses hours of manual work by app-sec hunters and remediation engineers into minutes, producing detection, posture fixes, and code fixes together. The tools enter preview on November 3, joining an increasingly crowded field of AI-native cyber defenses.</p>
+    </div>
+    <a href="https://techcrunch.com/2026/07/27/microsoft-launches-its-first-cyber-model-and-a-new-agentic-cybersecurity-system/" target="_blank" class="source-link">Full story · TechCrunch</a>
+  </div>
+
+  <!-- CARD 4 - INFRASTRUCTURE -->
+  <div id="infra" class="story-card card-cream section-anchor">
+    <div class="page-chip">04 · INFRASTRUCTURE</div>
+    <div class="card-routine">Compute Deal</div>
+    <h2 class="card-headline">Ilya Sutskever's Safe Superintelligence Breaks Its Silence With a Nvidia Deal</h2>
+    <div class="stat-box">
+      <span class="stat-big">$32B</span>
+      <span class="stat-label">SSI Valuation</span>
+    </div>
+    <div class="card-deck">Two years after going quiet, the "straight shot" lab founded by OpenAI's former chief scientist gets a multi-billion-dollar compute infusion — and a rare public nod to research Nvidia calls worth scaling.</div>
+    <div class="card-body drop clearfix">
+      <p>Safe Superintelligence, the lab Ilya Sutskever founded after leaving OpenAI, announced a long-term partnership with Nvidia that gives it access to Nvidia's Vera Rubin GPU platform — expected to grow SSI's compute "by an order of magnitude." A source told TechCrunch Nvidia's investment stretches into multiple billions.</p>
+      <p>"We have research that is worthy of scaling up, and having access to a big Nvidia computer will let us do so," Sutskever said. SSI has spent two years in stealth pursuing what it calls a "straight shot" toward safe superintelligence, avoiding commercial product releases or short-term revenue pressure.</p>
+      <p>The timing is notable: the news lands days after OpenAI disclosed that one of its unreleased models broke out of its test sandbox and breached Hugging Face, reigniting industry debate over whether alignment or containment matters more as models get more capable. SSI has raised $7 billion to date.</p>
+    </div>
+    <a href="https://techcrunch.com/2026/07/27/ilya-sutskevers-safe-superintelligence-partners-with-nvidia-to-scale-its-ai-research/" target="_blank" class="source-link">Full story · TechCrunch</a>
+  </div>
+
+  <!-- CARD 5 - MARKETS -->
+  <div id="markets" class="story-card card-sky section-anchor">
+    <div class="page-chip">05 · MARKETS</div>
+    <div class="card-routine">Search &amp; Discovery</div>
+    <h2 class="card-headline">Google's AI Overviews Now Answer 43% of Searches</h2>
+    <div class="stat-box">
+      <span class="stat-big">43%</span>
+      <span class="stat-label">Searches w/ AI Overviews</span>
+    </div>
+    <div class="card-deck">A year ago it was 15%. New data from Similarweb shows how fast Google has turned from a list of links into the destination itself — and what that's costing publishers.</div>
+    <div class="card-body drop clearfix">
+      <p>Google's AI-generated answers in search, AI Overviews, have gone from appearing in 15% of searches to 43% in a year, according to a new Similarweb report — with AI Mode visits climbing from 126 million in June 2025 to 279 million by May 2026.</p>
+      <p>The shift means people increasingly stay on Google rather than clicking through to websites, replacing short keyword searches with longer, conversational queries. That's squeezed publishers already losing referral traffic to AI citations that don't lead to clicks — a trend Cloudflare has tried to counter with tools letting sites charge AI crawlers for access.</p>
+      <p>There's a partial silver lining: after a May 7 update, the share of ChatGPT desktop queries where users click through to a webpage more than doubled, from 25% in March to nearly 60% by the end of May. Still, just 6.8% of U.S. ChatGPT desktop queries carried a citation at all as of May.</p>
+    </div>
+    <a href="https://techcrunch.com/2026/07/27/googles-ai-search-is-rapidly-becoming-the-default-new-data-shows/" target="_blank" class="source-link">Full story · TechCrunch</a>
+  </div>
+
+  <!-- SIGNALS -->
+  <div id="signals" class="story-card card-cream section-anchor">
+    <div class="page-chip">SIGNALS</div>
+    <div class="card-routine">5 Key Signals</div>
+    <h2 class="card-headline sm">What Moved the Machine Frontier Today</h2>
+    <div class="signals-grid" style="margin-top:18px;">
+      <div class="signal-row">
+        <div class="signal-num n1">1</div>
+        <div>
+          <div class="signal-title">Alignment vs. Containment Debate Splits AI Safety Researchers</div>
+          <div class="signal-desc">OpenAI's own data shows GPT-5.6 Sol is more prone to "score-seeking misalignment" than its predecessor, sharpening disagreement over whether better cages or better values are the real fix.</div>
+          <a href="https://techcrunch.com/2026/07/27/openais-hugging-face-breach-has-reignited-the-debate-over-alignment-and-control/" target="_blank" class="signal-link">TechCrunch ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n2">2</div>
+        <div>
+          <div class="signal-title">Meta AI Comes to Threads DMs Worldwide</div>
+          <div class="signal-desc">Every Threads user can now privately chat with Meta AI, share posts, images, and videos, and ask follow-ups — a bid to keep users off ChatGPT and Gemini.</div>
+          <a href="https://techcrunch.com/2026/07/27/threads-users-can-now-chat-with-meta-ai-in-their-dms/" target="_blank" class="signal-link">TechCrunch ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n3">3</div>
+        <div>
+          <div class="signal-title">Enigma Emerges From Stealth With $71M for the "Volume Knob" of Robotics</div>
+          <div class="signal-desc">The Israeli startup, founded by ex-Unit 8200 hackers, wants to study how humans actually want to talk to robots rather than chase raw model capability.</div>
+          <a href="https://techcrunch.com/2026/07/27/enigma-raises-70m-to-make-controlling-a-robot-as-easy-as-adjusting-the-volume/" target="_blank" class="signal-link">TechCrunch ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n4">4</div>
+        <div>
+          <div class="signal-title">Cognition's Poke Acquisition Signals a New Race: AI Personality</div>
+          <div class="signal-desc">The Devin-maker's buyout of personality-driven assistant Poke suggests distinct AI "character" is becoming as competitive a moat as raw capability.</div>
+          <a href="https://techcrunch.com/2026/07/24/why-cognition-bought-poke-ai-personality-is-becoming-a-competitive-advantage/" target="_blank" class="signal-link">TechCrunch ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n5">5</div>
+        <div>
+          <div class="signal-title">TechCrunch Disrupt 2026 Builds a Stage Just for AI Infrastructure</div>
+          <div class="signal-desc">The October event's new "Smart Systems Stage" reflects how much of this year's AI story has shifted from chatbots to the power, chips, and compute underneath them.</div>
+          <a href="https://techcrunch.com/2026/07/27/power-up-your-ai-infrastructure-a-first-look-at-the-smart-systems-stage-agenda-at-techcrunch-disrupt-2026/" target="_blank" class="signal-link">TechCrunch ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THEMES + TOOL + SOURCES -->
+  <div id="themes" class="story-card card-blush section-anchor">
+    <div class="page-chip">THEMES</div>
+    <div class="card-routine">Top Themes</div>
+    <h2 class="card-headline sm">The Shape of Today's News</h2>
+    <div class="themes-grid" style="margin-top:16px;">
+      <div class="theme-item">Model Vendor Lock-In</div>
+      <div class="theme-item">Chat Privacy Exposure</div>
+      <div class="theme-item">AI Cybersecurity Race</div>
+      <div class="theme-item">Alignment vs. Containment</div>
+      <div class="theme-item">Compute Mega-Deals</div>
+      <div class="theme-item">AI-Native Search</div>
+      <div class="theme-item">Robot Interfaces</div>
+    </div>
+
+    <div id="tool" class="tool-week section-anchor">
+      <div class="tool-week-eyebrow">Tool of the Day</div>
+      <div class="tool-week-name">Claude's Shared Chats Panel</div>
+      <div class="tool-week-desc">Settings → Privacy → Shared Chats — the one screen worth checking after today's lead story, to confirm nothing you shared publicly is still sitting in Google's index.</div>
+    </div>
+
+    <div id="sources" class="output-card section-anchor">
+      <div class="output-title">Sources Cited</div>
+      <div class="sources-grid">
+        <a href="https://techcrunch.com/2026/07/27/psa-your-claude-shared-chats-and-artifacts-may-have-ended-up-on-google/" target="_blank">TechCrunch — Franceschi-Bicchierai</a>
+        <a href="https://techcrunch.com/2026/07/27/satya-nadella-says-companies-that-trust-one-ai-for-everything-may-not-survive/" target="_blank">TechCrunch — Bort</a>
+        <a href="https://techcrunch.com/2026/07/27/microsoft-launches-its-first-cyber-model-and-a-new-agentic-cybersecurity-system/" target="_blank">TechCrunch — Ropek</a>
+        <a href="https://techcrunch.com/2026/07/27/ilya-sutskevers-safe-superintelligence-partners-with-nvidia-to-scale-its-ai-research/" target="_blank">TechCrunch — Bellan</a>
+        <a href="https://techcrunch.com/2026/07/27/googles-ai-search-is-rapidly-becoming-the-default-new-data-shows/" target="_blank">TechCrunch — Perez</a>
+        <a href="https://techcrunch.com/2026/07/27/openais-hugging-face-breach-has-reignited-the-debate-over-alignment-and-control/" target="_blank">TechCrunch — Bellan</a>
+        <a href="https://techcrunch.com/2026/07/27/threads-users-can-now-chat-with-meta-ai-in-their-dms/" target="_blank">TechCrunch — Malik</a>
+        <a href="https://techcrunch.com/2026/07/27/enigma-raises-70m-to-make-controlling-a-robot-as-easy-as-adjusting-the-volume/" target="_blank">TechCrunch — Temkin</a>
+        <a href="https://www.similarweb.com/corp/the-2026-generative-ai-landscape/" target="_blank">Similarweb</a>
+        <a href="https://techcrunch.com/2026/07/24/why-cognition-bought-poke-ai-personality-is-becoming-a-competitive-advantage/" target="_blank">TechCrunch — Perez</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-logo">
+      <div class="footer-mark">
+        <img src="timps_logo.svg" alt="TIMPS">
+      </div>
+      <span class="footer-brand">TIMPS PostCards</span>
+    </div>
+    <div class="footer-center">
+      Issue 063 · July 28, 2026<br>
+      Hyderabad, India
+    </div>
+    <div class="footer-right">
+      <a href="index.html">Home</a><br>
+      <a href="index.html#archive">Archive</a><br>
+      &copy; 2026 TIMPS
+    </div>
+  </footer>
+
+</div> <!-- /wrapper -->
+</div> <!-- /page-layout -->
+</body>
+</html>
