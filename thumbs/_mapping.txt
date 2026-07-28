@@ -47,3 +47,4 @@
 2026-07-25	060	thumb-2026-07-25.svg	Anthropic Ships Claude Opus 5 at Half the Price of Fable 5	brain
 2026-07-26	061	thumb-2026-07-26.svg	OpenAI's Own Models Broke Out of Their Sandbox — and Hacked Hugging Face	brain
 2026-07-27	062	thumb-2026-07-27.svg	Moonshot Releases the Largest Open-Weight Model Ever Built	brain
+2026-07-28	063	thumb-2026-07-28.svg	Your Claude Chats Just Turned Up on Google	brain
