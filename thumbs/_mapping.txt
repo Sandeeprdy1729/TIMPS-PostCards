@@ -48,3 +48,4 @@
 2026-07-26	061	thumb-2026-07-26.svg	OpenAI's Own Models Broke Out of Their Sandbox — and Hacked Hugging Face	brain
 2026-07-27	062	thumb-2026-07-27.svg	Moonshot Releases the Largest Open-Weight Model Ever Built	brain
 2026-07-28	063	thumb-2026-07-28.svg	Your Claude Chats Just Turned Up on Google	brain
+2026-07-29	064	thumb-2026-07-29.svg	Claude Cracks a Post-Quantum Cipher — and Nobody Told It To	brain
