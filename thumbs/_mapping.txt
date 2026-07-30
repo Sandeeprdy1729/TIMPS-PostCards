@@ -49,3 +49,4 @@
 2026-07-27	062	thumb-2026-07-27.svg	Moonshot Releases the Largest Open-Weight Model Ever Built	brain
 2026-07-28	063	thumb-2026-07-28.svg	Your Claude Chats Just Turned Up on Google	brain
 2026-07-29	064	thumb-2026-07-29.svg	Claude Cracks a Post-Quantum Cipher — and Nobody Told It To	brain
+2026-07-30	065	thumb-2026-07-30.svg	Nvidia's $250 Billion Backstop for OpenAI Ignites Circular-Financing Alarm	funding
