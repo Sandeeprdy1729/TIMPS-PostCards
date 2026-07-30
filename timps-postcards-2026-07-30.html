@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TIMPS">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>TIMPS PostCards — Issue 065</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --cream:  #EEECE2;
+    --forest: #3D3929;
+    --terra:  #DA7756;
+    --terra-d:#BD5D3A;
+    --black:  #111111;
+    --card-bg:#F0ECE0;
+    --mono:   'Space Mono', 'Courier New', monospace;
+    --serif:  'TIMPS', 'Playfair Display', Georgia, serif;
+  }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Black.woff2') format('woff2'); font-weight:900; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Bold.woff2') format('woff2'); font-weight:700; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-SemiBold.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--cream);
+    background-image:
+      linear-gradient(rgba(61,57,41,.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.07) 1px, transparent 1px);
+    background-size: 38px 38px;
+    font-family: 'Space Mono', 'Courier New', monospace;
+    color: var(--forest);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { text-decoration: none; color: inherit; }
+
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 48px;
+    background-color: rgba(238,236,226,.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1.5px solid rgba(61,57,41,.12);
+    background-image:
+      linear-gradient(rgba(61,57,41,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.05) 1px, transparent 1px);
+    background-size: 38px 38px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 15px;
+    font-weight: 600;
+    color: #000;
+    text-decoration: none;
+  }
+  .nav-logo-mark {
+    width: 34px; height: 34px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .nav-logo-mark img { width: 28px; height: 28px; object-fit: contain; }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-link {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: #000;
+    opacity: .65;
+    text-decoration: none;
+    transition: opacity .15s;
+  }
+  .nav-link:hover { opacity: 1; }
+  .nav-cta {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: #000;
+    background: var(--terra);
+    border: 2.5px solid #000;
+    border-radius: 100px;
+    padding: 10px 24px;
+    cursor: pointer;
+    transition: background .15s, transform .1s;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--terra-d); transform: translateY(-1px); }
+
+  .wrapper { max-width: 760px; margin: 0 auto; padding: 40px 20px 80px; display: flex; flex-direction: column; gap: 0; }
+
+  .cover-card { background: var(--card-bg); border-radius: 20px 20px 4px 4px; padding: 56px 48px 48px; text-align: center; position: relative; overflow: hidden; border: 1.5px solid rgba(61,57,41,.12); margin-bottom: 3px; }
+  .cover-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, var(--terra) 0%, var(--terra-d) 60%, #E0A88A 100%); }
+  .cover-eyebrow { font-family: var(--mono); font-size:10px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:20px; display:flex; align-items:center; justify-content:center; gap:10px; }
+  .cover-eyebrow::before,.cover-eyebrow::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .15; max-width:60px; }
+  .cover-title { font-family: var(--serif); font-size:58px; font-weight:900; line-height:1; letter-spacing:-1px; color: var(--forest); margin-bottom:8px; }
+  .cover-sub { font-family: var(--serif); font-size:13px; font-style:italic; color: var(--forest); opacity: .55; margin-bottom:28px; }
+  .cover-divider { width:48px; height:2px; background: var(--terra); margin:0 auto 24px; border-radius:2px; }
+  .cover-meta { display:flex; justify-content:center; gap:32px; font-family: var(--mono); font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .45; }
+  .cover-badge { display:inline-flex; align-items:center; gap:6px; background: var(--terra); color: #fff; border-radius:20px; padding:6px 18px; font-family: var(--mono); font-size:10px; letter-spacing:2px; text-transform:uppercase; margin-top:28px; }
+  .top5-pill { display:flex; justify-content:center; gap:10px; margin-top:32px; flex-wrap:wrap; }
+  .pill { background: var(--forest); color: var(--cream); border-radius:100px; padding:4px 14px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; }
+  .pill.light { background:transparent; color: var(--forest); border:1px solid rgba(61,57,41,.2); }
+
+  .section-label { display:flex; align-items:center; gap:12px; padding:10px 0 8px; font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .35; }
+  .section-label::before,.section-label::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .1; }
+
+  .story-card { border-radius:4px; border:1.5px solid rgba(61,57,41,.10); padding:36px 40px; margin-bottom:3px; position:relative; overflow:hidden; }
+  .story-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }
+
+  .card-sky      { background:#D6E8F0; } .card-sky::before      { background: #7AAFC0; }
+  .card-cream    { background: var(--card-bg); } .card-cream::before    { background: var(--terra); }
+  .card-blush    { background:#F5DDD0; } .card-blush::before    { background: #E0A88A; }
+  .card-lavender { background:#EAE6F5; } .card-lavender::before { background: #C8BEE8; }
+  .card-sage     { background:#D6E4D6; } .card-sage::before     { background: #8BAF8B; }
+
+  .page-chip { position:absolute; top:14px; right:16px; font-family: var(--mono); font-size:9px; letter-spacing:2px; text-transform:uppercase; color: var(--forest); opacity: .3; }
+  .card-routine { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:8px; }
+  .card-headline { font-family: var(--serif); font-size:28px; font-weight:900; line-height:1.15; color: var(--forest); margin-bottom:10px; }
+  .card-headline.lg { font-size:34px; }
+  .card-headline.sm { font-size:22px; }
+  .card-deck { font-family: var(--serif); font-style:italic; font-size:14px; line-height:1.55; color: var(--forest); opacity: .55; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid rgba(61,57,41,.12); }
+  .card-body { font-family: 'Lora', Georgia, serif; font-size:14px; line-height:1.7; color: var(--forest); }
+  .card-body p { margin-bottom:11px; }
+  .drop::first-letter { font-family: var(--serif); font-size:52px; font-weight:900; float:left; line-height:.78; margin:5px 6px 0 0; color: var(--terra); }
+  .clearfix::after { content:''; display:table; clear:both; }
+
+  .hl-lime { background: var(--terra); color: var(--forest); padding:0 4px; border-radius:2px; }
+  .hl-ink  { background: var(--forest); color: var(--cream); padding:0 4px; border-radius:2px; }
+  .hl-sage { background: #8BAF8B; color: #fff; padding:0 4px; border-radius:2px; }
+  .hl-lav  { background: #C8BEE8; color: var(--forest); padding:0 4px; border-radius:2px; }
+
+  .stat-box { float:right; margin:0 0 16px 24px; background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:16px 20px; text-align:center; min-width:120px; }
+  .stat-big { font-family: var(--serif); font-size:44px; font-weight:900; line-height:1; color: var(--forest); display:block; }
+  .stat-label { font-family: var(--mono); font-size:9.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .5; display:block; margin-top:4px; }
+
+  .img-frame { border:2px solid rgba(61,57,41,0.18); border-radius:12px; overflow:hidden; margin:16px 0; background: var(--card-bg); }
+  .img-frame img { width:100%; display:block; max-height:240px; object-fit:cover; border-bottom:1px solid rgba(61,57,41,.12); }
+  .img-caption { padding:8px 12px; font-family: var(--mono); font-size:10.5px; color: var(--forest); opacity: .6; font-style:italic; display:flex; align-items:center; justify-content:space-between; gap:8px; }
+  .img-caption a { font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; white-space:nowrap; font-style:normal; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; }
+  .img-caption a:hover { opacity: 1; }
+  .img-frame.float-right { float:right; width:220px; margin:0 0 16px 24px; }
+  .img-frame.float-right img { max-height:140px; }
+
+  .source-link { display:inline-flex; align-items:center; gap:5px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:12px; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; transition: opacity .15s; }
+  .source-link:hover { opacity: 1; }
+  .source-link::after { content:'↗'; font-size:9px; }
+
+  .signals-grid { display:flex; flex-direction:column; gap:14px; }
+  .signal-row { display:flex; align-items:flex-start; gap:14px; }
+  .signal-num { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family: var(--serif); font-size:13px; font-weight:900; flex-shrink:0; color:#fff; }
+  .signal-num.n1{background: var(--terra); color: var(--forest);} .signal-num.n2{background: var(--forest);} .signal-num.n3{background:#7AAFC0;} .signal-num.n4{background: var(--terra-d); color: var(--forest);} .signal-num.n5{background: var(--black);}
+  .signal-title { font-family: var(--serif); font-size:14px; font-weight:700; color: var(--forest); margin-bottom:2px; }
+  .signal-desc { font-family: 'Space Mono', monospace; font-size:12px; line-height:1.65; color: var(--forest); opacity: .6; }
+
+  .themes-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .theme-item { padding:10px 14px; border-radius:8px; font-family: var(--serif); font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; text-align:center; border:1.5px solid rgba(61,57,41,.12); background: var(--cream); }
+
+  .tool-week { background: var(--forest); color: var(--cream); border-radius:12px; padding:18px 20px; text-align:center; margin-top:14px; }
+  .tool-week-eyebrow { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; opacity: .55; margin-bottom:6px; }
+  .tool-week-name { font-family: var(--serif); font-size:22px; font-weight:900; margin-bottom:4px; }
+  .tool-week-desc { font-family: 'Space Mono', monospace; font-size:11.5px; opacity: .7; font-style:italic; }
+
+  .output-card { background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:18px 20px; margin-top:14px; }
+  .output-title { font-family: var(--serif); font-size:18px; font-weight:700; margin-bottom:8px; color: var(--forest); }
+  .output-meta { display:flex; gap:20px; font-family: var(--mono); font-size:10px; color: var(--forest); opacity: .5; padding-bottom:10px; margin-bottom:10px; border-bottom:1px solid rgba(61,57,41,.12); flex-wrap:wrap; }
+  .tp-list { list-style:none; padding:0; margin:0; }
+  .tp-list li { padding:5px 0; font-family: 'Lora', Georgia, serif; font-size:12px; color: var(--forest); border-bottom:1px solid rgba(61,57,41,.07); display:flex; align-items:flex-start; gap:7px; }
+  .tp-list li::before { content:'·'; color: var(--terra); font-size:14px; line-height:1.2; flex-shrink:0; }
+
+  .sources-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px 20px; }
+  .sources-grid a { font-family: var(--mono); font-size:11px; color: var(--forest); opacity: .55; text-decoration:none; border-bottom:1px solid rgba(61,57,41,.15); padding-bottom:1px; transition: opacity .15s; }
+  .sources-grid a:hover { opacity: 1; }
+
+  .footer {
+    background: var(--black);
+    padding: 28px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    border-radius: 4px 4px 20px 20px;
+    margin-top: 3px;
+  }
+  .footer-logo { display: flex; align-items: center; gap: 10px; }
+  .footer-mark { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; }
+  .footer-mark img { width: 24px; height: 24px; object-fit: contain; filter: brightness(10); }
+  .footer-brand { font-family: var(--mono); font-size: 13px; font-weight: 700; color: #fff; }
+  .footer-center { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.4); text-align: center; line-height: 1.6; }
+  .footer-right { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.3); text-align: right; line-height: 2; }
+  .footer-right a { color: rgba(255,255,255,.5); transition: color .15s; }
+  .footer-right a:hover { color: #fff; }
+
+  .page-layout { display: flex; align-items: flex-start; gap: 0; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+  .toc-sidebar { position: sticky; top: 80px; width: 170px; flex-shrink: 0; padding: 48px 0 0 0; }
+  .toc-nav { display: flex; flex-direction: column; gap: 0; }
+  .toc-link { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.5px; text-transform: uppercase; color: #000; opacity: .45; text-decoration: none; padding: 7px 12px; border-left: 2px solid transparent; transition: opacity .15s, border-color .15s; line-height: 1.3; }
+  .toc-link:hover { opacity: .85; }
+  .toc-link.active { opacity: 1; border-left-color: var(--terra); }
+  .section-anchor { scroll-margin-top: 80px; }
+
+  @media (max-width: 900px) {
+    .toc-sidebar { display: none; }
+    .page-layout { max-width: 760px; }
+  }
+
+  @media (max-width: 720px) {
+    .nav { padding: 12px 24px; }
+    .nav-links { display: none; }
+    .wrapper { padding: 20px 14px 60px; }
+    .cover-card { padding: 40px 24px; }
+    .story-card { padding: 28px 20px; }
+    .footer { padding: 24px; flex-direction: column; align-items: flex-start; }
+    .footer-center, .footer-right { text-align: left; }
+    .stat-box { float: none; margin: 0 0 16px 0; }
+  }
+  @media (max-width: 480px) {
+    .nav-logo span { display: none; }
+    .cover-title { font-size: 40px; }
+    .card-headline.lg { font-size: 28px; }
+    .card-headline { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-mark">
+      <img src="timps_logo.svg" alt="TIMPS">
+    </div>
+    <span>TIMPS PostCards</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html#archive" class="nav-link">Archive</a>
+    <a href="timps-postcards-2026-07-30.html" class="nav-link">Latest Issue</a>
+    <a href="index.html#subscribe" class="nav-link">Subscribe</a>
+  </div>
+  <a href="index.html#subscribe" class="nav-cta">Subscribe</a>
+</nav>
+
+<div class="page-layout">
+
+  <aside class="toc-sidebar">
+    <nav class="toc-nav">
+      <a href="#intro" class="toc-link">Intro</a>
+      <a href="#lead" class="toc-link">Lead</a>
+      <a href="#meta" class="toc-link">Meta</a>
+      <a href="#security" class="toc-link">Security</a>
+      <a href="#research" class="toc-link">Research</a>
+      <a href="#policy" class="toc-link">Policy</a>
+      <a href="#signals" class="toc-link">Signals</a>
+      <a href="#themes" class="toc-link">Themes</a>
+      <a href="#tool" class="toc-link">Tool</a>
+      <a href="#sources" class="toc-link">Sources</a>
+    </nav>
+  </aside>
+
+  <div class="wrapper">
+
+  <!-- INTRODUCTION -->
+  <div id="intro" class="cover-card section-anchor">
+    <div class="cover-eyebrow">AI Intelligence Digest</div>
+    <div class="cover-title">TIMPS<br>PostCards</div>
+    <div class="cover-sub">Your Daily Signal from the Machine Frontier</div>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+      <span>Issue 065</span>
+      <span>July 30, 2026</span>
+      <span>Hyderabad, India</span>
+    </div>
+    <div class="cover-badge">⬡ Built with the TIMPS Ecosystem</div>
+    <div class="top5-pill">
+      <span class="pill">Nvidia's $250B Backstop</span>
+      <span class="pill light">Meta Capex Raised</span>
+      <span class="pill light">RufRoot RCE</span>
+      <span class="pill light">Frontier Rulebook</span>
+      <span class="pill light">Academic Access</span>
+    </div>
+  </div>
+
+  <!-- CARD 1 - LEAD -->
+  <div id="lead" class="story-card card-blush section-anchor">
+    <div class="page-chip">01 · LEAD</div>
+    <div class="card-routine">Markets · Compute</div>
+    <h1 class="card-headline lg">Nvidia's $250 Billion Backstop for OpenAI Ignites Circular-Financing Alarm</h1>
+    <div class="card-deck">A weekend Wall Street Journal report that Nvidia may guarantee $250 billion of OpenAI's Ohio data-center lease erased tens of billions in chipmaker value on Monday — and reopened the industry's most uncomfortable question: who is actually paying for the AI buildout.</div>
+    <div class="card-body drop clearfix">
+      <div class="stat-box">
+        <span class="stat-big">$250B</span>
+        <span class="stat-label">Financing Guarantee</span>
+      </div>
+      <p>The Wall Street Journal reported over the weekend that Nvidia is in talks to provide roughly $250 billion in financial guarantees to help OpenAI lease a planned 10-gigawatt AI data-center campus in southern Ohio, being developed by SB Energy, a subsidiary of SoftBank. Separate reporting indicated Nvidia is also weighing financing up to $350 billion of chip purchases tied to the same buildout.</p>
+      <p>Nvidia shares fell nearly 5% on Monday to about $197, with AMD down roughly 8% and Dell off about 4%, as the news rattled the broader semiconductor sector — even as the S&P 500, Dow, and Nasdaq each posted gains the same day, a divergence traders read as company-specific rather than macro-driven.</p>
+      <p>The arrangement would let OpenAI raise construction debt on more favorable terms by leaning on Nvidia's balance sheet rather than its own, since OpenAI remains unprofitable. Critics call it <span class="hl-lime">vendor financing at unprecedented scale</span>: Nvidia would effectively help fund a customer that spends the money buying Nvidia GPUs.</p>
+      <p>The report follows Nvidia's own $500 billion-plus initiative with South Korea's SK Group announced days earlier, and lands the same week broader AI-hardware stocks have shed more than $1 trillion in combined market value — a reminder that record data-center revenue hasn't quieted doubts about how the buildout actually gets financed.</p>
+    </div>
+    <a href="https://www.cnbc.com/2026/07/27/nvidias-potential-250b-backstop-for-openai-is-another-strike-against-the-ai-trade.html" target="_blank" class="source-link">Full story · CNBC</a>
+  </div>
+
+  <!-- CARD 2 - META -->
+  <div id="meta" class="story-card card-lavender section-anchor">
+    <div class="page-chip">02</div>
+    <div class="card-routine">Earnings · Infrastructure</div>
+    <h2 class="card-headline">Meta Raises Its 2026 AI Capex Floor to $130 Billion as Free Cash Flow Craters</h2>
+    <div class="card-deck">Revenue jumped 28% to $60.8 billion in Q2 — but Meta's own AI buildout left free cash flow at a fraction of last year's, forcing the company to borrow $25 billion just to keep building.</div>
+    <div class="card-body drop clearfix">
+      <div class="stat-box">
+        <span class="stat-big">$784M</span>
+        <span class="stat-label">Q2 Free Cash Flow</span>
+      </div>
+      <p>Meta reported second-quarter 2026 revenue of $60.8 billion, up 28% year over year, comfortably beating expectations on the strength of its advertising business. Capital expenditures hit $31.1 billion for the quarter alone — nearly double what Meta spent in the same period last year — as the company poured money into servers, data centers, and network infrastructure.</p>
+      <p>Free cash flow collapsed to just $784 million, down from $8.55 billion a year earlier, even as operating cash flow reached $31.9 billion; Meta issued roughly $25 billion in new long-term debt during the quarter to help fund construction that operating cash alone couldn't cover.</p>
+      <p>Reality Labs, Meta's VR and AI-glasses division, posted a $4.62 billion operating loss on just $431 million in revenue — wider than the prior quarter, though narrower than the roughly $5.07 billion loss Wall Street had modeled.</p>
+      <p>Management narrowed full-year 2026 capex guidance to $130–145 billion, raising the floor from a prior $125 billion, and guided full-year expenses to $165–169 billion. The company still expects 2026 operating income to exceed 2025's, betting that AI-driven ad gains keep outrunning the infrastructure bill.</p>
+    </div>
+    <a href="https://www.investing.com/news/company-news/meta-q2-2026-slides-revenue-surges-28-as-ai-spending-pressures-profits-93CH-4821966" target="_blank" class="source-link">Full story · Investing.com</a>
+  </div>
+
+  <!-- CARD 3 - SECURITY -->
+  <div id="security" class="story-card card-blush section-anchor">
+    <div class="page-chip">03</div>
+    <div class="card-routine">Security · Agents</div>
+    <h2 class="card-headline">A Maximum-Severity Flaw Turned Ruflo's AI Agent Swarms Into Open Doors</h2>
+    <div class="card-deck">One unauthenticated HTTP request was enough to seize a shell, steal API keys, and poison the memory of an agent platform with 67,000 GitHub stars and roughly a million active users.</div>
+    <div class="card-body drop clearfix">
+      <p>Security researchers at Noma Labs disclosed <span class="hl-ink">CVE-2026-59726</span>, nicknamed "RufRoot" and rated a maximum 10.0 on the CVSS scale, in Ruflo — an open-source AI agent orchestration platform formerly known as Claude Flow. The flaw sat in Ruflo's MCP Bridge, an Express.js server that exposed 233 high-privilege tools over plain HTTP with zero authentication in the project's default Docker Compose deployment.</p>
+      <p>A single unauthenticated POST request to the bridge's <code>terminal_execute</code> tool gave attackers a shell inside the container — no token, no API key, no header check. From there, researchers found attackers could read provider API keys, harvest stored conversations, and tamper with AgentDB, Ruflo's persistent memory store, potentially planting instructions that quietly change how an agent behaves later.</p>
+      <p>Noma Labs reported the bug on June 30; maintainer Reuven Cohen shipped version 3.16.3 within 24 hours, binding the bridge to loopback only, gating shell execution behind access controls, and turning on database authentication. The advisory was published publicly on July 29.</p>
+      <p>The episode is being read as a case study in "Shadow AI" risk: powerful, easy-to-deploy agent platforms reaching production before anyone applies the access controls a normal API would require by default.</p>
+    </div>
+    <a href="https://thehackernews.com/2026/07/ruflo-mcp-flaw-lets-unauthenticated.html" target="_blank" class="source-link">Full story · The Hacker News</a>
+  </div>
+
+  <!-- CARD 4 - RESEARCH -->
+  <div id="research" class="story-card card-lavender section-anchor">
+    <div class="page-chip">04</div>
+    <div class="card-routine">Access · Research</div>
+    <h2 class="card-headline">OpenAI Opens Its Frontier Models to 100,000 Academic Researchers, Free</h2>
+    <div class="card-deck">A new program aims to put frontier-model access directly into university labs — starting with 10,000 researchers and scaling toward ten times that by 2027.</div>
+    <div class="card-body drop clearfix">
+      <div class="stat-box">
+        <span class="stat-big">8.4M</span>
+        <span class="stat-label">Weekly Science Messages</span>
+      </div>
+      <p>OpenAI launched ChatGPT for Academic Researchers, a program giving selected researchers at partner institutions free access to its frontier models and research tools. The rollout starts with 10,000 researchers and is designed to expand to roughly 100,000 by 2027, with privacy protections and training built in from the start.</p>
+      <p>OpenAI says the push responds to fast-growing academic demand: roughly 1.3 million people already use ChatGPT weekly for advanced science and math work, generating about 8.4 million messages, with the clearest adoption curve showing up in mathematics research over the past six months.</p>
+      <p>The program sits alongside OpenAI's enterprise research partnerships — including exploratory work with BBVA on AI-powered banking support and SoftBank — as the company positions frontier-model access as a public-good argument at the same time regulators debate how tightly to gate the same models.</p>
+    </div>
+    <a href="https://releasebot.io/updates/openai" target="_blank" class="source-link">Full story · OpenAI, via Releasebot</a>
+  </div>
+
+  <!-- CARD 5 - POLICY -->
+  <div id="policy" class="story-card card-blush section-anchor">
+    <div class="page-chip">05</div>
+    <div class="card-routine">Policy · Governance</div>
+    <h2 class="card-headline sm">OpenAI and Anthropic Are Quietly Writing the Rulebook Their Rivals Must Follow</h2>
+    <div class="card-deck">With the government's first frontier-AI review deadline three days out, the industry's two biggest labs are shaping a framework meant to bind everyone — including Meta and xAI.</div>
+    <div class="card-body drop clearfix">
+      <p>Ahead of an August 1 deadline set by Executive Order 14409, OpenAI and Anthropic have been pushing the Trump administration to adopt a single, published federal review standard for the most powerful AI models — one that would apply not just to themselves but to competitors including Meta and xAI, according to reporting on the coordination.</p>
+      <p>The push follows a rough two months for both companies: Anthropic's Claude Fable 5 and Mythos 5 were suspended globally for roughly three weeks in June under export-control authority after a jailbreak concern, and OpenAI's GPT-5.6 was restricted to government-vetted partners for 12 days in July — both actions taken with no published threshold or process.</p>
+      <p>The actual trigger for review is a classified NSA benchmark, run through a program called TRAINS, that measures a model's autonomous cyber-offense capability; neither developers nor outside researchers are told exactly where that line sits. Five labs in the TRAINS program — OpenAI, Anthropic, Google, Microsoft, and xAI — are separately building a shared, CVSS-style severity scale for AI jailbreaks to give the government a common language for future incidents.</p>
+      <p>Critics note the obvious tension: two of the largest incumbents are helping draft the rules that will decide which models get scrutinized, potentially raising costs for smaller developers who lack the same Washington access. Meta's open-weight models, meanwhile, sit structurally outside the framework once released — a gap regulators haven't resolved.</p>
+    </div>
+    <a href="https://www.techtimes.com/articles/321917/20260728/openai-anthropic-are-writing-threshold-their-rivals-must-clear-launch.htm" target="_blank" class="source-link">Full story · Tech Times</a>
+  </div>
+
+  <!-- SIGNALS -->
+  <div id="signals" class="story-card card-cream section-anchor">
+    <div class="page-chip">SIGNALS</div>
+    <div class="card-routine">5 Key Signals</div>
+    <h2 class="card-headline sm">What Else Moved Today</h2>
+    <div class="signals-grid" style="margin-top:18px;">
+      <div class="signal-row">
+        <div class="signal-num n1">1</div>
+        <div>
+          <div class="signal-title">Samsung, SK Hynix Plunge as China's DUV Lithography Machines Enter Service</div>
+          <div class="signal-desc">Both memory giants sold off after reports that Chinese-made deep ultraviolet lithography tools have entered production, chipping at the moat that has powered the sector's AI-memory rally.</div>
+          <a href="https://www.techtimes.com/articles/321815/20260728/samsung-sk-hynix-plunge-chinas-duv-lithography-machines-enter-service.htm" target="_blank" class="signal-link">Tech Times ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n2">2</div>
+        <div>
+          <div class="signal-title">Nvidia and SK Group Unveil $500B+ AI Factories and Memory Partnership</div>
+          <div class="signal-desc">SK Telecom will build a 2-gigawatt AI data center on Nvidia's Vera Rubin platform while SK Hynix locks in a long-term HBM4 supply and co-development deal, coming online in 2027.</div>
+          <a href="https://nvidianews.nvidia.com/news/sk-group-and-nvidia-expand-strategic-partnership-across-ai-factories-and-next-generation-memory" target="_blank" class="signal-link">Nvidia Newsroom ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n3">3</div>
+        <div>
+          <div class="signal-title">Jensen Huang's First-Ever X Post Backs Open-Weight AI, Draws 11M Views</div>
+          <div class="signal-desc">Nvidia's CEO used his debut post to champion a 25-signatory letter — alongside Meta, Microsoft, and Palantir — arguing open-weight models strengthen U.S. AI leadership rather than threaten it.</div>
+          <a href="https://www.tomshardware.com/tech-industry/artificial-intelligence/nvidia-and-24-other-companies-sign-open-weights-letter-as-washington-weighs-chinese-ai-model-ban" target="_blank" class="signal-link">Tom's Hardware ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n4">4</div>
+        <div>
+          <div class="signal-title">AI Chip Selloff Erases Over $1 Trillion in Market Cap This Week</div>
+          <div class="signal-desc">Semiconductor and AI-hardware names lost more than $1 trillion in combined value between last Friday's close and this week's trading, even as several posted record quarterly profits.</div>
+          <a href="https://mlq.ai/news/ai-chip-selloff-erases-more-than-1-trillion-as-record-profits-fail-to-calm-investors/" target="_blank" class="signal-link">MLQ News ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n5">5</div>
+        <div>
+          <div class="signal-title">BookTok Hit "Daggermouth" Flagged as AI-Generated by Researchers</div>
+          <div class="signal-desc">The hardcover release of a viral BookTok novel landed under scrutiny after AI-detection researchers flagged patterns consistent with generated text — reigniting debate over disclosure norms in publishing.</div>
+          <a href="https://www.techtimes.com/articles/321780/20260728/daggermouth-hardcover-drops-today-booktok-hit-flagged-ai-researchers.htm" target="_blank" class="signal-link">Tech Times ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THEMES + TOOL + SOURCES -->
+  <div id="themes" class="story-card card-lavender section-anchor">
+    <div class="page-chip">THEMES</div>
+    <div class="card-routine">Top Themes</div>
+    <h2 class="card-headline sm">The Shape of Today's News</h2>
+    <div class="themes-grid" style="margin-top:16px;">
+      <div class="theme-item">Circular AI Financing</div>
+      <div class="theme-item">Compute Capex Supercycle</div>
+      <div class="theme-item">Agent Security Debt</div>
+      <div class="theme-item">Frontier Governance Race</div>
+      <div class="theme-item">Open-Weight Access Politics</div>
+      <div class="theme-item">Chip Supply Realignment</div>
+      <div class="theme-item">Academic AI Access</div>
+    </div>
+
+    <div id="tool" class="tool-week section-anchor">
+      <div class="tool-week-eyebrow">Tool of the Week</div>
+      <div class="tool-week-name">mcp-audit</div>
+      <div class="tool-week-desc">An offline-first, open-source scanner that vets MCP servers for exactly the unauthenticated-tool exposure behind this week's Ruflo flaw — one command grades a server before you trust it with your agents. Worth a look for TIMPS-Parasol's MAC-enforcement work.</div>
+    </div>
+
+    <div id="sources" class="output-card section-anchor">
+      <div class="output-title">Sources Cited</div>
+      <div class="sources-grid">
+        <a href="https://www.cnbc.com/2026/07/27/nvidias-potential-250b-backstop-for-openai-is-another-strike-against-the-ai-trade.html" target="_blank">CNBC — Nvidia's potential $250B backstop</a>
+        <a href="https://www.investing.com/news/company-news/meta-q2-2026-slides-revenue-surges-28-as-ai-spending-pressures-profits-93CH-4821966" target="_blank">Investing.com — Meta Q2 2026 slides</a>
+        <a href="https://thehackernews.com/2026/07/ruflo-mcp-flaw-lets-unauthenticated.html" target="_blank">The Hacker News — Ruflo MCP flaw</a>
+        <a href="https://releasebot.io/updates/openai" target="_blank">Releasebot — OpenAI release notes</a>
+        <a href="https://www.techtimes.com/articles/321917/20260728/openai-anthropic-are-writing-threshold-their-rivals-must-clear-launch.htm" target="_blank">Tech Times — OpenAI, Anthropic write the threshold</a>
+        <a href="https://www.techtimes.com/articles/321815/20260728/samsung-sk-hynix-plunge-chinas-duv-lithography-machines-enter-service.htm" target="_blank">Tech Times — Samsung, SK Hynix plunge</a>
+        <a href="https://nvidianews.nvidia.com/news/sk-group-and-nvidia-expand-strategic-partnership-across-ai-factories-and-next-generation-memory" target="_blank">Nvidia Newsroom — SK Group partnership</a>
+        <a href="https://www.tomshardware.com/tech-industry/artificial-intelligence/nvidia-and-24-other-companies-sign-open-weights-letter-as-washington-weighs-chinese-ai-model-ban" target="_blank">Tom's Hardware — Huang's open-weights post</a>
+        <a href="https://mlq.ai/news/ai-chip-selloff-erases-more-than-1-trillion-as-record-profits-fail-to-calm-investors/" target="_blank">MLQ News — AI chip selloff</a>
+        <a href="https://www.techtimes.com/articles/321780/20260728/daggermouth-hardcover-drops-today-booktok-hit-flagged-ai-researchers.htm" target="_blank">Tech Times — Daggermouth flagged as AI</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-logo">
+      <div class="footer-mark">
+        <img src="timps_logo.svg" alt="TIMPS">
+      </div>
+      <span class="footer-brand">TIMPS PostCards</span>
+    </div>
+    <div class="footer-center">
+      Issue 065 · July 30, 2026<br>
+      Hyderabad, India
+    </div>
+    <div class="footer-right">
+      <a href="index.html">Home</a><br>
+      <a href="index.html#archive">Archive</a><br>
+      &copy; 2026 TIMPS
+    </div>
+  </footer>
+
+</div> <!-- /wrapper -->
+</div> <!-- /page-layout -->
+</body>
+</html>
