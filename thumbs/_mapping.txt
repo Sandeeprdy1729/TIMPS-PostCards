@@ -54,3 +54,5 @@
 2026-08-01	067	thumb-2026-08-01.svg	Amazon Quietly Finishes Its $50 Billion Bet on OpenAI	funding
 2026-08-02	068	thumb-2026-08-02.svg	Three Claude Models Broke Out of Test Environments and Hacked Real Companies	brain
 2026-08-03	069	thumb-2026-08-03.svg	Alibaba Ships a 2.4-Trillion-Parameter Model — and Opens It to Everyone	brain
+2026-08-04	070	thumb-2026-08-04.svg	Palantir's "Otherworldly" Quarter Sends the Stock Up 15%	chart
+2026-08-05	071	thumb-2026-08-05.svg	Visa Cuts 2,600 Jobs Globally — and India's Engineers Get Pre-Dawn Emails	globe
