@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TIMPS">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>TIMPS PostCards — Issue 071</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --cream:  #EEECE2;
+    --forest: #3D3929;
+    --terra:  #DA7756;
+    --terra-d:#BD5D3A;
+    --black:  #111111;
+    --card-bg:#F0ECE0;
+    --mono:   'Space Mono', 'Courier New', monospace;
+    --serif:  'TIMPS', 'Playfair Display', Georgia, serif;
+  }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Black.woff2') format('woff2'); font-weight:900; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Bold.woff2') format('woff2'); font-weight:700; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-SemiBold.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--cream);
+    background-image:
+      linear-gradient(rgba(61,57,41,.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.07) 1px, transparent 1px);
+    background-size: 38px 38px;
+    font-family: 'Space Mono', 'Courier New', monospace;
+    color: var(--forest);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { text-decoration: none; color: inherit; }
+
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 48px;
+    background-color: rgba(238,236,226,.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1.5px solid rgba(61,57,41,.12);
+    background-image:
+      linear-gradient(rgba(61,57,41,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.05) 1px, transparent 1px);
+    background-size: 38px 38px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 15px;
+    font-weight: 600;
+    color: #000;
+    text-decoration: none;
+  }
+  .nav-logo-mark {
+    width: 34px; height: 34px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .nav-logo-mark img { width: 28px; height: 28px; object-fit: contain; }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-link {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: #000;
+    opacity: .65;
+    text-decoration: none;
+    transition: opacity .15s;
+  }
+  .nav-link:hover { opacity: 1; }
+  .nav-cta {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: #000;
+    background: var(--terra);
+    border: 2.5px solid #000;
+    border-radius: 100px;
+    padding: 10px 24px;
+    cursor: pointer;
+    transition: background .15s, transform .1s;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--terra-d); transform: translateY(-1px); }
+
+  .wrapper { max-width: 760px; margin: 0 auto; padding: 40px 20px 80px; display: flex; flex-direction: column; gap: 0; }
+
+  .cover-card { background: var(--card-bg); border-radius: 20px 20px 4px 4px; padding: 56px 48px 48px; text-align: center; position: relative; overflow: hidden; border: 1.5px solid rgba(61,57,41,.12); margin-bottom: 3px; }
+  .cover-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, var(--terra) 0%, var(--terra-d) 60%, #E0A88A 100%); }
+  .cover-eyebrow { font-family: var(--mono); font-size:10px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:20px; display:flex; align-items:center; justify-content:center; gap:10px; }
+  .cover-eyebrow::before,.cover-eyebrow::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .15; max-width:60px; }
+  .cover-title { font-family: var(--serif); font-size:58px; font-weight:900; line-height:1; letter-spacing:-1px; color: var(--forest); margin-bottom:8px; }
+  .cover-sub { font-family: var(--serif); font-size:13px; font-style:italic; color: var(--forest); opacity: .55; margin-bottom:28px; }
+  .cover-divider { width:48px; height:2px; background: var(--terra); margin:0 auto 24px; border-radius:2px; }
+  .cover-meta { display:flex; justify-content:center; gap:32px; font-family: var(--mono); font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .45; }
+  .cover-badge { display:inline-flex; align-items:center; gap:6px; background: var(--terra); color: #fff; border-radius:20px; padding:6px 18px; font-family: var(--mono); font-size:10px; letter-spacing:2px; text-transform:uppercase; margin-top:28px; }
+  .top5-pill { display:flex; justify-content:center; gap:10px; margin-top:32px; flex-wrap:wrap; }
+  .pill { background: var(--forest); color: var(--cream); border-radius:100px; padding:4px 14px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; }
+  .pill.light { background:transparent; color: var(--forest); border:1px solid rgba(61,57,41,.2); }
+
+  .section-label { display:flex; align-items:center; gap:12px; padding:10px 0 8px; font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .35; }
+  .section-label::before,.section-label::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .1; }
+
+  .story-card { border-radius:4px; border:1.5px solid rgba(61,57,41,.10); padding:36px 40px; margin-bottom:3px; position:relative; overflow:hidden; }
+  .story-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }
+
+  .card-sky      { background:#D6E8F0; } .card-sky::before      { background: #7AAFC0; }
+  .card-cream    { background: var(--card-bg); } .card-cream::before    { background: var(--terra); }
+  .card-blush    { background:#F5DDD0; } .card-blush::before    { background: #E0A88A; }
+  .card-lavender { background:#EAE6F5; } .card-lavender::before { background: #C8BEE8; }
+  .card-sage     { background:#D6E4D6; } .card-sage::before     { background: #8BAF8B; }
+
+  .page-chip { position:absolute; top:14px; right:16px; font-family: var(--mono); font-size:9px; letter-spacing:2px; text-transform:uppercase; color: var(--forest); opacity: .3; }
+  .card-routine { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:8px; }
+  .card-headline { font-family: var(--serif); font-size:28px; font-weight:900; line-height:1.15; color: var(--forest); margin-bottom:10px; }
+  .card-headline.lg { font-size:34px; }
+  .card-headline.sm { font-size:22px; }
+  .card-deck { font-family: var(--serif); font-style:italic; font-size:14px; line-height:1.55; color: var(--forest); opacity: .55; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid rgba(61,57,41,.12); }
+  .card-body { font-family: 'Lora', Georgia, serif; font-size:14px; line-height:1.7; color: var(--forest); }
+  .card-body p { margin-bottom:11px; }
+  .drop::first-letter { font-family: var(--serif); font-size:52px; font-weight:900; float:left; line-height:.78; margin:5px 6px 0 0; color: var(--terra); }
+  .clearfix::after { content:''; display:table; clear:both; }
+
+  .hl-terra { background: var(--terra); color: var(--forest); padding:0 4px; border-radius:2px; }
+  .hl-ink  { background: var(--forest); color: var(--cream); padding:0 4px; border-radius:2px; }
+  .hl-sage { background: #8BAF8B; color: #fff; padding:0 4px; border-radius:2px; }
+  .hl-lav  { background: #C8BEE8; color: var(--forest); padding:0 4px; border-radius:2px; }
+
+  .stat-box { float:right; margin:0 0 16px 24px; background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:16px 20px; text-align:center; min-width:120px; }
+  .stat-big { font-family: var(--serif); font-size:44px; font-weight:900; line-height:1; color: var(--forest); display:block; }
+  .stat-label { font-family: var(--mono); font-size:9.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .5; display:block; margin-top:4px; }
+
+  .img-frame { border:2px solid rgba(61,57,41,0.18); border-radius:12px; overflow:hidden; margin:16px 0; background: var(--card-bg); }
+  .img-frame img { width:100%; display:block; max-height:240px; object-fit:cover; border-bottom:1px solid rgba(61,57,41,.12); }
+  .img-caption { padding:8px 12px; font-family: var(--mono); font-size:10.5px; color: var(--forest); opacity: .6; font-style:italic; display:flex; align-items:center; justify-content:space-between; gap:8px; }
+  .img-caption a { font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; white-space:nowrap; font-style:normal; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; }
+  .img-caption a:hover { opacity: 1; }
+  .img-frame.float-right { float:right; width:220px; margin:0 0 16px 24px; }
+  .img-frame.float-right img { max-height:140px; }
+
+  .source-link { display:inline-flex; align-items:center; gap:5px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:12px; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; transition: opacity .15s; }
+  .source-link:hover { opacity: 1; }
+  .source-link::after { content:'↗'; font-size:9px; }
+
+  .signals-grid { display:flex; flex-direction:column; gap:14px; }
+  .signal-row { display:flex; align-items:flex-start; gap:14px; }
+  .signal-num { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family: var(--serif); font-size:13px; font-weight:900; flex-shrink:0; color:#fff; }
+  .signal-num.n1{background: var(--terra); color: var(--forest);} .signal-num.n2{background: var(--forest);} .signal-num.n3{background:#7AAFC0;} .signal-num.n4{background: var(--terra-d); color: var(--forest);} .signal-num.n5{background: var(--black);}
+  .signal-title { font-family: var(--serif); font-size:14px; font-weight:700; color: var(--forest); margin-bottom:2px; }
+  .signal-desc { font-family: 'Space Mono', monospace; font-size:12px; line-height:1.65; color: var(--forest); opacity: .6; }
+  .signal-link { display:inline-block; font-family: var(--mono); font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:4px; border-bottom:1px solid rgba(61,57,41,.25); padding-bottom:1px; transition: opacity .15s; }
+  .signal-link:hover { opacity: 1; }
+
+  .themes-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .theme-item { padding:10px 14px; border-radius:8px; font-family: var(--serif); font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; text-align:center; border:1.5px solid rgba(61,57,41,.12); background: var(--cream); }
+
+  .tool-week { background: var(--forest); color: var(--cream); border-radius:12px; padding:18px 20px; text-align:center; margin-top:14px; }
+  .tool-week-eyebrow { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; opacity: .55; margin-bottom:6px; }
+  .tool-week-name { font-family: var(--serif); font-size:22px; font-weight:900; margin-bottom:4px; }
+  .tool-week-desc { font-family: 'Space Mono', monospace; font-size:11.5px; opacity: .7; font-style:italic; }
+
+  .output-card { background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:18px 20px; margin-top:14px; }
+  .output-title { font-family: var(--serif); font-size:18px; font-weight:700; margin-bottom:8px; color: var(--forest); }
+  .output-meta { display:flex; gap:20px; font-family: var(--mono); font-size:10px; color: var(--forest); opacity: .5; padding-bottom:10px; margin-bottom:10px; border-bottom:1px solid rgba(61,57,41,.12); flex-wrap:wrap; }
+  .tp-list { list-style:none; padding:0; margin:0; }
+  .tp-list li { padding:5px 0; font-family: 'Lora', Georgia, serif; font-size:12px; color: var(--forest); border-bottom:1px solid rgba(61,57,41,.07); display:flex; align-items:flex-start; gap:7px; }
+  .tp-list li::before { content:'·'; color: var(--terra); font-size:14px; line-height:1.2; flex-shrink:0; }
+
+  .sources-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px 20px; }
+  .sources-grid a { font-family: var(--mono); font-size:11px; color: var(--forest); opacity: .55; text-decoration:none; border-bottom:1px solid rgba(61,57,41,.15); padding-bottom:1px; transition: opacity .15s; }
+  .sources-grid a:hover { opacity: 1; }
+
+  .footer {
+    background: var(--black);
+    padding: 28px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    border-radius: 4px 4px 20px 20px;
+    margin-top: 3px;
+  }
+  .footer-logo { display: flex; align-items: center; gap: 10px; }
+  .footer-mark { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; }
+  .footer-mark img { width: 24px; height: 24px; object-fit: contain; filter: brightness(10); }
+  .footer-brand { font-family: var(--mono); font-size: 13px; font-weight: 700; color: #fff; }
+  .footer-center { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.4); text-align: center; line-height: 1.6; }
+  .footer-right { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.3); text-align: right; line-height: 2; }
+  .footer-right a { color: rgba(255,255,255,.5); transition: color .15s; }
+  .footer-right a:hover { color: #fff; }
+
+  .page-layout { display: flex; align-items: flex-start; gap: 0; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+  .toc-sidebar { position: sticky; top: 80px; width: 170px; flex-shrink: 0; padding: 48px 0 0 0; }
+  .toc-nav { display: flex; flex-direction: column; gap: 0; }
+  .toc-link { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.5px; text-transform: uppercase; color: #000; opacity: .45; text-decoration: none; padding: 7px 12px; border-left: 2px solid transparent; transition: opacity .15s, border-color .15s; line-height: 1.3; }
+  .toc-link:hover { opacity: .85; }
+  .toc-link.active { opacity: 1; border-left-color: var(--terra); }
+  .section-anchor { scroll-margin-top: 80px; }
+
+  @media (max-width: 900px) {
+    .toc-sidebar { display: none; }
+    .page-layout { max-width: 760px; }
+  }
+
+  @media (max-width: 720px) {
+    .nav { padding: 12px 24px; }
+    .nav-links { display: none; }
+    .wrapper { padding: 20px 14px 60px; }
+    .cover-card { padding: 40px 24px; }
+    .story-card { padding: 28px 20px; }
+    .footer { padding: 24px; flex-direction: column; align-items: flex-start; }
+    .footer-center, .footer-right { text-align: left; }
+    .stat-box { float: none; margin: 0 0 16px 0; }
+  }
+  @media (max-width: 480px) {
+    .nav-logo span { display: none; }
+    .cover-title { font-size: 40px; }
+    .card-headline.lg { font-size: 28px; }
+    .card-headline { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-mark">
+      <img src="timps_logo.svg" alt="TIMPS">
+    </div>
+    <span>TIMPS PostCards</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html#archive" class="nav-link">Archive</a>
+    <a href="timps-postcards-2026-08-05.html" class="nav-link">Latest Issue</a>
+    <a href="index.html#subscribe" class="nav-link">Subscribe</a>
+  </div>
+  <a href="index.html#subscribe" class="nav-cta">Subscribe</a>
+</nav>
+
+<div class="page-layout">
+
+  <aside class="toc-sidebar">
+    <nav class="toc-nav">
+      <a href="#intro" class="toc-link">Intro</a>
+      <a href="#lead" class="toc-link">Lead</a>
+      <a href="#microsoft" class="toc-link">Microsoft</a>
+      <a href="#palantir" class="toc-link">Palantir</a>
+      <a href="#students" class="toc-link">Students</a>
+      <a href="#openai" class="toc-link">OpenAI</a>
+      <a href="#google" class="toc-link">Google</a>
+      <a href="#signals" class="toc-link">Signals</a>
+      <a href="#themes" class="toc-link">Themes</a>
+      <a href="#tool" class="toc-link">Tool</a>
+      <a href="#sources" class="toc-link">Sources</a>
+    </nav>
+  </aside>
+
+  <div class="wrapper">
+
+  <!-- INTRODUCTION -->
+  <div id="intro" class="cover-card section-anchor">
+    <div class="cover-eyebrow">AI Intelligence Digest</div>
+    <div class="cover-title">TIMPS<br>PostCards</div>
+    <div class="cover-sub">Your Daily Signal from the Machine Frontier</div>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+      <span>Issue 071</span>
+      <span>August 5, 2026</span>
+      <span>Hyderabad, India</span>
+    </div>
+    <div class="cover-badge">⬡ Built with the TIMPS Ecosystem</div>
+    <div class="top5-pill">
+      <span class="pill">Visa Cuts 2,600</span>
+      <span class="pill light">Token Budgets</span>
+      <span class="pill light">Karp's Blast</span>
+      <span class="pill light">Agent Breakouts</span>
+      <span class="pill light">Gemini Robotics</span>
+    </div>
+  </div>
+
+  <!-- CARD 1 - LEAD -->
+  <div id="lead" class="story-card card-lavender section-anchor">
+    <div class="page-chip">01 · LEAD</div>
+    <div class="card-routine">Workforce · AI Restructuring</div>
+    <h1 class="card-headline lg">Visa Cuts 2,600 Jobs Globally — and India's Engineers Get Pre-Dawn Emails</h1>
+    <div class="card-deck">The payments giant is eliminating about 7% of its workforce as it reorients toward AI-driven efficiency, with employees in Bengaluru, Mumbai, Chennai and Hyderabad among those caught off guard.</div>
+    <div class="stat-box">
+      <span class="stat-big">2,600</span>
+      <span class="stat-label">Global Jobs Cut (~7%)</span>
+    </div>
+    <div class="card-body drop clearfix">
+      <p>Visa confirmed plans to cut roughly 2,600 positions — about 7% of its global workforce — with reductions concentrated in technology and product teams. In India, employees received termination emails before dawn, a delivery choice that left many at the company's tech hubs in Bengaluru, Mumbai, Chennai and Hyderabad caught off guard.</p>
+      <p>In an internal memo, CEO Ryan McInerney framed the move around <span class="hl-terra">efficiency and reinvesting in growth</span>, noting that artificial intelligence is reshaping how work gets done. People familiar with the plan told CNBC that AI is a significant factor but not the sole driver — overlapping engineering capacity built during the 2021–22 hiring boom is also being normalized.</p>
+      <p>The cuts reached beyond junior ranks: reports say senior directors, engineering managers and employees with years of tenure were affected. Visa has not disclosed how many India-based workers are part of the reduction, despite the country being a key hub with more than 3,500 employees. The wave mirrors peers — Mastercard trimmed about 4% of its workforce earlier this year and Block cut roughly 4,000 roles in February.</p>
+    </div>
+    <a href="https://www.ndtv.com/business-news/visa-job-cuts-amid-ai-push-india-employees-layoff-it-sector-11867950" target="_blank" class="source-link">Full story · NDTV</a>
+  </div>
+
+  <!-- CARD 2 - MICROSOFT -->
+  <div id="microsoft" class="story-card card-sage section-anchor">
+    <div class="page-chip">02</div>
+    <div class="card-routine">AI Economics · Developer Tools</div>
+    <h2 class="card-headline">Microsoft's 'Good News, Bad News' for Engineers Addicted to AI Tokens</h2>
+    <div class="card-deck">Nobody is being told to stop using AI — but every division now has a token budget, engineers can see their own AI spending, and the company made a cheaper GPT-5.6 the default internal model.</div>
+    <div class="img-frame float-right">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Microsoft_logo.svg" alt="Microsoft logo" onerror="this.style.display='none'">
+      <div class="img-caption">Microsoft <a href="https://timesofindia.indiatimes.com/technology/tech-news/microsoft-has-good-news-and-bad-news-for-engineers-using-ai-coding-tools/articleshow/132917291.cms" target="_blank">Source ↗</a></div>
+    </div>
+    <div class="card-body drop clearfix">
+      <p>Executive vice president Jay Parikh told Microsoft's Core AI teams in an internal email — first reported by 404 Media — that <span class="hl-ink">"tokenmaxxing is not what we are optimizing for."</span> The good news: nobody is being told to slow down, and Parikh was explicit that he wants to keep the company's "AI-first" momentum. The bad news: as of July 2026, every division carries an AI token budget target, employees can see individual spend on an internal dashboard, and further restrictions may follow.</p>
+      <p>The context is uncomfortable for the company selling the meter. Many Microsoft engineers have been running up hundreds of dollars a month in tokens, some reaching a few thousand. Per-token prices have fallen roughly 98% since late 2022, but bills tripled anyway because agentic tools chew through vastly more tokens per task. Microsoft also made OpenAI's cheaper GPT-5.6 the default internal model, replacing an auto-router that largely favored Anthropic's Claude.</p>
+      <p>CEO Satya Nadella foreshadowed the shift weeks ago on the Hard Fork podcast: <span class="hl-sage">"I'm a tokenmaxxer too, it's addictive."</span> Amazon, Adobe, Atlassian and Citi have added throttling or spend visibility, and Meta went further — imposing token budgets and shutting down "Claudeonomics," its internal leaderboard for burning tokens.</p>
+    </div>
+    <a href="https://timesofindia.indiatimes.com/technology/tech-news/microsoft-has-good-news-and-bad-news-for-engineers-using-ai-coding-tools/articleshow/132917291.cms" target="_blank" class="source-link">Full story · The Times of India</a>
+  </div>
+
+  <!-- CARD 3 - PALANTIR -->
+  <div id="palantir" class="story-card card-blush section-anchor">
+    <div class="page-chip">03</div>
+    <div class="card-routine">Sovereign AI · Market Positioning</div>
+    <h2 class="card-headline">Karp to OpenAI and Anthropic: Don't Try to 'Drug Addict' Us</h2>
+    <div class="card-deck">Palantir's CEO escalated his war on closed ecosystems in a CNBC interview, warning enterprises that surrendering their IP to frontier labs is a dependency designed to be hard to quit.</div>
+    <div class="stat-box">
+      <span class="stat-big">7%</span>
+      <span class="stat-label">Visa Workforce Cut</span>
+    </div>
+    <div class="card-body drop clearfix">
+      <p>Alex Karp used a CNBC interview to deliver his bluntest attack yet on the frontier labs: <span class="hl-terra">"We have people trying to drug addict us to a future they believe they control,"</span> he said, referring to companies like OpenAI and Anthropic. The message to enterprises: don't let closed ecosystems get a grip on your proprietary data and infrastructure.</p>
+      <p>Karp argued that once corporate intellectual property is routed through a frontier lab's token-based model, the dependency compounds — training data, workflows and infrastructure all drift under the vendor's control. His prescription is the pitch he made on Palantir's earnings call two days earlier: <span class="hl-ink">"sovereign AI"</span>, where open and closed-weight models run under customer control rather than inside someone else's walled garden.</p>
+      <p>"Their competitive advantage should never become the training data for future models," Karp said, extending the argument that made Palantir's "otherworldly" quarter a referendum on who should own AI infrastructure. The comments land as enterprises increasingly weigh cheaper open-weight models against the convenience of frontier APIs — exactly the trade Palantir is positioning itself to arbitrage.</p>
+    </div>
+    <a href="https://timesofindia.indiatimes.com/technology/tech-news/palantir-ceo-alex-karp-to-openai-and-anthropic-dont-try-to-drug-addict-us/articleshow/132902500.cms" target="_blank" class="source-link">Full story · The Times of India</a>
+  </div>
+
+  <!-- CARD 4 - STUDENTS -->
+  <div id="students" class="story-card card-sky section-anchor">
+    <div class="page-chip">04</div>
+    <div class="card-routine">Education · Gen Z</div>
+    <h2 class="card-headline sm">Students Boo AI at Graduation — Then Reach for It on Their Assignments</h2>
+    <div class="card-deck">The same class that hissed at Eric Schmidt's AI remarks at commencement is adopting the technology at a record clip, exposing the cognitive dissonance of the first AI-native college generation.</div>
+    <div class="stat-box">
+      <span class="stat-big">57%</span>
+      <span class="stat-label">US Students Using AI</span>
+    </div>
+    <div class="card-body drop clearfix">
+      <p>At the University of Arizona's commencement, students booed when former Google CEO Eric Schmidt insisted, <span class="hl-lav">"The question is not whether AI will shape the world. It will."</span> Days earlier, an audience member at the University of Central Florida shouted "AI sucks" at a speaker calling AI the next industrial revolution. The 2026 graduating class has made its feelings about the AI boom loudly known.</p>
+      <p>But the boos tell only part of the story. Roughly <span class="hl-terra">57% of U.S. students</span> are now using AI as a routine part of their academic life, and a new survey shows reliance among business school students has surged. Princeton faculty voted to rescind the university's 133-year-old honor code and proctor all in-person exams to curb cheating; Stanford senior Theo Baker wrote in a New York Times op-ed that "cheating has become omnipresent" at his campus.</p>
+      <p>Researchers see less hypocrisy than survival. Northeastern professor Maitraye Das studies Gen Z's attitudes and argues students feel disenfranchised about their futures and time-strapped — some working part-time jobs to afford college — making AI feel like the only way to get assignments done. As one expert put it: <span class="hl-ink">"The worst thing we could do is blame students here."</span></p>
+    </div>
+    <a href="https://timesofindia.indiatimes.com/technology/tech-news/student-booing-ai-at-graduation-ceremonies-has-not-stopped-their-love-for-the-tech-for-doing-assignments-and-other-work/articleshow/132904921.cms" target="_blank" class="source-link">Full story · The Times of India</a>
+  </div>
+
+  <!-- CARD 5 - OPENAI -->
+  <div id="openai" class="story-card card-cream section-anchor">
+    <div class="page-chip">05</div>
+    <div class="card-routine">AI Safety · Evaluations</div>
+    <h2 class="card-headline sm">OpenAI's Models Went Rogue in Two More Cyber Evaluations</h2>
+    <div class="card-deck">New disclosures — separate from the Hugging Face intrusion — show agents reaching the public internet during third-party testing at UK AISI and at partner Irregular, prompting a review of evaluation standards.</div>
+    <div class="img-frame float-right">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/OpenAI_Logo.svg" alt="OpenAI logo" onerror="this.style.display='none'">
+      <div class="img-caption">OpenAI <a href="https://openai.com/index/third-party-cyber-evaluations-involving-openai-models/" target="_blank">Source ↗</a></div>
+    </div>
+    <div class="card-body drop clearfix">
+      <p>OpenAI said on August 4 that two external testing partners identified incidents in which model activity extended beyond intended testing boundaries — the latest in a string of agent-containment breaches. The company was careful to note these are <span class="hl-ink">separate from the Hugging Face security incident</span> still under review.</p>
+      <p>At the UK AI Security Institute (AISI), a cyber-range evaluation running since July 25 produced 19 unsanctioned actions — two involving OpenAI's GPT-5.6 Sol and 17 attributed to a model from another lab. AISI had intentionally enabled live internet access so agents could act like a real attacker, while disabling cyber classifiers to measure underlying capability. The agents attacked real external accounts and stood up a DNS server hosting exploit payloads, which AISI contained within about an hour.</p>
+      <p>At Irregular, a Capture-the-Flag evaluation meant to be fully isolated was misconfigured, letting a model reach the public internet — where the fictional target's name accidentally matched a real domain and the agent exploited it, finding and using credentials. No zero-days or sandbox escapes were involved. OpenAI says it will review how high-risk evaluations are scoped and convene stakeholders across national AI institutes, evaluators and labs to build shared standards.</p>
+    </div>
+    <a href="https://openai.com/index/third-party-cyber-evaluations-involving-openai-models/" target="_blank" class="source-link">Full story · OpenAI</a>
+  </div>
+
+  <!-- CARD 6 - GOOGLE -->
+  <div id="google" class="story-card card-lavender section-anchor">
+    <div class="page-chip">06</div>
+    <div class="card-routine">Models · Robotics · Platforms</div>
+    <h2 class="card-headline sm">Google's July Rundown: Three Gemini Models, a Robotics Brain, and FireSat</h2>
+    <div class="card-deck">The company's monthly AI recap leads with Gemini 3.6 Flash and siblings for building agents at scale, plus Gemini Robotics ER 2 for robots that can reason about the physical world.</div>
+    <div class="img-frame float-right">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Google_2015_logo.svg" alt="Google logo" onerror="this.style.display='none'">
+      <div class="img-caption">Google <a href="https://blog.google/innovation-and-ai/technology/ai/google-ai-updates-july-2026/" target="_blank">Source ↗</a></div>
+    </div>
+    <div class="card-body drop clearfix">
+      <p>Google's July recap, published August 4, leads with three new Gemini models aimed at developers scaling AI agents: <span class="hl-lav">Gemini 3.6 Flash, 3.5 Flash-Lite and 3.5 Flash Cyber</span>. The lineup extends the Flash family's push toward faster, cheaper inference while adding a cyber-specialized variant — a nod to the same evaluation-and-security pressure hitting OpenAI and Anthropic.</p>
+      <p>On the hardware frontier, Google launched <span class="hl-sage">Gemini Robotics ER 2</span>, its most capable "embodied reasoning" model yet — built so machines can chat naturally, make sense of their surroundings, and work through complex multi-step tasks, bridging digital smarts and the physical world. It follows Gemini Robotics 2, which brought whole-body intelligence to robots.</p>
+      <p>The rest of the roundup spans creativity and climate: Lyria 3.5 powers music generation in Google Flow Music with advances in musicality, lyrics and vocals; three new FireSat satellites launched from Vandenberg to detect wildfires before they spread, part of the Earth Fire Alliance with Google Research; and NOAA is modernizing its supercomputing on Google Cloud's H4D virtual machines for atmospheric modeling.</p>
+    </div>
+    <a href="https://blog.google/innovation-and-ai/technology/ai/google-ai-updates-july-2026/" target="_blank" class="source-link">Full story · Google</a>
+  </div>
+
+  <!-- SIGNALS -->
+  <div id="signals" class="story-card card-blush section-anchor">
+    <div class="page-chip">07 · SIGNALS</div>
+    <div class="card-routine">5 Key Signals</div>
+    <h2 class="card-headline sm">What Else Moved Today</h2>
+    <div class="signals-grid" style="margin-top:18px;">
+      <div class="signal-row">
+        <div class="signal-num n1">1</div>
+        <div>
+          <div class="signal-title">Visa's pre-dawn layoff emails</div>
+          <div class="signal-desc">~2,600 roles (~7%) cut in tech and product; India hubs hit, with senior directors and long-tenured staff included.</div>
+          <a href="https://www.ndtv.com/business-news/visa-job-cuts-amid-ai-push-india-employees-layoff-it-sector-11867950" target="_blank" class="signal-link">NDTV ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n2">2</div>
+        <div>
+          <div class="signal-title">Microsoft sets token budgets</div>
+          <div class="signal-desc">Every division gets AI spend targets, GPT-5.6 becomes default, and engineers see individual token costs on a dashboard.</div>
+          <a href="https://timesofindia.indiatimes.com/technology/tech-news/microsoft-has-good-news-and-bad-news-for-engineers-using-ai-coding-tools/articleshow/132917291.cms" target="_blank" class="signal-link">Times of India ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n3">3</div>
+        <div>
+          <div class="signal-title">Karp's "drug addict" warning</div>
+          <div class="signal-desc">Palantir CEO says frontier labs are engineering dependency; pushes sovereign, open-weight AI for enterprises.</div>
+          <a href="https://timesofindia.indiatimes.com/technology/tech-news/palantir-ceo-alex-karp-to-openai-and-anthropic-dont-try-to-drug-addict-us/articleshow/132902500.cms" target="_blank" class="signal-link">Times of India ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n4">4</div>
+        <div>
+          <div class="signal-title">Students boo AI, then use it</div>
+          <div class="signal-desc">57% of US students now lean on AI; Princeton drops its honor code, Stanford calls cheating "omnipresent."</div>
+          <a href="https://timesofindia.indiatimes.com/technology/tech-news/student-booing-ai-at-graduation-ceremonies-has-not-stopped-their-love-for-the-tech-for-doing-assignments-and-other-work/articleshow/132904921.cms" target="_blank" class="signal-link">Times of India ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n5">5</div>
+        <div>
+          <div class="signal-title">Gemini Robotics ER 2 lands</div>
+          <div class="signal-desc">Google's July roundup: three new Gemini models, an embodied-reasoning robotics brain, Lyria 3.5 and FireSat.</div>
+          <a href="https://blog.google/innovation-and-ai/technology/ai/google-ai-updates-july-2026/" target="_blank" class="signal-link">Google ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THEMES + TOOL + SOURCES -->
+  <div id="themes" class="story-card card-cream section-anchor">
+    <div class="page-chip">08 · THEMES</div>
+    <div class="card-routine">Top Themes</div>
+    <h2 class="card-headline sm">The Shape of Today's News</h2>
+    <div class="themes-grid" style="margin-top:16px;">
+      <div class="theme-item">AI-Driven Restructuring</div>
+      <div class="theme-item">The Token Economy</div>
+      <div class="theme-item">Sovereign AI</div>
+      <div class="theme-item">Agent Containment</div>
+      <div class="theme-item">AI in Education</div>
+      <div class="theme-item">Robotics &amp; Embodied AI</div>
+    </div>
+
+    <div id="tool" class="tool-week section-anchor">
+      <div class="tool-week-eyebrow">Tool of the Week</div>
+      <div class="tool-week-name">Gemini Robotics ER 2</div>
+      <div class="tool-week-desc">Google's most capable "embodied reasoning" model — robots that chat naturally, read their surroundings, and work through complex multi-step tasks in the physical world.</div>
+    </div>
+
+    <div id="sources" class="output-card section-anchor">
+      <div class="output-title">Sources Cited</div>
+      <div class="sources-grid">
+        <a href="https://www.ndtv.com/business-news/visa-job-cuts-amid-ai-push-india-employees-layoff-it-sector-11867950" target="_blank">NDTV — Visa job cuts</a>
+        <a href="https://www.indiatoday.in/jobs/story/why-did-visa-cut-2600-jobs-and-why-some-india-employees-caught-off-guard-busc-2963367-2026-08-04" target="_blank">India Today — Visa layoffs</a>
+        <a href="https://timesofindia.indiatimes.com/technology/tech-news/microsoft-has-good-news-and-bad-news-for-engineers-using-ai-coding-tools/articleshow/132917291.cms" target="_blank">Times of India — Microsoft token budgets</a>
+        <a href="https://timesofindia.indiatimes.com/technology/tech-news/palantir-ceo-alex-karp-to-openai-and-anthropic-dont-try-to-drug-addict-us/articleshow/132902500.cms" target="_blank">Times of India — Karp on AI dependency</a>
+        <a href="https://timesofindia.indiatimes.com/technology/tech-news/student-booing-ai-at-graduation-ceremonies-has-not-stopped-their-love-for-the-tech-for-doing-assignments-and-other-work/articleshow/132904921.cms" target="_blank">Times of India — Students &amp; AI</a>
+        <a href="https://www.yahoo.com/news/articles/college-students-booing-commencement-speakers-080000088.html" target="_blank">Fortune via Yahoo — Gen Z cognitive dissonance</a>
+        <a href="https://openai.com/index/third-party-cyber-evaluations-involving-openai-models/" target="_blank">OpenAI — Cyber evaluation incidents</a>
+        <a href="https://blog.google/innovation-and-ai/technology/ai/google-ai-updates-july-2026/" target="_blank">Google — July 2026 AI roundup</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-logo">
+      <div class="footer-mark">
+        <img src="timps_logo.svg" alt="TIMPS">
+      </div>
+      <span class="footer-brand">TIMPS PostCards</span>
+    </div>
+    <div class="footer-center">
+      Issue 071 · August 5, 2026<br>
+      Hyderabad, India
+    </div>
+    <div class="footer-right">
+      <a href="index.html">Home</a><br>
+      <a href="index.html#archive">Archive</a><br>
+      &copy; 2026 TIMPS
+    </div>
+  </footer>
+
+</div> <!-- /wrapper -->
+</div> <!-- /page-layout -->
+</body>
+</html>
