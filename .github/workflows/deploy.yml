@@ -14,10 +14,10 @@ jobs:
     runs-on: ubuntu-latest
     concurrency:
       group: "pages"
-      cancel-in-progress: false
+      cancel-in-progress: true
     environment:
       name: github-pages
-      url: ${{ steps.deploy-attempt.outputs.page_url || steps.deployment.outputs.page_url }}
+      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
       - name: Checkout
@@ -32,6 +32,8 @@ jobs:
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
+        with:
+          enablement: true
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -39,20 +41,7 @@ jobs:
           path: '.'
 
       - name: Deploy to GitHub Pages
-        id: deploy-attempt
-        continue-on-error: true
-        uses: actions/deploy-pages@v4
-        with:
-          # 10 minutes in milliseconds; this is the maximum value GitHub allows.
-          timeout: 600000
-
-      - name: Wait before retry
-        if: steps.deploy-attempt.outcome == 'failure'
-        run: sleep 30
-
-      - name: Deploy to GitHub Pages (Retry)
         id: deployment
-        if: steps.deploy-attempt.outcome == 'failure'
         uses: actions/deploy-pages@v4
         with:
           # 10 minutes in milliseconds; this is the maximum value GitHub allows.
