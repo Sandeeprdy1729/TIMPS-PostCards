@@ -56,3 +56,4 @@
 2026-08-03	069	thumb-2026-08-03.svg	Alibaba Ships a 2.4-Trillion-Parameter Model — and Opens It to Everyone	brain
 2026-08-04	070	thumb-2026-08-04.svg	Palantir's "Otherworldly" Quarter Sends the Stock Up 15%	chart
 2026-08-05	071	thumb-2026-08-05.svg	Visa Cuts 2,600 Jobs Globally — and India's Engineers Get Pre-Dawn Emails	globe
+2026-08-06	072	thumb-2026-08-06.svg	Jamie Dimon Personally Calls America's CEOs — and Asks Them to Join His AI Risk Coalition	chip
