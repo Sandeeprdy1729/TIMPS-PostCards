@@ -34,7 +34,7 @@ def api(path):
 
 
 def fmt(dt):
-    return urllib.parse.quote(dt.strftime("%Y-%m-%dT%H:%M:%S%z"))
+    return urllib.parse.quote(dt.replace(microsecond=0).isoformat())
 
 
 def main():
