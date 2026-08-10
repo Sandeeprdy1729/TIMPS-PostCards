@@ -1,8 +1,9 @@
-const CACHE = "timps-postcards-v1";
+const CACHE = "timps-postcards-v2";
 
 const PRECACHE_URLS = [
   ".",
   "index.html",
+  "config.js",
   "icon-192.png",
   "icon-512.png",
   "timps_logo.svg",
@@ -18,17 +19,18 @@ self.addEventListener("install", (event) => {
 });
 
 self.addEventListener("fetch", (event) => {
+  if (event.request.method !== "GET") return;
+  // Network-first: this is a news site, fresh pages matter more than offline speed.
   event.respondWith(
-    caches.match(event.request).then((cached) => {
-      const fetchPromise = fetch(event.request).then((response) => {
+    fetch(event.request)
+      .then((response) => {
         if (response && response.status === 200) {
           const clone = response.clone();
           caches.open(CACHE).then((cache) => cache.put(event.request, clone));
         }
         return response;
-      }).catch(() => cached);
-      return cached || fetchPromise;
-    })
+      })
+      .catch(() => caches.match(event.request))
   );
 });
 
