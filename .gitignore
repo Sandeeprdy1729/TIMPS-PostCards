@@ -1,7 +1,7 @@
 # Environment variables — keep your Beehiiv Publication ID off GitHub
 .env
 
-# Generated local config — created from .env by running: source .env && echo "window.BEEHIIV_PUB_ID='pub_$BEEHIVE_ID';" > config.js
+# Generated local config — created from .env by running: source .env && echo "window.BEEHIIV_PUB_ID='pub_$BEEHIVE_ID'; window.GOATCOUNTER_CODE='$GOATCOUNTER_CODE';" > config.js
 config.js
 
 # TIMPS font source files (large TTF binaries — keep the smaller WOFF2 copies)

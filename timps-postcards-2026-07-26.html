@@ -487,5 +487,52 @@
 
 </div> <!-- /wrapper -->
 </div> <!-- /page-layout -->
+
+<!-- GoatCounter analytics — counts visits + PWA installs.
+     Requires GOATCOUNTER_CODE in config.js (see config.example.js).
+     Tracks: daily unique visitors, current "online now", and installs. -->
+<script>
+  (function () {
+    function getCode() { return (window.GOATCOUNTER_CODE || '').trim(); }
+
+    function loadAnalytics() {
+      var code = getCode();
+      if (!code) return;
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://gc.zgo.at/count.js';
+      s.dataset.goatcounter = 'https://' + code + '.goatcounter.com/count';
+      document.head.appendChild(s);
+    }
+
+    if (typeof window.GOATCOUNTER_CODE === 'undefined') {
+      var c = document.createElement('script');
+      c.src = 'config.js';
+      c.onload = loadAnalytics;
+      document.head.appendChild(c);
+    } else {
+      loadAnalytics();
+    }
+
+    // Count PWA installs (fires when the app is installed on desktop/Android).
+    // Note: iOS "Add to Home Screen" installs cannot be detected by any website.
+    function trackInstall() {
+      try { if (localStorage.getItem('timps-install-tracked')) return; }
+      catch (e) { return; }
+      try { localStorage.setItem('timps-install-tracked', '1'); }
+      catch (e) {}
+      var code = getCode();
+      if (!code) return;
+      if (window.goatcounter) {
+        window.goatcounter.count({ event: true, title: 'PWA install' });
+        return;
+      }
+      var url = 'https://' + code + '.goatcounter.com/count?p=/&event=true&title=PWA%20install&ref=' + encodeURIComponent(location.href);
+      if (navigator.sendBeacon) navigator.sendBeacon(url);
+      else { var img = new Image(); img.src = url; }
+    }
+    window.addEventListener('appinstalled', trackInstall);
+  })();
+</script>
 </body>
 </html>
