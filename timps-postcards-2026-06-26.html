@@ -609,10 +609,10 @@
       var code = getCode();
       if (!code) return;
       if (window.goatcounter) {
-        window.goatcounter.count({ event: true, title: 'PWA install' });
+        window.goatcounter.count({ event: true, path: '/install', title: 'PWA install' });
         return;
       }
-      var url = 'https://' + code + '.goatcounter.com/count?p=/&event=true&title=PWA%20install&ref=' + encodeURIComponent(location.href);
+      var url = 'https://' + code + '.goatcounter.com/count?p=/install&event=true&title=PWA%20install&ref=' + encodeURIComponent(location.href);
       if (navigator.sendBeacon) navigator.sendBeacon(url);
       else { var img = new Image(); img.src = url; }
     }

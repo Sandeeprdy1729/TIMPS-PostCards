@@ -1,0 +1,47 @@
+name: Update site stats
+
+# Refreshes stats.json (online now / visitors today / app installs) on a
+# branch named "stats" so index.html can display live numbers on the page.
+#
+# Requires two repo secrets:
+#   GOATCOUNTER_CODE      your GoatCounter site subdomain (e.g. sandeep1729)
+#   GOATCOUNTER_API_KEY   GoatCounter account -> top menu -> API -> Create key
+#
+# Adjust GOATCOUNTER_TZ below to the timezone your GoatCounter site uses.
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  stats:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Generate stats.json
+        env:
+          GOATCOUNTER_CODE: ${{ secrets.GOATCOUNTER_CODE }}
+          GOATCOUNTER_API_KEY: ${{ secrets.GOATCOUNTER_API_KEY }}
+          GOATCOUNTER_TZ: Asia/Kolkata
+        run: python3 .github/stats_gen.py
+
+      - name: Push stats.json to the stats branch
+        run: |
+          # Skip quietly when GOATCOUNTER_API_KEY isn't configured yet.
+          test -f stats.json || { echo "stats.json not generated (missing API key?); skipping"; exit 0; }
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git branch -D stats >/dev/null 2>&1 || true
+          git checkout --orphan stats
+          git rm -rf --cached . >/dev/null 2>&1 || true
+          git add stats.json
+          git commit -m "Update site stats $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          git push --force origin stats
