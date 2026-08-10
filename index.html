@@ -220,6 +220,49 @@
     text-transform: uppercase;
   }
 
+  /* ─── LIVE STATS STRIP ─── */
+  .live-strip {
+    background: var(--forest);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .live-cell {
+    padding: 22px 36px;
+    border-right: 1.5px solid rgba(237,232,218,.16);
+  }
+  .live-cell:last-child { border-right: none; }
+  .live-num {
+    font-family: var(--serif);
+    font-size: 36px;
+    font-weight: 900;
+    line-height: 1;
+    color: var(--lime);
+    display: block;
+    margin-bottom: 8px;
+    min-height: 36px;
+  }
+  .live-lbl {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(237,232,218,.6);
+  }
+  .live-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--lime);
+    margin-right: 8px;
+    animation: live-pulse 1.6s infinite;
+  }
+  @keyframes live-pulse {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: .25; }
+  }
+
   /* ─── ARCHIVE ─── */
   .archive {
     padding: 80px 48px;
@@ -680,6 +723,9 @@
     .hero-btns { bottom: 20px; }
     .signals-strip { grid-template-columns: repeat(2, 1fr); }
     .signal-cell:nth-child(2) { border-right: none; }
+    .live-strip { grid-template-columns: repeat(2, 1fr); }
+    .live-cell:nth-child(2) { border-right: none; }
+    .live-cell { padding: 16px 20px; }
     .archive { padding: 40px 24px; }
     .subscribe { padding: 56px 24px; }
     .footer { padding: 28px 24px; flex-direction: column; align-items: flex-start; }
@@ -699,6 +745,7 @@
   @media (max-width: 480px) {
     .hero { height: 220px; }
     .signal-num { font-size: 28px; }
+    .live-num { font-size: 26px; }
     .signal-cell { padding: 16px 14px; }
     .nav-logo span { display: none; }
     .nav-logo-mark { width: 28px; height: 28px; }
@@ -760,6 +807,26 @@
   <div class="signal-cell">
     <span class="signal-num"><em>1</em></span>
     <span class="signal-lbl">Team &middot; TIMPS</span>
+  </div>
+</div>
+
+<!-- LIVE STATS (powered by GoatCounter via .github/workflows/stats.yml) -->
+<div class="live-strip">
+  <div class="live-cell">
+    <span class="live-num" id="liveOnline">&mdash;</span>
+    <span class="live-lbl">Online now</span>
+  </div>
+  <div class="live-cell">
+    <span class="live-num" id="liveToday">&mdash;</span>
+    <span class="live-lbl">Visitors today</span>
+  </div>
+  <div class="live-cell">
+    <span class="live-num" id="liveInstalls">&mdash;</span>
+    <span class="live-lbl">App installs</span>
+  </div>
+  <div class="live-cell">
+    <span class="live-lbl"><span class="live-dot"></span>Live</span>
+    <span class="live-lbl" style="margin-top:8px;display:block;opacity:.4;">Refreshed every 10 min</span>
   </div>
 </div>
 
@@ -1712,14 +1779,45 @@
       var code = getCode();
       if (!code) return;
       if (window.goatcounter) {
-        window.goatcounter.count({ event: true, title: 'PWA install' });
+        window.goatcounter.count({ event: true, path: '/install', title: 'PWA install' });
         return;
       }
-      var url = 'https://' + code + '.goatcounter.com/count?p=/&event=true&title=PWA%20install&ref=' + encodeURIComponent(location.href);
+      var url = 'https://' + code + '.goatcounter.com/count?p=/install&event=true&title=PWA%20install&ref=' + encodeURIComponent(location.href);
       if (navigator.sendBeacon) navigator.sendBeacon(url);
       else { var img = new Image(); img.src = url; }
     }
     window.addEventListener('appinstalled', trackInstall);
+  })();
+</script>
+
+<!-- Live stats widget: reads stats.json published by .github/workflows/stats.yml -->
+<script>
+  (function () {
+    var STATS_URL = 'https://raw.githubusercontent.com/Sandeeprdy1729/TIMPS-PostCards/stats/stats.json';
+    var els = {
+      online: document.getElementById('liveOnline'),
+      today: document.getElementById('liveToday'),
+      installs: document.getElementById('liveInstalls')
+    };
+
+    function fmtNum(n) {
+      if (n === null || n === undefined || n === '') return '\u2014';
+      return Number(n).toLocaleString('en-IN');
+    }
+
+    function loadStats() {
+      fetch(STATS_URL + '?ts=' + Date.now(), { cache: 'no-store' })
+        .then(function (r) { return r.json(); })
+        .then(function (d) {
+          els.online.textContent = fmtNum(d.online_now);
+          els.today.textContent = fmtNum(d.today);
+          els.installs.textContent = fmtNum(d.installs_total);
+        })
+        .catch(function () { /* keep last values on failure */ });
+    }
+
+    loadStats();
+    setInterval(loadStats, 60000);
   })();
 </script>
 </body>
