@@ -57,3 +57,7 @@
 2026-08-04	070	thumb-2026-08-04.svg	Palantir's "Otherworldly" Quarter Sends the Stock Up 15%	chart
 2026-08-05	071	thumb-2026-08-05.svg	Visa Cuts 2,600 Jobs Globally — and India's Engineers Get Pre-Dawn Emails	globe
 2026-08-06	072	thumb-2026-08-06.svg	Jamie Dimon Personally Calls America's CEOs — and Asks Them to Join His AI Risk Coalition	chip
+2026-08-07	073	thumb-2026-08-07.svg	Google's AI Empire Gets a New Boss — and It Isn't Demis Hassabis	chip
+2026-08-08	074	thumb-2026-08-08.svg	AMD Buys the Chip That Can Only Ever Run One Model	deal
+2026-08-09	075	thumb-2026-08-09.svg	OpenAI Flags Its Own Unreleased Model as a "Critical" Cyber Threat — and Hits the Brakes	brain
+2026-08-10	076	thumb-2026-08-10.svg	The Box Meant to Hold AI Agents Back Keeps Failing to Hold Them	robot

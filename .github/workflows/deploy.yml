@@ -28,6 +28,7 @@ jobs:
         # so the real ID is never stored in the repo source code.
         run: |
           echo "window.BEEHIIV_PUB_ID = '${{ secrets.BEEHIIV_PUB_ID }}';" > config.js
+          echo "window.GOATCOUNTER_CODE = '${{ secrets.GOATCOUNTER_CODE }}';" >> config.js
           echo "config.js generated for deployment"
 
       - name: Setup Pages
