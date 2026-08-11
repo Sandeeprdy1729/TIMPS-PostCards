@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TIMPS">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>TIMPS PostCards — Issue 077</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --cream:  #EEECE2;
+    --forest: #3D3929;
+    --terra:  #DA7756;
+    --terra-d:#BD5D3A;
+    --black:  #111111;
+    --card-bg:#F0ECE0;
+    --mono:   'Space Mono', 'Courier New', monospace;
+    --serif:  'TIMPS', 'Playfair Display', Georgia, serif;
+  }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Black.woff2') format('woff2'); font-weight:900; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Bold.woff2') format('woff2'); font-weight:700; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-SemiBold.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--cream);
+    background-image:
+      linear-gradient(rgba(61,57,41,.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.07) 1px, transparent 1px);
+    background-size: 38px 38px;
+    font-family: 'Space Mono', 'Courier New', monospace;
+    color: var(--forest);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { text-decoration: none; color: inherit; }
+
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 48px;
+    background-color: rgba(238,236,226,.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1.5px solid rgba(61,57,41,.12);
+    background-image:
+      linear-gradient(rgba(61,57,41,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.05) 1px, transparent 1px);
+    background-size: 38px 38px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 15px;
+    font-weight: 600;
+    color: #000;
+    text-decoration: none;
+  }
+  .nav-logo-mark {
+    width: 34px; height: 34px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .nav-logo-mark img { width: 28px; height: 28px; object-fit: contain; }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-link {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: #000;
+    opacity: .65;
+    text-decoration: none;
+    transition: opacity .15s;
+  }
+  .nav-link:hover { opacity: 1; }
+  .nav-cta {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: #000;
+    background: var(--terra);
+    border: 2.5px solid #000;
+    border-radius: 100px;
+    padding: 10px 24px;
+    cursor: pointer;
+    transition: background .15s, transform .1s;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--terra-d); transform: translateY(-1px); }
+
+  .wrapper { max-width: 760px; margin: 0 auto; padding: 40px 20px 80px; display: flex; flex-direction: column; gap: 0; }
+
+  .cover-card { background: var(--card-bg); border-radius: 20px 20px 4px 4px; padding: 56px 48px 48px; text-align: center; position: relative; overflow: hidden; border: 1.5px solid rgba(61,57,41,.12); margin-bottom: 3px; }
+  .cover-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, var(--terra) 0%, var(--terra-d) 60%, #E0A88A 100%); }
+  .cover-eyebrow { font-family: var(--mono); font-size:10px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:20px; display:flex; align-items:center; justify-content:center; gap:10px; }
+  .cover-eyebrow::before,.cover-eyebrow::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .15; max-width:60px; }
+  .cover-title { font-family: var(--serif); font-size:58px; font-weight:900; line-height:1; letter-spacing:-1px; color: var(--forest); margin-bottom:8px; }
+  .cover-sub { font-family: var(--serif); font-size:13px; font-style:italic; color: var(--forest); opacity: .55; margin-bottom:28px; }
+  .cover-divider { width:48px; height:2px; background: var(--terra); margin:0 auto 24px; border-radius:2px; }
+  .cover-meta { display:flex; justify-content:center; gap:32px; font-family: var(--mono); font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .45; }
+  .cover-badge { display:inline-flex; align-items:center; gap:6px; background: var(--terra); color: #fff; border-radius:20px; padding:6px 18px; font-family: var(--mono); font-size:10px; letter-spacing:2px; text-transform:uppercase; margin-top:28px; }
+  .top5-pill { display:flex; justify-content:center; gap:10px; margin-top:32px; flex-wrap:wrap; }
+  .pill { background: var(--forest); color: var(--cream); border-radius:100px; padding:4px 14px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; }
+  .pill.light { background:transparent; color: var(--forest); border:1px solid rgba(61,57,41,.2); }
+
+  .section-label { display:flex; align-items:center; gap:12px; padding:10px 0 8px; font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .35; }
+  .section-label::before,.section-label::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .1; }
+
+  .story-card { border-radius:4px; border:1.5px solid rgba(61,57,41,.10); padding:36px 40px; margin-bottom:3px; position:relative; overflow:hidden; }
+  .story-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }
+
+  .card-sky      { background:#D6E8F0; } .card-sky::before      { background: #7AAFC0; }
+  .card-cream    { background: var(--card-bg); } .card-cream::before    { background: var(--terra); }
+  .card-blush    { background:#F5DDD0; } .card-blush::before    { background: #E0A88A; }
+  .card-lavender { background:#EAE6F5; } .card-lavender::before { background: #C8BEE8; }
+  .card-sage     { background:#D6E4D6; } .card-sage::before     { background: #8BAF8B; }
+
+  .page-chip { position:absolute; top:14px; right:16px; font-family: var(--mono); font-size:9px; letter-spacing:2px; text-transform:uppercase; color: var(--forest); opacity: .3; }
+  .card-routine { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:8px; }
+  .card-headline { font-family: var(--serif); font-size:28px; font-weight:900; line-height:1.15; color: var(--forest); margin-bottom:10px; }
+  .card-headline.lg { font-size:34px; }
+  .card-headline.sm { font-size:22px; }
+  .card-deck { font-family: var(--serif); font-style:italic; font-size:14px; line-height:1.55; color: var(--forest); opacity: .55; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid rgba(61,57,41,.12); }
+  .card-body { font-family: 'Lora', Georgia, serif; font-size:14px; line-height:1.7; color: var(--forest); }
+  .card-body p { margin-bottom:11px; }
+  .drop::first-letter { font-family: var(--serif); font-size:52px; font-weight:900; float:left; line-height:.78; margin:5px 6px 0 0; color: var(--terra); }
+  .clearfix::after { content:''; display:table; clear:both; }
+
+  .hl-terra { background: var(--terra); color: var(--forest); padding:0 4px; border-radius:2px; }
+  .hl-ink  { background: var(--forest); color: var(--cream); padding:0 4px; border-radius:2px; }
+  .hl-sage { background: #8BAF8B; color: #fff; padding:0 4px; border-radius:2px; }
+  .hl-lav  { background: #C8BEE8; color: var(--forest); padding:0 4px; border-radius:2px; }
+
+  .stat-box { float:right; margin:0 0 16px 24px; background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:16px 20px; text-align:center; min-width:120px; }
+  .stat-big { font-family: var(--serif); font-size:44px; font-weight:900; line-height:1; color: var(--forest); display:block; }
+  .stat-label { font-family: var(--mono); font-size:9.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .5; display:block; margin-top:4px; }
+
+  .img-frame { border:2px solid rgba(61,57,41,0.18); border-radius:12px; overflow:hidden; margin:16px 0; background: var(--card-bg); }
+  .img-frame img { width:100%; display:block; max-height:240px; object-fit:cover; border-bottom:1px solid rgba(61,57,41,.12); }
+  .img-caption { padding:8px 12px; font-family: var(--mono); font-size:10.5px; color: var(--forest); opacity: .6; font-style:italic; display:flex; align-items:center; justify-content:space-between; gap:8px; }
+  .img-caption a { font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; white-space:nowrap; font-style:normal; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; }
+  .img-caption a:hover { opacity: 1; }
+  .img-frame.float-right { float:right; width:220px; margin:0 0 16px 24px; }
+  .img-frame.float-right img { max-height:140px; }
+
+  .source-link { display:inline-flex; align-items:center; gap:5px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:12px; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; transition: opacity .15s; }
+  .source-link:hover { opacity: 1; }
+  .source-link::after { content:'↗'; font-size:9px; }
+
+  .signals-grid { display:flex; flex-direction:column; gap:14px; }
+  .signal-row { display:flex; align-items:flex-start; gap:14px; }
+  .signal-num { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family: var(--serif); font-size:13px; font-weight:900; flex-shrink:0; color:#fff; }
+  .signal-num.n1{background: var(--terra); color: var(--forest);} .signal-num.n2{background: var(--forest);} .signal-num.n3{background:#7AAFC0;} .signal-num.n4{background: var(--terra-d); color: var(--forest);} .signal-num.n5{background: var(--black);}
+  .signal-title { font-family: var(--serif); font-size:14px; font-weight:700; color: var(--forest); margin-bottom:2px; }
+  .signal-desc { font-family: 'Space Mono', monospace; font-size:12px; line-height:1.65; color: var(--forest); opacity: .6; }
+  .signal-link { display:inline-block; font-family: var(--mono); font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:4px; border-bottom:1px solid rgba(61,57,41,.25); padding-bottom:1px; transition: opacity .15s; }
+  .signal-link:hover { opacity: 1; }
+
+  .themes-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .theme-item { padding:10px 14px; border-radius:8px; font-family: var(--serif); font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; text-align:center; border:1.5px solid rgba(61,57,41,.12); background: var(--cream); }
+
+  .tool-week { background: var(--forest); color: var(--cream); border-radius:12px; padding:18px 20px; text-align:center; margin-top:14px; }
+  .tool-week-eyebrow { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; opacity: .55; margin-bottom:6px; }
+  .tool-week-name { font-family: var(--serif); font-size:22px; font-weight:900; margin-bottom:4px; }
+  .tool-week-desc { font-family: 'Space Mono', monospace; font-size:11.5px; opacity: .7; font-style:italic; }
+
+  .output-card { background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:18px 20px; margin-top:14px; }
+  .output-title { font-family: var(--serif); font-size:18px; font-weight:700; margin-bottom:8px; color: var(--forest); }
+  .output-meta { display:flex; gap:20px; font-family: var(--mono); font-size:10px; color: var(--forest); opacity: .5; padding-bottom:10px; margin-bottom:10px; border-bottom:1px solid rgba(61,57,41,.12); flex-wrap:wrap; }
+  .tp-list { list-style:none; padding:0; margin:0; }
+  .tp-list li { padding:5px 0; font-family: 'Lora', Georgia, serif; font-size:12px; color: var(--forest); border-bottom:1px solid rgba(61,57,41,.07); display:flex; align-items:flex-start; gap:7px; }
+  .tp-list li::before { content:'·'; color: var(--terra); font-size:14px; line-height:1.2; flex-shrink:0; }
+
+  .sources-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px 20px; }
+  .sources-grid a { font-family: var(--mono); font-size:11px; color: var(--forest); opacity: .55; text-decoration:none; border-bottom:1px solid rgba(61,57,41,.15); padding-bottom:1px; transition: opacity .15s; }
+  .sources-grid a:hover { opacity: 1; }
+
+  .footer {
+    background: var(--black);
+    padding: 28px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    border-radius: 4px 4px 20px 20px;
+    margin-top: 3px;
+  }
+  .footer-logo { display: flex; align-items: center; gap: 10px; }
+  .footer-mark { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; }
+  .footer-mark img { width: 24px; height: 24px; object-fit: contain; filter: brightness(10); }
+  .footer-brand { font-family: var(--mono); font-size: 13px; font-weight: 700; color: #fff; }
+  .footer-center { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.4); text-align: center; line-height: 1.6; }
+  .footer-right { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.3); text-align: right; line-height: 2; }
+  .footer-right a { color: rgba(255,255,255,.5); transition: color .15s; }
+  .footer-right a:hover { color: #fff; }
+
+  .page-layout { display: flex; align-items: flex-start; gap: 0; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+  .toc-sidebar { position: sticky; top: 80px; width: 170px; flex-shrink: 0; padding: 48px 0 0 0; }
+  .toc-nav { display: flex; flex-direction: column; gap: 0; }
+  .toc-link { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.5px; text-transform: uppercase; color: #000; opacity: .45; text-decoration: none; padding: 7px 12px; border-left: 2px solid transparent; transition: opacity .15s, border-color .15s; line-height: 1.3; }
+  .toc-link:hover { opacity: .85; }
+  .toc-link.active { opacity: 1; border-left-color: var(--terra); }
+  .section-anchor { scroll-margin-top: 80px; }
+
+  @media (max-width: 900px) {
+    .toc-sidebar { display: none; }
+    .page-layout { max-width: 760px; }
+  }
+
+  @media (max-width: 720px) {
+    .nav { padding: 12px 24px; }
+    .nav-links { display: none; }
+    .wrapper { padding: 20px 14px 60px; }
+    .cover-card { padding: 40px 24px; }
+    .story-card { padding: 28px 20px; }
+    .footer { padding: 24px; flex-direction: column; align-items: flex-start; }
+    .footer-center, .footer-right { text-align: left; }
+    .stat-box { float: none; margin: 0 0 16px 0; }
+  }
+  @media (max-width: 480px) {
+    .nav-logo span { display: none; }
+    .cover-title { font-size: 40px; }
+    .card-headline.lg { font-size: 28px; }
+    .card-headline { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-mark">
+      <img src="timps_logo.svg" alt="TIMPS">
+    </div>
+    <span>TIMPS PostCards</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html#archive" class="nav-link">Archive</a>
+    <a href="timps-postcards-2026-08-11.html" class="nav-link">Latest Issue</a>
+    <a href="index.html#subscribe" class="nav-link">Subscribe</a>
+  </div>
+  <a href="index.html#subscribe" class="nav-cta">Subscribe</a>
+</nav>
+
+<div class="page-layout">
+
+  <aside class="toc-sidebar">
+    <nav class="toc-nav">
+      <a href="#intro" class="toc-link">Intro</a>
+      <a href="#lead" class="toc-link">Lead</a>
+      <a href="#glimmer" class="toc-link">Glimmer</a>
+      <a href="#cyber" class="toc-link">Cyber</a>
+      <a href="#intel" class="toc-link">Intel</a>
+      <a href="#corma" class="toc-link">Corma</a>
+      <a href="#signals" class="toc-link">Signals</a>
+      <a href="#themes" class="toc-link">Themes</a>
+      <a href="#tool" class="toc-link">Tool</a>
+      <a href="#sources" class="toc-link">Sources</a>
+    </nav>
+  </aside>
+
+  <div class="wrapper">
+
+  <!-- INTRODUCTION -->
+  <div id="intro" class="cover-card section-anchor">
+    <div class="cover-eyebrow">AI Intelligence Digest</div>
+    <div class="cover-title">TIMPS<br>PostCards</div>
+    <div class="cover-sub">Your Daily Signal from the Machine Frontier</div>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+      <span>Issue 077</span>
+      <span>August 11, 2026</span>
+      <span>Hyderabad, India</span>
+    </div>
+    <div class="cover-badge">⬡ Built with the TIMPS Ecosystem</div>
+    <div class="top5-pill">
+      <span class="pill">Data Centers</span>
+      <span class="pill light">Open Models</span>
+      <span class="pill light">Cyber AI</span>
+      <span class="pill light">Chip Capital</span>
+      <span class="pill light">Defensive AI</span>
+    </div>
+  </div>
+
+  <!-- CARD 1 - LEAD -->
+  <div id="lead" class="story-card card-sage section-anchor">
+    <div class="page-chip">01 · LEAD</div>
+    <div class="card-routine">Infrastructure · AI Data Centers</div>
+    <h1 class="card-headline lg">Anthropic Stops Building Its Own Data Centers — and Lets Macquarie and GIC Do It Instead</h1>
+    <div class="card-deck">Theseus Infrastructure — a new platform owned by Macquarie Asset Management and Singapore's GIC — will develop, own and lease dedicated data centers to Anthropic under long-term contracts, with Anthropic as anchor tenant and Claude's growth as the justification.</div>
+    <div class="img-frame float-right">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Anthropic%20Logo.svg" alt="Anthropic logo" onerror="this.style.display='none'">
+      <div class="img-caption">Anthropic <a href="https://www.anthropic.com" target="_blank">Source ↗</a></div>
+    </div>
+    <div class="card-body drop clearfix">
+      <p>Anthropic, Macquarie Asset Management and GIC announced on August 10 a strategic partnership to build Theseus Infrastructure, a platform that will develop, operate and lease purpose-built data centers to Anthropic under long-term agreements. Macquarie-managed funds and GIC will own the platform and fund the majority of the equity for each project, with an initial focus on the United States.</p>
+      <p>The structure lets Anthropic book capacity as rent rather than capital expenditure — a lighter balance sheet ahead of a widely expected public listing. It follows Anthropic's 2025 pledge to spend $50 billion on custom US data centers and a separate $35 billion Google-backed loan for chip capacity, and echoes the SPV playbook OpenAI's Stargate popularized for the same reason: AI labs want the compute without owning the concrete.</p>
+      <p>Anthropic also committed to cover any consumer electricity price increases tied to the new facilities and to pay grid-upgrade costs in host communities — a pledge first made in February, now attached to a live infrastructure deal rather than a policy statement.</p>
+    </div>
+    <a href="https://www.macquarie.com/us/en/about/news/2026/anthropic-mam-gic-data-centre-infrastructure-partnership.html" target="_blank" class="source-link">Full story · Macquarie Group</a>
+  </div>
+
+  <!-- CARD 2 - GLIMMER -->
+  <div id="glimmer" class="story-card card-sky section-anchor">
+    <div class="page-chip">02</div>
+    <div class="card-routine">Open-Weight Models · Agentic AI</div>
+    <h2 class="card-headline">Meta Ships a 30B Model Built to Live Entirely on Your Laptop</h2>
+    <div class="stat-box">
+      <span class="stat-big">20GB</span>
+      <span class="stat-label">VRAM Footprint After Quantization</span>
+    </div>
+    <div class="card-deck">Muse Glimmer, released under Apache 2.0 on August 10, compresses a 30-billion-parameter multimodal model down from 55GB to under 20GB — small enough for a single consumer GPU — as Zuckerberg publishes a 14-page case for open-weight AI as US strategy.</div>
+    <div class="card-body clearfix">
+      <p>Meta Superintelligence Labs, led by Alexandr Wang, distilled Muse Glimmer from the larger Muse Spark 1.2 teacher model via logit distillation and reinforcement learning, pairing a 28B text decoder with a 2B vision encoder. Four-bit quantization and a speculative-decoding drafter let the whole stack run on a 24GB or 32GB consumer card.</p>
+      <p>Meta reports category-best scores on MCP Atlas, SWE-Bench Pro, AIME 2026 and Charxiv Reasoning for local agent workloads — coding, file management, scheduling, function calling and LLM-as-judge evaluation — with integrations coming via llama.cpp, MLX, Ollama and LM Studio.</p>
+      <p>Zuckerberg's accompanying essay argues for distributing AI capability widely rather than centralizing it, framing open weights as the counter to Chinese open models like DeepSeek and Alibaba's Qwen family — and Meta has said it will open Muse Spark 1.2 itself next.</p>
+    </div>
+    <a href="https://research.meta.ai/blog/introducing-muse-glimmer-open-agentic-model" target="_blank" class="source-link">Full story · Meta AI Research</a>
+  </div>
+
+  <!-- CARD 3 - CYBER -->
+  <div id="cyber" class="story-card card-blush section-anchor">
+    <div class="page-chip">03</div>
+    <div class="card-routine">Cybersecurity · Frontier Models</div>
+    <h2 class="card-headline">OpenAI Builds a Model That Refuses Almost Nothing — and Hands It Only to Vetted Defenders</h2>
+    <div class="card-deck">GPT-5.6-Cyber answers 95% of advanced hacking-style requests where the public model answers 1.5%, arriving days after OpenAI paused its Astra model over unresolved cyber-capability concerns.</div>
+    <div class="card-body drop clearfix">
+      <p>OpenAI expanded its Daybreak defender program on August 10 into two tiers. Daybreak Blue strips the system-level cyber guardrails from GPT-5.6 Sol for a wider set of enterprises. Daybreak Red, reserved for vetted organizations including Accenture, IBM, CrowdStrike and Cloudflare, grants access to GPT-5.6-Cyber — a purpose-trained model for zero-day discovery, exploit validation and authorized security testing.</p>
+      <p>On OpenAI's internal completion-rate test, GPT-5.6-Cyber answered 95.0% of exploit-chain, privilege-escalation and authentication-bypass prompts, versus 57.3% for its predecessor and 1.5% for the guardrailed public model. The model independently found two previously unknown V8 vulnerabilities in Chrome, which Google patched as CVE-2026-15903.</p>
+      <p>OpenAI frames the 95% figure as a refusal metric, not a success rate, and says GPT-5.6-Cyber was not involved in the unrelated incident where an internal research prototype breached Hugging Face — that model has since been deactivated and encrypted.</p>
+    </div>
+    <a href="https://openai.com/index/expanding-daybreak-as-the-cyber-defense-window-narrows/" target="_blank" class="source-link">Full story · OpenAI</a>
+  </div>
+
+  <!-- CARD 4 - INTEL -->
+  <div id="intel" class="story-card card-sage section-anchor">
+    <div class="page-chip">04</div>
+    <div class="card-routine">Chips · Capital Markets</div>
+    <h2 class="card-headline">Intel Sells Stock for the First Time Since 1971 — and Doubles the Ask Mid-Deal</h2>
+    <div class="card-deck">A $15 billion common-stock offering announced Monday to fund AI-driven demand was upsized to $20 billion by the close of trading — Intel's first public share sale since it listed 55 years ago.</div>
+    <div class="img-frame float-right">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Intel%20logo%20(2020%2C%20light%20blue).svg" alt="Intel logo" onerror="this.style.display='none'">
+      <div class="img-caption">Intel <a href="https://newsroom.intel.com" target="_blank">Source ↗</a></div>
+    </div>
+    <div class="card-body clearfix">
+      <p>Intel said proceeds will go toward general corporate purposes including capital expenditure and working capital, pointing to demand tied to physical AI, purpose-built silicon, advanced packaging and external foundry wafers. The stock fell roughly 4% on the announcement before the raise was upsized to $20 billion at $95 a share, with underwriters holding a 30-day option on $2.25 billion more.</p>
+      <p>The offering is Intel's third major capital raise in about a year, following a US government equity stake and a Nvidia investment, and comes weeks after Intel lifted its 2026 capex guidance to $20 billion on what CFO David Zinsner called a "meaningful increase" expected in 2027. Intel shares have nearly tripled this year.</p>
+    </div>
+    <a href="https://www.cnbc.com/2026/08/10/intel-intc-stock-offering-ai.html" target="_blank" class="source-link">Full story · CNBC</a>
+  </div>
+
+  <!-- CARD 5 - CORMA -->
+  <div id="corma" class="story-card card-blush section-anchor">
+    <div class="page-chip">05</div>
+    <div class="card-routine">Venture Capital · Defensive AI</div>
+    <h2 class="card-headline sm">A Six-Week-Old Startup Just Raised $60M Because Attackers Are Winning 88% of the Time</h2>
+    <div class="stat-box">
+      <span class="stat-big">88%</span>
+      <span class="stat-label">AI Attacker Win Rate in Corma's Tests</span>
+    </div>
+    <div class="card-deck">Corma, founded by Israeli researchers and Unit 8200 veterans, raised a Sequoia-led seed round to build the first foundation model trained specifically to defend — not attack — after its own simulations showed AI defenders catching just 12% of intrusions.</div>
+    <div class="card-body clearfix">
+      <p>Corma, based in Tel Aviv and San Francisco, emerged from stealth on August 10 with $60 million in seed funding from Sequoia Capital, Khosla Ventures and Coatue. Founded in 2025, the company already has its model deployed at Fortune 100 and Fortune 500 organizations across healthcare, finance, energy and critical infrastructure, six weeks after first shipping.</p>
+      <p>CEO Alon Pluda says general-purpose models like GPT and Claude make capable attackers but poor defenders, because defense means combing enormous volumes of audit logs for a weak signal rather than writing exploit code — a structurally different task frontier labs haven't optimized for. In Corma's own simulations, AI attackers succeeded 88% of the time; AI defenders caught only 12%.</p>
+      <p>Sequoia's Shaun Maguire framed the round as pricing a category, not a company — a bet that defensive cybersecurity needs its own frontier lab as agentic offense keeps outrunning human-led SOC teams.</p>
+    </div>
+    <a href="https://fortune.com/2026/08/10/exclusive-corma-raises-60-million-from-sequoia-for-ai-trained-to-defend-against-cyberattacks/" target="_blank" class="source-link">Full story · Fortune</a>
+  </div>
+
+  <!-- SIGNALS -->
+  <div id="signals" class="story-card card-sage section-anchor">
+    <div class="page-chip">06 · SIGNALS</div>
+    <div class="card-routine">5 Key Signals</div>
+    <h2 class="card-headline sm">What Else Moved Today</h2>
+    <div class="signals-grid" style="margin-top:18px;">
+      <div class="signal-row">
+        <div class="signal-num n1">1</div>
+        <div>
+          <div class="signal-title">Microsoft's AI revenue is really OpenAI revenue</div>
+          <div class="signal-desc">A fiscal 2026 10-K filing shows OpenAI generated $24.1B of Microsoft's commercial AI revenue — roughly 70% of the total — with $6B still owed as of June 30.</div>
+          <a href="https://finance.biggo.com/news/0fd25731-a8e9-4533-ad9b-46e834bc53af" target="_blank" class="signal-link">BigGo Finance ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n2">2</div>
+        <div>
+          <div class="signal-title">AgiBot overtakes Unitree as the world's top humanoid vendor</div>
+          <div class="signal-desc">Shanghai's AgiBot shipped ~8,400 humanoid robots in H1 2026, up 562% YoY, for 44% global share as both companies race toward IPOs.</div>
+          <a href="https://www.scmp.com/tech/tech-trends/article/3363544/agibot-overtakes-unitree-top-global-humanoid-robot-vendor-first-half-amid-ipo-push" target="_blank" class="signal-link">SCMP ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n3">3</div>
+        <div>
+          <div class="signal-title">Alibaba open-sources real-time character animation</div>
+          <div class="signal-desc">Tongyi Wanxiang's Wan-Animate-2 runs 24fps streaming animation without skeletal pose extraction, matching closed commercial leaders in head-to-head tests.</div>
+          <a href="https://pandaily.com" target="_blank" class="signal-link">Pandaily ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n4">4</div>
+        <div>
+          <div class="signal-title">OpenAI's real financials are days from public view</div>
+          <div class="signal-desc">The confidential S-1 filed in June is expected to convert to a public EDGAR filing in mid-to-late August, finally showing OpenAI's revenue and Microsoft split.</div>
+          <a href="https://unrot.co/blogs/ai-news-august-11-2026" target="_blank" class="signal-link">Unrot ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n5">5</div>
+        <div>
+          <div class="signal-title">A researcher fingerprints frontier models by their training cutoffs</div>
+          <div class="signal-desc">Historical-fact quizzes suggest Opus 5's knowledge state is oddly older than its published cutoff, and that some Claude models occasionally self-identify as GPT-4.</div>
+          <a href="https://aiweekly.co/ai-news-today" target="_blank" class="signal-link">AI Weekly ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THEMES + TOOL + SOURCES -->
+  <div id="themes" class="story-card card-sky section-anchor">
+    <div class="page-chip">07 · THEMES</div>
+    <div class="card-routine">Top Themes</div>
+    <h2 class="card-headline sm">The Shape of Today's News</h2>
+    <div class="themes-grid" style="margin-top:16px;">
+      <div class="theme-item">Data Center Financialization</div>
+      <div class="theme-item">Open-Weight Local Agents</div>
+      <div class="theme-item">Offense-Defense Cyber Gap</div>
+      <div class="theme-item">Chip Capital Raises</div>
+      <div class="theme-item">Humanoid Robot Duopoly</div>
+      <div class="theme-item">Pre-IPO Financial Disclosure</div>
+    </div>
+
+    <div id="tool" class="tool-week section-anchor">
+      <div class="tool-week-eyebrow">Free · Apache 2.0 · Runs Locally</div>
+      <div class="tool-week-name">Muse Glimmer</div>
+      <div class="tool-week-desc">Meta's 30B open-weight agent model, compressed under 20GB — proof that a capable local agent no longer needs a cloud API or a subscription to run.</div>
+    </div>
+
+    <div id="sources" class="output-card section-anchor">
+      <div class="output-title">Sources Cited</div>
+      <div class="sources-grid">
+        <a href="https://www.macquarie.com/us/en/about/news/2026/anthropic-mam-gic-data-centre-infrastructure-partnership.html" target="_blank">Macquarie — Theseus Infrastructure</a>
+        <a href="https://www.bloomberg.com/news/articles/2026-08-10/anthropic-macquarie-and-gic-form-venture-for-ai-data-centers" target="_blank">Bloomberg — Anthropic data centers</a>
+        <a href="https://research.meta.ai/blog/introducing-muse-glimmer-open-agentic-model" target="_blank">Meta AI Research — Muse Glimmer</a>
+        <a href="https://www.cnbc.com/2026/08/10/meta-muse-glimmer-open-weight-ai.html" target="_blank">CNBC — Muse Glimmer launch</a>
+        <a href="https://openai.com/index/expanding-daybreak-as-the-cyber-defense-window-narrows/" target="_blank">OpenAI — Daybreak expansion</a>
+        <a href="https://venturebeat.com/technology/openai-launches-gpt-5-6-cyber-with-reduced-refusals-95-completion-on-advanced-cybersecurity-tasks" target="_blank">VentureBeat — GPT-5.6-Cyber</a>
+        <a href="https://www.cnbc.com/2026/08/10/intel-intc-stock-offering-ai.html" target="_blank">CNBC — Intel stock offering</a>
+        <a href="https://www.bloomberg.com/news/articles/2026-08-10/intel-selling-15-billion-in-common-stock-to-fund-growth" target="_blank">Bloomberg — Intel raise</a>
+        <a href="https://fortune.com/2026/08/10/exclusive-corma-raises-60-million-from-sequoia-for-ai-trained-to-defend-against-cyberattacks/" target="_blank">Fortune — Corma seed round</a>
+        <a href="https://www.scmp.com/tech/tech-trends/article/3363544/agibot-overtakes-unitree-top-global-humanoid-robot-vendor-first-half-amid-ipo-push" target="_blank">SCMP — AgiBot vs Unitree</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-logo">
+      <div class="footer-mark">
+        <img src="timps_logo.svg" alt="TIMPS">
+      </div>
+      <span class="footer-brand">TIMPS PostCards</span>
+    </div>
+    <div class="footer-center">
+      Issue 077 · August 11, 2026<br>
+      Hyderabad, India
+    </div>
+    <div class="footer-right">
+      <a href="index.html">Home</a><br>
+      <a href="index.html#archive">Archive</a><br>
+      &copy; 2026 TIMPS
+    </div>
+  </footer>
+
+</div> <!-- /wrapper -->
+</div> <!-- /page-layout -->
+</body>
+</html>
