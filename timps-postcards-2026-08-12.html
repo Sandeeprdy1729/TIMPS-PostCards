@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TIMPS">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>TIMPS PostCards — Issue 078</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --cream:  #EEECE2;
+    --forest: #3D3929;
+    --terra:  #DA7756;
+    --terra-d:#BD5D3A;
+    --black:  #111111;
+    --card-bg:#F0ECE0;
+    --mono:   'Space Mono', 'Courier New', monospace;
+    --serif:  'TIMPS', 'Playfair Display', Georgia, serif;
+  }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Black.woff2') format('woff2'); font-weight:900; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Bold.woff2') format('woff2'); font-weight:700; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-SemiBold.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--cream);
+    background-image:
+      linear-gradient(rgba(61,57,41,.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.07) 1px, transparent 1px);
+    background-size: 38px 38px;
+    font-family: 'Space Mono', 'Courier New', monospace;
+    color: var(--forest);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { text-decoration: none; color: inherit; }
+
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 48px;
+    background-color: rgba(238,236,226,.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1.5px solid rgba(61,57,41,.12);
+    background-image:
+      linear-gradient(rgba(61,57,41,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.05) 1px, transparent 1px);
+    background-size: 38px 38px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 15px;
+    font-weight: 600;
+    color: #000;
+    text-decoration: none;
+  }
+  .nav-logo-mark {
+    width: 34px; height: 34px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .nav-logo-mark img { width: 28px; height: 28px; object-fit: contain; }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-link {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: #000;
+    opacity: .65;
+    text-decoration: none;
+    transition: opacity .15s;
+  }
+  .nav-link:hover { opacity: 1; }
+  .nav-cta {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: #000;
+    background: var(--terra);
+    border: 2.5px solid #000;
+    border-radius: 100px;
+    padding: 10px 24px;
+    cursor: pointer;
+    transition: background .15s, transform .1s;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--terra-d); transform: translateY(-1px); }
+
+  .wrapper { max-width: 760px; margin: 0 auto; padding: 40px 20px 80px; display: flex; flex-direction: column; gap: 0; }
+
+  .cover-card { background: var(--card-bg); border-radius: 20px 20px 4px 4px; padding: 56px 48px 48px; text-align: center; position: relative; overflow: hidden; border: 1.5px solid rgba(61,57,41,.12); margin-bottom: 3px; }
+  .cover-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, var(--terra) 0%, var(--terra-d) 60%, #E0A88A 100%); }
+  .cover-eyebrow { font-family: var(--mono); font-size:10px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:20px; display:flex; align-items:center; justify-content:center; gap:10px; }
+  .cover-eyebrow::before,.cover-eyebrow::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .15; max-width:60px; }
+  .cover-title { font-family: var(--serif); font-size:58px; font-weight:900; line-height:1; letter-spacing:-1px; color: var(--forest); margin-bottom:8px; }
+  .cover-sub { font-family: var(--serif); font-size:13px; font-style:italic; color: var(--forest); opacity: .55; margin-bottom:28px; }
+  .cover-divider { width:48px; height:2px; background: var(--terra); margin:0 auto 24px; border-radius:2px; }
+  .cover-meta { display:flex; justify-content:center; gap:32px; font-family: var(--mono); font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .45; }
+  .cover-badge { display:inline-flex; align-items:center; gap:6px; background: var(--terra); color: #fff; border-radius:20px; padding:6px 18px; font-family: var(--mono); font-size:10px; letter-spacing:2px; text-transform:uppercase; margin-top:28px; }
+  .top5-pill { display:flex; justify-content:center; gap:10px; margin-top:32px; flex-wrap:wrap; }
+  .pill { background: var(--forest); color: var(--cream); border-radius:100px; padding:4px 14px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; }
+  .pill.light { background:transparent; color: var(--forest); border:1px solid rgba(61,57,41,.2); }
+
+  .section-label { display:flex; align-items:center; gap:12px; padding:10px 0 8px; font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .35; }
+  .section-label::before,.section-label::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .1; }
+
+  .story-card { border-radius:4px; border:1.5px solid rgba(61,57,41,.10); padding:36px 40px; margin-bottom:3px; position:relative; overflow:hidden; }
+  .story-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }
+
+  .card-sky      { background:#D6E8F0; } .card-sky::before      { background: #7AAFC0; }
+  .card-cream    { background: var(--card-bg); } .card-cream::before    { background: var(--terra); }
+  .card-blush    { background:#F5DDD0; } .card-blush::before    { background: #E0A88A; }
+  .card-lavender { background:#EAE6F5; } .card-lavender::before { background: #C8BEE8; }
+  .card-sage     { background:#D6E4D6; } .card-sage::before     { background: #8BAF8B; }
+
+  .page-chip { position:absolute; top:14px; right:16px; font-family: var(--mono); font-size:9px; letter-spacing:2px; text-transform:uppercase; color: var(--forest); opacity: .3; }
+  .card-routine { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:8px; }
+  .card-headline { font-family: var(--serif); font-size:28px; font-weight:900; line-height:1.15; color: var(--forest); margin-bottom:10px; }
+  .card-headline.lg { font-size:34px; }
+  .card-headline.sm { font-size:22px; }
+  .card-deck { font-family: var(--serif); font-style:italic; font-size:14px; line-height:1.55; color: var(--forest); opacity: .55; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid rgba(61,57,41,.12); }
+  .card-body { font-family: 'Lora', Georgia, serif; font-size:14px; line-height:1.7; color: var(--forest); }
+  .card-body p { margin-bottom:11px; }
+  .drop::first-letter { font-family: var(--serif); font-size:52px; font-weight:900; float:left; line-height:.78; margin:5px 6px 0 0; color: var(--terra); }
+  .clearfix::after { content:''; display:table; clear:both; }
+
+  .hl-terra { background: var(--terra); color: var(--forest); padding:0 4px; border-radius:2px; }
+  .hl-ink  { background: var(--forest); color: var(--cream); padding:0 4px; border-radius:2px; }
+  .hl-sage { background: #8BAF8B; color: #fff; padding:0 4px; border-radius:2px; }
+  .hl-lav  { background: #C8BEE8; color: var(--forest); padding:0 4px; border-radius:2px; }
+
+  .stat-box { float:right; margin:0 0 16px 24px; background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:16px 20px; text-align:center; min-width:120px; }
+  .stat-big { font-family: var(--serif); font-size:44px; font-weight:900; line-height:1; color: var(--forest); display:block; }
+  .stat-label { font-family: var(--mono); font-size:9.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .5; display:block; margin-top:4px; }
+
+  .img-frame { border:2px solid rgba(61,57,41,0.18); border-radius:12px; overflow:hidden; margin:16px 0; background: var(--card-bg); }
+  .img-frame img { width:100%; display:block; max-height:240px; object-fit:cover; border-bottom:1px solid rgba(61,57,41,.12); }
+  .img-caption { padding:8px 12px; font-family: var(--mono); font-size:10.5px; color: var(--forest); opacity: .6; font-style:italic; display:flex; align-items:center; justify-content:space-between; gap:8px; }
+  .img-caption a { font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; white-space:nowrap; font-style:normal; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; }
+  .img-caption a:hover { opacity: 1; }
+  .img-frame.float-right { float:right; width:220px; margin:0 0 16px 24px; }
+  .img-frame.float-right img { max-height:140px; }
+
+  .source-link { display:inline-flex; align-items:center; gap:5px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:12px; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; transition: opacity .15s; }
+  .source-link:hover { opacity: 1; }
+  .source-link::after { content:'↗'; font-size:9px; }
+
+  .signals-grid { display:flex; flex-direction:column; gap:14px; }
+  .signal-row { display:flex; align-items:flex-start; gap:14px; }
+  .signal-num { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family: var(--serif); font-size:13px; font-weight:900; flex-shrink:0; color:#fff; }
+  .signal-num.n1{background: var(--terra); color: var(--forest);} .signal-num.n2{background: var(--forest);} .signal-num.n3{background:#7AAFC0;} .signal-num.n4{background: var(--terra-d); color: var(--forest);} .signal-num.n5{background: var(--black);}
+  .signal-title { font-family: var(--serif); font-size:14px; font-weight:700; color: var(--forest); margin-bottom:2px; }
+  .signal-desc { font-family: 'Space Mono', monospace; font-size:12px; line-height:1.65; color: var(--forest); opacity: .6; }
+  .signal-link { display:inline-block; font-family: var(--mono); font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:4px; border-bottom:1px solid rgba(61,57,41,.25); padding-bottom:1px; transition: opacity .15s; }
+  .signal-link:hover { opacity: 1; }
+
+  .themes-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .theme-item { padding:10px 14px; border-radius:8px; font-family: var(--serif); font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; text-align:center; border:1.5px solid rgba(61,57,41,.12); background: var(--cream); }
+
+  .tool-week { background: var(--forest); color: var(--cream); border-radius:12px; padding:18px 20px; text-align:center; margin-top:14px; }
+  .tool-week-eyebrow { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; opacity: .55; margin-bottom:6px; }
+  .tool-week-name { font-family: var(--serif); font-size:22px; font-weight:900; margin-bottom:4px; }
+  .tool-week-desc { font-family: 'Space Mono', monospace; font-size:11.5px; opacity: .7; font-style:italic; }
+
+  .output-card { background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:18px 20px; margin-top:14px; }
+  .output-title { font-family: var(--serif); font-size:18px; font-weight:700; margin-bottom:8px; color: var(--forest); }
+  .output-meta { display:flex; gap:20px; font-family: var(--mono); font-size:10px; color: var(--forest); opacity: .5; padding-bottom:10px; margin-bottom:10px; border-bottom:1px solid rgba(61,57,41,.12); flex-wrap:wrap; }
+  .tp-list { list-style:none; padding:0; margin:0; }
+  .tp-list li { padding:5px 0; font-family: 'Lora', Georgia, serif; font-size:12px; color: var(--forest); border-bottom:1px solid rgba(61,57,41,.07); display:flex; align-items:flex-start; gap:7px; }
+  .tp-list li::before { content:'·'; color: var(--terra); font-size:14px; line-height:1.2; flex-shrink:0; }
+
+  .sources-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px 20px; }
+  .sources-grid a { font-family: var(--mono); font-size:11px; color: var(--forest); opacity: .55; text-decoration:none; border-bottom:1px solid rgba(61,57,41,.15); padding-bottom:1px; transition: opacity .15s; }
+  .sources-grid a:hover { opacity: 1; }
+
+  .footer {
+    background: var(--black);
+    padding: 28px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    border-radius: 4px 4px 20px 20px;
+    margin-top: 3px;
+  }
+  .footer-logo { display: flex; align-items: center; gap: 10px; }
+  .footer-mark { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; }
+  .footer-mark img { width: 24px; height: 24px; object-fit: contain; filter: brightness(10); }
+  .footer-brand { font-family: var(--mono); font-size: 13px; font-weight: 700; color: #fff; }
+  .footer-center { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.4); text-align: center; line-height: 1.6; }
+  .footer-right { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.3); text-align: right; line-height: 2; }
+  .footer-right a { color: rgba(255,255,255,.5); transition: color .15s; }
+  .footer-right a:hover { color: #fff; }
+
+  .page-layout { display: flex; align-items: flex-start; gap: 0; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+  .toc-sidebar { position: sticky; top: 80px; width: 170px; flex-shrink: 0; padding: 48px 0 0 0; }
+  .toc-nav { display: flex; flex-direction: column; gap: 0; }
+  .toc-link { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.5px; text-transform: uppercase; color: #000; opacity: .45; text-decoration: none; padding: 7px 12px; border-left: 2px solid transparent; transition: opacity .15s, border-color .15s; line-height: 1.3; }
+  .toc-link:hover { opacity: .85; }
+  .toc-link.active { opacity: 1; border-left-color: var(--terra); }
+  .section-anchor { scroll-margin-top: 80px; }
+
+  @media (max-width: 900px) {
+    .toc-sidebar { display: none; }
+    .page-layout { max-width: 760px; }
+  }
+
+  @media (max-width: 720px) {
+    .nav { padding: 12px 24px; }
+    .nav-links { display: none; }
+    .wrapper { padding: 20px 14px 60px; }
+    .cover-card { padding: 40px 24px; }
+    .story-card { padding: 28px 20px; }
+    .footer { padding: 24px; flex-direction: column; align-items: flex-start; }
+    .footer-center, .footer-right { text-align: left; }
+    .stat-box { float: none; margin: 0 0 16px 0; }
+  }
+  @media (max-width: 480px) {
+    .nav-logo span { display: none; }
+    .cover-title { font-size: 40px; }
+    .card-headline.lg { font-size: 28px; }
+    .card-headline { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-mark">
+      <img src="timps_logo.svg" alt="TIMPS">
+    </div>
+    <span>TIMPS PostCards</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html#archive" class="nav-link">Archive</a>
+    <a href="timps-postcards-2026-08-12.html" class="nav-link">Latest Issue</a>
+    <a href="index.html#subscribe" class="nav-link">Subscribe</a>
+  </div>
+  <a href="index.html#subscribe" class="nav-cta">Subscribe</a>
+</nav>
+
+<div class="page-layout">
+
+  <aside class="toc-sidebar">
+    <nav class="toc-nav">
+      <a href="#intro" class="toc-link">Intro</a>
+      <a href="#lead" class="toc-link">Lead</a>
+      <a href="#gemini" class="toc-link">Gemini</a>
+      <a href="#watermark" class="toc-link">Watermark</a>
+      <a href="#lightcap" class="toc-link">Lightcap</a>
+      <a href="#river" class="toc-link">River</a>
+      <a href="#signals" class="toc-link">Signals</a>
+      <a href="#themes" class="toc-link">Themes</a>
+      <a href="#tool" class="toc-link">Tool</a>
+      <a href="#sources" class="toc-link">Sources</a>
+    </nav>
+  </aside>
+
+  <div class="wrapper">
+
+  <!-- INTRODUCTION -->
+  <div id="intro" class="cover-card section-anchor">
+    <div class="cover-eyebrow">AI Intelligence Digest</div>
+    <div class="cover-title">TIMPS<br>PostCards</div>
+    <div class="cover-sub">Your Daily Signal from the Machine Frontier</div>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+      <span>Issue 078</span>
+      <span>August 12, 2026</span>
+      <span>Hyderabad, India</span>
+    </div>
+    <div class="cover-badge">⬡ Built with the TIMPS Ecosystem</div>
+    <div class="top5-pill">
+      <span class="pill">Riemann Progress</span>
+      <span class="pill light">Gemini 1B Users</span>
+      <span class="pill light">AI Watermarking</span>
+      <span class="pill light">Executive Exit</span>
+      <span class="pill light">River AI</span>
+    </div>
+  </div>
+
+  <!-- CARD 1 - LEAD -->
+  <div id="lead" class="story-card card-blush section-anchor">
+    <div class="page-chip">01 · LEAD</div>
+    <div class="card-routine">Research</div>
+    <h1 class="card-headline lg">An Unreleased Anthropic Model Just Chipped Away at a 150-Year-Old Math Mystery</h1>
+    <div class="card-deck">A staff member with no advanced math training told the model to "take a real stab" at the Riemann hypothesis. A day and a half later, it had pushed the boundary of what's provably true.</div>
+    <div class="img-frame">
+      <img src="https://techcrunch.com/wp-content/uploads/2026/06/Claude-photo.jpg?w=1024" alt="Claude app icon on a smartphone screen" onerror="this.style.display='none'">
+      <div class="img-caption">The Claude app icon, displayed on a smartphone screen <a href="https://techcrunch.com/2026/08/11/an-unreleased-anthropic-model-made-progress-on-one-of-maths-biggest-unsolved-problems/" target="_blank">Source ↗</a></div>
+    </div>
+    <div class="card-body drop clearfix">
+      <p>For more than 150 years, the Riemann hypothesis has sat unsolved at the center of number theory, a $1 million Clay Millennium Prize still waiting on a working proof. Anthropic hasn't claimed that prize. But on Monday, the company said an as-yet-unreleased model had meaningfully raised the lower bound of solutions for which the hypothesis holds, work confirmed by two of its in-house mathematicians and formalized in the open-source proof assistant Lean.</p>
+      <p>The method is the real story. An Anthropic staffer without deep mathematical training simply asked the model to attempt a proof, then let it run. Over the following day and a half, it tested <span class="hl-terra">650 distinct approaches</span> across 60 coordinated subagents, spending 31 million output tokens. Two subagents developed the key ideas; thirteen contributed supporting work; thirty tried and failed; thirteen validated the logic; two wrote up the paper.</p>
+      <p>It's the latest entry in a fast-growing list of AI-assisted math results this year, following OpenAI's ten Astra-proved results and Anthropic's own disproof of the Jacobian conjecture. Mathematicians remain split: a June declaration signed by prominent researchers warned that AI could erode the norm of provable results carrying a named, accountable author. Fields medalist Timothy Gowers pushed back, suggesting math without individual attribution might simply be a different, not lesser, way of doing the field.</p>
+    </div>
+    <a href="https://techcrunch.com/2026/08/11/an-unreleased-anthropic-model-made-progress-on-one-of-maths-biggest-unsolved-problems/" target="_blank" class="source-link">Full story · TechCrunch</a>
+  </div>
+
+  <!-- CARD 2 - GEMINI -->
+  <div id="gemini" class="story-card card-lavender section-anchor">
+    <div class="page-chip">02</div>
+    <div class="card-routine">Adoption</div>
+    <h2 class="card-headline">Google's Gemini App Crosses One Billion Monthly Users</h2>
+    <div class="card-deck">Sundar Pichai confirmed the milestone on X, calling Gemini the 14th Google product to reach ten figures. ChatGPT hit the same mark in June.</div>
+    <div class="img-frame float-right">
+      <img src="https://techcrunch.com/wp-content/uploads/2026/06/gemini-app-GettyImages-2276204472-1.jpg?w=1024" alt="Google Gemini AI app icon" onerror="this.style.display='none'">
+      <div class="img-caption">Gemini app icon <a href="https://techcrunch.com/2026/08/11/googles-gemini-app-surges-to-one-billion-users/" target="_blank">Read →</a></div>
+    </div>
+    <div class="card-body drop clearfix">
+      <p>The standalone Gemini app has now passed <span class="hl-ink">1 billion monthly active users</span>, a figure that covers the app alone and excludes Gemini usage baked into Search's AI Mode, which has separately cleared a billion users of its own. Sixty-three percent of Gemini users talk to the assistant by voice, and the app now generates over 150 million images a day.</p>
+      <p>The number arrives right after Google's Q2 earnings call touted 950 million monthly users and daily actives tripling over the past year, and just ahead of the Made by Google event, where more Gemini-powered Pixel features are expected. The company also reports more than 100 million active iOS users, a channel entirely outside its own hardware and software stack.</p>
+    </div>
+    <a href="https://techcrunch.com/2026/08/11/googles-gemini-app-surges-to-one-billion-users/" target="_blank" class="source-link">Full story · TechCrunch</a>
+  </div>
+
+  <!-- CARD 3 - WATERMARK -->
+  <div id="watermark" class="story-card card-blush section-anchor">
+    <div class="page-chip">03</div>
+    <div class="card-routine">Regulation</div>
+    <h2 class="card-headline">Anthropic Will Watermark Every Word Claude Writes</h2>
+    <div class="card-deck">The move complies with the EU AI Act's Transparency Code, which took effect August 2. The watermark is designed to survive copy-paste and some editing.</div>
+    <div class="img-frame">
+      <img src="https://techcrunch.com/wp-content/uploads/2026/06/GettyImages-2278736523.jpeg?w=1024" alt="Anthropic logo on a smartphone screen" onerror="this.style.display='none'">
+      <div class="img-caption">The Anthropic logo, displayed on a smartphone screen <a href="https://techcrunch.com/2026/08/11/anthropic-says-it-will-watermark-text-generated-by-its-ai-models/" target="_blank">Source ↗</a></div>
+    </div>
+    <div class="card-body drop clearfix">
+      <p>Every Claude model released after August 2 will automatically watermark generated text and files, Anthropic confirmed in an updated support page, with files handled through the open C2PA standard. Older models will get the capability extended to them over time, and the tag applies model-wide, meaning it shows up no matter whether the text comes from the Claude app, the API, Claude Code, Claude Cowork, or Claude Tag.</p>
+      <p>Anthropic hasn't said exactly how much editing it takes to strip the watermark out, and TechCrunch is still waiting on that clarification. The company joins Black Forest Labs, Google, Meta, Microsoft, OpenAI, and Synthesia in committing to the EU's transparency code, a wave that follows Suno's music-watermarking announcement last week and Substack's Pangram-powered AI detection tool from July.</p>
+    </div>
+    <a href="https://techcrunch.com/2026/08/11/anthropic-says-it-will-watermark-text-generated-by-its-ai-models/" target="_blank" class="source-link">Full story · TechCrunch</a>
+  </div>
+
+  <!-- CARD 4 - LIGHTCAP -->
+  <div id="lightcap" class="story-card card-lavender section-anchor">
+    <div class="page-chip">04</div>
+    <div class="card-routine">Leadership</div>
+    <h2 class="card-headline sm">OpenAI's Longest-Serving Executive Heads for the Exit</h2>
+    <div class="card-deck">Brad Lightcap, COO since 2022 and CFO before that, is leaving to "start something new," the latest in a run of senior departures ahead of OpenAI's IPO.</div>
+    <div class="img-frame float-right">
+      <img src="https://techcrunch.com/wp-content/uploads/2026/02/brad-lightcap-GettyImages-2147824375-1.jpg?w=1024" alt="OpenAI COO Brad Lightcap" onerror="this.style.display='none'">
+      <div class="img-caption">Brad Lightcap, outgoing OpenAI COO <a href="https://techcrunch.com/2026/08/11/brad-lightcap-openais-longtime-coo-is-leaving-to-start-something-new/" target="_blank">Read →</a></div>
+    </div>
+    <div class="card-body drop clearfix">
+      <p>Lightcap joined OpenAI in 2018 and, by his own account, built out the company's first Finance, Legal, People, and GTM functions before four years as CFO and then COO. In a message to staff Tuesday, he called it "bittersweet" to leave, adding that he's spent recent months thinking about "the next horizon" and what the world will need to get right, without saying what that means yet.</p>
+      <p>He's the third notable OpenAI departure since July, following AGI lead Fidji Simo's exit and earlier moves by Sora's Bill Peebles and Science VP Kevin Weil. The company is simultaneously preparing for what reporting has called an <span class="hl-lav">IPO of industrywide significance</span>, making the executive churn harder to read as routine.</p>
+    </div>
+    <a href="https://techcrunch.com/2026/08/11/brad-lightcap-openais-longtime-coo-is-leaving-to-start-something-new/" target="_blank" class="source-link">Full story · TechCrunch</a>
+  </div>
+
+  <!-- CARD 5 - RIVER -->
+  <div id="river" class="story-card card-blush section-anchor">
+    <div class="page-chip">05</div>
+    <div class="card-routine">Funding</div>
+    <h2 class="card-headline sm">A Two-Month-Old Startup Just Raised $1.1 Billion to Rebuild AI From Scratch</h2>
+    <div class="card-deck">River AI, founded by xAI co-founder Igor Babuschkin, wants agents that are personally trained and owned by their users rather than rented from a lab.</div>
+    <div class="stat-box">
+      <span class="stat-big">$1.1B</span>
+      <span class="stat-label">Seed / Series A</span>
+    </div>
+    <div class="card-body drop clearfix">
+      <p>General Catalyst and AMP PBC led the round, with Nvidia, AMD Ventures, Y Combinator, and Temasek all participating, an enormous check for a company that only came out of stealth in June. Babuschkin, whose résumé spans DeepMind, OpenAI, and xAI, wants to rebuild the AI stack end to end so agents behave less like rented assistants and more like, in his words, "guardian angels" that belong to the person using them.</p>
+      <p>River's first product is an API billed per million tokens that lets developers apply reinforcement learning and LoRA fine-tuning to open models, pitched as an alternative to prompt engineering a model you can't actually own. The company claims enterprises can run a complex RL job in 15 to 20 minutes without an infrastructure team, at two to four times the cost of closed-source alternatives.</p>
+    </div>
+    <a href="https://techcrunch.com/2026/08/11/general-catalyst-leads-1-1b-round-into-2-month-old-river-ai/" target="_blank" class="source-link">Full story · TechCrunch</a>
+  </div>
+
+  <!-- SIGNALS -->
+  <div id="signals" class="story-card card-blush section-anchor">
+    <div class="page-chip">06 · SIGNALS</div>
+    <div class="card-routine">5 Key Signals</div>
+    <h2 class="card-headline sm">What Else Moved Today</h2>
+    <div class="signals-grid" style="margin-top:18px;">
+      <div class="signal-row">
+        <div class="signal-num n1">1</div>
+        <div>
+          <div class="signal-title">ChatGPT Lands on Linux</div>
+          <div class="signal-desc">OpenAI quietly shipped a native ChatGPT desktop app for Linux, closing a long-standing gap versus its Mac and Windows clients.</div>
+          <a href="https://techcrunch.com/2026/08/11/openai-launches-chatgpt-desktop-app-for-linux/" target="_blank" class="signal-link">TechCrunch ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n2">2</div>
+        <div>
+          <div class="signal-title">Spotify Tags "AI Persona" Profiles</div>
+          <div class="signal-desc">Spotify will label fully AI-generated artist personas and exclude them from personalized recommendations after mounting listener backlash.</div>
+          <a href="https://techcrunch.com/2026/08/11/spotify-will-label-ai-persona-profiles-and-exclude-their-music-from-recommendations/" target="_blank" class="signal-link">TechCrunch ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n3">3</div>
+        <div>
+          <div class="signal-title">Accel Closes $550M India Fund in Weeks</div>
+          <div class="signal-desc">The oversubscribed raise lands just 19 months after Accel's last India fund, a sign of how fast AI-era capital is moving into the region.</div>
+          <a href="https://techcrunch.com/2026/08/11/accel-closes-oversubscribed-550m-india-fund-within-weeks-19-months-after-its-last/" target="_blank" class="signal-link">TechCrunch ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n4">4</div>
+        <div>
+          <div class="signal-title">Google's Agents Start Making Phone Calls</div>
+          <div class="signal-desc">Consumer Gemini agents are now calling stores to check inventory and complete purchases, pushing autonomous commerce into daily life just as EU AI Act oversight kicks in.</div>
+          <a href="https://digital-strategy.ec.europa.eu/en/policies/guidelines-ai-transparency-obligations" target="_blank" class="signal-link">EU Digital Strategy ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n5">5</div>
+        <div>
+          <div class="signal-title">Cognizant Opens a Dedicated EMEA AI Unit</div>
+          <div class="signal-desc">The new unit offers Foundation, Accelerate, and Transform service tiers to help European and Middle Eastern clients stand up production multi-agent systems.</div>
+          <a href="https://aiagentstore.ai/ai-agent-news/this-week" target="_blank" class="signal-link">AI Agent Store ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THEMES + TOOL + SOURCES -->
+  <div id="themes" class="story-card card-lavender section-anchor">
+    <div class="page-chip">07 · THEMES</div>
+    <div class="card-routine">Top Themes</div>
+    <h2 class="card-headline sm">The Shape of Today's News</h2>
+    <div class="themes-grid" style="margin-top:16px;">
+      <div class="theme-item">AI Math Research</div>
+      <div class="theme-item">Model Adoption Scale</div>
+      <div class="theme-item">EU Compliance</div>
+      <div class="theme-item">Executive Transitions</div>
+      <div class="theme-item">Frontier Funding</div>
+      <div class="theme-item">Agent Infrastructure</div>
+      <div class="theme-item">Content Provenance</div>
+    </div>
+
+    <div id="tool" class="tool-week section-anchor">
+      <div class="tool-week-eyebrow">Tool of the Week</div>
+      <div class="tool-week-name">Kitesurf</div>
+      <div class="tool-week-desc">Cloudflare's new browser, built specifically for AI agents to navigate and act on the web on your behalf.</div>
+    </div>
+
+    <div id="sources" class="output-card section-anchor">
+      <div class="output-title">Sources Cited</div>
+      <div class="sources-grid">
+        <a href="https://techcrunch.com/2026/08/11/an-unreleased-anthropic-model-made-progress-on-one-of-maths-biggest-unsolved-problems/" target="_blank">TechCrunch — Riemann hypothesis</a>
+        <a href="https://techcrunch.com/2026/08/11/googles-gemini-app-surges-to-one-billion-users/" target="_blank">TechCrunch — Gemini 1B users</a>
+        <a href="https://techcrunch.com/2026/08/11/anthropic-says-it-will-watermark-text-generated-by-its-ai-models/" target="_blank">TechCrunch — Anthropic watermarking</a>
+        <a href="https://techcrunch.com/2026/08/11/brad-lightcap-openais-longtime-coo-is-leaving-to-start-something-new/" target="_blank">TechCrunch — Brad Lightcap</a>
+        <a href="https://techcrunch.com/2026/08/11/general-catalyst-leads-1-1b-round-into-2-month-old-river-ai/" target="_blank">TechCrunch — River AI funding</a>
+        <a href="https://techcrunch.com/2026/08/11/openai-launches-chatgpt-desktop-app-for-linux/" target="_blank">TechCrunch — ChatGPT on Linux</a>
+        <a href="https://techcrunch.com/2026/08/11/spotify-will-label-ai-persona-profiles-and-exclude-their-music-from-recommendations/" target="_blank">TechCrunch — Spotify AI Persona</a>
+        <a href="https://techcrunch.com/2026/08/11/accel-closes-oversubscribed-550m-india-fund-within-weeks-19-months-after-its-last/" target="_blank">TechCrunch — Accel India fund</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-logo">
+      <div class="footer-mark">
+        <img src="timps_logo.svg" alt="TIMPS">
+      </div>
+      <span class="footer-brand">TIMPS PostCards</span>
+    </div>
+    <div class="footer-center">
+      Issue 078 · August 12, 2026<br>
+      Hyderabad, India
+    </div>
+    <div class="footer-right">
+      <a href="index.html">Home</a><br>
+      <a href="index.html#archive">Archive</a><br>
+      &copy; 2026 TIMPS
+    </div>
+  </footer>
+
+</div> <!-- /wrapper -->
+</div> <!-- /page-layout -->
+</body>
+</html>
