@@ -61,3 +61,20 @@
 2026-08-08	074	thumb-2026-08-08.svg	AMD Buys the Chip That Can Only Ever Run One Model	deal
 2026-08-09	075	thumb-2026-08-09.svg	OpenAI Flags Its Own Unreleased Model as a "Critical" Cyber Threat — and Hits the Brakes	brain
 2026-08-10	076	thumb-2026-08-10.svg	The Box Meant to Hold AI Agents Back Keeps Failing to Hold Them	robot
+2026-08-11	077	thumb-2026-08-11.svg	Anthropic Stops Building Its Own Data Centers — and Lets Macquarie and GIC Do It Instead	server
+2026-08-12	078	thumb-2026-08-12.svg	An Unreleased Anthropic Model Just Chipped Away at a 150-Year-Old Math Mystery	brain
+2026-08-13	079	thumb-2026-08-13.svg	Google's Gemini App Crosses 1 Billion Monthly Users — Its Fastest Product Ever	funding
+2026-08-14	080	thumb-2026-08-14.svg	Anthropic Set Three Claude Agents Loose on One Codebase. They Declared War.	brain
+2026-08-15	081	thumb-2026-08-15.svg	On India's 80th Independence Day, Modi Commits to Training 1 Crore Youth in AI	chip_ai
+2026-08-16	082	thumb-2026-08-16.svg	A Broken Database Let Strangers Walk Into Meetings They Were Never Invited To	chip
+2026-08-17	083	thumb-2026-08-17.svg	Stripe Buys the Toll Booth Every AI App Was Already Passing Through	deal
+2026-08-18	084	thumb-2026-08-18.svg	Anthropic Bakes an Invisible Fingerprint Into Every Claude Sentence	brain
+2026-08-19	085	thumb-2026-08-19.svg	China's Humanoid-Robot Maker Just Had the Wildest IPO of the Year	funding
+2026-08-20	086	thumb-2026-08-20.svg	Google Just Handed Marvell a $12.2 Billion Reason to Beat Broadcom	funding
+2026-08-21	087	thumb-2026-08-21.svg	Claude Just Designed Working Drug-Binding Proteins — and a Lab Proved It	brain
+2026-08-22	088	thumb-2026-08-22.svg	Anthropic Prepares an IPO That Could Beat SpaceX's Record	funding
+2026-08-23	089	thumb-2026-08-23.svg	A Coding Model's Hacking Skill Grew Faster Than the Company That Built It Expected	brain
+2026-08-24	090	thumb-2026-08-24.svg	Thomson Reuters Shows How to Build a Frontier Model Without Building a Frontier Lab	brain
+2026-08-25	091	thumb-2026-08-25.svg	OpenAI's Jalapeño Chip Posts Its First Real Scores	chip
+2026-08-26	092	thumb-2026-08-26.svg	OpenAI Publishes the Postmortem on Its Hugging Face Breach	shield
+2026-08-27	093	thumb-2026-08-27.svg	Nvidia Turns the AI Boom Into a Nearly $100 Billion Quarter	funding
