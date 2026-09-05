@@ -472,6 +472,100 @@
     line-height: 1.6;
   }
 
+  /* ─── ARTICLES / DEEP DIVES ─── */
+  .articles-section {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 80px 48px 0;
+  }
+  .articles-kicker {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    opacity: .5;
+    margin-bottom: 14px;
+    display: block;
+  }
+  .articles-h {
+    font-family: var(--serif);
+    font-size: 38px;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+  .articles-sub {
+    font-family: var(--mono);
+    font-size: 13px;
+    opacity: .5;
+    line-height: 1.6;
+    margin-bottom: 32px;
+    max-width: 560px;
+  }
+  .article-card {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 24px;
+    align-items: center;
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    padding: 18px;
+    margin-bottom: 40px;
+    text-decoration: none;
+    color: var(--forest);
+    transition: box-shadow .15s, transform .1s;
+  }
+  .article-card:hover { box-shadow: 6px 6px 0 var(--forest); transform: translateY(-2px); }
+  .article-card-thumb {
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1.5px solid rgba(28,46,34,.15);
+  }
+  .article-card-thumb img { width: 100%; height: 130px; object-fit: cover; display: block; }
+  .article-card-body { min-width: 0; }
+  .article-card-tag {
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 100px;
+    background: var(--lime);
+    border: 1.5px solid var(--forest);
+    display: inline-block;
+    margin-bottom: 8px;
+  }
+  .article-card-title {
+    font-family: var(--serif);
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: -0.3px;
+    margin-bottom: 8px;
+  }
+  .article-card-deck {
+    font-family: var(--mono);
+    font-size: 12px;
+    opacity: .55;
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+  .article-card-meta {
+    font-family: var(--mono);
+    font-size: 11px;
+    opacity: .45;
+    letter-spacing: 0.5px;
+    margin-right: 16px;
+  }
+  .article-card-cta {
+    display: inline-block;
+    margin-top: 10px;
+  }
+
   /* ─── SUBSCRIBE ─── */
   .subscribe {
     background: var(--lime);
@@ -727,6 +821,10 @@
     .live-cell:nth-child(2) { border-right: none; }
     .live-cell { padding: 16px 20px; }
     .archive { padding: 40px 24px; }
+    .articles-section { padding: 48px 24px 0; }
+    .articles-h { font-size: 28px; }
+    .article-card { grid-template-columns: 1fr; }
+    .article-card-thumb img { height: 120px; }
     .subscribe { padding: 56px 24px; }
     .footer { padding: 28px 24px; flex-direction: column; align-items: flex-start; }
     .footer-right { text-align: left; }
@@ -774,6 +872,7 @@
     <span>TIMPS PostCards</span>
   </a>
   <div class="nav-links">
+    <a href="articles.html" class="nav-link">Articles</a>
     <a href="#archive" class="nav-link">Archive</a>
     <a href="timps-postcards-2026-09-04.html" class="nav-link">Latest Issue</a>
     <a href="#subscribe" class="nav-link">Subscribe</a>
@@ -858,6 +957,30 @@
     <button class="install-btn-skip" id="installBtnSkip">Continue to site</button>
   </div>
 </div>
+
+<!-- ARTICLES / DEEP DIVES -->
+<section class="articles-section" id="articles">
+  <span class="articles-kicker">TIMPS Deep Dives</span>
+  <h2 class="articles-h">One story, <em>explained properly.</em></h2>
+  <p class="articles-sub">
+    Beyond the five daily signals — long-form, image-rich explainers on the stories that matter most.
+  </p>
+
+  <a href="article-gpt-6-astra.html" class="article-card">
+    <div class="article-card-thumb">
+      <img src="thumbs/article-gpt6-astra-hero.png" alt="OpenAI GPT-6 Astra, explained">
+    </div>
+    <div class="article-card-body">
+      <span class="article-card-tag">Deep Dive № 001 &middot; OpenAI</span>
+      <h3 class="article-card-title">GPT-6 Astra: the model OpenAI says opened the &ldquo;AGI era&rdquo;</h3>
+      <p class="article-card-deck">A 1.05M-token context window, a 100% score on the hardest cybersecurity benchmark, two zero-days found mid-test, and a new reasoning method nobody can watch — here&rsquo;s everything, properly explained.</p>
+      <div>
+        <span class="article-card-meta"><b>Sandeep Thummala</b> &middot; 14 min read &middot; Sep 5, 2026</span>
+        <span class="btn-chunky lime article-card-cta">Read the deep dive &rarr;</span>
+      </div>
+    </div>
+  </a>
+</section>
 
 <!-- ARCHIVE -->
 <section class="archive" id="archive">

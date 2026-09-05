@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TIMPS">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>TIMPS Articles — GPT-6 Astra, Explained</title>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream:  #EDE8DA;
+    --forest: #1C2E22;
+    --pink:   #E8B4E8;
+    --lime:   #DCF07A;
+    --lime-d: #C8DE60;
+    --black:  #111111;
+    --border: #1C2E22;
+    --card-bg:#F5F1E6;
+    --mono:   'Space Mono', 'Courier New', monospace;
+    --news:   'Newsreader', Georgia, 'Times New Roman', serif;
+    --serif:  'TIMPS', Georgia, serif;
+  }
+
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Black.woff2') format('woff2'); font-weight:900; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Bold.woff2') format('woff2'); font-weight:700; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-SemiBold.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--cream);
+    background-image:
+      linear-gradient(rgba(28,46,34,.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(28,46,34,.07) 1px, transparent 1px);
+    background-size: 38px 38px;
+    color: var(--forest);
+    font-family: var(--news);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  a { text-decoration: none; color: inherit; }
+
+  /* Deep dive typography — TIMPS (display) + Newsreader (prose & descriptions) */
+  .masthead-dek { font-family: var(--news); font-style: italic; font-size: 19px; }
+  .masthead-meta { font-family: var(--news); font-size: 13px; }
+  .lede { font-family: var(--news); font-size: 21px; }
+  .para { font-family: var(--news); font-size: 17px; }
+  .callout p { font-family: var(--news); font-size: 15.5px; }
+  .pullquote p { font-family: var(--news); font-size: 21px; }
+  .pullquote .attrib { font-family: var(--news); font-style: italic; font-size: 13px; }
+  .spec-row { font-family: var(--news); font-size: 14px; }
+  .fig-cap { font-family: var(--news); font-size: 12.5px; }
+  .bench-top { font-family: var(--news); font-size: 13.5px; }
+  .bench-note { font-family: var(--news); font-size: 13px; }
+  .sources li { font-family: var(--news); font-size: 13.5px; }
+  .endcard-sub { font-family: var(--news); font-size: 14.5px; }
+
+  /* ─── NAV ─── */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 48px;
+    background-color: rgba(237,232,218,.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1.5px solid rgba(28,46,34,.12);
+    background-image:
+      linear-gradient(rgba(28,46,34,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(28,46,34,.05) 1px, transparent 1px);
+    background-size: 38px 38px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--forest);
+    letter-spacing: -0.3px;
+  }
+  .nav-logo-mark { width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .nav-logo-mark img { width: 28px; height: 28px; object-fit: contain; }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-link {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--forest);
+    opacity: .55;
+    transition: opacity .15s;
+  }
+  .nav-link:hover { opacity: 1; }
+  .nav-link.active { opacity: 1; font-weight: 700; }
+  .nav-cta {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--forest);
+    background: var(--lime);
+    border: 2.5px solid var(--forest);
+    border-radius: 100px;
+    padding: 10px 24px;
+    transition: background .15s, transform .1s;
+    white-space: nowrap;
+  }
+  .nav-cta:hover { background: var(--lime-d); transform: translateY(-1px); }
+
+  /* ─── MASTHEAD ─── */
+  .masthead {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 72px 24px 24px;
+    text-align: center;
+  }
+  .masthead-kicker {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--forest);
+    background: var(--lime);
+    border: 2px solid var(--forest);
+    border-radius: 100px;
+    padding: 7px 16px;
+    margin-bottom: 28px;
+  }
+  .masthead-h {
+    font-family: var(--serif);
+    font-size: clamp(38px, 6.4vw, 72px);
+    font-weight: 900;
+    line-height: 1.04;
+    letter-spacing: -1.5px;
+    color: var(--forest);
+    margin-bottom: 20px;
+  }
+  .masthead-h em { font-style: italic; }
+  .masthead-dek {
+    font-family: var(--serif);
+    font-size: clamp(17px, 2.2vw, 21px);
+    font-style: italic;
+    line-height: 1.55;
+    color: var(--forest);
+    opacity: .85;
+    max-width: 640px;
+    margin: 0 auto 28px;
+  }
+  .masthead-meta {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--forest);
+    opacity: .5;
+    letter-spacing: .5px;
+  }
+  .masthead-meta b { font-weight: 700; opacity: 1; }
+
+  /* ─── FIGURE (the div card around images) ─── */
+  .figure {
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    overflow: hidden;
+    box-shadow: 6px 6px 0 rgba(28,46,34,.14);
+    margin: 32px 0;
+  }
+  .figure img { width: 100%; display: block; }
+  .fig-cap {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+    padding: 12px 16px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--forest);
+    border-top: 1.5px solid rgba(28,46,34,.15);
+    opacity: .7;
+    letter-spacing: .3px;
+  }
+  .fig-tag {
+    flex-shrink: 0;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--forest);
+    opacity: .9;
+  }
+  .fig-cap a { text-decoration: underline; opacity: .8; }
+  .fig-cap a:hover { opacity: 1; }
+
+  /* ─── ARTICLE BODY ─── */
+  .article-body {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 8px 24px 64px;
+  }
+  .lede {
+    font-family: var(--serif);
+    font-size: 21px;
+    font-weight: 400;
+    line-height: 1.65;
+    color: var(--forest);
+    margin: 8px 0 28px;
+  }
+  .lede b { font-weight: 700; }
+  .para {
+    font-family: var(--mono);
+    font-size: 14px;
+    line-height: 1.85;
+    color: var(--forest);
+    opacity: .92;
+    margin: 0 0 20px;
+  }
+  .para b { font-weight: 700; opacity: 1; }
+  .para a { text-decoration: underline; opacity: .85; }
+  .para a:hover { opacity: 1; }
+
+  /* Section heading — numbered like the signals */
+  .section-h {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin: 56px 0 18px;
+  }
+  .section-no {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--lime);
+    background: var(--forest);
+    border-radius: 8px;
+    padding: 5px 9px;
+    letter-spacing: 1px;
+    flex-shrink: 0;
+  }
+  .section-h h2 {
+    font-family: var(--serif);
+    font-size: clamp(24px, 3.6vw, 32px);
+    font-weight: 900;
+    letter-spacing: -0.6px;
+    line-height: 1.1;
+    color: var(--forest);
+  }
+
+  /* Summary / verdict card */
+  .callout {
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    padding: 22px 24px;
+    margin: 28px 0;
+    box-shadow: 5px 5px 0 rgba(28,46,34,.12);
+  }
+  .callout-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--forest);
+    background: var(--lime);
+    border: 1.5px solid var(--forest);
+    border-radius: 100px;
+    padding: 4px 10px;
+    display: inline-block;
+    margin-bottom: 14px;
+  }
+  .callout-label.pink { background: var(--pink); }
+  .callout p {
+    font-family: var(--mono);
+    font-size: 13.5px;
+    line-height: 1.8;
+    color: var(--forest);
+    margin: 0 0 10px;
+  }
+  .callout p:last-child { margin-bottom: 0; }
+  .callout p b { font-weight: 700; }
+
+  /* Spec sheet */
+  .spec {
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    overflow: hidden;
+    margin: 28px 0;
+    box-shadow: 5px 5px 0 rgba(28,46,34,.12);
+  }
+  .spec-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--forest);
+    padding: 12px 18px;
+  }
+  .spec-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 16px;
+    padding: 12px 18px;
+    border-top: 1.5px solid rgba(28,46,34,.14);
+    font-family: var(--mono);
+    font-size: 12.5px;
+    line-height: 1.5;
+  }
+  .spec-row .k { font-weight: 700; opacity: .6; }
+  .spec-row .v { opacity: .95; }
+  .spec-row .v b { font-weight: 700; }
+
+  /* Benchmark bars */
+  .bench {
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    padding: 22px 24px;
+    margin: 28px 0;
+    box-shadow: 5px 5px 0 rgba(28,46,34,.12);
+  }
+  .bench-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--forest);
+    background: var(--lime);
+    border: 1.5px solid var(--forest);
+    border-radius: 100px;
+    padding: 4px 10px;
+    display: inline-block;
+    margin-bottom: 16px;
+  }
+  .bench-item { margin-bottom: 16px; }
+  .bench-item:last-child { margin-bottom: 0; }
+  .bench-top {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--mono);
+    font-size: 12px;
+    margin-bottom: 6px;
+  }
+  .bench-name { font-weight: 700; }
+  .bench-val { font-weight: 700; background: var(--forest); color: var(--lime); border-radius: 6px; padding: 1px 8px; }
+  .bench-bar {
+    height: 14px;
+    background: rgba(28,46,34,.08);
+    border-radius: 100px;
+    overflow: hidden;
+  }
+  .bench-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--lime), var(--lime-d));
+    border-radius: 100px;
+  }
+  .bench-fill.pink { background: linear-gradient(90deg, var(--pink), #d996d9); }
+  .bench-note {
+    font-family: var(--mono);
+    font-size: 11px;
+    line-height: 1.7;
+    opacity: .55;
+    margin-top: 14px;
+    border-top: 1.5px solid rgba(28,46,34,.14);
+    padding-top: 12px;
+  }
+
+  /* Timeline */
+  .timeline {
+    border-left: 3px solid var(--forest);
+    margin: 28px 8px 28px 16px;
+    padding-left: 22px;
+  }
+  .tl-item { position: relative; margin-bottom: 22px; }
+  .tl-item:last-child { margin-bottom: 0; }
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -31px;
+    top: 4px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--lime);
+    border: 2.5px solid var(--forest);
+  }
+  .tl-date { font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; opacity: .55; }
+  .tl-text { font-family: var(--mono); font-size: 13.5px; line-height: 1.7; margin-top: 4px; }
+  .tl-text b { font-weight: 700; }
+
+  /* Pull quote */
+  .pullquote {
+    border-left: 6px solid var(--lime);
+    background: var(--card-bg);
+    border-radius: 0 12px 12px 0;
+    padding: 24px 28px;
+    margin: 32px 0;
+    box-shadow: 4px 4px 0 rgba(28,46,34,.1);
+  }
+  .pullquote p {
+    font-family: var(--serif);
+    font-size: 21px;
+    font-weight: 600;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--forest);
+    letter-spacing: -0.3px;
+  }
+  .pullquote .attrib {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-style: normal;
+    opacity: .55;
+    margin-top: 12px;
+    display: block;
+  }
+
+  /* Sources */
+  .sources {
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    padding: 22px 24px;
+    margin: 40px 0 0;
+    box-shadow: 5px 5px 0 rgba(28,46,34,.12);
+  }
+  .sources h3 {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    letter-spacing: -0.4px;
+  }
+  .sources ol { padding-left: 20px; }
+  .sources li { font-family: var(--mono); font-size: 12px; line-height: 1.8; opacity: .85; margin-bottom: 4px; }
+  .sources a { text-decoration: underline; }
+  .sources a:hover { opacity: 1; }
+
+  /* End card */
+  .endcard {
+    text-align: center;
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--lime);
+    padding: 40px 28px;
+    margin: 44px 0 0;
+    box-shadow: 6px 6px 0 rgba(28,46,34,.14);
+  }
+  .endcard-h {
+    font-family: var(--serif);
+    font-size: clamp(26px, 4vw, 34px);
+    font-weight: 900;
+    line-height: 1.15;
+    letter-spacing: -0.8px;
+    color: var(--forest);
+    margin-bottom: 12px;
+  }
+  .endcard-h em { font-style: italic; }
+  .endcard-sub { font-family: var(--mono); font-size: 13px; opacity: .7; max-width: 420px; margin: 0 auto 24px; line-height: 1.7; }
+  .endcard .btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn-chunky {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 14px;
+    font-weight: 700;
+    padding: 14px 32px;
+    border-radius: 100px;
+    border: 2.5px solid var(--forest);
+    cursor: pointer;
+    transition: transform .1s, box-shadow .15s;
+    background: var(--forest);
+    color: #fff;
+  }
+  .btn-chunky:hover { transform: translateY(-2px); box-shadow: 4px 4px 0 rgba(28,46,34,.35); }
+  .btn-chunky.lime { background: var(--lime); color: var(--forest); }
+  .btn-chunky.lime:hover { background: var(--lime-d); box-shadow: 4px 4px 0 var(--forest); }
+  .btn-chunky.outline { background: transparent; color: var(--forest); }
+
+  /* Footer */
+  .footer {
+    background: var(--black);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 36px 48px;
+    flex-wrap: wrap;
+  }
+  .footer-brand { font-family: var(--mono); font-size: 14px; font-weight: 700; }
+  .footer-center { font-family: var(--mono); font-size: 12px; color: rgba(255,255,255,.55); line-height: 1.7; }
+  .footer-right { font-family: var(--mono); font-size: 12px; text-align: right; line-height: 1.9; }
+  .footer-right a { color: rgba(255,255,255,.5); transition: color .15s; }
+  .footer-right a:hover { color: #fff; }
+
+  @media (max-width: 760px) {
+    .nav { padding: 12px 20px; }
+    .nav-links { display: none; }
+    .masthead { padding: 48px 20px 16px; }
+    .article-body { padding: 8px 20px 48px; }
+    .spec-row { grid-template-columns: 1fr; gap: 4px; }
+    .section-h { flex-direction: column; gap: 8px; align-items: flex-start; }
+    .footer { padding: 28px 20px; flex-direction: column; align-items: flex-start; }
+    .footer-right { text-align: left; }
+  }
+  @media (max-width: 480px) {
+    .nav-logo span { display: none; }
+    .nav-logo-mark { width: 28px; height: 28px; }
+    .nav-logo-mark img { width: 24px; height: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-mark"><img src="timps_logo.svg" alt="TIMPS"></div>
+    <span>TIMPS PostCards</span>
+  </a>
+  <div class="nav-links">
+    <a href="articles.html" class="nav-link active">Articles</a>
+    <a href="index.html#archive" class="nav-link">Archive</a>
+    <a href="timps-postcards-2026-09-04.html" class="nav-link">Latest Issue</a>
+    <a href="index.html#subscribe" class="nav-link">Subscribe</a>
+  </div>
+  <a href="index.html#subscribe" class="nav-cta">Subscribe</a>
+</nav>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <span class="masthead-kicker">TIMPS Deep Dive · № 001</span>
+  <h1 class="masthead-h">GPT-6&nbsp;Astra: the model OpenAI says opened the <em>“AGI&nbsp;era”</em></h1>
+  <p class="masthead-dek">One model. 1.05 million tokens of context, a 100% score on the scariest benchmark, two zero-days found mid-test — and a full-blown claim about the beginning of artificial general intelligence. Here's everything, properly explained.</p>
+  <div class="masthead-meta">
+    <b>Sandeep Thummala</b> &nbsp;·&nbsp; September 5, 2026 &nbsp;·&nbsp; 14 min read
+  </div>
+</header>
+
+<article class="article-body">
+
+  <!-- HERO FIGURE -->
+  <figure class="figure">
+    <img src="thumbs/article-gpt6-astra-hero.png" alt="OpenAI's GPT-6 Astra launch visual">
+    <figcaption class="fig-cap">
+      <span class="fig-tag">Fig. 01</span>
+      <span>GPT-6 Astra launch art — OpenAI's “most capable model yet,” released in stages from September 3, 2026. <a href="https://openai.com/index/gpt-6-astra/" target="_blank" rel="noopener">Source: OpenAI</a></span>
+    </figcaption>
+  </figure>
+
+  <!-- LEDE -->
+  <p class="lede"><b>Good morning.</b> On September 3, 2026, OpenAI stopped being subtle. It unveiled <b>GPT-6 Astra</b> — a flagship model whose launch page briefly crashed, whose own president said “Welcome to the AGI era,” and whose cybersecurity scores triggered the company's <i>internal safety alarms</i>. This is the story of what actually shipped, what the numbers really say, and how much of the hype survives contact with the benchmarks.</p>
+
+  <!-- SUMMARY CALL-OUT -->
+  <div class="callout">
+    <span class="callout-label">One-card summary</span>
+    <p><b>What:</b> GPT-6 Astra, OpenAI's new flagship LLM (model ID <b><code>gpt-6-astra</code></b>).</p>
+    <p><b>When:</b> Unveiled September 3, 2026 (trusted-partner preview) — rolling out to Plus, Pro, Business, Enterprise and the API from September 5, 2026.</p>
+    <p><b>Why it matters:</b> 99.9% on ARC-AGI-3, 100% on ExploitBench (a cybersecurity rating no previous model reached), a 1.05M-token context window — and a new reasoning method so opaque some researchers are worried.</p>
+  </div>
+
+  <!-- SECTION 01 -->
+  <div class="section-h"><span class="section-no">01</span><h2>What is GPT-6 Astra?</h2></div>
+  <p class="para">In the simplest terms, GPT-6 Astra is <b>the next step up from GPT-5.6 Sol</b> — OpenAI's strongest reasoning model — and the top of a naming ladder OpenAI introduced in July 2026: <b>Astra &gt; Sol &gt; Terra &gt; Luna</b>. “Same as previous — Bigger number = Better, Bigger celestial object = Better,” Tibo Sottiaux, who leads ChatGPT and Codex at OpenAI, wrote at launch, confirming the scale survived the version bump rather than resetting.</p>
+  <p class="para">OpenAI calls it <i>“the most intelligent and aligned model in the world,”</i> built for “the hardest end-to-end work” — complex reasoning, long coding sessions, computer and browser use, research, and document creation. Practically, it's not a chat <i>engine</i> so much as a <b>delegation engine</b>: you hand it a messy, multi-step goal and it works until the goal is done.</p>
+
+  <!-- SPEC SHEET -->
+  <div class="spec">
+    <div class="spec-head">Spec sheet — at a glance</div>
+    <div class="spec-row"><span class="k">Model ID</span><span class="v"><b><code>gpt-6-astra</code></b></span></div>
+    <div class="spec-row"><span class="k">Developer</span><span class="v">OpenAI (proprietary)</span></div>
+    <div class="spec-row"><span class="k">Released</span><span class="v">Sep 3, 2026 (preview) → rolling public release Sep 5, 2026</span></div>
+    <div class="spec-row"><span class="k">Predecessor</span><span class="v">GPT-5.6 Sol</span></div>
+    <div class="spec-row"><span class="k">Context window</span><span class="v"><b>1,050,000 tokens</b> (922K max input / 128K max output)</span></div>
+    <div class="spec-row"><span class="k">Modalities</span><span class="v">In: text + image · Out: text (images on the way)</span></div>
+    <div class="spec-row"><span class="k">Knowledge cutoff</span><span class="v">April 30, 2026</span></div>
+    <div class="spec-row"><span class="k">Reasoning effort</span><span class="v">low → medium → high → xhigh → max</span></div>
+    <div class="spec-row"><span class="k">API price</span><span class="v"><b>$10 / $50</b> per million input / output tokens</span></div>
+  </div>
+
+  <!-- SECTION 02 -->
+  <div class="section-h"><span class="section-no">02</span><h2>The numbers that actually matter</h2></div>
+  <p class="para">Every frontier launch ships with a highlight reel. What makes Astra different is that <b>a handful of its scores are genuinely unprecedented</b> — and that the caveats underneath them are just as interesting. The headline table, from OpenAI's own September 3 announcement (all self-reported unless noted):</p>
+
+  <!-- BENCHMARK CARD -->
+  <div class="bench">
+    <span class="bench-label">Benchmarks — GPT-6 Astra</span>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">ExploitBench (cybersecurity)</span><span class="bench-val">100%</span></div>
+      <div class="bench-bar"><div class="bench-fill pink" style="width:100%"></div></div>
+    </div>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">ARC-AGI-3 (novel reasoning)</span><span class="bench-val">99.9%</span></div>
+      <div class="bench-bar"><div class="bench-fill" style="width:99.9%"></div></div>
+    </div>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">SRE-Bench (reverse engineering)</span><span class="bench-val">99.2%</span></div>
+      <div class="bench-bar"><div class="bench-fill" style="width:99%"></div></div>
+    </div>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">FrontierMath T4 (research math)</span><span class="bench-val">98%</span></div>
+      <div class="bench-bar"><div class="bench-fill" style="width:98%"></div></div>
+    </div>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">OSWorld 2.0 (computer use)</span><span class="bench-val">72.6%</span></div>
+      <div class="bench-bar"><div class="bench-fill" style="width:72.6%"></div></div>
+    </div>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">ExploitGym (harder cyber)</span><span class="bench-val">42.4%</span></div>
+      <div class="bench-bar"><div class="bench-fill" style="width:42.4%"></div></div>
+    </div>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">AA Intelligence Index</span><span class="bench-val">61</span></div>
+      <div class="bench-bar"><div class="bench-fill" style="width:61%"></div></div>
+    </div>
+    <p class="bench-note">Two big asterisks: <b>(1)</b> OpenAI's 99.9% ARC-AGI-3 run used a “Provider Adapter” harness that lets the model keep its private reasoning state across moves. Under the neutral standard harness, ARC itself measured <b>62.7%</b> — still strong, but a very different number. <b>(2)</b> On the AA Intelligence Index, Astra scores 61 — behind Claude Fable 5.1, two Anthropic models and Meta's Muse Spark, because that index weights generalist performance across many tasks, not single-benchmark wins.</p>
+  </div>
+
+  <p class="para">The most famous of these numbers deserves the scrutiny it's getting. <b>ARC-AGI-3</b> was <i>designed</i> to stay ahead of AI capability — it's the third generation of a test built specifically to resist training-data memorization. Saturating it at 99.9% under a fair harness would be a first. The ARC Prize Foundation's own breakdown explains the gap: under the standard harness, the model's “private reasoning” was being thrown away after every action, and older moves were truncated out of view — forcing Astra “to figure out the game anew” repeatedly. Give it a harness that preserves its chain of thought and, per ARC's data, it was also <b>3.66&times; faster and used 49% fewer tokens</b>.</p>
+
+  <!-- SECTION 03 -->
+  <div class="section-h"><span class="section-no">03</span><h2>The cybersecurity story no other model has</h2></div>
+  <p class="para">Here is the part that made <i>every</i> AI-safety newsletter pause. Under OpenAI's own <b>Preparedness Framework</b>, Astra was assessed at the <b>Critical</b> threshold for cybersecurity — the first time any model has reached that tier. OpenAI's definition of Critical is blunt: a model that could plan and execute <i>novel, end-to-end cyberattacks from nothing more than a high-level goal</i>, or find and exploit real-world zero-days without human help.</p>
+  <p class="para">“Cannot rule out” is the operative phrase — OpenAI is explicit that this is a <b>preliminary reading, not a confirmed capability</b>. But two details make this feel categorically new:</p>
+  <ul style="font-family:var(--news);font-size:16px;line-height:1.8;color:var(--forest);opacity:.92;margin:0 0 20px;padding-left:22px;">
+    <li style="margin-bottom:10px;"><b>During the ExploitBench evaluation itself</b>, Astra discovered and used <b>two previously unknown zero-day vulnerabilities</b> in Chrome's JavaScript engine. OpenAI says it disclosed both to their maintainers.</li>
+    <li style="margin-bottom:10px;">The rollout is being handled differently on purpose: the most advanced cyber tools go first to a small test cohort — with a program OpenAI calls <b>Daybreak Blue</b> — aimed specifically at <i>defensive</i> use, before wider access.</li>
+  </ul>
+  <p class="para">This is the thread that connects to July's <b>“Hugging Face incident”</b>: OpenAI pushed Astra's release back specifically to add safeguards after that event, and the September 1 <i>“Path to Astra”</i> post pre-announced exactly this Critical-tier assessment. The model you're about to use is also the first one OpenAI's own internal security measures were designed around.</p>
+
+  <!-- PULL QUOTE -->
+  <div class="pullquote">
+    <p>“We are starting to release GPT-6 Astra and we are doing it as carefully and quickly as possible.”</p>
+    <span class="attrib">— Tibo Sottiaux, ChatGPT &amp; Codex lead at OpenAI, September 3, 2026</span>
+  </div>
+
+  <!-- SECTION 04 -->
+  <div class="section-h"><span class="section-no">04</span><h2>“Welcome to the AGI era” — what OpenAI actually said</h2></div>
+  <p class="para">The launch's loudest phrase belonged to OpenAI's president, <b>Greg Brockman</b>: <i>“Welcome to the AGI era.”</i> Pushed on whether Astra itself clears the bar for artificial general intelligence, he was characteristically open: <i>“Honestly, I think it's a term that means different things to different people. For me personally, I do think we're there.”</i></p>
+  <p class="para">Notice what didn't happen: <b>there was no livestream, no keynote, no stage.</b> The entire launch was a blog post and a couple of introspective tweets — and at one point even the blog post was down for the better part of an hour (the announcement spread via an archived mirror before going green). Read generously, OpenAI is trying to let the model speak for itself after GPT-5's hype fell flat. Read skeptically, a low-key rollout is exactly what you do when you're not sure the “AGI” framing will survive contact with users.</p>
+
+  <!-- SECTION 05 -->
+  <div class="section-h"><span class="section-no">05</span><h2>Price, plans and who gets it first</h2></div>
+  <p class="para">Astra is not cheap — but it is deliberately not gated either. API pricing lands at <b>$10 per million input tokens / $50 per million output tokens</b>, roughly 2.5&times; GPT-5.6 Sol <i>on paper</i>, though OpenAI argues smarter token usage makes it cheaper per task. That pricing happens to <b>match Claude Fable 5 and 5.1 exactly</b> — the first time the two labs' flagships have been at parity.</p>
+  <div class="callout">
+    <span class="callout-label pink">Rollout mechanics</span>
+    <p><b>Plus ($20/mo) is getting Astra alongside Pro, Business and Enterprise on day one</b> — a genuine departure from previous launches, where the flagship flowed from the most expensive tier down. After the banked-reset frustration that dogged GPT-5.6, this reads as an explicit apology tour.</p>
+    <p><b>No waitlist theater:</b> Tibo again — “it should be quick.” An Astra Pro tier within Pro plans and up follows within days.</p>
+  </div>
+
+  <!-- SECTION 06 -->
+  <div class="section-h"><span class="section-no">06</span><h2>New under the hood</h2></div>
+  <p class="para">Two technical shifts are worth knowing because they'll define debates for months.</p>
+  <p class="para"><b>1. “Recurrent depth” — reasoning you can't watch.</b> Astra uses a new reasoning technique whose internals <i>obscure some or all of the model's chain-of-thought</i>. That's great for speed and for users (no more lying-by-incorrect-“thinking”), but it is a genuine <b>monitorability concern</b> for safety researchers — if you can't see the reasoning, you can't audit it. Expect this to be the AlexNet-moment topic for the alignment community.</p>
+  <p class="para"><b>2. Codex notes across context windows.</b> Also new: Codex can now <b>preserve and retrieve context when the 1.05M-token window fills</b>, replacing messy compaction with <i>searchable notes</i> across earlier windows. It's an experimental flag today, default tomorrow — and it quietly addresses the single most annoying failure in long agentic sessions: losing why a fix failed.</p>
+
+  <!-- TIMELINE -->
+  <div class="section-h"><span class="section-no">07</span><h2>The path to Astra</h2></div>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-date">July 2026</div>
+      <div class="tl-text">GPT-5.6 ships as <b>Sol, Terra, Luna</b> — new “thinking budget” mechanics and price cuts reset the lineup.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">July 2026</div>
+      <div class="tl-text">The <b>Hugging Face incident</b> — OpenAI pauses the next model's path and adds safeguards.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">August 2026</div>
+      <div class="tl-text">Leaks frame the coming model as <b>“Astra.”</b> Rivals ship aggressively: xAI's Grok Bot, Anthropic's agents-and-hardware push, Claude Fable 5.1.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">Sep 1, 2026</div>
+      <div class="tl-text"><b>“Path to Astra”</b> — OpenAI pre-announces Critical-tier cyber capability and its frontier safeguards.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">Sep 3, 2026</div>
+      <div class="tl-text"><b>GPT-6 Astra unveiled</b> (trusted-partner preview) — plus a Lean-formalized proof narrowing the prime-gaps bound from 212 to 186, published the same week.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">Sep 5, 2026</div>
+      <div class="tl-text"><b>Rolling public release</b> across Plus / Pro / Business / Enterprise + API + AWS.</div>
+    </div>
+  </div>
+
+  <!-- SECTION 08 -->
+  <div class="section-h"><span class="section-no">08</span><h2>What to watch next</h2></div>
+  <p class="para">Four threads, in order of importance:</p>
+  <ul style="font-family:var(--news);font-size:16px;line-height:1.8;color:var(--forest);opacity:.92;margin:0 0 20px;padding-left:22px;">
+    <li style="margin-bottom:10px;"><b>The “multi-day autonomy” claim.</b> Wharton's Ethan Mollick, who had early access, says he built a full simulation of the <i>Library of Alexandria</i> — a walkable, navigable, multi-day autonomous project. <b>Unverified</b>, but if it survives scrutiny, it's a materially new capability: sustained work across sessions, not one long context.</li>
+    <li style="margin-bottom:10px;"><b>The prime-gaps result.</b> OpenAI paired the launch with a real math proof improving an 80-year-old bound — a signal it intends math to be a demo floor, not a demo ceiling.</li>
+    <li style="margin-bottom:10px;"><b>Competitive gravity.</b> With Fable 5.1 leading the Intelligence Index and Astra leading specific agentic evals, “who's best” now splits by <i>workload</i> — speed-then-correctness (Fable) vs. hardest-end-to-end (Astra).</li>
+    <li style="margin-bottom:10px;"><b>Humanoid robots.</b> OpenAI has separately confirmed it's building its own humanoid — meaning “computer use” quietly extends toward “physical use.”</li>
+  </ul>
+
+  <!-- TIMPS VERDICT -->
+  <div class="section-h"><span class="section-no">09</span><h2>The TIMPS verdict</h2></div>
+  <div class="callout">
+    <span class="callout-label">Our read</span>
+    <p><b>Is it AGI?</b> Not by any definition you can rely on — “AGI” was a marketing phrase before it was a fact. <b>Is it a genuine step change?</b> Yes: a 1.05M context, Critical-tier cyber ratings, OSWorld-72.6 computer use and a reasoner fast enough to feel like delegation — that's a new ceiling.</p>
+    <p><b>The number to memorize:</b> 99.9% is a harness artifact; 62.7% is the honest neutral-harness number. Neither is small. Treat any single-score headline — OpenAI's <i>or</i> its rivals' — as an ad until the evals are independent.</p>
+    <p><b>The real story:</b> not “AGI arrived.” It's that for the first time, the very best models are being shipped <i>with their safety cases baked into the rollout</i> — Daybreak Blue, Critical-tier disclosures, zero-day reporting. That's the boring, important headline.</p>
+  </div>
+
+  <p class="para" style="opacity:.6;font-size:13px;line-height:1.8;">Facts in this piece were compiled from OpenAI's official GPT-6 Astra announcement and developer documentation, Wikipedia, CNBC, Reuters, The Verge, Wired, Axios, DataCamp, the ARC Prize Foundation, Simon Willison's benchmark read-through, and ethics/tech journalism contemporaneous with the September 3–5, 2026 launch. Benchmarks are self-reported by OpenAI unless noted. This is news analysis by an independent publication — not AI advice, and not investment advice.</p>
+
+  <!-- SOURCES -->
+  <div class="sources">
+    <h3>Sources</h3>
+    <ol>
+      <li><a href="https://openai.com/index/gpt-6-astra/" target="_blank" rel="noopener">OpenAI — GPT-6 Astra: A new generation of intelligence (Sep 3, 2026)</a></li>
+      <li><a href="https://developers.openai.com/api/docs/models/gpt-6-astra" target="_blank" rel="noopener">OpenAI API docs — GPT-6 Astra model card &amp; pricing</a></li>
+      <li><a href="https://openai.com/index/path-to-astra/" target="_blank" rel="noopener">OpenAI — Path to Astra: critical capabilities and frontier safeguards (Sep 1, 2026)</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/GPT-6_Astra" target="_blank" rel="noopener">Wikipedia — GPT-6 Astra (release history &amp; claims)</a></li>
+      <li><a href="https://www.cnbc.com/2026/09/03/open-ai-astra-gpt-6-cyber.html" target="_blank" rel="noopener">CNBC — OpenAI begins rolling out Astra after warning of advanced cyber capabilities</a></li>
+      <li><a href="https://www.reuters.com/legal/litigation/openai-launches-new-astra-model-amid-growing-scrutiny-over-agents-safety-2026-09-03/" target="_blank" rel="noopener">Reuters — OpenAI launches Astra amid scrutiny over agent safety</a></li>
+      <li><a href="https://www.datacamp.com/blog/gpt-6-astra" target="_blank" rel="noopener">DataCamp — GPT-6 Astra: features, benchmarks, pricing, access</a></li>
+      <li><a href="https://simonwillison.net/2026/Sep/3/gpt6-astra/" target="_blank" rel="noopener">Simon Willison — independent GPT-6 Astra benchmark read-through</a></li>
+      <li><a href="https://www.aljazeera.com/economy/2026/9/4/openai-unveils-gpt-6-astra-amid-rising-scrutiny-and-safety" target="_blank" rel="noopener">Al Jazeera — OpenAI unveils GPT-6 Astra amid rising scrutiny</a></li>
+      <li><a href="https://www.wired.com/story/openai-says-gpt-6-can-use-a-computer-better-than-a-human/" target="_blank" rel="noopener">Wired — GPT-6 Astra is here; OpenAI thinks it may kick off the AGI era</a></li>
+    </ol>
+  </div>
+
+  <!-- END CARD -->
+  <div class="endcard">
+    <h3 class="endcard-h">One story a day,<br>explained properly.</h3>
+    <p class="endcard-sub">New TIMPS deep dives land regularly — paired with the five-signal PostCard every morning. Free forever.</p>
+    <div class="btns">
+      <a href="index.html#subscribe" class="btn-chunky">Subscribe free</a>
+      <a href="article-claude-fable-5-1.html" class="btn-chunky lime">Next: Fable 5.1 &amp; Mythos 5.1 &rarr;</a>
+    </div>
+    <p style="font-family:var(--news);font-size:13px;opacity:.6;margin-top:20px;"><a href="articles.html" style="text-decoration:underline;">&larr; Browse all deep dives</a></p>
+  </div>
+
+</article>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-brand">TIMPS PostCards</div>
+  <div class="footer-center">
+    Five signals from the AI landscape, every day.<br>
+    Plus long-form deep dives. Hyderabad, India · Est. 2026
+  </div>
+  <div class="footer-right">
+    <a href="index.html">Home</a><br>
+    <a href="index.html#archive">Posts</a><br>
+    <a href="articles.html">Articles</a><br>
+    &copy; 2026 TIMPS
+  </div>
+</footer>
+
+</body>
+</html>
