@@ -78,3 +78,11 @@
 2026-08-25	091	thumb-2026-08-25.svg	OpenAI's Jalapeño Chip Posts Its First Real Scores	chip
 2026-08-26	092	thumb-2026-08-26.svg	OpenAI Publishes the Postmortem on Its Hugging Face Breach	shield
 2026-08-27	093	thumb-2026-08-27.svg	Nvidia Turns the AI Boom Into a Nearly $100 Billion Quarter	funding
+2026-08-28	094	thumb-2026-08-28.svg	100+ AI and Tech Giants Sound the Alarm on AI-Powered Cyberattacks	shield
+2026-08-29	095	thumb-2026-08-29.svg	A Federal Judge Tells the Pentagon Its Anthropic Blacklist Was Illegal	gavel
+2026-08-30	096	thumb-2026-08-30.svg	Sony and Warner Accuse Anthropic of Piracy "At Massive Scale"	chip
+2026-08-31	097	thumb-2026-08-31.svg	All Three Major Music Publishers Are Now Suing Anthropic	chip
+2026-09-01	098	thumb-2026-09-01.svg	Apple Hands the Keys to John Ternus — With the AI Race as His First Assignment	chip
+2026-09-02	099	thumb-2026-09-02.svg	Anthropic Locks In a $35 Billion Nvidia-Backed Compute Deal With Lambda	funding
+2026-09-03	100	thumb-2026-09-03.svg	Anthropic Splits Its Newest Model in Two — One for Builders, One Behind a Locked Door	brain
+2026-09-04	101	thumb-2026-09-04.svg	Nvidia Signs a $12.9B Deal to Buy Hugging Face	deal
