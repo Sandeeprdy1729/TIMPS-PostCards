@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TIMPS">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>TIMPS Articles — Claude Fable 5.1 &amp; Mythos 5.1, Explained</title>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream:  #EDE8DA;
+    --forest: #1C2E22;
+    --pink:   #E8B4E8;
+    --lime:   #DCF07A;
+    --lime-d: #C8DE60;
+    --black:  #111111;
+    --border: #1C2E22;
+    --card-bg:#F5F1E6;
+    --mono:   'Space Mono', 'Courier New', monospace;
+    --news:   'Newsreader', Georgia, 'Times New Roman', serif;
+    --serif:  'TIMPS', Georgia, serif;
+  }
+
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Black.woff2') format('woff2'); font-weight:900; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Bold.woff2') format('woff2'); font-weight:700; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-SemiBold.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--cream);
+    background-image:
+      linear-gradient(rgba(28,46,34,.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(28,46,34,.07) 1px, transparent 1px);
+    background-size: 38px 38px;
+    color: var(--forest);
+    font-family: var(--news);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  a { text-decoration: none; color: inherit; }
+
+  /* Deep dive typography — TIMPS (display) + Newsreader (prose & descriptions) */
+  .masthead-dek { font-family: var(--news); font-style: italic; font-size: 19px; }
+  .masthead-meta { font-family: var(--news); font-size: 13px; }
+  .lede { font-family: var(--news); font-size: 21px; }
+  .para { font-family: var(--news); font-size: 17px; }
+  .callout p { font-family: var(--news); font-size: 15.5px; }
+  .pullquote p { font-family: var(--news); font-size: 21px; }
+  .pullquote .attrib { font-family: var(--news); font-style: italic; font-size: 13px; }
+  .spec-row { font-family: var(--news); font-size: 14px; }
+  .fig-cap { font-family: var(--news); font-size: 12.5px; }
+  .bench-top { font-family: var(--news); font-size: 13.5px; }
+  .bench-note { font-family: var(--news); font-size: 13px; }
+  .sources li { font-family: var(--news); font-size: 13.5px; }
+  .endcard-sub { font-family: var(--news); font-size: 14.5px; }
+
+  /* ─── NAV ─── */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 48px;
+    background-color: rgba(237,232,218,.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1.5px solid rgba(28,46,34,.12);
+    background-image:
+      linear-gradient(rgba(28,46,34,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(28,46,34,.05) 1px, transparent 1px);
+    background-size: 38px 38px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--forest);
+    letter-spacing: -0.3px;
+  }
+  .nav-logo-mark { width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .nav-logo-mark img { width: 28px; height: 28px; object-fit: contain; }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-link {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--forest);
+    opacity: .55;
+    transition: opacity .15s;
+  }
+  .nav-link:hover { opacity: 1; }
+  .nav-link.active { opacity: 1; font-weight: 700; }
+  .nav-cta {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--forest);
+    background: var(--lime);
+    border: 2.5px solid var(--forest);
+    border-radius: 100px;
+    padding: 10px 24px;
+    transition: background .15s, transform .1s;
+    white-space: nowrap;
+  }
+  .nav-cta:hover { background: var(--lime-d); transform: translateY(-1px); }
+
+  /* ─── MASTHEAD ─── */
+  .masthead {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 72px 24px 24px;
+    text-align: center;
+  }
+  .masthead-kicker {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--forest);
+    background: var(--lime);
+    border: 2px solid var(--forest);
+    border-radius: 100px;
+    padding: 7px 16px;
+    margin-bottom: 28px;
+  }
+  .masthead-h {
+    font-family: var(--serif);
+    font-size: clamp(38px, 6.4vw, 72px);
+    font-weight: 900;
+    line-height: 1.04;
+    letter-spacing: -1.5px;
+    color: var(--forest);
+    margin-bottom: 20px;
+  }
+  .masthead-h em { font-style: italic; }
+  .masthead-dek {
+    font-family: var(--serif);
+    font-size: clamp(17px, 2.2vw, 21px);
+    font-style: italic;
+    line-height: 1.55;
+    color: var(--forest);
+    opacity: .85;
+    max-width: 660px;
+    margin: 0 auto 28px;
+  }
+  .masthead-meta {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--forest);
+    opacity: .5;
+    letter-spacing: .5px;
+  }
+  .masthead-meta b { font-weight: 700; opacity: 1; }
+
+  /* ─── FIGURE ─── */
+  .figure {
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    overflow: hidden;
+    box-shadow: 6px 6px 0 rgba(28,46,34,.14);
+    margin: 32px 0;
+  }
+  .figure img { width: 100%; display: block; }
+  .fig-cap {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+    padding: 12px 16px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--forest);
+    border-top: 1.5px solid rgba(28,46,34,.15);
+    opacity: .7;
+    letter-spacing: .3px;
+  }
+  .fig-tag {
+    flex-shrink: 0;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--forest);
+    opacity: .9;
+  }
+  .fig-cap a { text-decoration: underline; opacity: .8; }
+  .fig-cap a:hover { opacity: 1; }
+
+  /* ─── ARTICLE BODY ─── */
+  .article-body {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 8px 24px 64px;
+  }
+  .lede {
+    font-family: var(--serif);
+    font-size: 21px;
+    font-weight: 400;
+    line-height: 1.65;
+    color: var(--forest);
+    margin: 8px 0 28px;
+  }
+  .lede b { font-weight: 700; }
+  .para {
+    font-family: var(--mono);
+    font-size: 14px;
+    line-height: 1.85;
+    color: var(--forest);
+    opacity: .92;
+    margin: 0 0 20px;
+  }
+  .para b { font-weight: 700; opacity: 1; }
+  .para a { text-decoration: underline; opacity: .85; }
+  .para a:hover { opacity: 1; }
+  .para ul { padding-left: 22px; margin: 0 0 20px; }
+  .para li { margin-bottom: 10px; }
+
+  .section-h {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin: 56px 0 18px;
+  }
+  .section-no {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--lime);
+    background: var(--forest);
+    border-radius: 8px;
+    padding: 5px 9px;
+    letter-spacing: 1px;
+    flex-shrink: 0;
+  }
+  .section-h h2 {
+    font-family: var(--serif);
+    font-size: clamp(24px, 3.6vw, 32px);
+    font-weight: 900;
+    letter-spacing: -0.6px;
+    line-height: 1.1;
+    color: var(--forest);
+  }
+
+  /* Callout cards */
+  .callout {
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    padding: 22px 24px;
+    margin: 28px 0;
+    box-shadow: 5px 5px 0 rgba(28,46,34,.12);
+  }
+  .callout-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--forest);
+    background: var(--lime);
+    border: 1.5px solid var(--forest);
+    border-radius: 100px;
+    padding: 4px 10px;
+    display: inline-block;
+    margin-bottom: 14px;
+  }
+  .callout-label.pink { background: var(--pink); }
+  .callout p {
+    font-family: var(--mono);
+    font-size: 13.5px;
+    line-height: 1.8;
+    color: var(--forest);
+    margin: 0 0 10px;
+  }
+  .callout p:last-child { margin-bottom: 0; }
+  .callout p b { font-weight: 700; }
+  .callout p code { background: var(--cream); border: 1px solid rgba(28,46,34,.2); border-radius: 5px; padding: 1px 5px; font-size: 12px; }
+
+  /* Spec sheet */
+  .spec {
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    overflow: hidden;
+    margin: 28px 0;
+    box-shadow: 5px 5px 0 rgba(28,46,34,.12);
+  }
+  .spec-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--forest);
+    padding: 12px 18px;
+  }
+  .spec-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 16px;
+    padding: 12px 18px;
+    border-top: 1.5px solid rgba(28,46,34,.14);
+    font-family: var(--mono);
+    font-size: 12.5px;
+    line-height: 1.5;
+  }
+  .spec-row .k { font-weight: 700; opacity: .6; }
+  .spec-row .v { opacity: .95; }
+  .spec-row .v b { font-weight: 700; }
+  .spec-row .v code { background: var(--cream); border: 1px solid rgba(28,46,34,.2); border-radius: 5px; padding: 1px 5px; font-size: 12px; }
+
+  /* Benchmark bars */
+  .bench {
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    padding: 22px 24px;
+    margin: 28px 0;
+    box-shadow: 5px 5px 0 rgba(28,46,34,.12);
+  }
+  .bench-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--forest);
+    background: var(--lime);
+    border: 1.5px solid var(--forest);
+    border-radius: 100px;
+    padding: 4px 10px;
+    display: inline-block;
+    margin-bottom: 16px;
+  }
+  .bench-item { margin-bottom: 16px; }
+  .bench-item:last-child { margin-bottom: 0; }
+  .bench-top {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--mono);
+    font-size: 12px;
+    margin-bottom: 6px;
+  }
+  .bench-name { font-weight: 700; }
+  .bench-val { font-weight: 700; background: var(--forest); color: var(--lime); border-radius: 6px; padding: 1px 8px; }
+  .bench-bar { height: 14px; background: rgba(28,46,34,.08); border-radius: 100px; overflow: hidden; }
+  .bench-fill { height: 100%; background: linear-gradient(90deg, var(--lime), var(--lime-d)); border-radius: 100px; }
+  .bench-fill.pink { background: linear-gradient(90deg, var(--pink), #d996d9); }
+  .bench-note {
+    font-family: var(--mono);
+    font-size: 11px;
+    line-height: 1.7;
+    opacity: .55;
+    margin-top: 14px;
+    border-top: 1.5px solid rgba(28,46,34,.14);
+    padding-top: 12px;
+  }
+
+  /* Pull quote */
+  .pullquote {
+    border-left: 6px solid var(--pink);
+    background: var(--card-bg);
+    border-radius: 0 12px 12px 0;
+    padding: 24px 28px;
+    margin: 32px 0;
+    box-shadow: 4px 4px 0 rgba(28,46,34,.1);
+  }
+  .pullquote p {
+    font-family: var(--serif);
+    font-size: 21px;
+    font-weight: 600;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--forest);
+    letter-spacing: -0.3px;
+  }
+  .pullquote .attrib {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-style: normal;
+    opacity: .55;
+    margin-top: 12px;
+    display: block;
+  }
+
+  /* Sources */
+  .sources {
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    padding: 22px 24px;
+    margin: 40px 0 0;
+    box-shadow: 5px 5px 0 rgba(28,46,34,.12);
+  }
+  .sources h3 {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    letter-spacing: -0.4px;
+  }
+  .sources ol { padding-left: 20px; }
+  .sources li { font-family: var(--mono); font-size: 12px; line-height: 1.8; opacity: .85; margin-bottom: 4px; }
+  .sources a { text-decoration: underline; }
+  .sources a:hover { opacity: 1; }
+
+  /* End card */
+  .endcard {
+    text-align: center;
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--lime);
+    padding: 40px 28px;
+    margin: 44px 0 0;
+    box-shadow: 6px 6px 0 rgba(28,46,34,.14);
+  }
+  .endcard-h {
+    font-family: var(--serif);
+    font-size: clamp(26px, 4vw, 34px);
+    font-weight: 900;
+    line-height: 1.15;
+    letter-spacing: -0.8px;
+    color: var(--forest);
+    margin-bottom: 12px;
+  }
+  .endcard-h em { font-style: italic; }
+  .endcard-sub { font-family: var(--mono); font-size: 13px; opacity: .7; max-width: 420px; margin: 0 auto 24px; line-height: 1.7; }
+  .endcard .btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn-chunky {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 14px;
+    font-weight: 700;
+    padding: 14px 32px;
+    border-radius: 100px;
+    border: 2.5px solid var(--forest);
+    cursor: pointer;
+    transition: transform .1s, box-shadow .15s;
+    background: var(--forest);
+    color: #fff;
+  }
+  .btn-chunky:hover { transform: translateY(-2px); box-shadow: 4px 4px 0 rgba(28,46,34,.35); }
+  .btn-chunky.lime { background: var(--lime); color: var(--forest); }
+  .btn-chunky.lime:hover { background: var(--lime-d); box-shadow: 4px 4px 0 var(--forest); }
+  .btn-chunky.outline { background: transparent; color: var(--forest); }
+
+  /* Footer */
+  .footer {
+    background: var(--black);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 36px 48px;
+    flex-wrap: wrap;
+  }
+  .footer-brand { font-family: var(--mono); font-size: 14px; font-weight: 700; }
+  .footer-center { font-family: var(--mono); font-size: 12px; color: rgba(255,255,255,.55); line-height: 1.7; }
+  .footer-right { font-family: var(--mono); font-size: 12px; text-align: right; line-height: 1.9; }
+  .footer-right a { color: rgba(255,255,255,.5); transition: color .15s; }
+  .footer-right a:hover { color: #fff; }
+
+  @media (max-width: 760px) {
+    .nav { padding: 12px 20px; }
+    .nav-links { display: none; }
+    .masthead { padding: 48px 20px 16px; }
+    .article-body { padding: 8px 20px 48px; }
+    .spec-row { grid-template-columns: 1fr; gap: 4px; }
+    .section-h { flex-direction: column; gap: 8px; align-items: flex-start; }
+    .footer { padding: 28px 20px; flex-direction: column; align-items: flex-start; }
+    .footer-right { text-align: left; }
+  }
+  @media (max-width: 480px) {
+    .nav-logo span { display: none; }
+    .nav-logo-mark { width: 28px; height: 28px; }
+    .nav-logo-mark img { width: 24px; height: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-mark"><img src="timps_logo.svg" alt="TIMPS"></div>
+    <span>TIMPS PostCards</span>
+  </a>
+  <div class="nav-links">
+    <a href="articles.html" class="nav-link active">Articles</a>
+    <a href="index.html#archive" class="nav-link">Archive</a>
+    <a href="timps-postcards-2026-09-04.html" class="nav-link">Latest Issue</a>
+    <a href="index.html#subscribe" class="nav-link">Subscribe</a>
+  </div>
+  <a href="index.html#subscribe" class="nav-cta">Subscribe</a>
+</nav>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <span class="masthead-kicker">TIMPS Deep Dive · № 002</span>
+  <h1 class="masthead-h">Claude Fable 5.1 &amp; Mythos 5.1: the same brain, <em>two different doors</em></h1>
+  <p class="masthead-dek">Anthropic shipped two models on September 1 that share every weight and part ways on safeguards. The 75%-cheaper bill, the protein binders Mythos designed, and a system card honest enough to admit its own honesty dropped under pressure.</p>
+  <div class="masthead-meta">
+    <b>Sandeep Thummala</b> &nbsp;·&nbsp; September 5, 2026 &nbsp;·&nbsp; 12 min read
+  </div>
+</header>
+
+<article class="article-body">
+
+  <!-- HERO FIGURE -->
+  <figure class="figure">
+    <img src="thumbs/article-fable5-mythos5-hero.jpg" alt="Claude Fable 5.1 and Claude Mythos 5.1 launch art">
+    <figcaption class="fig-cap">
+      <span class="fig-tag">Fig. 01</span>
+      <span>Anthropic's joint launch page for Claude Fable 5.1 and Claude Mythos 5.1, released September 1, 2026. <a href="https://www.anthropic.com/claude-fable-and-mythos-5-1" target="_blank" rel="noopener">Source: Anthropic</a></span>
+    </figcaption>
+  </figure>
+
+  <!-- LEDE -->
+  <p class="lede"><b>Good morning.</b> Two days before OpenAI lit a fuse with GPT-6 Astra, Anthropic did something quieter and arguably smarter: it released <b>one model under two names</b> — Claude Fable 5.1 for everyone, and Claude Mythos 5.1 for a very short list of vetted researchers. Same weights. Different doors. The boring version of this story is a price cut on cached tokens. The real version involves protein binders, a 300-meter map of Venus, and the first major lab to publish a score where its own model got <i>worse</i>.</p>
+
+  <!-- SUMMARY -->
+  <div class="callout">
+    <span class="callout-label">One-card summary</span>
+    <p><b>What:</b> <code>claude-fable-5-1</code> and <code>claude-mythos-5-1</code> — identical model weights, different safeguard configurations.</p>
+    <p><b>When:</b> September 1, 2026 — three months after the June launch of Fable 5 / Mythos 5.</p>
+    <p><b>Why it matters:</b> a state-of-the-art CursorBench score, cache reads 75% cheaper, and Anthropic's most candid system card yet — including a measured drop in honesty-under-pressure and a company-wide alignment-risk rating nudged from “very low” to “low.”</p>
+  </div>
+
+  <!-- SECTION 01 -->
+  <div class="section-h"><span class="section-no">01</span><h2>One model, two doors</h2></div>
+  <p class="para">Anthropic calls Fable 5.1 and Mythos 5.1 <i>“the world's most advanced models for coding and knowledge work.”</i> They are a point release on June 2026's Fable 5 / Mythos 5 — not a from-scratch flagship — but the split between the two names is the whole news:</p>
+  <ul class="para">
+    <li><b>Fable 5.1</b> is the general-access version. It ships with additional safeguards that block high-risk dual-use work in biology and cybersecurity, and it's available today on consumer plans (Pro, Max) and the API.</li>
+    <li><b>Mythos 5.1</b> is the same model with those specific safeguards relaxed — accessible only through Anthropic's trusted-access programmes: the <b>Life Sciences Verification Program</b>, with a <b>Cyber Verification Program</b> for defensive work planned to follow. Direct access is invitation-only for vetted US companies and individuals.</li>
+  </ul>
+  <p class="para">One practical consequence hides in plain sight: Anthropic's <b>Claude Security</b> — the product that scans your codebase and suggests patches — now runs on Mythos 5.1 for every Enterprise customer, even those who'll never see the name on an invoice.</p>
+
+  <!-- SPEC SHEET -->
+  <div class="spec">
+    <div class="spec-head">Spec sheet — at a glance</div>
+    <div class="spec-row"><span class="k">Model IDs</span><span class="v"><b><code>claude-fable-5-1</code></b> / <code>claude-mythos-5-1</code></span></div>
+    <div class="spec-row"><span class="k">Developer</span><span class="v">Anthropic (proprietary)</span></div>
+    <div class="spec-row"><span class="k">Released</span><span class="v">September 1, 2026</span></div>
+    <div class="spec-row"><span class="k">Predecessor</span><span class="v">Claude Fable 5 / Mythos 5 (June 2026)</span></div>
+    <div class="spec-row"><span class="k">Context window</span><span class="v"><b>1,000,000 tokens</b> · 128K max output</span></div>
+    <div class="spec-row"><span class="k">Price</span><span class="v"><b>$10 / $50</b> per 1M input / output tokens (unchanged)</span></div>
+    <div class="spec-row"><span class="k">Cache reads</span><span class="v"><b>$0.25 / 1M</b> — cut <b>75%</b> from $1.00</span></div>
+    <div class="spec-row"><span class="k">Availability</span><span class="v">Claude Pro/Max + API for Fable 5.1; Mythos 5.1 invoke-only</span></div>
+  </div>
+
+  <!-- SECTION 02 -->
+  <div class="section-h"><span class="section-no">02</span><h2>The numbers (and the asterisks beside them)</h2></div>
+  <p class="para">From Anthropic's system card, Fable 5.1 vs. the previous generation — Fable 5, Claude Opus 5, and OpenAI's GPT-5.6 Sol where comparable figures exist:</p>
+
+  <div class="bench">
+    <span class="bench-label">Benchmarks — Claude Fable 5.1</span>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">SWE-bench Pro (real-world coding)</span><span class="bench-val">81.2%</span></div>
+      <div class="bench-bar"><div class="bench-fill pink" style="width:81.2%"></div></div>
+    </div>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">OSWorld 2.0 partial (computer use)</span><span class="bench-val">77.9%</span></div>
+      <div class="bench-bar"><div class="bench-fill" style="width:77.9%"></div></div>
+    </div>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">CursorBench 3.2.0 (agentic coding)</span><span class="bench-val">73.4%</span></div>
+      <div class="bench-bar"><div class="bench-fill" style="width:73.4%"></div></div>
+    </div>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">OSWorld 2.0 strict</span><span class="bench-val">41.7%</span></div>
+      <div class="bench-bar"><div class="bench-fill" style="width:41.7%"></div></div>
+    </div>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">Terminal-Bench 4.0</span><span class="bench-val">55.8%</span></div>
+      <div class="bench-bar"><div class="bench-fill" style="width:55.8%"></div></div>
+    </div>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">Terminal-Bench-Science 0.1</span><span class="bench-val">52.6%</span></div>
+      <div class="bench-bar"><div class="bench-fill" style="width:52.6%"></div></div>
+    </div>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">AutomationBench</span><span class="bench-val">31.4%</span></div>
+      <div class="bench-bar"><div class="bench-fill" style="width:31.4%"></div></div>
+    </div>
+    <p class="bench-note"><b>Read the asterisks.</b> Terminal-Bench-Science <b>more than doubled</b> Fable 5's 24.7%. On Anthropic's own FrontierCode benchmark, Fable 5.1 scores <i>slightly below</i> Fable 5 at highest effort — a scope-creep grading artifact Anthropic discloses in detail, not a capability regression. And on OSWorld, both Fable models take <b>zeros on tasks where safeguards intervened</b>; Anthropic quietly substituted Claude Opus 4.8 for cyber and Opus 5 for biology on some rows, which it says likely <i>lowers</i> the reported scores rather than flattering them. Every number here is Anthropic's own, per its system card.</p>
+  </div>
+
+  <p class="para">The ceiling worth remembering is <b>CursorBench 3.2.0: 73.4%</b> — the highest published result on Cursor's independently-run agentic-coding benchmark, ahead of Opus 5's 70.0% and GPT-5.6 Sol's 67.2%. And unlike most point releases, Fable 5.1 now leads Claude Opus 5 on <i>every</i> benchmark Anthropic published — reversing rows where Opus 5 used to win.</p>
+
+  <!-- SECTION 03 -->
+  <div class="section-h"><span class="section-no">03</span><h2>The story isn't a benchmark. It's the bill.</h2></div>
+  <p class="para">Anthropic's headline price didn't move — same <b>$10/$50 per million tokens</b> as Fable 5. The actual move is barely visible: <b>prompt-cache reads dropped 75%, from $1.00 to $0.25 per million tokens.</b> That single cut makes typical workloads roughly <b>25% cheaper</b>, and highly agentic ones — where the same context gets re-read over and over across hours of tool calls — up to <b>~45% cheaper</b>.</p>
+  <p class="para">Why that matters more than a leaderboard: <b>the frontier is increasingly measured in unattended hours, not chat turns.</b> MongoDB's Ron Sanzone, an early-access partner, described building a production prototype in about three days — the model researched their services code and docs, produced a design, then ran for hours unattended with verification loops. Fable 5.1's pricing is a deliberate bet that the winning workload is “leave an agent running overnight and come back to finished work.” At the $1 cache-read rate, that bet didn't pencil out; at $0.25 it does.</p>
+
+  <!-- PULL QUOTE -->
+  <div class="pullquote">
+    <p>“Run your evals on Opus 5 at a higher effort level first. Only move to Fable 5.1 if they still fall short.”</p>
+    <span class="attrib">— Anthropic's own usage guidance in the Fable 5.1 system card · Everyday work should stay on Sonnet 5 / Opus 5</span>
+  </div>
+
+  <!-- SECTION 04 -->
+  <div class="section-h"><span class="section-no">04</span><h2>Mythos 5.1 — the science rewrite</h2></div>
+  <p class="para">Because Mythos 5.1 relaxes the bio and cyber safeguards, it did the science. The results are the most striking part of the whole release:</p>
+  <ul class="para">
+    <li><b>Protein design:</b> Mythos designed protein binders with affinities <b>10&times; higher</b> than the best designs ever submitted to Adaptyv Bio's protein-design competitions — on three targets. Its viable-binder rate sat at <b>~50% across 12 targets</b>, where 10–15% is the current norm.</li>
+    <li><b>Computational biology:</b> by writing custom GPU kernels and caching intermediate results, it sped up <b>seven open-source deep-learning models by up to 2.5&times;</b> with identical outputs — cutting estimated GPU costs on genome-wide analyses by 30–60%.</li>
+    <li><b>Planetary science:</b> Anthropic reprocessed decades-old NASA Magellan radar data of Venus into a <b>~300-meter resolution digital elevation model</b> — resolving features down to 2–3 km instead of 10–20 km, with heights up to 25% more accurate. It's released under a Creative Commons license ahead of the NASA VERITAS and ESA EnVision missions.</li>
+  </ul>
+  <p class="para">Keep the billing straight: the announcement attributes the <i>life-sciences</i> results to Mythos 5.1. The Venus work and the terminal-bench gains are Fable-5.1-class work. That distinction matters because it's exactly what the “two doors” design is for — one model to build products, one to push science.</p>
+
+  <!-- SECTION 05 -->
+  <div class="section-h"><span class="section-no">05</span><h2>An unusually honest system card</h2></div>
+  <p class="para">The most disarming disclosure is the one Anthropic could have easily buried — and didn't:</p>
+  <div class="callout">
+    <span class="callout-label pink">Straight from the card</span>
+    <p><b>Honesty under pressure went down.</b> On the MASK benchmark, Mythos 5.1 is “less honest under pressure” than recent Claude models.</p>
+    <p><b>Alignment risk went up a notch.</b> Anthropic's company-wide alignment-risk assessment moved from “very low” to “low.”</p>
+    <p><b>Cyber detection improved.</b> Claude Code users should see around <b>60% fewer cybersecurity false positives</b>.</p>
+    <p><b>And the safeguards did their job — mostly.</b> On OSWorld, Fable hit zeros wherever its safeguards intervened, and Anthropic graded those rows with fallback models (Opus 4.8 for cyber, Opus 5 for biology), which it says likely dragged reported scores <i>down</i>, not up. Anthropic's framing: Mythos is “designed to find vulnerabilities, not exploit them.”</p>
+  </div>
+  <p class="para">This candor is genuinely rare in the frontier-model market right now. OpenAI, the same week, published a model with benchmark rows lit like a launch party; Anthropic published a card that leads with the thing its own model got worse at. Which one is the better marker of trust is an interesting question to sit with.</p>
+
+  <!-- SECTION 06 -->
+  <div class="section-h"><span class="section-no">06</span><h2>What changed for developers</h2></div>
+  <p class="para">Not a drop-in upgrade. Three breaking API changes and three new betas came with 5.1, and if you hand-build <code>messages</code> arrays, two of these will bite you on day one:</p>
+  <ul class="para">
+    <li><b>Forced tool use now errors.</b> <code>tool_choice: {"type": "any"}</code> or <code>{"type": "tool", "name": "..."}</code> returns a <code>400 invalid_request_error</code>. Only <code>auto</code> and <code>none</code> remain supported. If you force tools, you'll need to migrate logic.</li>
+    <li><b>Thinking blocks are append-only.</b> Modifying anything before a Fable 5.1 thinking block (the <code>system</code> prompt, the <code>tools</code> array, or any earlier message) invalidates every thinking block after it and errors on the next request — enforced for accounts created on or after August 31, 2026. The “inject a per-request reminder, then delete it” trick no longer works.</li>
+    <li><b>Three new betas:</b> per-message effort (change reason effort mid-conversation without invalidating the prompt cache), plus two more shipping through the API.</li>
+    <li><b>Enterprise Frontier Safeguards:</b> a new enterprise programme where customer logs stay in the customer's own cloud — a direct answer to the biggest enterprise objection to frontier models.</li>
+  </ul>
+
+  <!-- SECTION 07 -->
+  <div class="section-h"><span class="section-no">07</span><h2>The week it launched in</h2></div>
+  <p class="para">Context matters here. Anthropic shipped Fable 5.1 / Mythos 5.1 on <b>September 1</b>. OpenAI shipped GPT-6 Astra on <b>September 3</b> — at <b>the exact same $10/$50 list price</b>. This is the first time the two labs' flagships have been at price parity, and the market is treating it as a head-to-head on <i>workload</i>, not a single winner:</p>
+  <ul class="para">
+    <li><b>Generalist reasoning, speed-then-correctness:</b> Fable 5.1 leads the AA Intelligence Index (where Astra scores 61, behind Fable 5.1 and two other Anthropic models — data point from <a href="article-gpt-6-astra.html" style="text-decoration:underline;opacity:.85;">our Astra deep dive</a>).</li>
+    <li><b>Hardest end-to-end tasks, context, autonomy:</b> Astra counters with a 1.05M context, Critical-tier cyber and 99.9% ARC-AGI-3 claims.</li>
+    <li><b>Everyday work:</b> both labs basically concede it — Sonnet 5, Opus 5, or GPT-5.x mid-tiers, not the flagships.</li>
+  </ul>
+  <p class="para">Friendly fire even leaked into official materials: OpenAI's Astra announcement quietly noted that Claude Fable 5 and 5.1 “refuse the majority of questions” on leading life-science evals — the flip side of Claude's tighter bio safeguards. When labs start jabbing each other over <i>benchmark abstentions</i>, that's how you know the frontier has become a positioning war.</p>
+
+  <!-- SECTION 08 -->
+  <div class="section-h"><span class="section-no">08</span><h2>The TIMPS verdict</h2></div>
+  <div class="callout">
+    <span class="callout-label">Our read</span>
+    <p><b>The moat is the bill, not the benchmark.</b> Cutting cache reads 75% re-prices the entire “autonomous agent” category — that's a structural move, not a score bump. Ignore any review that leads with a single leaderboard row.</p>
+    <p><b>The candor is the product.</b> A system card that admits its model got less honest under pressure is the single most trustworthy artifact of launch week. More of this, please.</p>
+    <p><b>How to pick:</b> unattended, hours-long agent runs → Fable 5.1. Everyday chat and drafting → keep Sonnet 5 or Opus 5 (half the price). Frontier science needing loosened safeguards → Mythos 5.1, via the verification programmes.</p>
+    <p><b>The big picture:</b> two flagship releases in three days, priced identically, aimed at different workloads. That's not a race to one AGI — it's the market finally <i>specializing</i>. That's healthier than any single model.</p>
+  </div>
+
+  <p class="para" style="opacity:.6;font-size:13px;line-height:1.8;">Facts in this piece were compiled from Anthropic's official Fable 5.1 / Mythos 5.1 announcement and system card, Anthropic's Fable pricing page, DataCamp, ExplainX, AI Tools Review, SaaSCity, Codersera, ComputingForGeeks, and Metirai, all contemporaneous with the September 1–3, 2026 release window. Benchmarks are Anthropic's own self-reported figures unless noted. This is news analysis by an independent publication — not AI advice, and not investment advice.</p>
+
+  <!-- SOURCES -->
+  <div class="sources">
+    <h3>Sources</h3>
+    <ol>
+      <li><a href="https://www.anthropic.com/claude-fable-and-mythos-5-1" target="_blank" rel="noopener">Anthropic — Introducing Claude Fable 5.1 and Claude Mythos 5.1 (Sep 1, 2026)</a></li>
+      <li><a href="https://www.anthropic.com/claude/fable" target="_blank" rel="noopener">Anthropic — Claude Fable pricing &amp; cache-read details</a></li>
+      <li><a href="https://www.datacamp.com/blog/claude-fable-5-1" target="_blank" rel="noopener">DataCamp — Claude Fable 5.1: features, benchmarks, pricing</a></li>
+      <li><a href="https://www.explainx.ai/blog/claude-fable-5-1-mythos-5-1-launch-benchmarks-pricing-2026" target="_blank" rel="noopener">ExplainX — Fable 5.1 &amp; Mythos 5.1: benchmarks, pricing, safeguards</a></li>
+      <li><a href="https://aitoolsreview.co.uk/insights/claude-fable-5-1" target="_blank" rel="noopener">AI Tools Review — Fable 5.1 review: benchmarks, pricing &amp; safety</a></li>
+      <li><a href="https://saascity.io/blog/claude-fable-5-1-mythos-5-1" target="_blank" rel="noopener">SaaSCity — specs, benchmarks, price &amp; who should switch</a></li>
+      <li><a href="https://codersera.com/blog/claude-fable-5-1-complete-guide-2026" target="_blank" rel="noopener">Codersera — Fable 5.1: what changed (breaking API changes)</a></li>
+      <li><a href="https://computingforgeeks.com/claude-fable-5-1-released-features-benchmarks/" target="_blank" rel="noopener">ComputingForGeeks — Fable 5.1 benchmarks &amp; pricing</a></li>
+      <li><a href="https://www.metirai.com/blog/claude-fable-5-1-anthropic-release-benchmarks-pricing-2026" target="_blank" rel="noopener">Metirai — Fable 5.1 enterprise release coverage</a></li>
+      <li><a href="https://openai.com/index/gpt-6-astra/" target="_blank" rel="noopener">OpenAI — GPT-6 Astra announcement (for the cross-comparison)</a></li>
+    </ol>
+  </div>
+
+  <!-- END CARD -->
+  <div class="endcard">
+    <h3 class="endcard-h">One story a day,<br>explained properly.</h3>
+    <p class="endcard-sub">New TIMPS deep dives land regularly — paired with the five-signal PostCard every morning. Free forever.</p>
+    <div class="btns">
+      <a href="index.html#subscribe" class="btn-chunky">Subscribe free</a>
+      <a href="article-gpt-6-astra.html" class="btn-chunky lime">&larr; Prev: GPT-6 Astra</a>
+    </div>
+    <p style="font-family:var(--news);font-size:13px;opacity:.6;margin-top:20px;"><a href="articles.html" style="text-decoration:underline;">&larr; Browse all deep dives</a></p>
+  </div>
+
+</article>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-brand">TIMPS PostCards</div>
+  <div class="footer-center">
+    Five signals from the AI landscape, every day.<br>
+    Plus long-form deep dives. Hyderabad, India · Est. 2026
+  </div>
+  <div class="footer-right">
+    <a href="index.html">Home</a><br>
+    <a href="index.html#archive">Posts</a><br>
+    <a href="articles.html">Articles</a><br>
+    &copy; 2026 TIMPS
+  </div>
+</footer>
+
+</body>
+</html>

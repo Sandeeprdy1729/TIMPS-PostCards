@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TIMPS">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>TIMPS Articles — Deep Dives</title>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream:  #EDE8DA;
+    --forest: #1C2E22;
+    --pink:   #E8B4E8;
+    --lime:   #DCF07A;
+    --lime-d: #C8DE60;
+    --black:  #111111;
+    --border: #1C2E22;
+    --card-bg:#F5F1E6;
+    --mono:   'Space Mono', 'Courier New', monospace;
+    --news:   'Newsreader', Georgia, 'Times New Roman', serif;
+    --serif:  'TIMPS', Georgia, serif;
+  }
+
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Black.woff2') format('woff2'); font-weight:900; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Bold.woff2') format('woff2'); font-weight:700; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-SemiBold.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--cream);
+    background-image:
+      linear-gradient(rgba(28,46,34,.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(28,46,34,.07) 1px, transparent 1px);
+    background-size: 38px 38px;
+    color: var(--forest);
+    font-family: var(--news);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  a { text-decoration: none; color: inherit; }
+
+  /* Deep dive typography — TIMPS (display) + Newsreader (prose & descriptions) */
+  .hub-sub { font-family: var(--news); font-size: 15px; line-height: 1.7; }
+  .card-deck { font-family: var(--news); font-size: 14px; }
+  .card-byline { font-family: var(--news); font-size: 12.5px; }
+  .endcard-sub { font-family: var(--news); font-size: 14.5px; }
+
+  /* ─── NAV ─── */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 48px;
+    background-color: rgba(237,232,218,.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1.5px solid rgba(28,46,34,.12);
+    background-image:
+      linear-gradient(rgba(28,46,34,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(28,46,34,.05) 1px, transparent 1px);
+    background-size: 38px 38px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--forest);
+    letter-spacing: -0.3px;
+  }
+  .nav-logo-mark { width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .nav-logo-mark img { width: 28px; height: 28px; object-fit: contain; }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-link {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--forest);
+    opacity: .55;
+    transition: opacity .15s;
+  }
+  .nav-link:hover { opacity: 1; }
+  .nav-link.active { opacity: 1; font-weight: 700; }
+  .nav-cta {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--forest);
+    background: var(--lime);
+    border: 2.5px solid var(--forest);
+    border-radius: 100px;
+    padding: 10px 24px;
+    transition: background .15s, transform .1s;
+    white-space: nowrap;
+  }
+  .nav-cta:hover { background: var(--lime-d); transform: translateY(-1px); }
+
+  /* ─── HUB HEADER ─── */
+  .hub {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 72px 48px 8px;
+  }
+  .hub-kicker {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--forest);
+    background: var(--lime);
+    border: 2px solid var(--forest);
+    border-radius: 100px;
+    padding: 7px 16px;
+    margin-bottom: 22px;
+  }
+  .hub-h {
+    font-family: var(--serif);
+    font-size: clamp(40px, 6vw, 68px);
+    font-weight: 900;
+    line-height: 1.03;
+    letter-spacing: -1.5px;
+    color: var(--forest);
+    margin-bottom: 14px;
+  }
+  .hub-h em { font-style: italic; }
+  .hub-sub {
+    font-family: var(--mono);
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--forest);
+    opacity: .6;
+    max-width: 600px;
+    margin-bottom: 48px;
+  }
+
+  /* ─── ARTICLE CARDS ─── */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+    margin-bottom: 64px;
+  }
+  .card {
+    display: flex;
+    flex-direction: column;
+    background: var(--card-bg);
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: box-shadow .15s, transform .1s;
+  }
+  .card:hover { box-shadow: 6px 6px 0 var(--forest); transform: translateY(-3px); }
+  .card-thumb {
+    height: 200px;
+    overflow: hidden;
+    border-bottom: 2px solid var(--forest);
+  }
+  .card-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .card-body { padding: 20px 22px 24px; display: flex; flex-direction: column; flex: 1; }
+  .card-tag {
+    align-self: flex-start;
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 100px;
+    background: var(--lime);
+    border: 1.5px solid var(--forest);
+    margin-bottom: 12px;
+  }
+  .card-tag.pink { background: var(--pink); }
+  .card-title {
+    font-family: var(--serif);
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: -0.3px;
+    color: var(--forest);
+    margin-bottom: 10px;
+  }
+  .card-deck {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    line-height: 1.65;
+    color: var(--forest);
+    opacity: .55;
+    margin-bottom: 16px;
+    flex: 1;
+  }
+  .card-byline {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--forest);
+    opacity: .5;
+    letter-spacing: 0.3px;
+    border-top: 1.5px solid rgba(28,46,34,.12);
+    padding-top: 14px;
+    margin-bottom: 16px;
+  }
+  .card-byline b { font-weight: 700; opacity: 1; }
+  .card-cta {
+    align-self: flex-start;
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    padding: 11px 22px;
+    border-radius: 100px;
+    border: 2.5px solid var(--forest);
+    background: var(--lime);
+    color: var(--forest);
+    transition: transform .1s, box-shadow .15s;
+  }
+  .card-cta:hover { background: var(--lime-d); transform: translateY(-2px); box-shadow: 4px 4px 0 var(--forest); }
+
+  /* ─── SUBSCRIBE ENDCARD ─── */
+  .endcard {
+    max-width: 1040px;
+    margin: 0 auto 72px;
+    text-align: center;
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--lime);
+    padding: 48px 28px;
+    box-shadow: 6px 6px 0 rgba(28,46,34,.14);
+  }
+  .endcard-h {
+    font-family: var(--serif);
+    font-size: clamp(28px, 4.4vw, 40px);
+    font-weight: 900;
+    line-height: 1.12;
+    letter-spacing: -0.8px;
+    color: var(--forest);
+    margin-bottom: 12px;
+  }
+  .endcard-h em { font-style: italic; }
+  .endcard-sub {
+    font-family: var(--mono);
+    font-size: 13px;
+    opacity: .7;
+    max-width: 460px;
+    margin: 0 auto 24px;
+    line-height: 1.7;
+  }
+  .endcard .btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn-chunky {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 14px;
+    font-weight: 700;
+    padding: 14px 32px;
+    border-radius: 100px;
+    border: 2.5px solid var(--forest);
+    cursor: pointer;
+    transition: transform .1s, box-shadow .15s;
+    background: var(--forest);
+    color: #fff;
+  }
+  .btn-chunky:hover { transform: translateY(-2px); box-shadow: 4px 4px 0 rgba(28,46,34,.35); }
+  .btn-chunky.lime { background: var(--lime); color: var(--forest); }
+  .btn-chunky.lime:hover { background: var(--lime-d); box-shadow: 4px 4px 0 var(--forest); }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    background: var(--black);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 36px 48px;
+    flex-wrap: wrap;
+  }
+  .footer-brand { font-family: var(--mono); font-size: 14px; font-weight: 700; }
+  .footer-center { font-family: var(--mono); font-size: 12px; color: rgba(255,255,255,.55); line-height: 1.7; }
+  .footer-right { font-family: var(--mono); font-size: 12px; text-align: right; line-height: 1.9; }
+  .footer-right a { color: rgba(255,255,255,.5); transition: color .15s; }
+  .footer-right a:hover { color: #fff; }
+
+  @media (max-width: 720px) {
+    .nav { padding: 12px 20px; }
+    .nav-links { display: none; }
+    .hub { padding: 44px 20px 8px; }
+    .cards { grid-template-columns: 1fr; }
+    .card-thumb { height: 170px; }
+    .endcard { margin: 0 12px 48px; }
+    .footer { padding: 28px 20px; flex-direction: column; align-items: flex-start; }
+    .footer-right { text-align: left; }
+  }
+  @media (max-width: 480px) {
+    .nav-logo span { display: none; }
+    .nav-logo-mark { width: 28px; height: 28px; }
+    .nav-logo-mark img { width: 24px; height: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-mark"><img src="timps_logo.svg" alt="TIMPS"></div>
+    <span>TIMPS PostCards</span>
+  </a>
+  <div class="nav-links">
+    <a href="articles.html" class="nav-link active">Articles</a>
+    <a href="index.html#archive" class="nav-link">Archive</a>
+    <a href="timps-postcards-2026-09-04.html" class="nav-link">Latest Issue</a>
+    <a href="index.html#subscribe" class="nav-link">Subscribe</a>
+  </div>
+  <a href="index.html#subscribe" class="nav-cta">Subscribe</a>
+</nav>
+
+<!-- HUB HEADER -->
+<header class="hub">
+  <span class="hub-kicker">TIMPS Deep Dives</span>
+  <h1 class="hub-h">One story, <em>explained properly.</em></h1>
+  <p class="hub-sub">
+    Beyond the five daily signals — long-form, image-rich explainers on the stories that matter most.
+    Pick a card, open the news.
+  </p>
+</header>
+
+<!-- ARTICLE CARDS -->
+<div class="cards" style="max-width:1040px;margin:0 auto;">
+
+  <!-- Card 01 — GPT-6 Astra -->
+  <a href="article-gpt-6-astra.html" class="card">
+    <div class="card-thumb">
+      <img src="thumbs/article-gpt6-astra-hero.png" alt="OpenAI GPT-6 Astra, explained">
+    </div>
+    <div class="card-body">
+      <span class="card-tag">Deep Dive № 001 · OpenAI</span>
+      <h2 class="card-title">GPT-6 Astra: the model OpenAI says opened the &ldquo;AGI era&rdquo;</h2>
+      <p class="card-deck">A 1.05M-token context window, a 100% score on the hardest cybersecurity benchmark, two zero-days found mid-test, and a new reasoning method nobody can watch &mdash; here&rsquo;s everything, explained properly.</p>
+      <div class="card-byline"><b>Sandeep Thummala</b> &middot; 14 min read &middot; Sep 5, 2026</div>
+      <span class="card-cta">Read the deep dive &rarr;</span>
+    </div>
+  </a>
+
+  <!-- Card 02 — Fable 5.1 & Mythos 5.1 -->
+  <a href="article-claude-fable-5-1.html" class="card">
+    <div class="card-thumb">
+      <img src="thumbs/article-fable5-mythos5-hero.jpg" alt="Claude Fable 5.1 and Claude Mythos 5.1, explained">
+    </div>
+    <div class="card-body">
+      <span class="card-tag pink">Deep Dive № 002 · Anthropic</span>
+      <h2 class="card-title">Claude Fable 5.1 &amp; Mythos 5.1: the same brain, two different doors</h2>
+      <p class="card-deck">Same weights, different safeguards. One 75%-cheaper bill, a state-of-the-art coding score, protein binders 10&times; more potent &mdash; and a system card that admits its honesty got worse under pressure.</p>
+      <div class="card-byline"><b>Sandeep Thummala</b> &middot; 12 min read &middot; Sep 5, 2026</div>
+      <span class="card-cta">Read the deep dive &rarr;</span>
+    </div>
+  </a>
+
+</div>
+
+<!-- SUBSCRIBE ENDCARD -->
+<div class="endcard">
+  <h3 class="endcard-h">One story a day,<br>explained properly.</h3>
+  <p class="endcard-sub">New TIMPS deep dives land regularly — paired with the five-signal PostCard every morning. Free forever.</p>
+  <div class="btns">
+    <a href="index.html#subscribe" class="btn-chunky">Subscribe free</a>
+    <a href="index.html#archive" class="btn-chunky lime">Browse the archive</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-brand">TIMPS PostCards</div>
+  <div class="footer-center">
+    Five signals from the AI landscape, every day.<br>
+    Plus long-form deep dives. Hyderabad, India · Est. 2026
+  </div>
+  <div class="footer-right">
+    <a href="index.html">Home</a><br>
+    <a href="index.html#archive">Posts</a><br>
+    <a href="articles.html">Articles</a><br>
+    &copy; 2026 TIMPS
+  </div>
+</footer>
+
+</body>
+</html>
