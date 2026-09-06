@@ -1,0 +1,70 @@
+<svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#1C2E22" stroke-width="1" opacity="0.08"/>
+    </pattern>
+  </defs>
+
+  <!-- base + grid -->
+  <rect width="1600" height="900" fill="#EDE8DA"/>
+  <rect width="1600" height="900" fill="url(#grid)"/>
+
+  <!-- left OR panel -->
+  <rect x="0" y="0" width="940" height="830" fill="#1C2E22"/>
+
+  <!-- chip top-left -->
+  <rect x="40" y="40" width="250" height="48" rx="24" fill="#DCF07A"/>
+  <text x="165" y="71" font-family="Space Mono, monospace" font-size="18" font-weight="700" fill="#1C2E22" text-anchor="middle" letter-spacing="1">SPATIAL COMPUTING</text>
+
+  <!-- headset view / scope -->
+  <circle cx="470" cy="430" r="300" fill="none" stroke="#DCF07A" stroke-width="14"/>
+  <circle cx="470" cy="430" r="292" fill="#12281B"/>
+  <!-- femoral head -->
+  <circle cx="400" cy="430" r="92" fill="#E8B4E8" opacity="0.9"/>
+  <!-- socket + ring -->
+  <path d="M 470 210 A 220 220 0 0 1 690 430" fill="none" stroke="#F5F1E6" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="640" cy="430" r="150" fill="none" stroke="#DCF07A" stroke-width="10" opacity="0.8"/>
+  <!-- crosshair -->
+  <path d="M 330 430 H 610" stroke="#DCF07A" stroke-width="6" opacity="0.85"/>
+  <path d="M 470 290 V 570" stroke="#DCF07A" stroke-width="6" opacity="0.85"/>
+
+  <!-- CT window (floating screen) -->
+  <rect x="690" y="120" width="220" height="160" rx="14" fill="#F5F1E6"/>
+  <circle cx="800" cy="200" r="46" fill="none" stroke="#1C2E22" stroke-width="8" opacity="0.55"/>
+  <rect x="712" y="142" width="176" height="16" rx="8" fill="#1C2E22" opacity="0.35"/>
+  <text x="800" y="322" font-family="Space Mono, monospace" font-size="17" fill="#1C2E22" text-anchor="middle" letter-spacing="2">CT IMAGING</text>
+
+  <!-- HipMap window (floating screen) -->
+  <rect x="36" y="600" width="250" height="180" rx="14" fill="#F5F1E6" stroke="#E8B4E8" stroke-width="8"/>
+  <circle cx="161" cy="680" r="42" fill="#E8B4E8" opacity="0.7"/>
+  <circle cx="161" cy="680" r="24" fill="#1C2E22" opacity="0.5"/>
+  <text x="161" y="750" font-family="Space Mono, monospace" font-size="17" fill="#1C2E22" text-anchor="middle" letter-spacing="2">HIPMAP</text>
+
+  <!-- right: label -->
+  <text x="990" y="110" font-family="Space Mono, monospace" font-size="22" font-weight="700" fill="#1C2E22" letter-spacing="3">DEEP DIVE № 003</text>
+  <text x="990" y="152" font-family="Space Mono, monospace" font-size="17" fill="#1C2E22" opacity="0.6" letter-spacing="2">SPATIAL COMPUTING IN THE OR</text>
+
+  <!-- spec card -->
+  <rect x="990" y="200" width="560" height="250" rx="16" fill="#F5F1E6" stroke="#1C2E22" stroke-width="5"/>
+  <text x="1020" y="240" font-family="Space Mono, monospace" font-size="21" fill="#1C2E22">App&emsp;&emsp;SportSuite Vision</text>
+  <text x="1020" y="280" font-family="Space Mono, monospace" font-size="21" fill="#1C2E22">Maker&emsp;&nbsp;Stryker (NYSE: SYK)</text>
+  <text x="1020" y="320" font-family="Space Mono, monospace" font-size="21" fill="#1C2E22">FDA&emsp;&emsp;&nbsp;De Novo · Class II</text>
+  <text x="1020" y="360" font-family="Space Mono, monospace" font-size="21" fill="#1C2E22">De Novo&ensp;DEN250040 · Jul 17 2026</text>
+  <text x="1020" y="400" font-family="Space Mono, monospace" font-size="21" fill="#1C2E22">Case&emsp;&emsp;Duke Health · Sep 1 2026</text>
+  <rect x="1020" y="418" width="500" height="6" rx="3" fill="#1C2E22" opacity="0.15"/>
+
+  <!-- hip schematic motif -->
+  <circle cx="1390" cy="660" r="128" fill="none" stroke="#1C2E22" stroke-width="9"/>
+  <circle cx="1305" cy="648" r="72" fill="#E8B4E8"/>
+  <path d="M 1250 560 L 1180 362" stroke="#1C2E22" stroke-width="28" stroke-linecap="round"/>
+  <path d="M 1240 620 H 1420" stroke="#DCF07A" stroke-width="8"/>
+  <path d="M 1330 540 V 700" stroke="#DCF07A" stroke-width="8"/>
+  <text x="1390" y="830" font-family="Space Mono, monospace" font-size="17" fill="#1C2E22" text-anchor="middle" letter-spacing="2">HIP ARTHROSCOPY · FAI REPAIR</text>
+
+  <!-- timeline -->
+  <rect x="0" y="830" width="1600" height="70" fill="#111111"/>
+  <text x="50" y="872" font-family="Space Mono, monospace" font-size="17" fill="#EDE8DA" letter-spacing="1">OCT 2025 · SIGHTMD CATARACT RUN</text>
+  <text x="470" y="872" font-family="Space Mono, monospace" font-size="17" fill="#DCF07A" letter-spacing="1">JUL 17 · FDA DE NOVO</text>
+  <text x="830" y="872" font-family="Space Mono, monospace" font-size="17" fill="#EDE8DA" letter-spacing="1">SEP 1 · DUKE FIRST CASE</text>
+  <text x="1210" y="872" font-family="Space Mono, monospace" font-size="17" fill="#E8B4E8" letter-spacing="1">SEP 3 · PFIZER EXPERIENCE</text>
+</svg>

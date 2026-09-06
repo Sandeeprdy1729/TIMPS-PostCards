@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TIMPS">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>TIMPS Articles — Apple Vision Pro in the Operating Room, Explained</title>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream:  #EDE8DA;
+    --forest: #1C2E22;
+    --pink:   #E8B4E8;
+    --lime:   #DCF07A;
+    --lime-d: #C8DE60;
+    --black:  #111111;
+    --border: #1C2E22;
+    --card-bg:#F5F1E6;
+    --mono:   'Space Mono', 'Courier New', monospace;
+    --news:   'Newsreader', Georgia, 'Times New Roman', serif;
+    --serif:  'TIMPS', Georgia, serif;
+  }
+
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Black.woff2') format('woff2'); font-weight:900; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Bold.woff2') format('woff2'); font-weight:700; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-SemiBold.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--cream);
+    background-image:
+      linear-gradient(rgba(28,46,34,.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(28,46,34,.07) 1px, transparent 1px);
+    background-size: 38px 38px;
+    color: var(--forest);
+    font-family: var(--news);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  a { text-decoration: none; color: inherit; }
+
+  /* Deep dive typography — TIMPS (display) + Newsreader (prose & descriptions) */
+  .masthead-dek { font-family: var(--news); font-style: italic; font-size: 19px; }
+  .masthead-meta { font-family: var(--news); font-size: 13px; }
+  .lede { font-family: var(--news); font-size: 21px; }
+  .para { font-family: var(--news); font-size: 17px; }
+  .callout p { font-family: var(--news); font-size: 15.5px; }
+  .pullquote p { font-family: var(--news); font-size: 21px; }
+  .pullquote .attrib { font-family: var(--news); font-style: italic; font-size: 13px; }
+  .spec-row { font-family: var(--news); font-size: 14px; }
+  .fig-cap { font-family: var(--news); font-size: 12.5px; }
+  .bench-top { font-family: var(--news); font-size: 13.5px; }
+  .bench-note { font-family: var(--news); font-size: 13px; }
+  .sources li { font-family: var(--news); font-size: 13.5px; }
+  .endcard-sub { font-family: var(--news); font-size: 14.5px; }
+
+  /* ─── NAV ─── */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 48px;
+    background-color: rgba(237,232,218,.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1.5px solid rgba(28,46,34,.12);
+    background-image:
+      linear-gradient(rgba(28,46,34,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(28,46,34,.05) 1px, transparent 1px);
+    background-size: 38px 38px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--forest);
+    letter-spacing: -0.3px;
+  }
+  .nav-logo-mark { width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .nav-logo-mark img { width: 28px; height: 28px; object-fit: contain; }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-link {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--forest);
+    opacity: .55;
+    transition: opacity .15s;
+  }
+  .nav-link:hover { opacity: 1; }
+  .nav-link.active { opacity: 1; font-weight: 700; }
+  .nav-cta {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--forest);
+    background: var(--lime);
+    border: 2.5px solid var(--forest);
+    border-radius: 100px;
+    padding: 10px 24px;
+    transition: background .15s, transform .1s;
+    white-space: nowrap;
+  }
+  .nav-cta:hover { background: var(--lime-d); transform: translateY(-1px); }
+
+  /* ─── MASTHEAD ─── */
+  .masthead {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 72px 24px 24px;
+    text-align: center;
+  }
+  .masthead-kicker {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--forest);
+    background: var(--lime);
+    border: 2px solid var(--forest);
+    border-radius: 100px;
+    padding: 7px 16px;
+    margin-bottom: 28px;
+  }
+  .masthead-h {
+    font-family: var(--serif);
+    font-size: clamp(38px, 6.4vw, 72px);
+    font-weight: 900;
+    line-height: 1.04;
+    letter-spacing: -1.5px;
+    color: var(--forest);
+    margin-bottom: 20px;
+  }
+  .masthead-h em { font-style: italic; }
+  .masthead-dek {
+    font-family: var(--serif);
+    font-size: clamp(17px, 2.2vw, 21px);
+    font-style: italic;
+    line-height: 1.55;
+    color: var(--forest);
+    opacity: .85;
+    max-width: 660px;
+    margin: 0 auto 28px;
+  }
+  .masthead-meta {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--forest);
+    opacity: .5;
+    letter-spacing: .5px;
+  }
+  .masthead-meta b { font-weight: 700; opacity: 1; }
+
+  /* ─── FIGURE ─── */
+  .figure {
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    overflow: hidden;
+    box-shadow: 6px 6px 0 rgba(28,46,34,.14);
+    margin: 32px 0;
+  }
+  .figure img { width: 100%; display: block; }
+  .fig-cap {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+    padding: 12px 16px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--forest);
+    border-top: 1.5px solid rgba(28,46,34,.15);
+    opacity: .7;
+    letter-spacing: .3px;
+  }
+  .fig-tag {
+    flex-shrink: 0;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--forest);
+    opacity: .9;
+  }
+  .fig-cap a { text-decoration: underline; opacity: .8; }
+  .fig-cap a:hover { opacity: 1; }
+
+  /* ─── ARTICLE BODY ─── */
+  .article-body {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 8px 24px 64px;
+  }
+  .lede {
+    font-family: var(--serif);
+    font-size: 21px;
+    font-weight: 400;
+    line-height: 1.65;
+    color: var(--forest);
+    margin: 8px 0 28px;
+  }
+  .lede b { font-weight: 700; }
+  .para {
+    font-family: var(--mono);
+    font-size: 14px;
+    line-height: 1.85;
+    color: var(--forest);
+    opacity: .92;
+    margin: 0 0 20px;
+  }
+  .para b { font-weight: 700; opacity: 1; }
+  .para a { text-decoration: underline; opacity: .85; }
+  .para a:hover { opacity: 1; }
+  .para ul { padding-left: 22px; margin: 0 0 20px; }
+  .para li { margin-bottom: 10px; }
+
+  .section-h {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin: 56px 0 18px;
+  }
+  .section-no {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--lime);
+    background: var(--forest);
+    border-radius: 8px;
+    padding: 5px 9px;
+    letter-spacing: 1px;
+    flex-shrink: 0;
+  }
+  .section-h h2 {
+    font-family: var(--serif);
+    font-size: clamp(24px, 3.6vw, 32px);
+    font-weight: 900;
+    letter-spacing: -0.6px;
+    line-height: 1.1;
+    color: var(--forest);
+  }
+
+  /* Callout cards */
+  .callout {
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    padding: 22px 24px;
+    margin: 28px 0;
+    box-shadow: 5px 5px 0 rgba(28,46,34,.12);
+  }
+  .callout-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--forest);
+    background: var(--lime);
+    border: 1.5px solid var(--forest);
+    border-radius: 100px;
+    padding: 4px 10px;
+    display: inline-block;
+    margin-bottom: 14px;
+  }
+  .callout-label.pink { background: var(--pink); }
+  .callout p {
+    font-family: var(--mono);
+    font-size: 13.5px;
+    line-height: 1.8;
+    color: var(--forest);
+    margin: 0 0 10px;
+  }
+  .callout p:last-child { margin-bottom: 0; }
+  .callout p b { font-weight: 700; }
+  .callout p code { background: var(--cream); border: 1px solid rgba(28,46,34,.2); border-radius: 5px; padding: 1px 5px; font-size: 12px; }
+
+  /* Spec sheet */
+  .spec {
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    overflow: hidden;
+    margin: 28px 0;
+    box-shadow: 5px 5px 0 rgba(28,46,34,.12);
+  }
+  .spec-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--forest);
+    padding: 12px 18px;
+  }
+  .spec-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 16px;
+    padding: 12px 18px;
+    border-top: 1.5px solid rgba(28,46,34,.14);
+    font-family: var(--mono);
+    font-size: 12.5px;
+    line-height: 1.5;
+  }
+  .spec-row .k { font-weight: 700; opacity: .6; }
+  .spec-row .v { opacity: .95; }
+  .spec-row .v b { font-weight: 700; }
+  .spec-row .v code { background: var(--cream); border: 1px solid rgba(28,46,34,.2); border-radius: 5px; padding: 1px 5px; font-size: 12px; }
+
+  /* Benchmark bars */
+  .bench {
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    padding: 22px 24px;
+    margin: 28px 0;
+    box-shadow: 5px 5px 0 rgba(28,46,34,.12);
+  }
+  .bench-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--forest);
+    background: var(--lime);
+    border: 1.5px solid var(--forest);
+    border-radius: 100px;
+    padding: 4px 10px;
+    display: inline-block;
+    margin-bottom: 16px;
+  }
+  .bench-item { margin-bottom: 16px; }
+  .bench-item:last-child { margin-bottom: 0; }
+  .bench-top {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--mono);
+    font-size: 12px;
+    margin-bottom: 6px;
+  }
+  .bench-name { font-weight: 700; }
+  .bench-val { font-weight: 700; background: var(--forest); color: var(--lime); border-radius: 6px; padding: 1px 8px; }
+  .bench-bar { height: 14px; background: rgba(28,46,34,.08); border-radius: 100px; overflow: hidden; }
+  .bench-fill { height: 100%; background: linear-gradient(90deg, var(--lime), var(--lime-d)); border-radius: 100px; }
+  .bench-fill.pink { background: linear-gradient(90deg, var(--pink), #d996d9); }
+  .bench-note {
+    font-family: var(--mono);
+    font-size: 11px;
+    line-height: 1.7;
+    opacity: .55;
+    margin-top: 14px;
+    border-top: 1.5px solid rgba(28,46,34,.14);
+    padding-top: 12px;
+  }
+
+  /* Pull quote */
+  .pullquote {
+    border-left: 6px solid var(--pink);
+    background: var(--card-bg);
+    border-radius: 0 12px 12px 0;
+    padding: 24px 28px;
+    margin: 32px 0;
+    box-shadow: 4px 4px 0 rgba(28,46,34,.1);
+  }
+  .pullquote p {
+    font-family: var(--serif);
+    font-size: 21px;
+    font-weight: 600;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--forest);
+    letter-spacing: -0.3px;
+  }
+  .pullquote .attrib {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-style: normal;
+    opacity: .55;
+    margin-top: 12px;
+    display: block;
+  }
+
+  /* Sources */
+  .sources {
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    padding: 22px 24px;
+    margin: 40px 0 0;
+    box-shadow: 5px 5px 0 rgba(28,46,34,.12);
+  }
+  .sources h3 {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    letter-spacing: -0.4px;
+  }
+  .sources ol { padding-left: 20px; }
+  .sources li { font-family: var(--mono); font-size: 12px; line-height: 1.8; opacity: .85; margin-bottom: 4px; }
+  .sources a { text-decoration: underline; }
+  .sources a:hover { opacity: 1; }
+
+  /* End card */
+  .endcard {
+    text-align: center;
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--lime);
+    padding: 40px 28px;
+    margin: 44px 0 0;
+    box-shadow: 6px 6px 0 rgba(28,46,34,.14);
+  }
+  .endcard-h {
+    font-family: var(--serif);
+    font-size: clamp(26px, 4vw, 34px);
+    font-weight: 900;
+    line-height: 1.15;
+    letter-spacing: -0.8px;
+    color: var(--forest);
+    margin-bottom: 12px;
+  }
+  .endcard-h em { font-style: italic; }
+  .endcard-sub { font-family: var(--mono); font-size: 13px; opacity: .7; max-width: 420px; margin: 0 auto 24px; line-height: 1.7; }
+  .endcard .btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn-chunky {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 14px;
+    font-weight: 700;
+    padding: 14px 32px;
+    border-radius: 100px;
+    border: 2.5px solid var(--forest);
+    cursor: pointer;
+    transition: transform .1s, box-shadow .15s;
+    background: var(--forest);
+    color: #fff;
+  }
+  .btn-chunky:hover { transform: translateY(-2px); box-shadow: 4px 4px 0 rgba(28,46,34,.35); }
+  .btn-chunky.lime { background: var(--lime); color: var(--forest); }
+  .btn-chunky.lime:hover { background: var(--lime-d); box-shadow: 4px 4px 0 var(--forest); }
+  .btn-chunky.outline { background: transparent; color: var(--forest); }
+
+  /* Footer */
+  .footer {
+    background: var(--black);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 36px 48px;
+    flex-wrap: wrap;
+  }
+  .footer-brand { font-family: var(--mono); font-size: 14px; font-weight: 700; }
+  .footer-center { font-family: var(--mono); font-size: 12px; color: rgba(255,255,255,.55); line-height: 1.7; }
+  .footer-right { font-family: var(--mono); font-size: 12px; text-align: right; line-height: 1.9; }
+  .footer-right a { color: rgba(255,255,255,.5); transition: color .15s; }
+  .footer-right a:hover { color: #fff; }
+
+  @media (max-width: 760px) {
+    .nav { padding: 12px 20px; }
+    .nav-links { display: none; }
+    .masthead { padding: 48px 20px 16px; }
+    .article-body { padding: 8px 20px 48px; }
+    .spec-row { grid-template-columns: 1fr; gap: 4px; }
+    .section-h { flex-direction: column; gap: 8px; align-items: flex-start; }
+    .footer { padding: 28px 20px; flex-direction: column; align-items: flex-start; }
+    .footer-right { text-align: left; }
+  }
+  @media (max-width: 480px) {
+    .nav-logo span { display: none; }
+    .nav-logo-mark { width: 28px; height: 28px; }
+    .nav-logo-mark img { width: 24px; height: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-mark"><img src="timps_logo.svg" alt="TIMPS"></div>
+    <span>TIMPS PostCards</span>
+  </a>
+  <div class="nav-links">
+    <a href="articles.html" class="nav-link active">Articles</a>
+    <a href="index.html#archive" class="nav-link">Archive</a>
+    <a href="timps-postcards-2026-09-06.html" class="nav-link">Latest Issue</a>
+    <a href="index.html#subscribe" class="nav-link">Subscribe</a>
+  </div>
+  <a href="index.html#subscribe" class="nav-cta">Subscribe</a>
+</nav>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <span class="masthead-kicker">TIMPS Deep Dive · № 003</span>
+  <h1 class="masthead-h">The headset everybody wrote off just did its first <em>FDA-authorized surgery</em></h1>
+  <p class="masthead-dek">Stryker ran a hip arthroscopy at Duke Health with SportSuite Vision running on an Apple Vision Pro — the first app the FDA has ever cleared for intraoperative use with the device. What was actually cleared, what the evidence says, and why hospitals became this product's real market.</p>
+  <div class="masthead-meta">
+    <b>Sandeep Thummala</b> &nbsp;·&nbsp; September 6, 2026 &nbsp;·&nbsp; 10 min read
+  </div>
+</header>
+
+<article class="article-body">
+
+  <!-- HERO FIGURE -->
+  <figure class="figure">
+    <img src="thumbs/article-visionpro-surgery.svg" alt="Spatial computing in the operating room — Stryker SportSuite Vision on Apple Vision Pro">
+    <figcaption class="fig-cap">
+      <span class="fig-tag">Fig. 01</span>
+      <span>TIMPS original illustration of the SportSuite Vision field of view: arthroscopic video, CT and HipMap data arranged around a hip arthroscopy. <a href="https://www.stryker.com/us/en/about/news/2026/stryker-introduces-first-of-its-kind-fda-authorized-surgical-application-for-apple-vision-pro-with-hip-arthroscopy-case.html" target="_blank" rel="noopener">Stryker</a> completed the first case at Duke Health on September 1, 2026.</span>
+    </figcaption>
+  </figure>
+
+  <!-- LEDE -->
+  <p class="lede"><b>Good morning.</b> The Apple Vision Pro has spent the past year being written off: reported <i>“as good as discontinued”</i> for consumers in April, price raised to <b>$3,699</b> in June, more column inches about its failure than its features. Then, on September 1, an orthopedic surgeon at Duke Health put one on, guided a camera into a patient's hip joint, and finished the case with Stryker's surgical app floating around his field of view. It was the first surgery on Apple's headset with a live FDA authorization behind it. The version of this story that matters isn't about a gadget — it's about the first regulated job spatial computing has ever been given.</p>
+
+  <!-- SUMMARY -->
+  <div class="callout">
+    <span class="callout-label">One-card summary</span>
+    <p><b>What:</b> Stryker's <b>SportSuite Vision</b> — an app that brings arthroscopic video, HipCheck, HipMap and CT imaging into an Apple Vision Pro worn during surgery.</p>
+    <p><b>When:</b> FDA De Novo authorization on <b>July 17, 2026</b>; first live case at Duke Health on <b>September 1, 2026</b>.</p>
+    <p><b>Why it matters:</b> the first app the FDA has authorized for intraoperative use with the Vision Pro — a regulatory lane that didn't exist and is now open. And it caps a pattern: the headset consumers didn't want is being adopted by hospitals anyway.</p>
+  </div>
+
+  <!-- SECTION 01 -->
+  <div class="section-h"><span class="section-no">01</span><h2>What actually happened</h2></div>
+  <p class="para">On September 1, Stryker — the $100B+ medical-technology company best known for hips, knees and trauma — announced that a hip arthroscopy had been completed at <b>Duke Health</b> with surgeons using <b>SportSuite Vision</b> on an Apple Vision Pro. The procedure was performed by orthopedic surgeon <b>Chad Mather III, M.D., M.B.A.</b> SportSuite Vision had received <b>FDA De Novo authorization on July 17</b> — the first application authorized by the FDA for intraoperative use with the Vision Pro.</p>
+  <p class="para">Hip arthroscopy is already a screen-guided procedure. A tiny camera called an arthroscope goes into the joint, and the surgeon does much of the work watching its feed on a monitor somewhere else in the room. SportSuite Vision's trick: it puts that feed, plus the HipCheck/HipMap analysis and the CT scan, into a headset you look through — and lets the surgeon arrange those virtual windows wherever they want, hands-free, without losing sight of the patient. Multiple displays around the OR collapse into one ergonomic field of view.</p>
+
+  <div class="spec">
+    <div class="spec-head">Spec sheet — SportSuite Vision</div>
+    <div class="spec-row"><span class="k">Software</span><span class="v"><b>SportSuite Vision</b> (visionOS app)</span></div>
+    <div class="spec-row"><span class="k">Maker</span><span class="v">Stryker (NYSE: SYK)</span></div>
+    <div class="spec-row"><span class="k">Regulatory</span><span class="v">FDA De Novo · Class II · DEN250040</span></div>
+    <div class="spec-row"><span class="k">Cleared</span><span class="v">July 17, 2026</span></div>
+    <div class="spec-row"><span class="k">First case</span><span class="v">Sep 1, 2026 · Duke Health (Durham, NC)</span></div>
+    <div class="spec-row"><span class="k">Procedure</span><span class="v">Hip arthroscopy — FAI &amp; labral repair</span></div>
+    <div class="spec-row"><span class="k">Surgeon</span><span class="v">Chad Mather III, M.D., M.B.A.</span></div>
+    <div class="spec-row"><span class="k">In the view</span><span class="v">Arthroscopic video · HipCheck · HipMap · CT imaging</span></div>
+    <div class="spec-row"><span class="k">Distribution</span><span class="v">Waitlist, not an App Store app</span></div>
+  </div>
+
+  <!-- SECTION 02 -->
+  <div class="section-h"><span class="section-no">02</span><h2>What the FDA actually cleared (it's narrow)</h2></div>
+  <p class="para">The fine print is where most coverage gets loose, so let's tighten it. The De Novo authorization is <b>not</b> a green light for Apple Vision Pro in surgery generally. It is a focused clearance for <b>SportSuite Vision software</b> used to display arthroscopic video and medical imaging <i>during femoroacetabular impingement and labral-repair hip arthroscopy</i> — plus the information presented by HipCheck and HipMap FAI Analysis. A specific app, a specific joint, a specific class of procedure.</p>
+  <p class="para">Two consequences follow. First, the FDA documents describe SportSuite Vision being used <b>alongside</b> traditional monitors — other staff still work on conventional screens, and the room keeps its redundancy. This is a hybrid OR, not a monitor-free one. Second, and more important: the De Novo pathway exists precisely for novel devices with no predicate — so this clearance <i>creates the regulatory classification</i> that future intraoperative spatial-computing apps can be compared against. The first company through the lane didn't just win a milestone; it wrote the lane.</p>
+
+  <!-- PULL QUOTE -->
+  <div class="pullquote">
+    <p>“Using spatial computing enabled me to customize the placement of key clinical information to fit my workflow and access it within the sterile field. This helped create a more comfortable, streamlined OR setup while keeping the information I needed in view.”</p>
+    <span class="attrib">— Chad Mather III, M.D., M.B.A., orthopedic surgeon at Duke Health</span>
+  </div>
+
+  <!-- SECTION 03 -->
+  <div class="section-h"><span class="section-no">03</span><h2>The surgeon's eye view</h2></div>
+  <p class="para">The pitch is ergonomics as much as information. In a conventional endoscopic setup, the surgeon alternates between their hands and a distant monitor — a rotation that, over a career, accumulates into the neck-and-back strain that the surgical literature treats as an occupational hazard. A headset that keeps the relevant screen in a neutral posture addresses the person as much as the procedure.</p>
+  <p class="para">Skeptics will (correctly) point out the trade-offs: weight on the face for a four-hour case, the fit alongside masks and loupes, cleaning protocols, and what happens when the battery dies or the app stalls mid-procedure. That's why the monitor stays on as a failover. The whole category is best understood as a more-comfortable placement of the same information you already use — not a robot, not an overlay telling the surgeon where to cut. It's a nicer desk view, right where surgery happens.</p>
+
+  <!-- SECTION 04 -->
+  <div class="section-h"><span class="section-no">04</span><h2>The evidence so far</h2></div>
+  <p class="para">This hasn't been a demo-first story. The peer-reviewed evidence arrived before the big marketing moment — the first controlled Vision Pro surgery trial landed in August, and its headline number is real: <b>19% faster, identical outcomes</b>, across 32 cases at a single institution. On every measured variable, the headset side either won or tied: shorter operating time, same safety profile, lower surgeon-reported workload, lower reported equipment cost.</p>
+
+  <div class="bench">
+    <span class="bench-label">The paper, the numbers</span>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">Operating time</span><span class="bench-val">−19%</span></div>
+      <div class="bench-bar"><div class="bench-fill pink" style="width:81%"></div></div>
+    </div>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">Time saved per case</span><span class="bench-val">~8 min / 43 min</span></div>
+      <div class="bench-bar"><div class="bench-fill" style="width:95%"></div></div>
+    </div>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">Outcomes</span><span class="bench-val">Identical</span></div>
+      <div class="bench-bar"><div class="bench-fill" style="width:100%"></div></div>
+    </div>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">Surgeon workload (self-report)</span><span class="bench-val">Lower</span></div>
+      <div class="bench-bar"><div class="bench-fill pink" style="width:78%"></div></div>
+    </div>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">Equipment cost (reported)</span><span class="bench-val">Lower</span></div>
+      <div class="bench-bar"><div class="bench-fill" style="width:70%"></div></div>
+    </div>
+    <p class="bench-note">32 cases · single institution · peer-reviewed (published Aug 7, 2026). Small sample, and the authors call it preliminary — but the direction of every measured variable favored the headset, which is unusual even for a small study. It exists to justify the bigger trial that follows.</p>
+  </div>
+
+  <p class="para">The long history behind this: a New York ophthalmologist has performed <b>hundreds of cataract procedures</b> wearing a Vision Pro since October 2025 (SightMD); UCSD surgeons have worn the device in minimally invasive cases since 2024; a 2026 spine study ran <b>40 biportal endoscopic lumbar cases</b> with the headset and reported feasibility; another 2026 study covered endoscopic dacryocystorhinostomy (tear-duct surgery).</p>
+  <p class="para">And the important negative result: a comparative study of <b>mixed-reality-guided needle insertion</b> concluded the Vision Pro was <i>unsuitable</i> for that workflow — because accurate guidance needs tight tracking stability, registration accuracy and latency control, not just a nice big floating screen. Floating a video window is easy; overlaying a virtual guide on human tissue is a much harder validation. The lesson: spatial computing will win where it's a display, and lose where it needs to be a navigator — at least for now.</p>
+
+  <!-- SECTION 05 -->
+  <div class="section-h"><span class="section-no">05</span><h2>Before the knife: planning, training, and Pfizer's night shift</h2></div>
+  <p class="para">Live surgery is the loudest use case, but the quieter medical wins are arriving first and spreading faster:</p>
+  <ul class="para">
+    <li><b>Preoperative planning.</b> Stryker's <b>myMako</b> lets surgeons review patient-specific plans for its robotic platform; Siemens Healthineers' <b>Cinematic Reality</b> renders anatomy from scans; researchers built <b>nextViewer</b> for neurosurgical planning with eye-and-hand controls. A frozen planning app is an annoyance; a frozen navigation overlay is a patient-safety event — so planning is the adoption path with fewer risks.</li>
+    <li><b>Training and education.</b> Spatial anatomy models let residents repeat a simulated approach without competing for a view inside a real OR.</li>
+    <li><b>Pfizer (Sep 3).</b> Two days after the Stryker case, Pfizer launched an immersive Vision Pro experience — built with Groove Jones — that walks patients and families through its oncology and antibody-drug-conjugate research, part of an “outdo cancer” campaign. It's marketing, not medicine, but it tells you which side of healthcare budgets is paying attention: the same week surgery got its first FDA green light, a pharma company used the headset to explain what it sells.</li>
+  </ul>
+
+  <!-- SECTION 06 -->
+  <div class="section-h"><span class="section-no">06</span><h2>The consumer footnote</h2></div>
+  <p class="para">None of this makes sense without the consumer story. The Vision Pro launched at <b>$3,499</b>, got an M5 upgrade in October 2025, then — as Apple repositioned it toward enterprise — the price <b>rose to $3,699 in June 2026</b>. Through the spring, reporting described a consumer roadmap in retreat and called the product essentially discontinued for its original audience. The disruptor Apple built to replace the iPhone is, at home, a footnote.</p>
+  <p class="para">But hospitals buy on different economics. Operating-room time is among the most expensive single minutes a hospital manages; removing ~eight minutes per case from a 43-minute arthroscopy is <i>capacity</i>, not convenience. Buyers who calculate ROI per case, over years and hundreds of procedures, are exactly the audience a $3,699 device needs. The market that keeps generating evidence for the Vision Pro is the one in scrubs.</p>
+
+  <!-- SECTION 07 -->
+  <div class="section-h"><span class="section-no">07</span><h2>What to watch next</h2></div>
+  <ul class="para">
+    <li><b>Does the waitlist widen?</b> SportSuite Vision is deployed via a controlled waitlist, not public download. Watch adoption pace across Stryker's sports-medicine sites — that's the real rollout speedometer.</li>
+    <li><b>The measurements that matter.</b> Setup time, image latency, interruption and freeze rates, head-and-neck posture over full cases, and the honest stat: how often surgeons reach for the conventional monitor. Those numbers will decide adoption more than any spec sheet.</li>
+    <li><b>Does the De Novo lane fill?</b> The first intraoperative clearance sets a precedent. Expect rival medtech and new surgical-display apps to reference it within quarters.</li>
+    <li><b>Multi-center trials.</b> The 19% result is single-institution. A powered multi-center study — different surgeons, different hospitals, complications counted — is the gate before hospital procurement committees commit.</li>
+    <li><b>Apple's pivot.</b> If the consumer Vision Pro keeps fading, medical-enterprise adoption is what will keep visionOS alive. The operating room isn't a niche for this product anymore — it's looking like the moat.</li>
+  </ul>
+
+  <!-- SECTION 08 -->
+  <div class="section-h"><span class="section-no">08</span><h2>The TIMPS verdict</h2></div>
+  <div class="callout">
+    <span class="callout-label">Our read</span>
+    <p><b>Spatial computing finally got a job.</b> Every earlier Vision Pro story was a demo or a pivot whiteboard. An FDA De Novo clearance plus a real hip arthroscopy is a regulated, billable, repeatable workflow. That's the difference between a gadget and a tool.</p>
+    <p><b>The narrowness is the strength.</b> This is one app, one joint, one kind of procedure, used beside conventional monitors. Read that as discipline, not disappointment — the needle-insertion study is a reminder that swallowing the whole OR at once would've failed.</p>
+    <p><b>Caveat the numbers.</b> 19% faster is one small study. The peer-review for the Stryker rollout is a forward purchase order, not yet scientific — outcomes data at scale is the honest scoreboard.</p>
+    <p><b>The whole story in one line:</b> the $3,699 headset everyone wrote off found the only market that could love it, and the first real approval for a piece of the future arrived in a hip joint in North Carolina.</p>
+  </div>
+
+  <p class="para" style="opacity:.6;font-size:13px;line-height:1.8;">Facts in this piece were compiled from Stryker's official SportSuite Vision announcement and press materials, the FDA De Novo submission reporting (DEN250040), PR Newswire, 9to5Mac, STAT News, VR.org's review of the peer-reviewed trial, AppleMagazine, Mas Device, Asymco, The Mac Observer, AppleInsider and TIME coverage contemporaneous with the September 1–5, 2026 release window. Clinical outcomes are as reported by the cited sources and studies; this is news analysis by an independent publication — not medical advice, not investment advice, and not AI advice.</p>
+
+  <!-- SOURCES -->
+  <div class="sources">
+    <h3>Sources</h3>
+    <ol>
+      <li><a href="https://www.stryker.com/us/en/about/news/2026/stryker-introduces-first-of-its-kind-fda-authorized-surgical-application-for-apple-vision-pro-with-hip-arthroscopy-case.html" target="_blank" rel="noopener">Stryker — First FDA-authorized surgical application for Apple Vision Pro (Sep 1, 2026)</a></li>
+      <li><a href="https://www.prnewswire.com/news-releases/stryker-introduces-first-of-its-kind-fda-authorized-surgical-application-for-apple-vision-pro-with-hip-arthroscopy-case-at-nationally-recognized-academic-medical-center-302865215.html" target="_blank" rel="noopener">PR Newswire — Stryker release (Sep 1, 2026)</a></li>
+      <li><a href="https://vr.org/articles/vision-pro-surgery-study-19-percent-faster-2026" target="_blank" rel="noopener">VR.org — First peer-reviewed Vision Pro surgery trial: 19% faster, identical outcomes (Aug 7, 2026)</a></li>
+      <li><a href="https://9to5mac.com/2026/09/03/apple-vision-pro-was-just-used-in-a-first-of-its-kind-surgery/" target="_blank" rel="noopener">9to5Mac — Vision Pro used in first-of-its-kind surgery (Sep 3, 2026)</a></li>
+      <li><a href="https://phandroid.com/2026/09/04/apples-vision-pro-gets-a-second-life-inside-the-operating-room/" target="_blank" rel="noopener">Phandroid — Vision Pro gets a second life in the operating room (Sep 4, 2026)</a></li>
+      <li><a href="https://applemagazine.com/vision-pro-surgery-fda-sportsuite-vision/" target="_blank" rel="noopener">AppleMagazine — Vision Pro surgery reaches an FDA-authorized milestone (Sep 2, 2026)</a></li>
+      <li><a href="https://applemagazine.com/vision-pro-surgery-operating-rooms/" target="_blank" rel="noopener">AppleMagazine — Vision Pro surgery is beginning to transform operating rooms (Aug 12, 2026)</a></li>
+      <li><a href="https://undercodenews.com/apple-vision-pro-enters-the-operating-room-stryker-completes-first-fda-authorized-surgery-using-spatial-computing-video/" target="_blank" rel="noopener">UnderCodenews — FDA De Novo details: DEN250040, Class II, scope ("the first application is narrow—and that is a good thing")</a></li>
+      <li><a href="https://www.statnews.com/2026/09/01/fda-stryker-surgical-cockpit-apple-vr-headset-health-tech" target="_blank" rel="noopener">STAT — FDA clears Stryker 'surgical cockpit' using Apple Vision Pro (Sep 1, 2026)</a></li>
+      <li><a href="https://asymco.com/2026/09/03/the-first-surgical-apple-vision-pro-application-approved-by-the-fda/" target="_blank" rel="noopener">Asymco — The first surgical Apple Vision Pro application approved by the FDA (Sep 3, 2026)</a></li>
+      <li><a href="https://appleinsider.com/articles/26/09/03/pfizer-launches-immersive-apple-vision-pro-experience-to-explain-cancer-research" target="_blank" rel="noopener">AppleInsider — Pfizer launches immersive Vision Pro experience (Sep 3, 2026)</a></li>
+      <li><a href="https://time.com/7093536/surgeons-apple-vision-pro" target="_blank" rel="noopener">TIME — Why surgeons are wearing the Apple Vision Pro (May 11, 2026)</a></li>
+    </ol>
+  </div>
+
+  <!-- END CARD -->
+  <div class="endcard">
+    <h3 class="endcard-h">One story a day,<br>explained properly.</h3>
+    <p class="endcard-sub">New TIMPS deep dives land regularly — paired with the five-signal PostCard every morning. Free forever.</p>
+    <div class="btns">
+      <a href="index.html#subscribe" class="btn-chunky">Subscribe free</a>
+      <a href="article-claude-fable-5-1.html" class="btn-chunky lime">&larr; Prev: Fable 5.1 &amp; Mythos 5.1</a>
+    </div>
+    <p style="font-family:var(--news);font-size:13px;opacity:.6;margin-top:20px;"><a href="articles.html" style="text-decoration:underline;">&larr; Browse all deep dives</a></p>
+  </div>
+
+</article>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-brand">TIMPS PostCards</div>
+  <div class="footer-center">
+    Five signals from the AI landscape, every day.<br>
+    Plus long-form deep dives. Hyderabad, India · Est. 2026
+  </div>
+  <div class="footer-right">
+    <a href="index.html">Home</a><br>
+    <a href="index.html#archive">Posts</a><br>
+    <a href="articles.html">Articles</a><br>
+    &copy; 2026 TIMPS
+  </div>
+</footer>
+
+</body>
+</html>
