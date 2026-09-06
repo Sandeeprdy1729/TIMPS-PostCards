@@ -46,11 +46,11 @@
 
   <!-- spec card -->
   <rect x="990" y="200" width="560" height="250" rx="16" fill="#F5F1E6" stroke="#1C2E22" stroke-width="5"/>
-  <text x="1020" y="240" font-family="Space Mono, monospace" font-size="21" fill="#1C2E22">App&emsp;&emsp;SportSuite Vision</text>
-  <text x="1020" y="280" font-family="Space Mono, monospace" font-size="21" fill="#1C2E22">Maker&emsp;&nbsp;Stryker (NYSE: SYK)</text>
-  <text x="1020" y="320" font-family="Space Mono, monospace" font-size="21" fill="#1C2E22">FDA&emsp;&emsp;&nbsp;De Novo · Class II</text>
-  <text x="1020" y="360" font-family="Space Mono, monospace" font-size="21" fill="#1C2E22">De Novo&ensp;DEN250040 · Jul 17 2026</text>
-  <text x="1020" y="400" font-family="Space Mono, monospace" font-size="21" fill="#1C2E22">Case&emsp;&emsp;Duke Health · Sep 1 2026</text>
+  <text x="1020" y="240" font-family="Space Mono, monospace" font-size="21" fill="#1C2E22">App&#x2003;&#x2003;SportSuite Vision</text>
+  <text x="1020" y="280" font-family="Space Mono, monospace" font-size="21" fill="#1C2E22">Maker&#x2003;&#x00A0;Stryker (NYSE: SYK)</text>
+  <text x="1020" y="320" font-family="Space Mono, monospace" font-size="21" fill="#1C2E22">FDA&#x2003;&#x2003;&#x00A0;De Novo · Class II</text>
+  <text x="1020" y="360" font-family="Space Mono, monospace" font-size="21" fill="#1C2E22">De Novo&#x2002;DEN250040 · Jul 17 2026</text>
+  <text x="1020" y="400" font-family="Space Mono, monospace" font-size="21" fill="#1C2E22">Case&#x2003;&#x2003;Duke Health · Sep 1 2026</text>
   <rect x="1020" y="418" width="500" height="6" rx="3" fill="#1C2E22" opacity="0.15"/>
 
   <!-- hip schematic motif -->
