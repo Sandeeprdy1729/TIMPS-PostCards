@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TIMPS">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>TIMPS Articles — Dyson's camera toothbrush, explained</title>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream:  #EDE8DA;
+    --forest: #1C2E22;
+    --pink:   #E8B4E8;
+    --lime:   #DCF07A;
+    --lime-d: #C8DE60;
+    --black:  #111111;
+    --border: #1C2E22;
+    --card-bg:#F5F1E6;
+    --mono:   'Space Mono', 'Courier New', monospace;
+    --news:   'Newsreader', Georgia, 'Times New Roman', serif;
+    --serif:  'TIMPS', Georgia, serif;
+  }
+
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Black.woff2') format('woff2'); font-weight:900; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Bold.woff2') format('woff2'); font-weight:700; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-SemiBold.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--cream);
+    background-image:
+      linear-gradient(rgba(28,46,34,.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(28,46,34,.07) 1px, transparent 1px);
+    background-size: 38px 38px;
+    color: var(--forest);
+    font-family: var(--news);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  a { text-decoration: none; color: inherit; }
+
+  /* Deep dive typography — TIMPS (display) + Newsreader (prose & descriptions) */
+  .masthead-dek { font-family: var(--news); font-style: italic; font-size: 19px; }
+  .masthead-meta { font-family: var(--news); font-size: 13px; }
+  .lede { font-family: var(--news); font-size: 21px; }
+  .para { font-family: var(--news); font-size: 17px; }
+  .callout p { font-family: var(--news); font-size: 15.5px; }
+  .pullquote p { font-family: var(--news); font-size: 21px; }
+  .pullquote .attrib { font-family: var(--news); font-style: italic; font-size: 13px; }
+  .spec-row { font-family: var(--news); font-size: 14px; }
+  .fig-cap { font-family: var(--news); font-size: 12.5px; }
+  .bench-top { font-family: var(--news); font-size: 13.5px; }
+  .bench-note { font-family: var(--news); font-size: 13px; }
+  .sources li { font-family: var(--news); font-size: 13.5px; }
+  .endcard-sub { font-family: var(--news); font-size: 14.5px; }
+
+  /* ─── NAV ─── */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 48px;
+    background-color: rgba(237,232,218,.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1.5px solid rgba(28,46,34,.12);
+    background-image:
+      linear-gradient(rgba(28,46,34,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(28,46,34,.05) 1px, transparent 1px);
+    background-size: 38px 38px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--forest);
+    letter-spacing: -0.3px;
+  }
+  .nav-logo-mark { width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .nav-logo-mark img { width: 28px; height: 28px; object-fit: contain; }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-link {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--forest);
+    opacity: .55;
+    transition: opacity .15s;
+  }
+  .nav-link:hover { opacity: 1; }
+  .nav-link.active { opacity: 1; font-weight: 700; }
+  .nav-cta {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--forest);
+    background: var(--lime);
+    border: 2.5px solid var(--forest);
+    border-radius: 100px;
+    padding: 10px 24px;
+    transition: background .15s, transform .1s;
+    white-space: nowrap;
+  }
+  .nav-cta:hover { background: var(--lime-d); transform: translateY(-1px); }
+
+  /* ─── MASTHEAD ─── */
+  .masthead {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 72px 24px 24px;
+    text-align: center;
+  }
+  .masthead-kicker {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--forest);
+    background: var(--lime);
+    border: 2px solid var(--forest);
+    border-radius: 100px;
+    padding: 7px 16px;
+    margin-bottom: 28px;
+  }
+  .masthead-h {
+    font-family: var(--serif);
+    font-size: clamp(38px, 6.4vw, 72px);
+    font-weight: 900;
+    line-height: 1.04;
+    letter-spacing: -1.5px;
+    color: var(--forest);
+    margin-bottom: 20px;
+  }
+  .masthead-h em { font-style: italic; }
+  .masthead-dek {
+    font-family: var(--serif);
+    font-size: clamp(17px, 2.2vw, 21px);
+    font-style: italic;
+    line-height: 1.55;
+    color: var(--forest);
+    opacity: .85;
+    max-width: 660px;
+    margin: 0 auto 28px;
+  }
+  .masthead-meta {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--forest);
+    opacity: .5;
+    letter-spacing: .5px;
+  }
+  .masthead-meta b { font-weight: 700; opacity: 1; }
+
+  /* ─── FIGURE ─── */
+  .figure {
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    overflow: hidden;
+    box-shadow: 6px 6px 0 rgba(28,46,34,.14);
+    margin: 32px 0;
+  }
+  .figure img { width: 100%; display: block; }
+  .fig-cap {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+    padding: 12px 16px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--forest);
+    border-top: 1.5px solid rgba(28,46,34,.15);
+    opacity: .7;
+    letter-spacing: .3px;
+  }
+  .fig-tag {
+    flex-shrink: 0;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--forest);
+    opacity: .9;
+  }
+  .fig-cap a { text-decoration: underline; opacity: .8; }
+  .fig-cap a:hover { opacity: 1; }
+
+  /* ─── ARTICLE BODY ─── */
+  .article-body {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 8px 24px 64px;
+  }
+  .lede {
+    font-family: var(--serif);
+    font-size: 21px;
+    font-weight: 400;
+    line-height: 1.65;
+    color: var(--forest);
+    margin: 8px 0 28px;
+  }
+  .lede b { font-weight: 700; }
+  .para {
+    font-family: var(--mono);
+    font-size: 14px;
+    line-height: 1.85;
+    color: var(--forest);
+    opacity: .92;
+    margin: 0 0 20px;
+  }
+  .para b { font-weight: 700; opacity: 1; }
+  .para a { text-decoration: underline; opacity: .85; }
+  .para a:hover { opacity: 1; }
+  .para ul { padding-left: 22px; margin: 0 0 20px; }
+  .para li { margin-bottom: 10px; }
+
+  .section-h {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin: 56px 0 18px;
+  }
+  .section-no {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--lime);
+    background: var(--forest);
+    border-radius: 8px;
+    padding: 5px 9px;
+    letter-spacing: 1px;
+    flex-shrink: 0;
+  }
+  .section-h h2 {
+    font-family: var(--serif);
+    font-size: clamp(24px, 3.6vw, 32px);
+    font-weight: 900;
+    letter-spacing: -0.6px;
+    line-height: 1.1;
+    color: var(--forest);
+  }
+
+  /* Callout cards */
+  .callout {
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    padding: 22px 24px;
+    margin: 28px 0;
+    box-shadow: 5px 5px 0 rgba(28,46,34,.12);
+  }
+  .callout-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--forest);
+    background: var(--lime);
+    border: 1.5px solid var(--forest);
+    border-radius: 100px;
+    padding: 4px 10px;
+    display: inline-block;
+    margin-bottom: 14px;
+  }
+  .callout-label.pink { background: var(--pink); }
+  .callout p {
+    font-family: var(--mono);
+    font-size: 13.5px;
+    line-height: 1.8;
+    color: var(--forest);
+    margin: 0 0 10px;
+  }
+  .callout p:last-child { margin-bottom: 0; }
+  .callout p b { font-weight: 700; }
+  .callout p code { background: var(--cream); border: 1px solid rgba(28,46,34,.2); border-radius: 5px; padding: 1px 5px; font-size: 12px; }
+
+  /* Spec sheet */
+  .spec {
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    overflow: hidden;
+    margin: 28px 0;
+    box-shadow: 5px 5px 0 rgba(28,46,34,.12);
+  }
+  .spec-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--forest);
+    padding: 12px 18px;
+  }
+  .spec-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 16px;
+    padding: 12px 18px;
+    border-top: 1.5px solid rgba(28,46,34,.14);
+    font-family: var(--mono);
+    font-size: 12.5px;
+    line-height: 1.5;
+  }
+  .spec-row .k { font-weight: 700; opacity: .6; }
+  .spec-row .v { opacity: .95; }
+  .spec-row .v b { font-weight: 700; }
+  .spec-row .v code { background: var(--cream); border: 1px solid rgba(28,46,34,.2); border-radius: 5px; padding: 1px 5px; font-size: 12px; }
+
+  /* Benchmark bars */
+  .bench {
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    padding: 22px 24px;
+    margin: 28px 0;
+    box-shadow: 5px 5px 0 rgba(28,46,34,.12);
+  }
+  .bench-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--forest);
+    background: var(--lime);
+    border: 1.5px solid var(--forest);
+    border-radius: 100px;
+    padding: 4px 10px;
+    display: inline-block;
+    margin-bottom: 16px;
+  }
+  .bench-item { margin-bottom: 16px; }
+  .bench-item:last-child { margin-bottom: 0; }
+  .bench-top {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--mono);
+    font-size: 12px;
+    margin-bottom: 6px;
+  }
+  .bench-name { font-weight: 700; }
+  .bench-val { font-weight: 700; background: var(--forest); color: var(--lime); border-radius: 6px; padding: 1px 8px; }
+  .bench-bar { height: 14px; background: rgba(28,46,34,.08); border-radius: 100px; overflow: hidden; }
+  .bench-fill { height: 100%; background: linear-gradient(90deg, var(--lime), var(--lime-d)); border-radius: 100px; }
+  .bench-fill.pink { background: linear-gradient(90deg, var(--pink), #d996d9); }
+  .bench-note {
+    font-family: var(--mono);
+    font-size: 11px;
+    line-height: 1.7;
+    opacity: .55;
+    margin-top: 14px;
+    border-top: 1.5px solid rgba(28,46,34,.14);
+    padding-top: 12px;
+  }
+
+  /* Pull quote */
+  .pullquote {
+    border-left: 6px solid var(--pink);
+    background: var(--card-bg);
+    border-radius: 0 12px 12px 0;
+    padding: 24px 28px;
+    margin: 32px 0;
+    box-shadow: 4px 4px 0 rgba(28,46,34,.1);
+  }
+  .pullquote p {
+    font-family: var(--serif);
+    font-size: 21px;
+    font-weight: 600;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--forest);
+    letter-spacing: -0.3px;
+  }
+  .pullquote .attrib {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-style: normal;
+    opacity: .55;
+    margin-top: 12px;
+    display: block;
+  }
+
+  /* Sources */
+  .sources {
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    padding: 22px 24px;
+    margin: 40px 0 0;
+    box-shadow: 5px 5px 0 rgba(28,46,34,.12);
+  }
+  .sources h3 {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    letter-spacing: -0.4px;
+  }
+  .sources ol { padding-left: 20px; }
+  .sources li { font-family: var(--mono); font-size: 12px; line-height: 1.8; opacity: .85; margin-bottom: 4px; }
+  .sources a { text-decoration: underline; }
+  .sources a:hover { opacity: 1; }
+
+  /* End card */
+  .endcard {
+    text-align: center;
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--lime);
+    padding: 40px 28px;
+    margin: 44px 0 0;
+    box-shadow: 6px 6px 0 rgba(28,46,34,.14);
+  }
+  .endcard-h {
+    font-family: var(--serif);
+    font-size: clamp(26px, 4vw, 34px);
+    font-weight: 900;
+    line-height: 1.15;
+    letter-spacing: -0.8px;
+    color: var(--forest);
+    margin-bottom: 12px;
+  }
+  .endcard-h em { font-style: italic; }
+  .endcard-sub { font-family: var(--mono); font-size: 13px; opacity: .7; max-width: 420px; margin: 0 auto 24px; line-height: 1.7; }
+  .endcard .btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn-chunky {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 14px;
+    font-weight: 700;
+    padding: 14px 32px;
+    border-radius: 100px;
+    border: 2.5px solid var(--forest);
+    cursor: pointer;
+    transition: transform .1s, box-shadow .15s;
+    background: var(--forest);
+    color: #fff;
+  }
+  .btn-chunky:hover { transform: translateY(-2px); box-shadow: 4px 4px 0 rgba(28,46,34,.35); }
+  .btn-chunky.lime { background: var(--lime); color: var(--forest); }
+  .btn-chunky.lime:hover { background: var(--lime-d); box-shadow: 4px 4px 0 var(--forest); }
+  .btn-chunky.outline { background: transparent; color: var(--forest); }
+
+  /* Footer */
+  .footer {
+    background: var(--black);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 36px 48px;
+    flex-wrap: wrap;
+  }
+  .footer-brand { font-family: var(--mono); font-size: 14px; font-weight: 700; }
+  .footer-center { font-family: var(--mono); font-size: 12px; color: rgba(255,255,255,.55); line-height: 1.7; }
+  .footer-right { font-family: var(--mono); font-size: 12px; text-align: right; line-height: 1.9; }
+  .footer-right a { color: rgba(255,255,255,.5); transition: color .15s; }
+  .footer-right a:hover { color: #fff; }
+
+  @media (max-width: 760px) {
+    .nav { padding: 12px 20px; }
+    .nav-links { display: none; }
+    .masthead { padding: 48px 20px 16px; }
+    .article-body { padding: 8px 20px 48px; }
+    .spec-row { grid-template-columns: 1fr; gap: 4px; }
+    .section-h { flex-direction: column; gap: 8px; align-items: flex-start; }
+    .footer { padding: 28px 20px; flex-direction: column; align-items: flex-start; }
+    .footer-right { text-align: left; }
+  }
+  @media (max-width: 480px) {
+    .nav-logo span { display: none; }
+    .nav-logo-mark { width: 28px; height: 28px; }
+    .nav-logo-mark img { width: 24px; height: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-mark"><img src="timps_logo.svg" alt="TIMPS"></div>
+    <span>TIMPS PostCards</span>
+  </a>
+  <div class="nav-links">
+    <a href="articles.html" class="nav-link active">Articles</a>
+    <a href="index.html#archive" class="nav-link">Archive</a>
+    <a href="timps-postcards-2026-09-06.html" class="nav-link">Latest Issue</a>
+    <a href="index.html#subscribe" class="nav-link">Subscribe</a>
+  </div>
+  <a href="index.html#subscribe" class="nav-cta">Subscribe</a>
+</nav>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <span class="masthead-kicker">TIMPS Deep Dive · № 004</span>
+  <h1 class="masthead-h">Six years, 661 engineers, 16 million lines of code — <em>all so a toothbrush can see</em></h1>
+  <p class="masthead-dek">Dyson's CameraJet packs a 100k-pixel camera, a machine-learning algorithm trained on 470,000 dental images, and a precision mouthrinse jet into a $499 toothbrush built to floss for you. Here's how it works, whether the 69% plaque claim holds up, and what it tells you about AI's next stop: your bathroom.</p>
+  <div class="masthead-meta">
+    <b>Sandeep Thummala</b> &nbsp;·&nbsp; September 6, 2026 &nbsp;·&nbsp; 13 min read
+  </div>
+</header>
+
+<article class="article-body">
+
+  <!-- HERO FIGURE -->
+  <figure class="figure">
+    <img src="thumbs/article-dyson-ai-toothbrush-hero.jpg" alt="The Dyson CameraJet electric toothbrush with onboard camera and mouthrinse jet, shown in two colourways">
+    <figcaption class="fig-cap">
+      <span class="fig-tag">Fig. 01</span>
+      <span>The Dyson CameraJet — a 100k-pixel macro camera and a precision mouthrinse jet built into one brush head, revealed in Paris on September 1, 2026. Image via Dyson.</span>
+    </figcaption>
+  </figure>
+
+  <!-- LEDE -->
+  <p class="lede"><b>Good morning.</b> Dyson spent <b>16 million lines of code</b>, <b>470,000 dental images</b>, and six years of engineering on the most improbable product of its history: a <b>$499 toothbrush</b> with a micro-camera inside it. The CameraJet watches your teeth 28 times a second, and the moment it spots a gap you usually skip, it fires a jet of mouthrinse straight into it. It is brushing, flossing and rinsing folded into one device and one very particular thesis: that the reason nine in ten people don't floss is that flossing is a chore — so Dyson designed it away. Whether that works is a question for your dentist. Whether it's the most Dyson thing the company has ever built? Not really a question at all.</p>
+
+  <!-- SUMMARY -->
+  <div class="callout">
+    <span class="callout-label">One-card summary</span>
+    <p><b>What:</b> The <b>Dyson CameraJet</b> — an electric toothbrush with a 100k-pixel macro camera that uses an AI system, <b>Gap Optical Targeting</b>, to detect gaps between teeth and aim a precision jet of mouthrinse at them while you brush.</p>
+    <p><b>When:</b> Revealed by <b>James Dyson in Paris on September 1, 2026</b>; on sale immediately at $499 / £419.99 in two colourways (Ceramic Ultra Blue, Ceramic Pink).</p>
+    <p><b>Why it matters:</b> AI's next frontier isn't the server room — it's the bathroom. The CameraJet is the loudest example yet of machine learning moving into everyday consumer hardware, complete with a camera-privacy debate and a razor-and-blades business model.</p>
+  </div>
+
+  <!-- SECTION 01 -->
+  <div class="section-h"><span class="section-no">01</span><h2>What actually happened</h2></div>
+  <p class="para">On September 1, at an event in Paris, Sir James Dyson unveiled the <b>CameraJet</b>: a three-in-one electric toothbrush, water flosser and mouthwash dispenser. It is the company's <b>first electric toothbrush</b>, priced at <b>$499</b> (<b>£419.99</b> in the UK, around <b>€480</b> in Europe), with two colourways — Ceramic Ultra Blue and Ceramic Pink — available immediately on dyson.com and in Dyson Demo Stores.</p>
+  <p class="para">The headline number, repeated in nearly every piece of coverage: <b>nine out of ten people</b> don't floss as often as they should, and the average person brushes for about <b>45 seconds</b> instead of the recommended two minutes. Dyson's answer is to stop relying on you to remember either one. The CameraJet is a <i>"complete dental system,"</i> in the company's phrasing — brush, floss and rinse collapse into a single two-minute act with a machine doing the aiming.</p>
+
+  <div class="spec">
+    <div class="spec-head">Spec sheet — Dyson CameraJet</div>
+    <div class="spec-row"><span class="k">Product</span><span class="v"><b>Dyson CameraJet™</b> — toothbrush + precision flosser + mouthrinse</span></div>
+    <div class="spec-row"><span class="k">Price</span><span class="v">$499 US · £419.99 UK · ~€480 EU</span></div>
+    <div class="spec-row"><span class="k">Vision</span><span class="v">100k-pixel macro lens + LED, camera strobing at 257Hz</span></div>
+    <div class="spec-row"><span class="k">Scan rate</span><span class="v">28 live images per second</span></div>
+    <div class="spec-row"><span class="k">AI system</span><span class="v">Gap Optical Targeting™ — jets gaps within ~100ms</span></div>
+    <div class="spec-row"><span class="k">Fluid system</span><span class="v">12.5ml anti-gravity tank; dock refills in ~3 sec</span></div>
+    <div class="spec-row"><span class="k">Jet design</span><span class="v">Conical jet (wider coverage, lower pressure) vs. needle-type</span></div>
+    <div class="spec-row"><span class="k">Brushing</span><span class="v">Variable sonic oscillation, ~1,000 brush-head movements/sec</span></div>
+    <div class="spec-row"><span class="k">Connectivity</span><span class="v">Wi-Fi (2.4GHz) + Bluetooth · MyDyson app</span></div>
+    <div class="spec-row"><span class="k">Data</span><span class="v">16M lines of code · trained on 470,000 dental images</span></div>
+    <div class="spec-row"><span class="k">R&amp;D</span><span class="v">6 years · 661 engineers · 38 patents · 30 dental professionals</span></div>
+  </div>
+
+  <!-- SECTION 02 -->
+  <div class="section-h"><span class="section-no">02</span><h2>Why a camera, anyway</h2></div>
+  <p class="para">Smart toothbrushes existed well before Dyson showed up. Oral-B's iO range and Philips Sonicare have tracked brushing time, pressure and coverage through an app for years. What none of them could do was <i>see</i> — and the gaps between your teeth are where plaque forms first and hardens fastest. That is the gap Dyson claims to have closed.</p>
+  <p class="para">The CameraJet's camera is a <b>1mm×1mm macro lens</b> mounted right beneath the brush head, with an LED because, as James Dyson put it in the launch video, "it's inside your mouth, it's dark." It sits behind a <b>dome-shaped lens</b> engineered to shake off the slurry and water inside a working mouth. It captures <b>28 images every second</b>, gated by a <b>257Hz strobe</b> timed just out of phase with the vibrating brush head so the frames aren't motion blur. The machine-learning layer, <b>Gap Optical Targeting™</b>, was trained on <b>470,000 dental images</b> collected during development, and it does one job better than any brush before it: telling a tooth from the gap beside it.</p>
+  <p class="para">That low pixel count — <b>100,000</b>, not millions — is deliberate. The system doesn't need to photograph your mouth; it needs to recognise a boundary. Fewer pixels means less compute, less heat, less battery, less latency. When the model spots a gap, it fires a conical burst of mouthrinse from an onboard <b>12.5ml tank</b> within <b>100 milliseconds</b>. The cone is wider and lower-pressure than the needle jets used by water flossers — Dyson's argument being that a needle punctures plaque while a cone lifts it, gentler on gums and enamel.</p>
+
+  <!-- PULL QUOTE -->
+  <div class="pullquote">
+    <p>“Flossing is an awkward and time-consuming chore. We wanted to solve three fundamental problems: how to see those gaps, remove plaque, how to improve cleaning performance while brushing.”</p>
+    <span class="attrib">— James Dyson, founder &amp; chief engineer, on the CameraJet launch</span>
+  </div>
+
+  <!-- SECTION 03 -->
+  <div class="section-h"><span class="section-no">03</span><h2>The cascade: one camera, redesigned everything</h2></div>
+  <p class="para">The most instructive part of this product isn't the camera. It's everything the camera <i>forced</i> Dyson to change elsewhere — what one design writer called watching <b>"one sensor reorganize everything around it."</b></p>
+  <ul class="para">
+    <li><b>The toothpaste.</b> Ordinary toothpaste foams, and foam is the enemy of a camera trying to look through a mouth. Dyson had to formulate its own <b>non-foaming, SLS-free toothpaste</b>, plus a clear, low-foaming mouthrinse, so the lens can actually see. (~£8.50 each in the UK.)</li>
+    <li><b>The tank.</b> A conventional straw-in-a-cup reservoir loses pressure the moment you tilt it — useless for reaching the back molars with your head angled. The CameraJet uses an <b>anti-gravity tank</b> with a diaphragm pump and pressure chamber so the jet fires whether the brush is upright, sideways, or flat against a back molar.</li>
+    <li><b>The bristles.</b> A <b>dual-bristle</b> head — firmer bristles in the middle for surface stains, softer ones around the outside for the gumline — on a contoured shape meant to hug a tooth rather than sit flat on it. The <b>variable sonic oscillation</b> adjusts angle mid-stroke so bristles don't stall in tight corners.</li>
+    <li><b>The business model.</b> The handle is the beginning, not the end: <b>RFID-tagged brush heads</b> (~$30 a pair) track their own usage and nudge you to replace them, while the toothpaste and mouthrinse become recurring purchases. Dyson sells the hardware above the premium tier <i>and</i> sells the consumables beneath it.</li>
+  </ul>
+  <p class="para">Even the camera's placement is a design answer: it and the jet live in the handle's inner assembly, not the disposable brush head, so replacement heads stay cheap while the expensive optics stay put.</p>
+
+  <!-- SECTION 04 -->
+  <div class="section-h"><span class="section-no">04</span><h2>The evidence — and where it's soft</h2></div>
+  <p class="para">The number Dyson leads with: the CameraJet removes <b>up to 69% more plaque in hard-to-reach areas</b> than leading premium electric toothbrushes. It sounds decisive. It deserves a careful read — that figure comes from <b>Dyson's own laboratory testing</b>, using a proxy plaque Dyson developed in a five-year collaboration with the dentistry faculty at the National University of Singapore. It is not yet an independent clinical trial showing people who use the CameraJet have better dental outcomes.</p>
+
+  <div class="bench">
+    <span class="bench-label">The numbers, as claimed</span>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">Images scanned per second</span><span class="bench-val">28</span></div>
+      <div class="bench-bar"><div class="bench-fill pink" style="width:93%"></div></div>
+    </div>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">Gap detection → jet latency</span><span class="bench-val">&lt;100ms</span></div>
+      <div class="bench-bar"><div class="bench-fill" style="width:97%"></div></div>
+    </div>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">Extra plaque removed, hard-to-reach (own lab)</span><span class="bench-val">69%</span></div>
+      <div class="bench-bar"><div class="bench-fill pink" style="width:69%"></div></div>
+    </div>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">Lines of code</span><span class="bench-val">16M</span></div>
+      <div class="bench-bar"><div class="bench-fill" style="width:76%"></div></div>
+    </div>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">Training images</span><span class="bench-val">470K</span></div>
+      <div class="bench-bar"><div class="bench-fill" style="width:62%"></div></div>
+    </div>
+    <p class="bench-note">All figures as reported by Dyson and its press materials. The 69% plaque figure is company lab testing with a proxy plaque (Singapore collaboration), not an independent clinical trial — an important distinction flagged by multiple outlets.</p>
+  </div>
+
+  <p class="para">Hands-on impressions from IFA Berlin and early reviews are more encouraging than the marketing cynic expects. Engadget called the live camera feed <i>"surprisingly clear"</i> given the movement, vibration and water; TechRadar, which reviewed it for a week, was broadly won over by the liquid-flossing experience and accuracy. Neither could vouch for the plaque claims, and both raised the price and the privacy questions — which brings us to the counter-reading.</p>
+
+  <!-- SECTION 05 -->
+  <div class="section-h"><span class="section-no">05</span><h2>The camera in your bathroom</h2></div>
+  <p class="para">The obvious, unavoidable issue: Dyson put a camera in a device you use in your bathroom, aimed at your mouth, connected to Wi-Fi and Bluetooth. The company's stated privacy position is unusually specific — the camera is active <b>only</b> during live viewing in the MyDyson app or when automatic jetting is scanning for gaps; Dyson says it <b>does not record or store images, on the device or in the cloud</b>; and the live feed streams to your phone, not to Dyson's servers.</p>
+  <p class="para">But as The Next Web noted — and as the truth-in-advertising bar requires — <i>those are Dyson's stated privacy practices, not claims that have been independently audited.</i> That distinction matters more here than it would for an ordinary smart toothbrush, because the device is deliberately looking inside the user's mouth. A camera-privacy story this symmetrical was always going to generate equal parts "cool" and "absolutely not," and Dyson knows it: the marketing leans into the dentist's-eye view as the feature, not the bug.</p>
+
+  <!-- SECTION 06 -->
+  <div class="section-h"><span class="section-no">06</span><h2>The bigger shift: Dyson's 'intelligent machines'</h2></div>
+  <p class="para">The CameraJet is not an island. Two days after the Paris launch, at Dyson's <b>Unveiled</b> event in Berlin, Jake Dyson — chief engineer and the founder's son — stood on stage and announced a pivot bigger than a toothbrush: <b>"We have shifted from purely mechanical devices to intelligent machines that can see, think, and respond."</b> The 10 new products announced around that line included the <b>R3 Nurovi</b> robot vacuum (AI stain detection that distinguishes nearly 200 household substances), an air purifier, a floor washer and a hair dryer brush. Same vision system, different bodies.</p>
+
+  <div class="pullquote">
+    <p>“We're using artificial intelligence, vision systems, and machine learning to allow the machines to understand the environment they are operating in. The approach is the same, whether it's operating in your mouth, on your hair or around your home.”</p>
+    <span class="attrib">— Jake Dyson, chief engineer, Dyson Unveiled, Berlin, Sep 3, 2026</span>
+  </div>
+
+  <p class="para">Look at the market Dyson is entering and the timing is less odd than it sounds. The AI-toothbrush category is projected to grow from <b>$2.11 billion in 2025 to $4.09 billion by 2030</b> (roughly a <b>14% CAGR</b>), with premium "AI coaching" features the fast-growing segment. Philips debuted its first on-device-AI toothbrush, the Sonicare DiamondClean 9900 Prestige, in July 2026. The category is maturing exactly the way Dyson likes them: people already have a routine, the market is consolidating around premium, and nobody has redesigned the physics. It's the same playbook the company ran in vacuums, hairdryers and fans — right down to the price premium, roughly <b>$100 above</b> the Philips Sonicare Prestige 9900 and Oral-B iO Series 10.</p>
+
+  <!-- SECTION 07 -->
+  <div class="section-h"><span class="section-no">07</span><h2>What to watch next</h2></div>
+  <ul class="para">
+    <li><b>Independent trials.</b> The single most important test: an outside, peer-reviewed study with real plaque indices and real patients. Until then the 69% figure stays an internal claim.</li>
+    <li><b>Clinical validation of GOT.</b> Does a camera that aims at gaps actually reduce interdental plaque vs. a premium brush doing two minutes of manual work? Watch for University/industry trials using the Singapore proxy.</li>
+    <li><b>Camera-adoption pattern.</b> If consumers buy a $499 mouth-camera in meaningfully large numbers, expect Oral-B and Philips to answer with cameras of their own within a cycle — and expect the privacy debate to get louder when they do.</li>
+    <li><b>The consumables orbit.</b> Brush heads ~$30 a pair plus Dyson toothpaste and mouthrinse gives the $499 ticket a subscription tail. Margins here, not the hardware, may be the real product.</li>
+    <li><b>Dyson's "intelligent machines" rollout.</b> Nurovi robots and the rest of the Berlin lineup ship on the same vision-and-AI stack. The toothbrush is the proof-of-concept the whole household line now inherits.</li>
+  </ul>
+
+  <!-- SECTION 08 -->
+  <div class="section-h"><span class="section-no">08</span><h2>The TIMPS verdict</h2></div>
+  <div class="callout">
+    <span class="callout-label">Our read</span>
+    <p><b>Dyson is one camera away from remaking consumer AI.</b> The CameraJet is a genuinely novel act of constraint-driven engineering: one sensor forced a new toothpaste chemistry, a new pump physics and a new bristle geometry. That cascade is the story, and it's rare and excellent.</p>
+    <p><b>Caveat the miracle claims.</b> The 69% plaque figure is Dyson's own lab data against a company-designed proxy. It's a marketing number until an independent trial confirms it. Same for the "no images ever stored" privacy line — it's a promise, not an audit.</p>
+    <p><b>Read the price as intent.</b> $499 is a statement that Dyson believes the bathroom is the next battlefront for premium tech — and that consumers will pay Apple-tier money for a better mouth. The consumables are where the margin lives.</p>
+    <p><b>The whole story in one line:</b> the company that made the dirt in your carpet visible just did the same for the plaque between your teeth — and asked $499 for the privilege of showing it to you.</p>
+  </div>
+
+  <p class="para" style="opacity:.6;font-size:13px;line-height:1.8;">Facts in this piece were compiled from Dyson's official CameraJet announcement and press materials (dyson.com and PR Newswire, September 1, 2026), the Dyson "Unveiled" intelligent-machines release (September 3, 2026), The Guardian, WIRED, The Next Web, Engadget, Vice/Motherboard, CNBC TV18, TechRadar, Irish Times and Yanko Design coverage from the September 1–6, 2026 launch window. Performance claims — including the 69% plaque-removal figure — are Dyson's own laboratory testing unless otherwise noted; market figures are as cited in industry research reports. This is news analysis by an independent publication — not medical advice, not investment advice, and not AI advice.</p>
+
+  <!-- SOURCES -->
+  <div class="sources">
+    <h3>Sources</h3>
+    <ol>
+      <li><a href="https://www.prnewswire.com/news-releases/dyson-camerajet-the-first-toothbrush-with-a-camera-and-a-jet-to-target-the-gaps-and-remove-plaque-between-your-teeth-302865389.html" target="_blank" rel="noopener">PR Newswire — Dyson CameraJet official launch release (Sep 1, 2026)</a></li>
+      <li><a href="https://www.dyson.com/discover/news/latest/introducing-camerajet" target="_blank" rel="noopener">Dyson — Introducing CameraJet: product announcement &amp; specs</a></li>
+      <li><a href="https://www.theguardian.com/technology/2026/sep/01/dyson-toothbrush-camera-films-live-footage-inside-mouth" target="_blank" rel="noopener">The Guardian — Dyson launches £420 toothbrush that films 'live cleaning footage' (Sep 1, 2026)</a></li>
+      <li><a href="https://www.wired.com/story/dyson-camerajet-electric-toothbrush-and-flosser/" target="_blank" rel="noopener">WIRED — Dyson's Next Act Is an Electric Toothbrush With a Camera (Sep 1, 2026)</a></li>
+      <li><a href="https://thenextweb.com/news/dyson-camerajet-toothbrush-camera-jet" target="_blank" rel="noopener">The Next Web — Dyson has built a toothbrush with a camera in it, for $499 (Sep 1, 2026)</a></li>
+      <li><a href="https://www.engadget.com/2248230/dyson-camerajet-is-a-500-three-in-one-toothbrush-that-scans-your-maw/" target="_blank" rel="noopener">Engadget — Dyson's CameraJet is a $500 three-in-one toothbrush that scans your maw (Sep 1, 2026)</a></li>
+      <li><a href="https://www.vice.com/en/article/this-499-dyson-toothbrush-uses-ai-to-find-the-spots-you-miss-does-it-work/" target="_blank" rel="noopener">Vice / Motherboard — This $499 Dyson Toothbrush Uses AI to Find the Spots You Miss. Does It Work? (Sep 3, 2026)</a></li>
+      <li><a href="https://www.cnbctv18.com/technology/dyson-debuts-499-camera-equipped-toothbrush-with-ai-powered-flossing-19982026.htm" target="_blank" rel="noopener">CNBC TV18 — Dyson debuts $499 camera-equipped toothbrush with AI-powered flossing (Sep 2, 2026)</a></li>
+      <li><a href="https://www.techradar.com/health-fitness/oral-health/dyson-camerajet-review" target="_blank" rel="noopener">TechRadar — Dyson CameraJet review: a week with the liquid-flossing toothbrush (Sep 1, 2026)</a></li>
+      <li><a href="https://www.prnewswire.com/news-releases/jake-dyson-unveils-a-new-era-of-intelligent-machines-302869097.html" target="_blank" rel="noopener">PR Newswire — Jake Dyson unveils "a new era of intelligent machines" (Berlin, Sep 3, 2026)</a></li>
+      <li><a href="https://www.yankodesign.com/2026/09/01/dysons-499-camera-toothbrush-is-so-advanced-they-had-to-redesign-the-toothpaste-for-it/" target="_blank" rel="noopener">Yanko Design — So advanced they redesigned the toothpaste for it (Sep 1, 2026)</a></li>
+      <li><a href="https://www.irishtimes.com/technology/consumer-tech/2026/09/01/wifi-cameras-and-machine-learning-dyson-takes-aim-at-dental-care-with-smart-toothbrush/" target="_blank" rel="noopener">Irish Times — Wi-Fi, cameras and machine learning: Dyson takes aim at dental care (Sep 1, 2026)</a></li>
+    </ol>
+  </div>
+
+  <!-- END CARD -->
+  <div class="endcard">
+    <h3 class="endcard-h">One story a day,<br>explained properly.</h3>
+    <p class="endcard-sub">New TIMPS deep dives land regularly — paired with the five-signal PostCard every morning. Free forever.</p>
+    <div class="btns">
+      <a href="index.html#subscribe" class="btn-chunky">Subscribe free</a>
+      <a href="article-visionpro-surgery.html" class="btn-chunky lime">&larr; Prev: Vision Pro surgery</a>
+    </div>
+    <p style="font-family:var(--news);font-size:13px;opacity:.6;margin-top:20px;"><a href="articles.html" style="text-decoration:underline;">&larr; Browse all deep dives</a></p>
+  </div>
+
+</article>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-brand">TIMPS PostCards</div>
+  <div class="footer-center">
+    Five signals from the AI landscape, every day.<br>
+    Plus long-form deep dives. Hyderabad, India · Est. 2026
+  </div>
+  <div class="footer-right">
+    <a href="index.html">Home</a><br>
+    <a href="index.html#archive">Posts</a><br>
+    <a href="articles.html">Articles</a><br>
+    &copy; 2026 TIMPS
+  </div>
+</footer>
+
+</body>
+</html>
