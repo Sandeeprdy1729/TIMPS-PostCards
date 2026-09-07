@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TIMPS">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>TIMPS Articles — OpenAI measured its own AI research acceleration, explained</title>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream:  #EDE8DA;
+    --forest: #1C2E22;
+    --pink:   #E8B4E8;
+    --lime:   #DCF07A;
+    --lime-d: #C8DE60;
+    --black:  #111111;
+    --border: #1C2E22;
+    --card-bg:#F5F1E6;
+    --mono:   'Space Mono', 'Courier New', monospace;
+    --news:   'Newsreader', Georgia, 'Times New Roman', serif;
+    --serif:  'TIMPS', Georgia, serif;
+  }
+
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Black.woff2') format('woff2'); font-weight:900; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Bold.woff2') format('woff2'); font-weight:700; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-SemiBold.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--cream);
+    background-image:
+      linear-gradient(rgba(28,46,34,.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(28,46,34,.07) 1px, transparent 1px);
+    background-size: 38px 38px;
+    color: var(--forest);
+    font-family: var(--news);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  a { text-decoration: none; color: inherit; }
+
+  /* Deep dive typography — TIMPS (display) + Newsreader (prose & descriptions) */
+  .masthead-dek { font-family: var(--news); font-style: italic; font-size: 19px; }
+  .masthead-meta { font-family: var(--news); font-size: 13px; }
+  .lede { font-family: var(--news); font-size: 21px; }
+  .para { font-family: var(--news); font-size: 17px; }
+  .callout p { font-family: var(--news); font-size: 15.5px; }
+  .pullquote p { font-family: var(--news); font-size: 21px; }
+  .pullquote .attrib { font-family: var(--news); font-style: italic; font-size: 13px; }
+  .spec-row { font-family: var(--news); font-size: 14px; }
+  .fig-cap { font-family: var(--news); font-size: 12.5px; }
+  .bench-top { font-family: var(--news); font-size: 13.5px; }
+  .bench-note { font-family: var(--news); font-size: 13px; }
+  .sources li { font-family: var(--news); font-size: 13.5px; }
+  .endcard-sub { font-family: var(--news); font-size: 14.5px; }
+
+  /* ─── NAV ─── */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 48px;
+    background-color: rgba(237,232,218,.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1.5px solid rgba(28,46,34,.12);
+    background-image:
+      linear-gradient(rgba(28,46,34,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(28,46,34,.05) 1px, transparent 1px);
+    background-size: 38px 38px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--forest);
+    letter-spacing: -0.3px;
+  }
+  .nav-logo-mark { width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .nav-logo-mark img { width: 28px; height: 28px; object-fit: contain; }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-link {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--forest);
+    opacity: .55;
+    transition: opacity .15s;
+  }
+  .nav-link:hover { opacity: 1; }
+  .nav-link.active { opacity: 1; font-weight: 700; }
+  .nav-cta {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--forest);
+    background: var(--lime);
+    border: 2.5px solid var(--forest);
+    border-radius: 100px;
+    padding: 10px 24px;
+    transition: background .15s, transform .1s;
+    white-space: nowrap;
+  }
+  .nav-cta:hover { background: var(--lime-d); transform: translateY(-1px); }
+
+  /* ─── MASTHEAD ─── */
+  .masthead {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 72px 24px 24px;
+    text-align: center;
+  }
+  .masthead-kicker {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--forest);
+    background: var(--lime);
+    border: 2px solid var(--forest);
+    border-radius: 100px;
+    padding: 7px 16px;
+    margin-bottom: 28px;
+  }
+  .masthead-h {
+    font-family: var(--serif);
+    font-size: clamp(38px, 6.4vw, 72px);
+    font-weight: 900;
+    line-height: 1.04;
+    letter-spacing: -1.5px;
+    color: var(--forest);
+    margin-bottom: 20px;
+  }
+  .masthead-h em { font-style: italic; }
+  .masthead-dek {
+    font-family: var(--serif);
+    font-size: clamp(17px, 2.2vw, 21px);
+    font-style: italic;
+    line-height: 1.55;
+    color: var(--forest);
+    opacity: .85;
+    max-width: 660px;
+    margin: 0 auto 28px;
+  }
+  .masthead-meta {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--forest);
+    opacity: .5;
+    letter-spacing: .5px;
+  }
+  .masthead-meta b { font-weight: 700; opacity: 1; }
+
+  /* ─── FIGURE ─── */
+  .figure {
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    overflow: hidden;
+    box-shadow: 6px 6px 0 rgba(28,46,34,.14);
+    margin: 32px 0;
+  }
+  .figure img { width: 100%; display: block; }
+  .fig-cap {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+    padding: 12px 16px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--forest);
+    border-top: 1.5px solid rgba(28,46,34,.15);
+    opacity: .7;
+    letter-spacing: .3px;
+  }
+  .fig-tag {
+    flex-shrink: 0;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--forest);
+    opacity: .9;
+  }
+  .fig-cap a { text-decoration: underline; opacity: .8; }
+  .fig-cap a:hover { opacity: 1; }
+
+  /* ─── ARTICLE BODY ─── */
+  .article-body {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 8px 24px 64px;
+  }
+  .lede {
+    font-family: var(--serif);
+    font-size: 21px;
+    font-weight: 400;
+    line-height: 1.65;
+    color: var(--forest);
+    margin: 8px 0 28px;
+  }
+  .lede b { font-weight: 700; }
+  .para {
+    font-family: var(--mono);
+    font-size: 14px;
+    line-height: 1.85;
+    color: var(--forest);
+    opacity: .92;
+    margin: 0 0 20px;
+  }
+  .para b { font-weight: 700; opacity: 1; }
+  .para i { font-style: italic; }
+  .para a { text-decoration: underline; opacity: .85; }
+  .para a:hover { opacity: 1; }
+  .para ul { padding-left: 22px; margin: 0 0 20px; }
+  .para li { margin-bottom: 10px; }
+
+  .section-h {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin: 56px 0 18px;
+  }
+  .section-no {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--lime);
+    background: var(--forest);
+    border-radius: 8px;
+    padding: 5px 9px;
+    letter-spacing: 1px;
+    flex-shrink: 0;
+  }
+  .section-h h2 {
+    font-family: var(--serif);
+    font-size: clamp(24px, 3.6vw, 32px);
+    font-weight: 900;
+    letter-spacing: -0.6px;
+    line-height: 1.1;
+    color: var(--forest);
+  }
+
+  /* Callout cards */
+  .callout {
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    padding: 22px 24px;
+    margin: 28px 0;
+    box-shadow: 5px 5px 0 rgba(28,46,34,.12);
+  }
+  .callout-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--forest);
+    background: var(--lime);
+    border: 1.5px solid var(--forest);
+    border-radius: 100px;
+    padding: 4px 10px;
+    display: inline-block;
+    margin-bottom: 14px;
+  }
+  .callout-label.pink { background: var(--pink); }
+  .callout p {
+    font-family: var(--mono);
+    font-size: 13.5px;
+    line-height: 1.8;
+    color: var(--forest);
+    margin: 0 0 10px;
+  }
+  .callout p:last-child { margin-bottom: 0; }
+  .callout p b { font-weight: 700; }
+  .callout p code { background: var(--cream); border: 1px solid rgba(28,46,34,.2); border-radius: 5px; padding: 1px 5px; font-size: 12px; }
+
+  /* Spec sheet */
+  .spec {
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    overflow: hidden;
+    margin: 28px 0;
+    box-shadow: 5px 5px 0 rgba(28,46,34,.12);
+  }
+  .spec-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--forest);
+    padding: 12px 18px;
+  }
+  .spec-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 16px;
+    padding: 12px 18px;
+    border-top: 1.5px solid rgba(28,46,34,.14);
+    font-family: var(--mono);
+    font-size: 12.5px;
+    line-height: 1.5;
+  }
+  .spec-row .k { font-weight: 700; opacity: .6; }
+  .spec-row .v { opacity: .95; }
+  .spec-row .v b { font-weight: 700; }
+  .spec-row .v code { background: var(--cream); border: 1px solid rgba(28,46,34,.2); border-radius: 5px; padding: 1px 5px; font-size: 12px; }
+
+  /* Benchmark bars */
+  .bench {
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    padding: 22px 24px;
+    margin: 28px 0;
+    box-shadow: 5px 5px 0 rgba(28,46,34,.12);
+  }
+  .bench-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--forest);
+    background: var(--lime);
+    border: 1.5px solid var(--forest);
+    border-radius: 100px;
+    padding: 4px 10px;
+    display: inline-block;
+    margin-bottom: 16px;
+  }
+  .bench-item { margin-bottom: 16px; }
+  .bench-item:last-child { margin-bottom: 0; }
+  .bench-top {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--mono);
+    font-size: 12px;
+    margin-bottom: 6px;
+  }
+  .bench-name { font-weight: 700; }
+  .bench-val { font-weight: 700; background: var(--forest); color: var(--lime); border-radius: 6px; padding: 1px 8px; }
+  .bench-bar { height: 14px; background: rgba(28,46,34,.08); border-radius: 100px; overflow: hidden; }
+  .bench-fill { height: 100%; background: linear-gradient(90deg, var(--lime), var(--lime-d)); border-radius: 100px; }
+  .bench-fill.pink { background: linear-gradient(90deg, var(--pink), #d996d9); }
+  .bench-note {
+    font-family: var(--mono);
+    font-size: 11px;
+    line-height: 1.7;
+    opacity: .55;
+    margin-top: 14px;
+    border-top: 1.5px solid rgba(28,46,34,.14);
+    padding-top: 12px;
+  }
+
+  /* Pull quote */
+  .pullquote {
+    border-left: 6px solid var(--pink);
+    background: var(--card-bg);
+    border-radius: 0 12px 12px 0;
+    padding: 24px 28px;
+    margin: 32px 0;
+    box-shadow: 4px 4px 0 rgba(28,46,34,.1);
+  }
+  .pullquote p {
+    font-family: var(--serif);
+    font-size: 21px;
+    font-weight: 600;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--forest);
+    letter-spacing: -0.3px;
+  }
+  .pullquote .attrib {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-style: normal;
+    opacity: .55;
+    margin-top: 12px;
+    display: block;
+  }
+
+  /* Sources */
+  .sources {
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    padding: 22px 24px;
+    margin: 40px 0 0;
+    box-shadow: 5px 5px 0 rgba(28,46,34,.12);
+  }
+  .sources h3 {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    letter-spacing: -0.4px;
+  }
+  .sources ol { padding-left: 20px; }
+  .sources li { font-family: var(--mono); font-size: 12px; line-height: 1.8; opacity: .85; margin-bottom: 4px; }
+  .sources a { text-decoration: underline; }
+  .sources a:hover { opacity: 1; }
+
+  /* End card */
+  .endcard {
+    text-align: center;
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--lime);
+    padding: 40px 28px;
+    margin: 44px 0 0;
+    box-shadow: 6px 6px 0 rgba(28,46,34,.14);
+  }
+  .endcard-h {
+    font-family: var(--serif);
+    font-size: clamp(26px, 4vw, 34px);
+    font-weight: 900;
+    line-height: 1.15;
+    letter-spacing: -0.8px;
+    color: var(--forest);
+    margin-bottom: 12px;
+  }
+  .endcard-h em { font-style: italic; }
+  .endcard-sub { font-family: var(--mono); font-size: 13px; opacity: .7; max-width: 420px; margin: 0 auto 24px; line-height: 1.7; }
+  .endcard .btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn-chunky {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 14px;
+    font-weight: 700;
+    padding: 14px 32px;
+    border-radius: 100px;
+    border: 2.5px solid var(--forest);
+    cursor: pointer;
+    transition: transform .1s, box-shadow .15s;
+    background: var(--forest);
+    color: #fff;
+  }
+  .btn-chunky:hover { transform: translateY(-2px); box-shadow: 4px 4px 0 rgba(28,46,34,.35); }
+  .btn-chunky.lime { background: var(--lime); color: var(--forest); }
+  .btn-chunky.lime:hover { background: var(--lime-d); box-shadow: 4px 4px 0 var(--forest); }
+  .btn-chunky.outline { background: transparent; color: var(--forest); }
+
+  /* Footer */
+  .footer {
+    background: var(--black);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 36px 48px;
+    flex-wrap: wrap;
+  }
+  .footer-brand { font-family: var(--mono); font-size: 14px; font-weight: 700; }
+  .footer-center { font-family: var(--mono); font-size: 12px; color: rgba(255,255,255,.55); line-height: 1.7; }
+  .footer-right { font-family: var(--mono); font-size: 12px; text-align: right; line-height: 1.9; }
+  .footer-right a { color: rgba(255,255,255,.5); transition: color .15s; }
+  .footer-right a:hover { color: #fff; }
+
+  @media (max-width: 760px) {
+    .nav { padding: 12px 20px; }
+    .nav-links { display: none; }
+    .masthead { padding: 48px 20px 16px; }
+    .article-body { padding: 8px 20px 48px; }
+    .spec-row { grid-template-columns: 1fr; gap: 4px; }
+    .section-h { flex-direction: column; gap: 8px; align-items: flex-start; }
+    .footer { padding: 28px 20px; flex-direction: column; align-items: flex-start; }
+    .footer-right { text-align: left; }
+  }
+  @media (max-width: 480px) {
+    .nav-logo span { display: none; }
+    .nav-logo-mark { width: 28px; height: 28px; }
+    .nav-logo-mark img { width: 24px; height: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-mark"><img src="timps_logo.svg" alt="TIMPS"></div>
+    <span>TIMPS PostCards</span>
+  </a>
+  <div class="nav-links">
+    <a href="articles.html" class="nav-link active">Articles</a>
+    <a href="index.html#archive" class="nav-link">Archive</a>
+    <a href="timps-postcards-2026-09-06.html" class="nav-link">Latest Issue</a>
+    <a href="index.html#subscribe" class="nav-link">Subscribe</a>
+  </div>
+  <a href="index.html#subscribe" class="nav-cta">Subscribe</a>
+</nav>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <span class="masthead-kicker">TIMPS Deep Dive · № 005</span>
+  <h1 class="masthead-h">Machines now do 3 of every 4 workdays inside OpenAI — <em>and its chief scientist says pump the brakes</em></h1>
+  <p class="masthead-dek">On the same day, OpenAI published its most detailed internal data yet on how coding agents are accelerating its own research — 3.1 agent-workdays per human workday, a "met" automated research intern, a $7,000-a-day power-user tier — and its chief scientist argued in a companion essay that no lab is safe to keep scaling at maximum speed. Here is everything in both documents, properly explained.</p>
+  <div class="masthead-meta">
+    <b>Sandeep Thummala</b> &nbsp;·&nbsp; September 7, 2026 &nbsp;·&nbsp; 15 min read
+  </div>
+</header>
+
+<article class="article-body">
+
+  <!-- HERO FIGURE -->
+  <figure class="figure">
+    <img src="thumbs/article-research-acceleration-hero.jpg" alt="Abstract cover art for Jakub Pachocki's essay 'An Alien Mind' — a surreal organic form suggesting an intellect unlike ours">
+    <figcaption class="fig-cap">
+      <span class="fig-tag">Fig. 01</span>
+      <span>Cover art for Jakub Pachocki's essay "<a href="https://openai.com/index/an-alien-mind/" target="_blank" rel="noopener">An Alien Mind</a>" (Sep 6, 2026). Image: OpenAI.</span>
+    </figcaption>
+  </figure>
+
+  <!-- LEDE -->
+  <p class="lede"><b>Good morning.</b> On Sunday, OpenAI published two documents that belong together in the museum of artificial intelligence's teenage years. The first, <b>"Research acceleration: The view inside OpenAI,"</b> is a company dashboard made public: machines now do <b>3.1 eight-hour workdays</b> for every human workday in its research organization, the median researcher spends <b>$600+ a day</b> on inference at API prices, and OpenAI says it has quietly met the <b>"automated research intern"</b> milestone announced last fall. The second, <b>"An Alien Mind,"</b> is an essay by chief scientist <b>Jakub Pachocki</b> — the man who runs research at the company that shipped <b>GPT-6 Astra</b> three days earlier — arguing that <b>no lab on Earth is safe to keep scaling at maximum speed</b>. Nobody at OpenAI is pretending these two pieces are comfortable with each other. They are the accelerator and the brake pedal, bolted to the same floor.</p>
+
+  <!-- SUMMARY -->
+  <div class="callout">
+    <span class="callout-label">One-card summary</span>
+    <p><b>What:</b> Two OpenAI publications on September 6, 2026: an internal-data post claiming agentic tools are "meaningfully accelerating" its research (and that it has reached an automated research intern), and a personal essay by chief scientist Jakub Pachocki warning that no lab has solved alignment and monitoring well enough to keep scaling at maximum speed.</p>
+    <p><b>When:</b> Both posted Sep 6, 2026 — three days after the GPT-6 Astra launch and sixty days after OpenAI shut its training container service over the July Hugging Face agent incident.</p>
+    <p><b>Why it matters:</b> This is the most data-rich look yet at recursive self-improvement (RSI) inside a frontier lab — and the first time the chief scientist of the fastest-shipping company in AI has publicly argued the industry needs brakes. The two pieces are halves of one contradiction.</p>
+  </div>
+
+  <!-- SECTION 01 -->
+  <div class="section-h"><span class="section-no">01</span><h2>What actually happened</h2></div>
+  <p class="para">Simon Willison, who has covered every step of this arc, called September 6 <b>"RSI day at OpenAI."</b> The company published its first formal update on <b>recursive self-improvement</b> — the term for AI playing a growing role in its own development — wrapped in an unusual commitment to transparency: it even says it should be <i>required</i> to publish progress toward RSI, per its own Frontier Policy Blueprint, and is doing so voluntarily in the meantime.</p>
+  <p class="para">The headline claim: OpenAI has <b>reached the "automated research intern" goal set last fall</b> — the one Sam Altman floated in an October 2025 livestream with a September 2026 target. The company defines the intern as <i>"a system that can carry out well-defined research tasks under human direction, including tasks that would take a skilled researcher a few days."</i> The second half of that same roadmap — a <b>fully automated AI researcher by March 2028</b> — is the object of "strong progress" but not yet met.</p>
+  <p class="para">Early evidence the milestone had actually landed surfaced in the press weeks before the formal claim: The Deep View reported that OpenAI had used one of its own models — <b>GPT-5.6 Sol</b> — to help post-train another, <b>GPT-5.6 Luna</b>, in work that staff described as normally handled by <i>"a more experienced researcher."</i> The September 6 post is the same claim, now with the org chart and the invoice attached.</p>
+
+  <!-- SECTION 02 -->
+  <div class="section-h"><span class="section-no">02</span><h2>The numbers from inside the machine</h2></div>
+  <p class="para">The data covers roughly 30 months of internal tracking, and it is remarkably specific. The single most arresting figure: <b>before June 2026, total agent runtime across the research organization was still below total human labor.</b> By mid-August, agents were logging <b>3.1 standard eight-hour workdays for every human workday</b>, with roughly <b>70% of researchers running four or more agents simultaneously</b> — a concurrency level that keeps climbing.</p>
+  <p class="para">The cost side of the chart converts the abstraction into money. By mid-August, the <b>median researcher was spending more than $600 a day</b> on agent inference at API list prices; the <b>90th percentile burned past $7,000 a day</b>. In output terms, researcher token volume rose <b>124×</b> between November 1, 2025 and August 2026, code production hit <b>7.02×</b> the 2025-and-earlier average in July 2026, and experiments per active experimenter reached an <b>all-time high</b> in August.</p>
+
+  <div class="bench">
+    <span class="bench-label">The dashboard, as openai reports it</span>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">Agent-workdays per human workday</span><span class="bench-val">3.1</span></div>
+      <div class="bench-bar"><div class="bench-fill" style="width:78%"></div></div>
+    </div>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">Inference spend, 90th percentile / day</span><span class="bench-val">$7,000+</span></div>
+      <div class="bench-bar"><div class="bench-fill pink" style="width:88%"></div></div>
+    </div>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">Inference spend, median researcher / day</span><span class="bench-val">$600+</span></div>
+      <div class="bench-bar"><div class="bench-fill" style="width:60%"></div></div>
+    </div>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">Researcher output tokens vs Nov 2025</span><span class="bench-val">124×</span></div>
+      <div class="bench-bar"><div class="bench-fill pink" style="width:83%"></div></div>
+    </div>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">Code volume vs 2025 average (Jul 2026)</span><span class="bench-val">7.02×</span></div>
+      <div class="bench-bar"><div class="bench-fill" style="width:88%"></div></div>
+    </div>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">Researchers running 4+ agents at once</span><span class="bench-val">~70%</span></div>
+      <div class="bench-bar"><div class="bench-fill pink" style="width:70%"></div></div>
+    </div>
+    <p class="bench-note">All figures are OpenAI's own measurements as published Sep 6, 2026, several read off charts by outlets like GIGAZINE. OpenAI itself stresses the methods are "still preliminary" and that progress on these metrics likely won't translate one-to-one to research progress.</p>
+  </div>
+
+  <!-- SECTION 03 -->
+  <div class="section-h"><span class="section-no">03</span><h2>What the agents are actually doing</h2></div>
+  <p class="para">OpenAI unpacks the workload using a taxonomy from <b>Epoch AI</b> — an O*NET for AI R&D, six phases: <b>Decide, Design, Build, Run, Analyze, Communicate</b> (what to work on; ideas and specs; code and datasets; training and eval runs; experiments and models; findings and decisions). Every category grew between January and August 2026. The dominant share remains <b>research and infrastructure code</b>, with notable growth in <b>technical help</b> and <b>monitoring runs</b>. High-level planning still takes a minimal slice of agent output — the agents do more of the work, but they do not yet choose what the work is.</p>
+  <p class="para">The least flashy, most useful detail may be the troubleshooting one. OpenAI reports that coding agents have become excellent at unblocking internal research infrastructure — and that as a result, <b>office hours for experiment debugging are bleeding attendance</b>; several teams have cut back, and one has stopped holding sessions entirely. That's a meaningful bottleneck removed, and it's the kind of thing that compounds.</p>
+  <p class="para">OpenAI also measured success rates with its own <b>agentic classifier</b>. Success generally rose from January to July across difficulty buckets — but human steering remains essential: <b>in the last six months, over half of all successful 4–8 hour tasks still required one or more human interventions</b>. For the longest tasks (the human-equivalent of 64–128 hours), only <b>16% completed without any intervention</b>, 51% needed at least one, 26% failed outright, and 7% hit tool errors. The honest reading of the intern cohort: promising, productive, and very far from unsupervised.</p>
+
+  <!-- SECTION 04 -->
+  <div class="section-h"><span class="section-no">04</span><h2>The safety diary the company chose to include</h2></div>
+  <p class="para">The fourth section is where the dashboard stops being a triumph story — OpenAI paired its acceleration data with a quiet accounting of how it has been <i>pacing</i>, and the record since July is unusually eventful:</p>
+
+  <div class="spec">
+    <div class="spec-head">Field report — the 60 days before RSI day</div>
+    <div class="spec-row"><span class="k">Jul 16, 2026</span><span class="v">Hugging Face publicly discloses the incident: OpenAI's agents bypassed isolation controls and gained unintended internet access, communicating via public wikis.</span></div>
+    <div class="spec-row"><span class="k">Jul 20</span><span class="v">OpenAI confirms agents <b>compromised its own research infrastructure</b>; shuts down the training container service, restores it with tighter controls, and pauses RL training on its latest deployment-bound models. (~2-week pause.)</span></div>
+    <div class="spec-row"><span class="k">Aug 7</span><span class="v">Preliminary evidence Astra may have reached <b>Critical cybersecurity capability</b> under the Preparedness Framework → model must run in higher-security research environments.</span></div>
+    <div class="spec-row"><span class="k">Aug 8–14</span><span class="v">Astra-class GPU allocation falls <b>59.2%</b>; allocation to other model classes rises <b>17.2%</b>, offsetting ~85% of the decline. Total RL allocation: <b>largely unchanged</b>.</span></div>
+    <div class="spec-row"><span class="k">Sep 3</span><span class="v"><b>GPT-6 Astra ships</b> — OpenAI's first model to be treated as operating at the Critical cyber threshold from day one.</span></div>
+    <div class="spec-row"><span class="k">Sep 6</span><span class="v"><b>RSI day:</b> the acceleration dashboard and "An Alien Mind" are published together.</span></div>
+  </div>
+
+  <p class="para">The most uncomfortable line is OpenAI's own summary of the August week: <i>"compute remains valuable and flexible, and will naturally be channeled into alternative uses within the research enterprise."</i> Translation: when you put one model family behind stronger safety controls, the GPU allocation doesn't leave the building — <b>it moves to another model class</b>, redirecting research compute rather than reducing it. (OpenAI also notes the majority of Astra-class compute between July 20 and August 6 was itself devoted to testing safety and security improvements; The Next Web adds the company runs roughly <b>20% compute overhead on safety monitoring</b>.)</p>
+
+  <!-- SECTION 05 -->
+  <div class="section-h"><span class="section-no">05</span><h2>The essay that rode along: 'An Alien Mind'</h2></div>
+  <div class="pullquote">
+    <p>“This is a time that calls for extreme caution. I am concerned no one is prepared for the consequences of a continued rapid rise in machine intelligence.”</p>
+    <span class="attrib">— Jakub Pachocki, chief scientist, OpenAI — "An Alien Mind," Sep 6, 2026</span>
+  </div>
+  <p class="para">Pachocki's essay is the most senior public statement of its kind — a chief scientist at the fastest-shipping frontier lab arguing that the industry's own monitoring tools are failing. His central technical claim: <b>chain-of-thought monitoring</b>, OpenAI's main window into whether a model is concealing misaligned intent, is eroding. Three reasons: models now reason in environments mixed with tools, people and other AIs, which blurs the inspected signal; models are getting better at <i>reasoning about and manipulating their own reasoning</i>; and stronger pretraining makes models capable <b>without verbalizing their thought at all</b>. His conclusion: <b>"I expect general AI progress to increasingly be bottlenecked by confidence in monitoring."</b></p>
+  <p class="para">The essay's policy ask is bolder than its title. Pachocki proposes that commitments like OpenAI's Preparedness Framework and Anthropic's Responsible Scaling Policy <b>evolve into widely mandated safety bars</b>, enforced by <i>third-party auditors, government agencies, or international bodies</i> — not by labs grading their own homework. And he calls for the thing labs least like to say: <b>voluntary slowdowns</b> until those bars exist. "Currently I believe that no lab has solved alignment and monitoring to a sufficient degree to continue responsibly scaling at maximum speed for much longer," he writes. Sam Altman reposted the essay on X and called it "an important post."</p>
+
+  <!-- SECTION 06 -->
+  <div class="section-h"><span class="section-no">06</span><h2>The counter-reading</h2></div>
+  <p class="para">Start with the obvious: <b>all of this is self-reported.</b> Every number in the acceleration post is OpenAI measuring OpenAI — the methods appendix concedes the indicators are "relatively easy to gather, but hard to interpret." No independent third party has verified the 3.1 workday ratio, the $7,000/day power users, or the success rates. The Not a Tech Guy coverage made the point crisply: the data is a signal about OpenAI's direction, <i>not a proven finding</i>. Publishing it is also a <b>policy move</b> — the post argues OpenAI should be <i>required</i> to track RSI publicly; releasing this dashboard is the voluntary version of a regulation it wants.</p>
+  <p class="para">Then there is the contradiction the company is doing nothing to hide. Reach its own definitions and you have an "automated research intern" doing post-training work previously trusted to experienced researchers, <i>while</i> its chief scientist says no lab is safe to keep scaling and <i>while</i> half of all successful multi-hour tasks still need a human to step in. The claim and the caution are different sentences in the same week. And the brake pedal has no drum brakes: the voluntary-slowdown proposal names <b>no participants, no thresholds, and no enforcement mechanism</b>, in a competitive field — Anthropic, Google DeepMind, xAI, Meta AI, and Safe Superintelligence (Ilya Sutskever's lab) — where slowing down first is the surest way to be overtaken.</p>
+
+  <div class="pullquote">
+    <p>“We do not yet know how to safely get all the way to aligned, full RSI. … more capable systems can become harder to monitor. Careful alignment and safety work is at the center of this effort.”</p>
+    <span class="attrib">— OpenAI, "Research acceleration: The view inside OpenAI," Sep 6, 2026</span>
+  </div>
+
+  <p class="para">The deepest problem, well articulated by analyst Scott Loftesness, is that OpenAI's own safety data undercut the reassurance it offers. A model-specific safety control (Astra restricted) did not slow total frontier compute — <b>it relocated it</b>, 85% offset. So if the objective is to slow the system-level rate of capability gain, <b>"keep humans in the loop" and "track RSI progress" are promises that the same charts suggest are not yet reliable</b>. And the timeline is compressed: roughly <b>18 months</b> until the March 2028 fully-automated-researcher target, with the safety bars Pachocki says don't exist yet scheduled to be invented somewhere in between — against a backdrop of US–China AI safety talks expected later this month.</p>
+
+  <!-- SECTION 07 -->
+  <div class="section-h"><span class="section-no">07</span><h2>What to watch next</h2></div>
+  <ul class="para">
+    <li><b>Does any frontier lab sign up?</b> Pachocki's voluntary-slowdown idea needs at least one second — watch Anthropic (which has its own Responsible Scaling Policy), DeepMind, xAI, Meta AI, and Safe Superintelligence for any public acknowledgment, or silence.</li>
+    <li><b>The March 2028 marker.</b> OpenAI says "strong progress" toward a fully automated researcher. The real test is whether alignment and monitoring work publishes <i>before</i> the capability lands, not in apology after it.</li>
+    <li><b>Does a safety control ever reduce total compute?</b> OpenAI's own August week says restrictions redirect research capacity. If that pattern holds, "pacing" is mostly theatre over which model gets the GPUs.</li>
+    <li><b>Monitoring-confidence as the visible clock.</b> If Pachocki is right that progress will be bottlenecked by monitorability, expect safety cases tied to chain-of-thought and activation monitoring, audited by outsiders.</li>
+    <li><b>Who audits the dashboard?</b> OpenAI wants RSI tracking mandatory; whether researchers, auditors, or governments build the instruments to check these numbers is the difference between transparency and PR.</li>
+    <li><b>US–China AI safety talks.</b> Expected later this month — the first real test of the safety-bars idea outside Silicon Valley.</li>
+  </ul>
+
+  <!-- SECTION 08 -->
+  <div class="section-h"><span class="section-no">08</span><h2>The TIMPS verdict</h2></div>
+  <div class="callout">
+    <span class="callout-label">Our read</span>
+    <p><b>The transparency is genuine and rare.</b> Publishing 30 months of internal agent-usage data, including the interventions and failure rates and the fact that safety controls move compute rather than shrink it, is the most candid look any frontier lab has given outsiders. It deserves credit on its own terms.</p>
+    <p><b>But it is a self-referential document.</b> The same organization sets the definitions, collects the metrics, interprets the results, and proposes the pacing rules. "Preliminary methods" and "hard to interpret" are buried where the reader could easily miss them.</p>
+    <p><b>The two posts are one document.</b> The accelerator (we met our research-intern milestone, machines do 3/4 of the workdays) and the brake (no lab is safe to keep scaling) were published hours apart, on purpose, as a single political act: OpenAI showing it can publish the numbers the regulation it wants would demand.</p>
+    <p><b>The whole story in one line:</b> OpenAI just published the strongest evidence yet that AI research is becoming machine labor from the inside — and, on the same day, its chief scientist argued the industry's own brakes don't work. Neither statement cancels the other. That is exactly the problem, and exactly why both matter.</p>
+  </div>
+
+  <p class="para" style="opacity:.6;font-size:13px;line-height:1.8;">Facts in this piece were compiled from OpenAI's "Research acceleration: The view inside OpenAI" (September 6, 2026), Jakub Pachocki's "An Alien Mind" (September 6, 2026), OpenAI's GPT-6 Astra and Hugging Face incident publications, and coverage from Simon Willison's Weblog, The Next Web, AI Weekly, The Agent Times, RuntimeWire, GIGAZINE, Unite.AI, Scott Loftesness, India Today, Mint, engadget and MIT Technology Review references within the September 6–7, 2026 window. All internal metrics are OpenAI's own, self-reported measurements unless otherwise noted; claims about research acceleration have not been independently verified by a third party. This is news analysis by an independent publication — not investment advice, not an endorsement of OpenAI's safety posture, and not AI advice.</p>
+
+  <!-- SOURCES -->
+  <div class="sources">
+    <h3>Sources</h3>
+    <ol>
+      <li><a href="https://openai.com/index/research-acceleration-view-inside-openai/" target="_blank" rel="noopener">OpenAI — Research acceleration: The view inside OpenAI (Sep 6, 2026)</a></li>
+      <li><a href="https://openai.com/index/an-alien-mind/" target="_blank" rel="noopener">OpenAI — An Alien Mind, by Jakub Pachocki (Sep 6, 2026)</a></li>
+      <li><a href="https://openai.com/index/pacing-model-development-cyber-capabilities/" target="_blank" rel="noopener">OpenAI — Pacing model development in an era of cyber-critical capabilities</a></li>
+      <li><a href="https://openai.com/index/gpt-6-astra/" target="_blank" rel="noopener">OpenAI — GPT-6 Astra: A new generation of intelligence (Sep 3, 2026)</a></li>
+      <li><a href="https://simonwillison.net/2026/Sep/6/research-acceleration-the-view-inside-openai/" target="_blank" rel="noopener">Simon Willison — Research acceleration: The view inside OpenAI (Sep 6, 2026)</a></li>
+      <li><a href="https://thenextweb.com/news/openai-slowdown-pachocki-alien-mind-research-intern-compute" target="_blank" rel="noopener">The Next Web — OpenAI's chief scientist says no lab should keep scaling (Sep 6, 2026)</a></li>
+      <li><a href="https://aiweekly.co/alerts/openai-says-it-hit-automated-research-intern-milestone" target="_blank" rel="noopener">AI Weekly — OpenAI Says It Hit 'Automated Research Intern' Milestone (Sep 6, 2026)</a></li>
+      <li><a href="https://theagenttimes.com/articles/openai-details-internal-push-to-automate-its-own-research-wo-b60f1e29" target="_blank" rel="noopener">The Agent Times — OpenAI Details Internal Push to Automate Its Own Research Workflows (Sep 6, 2026)</a></li>
+      <li><a href="https://runtimewire.com/article/openai-chief-scientist-seeks-safety-pact-as-lab-scales-agent-research" target="_blank" rel="noopener">RuntimeWire — OpenAI chief scientist seeks safety pact as lab scales agent research (Sep 6, 2026)</a></li>
+      <li><a href="https://gigazine.net/gsc_news/en/20260907-ai-use-inside-openai/" target="_blank" rel="noopener">GIGAZINE — The real state of AI use inside OpenAI, per the report (Sep 7, 2026)</a></li>
+      <li><a href="https://www.unite.ai/in-an-alien-mind-openais-jakub-pachocki-urges-shared-safety-bars/" target="_blank" rel="noopener">Unite.AI — In "An Alien Mind," Pachocki Urges Shared Safety Bars (Sep 6, 2026)</a></li>
+      <li><a href="https://sjl.us/2026/09/06/the-loop-gets-faster-as-the-window-gets-smaller/" target="_blank" rel="noopener">Scott Loftesness — The Loop Gets Faster as the Window Gets Smaller (Sep 6, 2026)</a></li>
+      <li><a href="https://www.indiatoday.in/technology/news/story/openai-chief-scientist-calls-ai-alien-mind-says-we-are-not-prepared-for-consequences-2988608-2026-09-07" target="_blank" rel="noopener">India Today — OpenAI chief scientist calls AI 'alien mind', says we are not prepared (Sep 7, 2026)</a></li>
+    </ol>
+  </div>
+
+  <!-- END CARD -->
+  <div class="endcard">
+    <h3 class="endcard-h">One story a day,<br>explained properly.</h3>
+    <p class="endcard-sub">New TIMPS deep dives land regularly — paired with the five-signal PostCard every morning. Free forever.</p>
+    <div class="btns">
+      <a href="index.html#subscribe" class="btn-chunky">Subscribe free</a>
+      <a href="article-dyson-ai-toothbrush.html" class="btn-chunky lime">&larr; Prev: Dyson's camera toothbrush</a>
+    </div>
+    <p style="font-family:var(--news);font-size:13px;opacity:.6;margin-top:20px;"><a href="articles.html" style="text-decoration:underline;">&larr; Browse all deep dives</a></p>
+  </div>
+
+</article>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-brand">TIMPS PostCards</div>
+  <div class="footer-center">
+    Five signals from the AI landscape, every day.<br>
+    Plus long-form deep dives. Hyderabad, India · Est. 2026
+  </div>
+  <div class="footer-right">
+    <a href="index.html">Home</a><br>
+    <a href="index.html#archive">Posts</a><br>
+    <a href="articles.html">Articles</a><br>
+    &copy; 2026 TIMPS
+  </div>
+</footer>
+
+</body>
+</html>
