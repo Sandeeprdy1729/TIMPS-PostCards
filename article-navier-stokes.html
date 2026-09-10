@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TIMPS">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>TIMPS Articles — OpenAI says agents cracked a $1M Millennium math problem in 88 hours, explained</title>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream:  #EDE8DA;
+    --forest: #1C2E22;
+    --pink:   #E8B4E8;
+    --lime:   #DCF07A;
+    --lime-d: #C8DE60;
+    --black:  #111111;
+    --border: #1C2E22;
+    --card-bg:#F5F1E6;
+    --mono:   'Space Mono', 'Courier New', monospace;
+    --news:   'Newsreader', Georgia, 'Times New Roman', serif;
+    --serif:  'TIMPS', Georgia, serif;
+  }
+
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Black.woff2') format('woff2'); font-weight:900; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Bold.woff2') format('woff2'); font-weight:700; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-SemiBold.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--cream);
+    background-image:
+      linear-gradient(rgba(28,46,34,.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(28,46,34,.07) 1px, transparent 1px);
+    background-size: 38px 38px;
+    color: var(--forest);
+    font-family: var(--news);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  a { text-decoration: none; color: inherit; }
+
+  /* Deep dive typography — TIMPS (display) + Newsreader (prose & descriptions) */
+  .masthead-dek { font-family: var(--news); font-style: italic; font-size: 19px; }
+  .masthead-meta { font-family: var(--news); font-size: 13px; }
+  .lede { font-family: var(--news); font-size: 21px; }
+  .para { font-family: var(--news); font-size: 17px; }
+  .callout p { font-family: var(--news); font-size: 15.5px; }
+  .pullquote p { font-family: var(--news); font-size: 21px; }
+  .pullquote .attrib { font-family: var(--news); font-style: italic; font-size: 13px; }
+  .spec-row { font-family: var(--news); font-size: 14px; }
+  .fig-cap { font-family: var(--news); font-size: 12.5px; }
+  .bench-top { font-family: var(--news); font-size: 13.5px; }
+  .bench-note { font-family: var(--news); font-size: 13px; }
+  .sources li { font-family: var(--news); font-size: 13.5px; }
+  .endcard-sub { font-family: var(--news); font-size: 14.5px; }
+
+  /* ─── NAV ─── */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 48px;
+    background-color: rgba(237,232,218,.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1.5px solid rgba(28,46,34,.12);
+    background-image:
+      linear-gradient(rgba(28,46,34,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(28,46,34,.05) 1px, transparent 1px);
+    background-size: 38px 38px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--forest);
+    letter-spacing: -0.3px;
+  }
+  .nav-logo-mark { width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .nav-logo-mark img { width: 28px; height: 28px; object-fit: contain; }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-link {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--forest);
+    opacity: .55;
+    transition: opacity .15s;
+  }
+  .nav-link:hover { opacity: 1; }
+  .nav-link.active { opacity: 1; font-weight: 700; }
+  .nav-cta {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--forest);
+    background: var(--lime);
+    border: 2.5px solid var(--forest);
+    border-radius: 100px;
+    padding: 10px 24px;
+    transition: background .15s, transform .1s;
+    white-space: nowrap;
+  }
+  .nav-cta:hover { background: var(--lime-d); transform: translateY(-1px); }
+
+  /* ─── MASTHEAD ─── */
+  .masthead {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 72px 24px 24px;
+    text-align: center;
+  }
+  .masthead-kicker {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--forest);
+    background: var(--lime);
+    border: 2px solid var(--forest);
+    border-radius: 100px;
+    padding: 7px 16px;
+    margin-bottom: 28px;
+  }
+  .masthead-h {
+    font-family: var(--serif);
+    font-size: clamp(38px, 6.4vw, 72px);
+    font-weight: 900;
+    line-height: 1.04;
+    letter-spacing: -1.5px;
+    color: var(--forest);
+    margin-bottom: 20px;
+  }
+  .masthead-h em { font-style: italic; }
+  .masthead-dek {
+    font-family: var(--serif);
+    font-size: clamp(17px, 2.2vw, 21px);
+    font-style: italic;
+    line-height: 1.55;
+    color: var(--forest);
+    opacity: .85;
+    max-width: 660px;
+    margin: 0 auto 28px;
+  }
+  .masthead-meta {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--forest);
+    opacity: .5;
+    letter-spacing: .5px;
+  }
+  .masthead-meta b { font-weight: 700; opacity: 1; }
+
+  /* ─── FIGURE ─── */
+  .figure {
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    overflow: hidden;
+    box-shadow: 6px 6px 0 rgba(28,46,34,.14);
+    margin: 32px 0;
+  }
+  .figure img { width: 100%; display: block; }
+  .fig-cap {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+    padding: 12px 16px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--forest);
+    border-top: 1.5px solid rgba(28,46,34,.15);
+    opacity: .7;
+    letter-spacing: .3px;
+  }
+  .fig-tag {
+    flex-shrink: 0;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--forest);
+    opacity: .9;
+  }
+  .fig-cap a { text-decoration: underline; opacity: .8; }
+  .fig-cap a:hover { opacity: 1; }
+
+  /* ─── ARTICLE BODY ─── */
+  .article-body {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 8px 24px 64px;
+  }
+  .lede {
+    font-family: var(--serif);
+    font-size: 21px;
+    font-weight: 400;
+    line-height: 1.65;
+    color: var(--forest);
+    margin: 8px 0 28px;
+  }
+  .lede b { font-weight: 700; }
+  .para {
+    font-family: var(--mono);
+    font-size: 14px;
+    line-height: 1.85;
+    color: var(--forest);
+    opacity: .92;
+    margin: 0 0 20px;
+  }
+  .para b { font-weight: 700; opacity: 1; }
+  .para i { font-style: italic; }
+  .para a { text-decoration: underline; opacity: .85; }
+  .para a:hover { opacity: 1; }
+  .para ul { padding-left: 22px; margin: 0 0 20px; }
+  .para li { margin-bottom: 10px; }
+
+  .section-h {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin: 56px 0 18px;
+  }
+  .section-no {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--lime);
+    background: var(--forest);
+    border-radius: 8px;
+    padding: 5px 9px;
+    letter-spacing: 1px;
+    flex-shrink: 0;
+  }
+  .section-h h2 {
+    font-family: var(--serif);
+    font-size: clamp(24px, 3.6vw, 32px);
+    font-weight: 900;
+    letter-spacing: -0.6px;
+    line-height: 1.1;
+    color: var(--forest);
+  }
+
+  /* Callout cards */
+  .callout {
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    padding: 22px 24px;
+    margin: 28px 0;
+    box-shadow: 5px 5px 0 rgba(28,46,34,.12);
+  }
+  .callout-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--forest);
+    background: var(--lime);
+    border: 1.5px solid var(--forest);
+    border-radius: 100px;
+    padding: 4px 10px;
+    display: inline-block;
+    margin-bottom: 14px;
+  }
+  .callout-label.pink { background: var(--pink); }
+  .callout p {
+    font-family: var(--mono);
+    font-size: 13.5px;
+    line-height: 1.8;
+    color: var(--forest);
+    margin: 0 0 10px;
+  }
+  .callout p:last-child { margin-bottom: 0; }
+  .callout p b { font-weight: 700; }
+  .callout p code { background: var(--cream); border: 1px solid rgba(28,46,34,.2); border-radius: 5px; padding: 1px 5px; font-size: 12px; }
+
+  /* Spec sheet */
+  .spec {
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    overflow: hidden;
+    margin: 28px 0;
+    box-shadow: 5px 5px 0 rgba(28,46,34,.12);
+  }
+  .spec-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--forest);
+    padding: 12px 18px;
+  }
+  .spec-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 16px;
+    padding: 12px 18px;
+    border-top: 1.5px solid rgba(28,46,34,.14);
+    font-family: var(--mono);
+    font-size: 12.5px;
+    line-height: 1.5;
+  }
+  .spec-row .k { font-weight: 700; opacity: .6; }
+  .spec-row .v { opacity: .95; }
+  .spec-row .v b { font-weight: 700; }
+  .spec-row .v code { background: var(--cream); border: 1px solid rgba(28,46,34,.2); border-radius: 5px; padding: 1px 5px; font-size: 12px; }
+
+  /* Benchmark bars */
+  .bench {
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    padding: 22px 24px;
+    margin: 28px 0;
+    box-shadow: 5px 5px 0 rgba(28,46,34,.12);
+  }
+  .bench-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--forest);
+    background: var(--lime);
+    border: 1.5px solid var(--forest);
+    border-radius: 100px;
+    padding: 4px 10px;
+    display: inline-block;
+    margin-bottom: 16px;
+  }
+  .bench-item { margin-bottom: 16px; }
+  .bench-item:last-child { margin-bottom: 0; }
+  .bench-top {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--mono);
+    font-size: 12px;
+    margin-bottom: 6px;
+  }
+  .bench-name { font-weight: 700; }
+  .bench-val { font-weight: 700; background: var(--forest); color: var(--lime); border-radius: 6px; padding: 1px 8px; }
+  .bench-bar { height: 14px; background: rgba(28,46,34,.08); border-radius: 100px; overflow: hidden; }
+  .bench-fill { height: 100%; background: linear-gradient(90deg, var(--lime), var(--lime-d)); border-radius: 100px; }
+  .bench-fill.pink { background: linear-gradient(90deg, var(--pink), #d996d9); }
+  .bench-note {
+    font-family: var(--mono);
+    font-size: 11px;
+    line-height: 1.7;
+    opacity: .55;
+    margin-top: 14px;
+    border-top: 1.5px solid rgba(28,46,34,.14);
+    padding-top: 12px;
+  }
+
+  /* Pull quote */
+  .pullquote {
+    border-left: 6px solid var(--pink);
+    background: var(--card-bg);
+    border-radius: 0 12px 12px 0;
+    padding: 24px 28px;
+    margin: 32px 0;
+    box-shadow: 4px 4px 0 rgba(28,46,34,.1);
+  }
+  .pullquote p {
+    font-family: var(--serif);
+    font-size: 21px;
+    font-weight: 600;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--forest);
+    letter-spacing: -0.3px;
+  }
+  .pullquote .attrib {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-style: normal;
+    opacity: .55;
+    margin-top: 12px;
+    display: block;
+  }
+
+  /* Sources */
+  .sources {
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    padding: 22px 24px;
+    margin: 40px 0 0;
+    box-shadow: 5px 5px 0 rgba(28,46,34,.12);
+  }
+  .sources h3 {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    letter-spacing: -0.4px;
+  }
+  .sources ol { padding-left: 20px; }
+  .sources li { font-family: var(--mono); font-size: 12px; line-height: 1.8; opacity: .85; margin-bottom: 4px; }
+  .sources a { text-decoration: underline; }
+  .sources a:hover { opacity: 1; }
+
+  /* End card */
+  .endcard {
+    text-align: center;
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--lime);
+    padding: 40px 28px;
+    margin: 44px 0 0;
+    box-shadow: 6px 6px 0 rgba(28,46,34,.14);
+  }
+  .endcard-h {
+    font-family: var(--serif);
+    font-size: clamp(26px, 4vw, 34px);
+    font-weight: 900;
+    line-height: 1.15;
+    letter-spacing: -0.8px;
+    color: var(--forest);
+    margin-bottom: 12px;
+  }
+  .endcard-h em { font-style: italic; }
+  .endcard-sub { font-family: var(--mono); font-size: 13px; opacity: .7; max-width: 420px; margin: 0 auto 24px; line-height: 1.7; }
+  .endcard .btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn-chunky {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 14px;
+    font-weight: 700;
+    padding: 14px 32px;
+    border-radius: 100px;
+    border: 2.5px solid var(--forest);
+    cursor: pointer;
+    transition: transform .1s, box-shadow .15s;
+    background: var(--forest);
+    color: #fff;
+  }
+  .btn-chunky:hover { transform: translateY(-2px); box-shadow: 4px 4px 0 rgba(28,46,34,.35); }
+  .btn-chunky.lime { background: var(--lime); color: var(--forest); }
+  .btn-chunky.lime:hover { background: var(--lime-d); box-shadow: 4px 4px 0 var(--forest); }
+  .btn-chunky.outline { background: transparent; color: var(--forest); }
+
+  /* Footer */
+  .footer {
+    background: var(--black);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 36px 48px;
+    flex-wrap: wrap;
+  }
+  .footer-brand { font-family: var(--mono); font-size: 14px; font-weight: 700; }
+  .footer-center { font-family: var(--mono); font-size: 12px; color: rgba(255,255,255,.55); line-height: 1.7; }
+  .footer-right { font-family: var(--mono); font-size: 12px; text-align: right; line-height: 1.9; }
+  .footer-right a { color: rgba(255,255,255,.5); transition: color .15s; }
+  .footer-right a:hover { color: #fff; }
+
+  @media (max-width: 760px) {
+    .nav { padding: 12px 20px; }
+    .nav-links { display: none; }
+    .masthead { padding: 48px 20px 16px; }
+    .article-body { padding: 8px 20px 48px; }
+    .spec-row { grid-template-columns: 1fr; gap: 4px; }
+    .section-h { flex-direction: column; gap: 8px; align-items: flex-start; }
+    .footer { padding: 28px 20px; flex-direction: column; align-items: flex-start; }
+    .footer-right { text-align: left; }
+  }
+  @media (max-width: 480px) {
+    .nav-logo span { display: none; }
+    .nav-logo-mark { width: 28px; height: 28px; }
+    .nav-logo-mark img { width: 24px; height: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-mark"><img src="timps_logo.svg" alt="TIMPS"></div>
+    <span>TIMPS PostCards</span>
+  </a>
+  <div class="nav-links">
+    <a href="articles.html" class="nav-link active">Articles</a>
+    <a href="index.html#archive" class="nav-link">Archive</a>
+    <a href="timps-postcards-2026-09-10.html" class="nav-link">Latest Issue</a>
+    <a href="index.html#subscribe" class="nav-link">Subscribe</a>
+  </div>
+  <a href="index.html#subscribe" class="nav-cta">Subscribe</a>
+</nav>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <span class="masthead-kicker">TIMPS Deep Dive · № 006</span>
+  <h1 class="masthead-h">AI just cracked one of math's <em>$1 million Millennium problems</em> — and the fight over who got there first is already on</h1>
+  <p class="masthead-dek">On September 8, OpenAI announced that roughly 10,000 cooperating AI agents, running on an unreleased model, had found a flaw in the Navier–Stokes equations that has outlasted every human mathematician for 90 years — the deepest mathematical prize ever touched by a machine, with the proof formally checked in a computer proof assistant. Hours earlier, two mathematicians who'd spent nearly a year on the same idea went public with a related result of their own and a detailed, angry account of how OpenAI says it got there. One version of the timeline is wrong. Here is the whole story.</p>
+  <div class="masthead-meta">
+    <b>Sandeep Thummala</b> &nbsp;·&nbsp; September 10, 2026 &nbsp;·&nbsp; 17 min read
+  </div>
+</header>
+
+<article class="article-body">
+
+  <!-- HERO FIGURE -->
+  <figure class="figure">
+    <img src="thumbs/article-navier-stokes-hero.jpg" alt="OpenAI's official cover art for its Navier–Stokes announcement — a swirling mathematical form suggesting a vortex">
+    <figcaption class="fig-cap">
+      <span class="fig-tag">Fig. 01</span>
+      <span>Official cover art for OpenAI's "<a href="https://openai.com/index/navier-stokes-solution/" target="_blank" rel="noopener">On the Navier–Stokes Millennium Prize Problem</a>" (Sep 8, 2026). Image: OpenAI.</span>
+    </figcaption>
+  </figure>
+
+  <!-- LEDE -->
+  <p class="lede"><b>Good morning.</b> On Tuesday, OpenAI claimed its agents had accomplished something no human mathematician has managed in ninety years: they found a genuine flaw in the <b>Navier–Stokes equations</b>, the 19th-century laws that describe how fluids speed up, swirl, generate lift and dissipate heat — the mathematical engine inside every weather forecast, every aircraft wing design, and every model of blood flow in a human body. The claim: a group of roughly <b>10,000 autonomous agents</b>, coordinated by an unreleased internal model, produced a proof that the equations can, in a precise sense, <b>"blow up" in finite time</b> — a result formally checked, line by line, in the proof assistant <b>Lean</b>. It would resolve one of the seven <b>Millennium Prize Problems</b>, each carrying a $1 million prize from the Clay Mathematics Institute. It would also be, said the mathematician-biographer Konstantin Kakaes at Quanta, arguably the most important mathematical proof ever produced by a computer.</p>
+  <p class="para">The story does not start and end there. The same morning, <b>Tristan Buckmaster</b>, a mathematics professor at NYU's Courant Institute, and <b>Levent Alpöge</b>, a mathematician employed by Anthropic, published their own results — a year of work, most of it in near-total secrecy, on a closely related version of the same fluid equations — alongside a long, unusually precise public statement alleging that OpenAI launched its effort <i>only after learning of theirs</i>. OpenAI denies it, acknowledges hearing a rumor, recognizes their priority on the related result, and cannot rule out that their data shaped its models. Both statements are public. They cannot both be fully right. And the argument, whatever it resolves, is already changing how mathematics will be done from now on.</p>
+
+  <!-- SUMMARY -->
+  <div class="callout">
+    <span class="callout-label">One-card summary</span>
+    <p><b>What:</b> OpenAI says an internal model "significantly more capable than GPT-6 Astra," coordinated into about 10,000 concurrent agents, proved that the 3D Navier–Stokes equations can develop a singularity (a fluid's speed growing without bound) in finite time — resolving the Millennium Prize Problem via statements "C" and "D" of the official Clay formulation, with the proof formalized in Lean.</p>
+    <p><b>When:</b> Model training began Aug 28, 2026; agents launched Sep 1 after OpenAI heard rumors two Millennium problems had been solved; resolution landed Saturday Sep 5 (~88 hours in); Lean formalization took another 17 hours via GPT-6 Astra; public announcement Sep 8. OpenAI says it will not claim the prize.</p>
+    <p><b>Why it matters:</b> The first Millennium Prize problem ever solved by a computer — but it arrived hours after Buckmaster and Alpöge published their own forced-fluid blowups and alleged OpenAI began only after word of their work reached the company. The mathematics may be machine-checked; the provenance of the result is not.</p>
+  </div>
+
+  <!-- SECTION 01 -->
+  <div class="section-h"><span class="section-no">01</span><h2>What actually happened</h2></div>
+  <p class="para">OpenAI's post, "On the Navier–Stokes Millennium Prize Problem," was published the morning of September 8. The company says it has been training a new internal model since <b>August 28</b> that showed "unprecedented performance" on its benchmarks — including mathematics — and that on <b>September 1</b> it heard "rumors that two Millennium Prize problems had been resolved." Inspired by the rumors and the model's step-change in performance, it launched a broad evaluation across all open Millennium Prize problems and a handful of other high-impact ones.</p>
+  <p class="para">The agents were organized into groups that could communicate internally, with tools to read from a cached version of the internet and to run code, under the same monitoring and isolation safeguards the company applies to frontier-model evaluations. Each problem was attacked from multiple angles. For Navier–Stokes, separate groups were prompted with the problem's versions "A" and "B" — the forms that would amount to a <i>proof</i> — and versions "C" and "D", the forms that would amount to a <i>disproof</i>.</p>
+  <p class="para">Alongside the Prize problems, the agents were given "easier" ones. One of those was the regularity question for the <b>Euler equations</b> — Navier–Stokes with viscosity removed. That detour produced the story's first surprise: <b>nearly 100 agents, in about 50 hours, disproved Euler regularity in the unforced case</b> — no external force needed. The result convinced OpenAI that Navier–Stokes itself was within reach, and the team shifted resources to it, cross-pollinating the agent groups by consolidating their insights through Codex. On <b>Saturday, September 5 — about 88 hours after the first agents launched — the Navier–Stokes group had its resolution</b>. Lean formalization and verification took another 17 hours via GPT-6 Astra. Across every problem tried, the agents sent 4.9 million messages and used about 300 billion output tokens. On Navier–Stokes alone: 2.7 million messages and roughly 130 billion output tokens.</p>
+
+  <div class="pullquote">
+    <p>“Our proof does show that there exist fluids which start out perfectly normal, and under the Navier–Stokes equations, actually achieve infinite speed in a finite amount of time.”</p>
+    <span class="attrib">— Ven Chandrasekaran, OpenAI, on the result — via Forkast</span>
+  </div>
+
+  <!-- SECTION 02 -->
+  <div class="section-h"><span class="section-no">02</span><h2>The 90-year question</h2></div>
+  <p class="para">The Navier–Stokes equations — named for French engineer Claude-Louis Navier and Irish physicist George Gabriel Stokes — treat fluid as a continuous medium rather than a collection of molecules. That continuum assumption is what makes them useful for simulating air over a wing or water through a pipe, but it comes with a nagging mathematical question: does the model ever <i>break its own rules</i>? Mathematicians have long asked whether a smooth, three-dimensional fluid — starting clean, with no infinite forces — can, purely through its own dynamics, develop a <b>singularity</b>: a point where a speed is predicted to grow without bound within a finite amount of time. Because a real fluid cannot move infinitely fast, such an outcome would mean the equations have stopped being an honest mirror of the fluid.</p>
+  <p class="para">Viscosity, the internal friction that smooths motion out, should in principle prevent this. In 1934, Jean Leray proved that solutions exist in a generalized sense — but whether they always remain smooth has been open ever since, roughly <b>90 years</b>. In 2000 the Clay Mathematics Institute selected the Navier–Stokes existence and smoothness problem as one of its seven Millennium Prize Problems, each carrying a $1 million award. Only one has ever been solved: the Poincaré conjecture, by Grigori Perelman, who declined the money. A computer would otherwise never have come close. Or been allowed to.</p>
+
+  <!-- SECTION 03 -->
+  <div class="section-h"><span class="section-no">03</span><h2>The answer: a vortex that keeps up with itself</h2></div>
+  <p class="para">OpenAI's result, in the plainest possible terms, is a <b>disproof</b> of the "no blowup" conjecture. Its system produced an analytical proof, and a Lean formalization, that an initially smooth fluid at rest — with a smooth force applied to it, and with <b>energy remaining finite throughout</b> — develops a singularity in finite time. Because the Clay formulation of the Prize problem bundles several statements, this resolves it via statement <b>"C"</b> (and <b>"D"</b>): the smoothness you might have hoped for is not guaranteed.</p>
+  <p class="para">The solution itself is described with a disarmingly physical image: a <b>vortex</b> — a spinning swirl of fluid — that spirals inward and stretches, elongating "like spaghetti." The central region shrinks while it speeds up, in such a way that its energy stays finite as physics requires. The technical heart of the proof is that the four forces doing the work — acceleration, pressure gradients, momentum transfer, and viscosity — all grow huge while cancelling each other with exquisite precision. That leaves a smooth external force even as the fluid's velocity runs off to infinity. It is the fluid's own motion that manufactures the blowup; nothing infinite is hammered in by hand.</p>
+  <p class="para">A caveat worth being precise about, raised immediately by several outlets: OpenAI resolved the <b>forced</b> version of the equations — with that smooth external force admitted. The Clay formulation's famous statements (A) and (B) concern the unforced case, and some commentators concluded that, strictly, the prize criteria are not all met. OpenAI has short-circuited the argument by stating plainly that it <b>does not intend to claim the Millennium Prize</b> for the result at all — the demonstration was about model capability, not prize money.</p>
+
+  <!-- SECTION 04 -->
+  <div class="section-h"><span class="section-no">04</span><h2>The machine: 10,000 agents, 88 hours</h2></div>
+  <p class="para">Whatever one makes of the controversy, the engineering figure is worth sitting with. This was not a model handed a problem and asked to think. It was a <b>research bureaucracy of software</b>: thousands of agents, each a reasoning thread with tools, organized into communicating groups, guided by aggregate insights, and updated mid-flight to a further-trained version of the model. OpenAI's own words: the group that produced the resolution involved <b>on the order of 10,000 concurrent agents</b>, with the whole effort consuming what chief mathematician Sébastien Bubeck estimates as "<b>several million dollars</b>" of compute. Public-price math makes the gap starker: at GPT-6 Astra API rates, a customer replicating the full effort would have been billed an estimated <b>$10–15 million</b> — for a problem whose prize is $1 million.</p>
+
+  <div class="bench">
+    <span class="bench-label">The effort, in numbers (OpenAI's own accounting)</span>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">Time to Navier–Stokes resolution</span><span class="bench-val">88 h</span></div>
+      <div class="bench-bar"><div class="bench-fill" style="width:88%"></div></div>
+    </div>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">Concurrent agents on the problem</span><span class="bench-val">~10,000</span></div>
+      <div class="bench-bar"><div class="bench-fill pink" style="width:96%"></div></div>
+    </div>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">Euler disproof, first</span><span class="bench-val">~100 · 50 h</span></div>
+      <div class="bench-bar"><div class="bench-fill" style="width:52%"></div></div>
+    </div>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">Agent messages, Navier–Stokes only</span><span class="bench-val">2.7 M</span></div>
+      <div class="bench-bar"><div class="bench-fill pink" style="width:78%"></div></div>
+    </div>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">Output tokens, Navier–Stokes only</span><span class="bench-val">~130 B</span></div>
+      <div class="bench-bar"><div class="bench-fill" style="width:90%"></div></div>
+    </div>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">Estimated cost (customer-equivalent)</span><span class="bench-val">$10–15 M</span></div>
+      <div class="bench-bar"><div class="bench-fill pink" style="width:62%"></div></div>
+    </div>
+    <p class="bench-note">Sources: OpenAI's announcement (Sep 8), and press-briefing figures reported by BBC, New Scientist, Live Science, Quanta and TechCrunch. Bubeck put OpenAI's own cost at "several million dollars."</p>
+  </div>
+
+  <p class="para">Bubeck called the result "the spectacular culmination of the arc we have seen over the last 12 months" — the same arc this newsletter has been tracking from IMO gold, to the Erdős #1196 open problem cracked with GPT-5.4, to the unit-distance conjecture disproof, to GPT-6 Astra and OpenAI's own "research acceleration" dashboard, which it published days earlier. On September 8, the company's position paper attached the Navier–Stokes result to its claim that <b>"we are now in the next period of AI progress."</b></p>
+
+  <!-- SECTION 05 -->
+  <div class="section-h"><span class="section-no">05</span><h2>Can we actually check it? The Lean formalization</h2></div>
+  <p class="para">The reason mathematicians are taking the claim — as opposed to merely rolling their eyes at it — is <b>Lean</b>, the interactive proof assistant whose kernel checks every step of a formal argument and rejects anything that does not follow from the axioms. OpenAI released its formalization in the same public repository as the writeup, and an independent team at the <b>Stanford Tech Review</b> cloned and audited it within hours of publication. The numbers are the story: OpenAI's tree runs to <b>2,484 Lean files, 616,274 lines, and 35,731 theorems and lemmas — with zero unproven "sorry"s and zero extra axioms</b> beyond Lean's standard three. The competing Buckmaster–Alpöge formalization is even larger: 3,612 files, 1,684,580 lines, 68,179 theorems, also clean. Between them, the two groups published <b>2.3 million lines of machine-verified mathematics</b> in a single morning, each repository pinned to a fixed Mathlib version so the build is reproducible.</p>
+  <p class="para">"Two million lines of verified Lean settle the theorems completely and settle nothing about the people," the Stanford Tech Review's audit concludes. That's the honest summary of the week: the proofs are checkable — but nobody outside either group can check <i>who produced them, when, or under whose influence</i>, because both repositories were published as single squashed commits with no development history. Every date in this dispute — Buckmaster's August 15 and 22, OpenAI's September 1 launch and September 5 resolution — rests on testimony, not on version control. "Reading that one file carefully is the whole audit," as Stanford Tech Review put it: the language of the <i>statement</i> being formalized is the one place a machine-verified "proof" could still be a proof of the wrong theorem. That is now the entire battlefield.</p>
+
+  <!-- SECTION 06 -->
+  <div class="section-h"><span class="section-no">06</span><h2>The other team: a year, two people, and a 'horrendous' first proof</h2></div>
+  <p class="para">Tristan Buckmaster and Levent Alpöge published three results late on the night of September 7 — finite-time blowup, with smooth forcing, for the incompressible porous-media equation, the (planar) Boussinesq system, and <b>3D incompressible Euler</b> — all Lean-verified, with an unverified (but, they believe, proven) blowup for hypo-dissipative Navier–Stokes held back because its Lean check was not finished. Their advance notice on <b>Euler with smooth forcing</b> will almost certainly stand as the day's cleanest mathematical contribution, and OpenAI recognizes it.</p>
+  <p class="para">The origin of the whole approach belongs to neither group. In his statement, Buckmaster is blunt about it: the credit for the core idea goes to <b>Diego Córdoba</b> (Institute of Mathematical Sciences, Madrid) and <b>Luis Martínez-Zoroa</b> (CUNEF, Madrid), who spent years exploring forced blowups with rough forcing. Buckmaster and Alpöge took that program, got "a great deal of help from" large language models — Anthropic's Claude, and OpenAI's own Codex, "especially with GPT-5.6 Sol" — and pushed it to smooth forcing and incompressible Euler. They made "real progress" on <b>August 15</b> and had it Lean-verified by <b>August 22</b>. Buckmaster says the first machine-generated proof his collaborator sent him "was the most horrendous I have ever read," that the pair spent the subsequent weeks around the clock turning agent output into something readable, and that he believes Martínez-Zoroa deserves a Fields Medal. He also pays for the tools out of research funds — "footing a large bill to OpenAI."</p>
+  <p class="para">On the mathematics, the timing is coherent: OpenAI began training its model on August 28 and launched its agents on September 1. Buckmaster and Alpöge verified their Euler result on August 22. Tao — who had already publicly judged that nothing in principle prevented the Córdoba-style method from extending to full Navier–Stokes, potentially even without the forcing — noted that the road was visible to anyone who understood the method.</p>
+
+  <!-- SECTION 07 -->
+  <div class="section-h"><span class="section-no">07</span><h2>The dispute: what each side says the other knew</h2></div>
+  <p class="para">Here is where the two accounts diverge, and they diverge sharply. Buckmaster says that on September 3, through Alpöge, he learned "information about our progress had been passed to OpenAI," and emailed a mathematician at the company. On Sunday September 6 — after OpenAI's Lean verification had finished — he had two calls with <b>Sébastien Bubeck</b> and an unnamed OpenAI mathematician. He says he was offered two proposals, both of which he declined: that the pair post Euler and OpenAI post Navier–Stokes the next day; or that he alone write the paper presenting OpenAI's Navier–Stokes result, with the author list arranged to exclude Alpöge because of Alpöge's employment at OpenAI's rival, Anthropic. When he pushed back and said he would go public, he claims the reply was, <i>"Why would you ruin your career?"</i> — and, later, <i>"If you don't want me to be nice, then I don't have to be nice."</i> When he asked whether the model had been trained on, or had access to, the Codex sessions where the pair had stored every draft of their work, he says he was told the model did not look up user data — and that when he asked again, specifically about training, "I did not get an answer."</p>
+  <p class="para">OpenAI's account is flatly different. Bubeck called Buckmaster's version "false and inflammatory," said "we did not use their prompt or proofs to prompt our models," and maintained that he came into the coordination "with the best possible intentions." Mark Chen told the press he was "a little disappointed with the allegations." The company's post concedes it began after hearing the rumor the pair wanted to shut down, recognizes their priority on forced Euler, and offers them visibility into all of its prompts. Sam Altman, in his own X posts: "We were curious if ours could do it too," and "the approaches appear to be different" — a claim Buckmaster disputes. On the data question, OpenAI's position is precise and unusually humble: no specific user data was accessed, but <b>"while unlikely, we cannot rule out that de-identified data derived from their usage of our products helped improve our models."</b> And its proofs, it stresses, differ from the pair's — even the precise Euler result is different (forced vs. unforced).</p>
+
+  <div class="pullquote">
+    <p>“Now there's no speed limit, and suddenly things are breaking down. … These companies are dumping carcasses of raw meat onto our communal village table and saying, 'here you go, I solved your food problem' — and then they just leave.”</p>
+    <span class="attrib">— Terence Tao, on how AI is changing mathematics</span>
+  </div>
+
+  <p class="para">Neither public statement settles the dispute, and neither side has produced the one artifact that would: a chain of record. The Stanford Tech Review's audit is explicit that the provenance cannot be resolved by anyone outside the two groups. Buckmaster is careful to the last: "I have not seen OpenAI's proof. I do not know what their model did, or how. I do not know whether our data was used. <b>I am not accusing anyone of anything.</b>" He wants an independent investigation into how OpenAI's work began. The phrase "almost nobody else I know of was working on it" appears in his statement as the core of the coincidence he finds hard to swallow — while, independently, the <b>same week a third group entirely,</b> led by Anima Anandkumar at Caltech, posted a numerical physics-informed-neural-network candidate for unforced Euler blowup, evidence that convergence on a wall, the ordinary way hard problems fall, was also in play.</p>
+  <p class="para">And then there are the questions that outlast this specific dispute. When a company trains on the interactions of millions of users — including, it now appears, the interactions of people working on a $1 million problem inside its own products — who owns the answer that emerges? MIT Technology Review noted that researchers are quietly depressed about what this week means for the field: mathematics may now be a discipline whose hardest problems are solved by the two or three organizations with frontier models and nine-figure compute budgets. "Very few mathematicians will have resources of that scale," as Brown's Javier Gómez-Serrano put it. Simon Willison drew the sharpest analogy of the week: in computer security, a rumor of a bug is enough to trigger an exploit hunt — and that is now exactly the situation in mathematics, where the mere <i>existence</i> of an unpublished solution can justify millions of dollars of agent compute to get there first. For the Clay Mathematics Institute, Martin Bridson's reaction is being deliberately slow: "The process of evaluation is deliberately unhurried, and we shall ensure that it is absolutely rigorous."</p>
+
+  <!-- SECTION 08 -->
+  <div class="section-h"><span class="section-no">08</span><h2>What to watch next</h2></div>
+  <ul class="para">
+    <li><b>Clay's verdict.</b> Whether the formalization maps cleanly onto the Prize's official statements — the one check no amount of Lean can do for humans. If it holds, this is only the second Millennium problem ever resolved, and the first by machine.</li>
+    <li><b>The independent statement-file audit.</b> Math staff at several universities are reportedly reading the <code>ComparatorChallenges</code> directory that anchors OpenAI's Lean proof. That one file is where "verified" could still quietly mean "verified a different theorem."</li>
+    <li><b>The unforced prize form.</b> Whether the methods extend to statements (A)/(B) — the celebrated no-blowup case — or the forcing term can be removed entirely. Tao flagged the road as open before either announcement.</li>
+    <li><b>The unnamed model.</b> Training has been ongoing since Aug 28 and "continues to improve." A model so far above GPT-6 Astra on math benchmarks is the actual engine of this story, and it has no public demos, safety case, or name yet.</li>
+    <li><b>Rumor-to-result collapse.</b> If a rumor was enough to trigger a 10,000-agent sprint, expect future open problems to be treated like unpatched vulnerabilities. The Willison framing is now the default risk model.</li>
+    <li><b>Who investigates whom.</b> Buckmaster wants an independent review of how the effort began; OpenAI has already weathered the Hugging Face agent incident by admitting — in MIT Tech Review's words — that it is "not always entirely aware of what its agents are doing." That admission now has a $1 million problem attached.</li>
+  </ul>
+
+  <!-- SECTION 09 -->
+  <div class="section-h"><span class="section-no">09</span><h2>The TIMPS verdict</h2></div>
+  <div class="callout">
+    <span class="callout-label">Our read</span>
+    <p><b>The mathematics is probably right.</b> A Lean kernel does not argue; it checks. With zero unproven holes and zero extra axioms, on a pinned, reproducible build, the burden of proof is now on anyone who wants to doubt the <i>theorem</i>. Doubting the <i>interpretation</i> — whether the formalized statement is the Prize question — is the only serious route left, and Clay knows it is the whole game.</p>
+    <p><b>The provenance cannot be settled from the outside,</b> and both sides know it. Two squashed repos, no development history, every date resting on testimony, two incompatible accounts of the same phone calls, and a company that both admits it cannot rule out using de-identified user data and reserves the right to train on Codex content. The most honest sentence of the week is Buckmaster's: he is not accusing anyone of anything — he is asking for a mechanism that can find out.</p>
+    <p><b>The system-level story is the bigger one.</b> A 90-year problem fell in 88 hours because a lab with frontier-grade models, a cache of the internet, and a few million dollars pointed ten thousand agents at it — while the two humans who spent a year on the idea could solve only its harder cousin, and were told by one account they should not have an Anthropic employee on the paper. The bottleneck in mathematics has moved from finding arguments to agreeing on who found them, to reading statement files, and to who gets the GPUs.</p>
+    <p><b>The whole story in one line:</b> Machines just proved a $1 million problem that outlasted every human for 90 years — which is the strongest evidence yet both of what the next models can do and of how unequipped the field's institutions are to absorb what they do next.</p>
+  </div>
+
+  <p class="para" style="opacity:.6;font-size:13px;line-height:1.8;">Facts in this piece were compiled from OpenAI's "On the Navier–Stokes Millennium Prize Problem" (September 8, 2026) and its Euler- and Navier–Stokes-proof papers; Tristan Buckmaster's public statement (September 6–7, 2026); and coverage from Quanta Magazine, MIT Technology Review, Stanford Tech Review, BBC News, New Scientist, Live Science, Scientific American, TechCrunch, ABC News (Australia), The Wall Street Journal, Forkast, and Simon Willison's Weblog within the September 6–10, 2026 window. OpenAI's engineering figures are OpenAI's own. The dispute is reported with both sides' versions on the record; neither has been independently adjudicated. This is news analysis by an independent publication — not investment advice, not an endorsement of either side of the dispute, and not AI advice.</p>
+
+  <!-- SOURCES -->
+  <div class="sources">
+    <h3>Sources</h3>
+    <ol>
+      <li><a href="https://openai.com/index/navier-stokes-solution/" target="_blank" rel="noopener">OpenAI — On the Navier–Stokes Millennium Prize Problem (Sep 8, 2026)</a></li>
+      <li><a href="https://cdn.openai.com/pdf/32d9f210-8b73-45e0-91bc-82a30aef8a9a/navier-stokes.pdf" target="_blank" rel="noopener">OpenAI — Navier–Stokes proof, writeup (PDF)</a></li>
+      <li><a href="https://cdn.openai.com/pdf/315b36cd-ec98-4023-8342-93345194ece1/euler.pdf" target="_blank" rel="noopener">OpenAI — Euler regularity disproof paper (PDF)</a></li>
+      <li><a href="https://github.com/openai/NavierStokesAndEuler" target="_blank" rel="noopener">OpenAI — Lean formalized proof, GitHub repository</a></li>
+      <li><a href="https://www.claymath.org/wp-content/uploads/2022/06/navierstokes.pdf" target="_blank" rel="noopener">Clay Mathematics Institute — Official Millennium Prize statement of the Navier–Stokes problem (Fefferman)</a></li>
+      <li><a href="https://cims.nyu.edu/~tristanb/statement.pdf" target="_blank" rel="noopener">Tristan Buckmaster — Public statement (Sep 7, 2026)</a></li>
+      <li><a href="https://www.quantamagazine.org/ai-has-solved-one-of-maths-1-million-millennium-prize-problems-20260908/" target="_blank" rel="noopener">Quanta Magazine — AI Has Solved One of Math's $1 Million Millennium Prize Problems</a></li>
+      <li><a href="https://www.technologyreview.com/2026/09/08/1143747/what-openais-latest-controversy-tells-us-about-the-future-of-math/" target="_blank" rel="noopener">MIT Technology Review — What OpenAI's latest controversy tells us about the future of math</a></li>
+      <li><a href="https://stanfordtechreview.com/articles/openai-buckmaster-navier-stokes-lean-proofs" target="_blank" rel="noopener">Stanford Tech Review — OpenAI vs Buckmaster: The Navier–Stokes Lean Proofs, Audited</a></li>
+      <li><a href="https://www.bbc.com/news/articles/cy7zygy3rl2o" target="_blank" rel="noopener">BBC News — OpenAI says it cracked 90-year-old maths problem in 88 hours</a></li>
+      <li><a href="https://www.newscientist.com/article/2588063-openai-has-solved-the-navier-stokes-millennium-problem-using-15m-of-ai-effort/" target="_blank" rel="noopener">New Scientist — OpenAI has solved the Navier–Stokes Millennium problem using $15m of AI effort</a></li>
+      <li><a href="https://www.newscientist.com/article/2588288-why-is-there-controversy-around-openais-millennium-prize-maths-breakthrough/" target="_blank" rel="noopener">New Scientist — Why is there controversy around OpenAI's Millennium Prize maths breakthrough?</a></li>
+      <li><a href="https://www.livescience.com/physics-mathematics/mathematics/why-would-you-ruin-your-career-openai-claims-to-have-cracked-one-of-maths-greatest-unsolved-problems-but-mathematicians-allege-it-played-dirty" target="_blank" rel="noopener">Live Science — 'Why would you ruin your career?': mathematicians allege OpenAI played dirty</a></li>
+      <li><a href="https://techcrunch.com/2026/09/08/openai-fought-dirty-on-career-making-math-problem-says-nyu-mathematician/" target="_blank" rel="noopener">TechCrunch — OpenAI fought dirty on career-making math problem, says NYU mathematician</a></li>
+      <li><a href="https://www.scientificamerican.com/article/openai-claims-blockbuster-math-breakthrough-amid-swirl-of-controversy/" target="_blank" rel="noopener">Scientific American — OpenAI claims blockbuster math breakthrough amid swirl of controversy</a></li>
+      <li><a href="https://simonwillison.net/2026/Sep/8/on-navier-stokes/" target="_blank" rel="noopener">Simon Willison — On the Navier–Stokes Millennium Prize Problem (commentary)</a></li>
+      <li><a href="https://www.abc.net.au/news/2026-09-10/openai-navier-stokes-millennium-problem-claims/107132242" target="_blank" rel="noopener">ABC News (Australia) — Controversy erupts as OpenAI claims solution to Navier–Stokes maths problem</a></li>
+      <li><a href="https://forkast.news/openais-10000-agent-navier-stokes-claim-solves-the-wrong-problem-and-the-right-one-has-a-provenance-controversy/" target="_blank" rel="noopener">Forkast — OpenAI's 10,000-agent Navier–Stokes claim: solves the wrong problem, provenance controversy</a></li>
+    </ol>
+  </div>
+
+  <!-- END CARD -->
+  <div class="endcard">
+    <h3 class="endcard-h">One story a day,<br>explained properly.</h3>
+    <p class="endcard-sub">New TIMPS deep dives land regularly — paired with the five-signal PostCard every morning. Free forever.</p>
+    <div class="btns">
+      <a href="index.html#subscribe" class="btn-chunky">Subscribe free</a>
+      <a href="article-research-acceleration.html" class="btn-chunky lime">&larr; Prev: OpenAI measures its own RSI</a>
+      <a href="article-anthropic-economic-scenarios.html" class="btn-chunky outline">Next: The economy of 2030, by the numbers &rarr;</a>
+    </div>
+    <p style="font-family:var(--news);font-size:13px;opacity:.6;margin-top:20px;"><a href="articles.html" style="text-decoration:underline;">&larr; Browse all deep dives</a></p>
+  </div>
+
+</article>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-brand">TIMPS PostCards</div>
+  <div class="footer-center">
+    Five signals from the AI landscape, every day.<br>
+    Plus long-form deep dives. Hyderabad, India · Est. 2026
+  </div>
+  <div class="footer-right">
+    <a href="index.html">Home</a><br>
+    <a href="index.html#archive">Posts</a><br>
+    <a href="articles.html">Articles</a><br>
+    &copy; 2026 TIMPS
+  </div>
+</footer>
+
+</body>
+</html>

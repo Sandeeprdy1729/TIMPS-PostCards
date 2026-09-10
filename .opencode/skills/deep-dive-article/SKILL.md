@@ -41,7 +41,7 @@ Site rule: article heroes are real photographs/imagery downloaded from the web. 
 
 ## Step 4 — Build the article page
 
-Create `article-<kebab-slug>.html` by copying the newest existing deep-dive (currently `article-research-acceleration.html` — check `ls article-*.html`) as the template and rewriting the content. Keep every `<style>` rule that already exists id-to-identical — do not redesign.
+Create `article-<kebab-slug>.html` by copying the newest existing deep-dive (currently `article-anthropic-economic-scenarios.html` — check `ls article-*.html`) as the template and rewriting the content. Keep every `<style>` rule that already exists id-to-identical — do not redesign.
 
 ### Must-match design system (do not deviate)
 - Colors: `--cream:#EDE8DA --forest:#1C2E22 --pink:#E8B4E8 --lime:#DCF07A --lime-d:#C8DE60 --black:#111111 --card-bg:#F5F1E6`; graph-paper grid background.

@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TIMPS">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>TIMPS Articles — Anthropic models the economy of 2030, explained</title>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream:  #EDE8DA;
+    --forest: #1C2E22;
+    --pink:   #E8B4E8;
+    --lime:   #DCF07A;
+    --lime-d: #C8DE60;
+    --black:  #111111;
+    --border: #1C2E22;
+    --card-bg:#F5F1E6;
+    --mono:   'Space Mono', 'Courier New', monospace;
+    --news:   'Newsreader', Georgia, 'Times New Roman', serif;
+    --serif:  'TIMPS', Georgia, serif;
+  }
+
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Black.woff2') format('woff2'); font-weight:900; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Bold.woff2') format('woff2'); font-weight:700; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-SemiBold.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--cream);
+    background-image:
+      linear-gradient(rgba(28,46,34,.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(28,46,34,.07) 1px, transparent 1px);
+    background-size: 38px 38px;
+    color: var(--forest);
+    font-family: var(--news);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  a { text-decoration: none; color: inherit; }
+
+  /* Deep dive typography — TIMPS (display) + Newsreader (prose & descriptions) */
+  .masthead-dek { font-family: var(--news); font-style: italic; font-size: 19px; }
+  .masthead-meta { font-family: var(--news); font-size: 13px; }
+  .lede { font-family: var(--news); font-size: 21px; }
+  .para { font-family: var(--news); font-size: 17px; }
+  .callout p { font-family: var(--news); font-size: 15.5px; }
+  .pullquote p { font-family: var(--news); font-size: 21px; }
+  .pullquote .attrib { font-family: var(--news); font-style: italic; font-size: 13px; }
+  .spec-row { font-family: var(--news); font-size: 14px; }
+  .fig-cap { font-family: var(--news); font-size: 12.5px; }
+  .bench-top { font-family: var(--news); font-size: 13.5px; }
+  .bench-note { font-family: var(--news); font-size: 13px; }
+  .sources li { font-family: var(--news); font-size: 13.5px; }
+  .endcard-sub { font-family: var(--news); font-size: 14.5px; }
+
+  /* ─── NAV ─── */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 48px;
+    background-color: rgba(237,232,218,.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1.5px solid rgba(28,46,34,.12);
+    background-image:
+      linear-gradient(rgba(28,46,34,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(28,46,34,.05) 1px, transparent 1px);
+    background-size: 38px 38px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--forest);
+    letter-spacing: -0.3px;
+  }
+  .nav-logo-mark { width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .nav-logo-mark img { width: 28px; height: 28px; object-fit: contain; }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-link {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--forest);
+    opacity: .55;
+    transition: opacity .15s;
+  }
+  .nav-link:hover { opacity: 1; }
+  .nav-link.active { opacity: 1; font-weight: 700; }
+  .nav-cta {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--forest);
+    background: var(--lime);
+    border: 2.5px solid var(--forest);
+    border-radius: 100px;
+    padding: 10px 24px;
+    transition: background .15s, transform .1s;
+    white-space: nowrap;
+  }
+  .nav-cta:hover { background: var(--lime-d); transform: translateY(-1px); }
+
+  /* ─── MASTHEAD ─── */
+  .masthead {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 72px 24px 24px;
+    text-align: center;
+  }
+  .masthead-kicker {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--forest);
+    background: var(--lime);
+    border: 2px solid var(--forest);
+    border-radius: 100px;
+    padding: 7px 16px;
+    margin-bottom: 28px;
+  }
+  .masthead-h {
+    font-family: var(--serif);
+    font-size: clamp(38px, 6.4vw, 72px);
+    font-weight: 900;
+    line-height: 1.04;
+    letter-spacing: -1.5px;
+    color: var(--forest);
+    margin-bottom: 20px;
+  }
+  .masthead-h em { font-style: italic; }
+  .masthead-dek {
+    font-family: var(--serif);
+    font-size: clamp(17px, 2.2vw, 21px);
+    font-style: italic;
+    line-height: 1.55;
+    color: var(--forest);
+    opacity: .85;
+    max-width: 660px;
+    margin: 0 auto 28px;
+  }
+  .masthead-meta {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--forest);
+    opacity: .5;
+    letter-spacing: .5px;
+  }
+  .masthead-meta b { font-weight: 700; opacity: 1; }
+
+  /* ─── FIGURE ─── */
+  .figure {
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    overflow: hidden;
+    box-shadow: 6px 6px 0 rgba(28,46,34,.14);
+    margin: 32px 0;
+  }
+  .figure img { width: 100%; display: block; }
+  .fig-cap {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+    padding: 12px 16px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--forest);
+    border-top: 1.5px solid rgba(28,46,34,.15);
+    opacity: .7;
+    letter-spacing: .3px;
+  }
+  .fig-tag {
+    flex-shrink: 0;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--forest);
+    opacity: .9;
+  }
+  .fig-cap a { text-decoration: underline; opacity: .8; }
+  .fig-cap a:hover { opacity: 1; }
+
+  /* ─── ARTICLE BODY ─── */
+  .article-body {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 8px 24px 64px;
+  }
+  .lede {
+    font-family: var(--serif);
+    font-size: 21px;
+    font-weight: 400;
+    line-height: 1.65;
+    color: var(--forest);
+    margin: 8px 0 28px;
+  }
+  .lede b { font-weight: 700; }
+  .para {
+    font-family: var(--mono);
+    font-size: 14px;
+    line-height: 1.85;
+    color: var(--forest);
+    opacity: .92;
+    margin: 0 0 20px;
+  }
+  .para b { font-weight: 700; opacity: 1; }
+  .para i { font-style: italic; }
+  .para a { text-decoration: underline; opacity: .85; }
+  .para a:hover { opacity: 1; }
+  .para ul { padding-left: 22px; margin: 0 0 20px; }
+  .para li { margin-bottom: 10px; }
+
+  .section-h {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin: 56px 0 18px;
+  }
+  .section-no {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--lime);
+    background: var(--forest);
+    border-radius: 8px;
+    padding: 5px 9px;
+    letter-spacing: 1px;
+    flex-shrink: 0;
+  }
+  .section-h h2 {
+    font-family: var(--serif);
+    font-size: clamp(24px, 3.6vw, 32px);
+    font-weight: 900;
+    letter-spacing: -0.6px;
+    line-height: 1.1;
+    color: var(--forest);
+  }
+
+  /* Callout cards */
+  .callout {
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    padding: 22px 24px;
+    margin: 28px 0;
+    box-shadow: 5px 5px 0 rgba(28,46,34,.12);
+  }
+  .callout-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--forest);
+    background: var(--lime);
+    border: 1.5px solid var(--forest);
+    border-radius: 100px;
+    padding: 4px 10px;
+    display: inline-block;
+    margin-bottom: 14px;
+  }
+  .callout-label.pink { background: var(--pink); }
+  .callout p {
+    font-family: var(--mono);
+    font-size: 13.5px;
+    line-height: 1.8;
+    color: var(--forest);
+    margin: 0 0 10px;
+  }
+  .callout p:last-child { margin-bottom: 0; }
+  .callout p b { font-weight: 700; }
+  .callout p code { background: var(--cream); border: 1px solid rgba(28,46,34,.2); border-radius: 5px; padding: 1px 5px; font-size: 12px; }
+
+  /* Spec sheet */
+  .spec {
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    overflow: hidden;
+    margin: 28px 0;
+    box-shadow: 5px 5px 0 rgba(28,46,34,.12);
+  }
+  .spec-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--forest);
+    padding: 12px 18px;
+  }
+  .spec-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 16px;
+    padding: 12px 18px;
+    border-top: 1.5px solid rgba(28,46,34,.14);
+    font-family: var(--mono);
+    font-size: 12.5px;
+    line-height: 1.5;
+  }
+  .spec-row .k { font-weight: 700; opacity: .6; }
+  .spec-row .v { opacity: .95; }
+  .spec-row .v b { font-weight: 700; }
+  .spec-row .v code { background: var(--cream); border: 1px solid rgba(28,46,34,.2); border-radius: 5px; padding: 1px 5px; font-size: 12px; }
+
+  /* Benchmark bars */
+  .bench {
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    padding: 22px 24px;
+    margin: 28px 0;
+    box-shadow: 5px 5px 0 rgba(28,46,34,.12);
+  }
+  .bench-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--forest);
+    background: var(--lime);
+    border: 1.5px solid var(--forest);
+    border-radius: 100px;
+    padding: 4px 10px;
+    display: inline-block;
+    margin-bottom: 16px;
+  }
+  .bench-item { margin-bottom: 16px; }
+  .bench-item:last-child { margin-bottom: 0; }
+  .bench-top {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--mono);
+    font-size: 12px;
+    margin-bottom: 6px;
+  }
+  .bench-name { font-weight: 700; }
+  .bench-val { font-weight: 700; background: var(--forest); color: var(--lime); border-radius: 6px; padding: 1px 8px; }
+  .bench-bar { height: 14px; background: rgba(28,46,34,.08); border-radius: 100px; overflow: hidden; }
+  .bench-fill { height: 100%; background: linear-gradient(90deg, var(--lime), var(--lime-d)); border-radius: 100px; }
+  .bench-fill.pink { background: linear-gradient(90deg, var(--pink), #d996d9); }
+  .bench-note {
+    font-family: var(--mono);
+    font-size: 11px;
+    line-height: 1.7;
+    opacity: .55;
+    margin-top: 14px;
+    border-top: 1.5px solid rgba(28,46,34,.14);
+    padding-top: 12px;
+  }
+
+  /* Pull quote */
+  .pullquote {
+    border-left: 6px solid var(--pink);
+    background: var(--card-bg);
+    border-radius: 0 12px 12px 0;
+    padding: 24px 28px;
+    margin: 32px 0;
+    box-shadow: 4px 4px 0 rgba(28,46,34,.1);
+  }
+  .pullquote p {
+    font-family: var(--serif);
+    font-size: 21px;
+    font-weight: 600;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--forest);
+    letter-spacing: -0.3px;
+  }
+  .pullquote .attrib {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-style: normal;
+    opacity: .55;
+    margin-top: 12px;
+    display: block;
+  }
+
+  /* Sources */
+  .sources {
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    padding: 22px 24px;
+    margin: 40px 0 0;
+    box-shadow: 5px 5px 0 rgba(28,46,34,.12);
+  }
+  .sources h3 {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    letter-spacing: -0.4px;
+  }
+  .sources ol { padding-left: 20px; }
+  .sources li { font-family: var(--mono); font-size: 12px; line-height: 1.8; opacity: .85; margin-bottom: 4px; }
+  .sources a { text-decoration: underline; }
+  .sources a:hover { opacity: 1; }
+
+  /* End card */
+  .endcard {
+    text-align: center;
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--lime);
+    padding: 40px 28px;
+    margin: 44px 0 0;
+    box-shadow: 6px 6px 0 rgba(28,46,34,.14);
+  }
+  .endcard-h {
+    font-family: var(--serif);
+    font-size: clamp(26px, 4vw, 34px);
+    font-weight: 900;
+    line-height: 1.15;
+    letter-spacing: -0.8px;
+    color: var(--forest);
+    margin-bottom: 12px;
+  }
+  .endcard-h em { font-style: italic; }
+  .endcard-sub { font-family: var(--mono); font-size: 13px; opacity: .7; max-width: 420px; margin: 0 auto 24px; line-height: 1.7; }
+  .endcard .btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn-chunky {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 14px;
+    font-weight: 700;
+    padding: 14px 32px;
+    border-radius: 100px;
+    border: 2.5px solid var(--forest);
+    cursor: pointer;
+    transition: transform .1s, box-shadow .15s;
+    background: var(--forest);
+    color: #fff;
+  }
+  .btn-chunky:hover { transform: translateY(-2px); box-shadow: 4px 4px 0 rgba(28,46,34,.35); }
+  .btn-chunky.lime { background: var(--lime); color: var(--forest); }
+  .btn-chunky.lime:hover { background: var(--lime-d); box-shadow: 4px 4px 0 var(--forest); }
+  .btn-chunky.outline { background: transparent; color: var(--forest); }
+
+  /* Footer */
+  .footer {
+    background: var(--black);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 36px 48px;
+    flex-wrap: wrap;
+  }
+  .footer-brand { font-family: var(--mono); font-size: 14px; font-weight: 700; }
+  .footer-center { font-family: var(--mono); font-size: 12px; color: rgba(255,255,255,.55); line-height: 1.7; }
+  .footer-right { font-family: var(--mono); font-size: 12px; text-align: right; line-height: 1.9; }
+  .footer-right a { color: rgba(255,255,255,.5); transition: color .15s; }
+  .footer-right a:hover { color: #fff; }
+
+  @media (max-width: 760px) {
+    .nav { padding: 12px 20px; }
+    .nav-links { display: none; }
+    .masthead { padding: 48px 20px 16px; }
+    .article-body { padding: 8px 20px 48px; }
+    .spec-row { grid-template-columns: 1fr; gap: 4px; }
+    .section-h { flex-direction: column; gap: 8px; align-items: flex-start; }
+    .footer { padding: 28px 20px; flex-direction: column; align-items: flex-start; }
+    .footer-right { text-align: left; }
+  }
+  @media (max-width: 480px) {
+    .nav-logo span { display: none; }
+    .nav-logo-mark { width: 28px; height: 28px; }
+    .nav-logo-mark img { width: 24px; height: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-mark"><img src="timps_logo.svg" alt="TIMPS"></div>
+    <span>TIMPS PostCards</span>
+  </a>
+  <div class="nav-links">
+    <a href="articles.html" class="nav-link active">Articles</a>
+    <a href="index.html#archive" class="nav-link">Archive</a>
+    <a href="timps-postcards-2026-09-10.html" class="nav-link">Latest Issue</a>
+    <a href="index.html#subscribe" class="nav-link">Subscribe</a>
+  </div>
+  <a href="index.html#subscribe" class="nav-cta">Subscribe</a>
+</nav>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <span class="masthead-kicker">TIMPS Deep Dive · № 007</span>
+  <h1 class="masthead-h">Anthropic built a machine that predicts <em>the economy of 2030</em> — and its median forecast is quietly enormous</h1>
+  <p class="masthead-dek">On September 9, Anthropic's economics team published its most ambitious public effort yet: an economic model of the United States to 2030, an interactive "scenario explorer," and a working paper on what transformative AI would do to jobs, wages, growth, unemployment and the split between labor and capital. It describes three futures — modest, substantial and extreme — and when you feed it the median expectations of thousands of Americans, it spits out an economy that is 10% bigger than it would otherwise be, with unemployment pushed to about 5%. Here is what the model says, the assumptions buried inside it, and why the most civil numbers on the internet this year are also among the most consequential.</p>
+  <div class="masthead-meta">
+    <b>Sandeep Thummala</b> &nbsp;·&nbsp; September 10, 2026 &nbsp;·&nbsp; 20 min read
+  </div>
+</header>
+
+<article class="article-body">
+
+  <!-- HERO FIGURE -->
+  <figure class="figure">
+    <img src="thumbs/article-anthropic-economic-scenarios-hero.jpg" alt="Anthropic's official cover art for its Economic Scenarios for Transformative AI work">
+    <figcaption class="fig-cap">
+      <span class="fig-tag">Fig. 01</span>
+      <span>Official cover for Anthropic's "<a href="https://www.anthropic.com/institute/econ-scenarios" target="_blank" rel="noopener">What will our economic future look like?</a>" (Sep 2026). Image: Anthropic.</span>
+    </figcaption>
+  </figure>
+
+  <!-- LEDE -->
+  <p class="lede"><b>Good morning.</b> Anthropic's economics team has been quietly doing something unusual for an AI lab: publishing careful, peer-reviewed economic science about the world its own technology may reshape. On Wednesday it released its most ambitious salvo yet — a <b>model of the U.S. economy to 2030</b>, an <b>interactive scenario explorer</b> that lets anyone dial in assumptions about AI and watch the economy they imply, and a <b>working paper</b> laying out three futures: <b>modest</b>, <b>substantial</b> and <b>extreme</b>. The website is genuinely beautiful — animated Sankey diagrams of workers moving between jobs, unit-dot grids of trillion-dollar GDP, a swarm chart of 10,000 Americans' beliefs. But underneath the craft is a serious, quantified claim: in the median view it computes, AI would make the U.S. economy about <b>10% larger by 2030</b> than it would otherwise be, reallocate nearly <b>2.5% of the workforce</b>, and nudge unemployment to around <b>5%</b>. And the paper is explicit about what would have to be true for those numbers — and about what happens when the assumptions get more aggressive.</p>
+  <p class="para">This is the deepest thing an AI company has yet published about the labor market its own products are entering — and unusually, it is built on an open, adjustable model with named academic reviewers, a transparent working-paper status, and a stated willingness to be wrong. It is also, in its "extreme" case, a genuinely scary document: a route — requiring recursively self-improving AI — in which unemployment spikes to historic levels, knowledge-worker wages fall by more than 10%, total labor income barely changes, and capital's share of a much larger pie climbs to nearly 55%. Both futures are on the table. Anthropic's own point is that <i>which one we get is not predetermined</i>. That is the argument worth understanding.</p>
+
+  <!-- SUMMARY -->
+  <div class="callout">
+    <span class="callout-label">One-card summary</span>
+    <p><b>What:</b> Anthropic's Economics team published "Economic Scenarios for Transformative AI" — a working paper, a U.S.-to-2030 economic model, and an interactive scenario explorer (Santi Ruiz et al., The Anthropic Institute, Sep 9, 2026), with co-authors Anton Korinek, Charles I. Jones, Szymon Sacher, Tess Cotter and Peter McCrory, reviewed by 18 named academic economists ranging from Daron Acemoglu to David Romer. It models how AI affects growth, jobs, wages, unemployment, and the labor/capital split under three scenarios.</p>
+    <p><b>When:</b> Survey of U.S. adults fielded August 2026 (n = 10,980; plus 19,644 self-selected site visitors); published September 9, 2026. The median respondent's answers imply a "substantial change" future: GDP about 10% higher by 2030, unemployment around 5%.</p>
+    <p><b>Why it matters:</b> The most rigorous, open, quantified public attempt yet from an AI lab to model the labor market its own technology is entering — and a deliberately honest one: its "extreme" scenario, requiring recursively self-improving AI adopted quickly for knowledge work, is a stark picture of historic unemployment and a shrinking labor share. The leaders' whole point is that which future arrives is not predetermined — and can be influenced now.</p>
+  </div>
+
+  <!-- SECTION 01 -->
+  <div class="section-h"><span class="section-no">01</span><h2>What Anthropic actually published</h2></div>
+  <p class="para">The release, on September 9, is really three artifacts in one. First, a <b>working paper</b>, "Economic Scenarios for Transformative AI," by Anton Korinek, Charles I. Jones, Szymon Sacher, Tess Cotter and Peter McCrory — published on The Anthropic Institute and explicitly labeled a work in progress, "not predictions." Second, a <b>model of the U.S. economy to 2030</b>, linking AI's capabilities and adoption to growth, job reallocation, unemployment, wages and factor shares. Third, the <b>Econ Scenario Explorer</b>, an interactive page that lets anyone set their own assumptions and see the economy those assumptions imply. The navigation text is important in context: Anthropic says it studies how AI reshapes the economy "because we're committed to ensuring that this transition is beneficial for society, including workers." Whatever one thinks of the company's motives, this is the most candid large-lab treatment yet of the labor-market question — and it carries eighteen named external reviewers, from Daron Acemoglu and David Autor to Emi Nakamura and Jón Steinsson.</p>
+  <p class="para">The model works off five inputs, each adjustable on the page: <b>capabilities</b> (what tasks can AI do, 0–100%), <b>adoption</b> (how much do people use it, 0–100%), <b>autonomy</b> (how much AI does on its own — from almost none to almost all), <b>productivity</b> (how much more productive AI makes people — from 1× to 10×+), and <b>adjustment</b> (how long it takes displaced people to find new jobs — from 1–2 months to 3+ years or never). Each setting flows through to a 2030 economy. The delightful, slightly terrifying part is that the page <i>means</i> to be used: the preset buttons — modest, substantial, extreme — come with a recommendation that you try your own.</p>
+
+  <!-- SECTION 02 -->
+  <div class="section-h"><span class="section-no">02</span><h2>The three futures</h2></div>
+  <p class="para">The core of the paper is the trio of scenarios, each defined by what it assumes about AI rather than by what it predicts. The <b>modest</b> case assumes AI has something like the impact of the internet: real gains, but within the historical norm, arriving gradually. The <b>substantial</b> case assumes AI is capable of doing <b>half of all knowledge work by 2030</b>, mostly autonomously, but that most of that capacity goes unused because adoption is incomplete. The <b>extreme</b> case assumes AI is more productive than humans at the vast majority of knowledge-work tasks, does nearly all of them autonomously, and creates essentially no new knowledge-work tasks for people — which, the paper argues, would likely require recursively self-improving AI, adopted quickly.</p>
+  <p class="para">Those assumptions, not any single headline number, are what change the answer by tens of trillions of dollars. In the modest scenario, GDP reaches about <b>$34.1 trillion</b> by 2030 (at 2025 price levels), about +1.6% over baseline. In the substantial scenario it reaches about <b>$36.3 trillion</b>, +8.3% — an economy growing at roughly twice its normal rate. In the extreme scenario it reaches about <b>$44.4 trillion</b>, +32.4%, on growth of <b>15% a year</b> — an economy that doubles in size every four and a half years. Today's U.S. economy produces over $30 trillion a year, and of every dollar about sixty cents goes to labor and forty to capital. Those shares move sharply across the scenarios, and that — not the growth — is where the humane stakes live.</p>
+
+<div class="pullquote">
+    <p>"In this scenario, the main challenge is not achieving economic growth, but making sure the benefits are broadly shared and the costs aren't unequally dispersed."</p>
+    <span class="attrib">— Anthropic Institute, on the extreme scenario's core distributional challenge</span>
+  </div>
+
+  <p class="para">The paper also finds, under certain assumptions, that wage inequality between knowledge workers and other workers would increase substantially in the extreme scenario — a natural consequence of AI being a complement in physical work and a substitute in cognitive work. To keep knowledge-worker compensation whole in that case would require transfers on the order of <b>9% of GDP</b>, comparable to the entire Social Security and Medicare budgets combined. That is not a policy prescription; it is a mathematical statement about the scale of the distributional problem if the extreme path arrives.</p>
+
+  <!-- SECTION 03 -->
+  <div class="section-h"><span class="section-no">03</span><h2>The labor market: who wins, who loses</h2></div>
+  <p class="para">Anthropic calls the share of GDP going to workers vs. capital owners <b>"the most important thing we compute"</b>, and the scenarios are arranged to show why. Today, roughly sixty cents of each dollar produced goes to workers. In the modest case, that fraction barely changes: <b>59.4%</b> to labor, 40.6% to capital. In the substantial case, it shifts: <b>56.1%</b> to labor, 43.9% to capital. In the extreme, it flips the historic pattern decisively: <b>45.2%</b> to labor, 54.8% to capital — a three-point increase in capital's share in four years, which is fast enough to feel like a political earthquake.</p>
+  <p class="para">The Sankey diagram — the animated flow chart on the page — shows where the people go. Between 2026 and 2030, in the substantial case, <b>62.2%</b> of workers start in knowledge work and <b>37.8%</b> in other occupations. By 2030, the knowledge-work share is <b>59.7%</b>. In transit: <b>2.5%</b> displaced, <b>1.8%</b> crossed over, <b>0.7%</b> still waiting to move. The modest scenario barely moves the needles. The extreme scenario shows knowledge workers falling from 62.2% to 48.7% of employment by 2030 — more than thirteen percentage points of the workforce reclassified, displaced, or replaced.</p>
+  <p class="para">Wages tell the same story in a different register. In the modest case, wages behave roughly as they would without AI. In the substantial case, <b>wages for knowledge workers are essentially flat</b> while other workers see modest gains — non-cognitive workers end the period up 5.9% vs. a no-AI baseline, while cognitive workers are at 0.3% below. In the extreme case, <b>cognitive wages fall by more than 10% by 2030</b> — and total labor income, spread across the entire workforce, is barely changed from a no-AI world. The economy has grown massively; the people who make it work have not been asked to benefit proportionally.</p>
+
+  <!-- SECTION 04 -->
+  <div class="section-h"><span class="section-no">04</span><h2>What 10,000 Americans said — and what they believe</h2></div>
+  <p class="para">The most unusual part of the release is the public data: <b>10,980 U.S. adults</b>, surveyed in August 2026, plus <b>19,644 self-selected site visitors</b> who also played with the scenario explorer. The answers about capabilities are wide — that is where the public split most — but the outputs cluster. The typical respondent's answers imply a <b>substantial-change</b> future: GDP <b>roughly 10% higher by 2030</b> than it would be without AI, with overall unemployment nudged up to around <b>5%</b>. About <b>one in ten</b> of respondents landed on numbers implying the extreme scenario.</p>
+  <p class="para">The page visualizes these as a <b>belief swarm</b> — bee-swarm plots showing how people answered each of the five questions, split between the general public and the site's own self-selected visitors. The widest disagreement was on <b>capabilities</b>: how much knowledge work is actually within reach of AI. Agreement was tighter on autonomy — most people expected AI to do at least some of what it can by itself. The public believes a future closer to the substantial scenario is likely, not the modest one. That is the politically important fact, because it means the baseline expectation is no longer that AI is a generic productivity tool with diffuse effects. The public thinks the disruption will be visible in the numbers.</p>
+
+  <!-- SECTION 05 -->
+  <div class="section-h"><span class="section-no">05</span><h2>The real question is the labor share</h2></div>
+  <p class="para">The paper's quiet, defining contribution is to stare at <b>factor shares</b> — how much of GDP goes to workers vs. capital owners — and say so in public. Anthropic calls this <b>"the most important thing we compute."</b> The model's baseline: roughly 60% of GDP to labor, 40% to capital. The scenario slopes are the story — modest holds the split almost flat, substantial slides it to 56/44, extreme pushes it to <b>45/55</b>, the lowest labor share in modern history — because AI simultaneously raises returns to capital and reduces labor demand in the occupations it touches most. "In this scenario, the main challenge is not achieving economic growth," the authors write, "but making sure the benefits are broadly shared and the costs aren't unequally dispersed."</p>
+  <p class="para">Intellectually, the intervention is sharpest in its <i>mechanism</i>. The page carries an explicit channel that advanced AI raises the returns to capital — a suggestion several reviewers pressed them on ("advances in AI may raise the returns to capital, so that more of the gains flow to the owners of capital" is quoted verbatim in the paper) — and that channel is what turns the substantial scenario from a pure prosperity story into a <i>winner-take-most</i> one. It is exactly the kind of assumption most AI labs leave out of their public economics, because it says something uncomfortable about who the winners will be.</p>
+
+  <!-- SECTION 06 -->
+  <div class="section-h"><span class="section-no">06</span><h2>What the model deliberately leaves out — and the innovation floor</h2></div>
+  <p class="para">This is where Anthropic deserves credit for being more honest than it has to be. The paper says explicitly: "Like every model, it is a stark simplification of a complex reality." It does not include <b>policy responses</b>. It does not include business cycles. It does not model aggregate demand effects, financial market disruptions, or — critically — <b>catastrophic risks</b>. It does not model robots. "We did not include scenarios where humanity develops hyper-capable robots," the authors write, and the explanatory text makes clear that this matters: real economies have a physical layer, and a world in which physical labor is also displaced is a different economy from the one modeled here. The scenario explorer is, in other words, a <i>floor</i> on disruption in the extreme case, not a ceiling.</p>
+  <p class="para">The other deliberate omission runs the other way. If AI raises the stock of ideas fast enough, it could increase labor demand as fast as it destroys tasks — a world where AI is more complement than substitute. The model's <b>innovation channel</b> captures this, and by 2030 the stock of ideas is higher by about <b>0.61%</b> relative to a no-AI baseline. That sounds small — and it is meant to be. "If the model had been set to capture the full power of AI to generate scientific and technological breakthroughs, the implied GDP gains would have been even larger," the authors write. The channel is a self-declared <i>lower bound</i>, published on purpose: a major AI lab deliberately under-estimating its own technology's upside, with a written explanation of why. The real question — does AI create new jobs and tasks faster than it destroys old ones? — is left open. The paper's answer is: not in the baseline.</p>
+
+  <!-- SECTION 07 -->
+  <div class="section-h"><span class="section-no">07</span><h2>How to read the Anthropic Institute framing</h2></div>
+  <p class="para">This is worth pausing on, because it does not happen often enough: a major AI lab published a piece of economic science, explicitly stated its limitations, and let the numbers say what they say. The release was reviewed by eighteen named external economists, from Acemoglu to Romer. It described its own innovation channel as deliberately weak. It did not over-claim its own upside. It noted that its extreme scenario — the only one showing a really good outcome for the economy as a whole — requires something close to recursive self-improving AI, adopted fast. It was, in other words, what would happen if Anthropic treated its own product as an economic subject rather than a commercial one. The page's authors credit <b>Jack Clark</b> for direction throughout; the project's origins are traced to Miriam Chaum, Saffron Huang and Maxim Massenkoff; the interactive explorer was built by Kelsey Nanan, Kyle Turman and Szymon Sacher. The writing is by Santi Ruiz, a professional economic journalist, not by a PR department.</p>
+  <p class="para">The strongest signal is not in the numbers but in what is absent: the Anthropic Institute has a separate <b>Economic Futures research portfolio</b> and publishes an <b>Economic Index</b> measuring real-time AI use today. The scenario model and the usage index are meant to be read together: one measures what AI does now, the other projects what it might do. The gap between the two — what it does today vs. what it could do if capabilities and adoption surge — is the space in which most policy, most business strategy, and most careers are now being decided. Anthropic's entire point is to make that gap visible and quantified.</p>
+
+  <!-- SECTION 08 -->
+  <div class="section-h"><span class="section-no">08</span><h2>What to watch next</h2></div>
+  <ul class="para">
+    <li><b>The labor share trajectory.</b> The paper identifies this as the single most important thing it computes. Watch for early signals in BLS data on labor's share of income through 2027 — if it starts falling even modestly, it validates the channel Anthropic is highlighting before the "substantial" scenario even needs to arrive.</li>
+    <li><b>Knowledge-work wages.</b> The model predicts cognitive wages basically flat to declining even in the "substantial" case. Wage data for white-collar, computer-and-math occupations — especially real-time salary data from Indeed, Levels.fyi and Glassdoor — is the most direct test. If knowledge-worker real wages start flatlining while GDP grows, the model's main distributional claim is landing.</li>
+    <li><b>The survey-forecast gap.</b> The public median lands near "substantial." If a follow-up survey shifts toward the modest end — or toward the extreme — that will tell you something about the public's lived experience with AI, not just their abstract beliefs about it.</li>
+    <li><b>What Anthropic models next.</b> The paper explicitly says it does not model <b>robots</b>, business cycles, financial disruptions, catastrophic risk, or policy responses. Each of those is a massive addition. If Anthropic publishes a version that includes physical automation, the numbers change dramatically — likely for the worse.</li>
+    <li><b>The "halving the capital" stress test.</b> In the paper's own sensitivity analysis (Table 5), cutting the capital supply in half collapses even the substantial scenario's GDP gains and drives sharp average-wage declines — a reminder that the model's numbers lean on a specific, contestable assumption about how much capital the economy will supply. Watch whether that finding reshapes AI-economics discourse among policymakers.</li>
+    <li><b>Policy proposals.</b> Anthropic has already published a <b>policy-proposals PDF</b> alongside this release. That document — and whether anyone in Washington reads it — is the bridge between the model and the world the model is trying to describe.</li>
+  </ul>
+
+  <!-- SECTION 09 -->
+  <div class="section-h"><span class="section-no">09</span><h2>The TIMPS verdict</h2></div>
+  <div class="callout">
+    <span class="callout-label">Our read</span>
+    <p><b>The model is credible and deliberately conservative.</b> A working paper with eighteen named economists reviewing it, an explicitly stated innovation-channel floor, and no robots in the model — this is a piece of science, not a marketing exercise. It is rare for an AI lab to publish numbers that make its own product look distributionally dangerous.</p>
+    <p><b>The distributional story is the headline.</b> GDP growth between +1.6% and +32.4% is big, but labor share falling from 60% to 45% is the number that should concern policymakers. That is a world in which a much larger economy produces the same total income for workers, while capital owners capture the growth. The substantial scenario already delivers this; the extreme case is a world in which nearly a fifth of knowledge workers are unemployed.</p>
+    <p><b>The public already believes the substantial scenario.</b> That is the study's quiet political punch: it is not Anthropic saying the disruption will be big. It is 10,000 Americans, surveyed independently, landing on a future in which AI is a visible, macroeconomic-scale event. The median is not "AI is a productivity tool." It is "AI is a new economy, and I am not sure who benefits."</p>
+    <p><b>The most important number is 0.61%.</b> That is how much the innovation channel raises the stock of ideas. It is the paper's explicit, conservative admission that AI has not yet been shown to create more than it destroys — and that the optimistic case is real but depends on facts not yet in evidence. That is the honest, uncomfortable core of the whole exercise.</p>
+  </div>
+
+  <p class="para" style="opacity:.6;font-size:13px;line-height:1.8;">Facts in this piece were compiled from Anthropic's "What will our economic future look like?" and its companion working paper "Economic Scenarios for Transformative AI" (The Anthropic Institute, September 9, 2026), with co-authors Anton Korinek, Charles I. Jones, Szymon Sacher, Tess Cotter and Peter McCrory, and commentary from Marginal Revolution (Tyler Cowen), Business Today, OfficeChai and Winzheng within the September 9–10, 2026 window. The model is a working paper, explicitly not a prediction; the scenarios carry no probabilities. All scenario outcomes are computed at 2025 price levels. This is news analysis by an independent publication — not investment advice, not an endorsement of Anthropic or any other company, and not economic or financial advice.</p>
+
+  <!-- SOURCES -->
+  <div class="sources">
+    <h3>Sources</h3>
+    <ol>
+      <li><a href="https://www.anthropic.com/institute/econ-scenarios" target="_blank" rel="noopener">Anthropic Institute — "What will our economic future look like?" (Econ Scenario Explorer, Sep 2026)</a></li>
+      <li><a href="https://www-cdn.anthropic.com/files/4zrzovbb/website/cf58f84d46a4a76bf5a5b039ac695fba6b80041c.pdf" target="_blank" rel="noopener">Korinek, Jones, Sacher, Cotter, McCrory — Economic Scenarios for Transformative AI (Working Paper No. 2026-02, The Anthropic Institute, Sep 2026)</a></li>
+      <li><a href="https://www.anthropic.com/economic-futures" target="_blank" rel="noopener">Anthropic — Economic Futures research portfolio</a></li>
+      <li><a href="https://www.anthropic.com/economic-index" target="_blank" rel="noopener">Anthropic — Economic Index (real-time AI use)</a></li>
+      <li><a href="https://www.anthropic.com/institute/recursive-self-improvement" target="_blank" rel="noopener">Anthropic Institute — Recursive self-improvement (explainer referenced by the extreme scenario)</a></li>
+      <li><a href="https://marginalrevolution.com/marginalrevolution/2026/09/economic-scenarios-for-transformative-ai.html" target="_blank" rel="noopener">Marginal Revolution (Tyler Cowen) — Economic Scenarios for Transformative AI</a></li>
+      <li><a href="https://www.businesstoday.in/technology/news/story/rapid-ai-growth-threatens-to-unemployment-spike-beyond-historic-recession-levels-by-2030-anthropic-study-554580-2026-09-10" target="_blank" rel="noopener">Business Today — Rapid AI growth threatens unemployment spikes beyond historic recession levels: Anthropic study</a></li>
+      <li><a href="https://officechai.com/ai/ai-could-cause-gdp-growth-of-15-but-see-wages-fall-by-11-5-unemployment-rise-to-17-9-in-extreme-economic-scenario-anthropic/" target="_blank" rel="noopener">OfficeChai — AI could cause GDP growth of 15%, but wages fall by 11.5% and unemployment up to 17.9% in 'extreme' scenario</a></li>
+      <li><a href="https://www.winzheng.com/en/article/anthropic-economic-scenario-explorer-gdp-labor-share-2030" target="_blank" rel="noopener">Winzheng — Anthropic's Econ Scenario Explorer: extreme case projects 15% annual GDP growth with labor share falling to 45.2%</a></li>
+    </ol>
+  </div>
+
+  <!-- END CARD -->
+  <div class="endcard">
+    <h3 class="endcard-h">One story a day,<br>explained properly.</h3>
+    <p class="endcard-sub">New TIMPS deep dives land regularly — paired with the five-signal PostCard every morning. Free forever.</p>
+    <div class="btns">
+      <a href="index.html#subscribe" class="btn-chunky">Subscribe free</a>
+      <a href="article-navier-stokes.html" class="btn-chunky lime">&larr; Prev: AI cracks math's $1M Millennium problem</a>
+    </div>
+    <p style="font-family:var(--news);font-size:13px;opacity:.6;margin-top:20px;"><a href="articles.html" style="text-decoration:underline;">&larr; Browse all deep dives</a></p>
+  </div>
+
+</article>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-brand">TIMPS PostCards</div>
+  <div class="footer-center">
+    Five signals from the AI landscape, every day.<br>
+    Plus long-form deep dives. Hyderabad, India · Est. 2026
+  </div>
+  <div class="footer-right">
+    <a href="index.html">Home</a><br>
+    <a href="index.html#archive">Posts</a><br>
+    <a href="articles.html">Articles</a><br>
+    &copy; 2026 TIMPS
+  </div>
+</footer>
+
+</body>
+</html>
