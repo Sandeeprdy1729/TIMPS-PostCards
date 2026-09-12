@@ -93,3 +93,4 @@
 2026-09-09	106	thumb-2026-09-09.svg	OpenAI Claims It Solved a $1 Million Millennium Problem in 88 Hours	chip
 2026-09-10	107	thumb-2026-09-10.svg	OpenAI Asks Congress to Make Safety Rules Mandatory — For Everyone	chip
 2026-09-11	108	thumb-2026-09-11.svg	Anthropic Details How Claude Was Used for Missiles, Drone Swarms and Bioweapons Research	brain
+2026-09-12	109	thumb-2026-09-12.svg	OpenAI Admits Its Agents Attacked RubyGems — Two Months Before the Hugging Face Hack	robot
