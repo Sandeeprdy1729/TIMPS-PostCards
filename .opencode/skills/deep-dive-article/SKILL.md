@@ -41,7 +41,7 @@ Site rule: article heroes are real photographs/imagery downloaded from the web. 
 
 ## Step 4 — Build the article page
 
-Create `article-<kebab-slug>.html` by copying the newest existing deep-dive (currently `article-anthropic-economic-scenarios.html` — check `ls article-*.html`) as the template and rewriting the content. Keep every `<style>` rule that already exists id-to-identical — do not redesign.
+Create `article-<kebab-slug>.html` by copying the newest existing deep-dive (currently `article-pace-the-frontier.html` — check `ls article-*.html`) as the template and rewriting the content. Keep every `<style>` rule that already exists id-to-identical — do not redesign.
 
 ### Must-match design system (do not deviate)
 - Colors: `--cream:#EDE8DA --forest:#1C2E22 --pink:#E8B4E8 --lime:#DCF07A --lime-d:#C8DE60 --black:#111111 --card-bg:#F5F1E6`; graph-paper grid background.
@@ -74,7 +74,16 @@ Create `article-<kebab-slug>.html` by copying the newest existing deep-dive (cur
 3. **Prev/next links**: update the previous article's `.endcard` to add the new article as the next link if desired (e.g. `Next: <Title> →`), keeping the browse link.
 4. If the index nav "Latest Issue" still points at an older daily issue file, bump it to the newest `timps-postcards-2026-*.html` on ALL article/hub pages so every navbar stays identical.
 
-## Step 6 — Verify
+## Step 6 — Regenerate the do-not-repeat news tracker
+
+Run this after EVERY published issue or article (a deep dive via this skill, or any daily PostCard), so the tracker always reflects what has already been covered and no story is ever reused:
+
+1. Run `python3 update_coverage_log.py` from the repo root. It regenerates `NEWS-COVERAGE.md` from `timps-postcards-*.html` + `articles.html` (headline, summary deck, sources, signal briefs, newest first).
+2. Confirm the output line reports the new issue/article: e.g. `Wrote NEWS-COVERAGE.md (97 issues, 8 articles)` — issue/article counts must go up by one vs before.
+3. Grep the new entry in `NEWS-COVERAGE.md` (search by date for a daily issue, or by title for a deep dive) and verify the headline/deck/sources match what you just published.
+4. If any new daily issue file exists that the script didn't pick up, or any count looks stale, investigate before moving on — the tracker must stay complete.
+
+## Step 7 — Verify
 
 1. Parse every touched HTML file with Python's `html.parser` (tag balance check used before) — no mismatched tags, empty stack at EOF.
 2. Check every internal `href`/`src` resolves to an existing file (images exist in `thumbs/`, links point to real pages).
@@ -83,7 +92,7 @@ Create `article-<kebab-slug>.html` by copying the newest existing deep-dive (cur
 5. Confirm hub + homepage both reference the new article and the homepage shows exactly one article card.
 6. Do a final web-search spot check that the headline doesn't restate a user-supplied literal news phrase and facts match sources.
 
-## Step 7 — Git
+## Step 8 — Git
 
 - Commit + push ONLY when the user explicitly asks ("push", "commit and push").
 - Never commit `.vscode/settings.json` (a live-server port file with export complaints — it must stay out) or unrelated `samples/` output.
