@@ -6,11 +6,69 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 97 daily issues + 8 deep dives · regenerated 2026-09-13**
+**Coverage: 99 daily issues + 8 deep dives · regenerated 2026-09-15**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 112 · 2026-09-15 · `timps-postcards-2026-09-15.html`
+
+- **[01 · LEAD]** Trump Calls the World's Top Chip CEO Onstage to Declare AI Fears a 'Hoax'
+  - _Mid-interview at the All-In Summit, Jensen Huang answered the president on speakerphone in front of thousands — and Trump turned the call into a live defense of the AI buildout: data centers are "the oil of the next 20-25 years," the safety panic is a hoax, and the only ones smiling are in China._
+  - Source: [Full story · The Washington Post](https://www.washingtonpost.com/politics/2026/09/14/onstage-call-with-nvidia-ceo-trump-deems-ai-fears-hoax/)
+
+- **[02 · PRODUCTS]** Siri AI Finally Ships — as a Beta, English Only, and Not in the EU
+  - _Apple's long-delayed assistant overhaul arrives inside iOS 27, macOS 27 "Golden Gate" and three other platforms: personal-context search, onscreen awareness and cross-app actions — wearing a beta label, daily usage caps and a two-continent blackout._
+  - Source: [Full story · Apple Newsroom](https://www.apple.com/newsroom/2026/09/siri-ai-a-profoundly-more-capable-and-personal-assistant-is-here/)
+
+- **[03 · GEOPOLITICS]** Beijing Bristles at Amodei's Essay — 'Fearmongering,' Says Its Foreign Ministry
+  - _China's answer to "We Must Pace the Frontier" arrived on three fronts in two days: the Foreign Ministry called it fearmongering, the Commerce Ministry dismissed the distillation accusations as groundless, and the intelligence chief warned AI now threatens China's own political security._
+  - Source: [Full story · AP via The Star](https://www.thestar.com.my/tech/tech-news/2026/09/15/china-bristles-at-anthropic-ceos-039fearmongering039-about-its-ai-development)
+
+- **[04 · MARKETS]** Capital Swarms Nvidia's Moat: €200M for EUCLYD, $205M for Cornelis, $875M for Positron
+  - _In roughly 48 hours, three companies with three different routes around the Nvidia stack — a Dutch inference-silicon startup, an Intel-spun-out networking fabric and a no-HBM chipmaker — pulled in more than $1.3 billion of fresh money._
+  - Source: [Full story · CNBC](https://www.cnbc.com/2026/09/14/samsung-euclyd-ai-chip-funding.html)
+
+- **[05 · INFRASTRUCTURE]** The Grid's $110 Billion Question: Moody's Says US AI Needs 45 GW of New Power
+  - _America's data-center boom needs $110 billion of new generation through 2030 — more than 30 gigawatts of it natural gas — according to a new Moody's Ratings analysis, landing the same day Trump compared data centers to oil._
+  - Source: [Full story · Bloomberg](https://www.bloomberg.com/news/articles/2026-09-14/us-ai-boom-needs-110-billion-of-new-power-plants-moody-s-says)
+
+  **Signals / briefs:**
+  - The Onstage Veto
+  - The Assistant Finally Ships
+  - Beijing's Rebuttal
+  - Capital Swarms the Moat
+  - The Grid's $110B Question
+
+### Issue 111 · 2026-09-14 · `timps-postcards-2026-09-14.html`
+
+- **[01 · LEAD]** Anthropic, OpenAI and Google Have Been Quietly Building Their Own AI Police Since July
+  - _Months before Dario Amodei's public plea to "pace the frontier," his lab was already meeting privately with its two biggest rivals to design a shared testing-and-auditing body — a bet that Washington won't move first._
+  - Source: [Full story · The Information](https://www.theinformation.com/articles/inside-ai-industrys-behind-scenes-push-police)
+
+- **[02 · CORPORATE]** Nadella Joins the Pacing Camp, Opens Microsoft's AI Rulebook for Public Comment
+  - _Responding directly to Amodei's essay, Microsoft's CEO endorsed "deliberate pacing" and said the company will publish a Code of Conduct for its own MAI models today — the first time Microsoft has put its model-behavior standards into a public document._
+  - Source: [Full story · Unite.AI](https://www.unite.ai/nadella-announces-public-consultation-on-microsofts-mai-model-rules/)
+
+- **[03 · MARKETS]** Anthropic Tells Investors It Just Booked a Second Straight Profitable Quarter
+  - _Ahead of a Nasdaq listing that could value it near $2 trillion, Anthropic disclosed Q2 revenue of $11.5 billion — up 14-fold year over year — and gross margins above 80%, a rare profitability claim from a frontier lab still spending heavily on compute._
+  - Source: [Full story · Business Standard (FT)](https://www.business-standard.com/technology/tech-news/anthropic-expects-profit-this-quarter-ahead-of-potential-2-trillion-ipo-126091400290_1.html)
+
+- **[04 · POLITICS]** The Slowdown Pledge Just Met the Two Forces It Wasn't Built to Survive
+  - _Bloomberg's read on the pacing consensus: Anthropic and OpenAI now have to weigh their own braking calls against a tech industry, a financial market and a Trump administration that are all "likely to resist any substantial slowdown."_
+  - Source: [Full story · Bloomberg](https://www.bloomberg.com/news/articles/2026-09-14/ai-bosses-risk-clash-with-wall-street-and-trump-over-safety-call)
+
+- **[05 · RESEARCH]** A New Benchmark Says the Best Coding Agent Isn't the Cheapest One
+  - _Real-SWE, a fresh benchmark built on licensed private enterprise codebases, has Claude Fable 5.1 winning on resolution rate — and losing badly on cost per fix, next to Gemini 3.8 Flash and GPT-6 Astra._
+  - Source: [Full story · Specific Labs](https://withspecific.com/benchmarks/real-swe)
+
+  **Signals / briefs:**
+  - Three Rivals, One Rulebook
+  - Microsoft Opens Its Rulebook
+  - Anthropic's Second Profitable Quarter
+  - Wall Street and Trump Won't Wait
+  - Cheapest Fix Wins the Real World
 
 ### Issue 110 · 2026-09-13 · `timps-postcards-2026-09-13.html`
 
