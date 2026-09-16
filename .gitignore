@@ -29,3 +29,4 @@ new-style/*.md
 new-style/*.png
 
 /.claude
+.vercel
