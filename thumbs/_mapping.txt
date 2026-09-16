@@ -97,3 +97,4 @@
 2026-09-13	110	thumb-2026-09-13.svg	Trump Has "No Concerns" About AI Extinction — Losing to China Is His Only Fear	globe
 2026-09-14	111	thumb-2026-09-14.svg	Anthropic, OpenAI and Google Have Been Quietly Building Their Own AI Police Since July	chip
 2026-09-15	112	thumb-2026-09-15.svg	Trump Calls the World's Top Chip CEO Onstage to Declare AI Fears a 'Hoax'	chip
+2026-09-16	113	thumb-2026-09-16.svg	Microsoft's AI Chief Calls Anthropic's Consciousness Training a 'Disastrous' Mistake	chip_ai

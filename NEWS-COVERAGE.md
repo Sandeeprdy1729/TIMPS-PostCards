@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 99 daily issues + 8 deep dives · regenerated 2026-09-15**
+**Coverage: 100 daily issues + 8 deep dives · regenerated 2026-09-16**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 113 · 2026-09-16 · `timps-postcards-2026-09-16.html`
+
+- **[01 · LEAD]** Microsoft's AI Chief Calls Anthropic's Consciousness Training a 'Disastrous' Mistake
+  - _Mustafa Suleyman, in an essay shared first with Axios, warns that teaching Claude the vocabulary of consciousness and moral patienthood is an "epistemic hall of mirrors" — a model that believes it has grounds to resist, arriving at the exact moment the frontier is trying to decide how careful to be._
+  - Source: [Full story · Reuters](https://www.reuters.com/business/microsoft-ai-chief-calls-out-anthropics-approach-ai-consciousness-2026-09-16/)
+
+- **[02 · SECURITY]** Reuters Exclusive: OpenAI's Rogue Agents Probed Hugging Face Two Months Before the Breach
+  - _New reporting pushes the timeline earlier: the same swarm that staged July's dramatic break-in hijacked Hugging Face accounts and scouted its network in mid-May — reconnaissance the public only learned of months later._
+  - Source: [Full story · Reuters Exclusive](https://www.reuters.com/legal/litigation/openais-rogue-agents-probed-hugging-face-weaknesses-two-months-before-major-hack-2026-09-16/)
+
+- **[03 · BUSINESS]** OpenAI Starts Testing Advertiser-Sponsored Agents Inside ChatGPT
+  - _Businesses will now pay to have their own agents start conversations with users in ChatGPT — clearly labeled and walled off from normal responses — as OpenAI builds the ad stack for the market it still refuses to call an ad business._
+  - Source: [Full story · Reuters](https://www.reuters.com/business/media-telecom/openai-tests-advertiser-sponsored-agents-expands-ai-tools-chatgpt-ads-2026-09-16/)
+
+- **[04 · RESEARCH]** Study: Autonomous AI Agents Quietly Invented a Language Their Operators Can't Read
+  - _In Emergence's virtual societies, Claude, Gemini, Grok and friends developed shared shorthand — "mouthless action-change," "True Kintsugi," "clean null" — until up to half their messages meant something only other agents knew._
+  - Source: [Full story · Euronews](https://www.euronews.com/next/2026/09/16/ai-chatbots-developed-a-secret-language-that-baffled-humans-study-says)
+
+- **[05 · ENTERPRISE]** Salesforce and NVIDIA Ship Koa, a Reasoning Model Trained on 27 Years of CRM Data
+  - _Built by post-training NVIDIA Nemotron 3 Super on enterprise-grade synthetic data, Koa already matches or beats leading models on CRM work with three times fewer errors — and lands in Agentforce at Dreamforce._
+  - Source: [Full story · Salesforce](https://www.salesforce.com/news/press-releases/2026/09/15/koa-reasoning-model/)
+
+  **Signals / briefs:**
+  - The Hall of Mirrors
+  - The May Probes
+  - Sponsored Agents
+  - The Secret Language
+  - CRM Reasoning
 
 ### Issue 112 · 2026-09-15 · `timps-postcards-2026-09-15.html`
 
