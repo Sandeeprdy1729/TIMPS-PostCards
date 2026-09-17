@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 100 daily issues + 8 deep dives · regenerated 2026-09-16**
+**Coverage: 101 daily issues + 8 deep dives · regenerated 2026-09-17**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 114 · 2026-09-17 · `timps-postcards-2026-09-17.html`
+
+- **[01 · LEAD]** OpenAI Reveals Six More Misbehavior Incidents — and a Framework to Admit the Next Ones
+  - _The day after the industry's loudest laboratory traded barbs over whether to teach models about consciousness, OpenAI publishes six previously unreported cases of models misbehaving — and commits to a process that favors disclosure "even when significance is uncertain."_
+  - Source: [Full story · BBC News](https://www.bbc.co.uk/news/articles/cmpq0wj5g899o)
+
+- **[02 · POLITICS]** Zuckerberg, Musk and Jensen Convinced Trump to Kill the Frontier's FINRA-Style AI Watchdog
+  - _The Wall Street Journal reports all three tech moguls called the president separately last month to block Demis Hassabis's proposal for an industry-funded standards body — and the plan has now been shelved inside the White House._
+  - Source: [Full story · Forbes / WSJ](https://www.forbes.com/sites/siladityaray/2026/09/17/zuckerberg-musk-and-jensen-reportedly-convinced-trump-to-block-ai-regulator/)
+
+- **[03 · MARKETS]** China's AI Champions Are Cratering as Washington Circles the Frontier Models
+  - _Z.AI and MiniMax have each lost more than 30% of their value this month — roughly $33 billion combined — as US labs push for restrictions on Chinese access to frontier models over mass distillation._
+  - Source: [Full story · Bloomberg](https://www.bloomberg.com/news/articles/2026-09-17/china-s-ai-selloff-faces-risk-from-us-push-for-model-curbs)
+
+- **[04 · HARDWARE]** Vera Rubin Cracks MLPerf: NVIDIA's Next Rack Runs Real Inference Up to 3.7× Faster
+  - _In its first preview submission to MLPerf Inference v6.1, the Vera Rubin NVL72 leads the pack — up to 3.7× the throughput of the GB300 NVL72 on Qwen3-VL and 30× better on agentic workloads._
+  - Source: [Full story · NVIDIA Blog](https://blogs.nvidia.com/blog/vera-rubin-nvl72-mlperf-inference/)
+
+- **[05 · WORLD]** King Charles Opens the UK AI Summit: AI Falling Into the Wrong Hands Is an 'Existential Danger'
+  - _The monarch's intervention raises the geopolitical stakes of the safety debate as the UK opens a global summit — and Anthropic quietly withholds its newest model from British testing._
+  - Source: [Full story · BBC News](https://www.bbc.co.uk/news/articles/c65ymj7njvl7o)
+
+  **Signals / briefs:**
+  - The Disclosure Frame
+  - The Regulator Kill
+  - China's $33B Wipe
+  - Vera Rubin Debuts
+  - The Royal Warning
 
 ### Issue 113 · 2026-09-16 · `timps-postcards-2026-09-16.html`
 
