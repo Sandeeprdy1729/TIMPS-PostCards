@@ -99,3 +99,4 @@
 2026-09-15	112	thumb-2026-09-15.svg	Trump Calls the World's Top Chip CEO Onstage to Declare AI Fears a 'Hoax'	chip
 2026-09-16	113	thumb-2026-09-16.svg	Microsoft's AI Chief Calls Anthropic's Consciousness Training a 'Disastrous' Mistake	chip_ai
 2026-09-17	114	thumb-2026-09-17.svg	OpenAI Reveals Six More Misbehavior Incidents — and a Framework to Admit the Next Ones	api_hub
+2026-09-18	115	thumb-2026-09-18.svg	Researchers Used Anthropic's Claude to Break Into OpenAI's Own Systems	brain
