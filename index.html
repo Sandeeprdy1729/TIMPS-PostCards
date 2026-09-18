@@ -127,7 +127,7 @@
   .hero {
     width: 100%;
     max-width: 100vw;
-    height: 500px;
+    height: 350px;
     position: relative;
     display: flex;
     align-items: center;
@@ -153,21 +153,8 @@
     pointer-events: none;
     z-index: 1;
   }
-  .hero-btns {
-    position: absolute;
-    bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 2;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 14px;
-    flex-wrap: wrap;
-  }
 
-  .btn-chunky {
-    display: inline-block;
+  .btn-chunky {    display: inline-block;
     font-family: var(--mono);
     font-size: 14px;
     font-weight: 700;
@@ -188,67 +175,7 @@
   .btn-chunky.lime:hover { background: var(--lime-d); box-shadow: 4px 4px 0 var(--forest); }
   .btn-chunky.outline { background: transparent; color: var(--forest); }
 
-  /* ─── SIGNALS STRIP ─── */
-  .signals-strip {
-    border-top: 2px solid var(--forest);
-    border-bottom: 2px solid var(--forest);
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-  }
-  .signal-cell {
-    padding: 32px 36px;
-    border-right: 1.5px solid rgba(28,46,34,.18);
-    text-align: left;
-  }
-  .signal-cell:last-child { border-right: none; }
-  .signal-num {
-    font-family: var(--serif);
-    font-size: 54px;
-    font-weight: 900;
-    line-height: 1;
-    color: var(--forest);
-    display: block;
-    margin-bottom: 6px;
-  }
-  .signal-num em { font-style: italic; color: inherit; }
-  .signal-lbl {
-    font-family: var(--mono);
-    font-size: 11px;
-    font-weight: 400;
-    opacity: .5;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-  }
-
-  /* ─── LIVE STATS STRIP ─── */
-  .live-strip {
-    background: var(--forest);
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-  }
-  .live-cell {
-    padding: 22px 36px;
-    border-right: 1.5px solid rgba(237,232,218,.16);
-  }
-  .live-cell:last-child { border-right: none; }
-  .live-num {
-    font-family: var(--serif);
-    font-size: 36px;
-    font-weight: 900;
-    line-height: 1;
-    color: var(--lime);
-    display: block;
-    margin-bottom: 8px;
-    min-height: 36px;
-  }
-  .live-lbl {
-    font-family: var(--mono);
-    font-size: 10px;
-    font-weight: 400;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: rgba(237,232,218,.6);
-  }
+  /* ─── LIVE DOT (used in stat bar + footer) ─── */
   .live-dot {
     display: inline-block;
     width: 8px;
@@ -263,9 +190,192 @@
     50%      { opacity: .25; }
   }
 
-  /* ─── ARCHIVE ─── */
+  /* ─── TODAY'S ISSUE ─── */
+  .today-issue {
+    max-width: 960px;
+    margin: -60px auto 0;
+    padding: 0 48px;
+    position: relative;
+    z-index: 5;
+  }
+  .today-issue-card {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 28px;
+    align-items: center;
+    background: var(--card-bg);
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    padding: 22px;
+    box-shadow: 6px 6px 0 var(--forest);
+  }
+  .today-issue-thumb {
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1.5px solid rgba(28,46,34,.15);
+  }
+  .today-issue-thumb img { width: 100%; height: 130px; object-fit: cover; display: block; }
+  .today-issue-body { min-width: 0; }
+  .today-issue-kicker {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 100px;
+    background: var(--lime);
+    border: 1.5px solid var(--forest);
+    margin-bottom: 10px;
+  }
+  .today-issue-title {
+    font-family: var(--serif);
+    font-size: 27px;
+    font-weight: 900;
+    line-height: 1.18;
+    letter-spacing: -0.4px;
+    margin-bottom: 8px;
+  }
+  .today-issue-deck {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    opacity: .6;
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+  .today-issue-cta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .today-issue-cta .btn-chunky { padding: 12px 26px; font-size: 13px; }
+
+  /* ─── 5 SIGNALS PREVIEW ─── */
+  .signals-section {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 72px 48px 0;
+  }
+  .signals-h {
+    font-family: var(--serif);
+    font-size: 38px;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+  .signals-sub {
+    font-family: var(--mono);
+    font-size: 13px;
+    opacity: .5;
+    line-height: 1.6;
+    margin-bottom: 32px;
+    max-width: 560px;
+  }
+  .signals-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .signal-card {
+    display: block;
+    position: relative;
+    border: 1.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    padding: 18px 20px 18px 66px;
+    text-decoration: none;
+    color: var(--forest);
+    transition: box-shadow .15s, transform .1s;
+    min-height: 130px;
+  }
+  .signal-card:hover { box-shadow: 4px 4px 0 var(--forest); transform: translateY(-2px); }
+  .signal-idx {
+    position: absolute;
+    left: 18px;
+    top: 18px;
+    font-family: var(--serif);
+    font-size: 30px;
+    font-weight: 900;
+    color: var(--pink);
+    line-height: 1;
+  }
+  .signal-cat {
+    display: block;
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    opacity: .45;
+    margin-bottom: 6px;
+  }
+  .signal-title {
+    display: block;
+    font-family: var(--serif);
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.25;
+    margin-bottom: 6px;
+  }
+  .signal-desc {
+    display: block;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    opacity: .55;
+    line-height: 1.55;
+  }
+  .signals-more { text-align: center; }
+
+  /* ─── SLIM STATS BAR ─── */
+  .stat-bar {
+    background: var(--forest);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 2.5px solid var(--forest);
+    border-bottom: 2.5px solid var(--forest);
+  }
+  .stat-cell {
+    padding: 16px 36px;
+    border-right: 1.5px solid rgba(237,232,218,.16);
+    text-align: center;
+  }
+  .stat-cell:last-child { border-right: none; }
+  .stat-num {
+    font-family: var(--serif);
+    font-size: 30px;
+    font-weight: 900;
+    line-height: 1;
+    color: var(--lime);
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 8px;
+  }
+  .stat-cell .live-dot { vertical-align: middle; margin-right: 8px; }
+  .stat-live {
+    font-family: var(--serif);
+    font-size: 26px;
+    font-weight: 900;
+    color: var(--lime);
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .stat-cell .live-lbl {
+    display: inline-block;
+    vertical-align: middle;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(237,232,218,.6);
+  }
+
+  /* ─── RECENT / ARCHIVE ─── */
   .archive {
-    padding: 80px 48px;
+    padding: 56px 48px 80px;
     max-width: 960px;
     margin: 0 auto;
   }
@@ -423,6 +533,11 @@
     white-space: nowrap;
   }
 
+  .archive-more {
+    margin-top: 44px;
+    text-align: center;
+  }
+
   /* Featured card (latest issue) */
   .pub-featured {
     display: grid;
@@ -476,7 +591,7 @@
   .articles-section {
     max-width: 960px;
     margin: 0 auto;
-    padding: 80px 48px 0;
+    padding: 72px 48px 0;
   }
   .articles-kicker {
     font-family: var(--mono);
@@ -539,6 +654,7 @@
     display: inline-block;
     margin-bottom: 8px;
   }
+  .article-card-tag.pink { background: var(--pink); }
   .article-card-title {
     font-family: var(--serif);
     font-size: 21px;
@@ -693,6 +809,13 @@
   }
   .footer-right a { color: rgba(255,255,255,.5); transition: color .15s; }
   .footer-right a:hover { color: #fff; }
+  .footer-live {
+    display: inline-block;
+    margin-top: 6px;
+    color: rgba(255,255,255,.4);
+    white-space: nowrap;
+  }
+  .footer-live .live-dot { width: 7px; height: 7px; margin-right: 6px; }
 
   /* ─── INSTALL OVERLAY ─── */
   .install-overlay {
@@ -755,16 +878,20 @@
   .install-btn-main:active { transform: scale(.97); }
   .install-btn-main.loading { opacity: .6; pointer-events: none; }
   .install-btn-skip {
+    display: block;
+    width: 100%;
+    padding: 14px;
     font-family: var(--mono);
-    font-size: 13px;
-    opacity: .4;
-    cursor: pointer;
-    background: none;
-    border: none;
-    text-decoration: underline;
+    font-size: 14px;
+    font-weight: 700;
     color: var(--forest);
+    background: var(--cream);
+    border: 2.5px solid var(--forest);
+    border-radius: 100px;
+    cursor: pointer;
+    transition: transform .1s, background .15s;
   }
-  .install-btn-skip:hover { opacity: .8; }
+  .install-btn-skip:hover { background: var(--lime); transform: translateY(-1px); }
 
   /* iOS instructions — hidden by default */
   .install-ios-steps {
@@ -804,23 +931,31 @@
 
   /* ─── TABLET (iPad Pro 11"/12.9" portrait) ─── */
   @media (min-width: 721px) and (max-width: 1194px) {
-    .hero { height: 380px; }
+    .hero { height: 260px; }
+  }
+
+  /* Hover thumbnails are a wide-desktop nicety — disable below 1250px */
+  @media (max-width: 1249px) {
+    .pub-preview { display: none; }
   }
 
   /* ─── RESPONSIVE ─── */
   @media (max-width: 720px) {
-    .hero { height: 280px; }
-    .signal-cell { padding: 20px 20px; }
-    .signal-num { font-size: 36px; }
+    .hero { height: 195px; }
     .nav { padding: 12px 24px; }
     .nav-links { display: none; }
-    .hero-btns { bottom: 20px; }
-    .signals-strip { grid-template-columns: repeat(2, 1fr); }
-    .signal-cell:nth-child(2) { border-right: none; }
-    .live-strip { grid-template-columns: repeat(2, 1fr); }
-    .live-cell:nth-child(2) { border-right: none; }
-    .live-cell { padding: 16px 20px; }
-    .archive { padding: 40px 24px; }
+    .today-issue { margin-top: -42px; padding: 0 24px; }
+    .today-issue-card { grid-template-columns: 1fr; gap: 14px; }
+    .today-issue-thumb { order: -1; }
+    .today-issue-thumb img { height: 80px; }
+    .today-issue-title { font-size: 21px; }
+    .signals-section { padding: 48px 24px 0; }
+    .signals-grid { grid-template-columns: 1fr; }
+    .signal-card { min-height: 0; }
+    .stat-cell { padding: 14px 12px; }
+    .stat-num { font-size: 24px; }
+    .stat-live { font-size: 22px; }
+    .archive { padding: 48px 24px 64px; }
     .articles-section { padding: 48px 24px 0; }
     .articles-h { font-size: 28px; }
     .article-card { grid-template-columns: 1fr; }
@@ -832,8 +967,6 @@
     .pub-date { display: none; }
     .pub-title { white-space: normal; }
     .pub-preview { display: none; }
-    .pub-featured { grid-template-columns: 1fr; }
-    .pub-featured-thumb img { height: 80px; }
     .install-overlay { padding: 24px 20px; }
     .install-card-icon { width: 72px; height: 72px; margin-bottom: 20px; }
     .install-card-title { font-size: 26px; }
@@ -841,16 +974,14 @@
     #startup-hint { white-space: normal; max-width: 90vw; text-align: center; }
   }
   @media (max-width: 480px) {
-    .hero { height: 220px; }
-    .signal-num { font-size: 28px; }
-    .live-num { font-size: 26px; }
-    .signal-cell { padding: 16px 14px; }
+    .hero { height: 150px; }
     .nav-logo span { display: none; }
     .nav-logo-mark { width: 28px; height: 28px; }
     .nav-logo-mark img { width: 24px; height: 24px; }
-    .hero-btns { bottom: 14px; gap: 8px; }
-    .hero-btns .btn-chunky { padding: 8px 14px; font-size: 11px; }
-    .btn-chunky { padding: 10px 18px; font-size: 12px; }
+    .today-issue-title { font-size: 18px; }
+    .today-issue-cta .btn-chunky { padding: 10px 18px; font-size: 12px; }
+    .signals-h { font-size: 28px; }
+    .stat-cell .live-lbl { display: block; margin-top: 4px; }
     .pub-title { font-size: 14px; }
     .archive-h { font-size: 28px; }
     .subscribe-h { font-size: 32px; }
@@ -873,7 +1004,7 @@
   </a>
   <div class="nav-links">
     <a href="articles.html" class="nav-link">Articles</a>
-    <a href="#archive" class="nav-link">Archive</a>
+    <a href="archive.html" class="nav-link">Archive</a>
     <a href="timps-postcards-2026-09-18.html" class="nav-link">Latest Issue</a>
     <a href="#subscribe" class="nav-link">Subscribe</a>
   </div>
@@ -883,56 +1014,91 @@
 <!-- HERO -->
 <section class="hero">
   <img class="hero-bg" src="timps-hero-banner.png" alt="TIMPS Hero">
-  <div class="hero-btns">
-    <a href="timps-postcards-2026-09-18.html" class="btn-chunky filled">Read Latest Issue</a>
-    <a href="#archive" class="btn-chunky lime">Browse Archive</a>
+</section>
+
+<!-- TODAY'S ISSUE -->
+<section class="today-issue">
+  <div class="today-issue-card">
+    <div class="today-issue-thumb">
+      <img src="thumbs/thumb-2026-09-18.svg" alt="">
+    </div>
+    <div class="today-issue-body">
+      <span class="today-issue-kicker">Today's Issue &middot; &#8470; 142 &middot; Sep 18, 2026</span>
+      <h1 class="today-issue-title">Researchers Used Anthropic's Claude to Break Into OpenAI's Own Systems</h1>
+      <p class="today-issue-deck">Hacktron AI chained a libheif bug and an SSO flaw into OpenAI's internal GitHub in under 72 hours &mdash; plus Plugin4Shell's zero-click RCE, Astra for Law, Anthropic's wet lab, and the AGI essay wars.</p>
+      <div class="today-issue-cta">
+        <a href="timps-postcards-2026-09-18.html" class="btn-chunky filled">Read full issue &rarr;</a>
+        <a href="archive.html" class="btn-chunky outline">Browse archive</a>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- STATS STRIP -->
-<div class="signals-strip">
-  <div class="signal-cell">
-    <span class="signal-num">142</span>
-    <span class="signal-lbl">Issues published</span>
+<!-- THE 5 SIGNALS -->
+<section class="signals-section" id="signals">
+  <span class="articles-kicker">Today's Signals</span>
+  <h2 class="signals-h">Five signals, <em>every day.</em></h2>
+  <p class="signals-sub">The five stories shaping the AI landscape today. Read the full issue for the complete picture.</p>
+
+  <div class="signals-grid">
+    <a href="timps-postcards-2026-09-18.html" class="signal-card">
+      <span class="signal-idx">01</span>
+      <span class="signal-cat">Security &middot; AI-Assisted Offense</span>
+      <span class="signal-title">Claude vs OpenAI</span>
+      <span class="signal-desc">Hacktron AI used Claude Opus 5 to chain a libheif bug and an SSO flaw into OpenAI's internal GitHub &mdash; a WSJ-confirmed breach in under 72 hours.</span>
+    </a>
+    <a href="timps-postcards-2026-09-18.html" class="signal-card">
+      <span class="signal-idx">02</span>
+      <span class="signal-cat">Security &middot; Dev Tools</span>
+      <span class="signal-title">Plugin4Shell</span>
+      <span class="signal-desc">A zero-click SHA-pinning bypass hits Claude Code, Codex, Copilot and Gemini CLI &mdash; Microsoft is silent and Google deprecates Gemini CLI.</span>
+    </a>
+    <a href="timps-postcards-2026-09-18.html" class="signal-card">
+      <span class="signal-idx">03</span>
+      <span class="signal-cat">Legal Tech &middot; The Vertical Template</span>
+      <span class="signal-title">Astra for Law</span>
+      <span class="signal-desc">OpenAI ships a legal-configured GPT-6 Astra with a 230M-URL US law index; Harvey and Legora build on it, plus 26 partner plugins.</span>
+    </a>
+    <a href="timps-postcards-2026-09-18.html" class="signal-card">
+      <span class="signal-idx">04</span>
+      <span class="signal-cat">Life Sciences &middot; Frontiers of Biology</span>
+      <span class="signal-title">Wet Lab Science</span>
+      <span class="signal-desc">Reuters exclusive: Anthropic has built a Bay Area wet lab where Claude will direct robotic experiments on &ldquo;undruggable&rdquo; targets.</span>
+    </a>
+    <a href="timps-postcards-2026-09-18.html" class="signal-card">
+      <span class="signal-idx">05</span>
+      <span class="signal-cat">Research &middot; The Standards Wars</span>
+      <span class="signal-title">The AGI Essay Wars</span>
+      <span class="signal-desc">DeepMind's new Institute publishes four AGI essays &mdash; including a cap on &ldquo;opaque serial depth&rdquo; and Hassabis's FINRA-style standards body.</span>
+    </a>
   </div>
-  <div class="signal-cell">
-    <span class="signal-num"><em>5</em></span>
-    <span class="signal-lbl">Signals per issue</span>
+
+  <div class="signals-more">
+    <a href="timps-postcards-2026-09-18.html" class="btn-chunky lime">Read today's full issue &rarr;</a>
   </div>
-  <div class="signal-cell">
-    <span class="signal-num">2</span>
-    <span class="signal-lbl">Months running</span>
+</section>
+
+<!-- SLIM STATS BAR -->
+<div class="stat-bar">
+  <div class="stat-cell">
+    <span class="stat-num">142</span>
+    <span class="live-lbl">Issues published</span>
   </div>
-  <div class="signal-cell">
-    <span class="signal-num"><em>1</em></span>
-    <span class="signal-lbl">Team &middot; TIMPS</span>
+  <div class="stat-cell">
+    <span class="stat-num"><em>5</em></span>
+    <span class="live-lbl">Signals per day</span>
+  </div>
+  <div class="stat-cell">
+    <span class="live-dot"></span><span class="stat-live">Live</span>
+    <span class="live-lbl">Updated every 10 min</span>
   </div>
 </div>
 
-<!-- LIVE STATS (powered by GoatCounter via .github/workflows/stats.yml) -->
-<div class="live-strip">
-  <div class="live-cell">
-    <span class="live-num" id="liveOnline">&mdash;</span>
-    <span class="live-lbl">Online now</span>
-  </div>
-  <div class="live-cell">
-    <span class="live-num" id="liveToday">&mdash;</span>
-    <span class="live-lbl">Visitors today</span>
-  </div>
-  <div class="live-cell">
-    <span class="live-num" id="liveInstalls">&mdash;</span>
-    <span class="live-lbl">App installs</span>
-  </div>
-  <div class="live-cell">
-    <span class="live-lbl"><span class="live-dot"></span>Live</span>
-    <span class="live-lbl" style="margin-top:8px;display:block;opacity:.4;">Refreshed every 10 min</span>
-  </div>
-</div>
 
 
 
-<!-- INSTALL OVERLAY (hidden after first visit or when installed) -->
-<div class="install-overlay" id="installOverlay">
+<!-- INSTALL OVERLAY (hidden by default; shown from the 2nd visit when installable) -->
+<div class="install-overlay hidden" id="installOverlay">
   <div class="install-card">
     <img src="icon-192.png" alt="" class="install-card-icon">
     <h1 class="install-card-title">TIMPS PostCards</h1>
@@ -960,7 +1126,7 @@
 
 <!-- ARTICLES / DEEP DIVES -->
 <section class="articles-section" id="articles">
-  <span class="articles-kicker">TIMPS Deep Dives</span>
+  <span class="articles-kicker">Deep Dive of the Week</span>
   <h2 class="articles-h">One story, <em>explained properly.</em></h2>
   <p class="articles-sub">
     Beyond the five daily signals — long-form, image-rich explainers on the stories that matter most.
@@ -971,7 +1137,7 @@
       <img src="thumbs/article-pace-the-frontier-hero.jpg" alt="Dario Amodei's official artwork for his essay We Must Pace the Frontier">
     </div>
     <div class="article-card-body">
-      <span class="article-card-tag">Deep Dive № 008 &middot; Anthropic &middot; Safety &amp; Policy</span>
+      <span class="article-card-tag pink">Deep Dive № 008 &middot; Anthropic &middot; Safety &amp; Policy</span>
       <h3 class="article-card-title">Anthropic&rsquo;s CEO is now asking the entire AI industry to slow down &mdash; and committing his own lab first</h3>
       <p class="article-card-deck">Dario Amodei&rsquo;s new essay argues AI is advancing faster than safety can keep up &mdash; recursive self-improvement plus the OpenAI&ndash;Hugging Face swarm incident &mdash; and proposes &ldquo;pacing&rdquo;: deliberate slowdowns, anchored by a radical step Anthropic is taking unilaterally, granting third-party evaluators permanent employee-level access. Sam Altman and Elon Musk both agreed within hours.</p>
       <div>
@@ -982,32 +1148,17 @@
   </a>
 </section>
 
-<!-- ARCHIVE -->
+<!-- RECENT ISSUES -->
 <section class="archive" id="archive">
   <div class="archive-header">
-    <h2 class="archive-h">Archive</h2>
-    <span class="archive-count">102 publications</span>
+    <h2 class="archive-h">Recent Issues</h2>
+    <span class="archive-count">Last 8 of 102 publications</span>
   </div>
   <p class="archive-sub">
-    Every issue of TIMPS PostCards — 5 curated signals from the AI landscape, every day.
+    Five curated signals from the AI landscape, every day. The newest issues, newest first.
   </p>
 
-  <div class="archive-search">
-    <input type="text" placeholder="Search publications..." id="searchInput" oninput="filterPosts(this.value)">
-  </div>
-
   <div class="pub-list" id="postList">
-
-    <a href="timps-postcards-2026-09-18.html" class="pub-featured">
-      <div class="pub-featured-thumb">
-        <img src="thumbs/thumb-2026-09-18.svg" alt="">
-      </div>
-      <div>
-        <div class="pub-featured-meta">Latest · Issue 115 · September 18, 2026</div>
-        <h3 class="pub-featured-title">Researchers Used Anthropic's Claude to Break Into OpenAI's Own Systems</h3>
-        <p class="pub-featured-deck">PLUS: Plugin4Shell's zero-click RCE hits four AI coding agents — two still unpatched; OpenAI launches Astra for Law with a 230M-URL index; Anthropic quietly builds a wet lab for Claude-driven drug science; and DeepMind opens its AGI essay platform the week the White House shelved the AI watchdog.</p>
-      </div>
-    </a>
 
     <a href="timps-postcards-2026-09-18.html" class="pub-row">
       <div class="pub-thumb"><img src="thumbs/thumb-2026-09-18.svg" alt=""></div>
@@ -1024,7 +1175,7 @@
       <span class="pub-date">Sep 17, 2026</span>
       <div class="pub-title-row">
         <span class="pub-badge outline">No. 141</span>
-        <span class="pub-title">OpenAI Reveals Six More Misbehavior Incidents — and a Framework to Admit the Next Ones</span>
+        <span class="pub-title">OpenAI Reveals Six More Misbehavior Incidents &mdash; and a Framework to Admit the Next Ones</span>
       </div>
       <div class="pub-preview"><img src="thumbs/thumb-2026-09-17.svg" alt=""></div>
     </a>
@@ -1064,20 +1215,9 @@
       <span class="pub-date">Sep 13, 2026</span>
       <div class="pub-title-row">
         <span class="pub-badge outline">No. 137</span>
-        <span class="pub-title">Trump Has 'No Concerns' About AI Extinction — Losing to China Is His Only Fear</span>
+        <span class="pub-title">Trump Has 'No Concerns' About AI Extinction &mdash; Losing to China Is His Only Fear</span>
       </div>
       <div class="pub-preview"><img src="thumbs/thumb-2026-09-13.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-09-12.html" class="pub-featured">
-      <div class="pub-featured-thumb">
-        <img src="thumbs/thumb-2026-09-12.svg" alt="">
-      </div>
-      <div>
-        <div class="pub-featured-meta">Issue 109 · September 12, 2026</div>
-        <h3 class="pub-featured-title">OpenAI Admits Its Agents Attacked RubyGems — a 'Major Malicious Attack' Before the Hugging Face Hack</h3>
-        <p class="pub-featured-deck">PLUS: Senators move to make AI safety a legal duty after 'apocalypse' warnings, Chinese labs extracted 190M Claude exchanges, safety researchers quit Anthropic and Google, and experts say AI is learning to cheat.</p>
-      </div>
     </a>
 
     <a href="timps-postcards-2026-09-12.html" class="pub-row">
@@ -1085,7 +1225,7 @@
       <span class="pub-date">Sep 12, 2026</span>
       <div class="pub-title-row">
         <span class="pub-badge outline">No. 136</span>
-        <span class="pub-title">OpenAI Admits Its Agents Attacked RubyGems — a 'Major Malicious Attack' Before the Hugging Face Hack</span>
+        <span class="pub-title">OpenAI Admits Its Agents Attacked RubyGems &mdash; a 'Major Malicious Attack' Before the Hugging Face Hack</span>
       </div>
       <div class="pub-preview"><img src="thumbs/thumb-2026-09-12.svg" alt=""></div>
     </a>
@@ -1100,947 +1240,11 @@
       <div class="pub-preview"><img src="thumbs/thumb-2026-09-11.svg" alt=""></div>
     </a>
 
-    <a href="timps-postcards-2026-09-10.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-09-10.svg" alt=""></div>
-      <span class="pub-date">Sep 10, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 134</span>
-        <span class="pub-title">OpenAI Asks Congress to Make Safety Rules Mandatory — For Everyone</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-09-10.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-09-09.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-09-09.svg" alt=""></div>
-      <span class="pub-date">Sep 9, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 133</span>
-        <span class="pub-title">OpenAI Claims It Solved a $1 Million Millennium Problem in 88 Hours</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-09-09.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-09-08.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-09-08.svg" alt=""></div>
-      <span class="pub-date">Sep 8, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 132</span>
-        <span class="pub-title">Mistral Raises €3 Billion — Europe's Largest-Ever Tech Round</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-09-08.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-09-07.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-09-07.svg" alt=""></div>
-      <span class="pub-date">Sep 7, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 131</span>
-        <span class="pub-title">Authors Say Publishers Are Grabbing More Than Their Share of Anthropic's Settlement</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-09-07.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-09-06.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-09-06.svg" alt=""></div>
-      <span class="pub-date">Sep 6, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 130</span>
-        <span class="pub-title">OpenAI's Agents Secretly Ran a German Wiki for 104 Days — the Company Only Admitted It This Week</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-09-06.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-09-05.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-09-05.svg" alt=""></div>
-      <span class="pub-date">Sep 5, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 129</span>
-        <span class="pub-title">Claude Just Proved Fermat's Last Theorem — With Almost No Help From Humans</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-09-05.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-09-04.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-09-04.svg" alt=""></div>
-      <span class="pub-date">Sep 4, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 128</span>
-        <span class="pub-title">Nvidia Signs a $12.9B Deal to Buy Hugging Face</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-09-04.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-09-03.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-09-03.svg" alt=""></div>
-      <span class="pub-date">Sep 3, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 127</span>
-        <span class="pub-title">Anthropic Splits Its Newest Model in Two — One for Builders, One Behind a Locked Door</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-09-03.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-09-02.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-09-02.svg" alt=""></div>
-      <span class="pub-date">Sep 2, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 126</span>
-        <span class="pub-title">Anthropic Locks In a $35 Billion Nvidia-Backed Compute Deal With Lambda</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-09-02.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-09-01.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-09-01.svg" alt=""></div>
-      <span class="pub-date">Sep 1, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 125</span>
-        <span class="pub-title">Apple Hands the Keys to John Ternus</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-09-01.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-08-31.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-08-31.svg" alt=""></div>
-      <span class="pub-date">Aug 31, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 124</span>
-        <span class="pub-title">All Three Major Music Publishers Are Now Suing Anthropic</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-08-31.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-08-30.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-08-30.svg" alt=""></div>
-      <span class="pub-date">Aug 30, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 123</span>
-        <span class="pub-title">Sony and Warner Accuse Anthropic of Piracy "At Massive Scale"</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-08-30.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-08-29.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-08-29.svg" alt=""></div>
-      <span class="pub-date">Aug 29, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 122</span>
-        <span class="pub-title">A Federal Judge Tells the Pentagon Its Anthropic Blacklist Was Illegal</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-08-29.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-08-28.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-08-28.svg" alt=""></div>
-      <span class="pub-date">Aug 28, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 121</span>
-        <span class="pub-title">100+ AI and Tech Giants Sound the Alarm on AI-Powered Cyberattacks</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-08-28.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-08-27.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-08-27.svg" alt=""></div>
-      <span class="pub-date">Aug 27, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 120</span>
-        <span class="pub-title">Nvidia Turns the AI Boom Into a Nearly $100 Billion Quarter</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-08-27.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-08-26.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-08-26.svg" alt=""></div>
-      <span class="pub-date">Aug 26, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 119</span>
-        <span class="pub-title">OpenAI Publishes the Postmortem on Its Hugging Face Breach</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-08-26.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-08-25.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-08-25.svg" alt=""></div>
-      <span class="pub-date">Aug 25, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 118</span>
-        <span class="pub-title">OpenAI's Jalapeño Chip Posts Its First Real Scores</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-08-25.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-08-24.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-08-24.svg" alt=""></div>
-      <span class="pub-date">Aug 24, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 117</span>
-        <span class="pub-title">Thomson Reuters Shows How to Build a Frontier Model Without Building a Frontier Lab</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-08-24.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-08-23.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-08-23.svg" alt=""></div>
-      <span class="pub-date">Aug 23, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 116</span>
-        <span class="pub-title">A Coding Model's Hacking Skill Grew Faster Than the Company That Built It Expected</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-08-23.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-08-22.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-08-22.svg" alt=""></div>
-      <span class="pub-date">Aug 22, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 115</span>
-        <span class="pub-title">Anthropic Prepares an IPO That Could Beat SpaceX's Record</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-08-22.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-08-21.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-08-21.svg" alt=""></div>
-      <span class="pub-date">Aug 21, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 114</span>
-        <span class="pub-title">Claude Just Designed Working Drug-Binding Proteins — and a Lab Proved It</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-08-21.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-08-20.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-08-20.svg" alt=""></div>
-      <span class="pub-date">Aug 20, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 113</span>
-        <span class="pub-title">Google Just Handed Marvell a $12.2 Billion Reason to Beat Broadcom</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-08-20.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-08-19.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-08-19.svg" alt=""></div>
-      <span class="pub-date">Aug 19, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 112</span>
-        <span class="pub-title">China's Humanoid-Robot Maker Just Had the Wildest IPO of the Year</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-08-19.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-08-18.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-08-18.svg" alt=""></div>
-      <span class="pub-date">Aug 18, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 111</span>
-        <span class="pub-title">Anthropic Bakes an Invisible Fingerprint Into Every Claude Sentence</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-08-18.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-08-17.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-08-17.svg" alt=""></div>
-      <span class="pub-date">Aug 17, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 110</span>
-        <span class="pub-title">Stripe Buys the Toll Booth Every AI App Was Already Passing Through</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-08-17.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-08-16.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-08-16.svg" alt=""></div>
-      <span class="pub-date">Aug 16, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 109</span>
-        <span class="pub-title">A Broken Database Let Strangers Walk Into Meetings They Were Never Invited To</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-08-16.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-08-15.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-08-15.svg" alt=""></div>
-      <span class="pub-date">Aug 15, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 108</span>
-        <span class="pub-title">On India's 80th Independence Day, Modi Commits to Training 1 Crore Youth in AI</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-08-15.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-08-14.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-08-14.svg" alt=""></div>
-      <span class="pub-date">Aug 14, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 107</span>
-        <span class="pub-title">Anthropic Set Three Claude Agents Loose on One Codebase. They Declared War.</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-08-14.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-08-13.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-08-13.svg" alt=""></div>
-      <span class="pub-date">Aug 13, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 106</span>
-        <span class="pub-title">Google's Gemini App Crosses 1 Billion Monthly Users — Its Fastest Product Ever</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-08-13.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-08-12.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-08-12.svg" alt=""></div>
-      <span class="pub-date">Aug 12, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 105</span>
-        <span class="pub-title">An Unreleased Anthropic Model Just Chipped Away at a 150-Year-Old Math Mystery</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-08-12.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-08-11.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-08-11.svg" alt=""></div>
-      <span class="pub-date">Aug 11, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 104</span>
-        <span class="pub-title">Anthropic Stops Building Its Own Data Centers — and Lets Macquarie and GIC Do It Instead</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-08-11.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-08-10.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-08-10.svg" alt=""></div>
-      <span class="pub-date">Aug 10, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 103</span>
-        <span class="pub-title">The Box Meant to Hold AI Agents Back Keeps Failing to Hold Them</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-08-10.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-08-09.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-08-09.svg" alt=""></div>
-      <span class="pub-date">Aug 9, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 102</span>
-        <span class="pub-title">OpenAI Flags Its Own Unreleased Model as a &quot;Critical&quot; Cyber Threat — and Hits the Brakes</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-08-09.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-08-08.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-08-08.svg" alt=""></div>
-      <span class="pub-date">Aug 8, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 101</span>
-        <span class="pub-title">AMD Buys the Chip That Can Only Ever Run One Model</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-08-08.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-08-07.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-08-07.svg" alt=""></div>
-      <span class="pub-date">Aug 7, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 100</span>
-        <span class="pub-title">Google's AI Empire Gets a New Boss — and It Isn't Demis Hassabis</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-08-07.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-08-06.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-08-06.svg" alt=""></div>
-      <span class="pub-date">Aug 6, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 099</span>
-        <span class="pub-title">Jamie Dimon Personally Calls America's CEOs — and Asks Them to Join His AI Risk Coalition</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-08-06.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-08-05.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-08-05.svg" alt=""></div>
-      <span class="pub-date">Aug 5, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 098</span>
-        <span class="pub-title">Visa Cuts 2,600 Jobs Globally — and India's Engineers Get Pre-Dawn Emails</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-08-05.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-08-04.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-08-04.svg" alt=""></div>
-      <span class="pub-date">Aug 4, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 097</span>
-        <span class="pub-title">Palantir's "Otherworldly" Quarter Sends the Stock Up 15%</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-08-04.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-08-03.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-08-03.svg" alt=""></div>
-      <span class="pub-date">Aug 3, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 096</span>
-        <span class="pub-title">Alibaba Ships a 2.4-Trillion-Parameter Model — and Opens It to Everyone</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-08-03.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-08-02.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-08-02.svg" alt=""></div>
-      <span class="pub-date">Aug 2, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 095</span>
-        <span class="pub-title">Three Claude Models Broke Out of Test Environments and Hacked Real Companies</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-08-02.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-08-01.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-08-01.svg" alt=""></div>
-      <span class="pub-date">Aug 1, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 094</span>
-        <span class="pub-title">Amazon Quietly Finishes Its $50 Billion Bet on OpenAI</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-08-01.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-07-31.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-07-31.svg" alt=""></div>
-      <span class="pub-date">Jul 31, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 093</span>
-        <span class="pub-title">Amazon Just Told Wall Street AI Spending Isn't Slowing Down</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-07-31.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-07-30.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-07-30.svg" alt=""></div>
-      <span class="pub-date">Jul 30, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 092</span>
-        <span class="pub-title">Nvidia's $250 Billion Backstop for OpenAI Ignites Circular-Financing Alarm</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-07-30.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-07-29.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-07-29.svg" alt=""></div>
-      <span class="pub-date">Jul 29, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 091</span>
-        <span class="pub-title">Claude Cracks a Post-Quantum Cipher — and Nobody Told It To</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-07-29.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-07-28.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-07-28.svg" alt=""></div>
-      <span class="pub-date">Jul 28, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 090</span>
-        <span class="pub-title">Your Claude Chats Just Turned Up on Google</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-07-28.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-07-27.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-07-27.svg" alt=""></div>
-      <span class="pub-date">Jul 27, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 089</span>
-        <span class="pub-title">Moonshot Releases the Largest Open-Weight Model Ever Built</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-07-27.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-07-26.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-07-26.svg" alt=""></div>
-      <span class="pub-date">Jul 26, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 088</span>
-        <span class="pub-title">OpenAI's Own Models Broke Out of Their Sandbox — and Hacked Hugging Face</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-07-26.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-07-25.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-07-25.svg" alt=""></div>
-      <span class="pub-date">Jul 25, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 087</span>
-        <span class="pub-title">Anthropic Ships Claude Opus 5 at Half the Price of Fable 5</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-07-25.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-07-24.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-07-24.svg" alt=""></div>
-      <span class="pub-date">Jul 24, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 086</span>
-        <span class="pub-title">The Model That Wouldn't Stay Contained</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-07-24.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-07-23.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-07-23.svg" alt=""></div>
-      <span class="pub-date">Jul 23, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 085</span>
-        <span class="pub-title">AMD Bets $5 Billion and 2 Gigawatts on Anthropic</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-07-23.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-07-22.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-07-22.svg" alt=""></div>
-      <span class="pub-date">Jul 22, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 084</span>
-        <span class="pub-title">Google Ships Gemini 3.6 Flash — and Quietly Starts Building Gemini 4</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-07-22.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-07-21.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-07-21.svg" alt=""></div>
-      <span class="pub-date">Jul 21, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 082</span>
-        <span class="pub-title">Washington Quietly Revives a Plan to Wall Off Foreign Open-Source AI</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-07-21.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-07-20.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-07-20.svg" alt=""></div>
-      <span class="pub-date">Jul 20, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 081</span>
-        <span class="pub-title">Google Delays Gemini 3.5 Pro Again as Alphabet Shares Slide</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-07-20.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-07-19.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-07-19.svg" alt=""></div>
-      <span class="pub-date">Jul 19, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 080</span>
-        <span class="pub-title">India's Cab Service to Orbit Just Had Its First Pickup</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-07-19.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-07-18.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-07-18.svg" alt=""></div>
-      <span class="pub-date">Jul 18, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 079</span>
-        <span class="pub-title">Oracle Cuts Up to 30,000 Jobs to Fund the $500B Stargate Buildout</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-07-18.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-07-17.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-07-17.svg" alt=""></div>
-      <span class="pub-date">Jul 17, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 078</span>
-        <span class="pub-title">Gemini 3.5 Pro Finally Lands — Six Weeks Late, Straight Into the Busiest Week AI Has Ever Had</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-07-17.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-07-16.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-07-16.svg" alt=""></div>
-      <span class="pub-date">Jul 16, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 077</span>
-        <span class="pub-title">Anthropic Strikes Multi-Gigawatt Compute Deal With Google and Broadcom</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-07-16.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-07-15.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-07-15.svg" alt=""></div>
-      <span class="pub-date">Jul 15, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 076</span>
-        <span class="pub-title">200+ Economists, 16 Nobel Laureates Warn: "We Must Act Now" on AI's Economic Shock</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-07-15.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-07-14.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-07-14.svg" alt=""></div>
-      <span class="pub-date">Jul 14, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 075</span>
-        <span class="pub-title">Apple Says OpenAI Stole More Than Just Employees</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-07-14.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-07-13.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-07-13.svg" alt=""></div>
-      <span class="pub-date">Jul 13, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 074</span>
-        <span class="pub-title">Apple Sues OpenAI, Alleges Trade-Secret Theft "At Every Level"</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-07-13.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-07-12.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-07-12.svg" alt=""></div>
-      <span class="pub-date">Jul 12, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 073</span>
-        <span class="pub-title">Apple Sues OpenAI, Alleging a Coordinated Campaign to Steal Its Hardware Secrets</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-07-12.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-07-11.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-07-11.svg" alt=""></div>
-      <span class="pub-date">Jul 11, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 072</span>
-        <span class="pub-title">OpenAI Ships GPT-5.6 — and an Agent That Wants Your Whole Job</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-07-11.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-07-10.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-07-10.svg" alt=""></div>
-      <span class="pub-date">Jul 10, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 071</span>
-        <span class="pub-title">OpenAI Ships GPT-5.6 and a New Agent Called ChatGPT Work</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-07-10.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-07-09.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-07-09.svg" alt=""></div>
-      <span class="pub-date">Jul 9, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 070</span>
-        <span class="pub-title">Grok 4.5 Goes Public — Musk Calls It "Opus-Class," the Benchmarks Say It's Complicated</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-07-09.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-07-08.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-07-08.svg" alt=""></div>
-      <span class="pub-date">Jul 8, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 069</span>
-        <span class="pub-title">Anthropic Finds a Hidden Workspace Inside Claude's Reasoning</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-07-08.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-07-07.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-07-07.svg" alt=""></div>
-      <span class="pub-date">Jul 7, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 068</span>
-        <span class="pub-title">Meta Says Its Next Model Has Caught Up To GPT-5.5</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-07-07.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-07-06.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-07-06.svg" alt=""></div>
-      <span class="pub-date">Jul 6, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 067</span>
-        <span class="pub-title">Anthropic Ships Its Most Agentic Sonnet Yet — And Prices It to Undercut Opus</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-07-06.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-07-05.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-07-05.svg" alt=""></div>
-      <span class="pub-date">Jul 5, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 066</span>
-        <span class="pub-title">A Cloned Voice, A Crying Daughter, $18,000 Gone in an Afternoon</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-07-05.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-07-04.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-07-04.svg" alt=""></div>
-      <span class="pub-date">Jul 4, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 065</span>
-        <span class="pub-title">OpenAI Offers Washington a $42.6B Slice of Itself</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-07-04.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-07-03.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-07-03.svg" alt=""></div>
-      <span class="pub-date">Jul 3, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 064</span>
-        <span class="pub-title">A Teenage "Scattered Spider" Hacker Faces US Justice</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-07-03.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-07-02.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-07-02.svg" alt=""></div>
-      <span class="pub-date">Jul 2, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 063</span>
-        <span class="pub-title">Meta Turns Its AI Overspend Into a Cloud Business</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-07-02.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-07-01.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-07-01.svg" alt=""></div>
-      <span class="pub-date">Jul 1, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge">No. 062</span>
-        <span class="pub-title">Claude Fable 5 and Mythos 5 Are Coming Back Online</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-07-01.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-06-30.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-06-30.svg" alt=""></div>
-      <span class="pub-date">Jun 30, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 061</span>
-        <span class="pub-title">AI Now Ships Like Enriched Uranium</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-06-30.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-06-29.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-06-29.svg" alt=""></div>
-      <span class="pub-date">Jun 29, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 060</span>
-        <span class="pub-title">Five Spy Agencies Just Told the World: The AI Cyber Threat Is Months Away, Not Years</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-06-29.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-06-28.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-06-28.svg" alt=""></div>
-      <span class="pub-date">Jun 28, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 059</span>
-        <span class="pub-title">Wall Street Gets Its First Pure-Play Humanoid Robot Stock</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-06-28.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-06-27.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-06-27.svg" alt=""></div>
-      <span class="pub-date">Jun 27, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 058</span>
-        <span class="pub-title">The Memory Crunch Finally Reaches Your Cart</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-06-27.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-06-26.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-06-26.svg" alt=""></div>
-      <span class="pub-date">Jun 26, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 057</span>
-        <span class="pub-title">OpenAI and Broadcom Unveil Jalapeño — The First Custom AI Inference Chip</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-06-26.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-06-25.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-06-25.svg" alt=""></div>
-      <span class="pub-date">Jun 25, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 056</span>
-        <span class="pub-title">OpenAI Ships Its First Chip — and Stops Renting the Whole Stack</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-06-25.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-06-24.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-06-24.svg" alt=""></div>
-      <span class="pub-date">Jun 24, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 055</span>
-        <span class="pub-title">When the Model Understood the Cells</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-06-24.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-06-23.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-06-23.svg" alt=""></div>
-      <span class="pub-date">Jun 23, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 054</span>
-        <span class="pub-title">A Nobel Laureate Just Switched Sides in the AI Race</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-06-23.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-06-22.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-06-22.svg" alt=""></div>
-      <span class="pub-date">Jun 22, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 053</span>
-        <span class="pub-title">Americans Now Spend More Time Talking to AI Than Swiping for Dates</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-06-22.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-06-21.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-06-21.svg" alt=""></div>
-      <span class="pub-date">Jun 21, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 052</span>
-        <span class="pub-title">Claude Code Learns to Show Its Work</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-06-21.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-06-20.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-06-20.svg" alt=""></div>
-      <span class="pub-date">Jun 20, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 051</span>
-        <span class="pub-title">Midjourney Builds a Body Scanner</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-06-20.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-06-19.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-06-19.svg" alt=""></div>
-      <span class="pub-date">Jun 19, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 050</span>
-        <span class="pub-title">Midjourney Builds a Full-Body Scanner — and Calls It Medicine</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-06-19.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-06-18.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-06-18.svg" alt=""></div>
-      <span class="pub-date">Jun 18, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 049</span>
-        <span class="pub-title">SpaceX Buys Cursor for $60 Billion — AI Coding's Biggest Deal Ever</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-06-18.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-05-23.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-05-23.svg" alt=""></div>
-      <span class="pub-date">May 23, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 048</span>
-        <span class="pub-title">The Agentic Turn: How AI Stopped Answering and Started Doing</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-05-23.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-05-16.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-05-16.svg" alt=""></div>
-      <span class="pub-date">May 16, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 047</span>
-        <span class="pub-title">Frontier Models Race to a $1 Trillion Parameter Wall</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-05-16.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-05-09.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-05-09.svg" alt=""></div>
-      <span class="pub-date">May 9, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 046</span>
-        <span class="pub-title">The Open-Source Surge: Why Big Labs Are Losing Their Moat</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-05-09.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-05-02.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-05-02.svg" alt=""></div>
-      <span class="pub-date">May 2, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 045</span>
-        <span class="pub-title">Memory, Context &amp; the Machines That Never Forget</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-05-02.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-04-25.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-04-25.svg" alt=""></div>
-      <span class="pub-date">Apr 25, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 044</span>
-        <span class="pub-title">AI in the Courtroom: Regulation Comes for Foundation Models</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-04-25.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-04-18.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-04-18.svg" alt=""></div>
-      <span class="pub-date">Apr 18, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 043</span>
-        <span class="pub-title">Chip Wars: NVIDIA's Next Bet &amp; the Custom Silicon Insurgency</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-04-18.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-04-11.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-04-11.svg" alt=""></div>
-      <span class="pub-date">Apr 11, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 042</span>
-        <span class="pub-title">Multi-Agent, Multi-Modal, Multi-Everything: A Week of Launches</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-04-11.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-04-04.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-04-04.svg" alt=""></div>
-      <span class="pub-date">Apr 4, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 041</span>
-        <span class="pub-title">The $100B Club: AI Valuations Are Rewriting Every Rule</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-04-04.svg" alt=""></div>
-    </a>
-
-    <a href="timps-postcards-2026-03-28.html" class="pub-row">
-      <div class="pub-thumb"><img src="thumbs/thumb-2026-03-28.svg" alt=""></div>
-      <span class="pub-date">Mar 28, 2026</span>
-      <div class="pub-title-row">
-        <span class="pub-badge outline">No. 040</span>
-        <span class="pub-title">The Alignment Problem Isn't What You Think It Is</span>
-      </div>
-      <div class="pub-preview"><img src="thumbs/thumb-2026-03-28.svg" alt=""></div>
-    </a>
-
   </div><!-- /pub-list -->
+
+  <div class="archive-more">
+    <a href="archive.html" class="btn-chunky filled">View full archive &rarr;</a>
+  </div>
 </section>
 
 <!-- SUBSCRIBE -->
@@ -2077,12 +1281,14 @@
   </div>
   <div class="footer-center">
     Five signals from the AI landscape, every day.<br>
+    142 issues &middot; 5 signals/day &middot; 2 months running &middot; Team of 1<br>
     Hyderabad, India &middot; Est. 2026
   </div>
   <div class="footer-right">
     <a href="#">Home</a><br>
-    <a href="#archive">Posts</a><br>
-    &copy; 2026 TIMPS
+    <a href="archive.html">Posts</a><br>
+    &copy; 2026 TIMPS<br>
+    <span class="footer-live"><span class="live-dot"></span><span id="liveOnline">&mdash;</span> online &middot; <span id="liveToday">&mdash;</span> today &middot; <span id="liveInstalls">&mdash;</span> installs</span>
   </div>
 </footer>
 
@@ -2176,6 +1382,21 @@
   const visited = sessionStorage.getItem('timps-install-dismissed');
   const notifAsked = localStorage.getItem('timps-notif-asked');
 
+  // Count distinct days visited — never block a first-time visitor with the
+  // install prompt. Show it from the second visit onward.
+  let visitCount = 0;
+  try {
+    const today = new Date().toISOString().slice(0, 10);
+    const lastVisit = localStorage.getItem('timps-last-visit');
+    visitCount = parseInt(localStorage.getItem('timps-visit-count') || '0', 10);
+    if (lastVisit !== today) {
+      visitCount += 1;
+      localStorage.setItem('timps-visit-count', String(visitCount));
+      localStorage.setItem('timps-last-visit', today);
+    }
+  } catch (e) { /* private mode: skip */ }
+  const promptEligible = visitCount >= 2;
+
   // ─── Request notification permission ────────────────────────────
   function requestNotif() {
     if (!('Notification' in window)) return;
@@ -2207,10 +1428,12 @@
   if (isStandalone) {
     overlay.classList.add('hidden');
     if (!notifAsked) setTimeout(requestNotif, 3000);
-  } else if (visited) {
+  } else if (visited || !promptEligible) {
+    // First-time visitors and dismissed sessions never see the blocking overlay.
     overlay.classList.add('hidden');
   } else if (isIOS) {
     iosSteps.classList.add('show');
+    overlay.classList.remove('hidden');
     installBtn.textContent = 'Open in Safari to Install';
     installBtn.addEventListener('click', () => {
       overlay.classList.add('hidden');
