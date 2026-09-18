@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 101 daily issues + 8 deep dives · regenerated 2026-09-17**
+**Coverage: 102 daily issues + 8 deep dives · regenerated 2026-09-18**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 115 · 2026-09-18 · `timps-postcards-2026-09-18.html`
+
+- **[01 · LEAD]** Researchers Used Anthropic's Claude to Break Into OpenAI's Own Systems
+  - _Two weeks after OpenAI's agents hacked Hugging Face, Hacktron AI used Claude Opus 5 to chain a libheif image bug and an SSO flaw into an OpenAI employee's account — and a read-and-edit path into its internal GitHub monorepo, in under 72 hours._
+  - Source: [Full story · WSJ Exclusive](https://www.wsj.com/tech/ai/hackers-used-anthropics-claude-to-break-into-openai-b40ba883)
+
+- **[02 · SUPPLY CHAIN]** Plugin4Shell: A Zero-Click RCE in Four Major AI Coding Agents — Two Still Unpatched
+  - _Claude Code, Codex, GitHub Copilot and Gemini CLI all share a plugin SHA-pinning bypass that silently swaps in malicious code on auto-update. Anthropic and OpenAI patched; Microsoft hasn't, and Google just deprecated Gemini CLI instead._
+  - Source: [Full story · Help Net Security](https://www.helpnetsecurity.com/2026/09/18/plugin4shell-ai-coding-agents-vulnerability/)
+
+- **[03 · BUSINESS]** OpenAI Launches Astra for Law, with a 230 Million-URL Index of US Law
+  - _GPT-6 Astra, configured for legal work, now comes with its own legal research index spanning US case law, statutes and regulations — with Harvey and Legora building on the API and 26 partner plugins landing the same afternoon._
+  - Source: [Full story · The Next Web](https://thenextweb.com/news/openai-astra-for-law-gpt-6-legal-search-index)
+
+- **[04 · RESEARCH]** Anthropic Quietly Builds a Wet Lab — and Wants Claude Running the Robots
+  - _Reuters confirms the company that has been warning about AI risk now does real biology in the Bay Area. The endgame: Claude directing robotic units through experiments on "undruggable" targets the pharma industry ignores._
+  - Source: [Full story · Reuters via CNA](https://www.channelnewsasia.com/business/exclusive-anthropic-quietly-sets-up-biology-lab-it-ramps-ai-drug-program-6394641)
+
+- **[05 · POLICY]** Google DeepMind Opens an Institute for the AGI Argument — with Essays That Would Cap AI's Reasoning
+  - _Shane Legg, Demis Hassabis and James Manyika launch the DeepMind Institute as a public essay platform; its debut slate includes a proposal to cap "opaque serial depth," and Hassabis's own case for a FINRA-style frontier AI standards body._
+  - Source: [Full story · TechCrunch](https://techcrunch.com/2026/09/17/google-deepmind-launches-institute-to-widen-the-agi-debate/)
+
+  **Signals / briefs:**
+  - Claude vs OpenAI
+  - Plugin4Shell
+  - Astra for Law
+  - Wet Lab Science
+  - The AGI Essay Wars
 
 ### Issue 114 · 2026-09-17 · `timps-postcards-2026-09-17.html`
 
