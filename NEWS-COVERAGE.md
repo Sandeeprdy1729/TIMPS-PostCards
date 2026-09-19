@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 102 daily issues + 8 deep dives · regenerated 2026-09-18**
+**Coverage: 103 daily issues + 8 deep dives · regenerated 2026-09-19**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 116 · 2026-09-19 · `timps-postcards-2026-09-19.html`
+
+- **[01 · LEAD]** Anthropic Weighs a New Model Before Its IPO — to Counter GPT-6 Astra
+  - _Reuters, citing three sources: the company is considering rolling out a new model to blunt OpenAI's momentum since Astra launched — weeks after its CEO asked the whole industry to slow down._
+  - Source: [Full story · Reuters Exclusive](https://www.reuters.com/business/anthropic-considers-releasing-new-ai-model-ahead-ipo-sources-say-2026-09-19)
+
+- **[02 · PRODUCTS]** Dueling $20 Coding Tools: Codex Lands in ChatGPT Plus, Claude Code Joins Claude Pro
+  - _Both labs put their coding agents inside their flagship $20 plans the same week — Codex gains internet access and voice dictation while Claude Code users are up 50% since the fourth-generation release._
+  - Source: [Full story · PCMag](https://www.pcmag.com/news/openai-anthropic-race-to-see-who-can-replace-software-engineers-faster)
+
+- **[03 · PRODUCTS]** Goodbye Cowork: Chat and Agents Become "One Claude," with Docs and Slides
+  - _Anthropic merges Claude Chat and Claude Cowork into a single assistant, adds Claude Docs and Claude Slides in beta, and puts Claude Design inside every conversation — its clearest claim yet on the office-seat market._
+  - Source: [Full story · Anthropic Blog](https://claude.com/blog/cowork-is-now-claude)
+
+- **[04 · GEOPOLITICS]** The State-Dinner Summit: Trump Hosts Xi With AI, Tariffs and Rare Earths on the Table
+  - _Xi lands in Washington September 23 for his first state visit in 11 years — a White House summit on AI and trade, and a state dinner with Bezos, Altman, Musk and Jensen Huang at the table._
+  - Source: [Full story · Chosun English](https://www.chosun.com/english/world-en/2026/09/19/TEJA552Y3NAJLB73UN2Y4ST56A/)
+
+- **[05 · SECURITY]** Europe Logs Its First Data Breach Carried Out by an Autonomous AI Agent
+  - _Spain's data protection agency reported a breach where an LLM-powered agent chained public files, a working login and a vulnerability scan — then modified personal data and reached invoices on its own._
+  - Source: [Full story · TechRadar](https://www.techradar.com/pro/security/autonomous-ai-agent-hit-spanish-firm-with-vulnerability-scans-before-accessing-files-and-data)
+
+  **Signals / briefs:**
+  - The Model Before the IPO
+  - $20 Coding Duel
+  - One Claude
+  - State-Dinner Summit
+  - Agentic Offense
 
 ### Issue 115 · 2026-09-18 · `timps-postcards-2026-09-18.html`
 
