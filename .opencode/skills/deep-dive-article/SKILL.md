@@ -45,7 +45,7 @@ Create `article-<kebab-slug>.html` by copying the newest existing deep-dive (cur
 
 ### Must-match design system (do not deviate)
 - Colors: `--cream:#EDE8DA --forest:#1C2E22 --pink:#E8B4E8 --lime:#DCF07A --lime-d:#C8DE60 --black:#111111 --card-bg:#F5F1E6`; graph-paper grid background.
-- **Two fonts only** for article content: `--serif:'TIMPS'` (headings, from `TIMPS-Family-v2/*.woff2`) and `--news:'Newsreader'` (prose/descriptions). `--mono:'Space Mono'` only for nav + UI chips/labels/buttons. Google Fonts link = Newsreader + Space Mono ONLY (no Playfair). Keep the `@font-face` block.
+- **Two fonts only** for article content: `--serif:'TIMPS'` (headings, from `TIMPS-Family-v2/*.woff2`) and `--news:'Newsreader'` (prose/descriptions). No Space Mono / no monospace anywhere — `--mono: 'Newsreader', Georgia, 'Times New Roman', serif` covers nav + UI chips/labels/buttons too. Google Fonts link = Newsreader ONLY (no Playfair, no Space Mono, no Lora). Keep the `@font-face` block.
 - **Navbar identical** to `index.html` (same link set, same classes): logo → `index.html`; Articles → `articles.html` (class `active` on this page); Archive → `index.html#archive`; Latest Issue → the CURRENT latest issue file (check `ls timps-postcards-2026-*.html | tail -1` — today's date is Sep 2026); Subscribe → `index.html#subscribe`; CTA "Subscribe" → `index.html#subscribe`. Keep the mobile media queries.
 
 ### Page structure (order matters)
@@ -87,7 +87,7 @@ Run this after EVERY published issue or article (a deep dive via this skill, or 
 
 1. Parse every touched HTML file with Python's `html.parser` (tag balance check used before) — no mismatched tags, empty stack at EOF.
 2. Check every internal `href`/`src` resolves to an existing file (images exist in `thumbs/`, links point to real pages).
-3. Grep that no `Playfair` remains and Newsreader is loaded.
+3. Grep that no `Playfair`, `Space Mono` or `Lora` remains and Newsreader is loaded.
 4. Confirm `thumbs/article-<slug>-hero.jpg` opens as a valid image.
 5. Confirm hub + homepage both reference the new article and the homepage shows exactly one article card.
 6. Do a final web-search spot check that the headline doesn't restate a user-supplied literal news phrase and facts match sources.
