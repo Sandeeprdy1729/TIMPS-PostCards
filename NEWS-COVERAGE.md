@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 103 daily issues + 8 deep dives · regenerated 2026-09-19**
+**Coverage: 104 daily issues + 8 deep dives · regenerated 2026-09-20**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 117 · 2026-09-20 · `timps-postcards-2026-09-20.html`
+
+- **[01 · LEAD]** Subscribers Sue Four AI Labs for Agreeing to Slow Development — Calling the Pact a "Self-Serving Shortcut"
+  - _A proposed class action names Anthropic, OpenAI, SpaceXAI and Google, arguing their coordination to pace AI development — starting in July — reduces the value of paid subscriptions. The lead counsel warns AI "could kill us all if" safety is "controlled by private self-serving agreements."_
+  - Source: [Full story · Associated Press](https://apnews.com/article/antitrust-lawsuit-ai-slowdown-anthropic-openai-spacexai-google-960af4308161eaf4ed13c383b0ce1c1b)
+
+- **[02 · WORLD]** A Hallucinated Intel Report "Almost Started a War" — Boarding Teams Were Ready for the Wrong Ship
+  - _CNN reports the US military prepared to intercept a Chinese vessel this spring after an AI-assisted report falsely claimed it carried nuclear program components. Armed personnel stood by boarding; planes were in the air._
+  - Source: [Full story · Ars Technica → CNN](https://arstechnica.com/ai/2026/09/report-us-almost-boarded-chinese-ship-over-hallucinated-ai-arms-report/)
+
+- **[03 · MEDIA]** "Largest Theft of Labor in Human History": Unsealed Filings Expose How AI Execs Privately Talked About News
+  - _In the unsealed discovery of The New York Times' copyright fight, a Microsoft executive calls AI scraping "the largest theft of labor in human history," and OpenAI leadership privately brands ChatGPT an "existential threat" to publishers._
+  - Source: [Full story · TechCrunch](https://techcrunch.com/2026/09/17/microsoft-exec-called-ai-scraping-the-largest-theft-of-labor-in-human-history-new-unredacted-filings-reveal/)
+
+- **[04 · PRODUCTS]** Meet Jev: A Card-Carrying ChatGPT Creator's New Model That Refuses to Chat
+  - _Diogo Almeida, who helped build ChatGPT and co-invented RLHF, has shipped Jev after two years of stealth — a "System One" model that answers typed questions with probabilities, in 70–500 ms, for fractions of a cent per decision._
+  - Source: [Full story · TechSpot](https://www.techspot.com/article/3172-meet-jev/)
+
+- **[05 · GEOPOLITICS]** Anthropic Says Chinese Labs Distilled Claude at Industrial Scale — 151M Queries on Alibaba-Linked Accounts Alone
+  - _A September 10 threat report blames seven China-based outfits for campaigns targeting Claude — while NSA, CISA and FBI call "industrial-scale distillation" a national-security problem dating to at least late 2024._
+  - Source: [Full story · NeoTeo](https://www.neoteo.com/en/anthropic-alleges-chinese-ai-labs-extracted-claude-capabilities-at-industrial-scale)
+
+  **Signals / briefs:**
+  - The Slowdown in Court
+  - AI's Near-War
+  - Fair Use in the Dock
+  - The Post-Chat Model
+  - Distillation Diplomacy
 
 ### Issue 116 · 2026-09-19 · `timps-postcards-2026-09-19.html`
 

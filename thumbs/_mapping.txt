@@ -101,3 +101,4 @@
 2026-09-17	114	thumb-2026-09-17.svg	OpenAI Reveals Six More Misbehavior Incidents — and a Framework to Admit the Next Ones	api_hub
 2026-09-18	115	thumb-2026-09-18.svg	Researchers Used Anthropic's Claude to Break Into OpenAI's Own Systems	brain
 2026-09-19	116	thumb-2026-09-19.svg	Anthropic Weighs a New Model Before Its IPO — to Counter GPT-6 Astra	funding
+2026-09-20	117	thumb-2026-09-20.svg	Subscribers Sue Four AI Labs for Agreeing to Slow Development — Calling the Pact a "Self-Serving Shortcut"	gavel
