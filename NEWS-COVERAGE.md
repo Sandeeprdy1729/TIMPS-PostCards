@@ -6,7 +6,7 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 104 daily issues + 9 deep dives · regenerated 2026-09-21**
+**Coverage: 104 daily issues + 10 deep dives · regenerated 2026-09-21**
 
 ---
 
@@ -3025,6 +3025,11 @@
 ---
 
 ## Deep Dive Articles — already covered
+
+- **№ 10 — The ocean swallows sunlight — these perovskite cells just turned what's left into power, 10 meters below the sea** (`article-underwater-perovskite.html`)
+  - Deep Dive № 010 · Research · Energy
+  - _A Yunnan University–CAS–EPFL team field-tested wide-bandgap perovskite solar cells off Weizhou Island in the South China Sea, charging a battery and LEDs at depths down to 10 meters. Doped to a 1.96-eV bandgap to absorb the blue-green light that survives deep water, the cells hit a certified 16.79% under standard sunlight — and 34.71% of the spectrum actually present at 10 meters, with a projected ~5.5-year underwater lifetime._
+  - Sandeep Thummala · 22 min read · Sep 21, 2026
 
 - **№ 9 — Your headphones don't need to be hacked to leak — a radio beam can make them broadcast your audio** (`article-injecteave-headphones.html`)
   - Deep Dive № 009 · Research · Hardware Security
