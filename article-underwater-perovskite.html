@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TIMPS">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>TIMPS Articles — Solar was supposed to die underwater. These perovskite cells just worked 10 meters down.</title>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream:  #EDE8DA;
+    --forest: #1C2E22;
+    --pink:   #E8B4E8;
+    --lime:   #DCF07A;
+    --lime-d: #C8DE60;
+    --black:  #111111;
+    --border: #1C2E22;
+    --card-bg:#F5F1E6;
+    --mono:   'Space Mono', 'Courier New', monospace;
+    --news:   'Newsreader', Georgia, 'Times New Roman', serif;
+    --serif:  'TIMPS', Georgia, serif;
+  }
+
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Black.woff2') format('woff2'); font-weight:900; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Bold.woff2') format('woff2'); font-weight:700; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-SemiBold.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('TIMPS-Family-v2/TIMPS-Regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--cream);
+    background-image:
+      linear-gradient(rgba(28,46,34,.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(28,46,34,.07) 1px, transparent 1px);
+    background-size: 38px 38px;
+    color: var(--forest);
+    font-family: var(--news);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  a { text-decoration: none; color: inherit; }
+
+  /* Deep dive typography — TIMPS (display) + Newsreader (prose & descriptions) */
+  .masthead-dek { font-family: var(--news); font-style: italic; font-size: 19px; }
+  .masthead-meta { font-family: var(--news); font-size: 13px; }
+  .lede { font-family: var(--news); font-size: 21px; }
+  .para { font-family: var(--news); font-size: 17px; }
+  .callout p { font-family: var(--news); font-size: 15.5px; }
+  .pullquote p { font-family: var(--news); font-size: 21px; }
+  .pullquote .attrib { font-family: var(--news); font-style: italic; font-size: 13px; }
+  .spec-row { font-family: var(--news); font-size: 14px; }
+  .fig-cap { font-family: var(--news); font-size: 12.5px; }
+  .bench-top { font-family: var(--news); font-size: 13.5px; }
+  .bench-note { font-family: var(--news); font-size: 13px; }
+  .sources li { font-family: var(--news); font-size: 13.5px; }
+  .endcard-sub { font-family: var(--news); font-size: 14.5px; }
+
+  /* ─── NAV ─── */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 48px;
+    background-color: rgba(237,232,218,.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1.5px solid rgba(28,46,34,.12);
+    background-image:
+      linear-gradient(rgba(28,46,34,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(28,46,34,.05) 1px, transparent 1px);
+    background-size: 38px 38px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--forest);
+    letter-spacing: -0.3px;
+  }
+  .nav-logo-mark { width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .nav-logo-mark img { width: 28px; height: 28px; object-fit: contain; }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-link {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--forest);
+    opacity: .55;
+    transition: opacity .15s;
+  }
+  .nav-link:hover { opacity: 1; }
+  .nav-link.active { opacity: 1; font-weight: 700; }
+  .nav-cta {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--forest);
+    background: var(--lime);
+    border: 2.5px solid var(--forest);
+    border-radius: 100px;
+    padding: 10px 24px;
+    transition: background .15s, transform .1s;
+    white-space: nowrap;
+  }
+  .nav-cta:hover { background: var(--lime-d); transform: translateY(-1px); }
+
+  /* ─── MASTHEAD ─── */
+  .masthead {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 72px 24px 24px;
+    text-align: center;
+  }
+  .masthead-kicker {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--forest);
+    background: var(--lime);
+    border: 2px solid var(--forest);
+    border-radius: 100px;
+    padding: 7px 16px;
+    margin-bottom: 28px;
+  }
+  .masthead-h {
+    font-family: var(--serif);
+    font-size: clamp(38px, 6.4vw, 72px);
+    font-weight: 900;
+    line-height: 1.04;
+    letter-spacing: -1.5px;
+    color: var(--forest);
+    margin-bottom: 20px;
+  }
+  .masthead-h em { font-style: italic; }
+  .masthead-dek {
+    font-family: var(--serif);
+    font-size: clamp(17px, 2.2vw, 21px);
+    font-style: italic;
+    line-height: 1.55;
+    color: var(--forest);
+    opacity: .85;
+    max-width: 660px;
+    margin: 0 auto 28px;
+  }
+  .masthead-meta {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--forest);
+    opacity: .5;
+    letter-spacing: .5px;
+  }
+  .masthead-meta b { font-weight: 700; opacity: 1; }
+
+  /* ─── FIGURE ─── */
+  .figure {
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    overflow: hidden;
+    box-shadow: 6px 6px 0 rgba(28,46,34,.14);
+    margin: 32px 0;
+  }
+  .figure img { width: 100%; display: block; }
+  .fig-cap {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+    padding: 12px 16px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--forest);
+    border-top: 1.5px solid rgba(28,46,34,.15);
+    opacity: .7;
+    letter-spacing: .3px;
+  }
+  .fig-tag {
+    flex-shrink: 0;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--forest);
+    opacity: .9;
+  }
+  .fig-cap a { text-decoration: underline; opacity: .8; }
+  .fig-cap a:hover { opacity: 1; }
+
+  /* ─── ARTICLE BODY ─── */
+  .article-body {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 8px 24px 64px;
+  }
+  .lede {
+    font-family: var(--serif);
+    font-size: 21px;
+    font-weight: 400;
+    line-height: 1.65;
+    color: var(--forest);
+    margin: 8px 0 28px;
+  }
+  .lede b { font-weight: 700; }
+  .para {
+    font-family: var(--mono);
+    font-size: 14px;
+    line-height: 1.85;
+    color: var(--forest);
+    opacity: .92;
+    margin: 0 0 20px;
+  }
+  .para b { font-weight: 700; opacity: 1; }
+  .para i { font-style: italic; }
+  .para a { text-decoration: underline; opacity: .85; }
+  .para a:hover { opacity: 1; }
+  .para ul { padding-left: 22px; margin: 0 0 20px; }
+  .para li { margin-bottom: 10px; }
+
+  .section-h {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin: 56px 0 18px;
+  }
+  .section-no {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--lime);
+    background: var(--forest);
+    border-radius: 8px;
+    padding: 5px 9px;
+    letter-spacing: 1px;
+    flex-shrink: 0;
+  }
+  .section-h h2 {
+    font-family: var(--serif);
+    font-size: clamp(24px, 3.6vw, 32px);
+    font-weight: 900;
+    letter-spacing: -0.6px;
+    line-height: 1.1;
+    color: var(--forest);
+  }
+
+  /* Callout cards */
+  .callout {
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    padding: 22px 24px;
+    margin: 28px 0;
+    box-shadow: 5px 5px 0 rgba(28,46,34,.12);
+  }
+  .callout-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--forest);
+    background: var(--lime);
+    border: 1.5px solid var(--forest);
+    border-radius: 100px;
+    padding: 4px 10px;
+    display: inline-block;
+    margin-bottom: 14px;
+  }
+  .callout-label.pink { background: var(--pink); }
+  .callout p {
+    font-family: var(--mono);
+    font-size: 13.5px;
+    line-height: 1.8;
+    color: var(--forest);
+    margin: 0 0 10px;
+  }
+  .callout p:last-child { margin-bottom: 0; }
+  .callout p b { font-weight: 700; }
+  .callout p code { background: var(--cream); border: 1px solid rgba(28,46,34,.2); border-radius: 5px; padding: 1px 5px; font-size: 12px; }
+
+  /* Spec sheet */
+  .spec {
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    overflow: hidden;
+    margin: 28px 0;
+    box-shadow: 5px 5px 0 rgba(28,46,34,.12);
+  }
+  .spec-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--forest);
+    padding: 12px 18px;
+  }
+  .spec-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 16px;
+    padding: 12px 18px;
+    border-top: 1.5px solid rgba(28,46,34,.14);
+    font-family: var(--mono);
+    font-size: 12.5px;
+    line-height: 1.5;
+  }
+  .spec-row .k { font-weight: 700; opacity: .6; }
+  .spec-row .v { opacity: .95; }
+  .spec-row .v b { font-weight: 700; }
+  .spec-row .v code { background: var(--cream); border: 1px solid rgba(28,46,34,.2); border-radius: 5px; padding: 1px 5px; font-size: 12px; }
+
+  /* Benchmark bars */
+  .bench {
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    padding: 22px 24px;
+    margin: 28px 0;
+    box-shadow: 5px 5px 0 rgba(28,46,34,.12);
+  }
+  .bench-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--forest);
+    background: var(--lime);
+    border: 1.5px solid var(--forest);
+    border-radius: 100px;
+    padding: 4px 10px;
+    display: inline-block;
+    margin-bottom: 16px;
+  }
+  .bench-item { margin-bottom: 16px; }
+  .bench-item:last-child { margin-bottom: 0; }
+  .bench-top {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--mono);
+    font-size: 12px;
+    margin-bottom: 6px;
+  }
+  .bench-name { font-weight: 700; }
+  .bench-val { font-weight: 700; background: var(--forest); color: var(--lime); border-radius: 6px; padding: 1px 8px; }
+  .bench-bar { height: 14px; background: rgba(28,46,34,.08); border-radius: 100px; overflow: hidden; }
+  .bench-fill { height: 100%; background: linear-gradient(90deg, var(--lime), var(--lime-d)); border-radius: 100px; }
+  .bench-fill.pink { background: linear-gradient(90deg, var(--pink), #d996d9); }
+  .bench-note {
+    font-family: var(--mono);
+    font-size: 11px;
+    line-height: 1.7;
+    opacity: .55;
+    margin-top: 14px;
+    border-top: 1.5px solid rgba(28,46,34,.14);
+    padding-top: 12px;
+  }
+
+  /* Pull quote */
+  .pullquote {
+    border-left: 6px solid var(--pink);
+    background: var(--card-bg);
+    border-radius: 0 12px 12px 0;
+    padding: 24px 28px;
+    margin: 32px 0;
+    box-shadow: 4px 4px 0 rgba(28,46,34,.1);
+  }
+  .pullquote p {
+    font-family: var(--serif);
+    font-size: 21px;
+    font-weight: 600;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--forest);
+    letter-spacing: -0.3px;
+  }
+  .pullquote .attrib {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-style: normal;
+    opacity: .55;
+    margin-top: 12px;
+    display: block;
+  }
+
+  /* Sources */
+  .sources {
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    padding: 22px 24px;
+    margin: 40px 0 0;
+    box-shadow: 5px 5px 0 rgba(28,46,34,.12);
+  }
+  .sources h3 {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    letter-spacing: -0.4px;
+  }
+  .sources ol { padding-left: 20px; }
+  .sources li { font-family: var(--mono); font-size: 12px; line-height: 1.8; opacity: .85; margin-bottom: 4px; }
+  .sources a { text-decoration: underline; }
+  .sources a:hover { opacity: 1; }
+
+  /* End card */
+  .endcard {
+    text-align: center;
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--lime);
+    padding: 40px 28px;
+    margin: 44px 0 0;
+    box-shadow: 6px 6px 0 rgba(28,46,34,.14);
+  }
+  .endcard-h {
+    font-family: var(--serif);
+    font-size: clamp(26px, 4vw, 34px);
+    font-weight: 900;
+    line-height: 1.15;
+    letter-spacing: -0.8px;
+    color: var(--forest);
+    margin-bottom: 12px;
+  }
+  .endcard-h em { font-style: italic; }
+  .endcard-sub { font-family: var(--mono); font-size: 13px; opacity: .7; max-width: 420px; margin: 0 auto 24px; line-height: 1.7; }
+  .endcard .btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn-chunky {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 14px;
+    font-weight: 700;
+    padding: 14px 32px;
+    border-radius: 100px;
+    border: 2.5px solid var(--forest);
+    cursor: pointer;
+    transition: transform .1s, box-shadow .15s;
+    background: var(--forest);
+    color: #fff;
+  }
+  .btn-chunky:hover { transform: translateY(-2px); box-shadow: 4px 4px 0 rgba(28,46,34,.35); }
+  .btn-chunky.lime { background: var(--lime); color: var(--forest); }
+  .btn-chunky.lime:hover { background: var(--lime-d); box-shadow: 4px 4px 0 var(--forest); }
+  .btn-chunky.outline { background: transparent; color: var(--forest); }
+
+  /* Footer */
+  .footer {
+    background: var(--black);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 36px 48px;
+    flex-wrap: wrap;
+  }
+  .footer-brand { font-family: var(--mono); font-size: 14px; font-weight: 700; }
+  .footer-center { font-family: var(--mono); font-size: 12px; color: rgba(255,255,255,.55); line-height: 1.7; }
+  .footer-right { font-family: var(--mono); font-size: 12px; text-align: right; line-height: 1.9; }
+  .footer-right a { color: rgba(255,255,255,.5); transition: color .15s; }
+  .footer-right a:hover { color: #fff; }
+
+  @media (max-width: 760px) {
+    .nav { padding: 12px 20px; }
+    .nav-links { display: none; }
+    .masthead { padding: 48px 20px 16px; }
+    .article-body { padding: 8px 20px 48px; }
+    .spec-row { grid-template-columns: 1fr; gap: 4px; }
+    .section-h { flex-direction: column; gap: 8px; align-items: flex-start; }
+    .footer { padding: 28px 20px; flex-direction: column; align-items: flex-start; }
+    .footer-right { text-align: left; }
+  }
+  @media (max-width: 480px) {
+    .nav-logo span { display: none; }
+    .nav-logo-mark { width: 28px; height: 28px; }
+    .nav-logo-mark img { width: 24px; height: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-mark"><img src="timps_logo.svg" alt="TIMPS"></div>
+    <span>TIMPS PostCards</span>
+  </a>
+  <div class="nav-links">
+    <a href="articles.html" class="nav-link active">Articles</a>
+    <a href="archive.html" class="nav-link">Archive</a>
+    <a href="timps-postcards-2026-09-20.html" class="nav-link">Latest Issue</a>
+    <a href="index.html#subscribe" class="nav-link">Subscribe</a>
+  </div>
+  <a href="index.html#subscribe" class="nav-cta">Subscribe</a>
+</nav>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <span class="masthead-kicker">TIMPS Deep Dive · № 010</span>
+  <h1 class="masthead-h">The ocean swallows sunlight — these perovskite cells just turned what's left into power, <em>10 meters below the sea</em></h1>
+  <p class="masthead-dek">A Chinese-led team — Yunnan University, the Chinese Academy of Sciences and EPFL — designed wide-bandgap perovskite solar cells matched to the dim blue-green light that survives at depth, then ran large-area modules off Weizhou Island in the South China Sea at up to <b>10 meters</b> deep. The cells generated <b>324 mWh</b> of electricity in two hours, enough to charge lithium-ion batteries, and lab aging tests point to about <b>5.5 years</b> of life underwater. But the viral "35% efficiency" headline needs a closer look — that number only exists under the underwater spectrum, while standard full-sunlight efficiency is 16.79%. Here's how water breaks the solar equation and what this actually unlocks.</p>
+  <div class="masthead-meta">
+    <b>Sandeep Thummala</b> &nbsp;·&nbsp; September 21, 2026 &nbsp;·&nbsp; 22 min read
+  </div>
+</header>
+
+<article class="article-body">
+
+  <!-- HERO FIGURE -->
+  <figure class="figure">
+    <img src="thumbs/article-underwater-perovskite-hero.jpg" alt="Schematic diagram of the submerged perovskite solar cells: light penetrates the water column to a wide-bandgap perovskite layer that converts the surviving blue-green photons into electricity">
+    <figcaption class="fig-cap">
+      <span class="fig-tag">Fig. 01</span>
+      <span>The schematic diagram of submerged perovskite solar cells for underwater applications — light passes through the water column and a wide-bandgap perovskite converts the surviving blue-green photons into electricity. Image via the <a href="https://www.cell.com/joule/fulltext/S2542-4351(26)00356-9" target="_blank" rel="noopener">Joule</a> paper / EurekAlert! release (credit: Simin Ma, Yunnan University).</span>
+    </figcaption>
+  </figure>
+
+  <!-- LEDE -->
+  <p class="lede"><b>Good morning.</b> Water and solar are supposed to be mortal enemies. Sunlight gets eaten alive the moment it enters the ocean — red light is gone within a couple of meters, and by ten meters down a standard rooftop panel is staring at a thin, blue-green soup that it was never built to read. For decades, that has been the practical end of the conversation: if you need power underwater, you carry batteries, and when the batteries die you haul them back to the surface. A team led by scientists at <b>Yunnan University</b> and the <b>Chinese Academy of Sciences</b>, with Switzerland's <b>EPFL</b>, has now broken that truce. They designed perovskite solar cells with a wide bandgap tuned to the exact colors that survive at depth, walked them out of the lab, lashed them onto an underwater robot, and let them charge batteries at <b>2, 6 and 10 meters deep</b> in the South China Sea. It is the first demonstration of practical solar power generation at meaningful depth — and it quietly changes the economics of everything we leave submerged.</p>
+  <p class="para">The paper, <b>"Submerged Solar Harvesting with Wide-Bandgap Perovskites for Autonomous Underwater Energy Systems,"</b> was published September 11, 2026 in the Cell Press journal <b>Joule</b> by a team led by <b>Wen-Hua Zhang</b> (Yunnan University and Southwest United Graduate School). The headline number that floated across social media — "35% efficiency under the ocean" — is real but needs a second look: the cells hit <b>34.71%</b> when measured against the simulated 10-meter underwater spectrum, and a more modest <b>16.79% (certified)</b> under standard full-sunlight (AM 1.5G) illumination. Neither number is meaningless; they vindicate the central design bet that the team made. The story here is why that bet works, how far the trick extends, and where the unavoidable asterisks are.</p>
+
+  <!-- SUMMARY -->
+  <div class="callout">
+    <span class="callout-label">One-card summary</span>
+    <p><b>What:</b> Yunnan University, the Chinese Academy of Sciences and EPFL built wide-bandgap lead-halide perovskite solar cells (bandgap ~1.96 eV) spectrally matched to the blue-green light that survives in deep water, and validated them at up to 10 m off Weizhou Island in the South China Sea. Large-area modules generated 324 mWh over two submerged hours — enough to charge lithium-ion batteries and light LEDs.</p>
+    <p><b>When:</b> Published September 11, 2026 in Joule (Cell Press). Field trials ran off the Weizhou Islands in the South China Sea at 2, 6 and 10 meter depths. Prior underwater-solar studies were all limited to 2 meters or less.</p>
+    <p><b>Why it matters:</b> Underwater devices — AUVs, subsea sensors, aquaculture monitors — are bottlenecked by battery endurance. These cells point to a way to keep them charged in place for years. The widely-shared "35% efficiency" figure, however, is measured against the dim underwater spectrum, not full sunlight, and total output (milliwatt-hours) is a trickle compared with any land-based array.</p>
+  </div>
+
+  <!-- SECTION 01 -->
+  <div class="section-h"><span class="section-no">01</span><h2>What the team actually did</h2></div>
+  <p class="para">The starting problem was a gap in the literature that reads almost like a physics error: every prior study of underwater solar cells stopped at water <b>two meters or less</b> deep. As <b>Wen-Hua Zhang</b> put it in the paper's opening salvo, "very few studies have been reported on underwater solar cells, and all of them are focused on very shallow water depths of only two meters or less, a scenario far from catering for requirements of practical application." The team's goal was to bypass the lab-tank games altogether and build cells robust and efficient enough to operate in real seawater, at real depth, for years.</p>
+  <p class="para">First came a custom lab setup: a simulator with <b>tailored optical filters</b> that reproduces the underwater light spectrum at whatever depth the researchers want to emulate — because testing against standard sunlight tells you nothing about how a cell behaves ten meters down. Then the field trial: large-area perovskite modules were integrated onto a small underwater robot/vehicle and deployed off the <b>Weizhou Islands</b> in the South China Sea at <b>2, 6 and 10 meters</b> depth. Over two hours of submerged illumination at 10 m, the modules generated <b>324 mWh</b> — enough in the team's account to charge lithium-ion batteries and light LEDs. At shallower depths the output was lumpier (wave motion and surface chop make light flicker in the top few meters); deeper down the power steadied but, as expected, weakened.</p>
+
+  <!-- SECTION 02 -->
+  <div class="section-h"><span class="section-no">02</span><h2>Why the sea breaks the "solar" equation</h2></div>
+  <p class="para">The physics that flummoxes ordinary panels is brutal and selective. Water is a wavelength filter: <b>red and infrared light are absorbed within centimeters to a few meters</b>; ultraviolet similarly dies quickly. What survives to depth is a narrow <b>blue-to-orange window around 400–600 nm</b> — the same reason the ocean looks blue. By about 10 meters, the remaining sunlight is a dim, color-shifted remnant that a standard silicon cell — engineered for the broad terrestrial solar spectrum — reads catastrophically badly. Much of the photon energy that reaches the panel is simply wasted, because the cell was designed to harvest red and infrared that are already gone.</p>
+  <p class="para">That mismatch is why the "35% efficiency" headline is simultaneously honest and slippery. Efficiency in photovoltaics is defined <i>relative to the light available to the cell</i>. A rooftop silicon panel converts ~20% of the strong, full-spectrum sunlight it receives; these perovskite cells convert <b>34.71% of the much dimmer, blue-green underwater light</b> they receive at the simulated 10-meter spectrum — but only <b>16.79%</b> under standard AM1.5G sunlight. Same hardware, two very different ecosystem labels. The impressive part is not that 34.71% beats silicon's 20% — it beats it <i>on a different measuring stick</i>. The genuinely impressive part is the spectral matching: this cell was designed for the light that actually makes it 10 meters down, and it wastes less of that scarce resource than any conventional panel could.</p>
+
+  <!-- SECTION 03 -->
+  <div class="section-h"><span class="section-no">03</span><h2>How the team rebuilt the cell for the deep</h2></div>
+  <p class="para">The core trick is choosing the right bandgap. A perovskite's bandgap sets which photon colors it can absorb; light with less energy than the gap passes through unused. Rooftop perovskite and silicon cells use a gap around <b>1.1–1.5 eV</b> tuned for the broad terrestrial spectrum — but underwater, the red and infrared photons they're designed to capture never arrive. The team instead built a lead-halide perovskite with a wide bandgap of roughly <b>1.96 eV</b>, aligned almost perfectly with the surviving blue-to-orange band, capturing the scarce photons that actually reach 10 meters while skipping the ones that don't exist there. It is, in essence, a cell designed for a different sun.</p>
+  <p class="para">The durability half is where perovskites usually die, and it's where this study earns its keep. Halide perovskites degrade when ions migrate, defects drain charge, and moisture attacks the crystal. The team's answer is the polymer additive <b>PHMG</b> (polyhexamethylene guanidine hydrochloride). PHMG converts the film from p-type toward n-type character, which the group reports improves electron extraction, suppresses halide ion migration, cuts defect density, and stabilizes the lattice. Combined with protective encapsulation, that additive is what lets the cells shrug off the one-two punch every sea-tested perovskite dreads: saltwater and prolonged illumination. The group's accelerated-aging numbers — ~96% retained after 300 days of nitrogen glovebox storage, negligible degradation after 1,160 hours under simulated 10-meter conditions, ~99.6% of original efficiency after ~40 days in seawater, and a projected <b>T80 lifetime of about 48,094 hours (~5.5 years)</b> — are squarely better than most prior perovskite stability reports. As <b>Ars Technica</b> put it: the trick isn't using perovskites, it's making them last.</p>
+
+  <!-- SPEC SHEET -->
+  <div class="spec">
+    <div class="spec-head">Submerged perovskite cells — key numbers</div>
+    <div class="spec-row"><span class="k">Cell type</span><span class="v">Lead-halide perovskite, wide bandgap ≈ <b>1.96 eV</b>, spectrally matched to the underwater blue-orange band (~400–600 nm)</span></div>
+    <div class="spec-row"><span class="k">Efficiency (AM 1.5G)</span><span class="v"><b>16.79%</b> certified under standard full-sunlight illumination</span></div>
+    <div class="spec-row"><span class="k">Efficiency (underwater)</span><span class="v"><b>34.71%</b> under the simulated 10-meter underwater spectrum — the source of the viral "35%"</span></div>
+    <div class="spec-row"><span class="k">Stability additive</span><span class="v"><b>PHMG</b> (polyhexamethylene guanidine hydrochloride): p→n type conversion, better electron extraction, suppressed ion migration, fewer defects</span></div>
+    <div class="spec-row"><span class="k">Storage test</span><span class="v">~<b>96%</b> of initial efficiency retained after 300 days in a nitrogen glovebox</span></div>
+    <div class="spec-row"><span class="k">Simulated soak</span><span class="v">Negligible degradation after <b>1,160 hours</b> at simulated 10-meter submerged conditions</span></div>
+    <div class="spec-row"><span class="k">Real seawater</span><span class="v">~<b>99.6%</b> of original efficiency after ~40 days submersed in seawater (filtered-light test)</span></div>
+    <div class="spec-row"><span class="k">Projected lifetime</span><span class="v"><b>T80 ≈ 48,094 hours ≈ 5.5 years</b> at 10 m / 25 °C (time to drop to 80% of initial efficiency)</span></div>
+    <div class="spec-row"><span class="k">Field result</span><span class="v"><b>324 mWh</b> from large-area modules after 2 hours at 10 m off Weizhou Island, South China Sea — enough to charge Li-ion batteries and light LEDs</span></div>
+  </div>
+
+  <p class="para">Scale was the last barrier the team dismantled. Most perovskite research lives and dies at millimeter-sized lab cells; these researchers pushed to <b>large-area modules</b>, which is the step that makes the field demo meaningful at all. The 2/6/10-meter field data also exposes a nice sanity check: at 2 meters, where surface chop and waves modulate the flickering light, output jumped around; deeper, where the water column damps that turbulence, output steadied but weakened. That asymmetric behavior — noisy near the surface, calm in the deep — is precisely the signature you'd expect from real physics rather than a tidy simulation.</p>
+
+<!-- PULLQUOTE -->
+  <div class="pullquote">
+    <p>"Very few studies have been reported on underwater solar cells, and all of them are focused on very shallow water depths of only two meters or less... This work presents the first functional validation of submerged solar cells practically operating at a water depth of up to about 10 meters."</p>
+    <span class="attrib">— Wen-Hua Zhang, Yunnan University / Southwest United Graduate School, in Joule</span>
+  </div>
+
+  <!-- SECTION 04 -->
+  <div class="section-h"><span class="section-no">04</span><h2>The evidence: how the numbers stack up</h2></div>
+  <p class="para">Efficiency-only comparisons across solar technologies are a minefield, because each number is measured against a different benchmark — full sunlight (AM 1.5G), an underwater-filtered spectrum, or an even narrower real-world depth. The chart below keeps each measurement with its benchmark so you can see why the "35%" figures so well and means so little on its own.</p>
+
+  <!-- BENCH -->
+  <div class="bench">
+    <span class="bench-label">Efficiency by technology — and by what light it was measured against</span>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">Flexible a-Si, best-case at 2 m depth (prior work)</span><span class="bench-val">59.7%</span></div>
+      <div class="bench-bar"><div class="bench-fill" style="width:100%"></div></div>
+    </div>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">CdTe, underwater-optimized lab tests at 0.2 m (prior work)</span><span class="bench-val">35.9%</span></div>
+      <div class="bench-bar"><div class="bench-fill pink" style="width:60%"></div></div>
+    </div>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">Wide-bandgap perovskite, simulated 10 m underwater spectrum</span><span class="bench-val">34.71%</span></div>
+      <div class="bench-bar"><div class="bench-fill" style="width:58%"></div></div>
+    </div>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">Typical commercial silicon rooftop module, AM 1.5G</span><span class="bench-val">~20%</span></div>
+      <div class="bench-bar"><div class="bench-fill" style="width:34%"></div></div>
+    </div>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">Wide-bandgap perovskite, certified under AM 1.5G sunlight</span><span class="bench-val">16.79%</span></div>
+      <div class="bench-bar"><div class="bench-fill pink" style="width:28%"></div></div>
+    </div>
+    <div class="bench-note">Not apples-to-apples: the top three rows describe conversion of the <i>available</i> underwater spectrum (which is far dimmer and narrower than sunlight), while the bottom rows describe conversion of full-sunlight input. The physical energy per cell per hour underwater is far smaller than on a rooftop regardless of the percentage. Values from the Joule paper (34.71% / 16.79%), the PNAS flexible-cells study (a-Si 59.7% at 2 m) and pv magazine's field reporting (CdTe 35.9% at 0.2 m). Bars are scaled to the 59.7% maximum.</div>
+  </div>
+
+  <p class="para">Bars aside, the durability story is where the paper builds its real case. A cell that hits 34% under the right spectrum but crumbles in a week is a lab curiosity; a cell that keeps most of its efficiency for an estimated <b>5.5 years under continuous 10-meter seawater conditions</b> is infrastructure. Add the scaling data point — small lab cells to <b>large-area modules</b>, the thing perovskite researchers almost never manage while simultaneously solving stability — and the paper looks less like a headline grab and more like a full-stack demonstration: <i>materials, mechanisms, durability, scaling, field deployment</i>, all five boxes checked in one study.</p>
+
+  <!-- SECTION 05 -->
+  <div class="section-h"><span class="section-no">05</span><h2>What this actually unlocks</h2></div>
+  <p class="para">The headline use case is the one the researchers name: the <b>battery bottleneck</b>. Every autonomous underwater vehicle, subsea sensor, camera, and aquaculture monitor currently lives or dies by its battery endurance — and the standard fix, hauling hardware up to recharge or swap cells, is expensive, risky, and often just impractical. A <b>5.5-year</b>, self-sustaining solar layer changes those economics more than the raw wattage suggests: it converts periodic surface visits into a "set and forget" maintenance cadence. The team's framing — "a route to continuously power marine devices, addressing the long-standing bottleneck of short battery endurance for underwater devices" — matches the demo exactly: 324 mWh over two hours is not a lot of energy by surface standards, but it is precisely the trickle that keeps a low-power sensor array or a monitoring buoy's comms alive indefinitely.</p>
+  <p class="para">Zoom out and the target is what the field calls the <b>Internet of Underwater Things</b> (IoUT): distributed sensing for aquaculture, coastal-zone monitoring, marine weather, fisheries, and oceanographic research. In that context, "5.5 years at 10 meters" is less about the specific number and more about the <i>class</i> of capability — an underwater device that can keep itself charged without ever surfacing. The researchers also flagged the immediate-future boundaries correctly: marine <b>biofouling</b>, floating debris, and saltwater corrosion all degrade real-world output; depth is not the only variable that governs practical operation. None of that is a repudiation — it's the difference between a promising demonstration and a deployment plan.</p>
+
+  <!-- SECTION 06 -->
+  <div class="section-h"><span class="section-no">06</span><h2>The counter-reading: why the "35%" needs an asterisk</h2></div>
+  <p class="para">Start with the number that carried the story. <b>34.71%</b> is genuinely remarkable — but it is measured against the <i>available underwater spectrum</i>, a dim, narrow blue-orange slice. Silicon's familiar ~20% is measured against full sunlight. They are different benchmarks measuring different inputs; a 34.71% underwater conversion does not mean the cells beat silicon on energy per hour — the incoming photon flux at 10 meters is a small fraction of what reaches a rooftop, so <b>the absolute power is still a trickle</b> (milliwatt-hours, not the kilowatt-hours a grid array produces). If someone tells you "underwater solar now beats silicon's efficiency," they're either mistaken or eliding the benchmark.</p>
+  <p class="para">Second, the durability claims deserve the same rigor. The <b>5.5-year T80 projection</b> (48,094 hours) is derived from accelerated aging tests — including ~40 days of real seawater immersion at ~99.6% retention — not from five years of continuous operation. It's a defensible extrapolation, and it's better than what most perovskites achieve, but it is not yet proof. The same is true of the field data: a two-hour, 10-meter demo is an existence proof, not a reliability guarantee; the real unknowns are multi-seasonal biofouling, biofilms, and the mechanical stress of actual deployment life. Third, the environmental echo — lead-halide perovskites contain <b>lead</b>, and ocean environments are the worst possible place for a release. The cells are encapsulated, and prior work (e.g., the Italian FAPbBr₃ studies) has shown lead-leachate can stay within drinking-water limits, but "minimal leakage" is a claim that deserves long-term marine scrutiny, not applause. Finally, the honest scope check: this is a <i>niche charger for underwater hardware</i>, not an energy solution. It will not power ships, rigs, or coastal grids — and nobody in the paper pretends otherwise.</p>
+
+  <!-- SECTION 07 -->
+  <div class="section-h"><span class="section-no">07</span><h2>What to watch next</h2></div>
+  <ul class="para">
+    <li><b>Deeper tests.</b> Zhang told ZME Science the team is already pursuing 20–30 m ("the experiments are under way"), and the Joule paper calls for standardized underwater-PV testing protocols. Watch whether the blue-green window keeps the advantage at depth or whether output collapses past 10–15 m.</li>
+    <li><b>Water-depth ceiling vs. spectral claims.</b> The "34.71% at simulated 10 m" number will get re-verified by other labs. Watch for independent replication that either validates the spectral-matching math or finds a benchmark mismatch.</li>
+    <li><b>Marine biofouling and corrosion data.</b> The two-week field soak is a start; multi-season deployments are the real test. Any team that reports 6–12 months of real seawater performance will move the field from "promising" to "credible."</li>
+    <li><b>Commercial adoption pipelines.</b> Perovskite-Info and the broader industry will track whether module makers (Japanese policy has already started quadrupling perovskite support) pick up underwater deployments, and whether the IoUT market accelerates as a result.</li>
+    <li><b>The competing chemistry race.</b> The field is not settled on perovskites: galvanic and Ga₂O₃-enhanced silicon cells, CdTe, and flexible a-Si have all posted underwater numbers at shallow depths. Whether the wide-bandgap perovskite approach is the sustainable platform — or just the first deep-water proof — is an open race.</li>
+  </ul>
+
+  <!-- SECTION 08 -->
+  <div class="section-h"><span class="section-no">08</span><h2>The TIMPS verdict</h2></div>
+  <div class="callout">
+    <span class="callout-label">Our read</span>
+    <p><b>This is a genuinely good materials-science result with a truthful but easily-gamed headline.</b> The 34.71% figure is real, and it correctly describes conversion of the light that actually survives 10 meters underwater — but it is not comparable to silicon's ~20% any more than a sprint time is comparable to a marathon time. The interesting numbers are the ones no one leads with: a <b>1.96-eV bandgap matched to the deep-water spectrum, ~5.5 years of projected life, and a real two-hour field deployment at depth</b> — all three together is rare, and it's the package that makes underwater photovoltaics believable rather than aspirational.</p>
+    <p><b>The credibility gap is the field test.</b> Two hours at 10 meters is existence-proof, not endurance-proof. The accelerated-aging extrapolation to 5.5 years is reasonable — ~99.6% retention over ~40 seawater days is an unusually clean degradation trend — but biofouling, biofilm, mechanical stress, and seasonal temperature swings remain largely unmeasured. The next credible milestone is not a deeper depth demo; it is a year-plus of continuous real-seawater operation.</p>
+    <p><b>Its real significance is simpler and bigger than the numbers.</b> This study moves an entire category from "impossible" to "plausible": it reframes the question from <i>whether</i> underwater hardware can be solar-powered to <i>where and how far</i>. The IoUT battery bottleneck is real, and any technology that plausibly removes it — even at a trickle — shifts the economics of subsea sensing, aquaculture, and autonomous vehicles. Teams are already racing deeper; the field's next chapter will be written on durability, not percentage points.</p>
+    <p><b>Watch your skepticism on any headline that says "35%."</b> Underwater-solar efficiency claims are the perfect vehicle for benchmark gamesmanship: dim input, narrow spectrum, flexible baselines. A percentage without its benchmark is marketing, not physics. What matters is energy per area per day at a given depth — and on that metric, this paper is a promising start, not a solved problem.</p>
+  </div>
+
+  <p class="para" style="opacity:.6;font-size:13px;line-height:1.8;">Facts in this piece were compiled from the primary Joule paper "Submerged Solar Harvesting with Wide-Bandgap Perovskites for Autonomous Underwater Energy Systems" (DOI 10.1016/j.joule.2026.102672, published September 11, 2026, by Wen-Hua Zhang et al., Yunnan University / Southwest United Graduate School, with the Chinese Academy of Sciences and EPFL) and its official EurekAlert!/Cell Press press release, plus reporting from Perovskite-Info (Sep 12), pv magazine Global (Sep 14), Ars Technica (Sep 14), ZME Science (Sep 11, including an interview with Zhang), Tech Xplore (Sep 11) and DongA Science (Sep 13), and field context from prior underwater-PV literature (Joule 2020 efficiency-limits study; Nature Photonics 2023 perspective; PNAS flexible-cells report; CNR Italy FAPbBr₃ studies). The 34.71% "underwater-spectrum efficiency" and 16.79% AM1.5G certified PCE are the authors'/reported figures; the ~5.5-year lifetime is the paper's accelerated-aging T80 projection, not a measurement of continuous operation. This is news analysis by an independent publication — not investment advice, not a research endorsement, and not engineering guidance for subsea deployment.</p>
+
+  <!-- SOURCES -->
+  <div class="sources">
+    <h3>Sources</h3>
+    <ol>
+      <li><a href="https://doi.org/10.1016/j.joule.2026.102672" target="_blank" rel="noopener">Joule (Cell Press) — "Submerged Solar Harvesting with Wide-Bandgap Perovskites for Autonomous Underwater Energy Systems" (Sep 11, 2026, primary source)</a></li>
+      <li><a href="https://www.eurekalert.org/news-releases/1142532" target="_blank" rel="noopener">EurekAlert! / Cell Press — "Underwater solar cells that function 10 meters below the ocean's surface" (Sep 11, 2026)</a></li>
+      <li><a href="https://www.perovskite-info.com/perovskite-solar-cells-function-10-meters-underwater" target="_blank" rel="noopener">Perovskite-Info — "Perovskite solar cells function 10 meters underwater" (Sep 12, 2026; certified-efficiency detail)</a></li>
+      <li><a href="https://www.pv-magazine.com/2026/09/14/researchers-find-perovskite-solar-functions-10-meters-below-sea-surface" target="_blank" rel="noopener">pv magazine Global — "Researchers find perovskite solar functions 10 meters below sea surface" (Sep 14, 2026)</a></li>
+      <li><a href="https://arstechnica.com/science/2026/09/a-new-solar-cell-could-generate-electricity-underwater" target="_blank" rel="noopener">Ars Technica — "A new solar cell could generate electricity underwater" (Sep 14, 2026)</a></li>
+      <li><a href="https://www.zmescience.com/science/news-science/underwater-solar-panels-china" target="_blank" rel="noopener">ZME Science — "Scientists in China Test Solar Panels That Work Underwater 10 Meters Beneath the Sea" (Sep 11, 2026; author interview)</a></li>
+      <li><a href="https://techxplore.com/news/2026-09-underwater-solar-cells-meters-ocean.html" target="_blank" rel="noopener">Tech Xplore — "Underwater solar cells can operate 10 meters below the ocean surface" (Sep 11, 2026)</a></li>
+      <li><a href="https://www.dongascience.com/en/news/79834" target="_blank" rel="noopener">DongA Science — "Perovskite Solar Cells Operate at 10 m Depth in South China Sea Trial" (Sep 13, 2026)</a></li>
+      <li><a href="https://doi.org/10.1016/j.joule.2020.02.005" target="_blank" rel="noopener">Joule — JA Röhr et al., "Efficiency Limits of Underwater Solar Cells" (2020, context)</a></li>
+      <li><a href="https://www.pnas.org/doi/10.1073/pnas.2423651122" target="_blank" rel="noopener">PNAS — flexible solar cells underwater: a-Si 59.7% at 2 m (context)</a></li>
+    </ol>
+  </div>
+
+  <!-- END CARD -->
+  <div class="endcard">
+    <h3 class="endcard-h">One story a day,<br>explained properly.</h3>
+    <p class="endcard-sub">New TIMPS deep dives land regularly — paired with the five-signal PostCard every morning. Free forever.</p>
+    <div class="btns">
+      <a href="index.html#subscribe" class="btn-chunky">Subscribe free</a>
+      <a href="article-injecteave-headphones.html" class="btn-chunky lime">&larr; Prev: Your headphones don't need to be hacked to leak — a radio beam can make them broadcast your audio</a>
+    </div>
+    <p style="font-family:var(--news);font-size:13px;opacity:.6;margin-top:20px;"><a href="articles.html" style="text-decoration:underline;">&larr; Browse all deep dives</a></p>
+  </div>
+
+</article>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-brand">TIMPS PostCards</div>
+  <div class="footer-center">
+    Five signals from the AI landscape, every day.<br>
+    Plus long-form deep dives. Hyderabad, India · Est. 2026
+  </div>
+  <div class="footer-right">
+    <a href="index.html">Home</a><br>
+    <a href="archive.html">Posts</a><br>
+    <a href="articles.html">Articles</a><br>
+    &copy; 2026 TIMPS
+  </div>
+</footer>
+
+</body>
+</html>
