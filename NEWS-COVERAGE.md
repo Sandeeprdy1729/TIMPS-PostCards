@@ -6,7 +6,7 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 104 daily issues + 8 deep dives · regenerated 2026-09-20**
+**Coverage: 104 daily issues + 9 deep dives · regenerated 2026-09-21**
 
 ---
 
@@ -3025,6 +3025,11 @@
 ---
 
 ## Deep Dive Articles — already covered
+
+- **№ 9 — Your headphones don't need to be hacked to leak — a radio beam can make them broadcast your audio** (`article-injecteave-headphones.html`)
+  - Deep Dive № 009 · Research · Hardware Security
+  - _Researchers at HKUST (Guangzhou) and Hong Kong Polytechnic University recovered intelligible audio from wired and wireless headphones up to 30 meters away — through concrete walls — without breaking Bluetooth encryption. InjectEave beams an RF carrier at a device and lets hardware nonlinearity do the leaking: the same trick also exposes the state of smart-home devices and can inject AI-cloned speech into live calls._
+  - Sandeep Thummala · 18 min read · Sep 21, 2026
 
 - **№ 8 — Anthropic's CEO is now asking the entire AI industry to slow down — and committing his own lab first** (`article-pace-the-frontier.html`)
   - Deep Dive № 008 · Anthropic · Safety & Policy
