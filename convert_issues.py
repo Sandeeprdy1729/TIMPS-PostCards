@@ -4,7 +4,7 @@
 import re
 import glob
 
-TEMPLATE_FILE = "timps-postcards-2026-07-02.html"
+TEMPLATE_FILE = "daily/timps-postcards-2026-07-02.html"
 EXCLUDE = {TEMPLATE_FILE, "index.html", "sample-postcard.html", "timps-postcards-2026-07-01.html.bak"}
 
 # Read the template to get the CSS block and structural parts
@@ -142,7 +142,7 @@ def find_title_in_footer(html):
 
 
 # Get all issue files
-issue_files = sorted(glob.glob("timps-postcards-*.html"))
+issue_files = sorted(glob.glob("daily/timps-postcards-*.html"))
 issue_files = [f for f in issue_files if f not in EXCLUDE]
 
 print(f"Found {len(issue_files)} issue files to convert")
@@ -182,7 +182,7 @@ for filepath in issue_files:
   <footer class="footer">
     <div class="footer-logo">
       <div class="footer-mark">
-        <img src="timps_logo.svg" alt="TIMPS">
+        <img src="../assets/timps_logo.svg" alt="TIMPS">
       </div>
       <span class="footer-brand">TIMPS PostCards</span>
     </div>
@@ -191,8 +191,8 @@ for filepath in issue_files:
       Hyderabad, India
     </div>
     <div class="footer-right">
-      <a href="index.html">Home</a><br>
-      <a href="index.html#archive">Archive</a><br>
+      <a href="../index.html">Home</a><br>
+      <a href="../index.html#archive">Archive</a><br>
       &copy; 2026 TIMPS
     </div>
   </footer>'''

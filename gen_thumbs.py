@@ -1,7 +1,7 @@
 import os, re, subprocess, shutil
 
-POSTCARDS_DIR = "."
-THUMBS_DIR = "thumbs"
+POSTCARDS_DIR = "daily"
+THUMBS_DIR = "assets/thumbs"
 NEW_STYLE_DIR = os.path.join("samples", "new-style")
 NEW_STYLE_OUT = os.path.join(NEW_STYLE_DIR, "out")
 os.makedirs(THUMBS_DIR, exist_ok=True)

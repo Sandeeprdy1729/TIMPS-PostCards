@@ -11,7 +11,7 @@ You are automating the full deep-dive article pipeline for the TIMPS newsletter 
 
 Before writing anything, produce a shortlist of the 5 strongest deep-dive candidates right now and present it to the user with the `question` tool (multiple: false):
 
-1. Glance at the most recent issues (`timps-postcards-2026-*.html`, latest 3–5) and `index.html` archive for themes worth long-form treatment.
+1. Glance at the most recent issues (`daily/timps-postcards-2026-*.html`, latest 3–5) and `index.html` archive for themes worth long-form treatment.
 2. Run 1–3 web searches for the current AI/tech news cycle if the daily issues don't cover enough.
 3. Pick 5 candidates that are (a) big, (b) explainable in ~1,600–2,200 words, (c) have several citable sources, (d) fit the site's AI-landscape focus. Vary the subjects.
 4. Present them as one question with up to 5 options, each option = the working title + one-line "because…".
@@ -35,18 +35,18 @@ Site rule: article heroes are real photographs/imagery downloaded from the web. 
    - Inspect the page HTML for `og:image` or `<img>` URLs, or fetch the site's asset path. For press releases the hero is often a `-hero.png` / `-thumbnail.jpg` under a `/content/dam/` path — probe likely sibling paths if needed.
 2. Download it. Verify it's a real image (`file`/PIL), not an HTML error page (watch for small byte counts, HTML content, or image-like extensions serving text).
 3. Crop/pad to **1600×900** (center-crop from a wide source, LANCZOS), save as JPEG quality ~88 to:
-   `thumbs/article-<kebab-slug>-hero.jpg`
+   `assets/thumbs/article-<kebab-slug>-hero.jpg`
    - Slug = the article filename stem, e.g. `visionpro-surgery`. Use PIL (`pip`-safe: `from PIL import Image`); fall back to `sips` if PIL is unavailable.
 4. Credit it honestly in the figure caption ("Image via <publisher>"). If the only available image is low-res or you cannot find one, tell the user and ask how to proceed — do not silently ship a broken/placeholder image.
 
 ## Step 4 — Build the article page
 
-Create `article-<kebab-slug>.html` by copying the newest existing deep-dive (currently `article-pace-the-frontier.html` — check `ls article-*.html`) as the template and rewriting the content. Keep every `<style>` rule that already exists id-to-identical — do not redesign.
+Create `articles/article-<kebab-slug>.html` by copying the newest existing deep-dive (currently `articles/article-pace-the-frontier.html` — check `ls articles/article-*.html`) as the template and rewriting the content. Keep every `<style>` rule that already exists id-to-identical — do not redesign.
 
 ### Must-match design system (do not deviate)
 - Colors: `--cream:#EDE8DA --forest:#1C2E22 --pink:#E8B4E8 --lime:#DCF07A --lime-d:#C8DE60 --black:#111111 --card-bg:#F5F1E6`; graph-paper grid background.
 - **Two fonts only** for article content: `--serif:'TIMPS'` (headings, from `TIMPS-Family-v2/*.woff2`) and `--news:'Newsreader'` (prose/descriptions). No Space Mono / no monospace anywhere — `--mono: 'Newsreader', Georgia, 'Times New Roman', serif` covers nav + UI chips/labels/buttons too. Google Fonts link = Newsreader ONLY (no Playfair, no Space Mono, no Lora). Keep the `@font-face` block.
-- **Navbar identical** to `index.html` (same link set, same classes): logo → `index.html`; Articles → `articles.html` (class `active` on this page); Archive → `index.html#archive`; Latest Issue → the CURRENT latest issue file (check `ls timps-postcards-2026-*.html | tail -1` — today's date is Sep 2026); Subscribe → `index.html#subscribe`; CTA "Subscribe" → `index.html#subscribe`. Keep the mobile media queries.
+- **Navbar identical** to `index.html` (same link set, same classes): logo → `index.html`; Articles → `articles.html` (class `active` on this page); Archive → `index.html#archive`; Latest Issue → the CURRENT latest issue file (check `ls daily/timps-postcards-2026-*.html | tail -1` — today's date is Sep 2026); Subscribe → `index.html#subscribe`; CTA "Subscribe" → `index.html#subscribe`. Keep the mobile media queries.
 
 ### Page structure (order matters)
 1. `<head>` — same title tag pattern: `TIMPS Articles — <descriptive title>`.
@@ -69,16 +69,16 @@ Create `article-<kebab-slug>.html` by copying the newest existing deep-dive (cur
 
 ## Step 5 — Wire it into the site
 
-1. **Hub** (`articles.html`): the hub lists articles **newest-first** — insert the new `<a href="article-<slug>.html" class="card">` as the FIRST card, BEFORE the previous most-recent one (older articles stay in order beneath it). Structure: `card-thumb` (real image), `card-body` → `card-tag` = `Deep Dive № 00X · <Company> · <Vertical>` (add `class="pink"` on alternating cards for variety), `card-title`, `card-deck` (2–3 sentences), `card-byline` = `<b>Sandeep Thummala</b> · <N> min read · <date>`, `card-cta` = `Read the deep dive →`.
+1. **Hub** (`articles.html`): the hub lists articles **newest-first** — insert the new `<a href="articles/article-<slug>.html" class="card">` as the FIRST card, BEFORE the previous most-recent one (older articles stay in order beneath it). Structure: `card-thumb` (real image), `card-body` → `card-tag` = `Deep Dive № 00X · <Company> · <Vertical>` (add `class="pink"` on alternating cards for variety), `card-title`, `card-deck` (2–3 sentences), `card-byline` = `<b>Sandeep Thummala</b> · <N> min read · <date>`, `card-cta` = `Read the deep dive →`.
 2. **Homepage** (`index.html`, `#articles` section): the site shows ONLY the most recent deep dive as a single `article-card` — REPLACE the existing card's content with the new article (do not append; do not list all articles). Match the `article-card` classes used there (`article-card-tag`, `article-card-title`, `article-card-deck`, `article-card-meta`, `btn-chunky lime article-card-cta`).
 3. **Prev/next links**: update the previous article's `.endcard` to add the new article as the next link if desired (e.g. `Next: <Title> →`), keeping the browse link.
-4. If the index nav "Latest Issue" still points at an older daily issue file, bump it to the newest `timps-postcards-2026-*.html` on ALL article/hub pages so every navbar stays identical.
+4. If the index nav "Latest Issue" still points at an older daily issue file, bump it to the newest `daily/timps-postcards-2026-*.html` on ALL article/hub pages so every navbar stays identical.
 
 ## Step 6 — Regenerate the do-not-repeat news tracker
 
 Run this after EVERY published issue or article (a deep dive via this skill, or any daily PostCard), so the tracker always reflects what has already been covered and no story is ever reused:
 
-1. Run `python3 update_coverage_log.py` from the repo root. It regenerates `NEWS-COVERAGE.md` from `timps-postcards-*.html` + `articles.html` (headline, summary deck, sources, signal briefs, newest first).
+1. Run `python3 update_coverage_log.py` from the repo root. It regenerates `NEWS-COVERAGE.md` from `daily/timps-postcards-*.html` + `articles.html` (headline, summary deck, sources, signal briefs, newest first).
 2. Confirm the output line reports the new issue/article: e.g. `Wrote NEWS-COVERAGE.md (97 issues, 8 articles)` — issue/article counts must go up by one vs before.
 3. Grep the new entry in `NEWS-COVERAGE.md` (search by date for a daily issue, or by title for a deep dive) and verify the headline/deck/sources match what you just published.
 4. If any new daily issue file exists that the script didn't pick up, or any count looks stale, investigate before moving on — the tracker must stay complete.
@@ -86,9 +86,9 @@ Run this after EVERY published issue or article (a deep dive via this skill, or 
 ## Step 7 — Verify
 
 1. Parse every touched HTML file with Python's `html.parser` (tag balance check used before) — no mismatched tags, empty stack at EOF.
-2. Check every internal `href`/`src` resolves to an existing file (images exist in `thumbs/`, links point to real pages).
+2. Check every internal `href`/`src` resolves to an existing file (images exist in `assets/thumbs/`, links point to real pages).
 3. Grep that no `Playfair`, `Space Mono` or `Lora` remains and Newsreader is loaded.
-4. Confirm `thumbs/article-<slug>-hero.jpg` opens as a valid image.
+4. Confirm `assets/thumbs/article-<slug>-hero.jpg` opens as a valid image.
 5. Confirm hub + homepage both reference the new article and the homepage shows exactly one article card.
 6. Do a final web-search spot check that the headline doesn't restate a user-supplied literal news phrase and facts match sources.
 
