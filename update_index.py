@@ -52,7 +52,7 @@ def update_index_html(new_file, title, excerpt, dry_run=False):
         old_file = btn_match.group(1)
         content = content.replace(
             f'href="{old_file}" class="btn-chunky filled">Read Latest Issue',
-            f'href="{new_file.name}" class="btn-chunky filled">Read Latest Issue',
+            f'href="daily/{new_file.name}" class="btn-chunky filled">Read Latest Issue',
         )
     else:
         print("Warning: Could not find 'Read Latest Issue' button")
@@ -91,7 +91,7 @@ def update_index_html(new_file, title, excerpt, dry_run=False):
 
     # 5. Build new post card
     new_card = f'''    <!-- Issue {issue_num} \u2013 Latest -->
-    <a href="{new_file.name}" class="post-card latest">
+    <a href="daily/{new_file.name}" class="post-card latest">
       <div class="post-thumb">
         <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect x="8" y="10" width="44" height="8" rx="3" fill="#1C2E22"/>

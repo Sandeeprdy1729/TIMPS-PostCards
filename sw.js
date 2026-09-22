@@ -1,14 +1,14 @@
-const CACHE = "timps-postcards-v2";
+const CACHE = "timps-postcards-v3";
 
 const PRECACHE_URLS = [
   ".",
   "index.html",
   "config.js",
-  "icon-192.png",
-  "icon-512.png",
-  "timps_logo.svg",
-  "timps_banner.svg",
-  "timps-hero-banner.png"
+  "assets/icon-192.png",
+  "assets/icon-512.png",
+  "assets/timps_logo.svg",
+  "assets/timps_banner.svg",
+  "assets/timps-hero-banner.png"
 ];
 
 self.addEventListener("install", (event) => {
@@ -49,16 +49,16 @@ self.addEventListener("push", (event) => {
     const data = event.data.json();
     self.registration.showNotification(data.title || "TIMPS PostCards", {
       body: data.body || "New update available",
-      icon: data.icon || "icon-192.png",
-      badge: "icon-192.png",
+      icon: data.icon || "assets/icon-192.png",
+      badge: "assets/icon-192.png",
       data: { url: data.url || "." },
       actions: data.actions || []
     });
   } catch {
     self.registration.showNotification("TIMPS PostCards", {
       body: event.data.text(),
-      icon: "icon-192.png",
-      badge: "icon-192.png"
+      icon: "assets/icon-192.png",
+      badge: "assets/icon-192.png"
     });
   }
 });

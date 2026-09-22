@@ -72,7 +72,7 @@ def parse_daily(path):
             for s in re.finditer(r'class="[^"]*signal-title[^"]*">(.*?)</div>', card, re.S):
                 signals.append(inline(s.group(1)))
 
-    return {"date": date, "issue": issue, "file": path.split("/")[-1],
+    return {"date": date, "issue": issue, "file": "daily/" + path.split("/")[-1],
             "stories": stories, "signals": signals}
 
 
@@ -80,7 +80,7 @@ def parse_articles():
     with open(f"{ROOT}/articles.html", encoding="utf-8") as f:
         raw = f.read()
     arts = []
-    for m in re.finditer(r'<a href="(article-[^"]+)\.html" class="card">(.*?)</a>', raw, re.S):
+    for m in re.finditer(r'<a href="articles/(article-[^"]+)\.html" class="card">(.*?)</a>', raw, re.S):
         href, card = m.group(1), m.group(2)
         tag = pick(r'class="[^"]*card-tag[^"]*">(.*?)</span>', card)
         title = pick(r'class="[^"]*card-title[^"]*">(.*?)</h2>', card)
@@ -133,7 +133,7 @@ def render(issues, arts):
     L.append("## Deep Dive Articles — already covered")
     L.append("")
     for a in arts:
-        L.append(f"- **№ {a['no']} — {a['title']}** (`{a['file']}.html`)")
+        L.append(f"- **№ {a['no']} — {a['title']}** (`articles/{a['file']}.html`)")
         if a["tag"]:
             L.append(f"  - {a['tag']}")
         if a["deck"]:
@@ -148,7 +148,7 @@ def render(issues, arts):
 
 
 def main():
-    issues = [parse_daily(p) for p in sorted(glob.glob(f"{ROOT}/timps-postcards-*.html"))]
+    issues = [parse_daily(p) for p in sorted(glob.glob(f"{ROOT}/daily/timps-postcards-*.html"))]
     render(issues, parse_articles())
 
 
