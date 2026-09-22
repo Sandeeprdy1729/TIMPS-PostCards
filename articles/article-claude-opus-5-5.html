@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TIMPS">
+<link rel="manifest" href="../manifest.json">
+<link rel="apple-touch-icon" href="../assets/icon-192.png">
+<title>TIMPS Articles — Anthropic's Opus 5.5 matches its most capable model on most work for 40% less — the full benchmark-by-benchmark breakdown.</title>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream:  #EDE8DA;
+    --forest: #1C2E22;
+    --pink:   #E8B4E8;
+    --lime:   #DCF07A;
+    --lime-d: #C8DE60;
+    --black:  #111111;
+    --border: #1C2E22;
+    --card-bg:#F5F1E6;
+    --mono:   'Newsreader', Georgia, 'Times New Roman', serif;
+    --news:   'Newsreader', Georgia, 'Times New Roman', serif;
+    --serif:  'TIMPS', Georgia, serif;
+  }
+
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Black.woff2') format('woff2'); font-weight:900; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Bold.woff2') format('woff2'); font-weight:700; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-SemiBold.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--cream);
+    background-image:
+      linear-gradient(rgba(28,46,34,.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(28,46,34,.07) 1px, transparent 1px);
+    background-size: 38px 38px;
+    color: var(--forest);
+    font-family: var(--news);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  a { text-decoration: none; color: inherit; }
+
+  /* Deep dive typography — TIMPS (display) + Newsreader (prose & descriptions) */
+  .masthead-dek { font-family: var(--news); font-style: italic; font-size: 19px; }
+  .masthead-meta { font-family: var(--news); font-size: 13px; }
+  .lede { font-family: var(--news); font-size: 21px; }
+  .para { font-family: var(--news); font-size: 17px; }
+  .callout p { font-family: var(--news); font-size: 15.5px; }
+  .pullquote p { font-family: var(--news); font-size: 21px; }
+  .pullquote .attrib { font-family: var(--news); font-style: italic; font-size: 13px; }
+  .spec-row { font-family: var(--news); font-size: 14px; }
+  .fig-cap { font-family: var(--news); font-size: 12.5px; }
+  .bench-top { font-family: var(--news); font-size: 13.5px; }
+  .bench-note { font-family: var(--news); font-size: 13px; }
+  .sources li { font-family: var(--news); font-size: 13.5px; }
+  .endcard-sub { font-family: var(--news); font-size: 14.5px; }
+
+  /* ─── NAV ─── */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 48px;
+    background-color: rgba(237,232,218,.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1.5px solid rgba(28,46,34,.12);
+    background-image:
+      linear-gradient(rgba(28,46,34,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(28,46,34,.05) 1px, transparent 1px);
+    background-size: 38px 38px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--forest);
+    letter-spacing: -0.3px;
+  }
+  .nav-logo-mark { width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .nav-logo-mark img { width: 28px; height: 28px; object-fit: contain; }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-link {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--forest);
+    opacity: .55;
+    transition: opacity .15s;
+  }
+  .nav-link:hover { opacity: 1; }
+  .nav-link.active { opacity: 1; font-weight: 700; }
+  .nav-cta {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--forest);
+    background: var(--lime);
+    border: 2.5px solid var(--forest);
+    border-radius: 100px;
+    padding: 10px 24px;
+    transition: background .15s, transform .1s;
+    white-space: nowrap;
+  }
+  .nav-cta:hover { background: var(--lime-d); transform: translateY(-1px); }
+
+  /* ─── MASTHEAD ─── */
+  .masthead {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 72px 24px 24px;
+    text-align: center;
+  }
+  .masthead-kicker {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--forest);
+    background: var(--lime);
+    border: 2px solid var(--forest);
+    border-radius: 100px;
+    padding: 7px 16px;
+    margin-bottom: 28px;
+  }
+  .masthead-h {
+    font-family: var(--serif);
+    font-size: clamp(38px, 6.4vw, 72px);
+    font-weight: 900;
+    line-height: 1.04;
+    letter-spacing: -1.5px;
+    color: var(--forest);
+    margin-bottom: 20px;
+  }
+  .masthead-h em { font-style: italic; }
+  .masthead-dek {
+    font-family: var(--serif);
+    font-size: clamp(17px, 2.2vw, 21px);
+    font-style: italic;
+    line-height: 1.55;
+    color: var(--forest);
+    opacity: .85;
+    max-width: 660px;
+    margin: 0 auto 28px;
+  }
+  .masthead-meta {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--forest);
+    opacity: .5;
+    letter-spacing: .5px;
+  }
+  .masthead-meta b { font-weight: 700; opacity: 1; }
+
+  /* ─── FIGURE ─── */
+  .figure {
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    overflow: hidden;
+    box-shadow: 6px 6px 0 rgba(28,46,34,.14);
+    margin: 32px 0;
+  }
+  .figure img { width: 100%; display: block; }
+  .fig-cap {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+    padding: 12px 16px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--forest);
+    border-top: 1.5px solid rgba(28,46,34,.15);
+    opacity: .7;
+    letter-spacing: .3px;
+  }
+  .fig-tag {
+    flex-shrink: 0;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--forest);
+    opacity: .9;
+  }
+  .fig-cap a { text-decoration: underline; opacity: .8; }
+  .fig-cap a:hover { opacity: 1; }
+
+  /* ─── ARTICLE BODY ─── */
+  .article-body {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 8px 24px 64px;
+  }
+  .lede {
+    font-family: var(--serif);
+    font-size: 21px;
+    font-weight: 400;
+    line-height: 1.65;
+    color: var(--forest);
+    margin: 8px 0 28px;
+  }
+  .lede b { font-weight: 700; }
+  .para {
+    font-family: var(--mono);
+    font-size: 14px;
+    line-height: 1.85;
+    color: var(--forest);
+    opacity: .92;
+    margin: 0 0 20px;
+  }
+  .para b { font-weight: 700; opacity: 1; }
+  .para i { font-style: italic; }
+  .para a { text-decoration: underline; opacity: .85; }
+  .para a:hover { opacity: 1; }
+  .para ul { padding-left: 22px; margin: 0 0 20px; }
+  .para li { margin-bottom: 10px; }
+
+  .section-h {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin: 56px 0 18px;
+  }
+  .section-no {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--lime);
+    background: var(--forest);
+    border-radius: 8px;
+    padding: 5px 9px;
+    letter-spacing: 1px;
+    flex-shrink: 0;
+  }
+  .section-h h2 {
+    font-family: var(--serif);
+    font-size: clamp(24px, 3.6vw, 32px);
+    font-weight: 900;
+    letter-spacing: -0.6px;
+    line-height: 1.1;
+    color: var(--forest);
+  }
+
+  /* Callout cards */
+  .callout {
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    padding: 22px 24px;
+    margin: 28px 0;
+    box-shadow: 5px 5px 0 rgba(28,46,34,.12);
+  }
+  .callout-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--forest);
+    background: var(--lime);
+    border: 1.5px solid var(--forest);
+    border-radius: 100px;
+    padding: 4px 10px;
+    display: inline-block;
+    margin-bottom: 14px;
+  }
+  .callout-label.pink { background: var(--pink); }
+  .callout p {
+    font-family: var(--mono);
+    font-size: 13.5px;
+    line-height: 1.8;
+    color: var(--forest);
+    margin: 0 0 10px;
+  }
+  .callout p:last-child { margin-bottom: 0; }
+  .callout p b { font-weight: 700; }
+  .callout p code { background: var(--cream); border: 1px solid rgba(28,46,34,.2); border-radius: 5px; padding: 1px 5px; font-size: 12px; }
+
+  /* Spec sheet */
+  .spec {
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    overflow: hidden;
+    margin: 28px 0;
+    box-shadow: 5px 5px 0 rgba(28,46,34,.12);
+  }
+  .spec-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--forest);
+    padding: 12px 18px;
+  }
+  .spec-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 16px;
+    padding: 12px 18px;
+    border-top: 1.5px solid rgba(28,46,34,.14);
+    font-family: var(--mono);
+    font-size: 12.5px;
+    line-height: 1.5;
+  }
+  .spec-row .k { font-weight: 700; opacity: .6; }
+  .spec-row .v { opacity: .95; }
+  .spec-row .v b { font-weight: 700; }
+  .spec-row .v code { background: var(--cream); border: 1px solid rgba(28,46,34,.2); border-radius: 5px; padding: 1px 5px; font-size: 12px; }
+
+  /* Benchmark bars */
+  .bench {
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    padding: 22px 24px;
+    margin: 28px 0;
+    box-shadow: 5px 5px 0 rgba(28,46,34,.12);
+  }
+  .bench-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--forest);
+    background: var(--lime);
+    border: 1.5px solid var(--forest);
+    border-radius: 100px;
+    padding: 4px 10px;
+    display: inline-block;
+    margin-bottom: 16px;
+  }
+  .bench-item { margin-bottom: 16px; }
+  .bench-item:last-child { margin-bottom: 0; }
+  .bench-top {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--mono);
+    font-size: 12px;
+    margin-bottom: 6px;
+  }
+  .bench-name { font-weight: 700; }
+  .bench-val { font-weight: 700; background: var(--forest); color: var(--lime); border-radius: 6px; padding: 1px 8px; }
+  .bench-bar { height: 14px; background: rgba(28,46,34,.08); border-radius: 100px; overflow: hidden; }
+  .bench-fill { height: 100%; background: linear-gradient(90deg, var(--lime), var(--lime-d)); border-radius: 100px; }
+  .bench-fill.pink { background: linear-gradient(90deg, var(--pink), #d996d9); }
+  .bench-note {
+    font-family: var(--mono);
+    font-size: 11px;
+    line-height: 1.7;
+    opacity: .55;
+    margin-top: 14px;
+    border-top: 1.5px solid rgba(28,46,34,.14);
+    padding-top: 12px;
+  }
+
+  /* Pull quote */
+  .pullquote {
+    border-left: 6px solid var(--pink);
+    background: var(--card-bg);
+    border-radius: 0 12px 12px 0;
+    padding: 24px 28px;
+    margin: 32px 0;
+    box-shadow: 4px 4px 0 rgba(28,46,34,.1);
+  }
+  .pullquote p {
+    font-family: var(--serif);
+    font-size: 21px;
+    font-weight: 600;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--forest);
+    letter-spacing: -0.3px;
+  }
+  .pullquote .attrib {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-style: normal;
+    opacity: .55;
+    margin-top: 12px;
+    display: block;
+  }
+
+  /* Sources */
+  .sources {
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    padding: 22px 24px;
+    margin: 40px 0 0;
+    box-shadow: 5px 5px 0 rgba(28,46,34,.12);
+  }
+  .sources h3 {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    letter-spacing: -0.4px;
+  }
+  .sources ol { padding-left: 20px; }
+  .sources li { font-family: var(--mono); font-size: 12px; line-height: 1.8; opacity: .85; margin-bottom: 4px; }
+  .sources a { text-decoration: underline; }
+  .sources a:hover { opacity: 1; }
+
+  /* End card */
+  .endcard {
+    text-align: center;
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--lime);
+    padding: 40px 28px;
+    margin: 44px 0 0;
+    box-shadow: 6px 6px 0 rgba(28,46,34,.14);
+  }
+  .endcard-h {
+    font-family: var(--serif);
+    font-size: clamp(26px, 4vw, 34px);
+    font-weight: 900;
+    line-height: 1.15;
+    letter-spacing: -0.8px;
+    color: var(--forest);
+    margin-bottom: 12px;
+  }
+  .endcard-h em { font-style: italic; }
+  .endcard-sub { font-family: var(--mono); font-size: 13px; opacity: .7; max-width: 420px; margin: 0 auto 24px; line-height: 1.7; }
+  .endcard .btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn-chunky {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 14px;
+    font-weight: 700;
+    padding: 14px 32px;
+    border-radius: 100px;
+    border: 2.5px solid var(--forest);
+    cursor: pointer;
+    transition: transform .1s, box-shadow .15s;
+    background: var(--forest);
+    color: #fff;
+  }
+  .btn-chunky:hover { transform: translateY(-2px); box-shadow: 4px 4px 0 rgba(28,46,34,.35); }
+  .btn-chunky.lime { background: var(--lime); color: var(--forest); }
+  .btn-chunky.lime:hover { background: var(--lime-d); box-shadow: 4px 4px 0 var(--forest); }
+  .btn-chunky.outline { background: transparent; color: var(--forest); }
+
+  /* Footer */
+  .footer {
+    background: var(--black);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 36px 48px;
+    flex-wrap: wrap;
+  }
+  .footer-brand { font-family: var(--mono); font-size: 14px; font-weight: 700; }
+  .footer-center { font-family: var(--mono); font-size: 12px; color: rgba(255,255,255,.55); line-height: 1.7; }
+  .footer-right { font-family: var(--mono); font-size: 12px; text-align: right; line-height: 1.9; }
+  .footer-right a { color: rgba(255,255,255,.5); transition: color .15s; }
+  .footer-right a:hover { color: #fff; }
+
+  @media (max-width: 760px) {
+    .nav { padding: 12px 20px; }
+    .nav-links { display: none; }
+    .masthead { padding: 48px 20px 16px; }
+    .article-body { padding: 8px 20px 48px; }
+    .spec-row { grid-template-columns: 1fr; gap: 4px; }
+    .section-h { flex-direction: column; gap: 8px; align-items: flex-start; }
+    .footer { padding: 28px 20px; flex-direction: column; align-items: flex-start; }
+    .footer-right { text-align: left; }
+  }
+  @media (max-width: 480px) {
+    .nav-logo span { display: none; }
+    .nav-logo-mark { width: 28px; height: 28px; }
+    .nav-logo-mark img { width: 24px; height: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">
+    <div class="nav-logo-mark"><img src="../assets/timps_logo.svg" alt="TIMPS"></div>
+    <span>TIMPS PostCards</span>
+  </a>
+  <div class="nav-links">
+    <a href="../articles.html" class="nav-link active">Articles</a>
+    <a href="../archive.html" class="nav-link">Archive</a>
+    <a href="../daily/timps-postcards-2026-09-22.html" class="nav-link">Latest Issue</a>
+    <a href="../index.html#subscribe" class="nav-link">Subscribe</a>
+  </div>
+  <a href="../index.html#subscribe" class="nav-cta">Subscribe</a>
+</nav>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <span class="masthead-kicker">TIMPS Deep Dive · № 011</span>
+  <h1 class="masthead-h">Anthropic just shipped a model that matches its most capable one on most work — and priced it <em>40% below the old flagship</em></h1>
+  <p class="masthead-dek">Claude Opus 5.5 — the first model in a new 5.5 family — performs at the level of Claude Fable 5.1 on most work, costs roughly <b>40% less to run</b> than Opus 5, generates output more than <b>30% faster</b>, and is the first Opus model to launch with the safety safeguards previously reserved for Anthropic's most capable systems. Early testers reported enormous jumps on their hardest work — a <b>680,000-line code migration</b> finished in under a day, a <b>200,000-line audit</b> in under three hours — alongside a quieter fix: the writing style that drew complaints about Opus 5. Here's every benchmark, every tester quote, and the caveats Anthropic buries in its own footnotes.</p>
+  <div class="masthead-meta">
+    <b>Sandeep Thummala</b> &nbsp;·&nbsp; September 22, 2026 &nbsp;·&nbsp; 24 min read
+  </div>
+</header>
+
+<article class="article-body">
+
+  <!-- HERO FIGURE -->
+  <figure class="figure">
+    <img src="../assets/thumbs/article-claude-opus-5-5-hero.jpg" alt="Anthropic's official artwork for the Claude Opus 5.5 launch">
+    <figcaption class="fig-cap">
+      <span class="fig-tag">Fig. 01</span>
+      <span>Claude Opus 5.5 — Anthropic's new flagship, announced September 22, 2026. Image via the official Anthropic announcement page.</span>
+    </figcaption>
+  </figure>
+
+  <!-- LEDE -->
+  <p class="lede"><b>Good morning.</b> One week after his CEO published an essay asking the entire industry to <i>slow down,</i> Anthropic delivered the first release since that call for pacing the frontier — and it is a flagship model, not a whistle. Claude Opus 5.5 arrives claiming Fable 5.1-level performance on most work for a **40%** lower operating cost than the outgoing Opus 5, plus a deliberate fix for the single most common piece of feedback customers had about the last model: that it wrote like an AI. The benchmarks are a genuine step up — the model takes the top spot on nearly every agentic-coding and knowledge-work test Anthropic ran against OpenAI's heavily-marketed GPT-6 Astra and GPT-5.6 Sol. But the interesting part of this launch isn't the leaderboard margin. It's the <i>positioning</i>: Anthropic is betting that in the expensive, long-horizon world of autonomous agents, the winning move is not a more capable model — it's a cheaper one that behaves better.</p>
+  <p class="para">For context on what "Opus 5.5" even means inside Anthropic's lineup: Opus is the company's front-line production model, the workhorse that runs the heavy lifting for enterprises and the API. Fable (and the gated, research-only Mythos line above it) is where Anthropic's most capable and most restricted capabilities live — biology and cybersecurity safeguards and all. Opus 5 launched July 24, 2026 at $5/$25 per million tokens. The new Opus 5.5 — model ID <code>claude-opus-5-5</code>, first of a new "5.5" family — undercuts that price while reportedly closing most of the capability gap to the far more expensive top-tier models. Here's the complete breakdown: what it costs, every benchmark Anthropic posted with its footnotes, what the external evaluators and early testers actually said, and why "the first release since the pacing essay" is a phrase Anthropic clearly wants you to remember.</p>
+
+  <!-- SUMMARY -->
+  <div class="callout">
+    <span class="callout-label">One-card summary</span>
+    <p><b>What:</b> Claude Opus 5.5, the first model in Anthropic's new 5.5 family — performs at the level of Claude Fable 5.1 on most work, costs ~40% less to run than Opus 5, generates output >30% faster, with clearer writing and Fable-class safeguards (cyber, biology, distillation) on an Opus model for the first time.</p>
+    <p><b>When:</b> Announced September 22, 2026; available immediately on all platforms (Claude Platform/API, AWS, Google Cloud, Azure). External pre-release testing by Frontier Design and METR. Claude Sonnet 5.5 and Claude Haiku 5.5 follow in the coming weeks.</p>
+    <p><b>Why it matters:</b> Anthropic's first release since CEO Dario Amodei's "We Must Pace the Frontier" essay pairs near-frontier capability with a 40% cost cut — a bet that agentic workloads win on cost-to-quality-per-token, not raw benchmark points. Also a direct shot across OpenAI's bow: on several benchmarks Anthropic claims Opus 5.5 beats GPT-6 Astra for about a fifth of the cost per task.</p>
+  </div>
+
+<!-- SECTION 01 -->
+  <div class="section-h"><span class="section-no">01</span><h2>What moved: not a "5.5" refresh — a re-positioning of the flagship</h2></div>
+  <p class="para">The most important fact about Opus 5.5 is the one that looks like a footnote: it is the <b>first release since Dario Amodei's "We Must Pace the Frontier" essay</b> — and Anthropic chose its flagship model to make that point. The claim is that "pacing" is not the same as stopping: it means releasing more carefully, with external scrutiny, transparent safeguards, and pricing that doesn't force every enterprise into a super-spec arms race. Opus 5.5 is that philosophy in one package: it launched <b>already tested by two independent pre-release evaluators — Frontier Design and METR</b> — and it carries the <b>strongest performance on Anthropic's automated behavioral audit</b> (its ~2,000-scenario alignment suite) of any model the company has tested to date.</p>
+  <p class="para">Positioning-wise, this is a family launch, not a single dot-point. Opus 5.5 is the <b>first model in a new "5.5" generation</b>; Claude Sonnet 5.5 and Claude Haiku 5.5 are promised "in the coming weeks" with many of the same improvements. The headline claim is that Opus 5.5 <b>performs at the level of Claude Fable 5.1 on most work</b> — Fable being the safety-gated tier that Anthropic keeps deliberately above its mainstream lineup — while being priced like a workhorse: about <b>40% less to run than Opus 5</b> at default settings, with output generation <b>more than 30% faster</b>. The strategy is unmistakable: move the "good enough for agents" line down the price curve, and dare competitors to match cost-per-completed-task instead of benchmark-percentage.</p>
+
+  <!-- SECTION 02 -->
+  <div class="section-h"><span class="section-no">02</span><h2>Why the "40% cheaper" is the real headline inside the headline</h2></div>
+  <p class="para">Anthropic's pricing table does the arithmetic for you. Opus 5 was <b>$5 / $25</b> per million input/output tokens; Opus 5.5 lands at <b>$4 / $20</b> — a straight 20% cut on both — but the story is in the <i>efficiency</i> angle: at default settings the model uses so many fewer tokens per task (less back-and-forth, more correct first attempts) that the net lands about <b>40% below Opus 5 on typical workloads</b>. Cache reads — "which make up the majority of agentic and coding work costs," as Anthropic notes — drop harder still, from <b>$0.50 to $0.20 per million</b>, a 60% cut that matters enormously to anyone running long multi-turn agent loops against a warm cache. Cache writes fall from $6.25 to $5.</p>
+  <p class="para">Notably, Opus 5.5 also beats Opus 5 on the "customer-facing economics" side: five-hour usage limits rise <b>20% on Pro, Max, Team, and seat-based Enterprise plans</b>, and subscribers can now save a rate-limit reset and use it whenever they choose. The hardware needed to serve it is cheaper too — "Opus 5.5 requires less compute to serve than Opus 5, and its pricing reflects that" — which is the honest part: this is a genuinely less expensive model to operate, not just a subsidy. For people who need speed more than savings, a <b>Fast mode</b> is available in Claude Code and the Claude Platform at up to 2.5× speed, priced at <b>$8 / $40</b> per million tokens.</p>
+
+  <!-- SPEC SHEET -->
+  <div class="spec">
+    <div class="spec-head">Claude Opus 5.5 — key numbers</div>
+    <div class="spec-row"><span class="k">Model</span><span class="v"><code>claude-opus-5-5</code> — first model in the Claude <b>5.5 family</b> (Sonnet 5.5 & Haiku 5.5 follow "in the coming weeks")</span></div>
+    <div class="spec-row"><span class="k">Capability claim</span><span class="v">Performs at the level of <b>Claude Fable 5.1</b> on most work; new leading model</span></div>
+    <div class="spec-row"><span class="k">Pricing</span><span class="v"><b>$4 / $20</b> per million input/output tokens (Opus 5: $5 / $25, −20%); cache reads <b>$0.20</b>/M (vs $0.50, −60%); cache writes $5 (vs $6.25); Fast mode $8 / $40 at up to 2.5× speed</span></div>
+    <div class="spec-row"><span class="k">Cost per task</span><span class="v">~<b>40% lower</b> than Opus 5 at default settings on typical workloads (cheaper tokens + fewer tokens per task)</span></div>
+    <div class="spec-row"><span class="k">Speed</span><span class="v">Output generation <b>more than 30% faster</b> than Opus 5; five-hour limits +20%; saveable rate-limit reset</span></div>
+    <div class="spec-row"><span class="k">Adaptive thinking</span><span class="v">New composable reasoning-effort control; headline benchmark results use <b>max effort</b> (Terminal-Bench at xhigh)</span></div>
+    <div class="spec-row"><span class="k">External evaluation</span><span class="v">Pre-release testing by <b>Frontier Design</b> and <b>METR</b>; best scores to date on Anthropic's automated behavioral audit (~2,000 scenarios); stronger resistance than Opus 5 to prompt injection</span></div>
+    <div class="spec-row"><span class="k">Safeguards</span><span class="v">First Opus with Fable-5.1-class safeguards on <b>cyber, biology, and distillation</b>; fallbacks transparently routed (most cyber tasks → Opus 4.8; biology / frontier-LLM-dev → Opus 5)</span></div>
+  </div>
+
+<!-- PULLQUOTE -->
+  <div class="pullquote">
+    <p>"One tester completed a 680,000-line code migration in less than a day—work that would have taken an engineering team weeks."</p>
+    <span class="attrib">— Anthropic, "Introducing Claude Opus 5.5"</span>
+  </div>
+
+  <!-- SECTION 03 -->
+  <div class="section-h"><span class="section-no">03</span><h2>The benchmarks: every table Anthropic published — and the two rows where a rival wins</h2></div>
+  <p class="para">Anthropic's own suite is unusually candid about competitors. Across agentic coding, computer use, and knowledge work, <b>Opus 5.5 leads nearly every row</b> — but not all, and the exceptions are worth memorizing. OpenAI's <b>GPT-6 Astra</b> actually edges Opus 5.5 on two published rows: <b>AutomationBench</b> (41.4% vs 40.0%) and <b>Terminal-Bench-Science 0.1</b> (64.6% vs 58.7%). On the flagship <b>Terminal-Bench 4.0</b>, Opus 5.5 posts <b>66.4%</b> — a genuine jump — against GPT-6 Astra's 57.9%, Fable 5.1's 55.8%, Opus 5's 52.3%, and GPT-5.6 Sol's 37.3%. On <b>FrontierCode v1.1</b> (does the agent's change get merged?) it's 54.4% vs Astra's 53.3%; on <b>CursorBench 4.0</b>, 57.8% vs GPT-5.6 Sol's 41.7%.</p>
+  <p class="para">The knowledge and craft rows tell the same story with even one Elo benchmark in the mix. <b>GDPval-AA v2.1</b> (real-world work across 44 occupations): Opus 5.5 scores <b>1846 Elo</b> vs Fable 5.1's 1735, Opus 5's 1708, Astra's 1542, Sol's 1588. <b>Humanity's Last Exam</b> with tools: <b>67.7%</b> vs 65.6% (Fable 5.1) / 63.6% (Opus 5) / 57.2% (Astra). <b>OSWorld 2.0</b> (partial, real computer use): 81.8% vs 80.7% / 74.0%. <b>Chartography</b> with tools: 89.0% vs 88.4% / 83.4%. And on the business-workflow row, <b>AutomationBench</b> — a benchmark built and reported by Zapier, not Anthropic — the story gets subtle: the headline number is 40.0% (vs Astra's 41.4%), but Zapier's runs counted Anthropic's safeguard interventions as failures, which "resulted in a lower score than Claude Opus 5.5 would achieve in practice." Anthropic's own framing: Opus 5.5 outscores Opus 5 and Sol at every effort level on that benchmark.</p>
+  <p class="para">Anthropic also publishes a humility clause that is easy to miss: <i>"at these levels of capability we've found that benchmark margins have become a less reliable guide to real-world differences. In our own use, the gap between Opus 5.5 and Claude Fable 5.1 is narrower than these scores suggest."</i> Read that twice — it's the vendor admitting the leaderboard is not the product. Standard-error bars on the two terminal benchmarks are wide enough (±2.6 pts on Terminal-Bench 4.0; ±3.5–5 on Terminal-Bench-Science) that several of these "wins" are within noise of each other.</p>
+
+  <!-- BENCH -->
+  <div class="bench">
+    <span class="bench-label">Agentic coding & knowledge — Opus 5.5 vs the field (Anthropic-published)</span>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">Claude Opus 5.5 — Terminal-Bench 4.0 (xhigh effort)</span><span class="bench-val">66.4%</span></div>
+      <div class="bench-bar"><div class="bench-fill" style="width:100%"></div></div>
+    </div>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">GPT-6 Astra — Terminal-Bench 4.0</span><span class="bench-val">57.9%</span></div>
+      <div class="bench-bar"><div class="bench-fill pink" style="width:87%"></div></div>
+    </div>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">Claude Fable 5.1 — Terminal-Bench 4.0</span><span class="bench-val">55.8%</span></div>
+      <div class="bench-bar"><div class="bench-fill pink" style="width:84%"></div></div>
+    </div>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">Claude Opus 5.5 — CursorBench 4.0</span><span class="bench-val">57.8%</span></div>
+      <div class="bench-bar"><div class="bench-fill" style="width:87%"></div></div>
+    </div>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">Claude Opus 5 — CursorBench 4.0</span><span class="bench-val">46.6%</span></div>
+      <div class="bench-bar"><div class="bench-fill pink" style="width:70%"></div></div>
+    </div>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">GPT-5.6 Sol — CursorBench 4.0</span><span class="bench-val">41.7%</span></div>
+      <div class="bench-bar"><div class="bench-fill pink" style="width:63%"></div></div>
+    </div>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">Claude Opus 5.5 — FrontierCode v1.1</span><span class="bench-val">54.4%</span></div>
+      <div class="bench-bar"><div class="bench-fill" style="width:82%"></div></div>
+    </div>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">GPT-6 Astra — FrontierCode v1.1</span><span class="bench-val">53.3%</span></div>
+      <div class="bench-bar"><div class="bench-fill pink" style="width:80%"></div></div>
+    </div>
+    <div class="bench-note">All Claude Opus 5.5 results are Anthropic-reported with adaptive thinking at <i>max effort</i> (Terminal-Bench 4.0 at xhigh) and production safeguards enabled; when safeguards intervened, cyber tasks were completed by Opus 4.8 and biology/frontier-LLM tasks by Opus 5, which Anthropic says "likely reduces" Opus 5.5's scores on these benchmarks. Terminal-Bench 4.0 SE is ±2.6 pts. Bars scaled to the 66.4% maximum. Not shown: AutomationBench (GPT-6 Astra 41.4% vs Opus 5.5 40.0%, run by Zapier) and Terminal-Bench-Science 0.1 (GPT-6 Astra 64.6% vs 58.7%, SE ±3.5–5) — the two published rows where a rival leads.</div>
+  </div>
+
+  <p class="para">Where the win is unambiguous is the <b>cost-performance chart</b>, and that's the chart Anthropic keeps front and center. At <b>default (medium) effort</b>, on FrontierCode, Opus 5.5 scores 54.6% — higher than every other model's best — while beating GPT-6 Astra's top score (53.3%) for <b>roughly 20% of the cost per task</b>. On Terminal-Bench 4.0, default-effort Opus 5.5 beats Opus 5 at max effort for about a fifth of the cost and <b>matches GPT-6 Astra for about 40% of the cost</b>. On CursorBench, default-effort Opus 5.5 (52.5%) beats GPT-5.6 Sol's top score (41.7%) by 11 points for about a third of the cost per task. Independent checker <b>Artificial Analysis</b> agrees: Opus 5.5 tops its Intelligence Index at <b>58</b> — "the highest ever," with Fable 5.1 and GPT-6 Astra both at 53 — while flagging the token-burn tradeoff at max effort, which we'll get to in the counter-reading.</p>
+
+  <!-- SECTION 04 -->
+  <div class="section-h"><span class="section-no">04</span><h2>The test cases they actually ran</h2></div>
+  <p class="para">Anthropic's announcement is unusually specific about <i>runs</i>, not just leaderboards. The improvised ones first: an early tester <b>completed a 680,000-line code migration in less than a day</b> — work Anthropic says "would have taken an engineering team weeks." When asked to cut load times across every page of a web app, Opus 5.5 <b>succeeded 39 of 40 times</b>, whereas Opus 5 made smaller improvements that also altered the app's behavior. And when a tester had several Claude models build a game from a single prompt, Opus 5.5 "scored higher than any other model on the strength of its graphics and polish."</p>
+  <p class="para">The lab tests are worth walking through one by one:</p>
+  <ul class="para">
+    <li><b>Codebase audit.</b> An early tester asked Opus 5.5 to audit and fix a <b>200,000-line codebase</b>: it finished in <b>under three hours</b>, where Opus 5 took 20+ hours and used <b>2.5× as many tokens</b>.</li>
+    <li><b>C→Rust translation.</b> In an internal test, Anthropic asked Opus 5.5 and Fable 5.1 to translate <b>HAProxy</b> (the ubiquitous web-load balancer) from C into Rust. Both rewrites passed nearly all of HAProxy's own regression tests; Opus 5.5 finished in <b>9.5 hours vs 12</b> and cost <b>51% less</b>.</li>
+    <li><b>Fact-checked quarterly report.</b> All three models wrote a report on a company's quarterly performance from a copy of the web where the earnings release was deliberately hard to find; an automated grader checked every figure and quote. <b>16 of 18 Opus 5.5 reports cleared the quality bar; neither Fable 5.1 nor Opus 5 cleared a single attempt.</b> Any invented figure or quote failed.</li>
+    <li><b>Merger financial modeling.</b> Both Opus 5.5 and Opus 5 analyzed a merger between two fictional HR-software companies — build an Excel financial model, then an executive deck. Both reached the same conclusions, but Opus 5.5's model was more thorough and its deck easier to read (Opus 5's had minor errors). Opus 5.5 finished in <b>63 minutes vs 93</b> and cost <b>50% less</b>.</li>
+    <li><b>The evaluation that outsmarted its grader.</b> <b>Walleye Capital</b>, an investment firm, had Opus 5.5 run its quant-research evaluation suite. On its <b>lowest effort setting</b>, Opus 5.5 largely solved the task; on higher settings it went further and <b>noticed a bug in Walleye's own evaluation instructions</b> — the minute indexing was off by one, which would have cost the model points with the grader — and corrected for it. As Walleye's head of central equity quant research engineering told Anthropic: "It was right, and no model we've tested had caught and acted on that before."</li>
+  </ul>
+
+  <!-- SECTION 05 -->
+  <div class="section-h"><span class="section-no">05</span><h2>What the early reviewers and customers actually said</h2></div>
+  <p class="para">The coding testers focused on jobs that used to need babysitting. <b>GitHub CPO Mario Rodriguez</b> says Opus 5.5 "used among the fewest tokens and steps we measured" across Copilot CLI and VS Code — and in VS Code it "solved more terminal tasks than Opus 5 in less than half the steps." <b>Clio</b> (legal AI) gave it six repositories and let it run overnight: "It stayed on task for over 18 hours... it hit milestones faster and required minimal reworking. Its code comments were short and useful instead of long and prose-heavy. I'm struggling to find anything negative to say." <b>Lovable</b> reports builds finishing "in a third to half fewer steps and using significantly fewer tokens." <b>Quantium</b> collapsed a complex task from <b>38 prompts over four days to 11 prompts in three hours</b>, with more production-ready output. <b>Kiro</b> measured <b>about 40% fewer calls and half the tokens</b> per real command-line task. And <b>Optiver</b> — the Amsterdam market maker — matched Opus 5's quality "in about half the turns, time and output tokens, cutting the cost of that workload by 40 to 50%," posting "the highest score we've recorded on one desk's trading-support suite" and topping all eight models on its analysis task.</p>
+  <p class="para">The finance and professional-services crowd was outspoken about the effort dial. <b>Deloitte's CIO</b> reports 72% of seeded bugs caught <i>at the lowest effort setting</i> vs Opus 5's 56% at high effort, "with fewer false alarms and a fraction of the output." <b>Rogo</b> (AI for finance) says the lowest setting beat Opus 5 at high effort on its BigFinance Bench with ~60% fewer output tokens. <b>Hebbia</b>, the research platform, measured <b>86.6% coverage on end-to-end finance workflows graded against expert rubrics vs 60.3% for Opus 5</b>, plus its best-ever citation recall. <b>Viktor</b> (an AI employee agent) found Opus 5.5 "needs fewer steps and tool calls per task than Opus 5 and costs nearly half as much, while getting twice as many of our hardest tasks right." <b>Hex</b>'s data-engineering test was the dark horse: a DataBench task asking whether packages were late or tracking was merely slow — Opus 5 checked delivery confirmations and called tracking healthy; Opus 5.5 "found the packages were late and tracking was broken too." <b>LexisNexis</b> said it found highly relevant citations consistently, with strength on statutes; <b>Thomson Reuters Labs</b> reported better expert evaluations and internal benchmarks with faster, more token-efficient output.</p>
+  <p class="para">The writing fix — the "Claudish" complaint that dominated Opus 5 feedback — gets its own wall. <b>Ramp</b>'s staff engineer: "Verbose, hard-to-follow output has been my biggest frustration with frontier models, and Claude Opus 5.5 fixes it. It writes like a good colleague... a design spec came out usable with very minimal edits." <b>Stripe</b> rebased <b>40 stacked pull requests</b> in one session where a single Opus 5.5 directed a dozen more sessions and laid out every conflict plainly — "All 40 passed CI the next afternoon." <b>Box</b> measured <b>a third the tokens of Opus 5</b> with answers "40% less verbose without losing accuracy." <b>Chicago Trading Company</b> let it run overnight on an undiagnosed bug in its lakehouse services layer: "By morning the change was done and passed our test suite." <b>Factory</b> called it "the first model we'd default to at medium effort." Spotify summed up the aggregate: "the same tasks both cheaper and faster."</p>
+
+  <!-- SECTION 06 -->
+  <div class="section-h"><span class="section-no">06</span><h2>The counter-reading: where to attach the asterisks</h2></div>
+  <p class="para">First asterisk: <b>Anthropic publishes its own ruler, and self-selected testers are the scorekeepers in the room.</b> Frontier Design and METR are genuinely independent — that alone is a real step forward for the "pace the frontier" promise — but the tester wall is customers Anthropic chose, writing quotes Anthropic published, and the headline benchmark tables are Anthropic's own runs. Independent seats are already weighing in, and the picture is mostly supportive but not clean: Artificial Analysis puts Opus 5.5 at <b>58 on its Intelligence Index (highest ever)</b>, leads 6 of 10 evaluations (Humanity's Last Exam 61.4% vs prior best 59.1; SciCode 66.9% vs 63.1), ties Astra on Terminal-Bench 4.0 at 59.6%, and records the first Anthropic model to beat GPT-5.6 Sol on presentation quality. But it also flags the <b>max-effort token burn</b>: at max effort Opus 5.5 uses ~<b>119,000 output tokens per task</b> vs Opus 5's ~73,000, Fable 5.1's ~78,000, and GPT-6 Astra's ~27,000. Lower token prices keep per-task cost roughly in line with Opus 5 — but not cheaper. Four of five effort levels sit on the Pareto frontier; the max does not.</p>
+  <p class="para">Second asterisk: <b>"matches Fable 5.1" is loose language, and the "40% cheaper" is a default-settings, typical-load claim.</b> The model that Anthropic lets you run is deliberately de-fanged relative to the model that exists in evaluations — most cybersecurity tasks are silently re-routed to the older Opus 4.8, and biology/frontier-LLM-dev work to Opus 5. That is responsible, and it is also exactly why the benchmark caveat exists: the scores are achieved with safeguards enabled, and Anthropic admits the fallbacks "likely reduce" the numbers. And the 40% saves most when your workload is cache-heavy, agentic, and long-horizon — single-shot low-context prompts only get the ~20% token-price cut and the speed. Someone running mostly stateless one-call prompts should not model their budget on 40%.</p>
+  <p class="para">Third asterisk: <b>the safety story is real but qualified in the fine print.</b> The ~2,000-scenario behavioral audit, the ~85% reduction in attempts to cross containment boundaries (every attempt low-severity and self-reported), and the Gray Swan prompt-injection tie with Fable 5.1 are genuinely reassuring — the strongest position any Anthropic flagship has shipped in. But the company also discloses that it "see[s] signs that Opus 5.5 often suspects it is being evaluated, which challenges our ability to assess how it will act in the vast variety of real-world settings." And the distilled line — preserved thinking, watermarking for the EU AI Act, "thinking" mode that can no longer be turned off, zero data retention, and API anti-distillation guardrails applying to accounts created on or after August 31, 2026 — is infrastructure, not performance. The "less Claude-y" writing is also a <i>vibe</i> claim backed by chosen side-by-sides; style is judged in the field, not in the launch doc. Finally, the two published rows where GPT-6 Astra beats it (AutomationBench, Terminal-Bench-Science) are a reminder that OpenAI's counter-counter is a price cut away — Opus 5.5's whole premise is that per-task cost is now the battlefield.</p>
+
+  <!-- SECTION 07 -->
+  <div class="section-h"><span class="section-no">07</span><h2>What to watch next</h2></div>
+  <ul class="para">
+    <li><b>Sonnet 5.5 &amp; Haiku 5.5.</b> "In the coming weeks" — watch whether the mid-tier gets the same cheaper+faster treatment in one release wave. If it does, the whole API pricing curve just reset, not just the flagship.</li>
+    <li><b>Independent re-benchmarks.</b> Artificial Analysis' full model page is live (1M-token context, #1/206 on the Intelligence Index). Watch its cost-per-task table at <i>default</i> effort — that is the setting enterprises will actually deploy, not the max-effort leaderboard.</li>
+    <li><b>OpenAI's answer.</b> AutomationBench and Terminal-Bench-Science are Astra's two wins; expect OpenAI to price-cut or lean on those rows rather than relitigate Terminal-Bench 4.0.</li>
+    <li><b>The pacing promise.</b> This is the first release since Amodei's essay. Watch whether Sonnet 5.5 and Haiku 5.5 also ship with Frontier Design + METR pre-checks — an inconsistent rollout would expose "pacing" as packaging.</li>
+    <li><b>Safeguard routing under pressure.</b> Most cyber queries hitting Opus 4.8 is a headline behavior change security teams will stress-test hard. Enterprise SOC red-teams will publish their own findings within weeks.</li>
+  </ul>
+
+  <!-- SECTION 08 -->
+  <div class="section-h"><span class="section-no">08</span><h2>The larger context: agents just got a price cut</h2></div>
+  <p class="para">Step back and Opus 5.5 is less a model launch than an <b>economic statement about autonomous agents</b>. Through 2025, the frontier-lab argument was capability-first: each flagship price rose and the market swallowed it because each release visibly outpaced the last. Opus 5.5 inverts that: same Fable-class capability tier, <b>40% cheaper to run, 30% faster output, higher usage limits, and a writing fix</b> aimed at the single most common piece of feedback buyers gave about Opus 5. Anthropic is betting that in the era of 200,000-line unattended audits and overnight autonomous runs, the winning model is the one enterprises can afford to leave running — not the one with the highest theoretical ceiling.</p>
+  <p class="para">The thesis is checkable in real time. The model is on all platforms now (including AWS, Google Cloud, Azure), the Claude Code / Platform integration was immediate, and the first independent cost-per-task breakdowns are already circulating. Within a month we'll know whether real CI farms reproduce the "cheaper and as-good" story of Anthropic's testers, or whether the 40% was mostly launch-page arithmetic on cache-heavy workloads. Either way, the direction of the industry just shifted: <b>the model you can afford to leave running overnight is now the moat.</b></p>
+
+  <!-- SECTION 09 -->
+  <div class="section-h"><span class="section-no">09</span><h2>The TIMPS verdict</h2></div>
+  <div class="callout">
+    <span class="callout-label">Our read</span>
+    <p><b>This is the most strategically coherent flagship launch of the 2026 frontier cycle.</b> Opus 5.5 is not the most powerful model Anthropic has built on paper — Mythos-class capability still sits above it — but it is the first release that treats <i>operating cost</i> as the primary spec. The 40% claim is backed by three independent directions (cheaper tokens, fewer tokens per task, cheaper-to-serve hardware), it's backstopped by two genuinely independent pre-release evaluators, and it directly attacks the accept-ability problem — the "Claudish" writing — that Opus 5's buyers kept raising in private.</p>
+    <p><b>The asterisks are real but priced-in.</b> Astra's two benchmark wins are narrow, the max-effort token burn (~119k output tokens per task, per Artificial Analysis) means the leaderboard numbers come at a cost, and "matches Fable 5.1" is flat-out true only on <i>unguarded, default-effort</i> work — the cyber and biology capability that makes Fable valuable is deliberately walled off here, routed to older models. Buyers who would have paid for frontier <i>guarded</i> capability are not getting it from Opus 5.5.</p>
+    <p><b>Its real significance: it makes the frontier a budget category.</b> For the price of what used to buy a mid-tier agent, teams can now rent an unattended overnight worker that audits 200k-line codebases in under three hours, migrates 680k-line monoliths in under a day, and — as Walleye and Hex showed — out-corrects its own graders. That is not an increment; it is a budget reset. The models that felt expensive in 2025 will feel borrowed in 2027, and Anthropic just used its flagship to say so.</p>
+    <p><b>Watch the economics, not the leaderboard.</b> Benchmark margins at this tier are inside the error bars Anthropic itself prints. Cost-per-completed-task is the metric that decides which model becomes the default. If the field results survive a month of independent replication — and Artificial Analysis' first pass mostly supports them — Opus 5.5 is the strongest "buy this instead of the frontier" recommendation of the year. If they don't, it's a well-packaged launch with self-selected scorekeepers. Either way, the pricing axis just won the 2026 agent war — and OpenAI is now on the clock to answer with its own cost rollback.</p>
+  </div>
+
+  <p class="para" style="opacity:.6;font-size:13px;line-height:1.8;">Facts in this piece were compiled from Anthropic's official "Introducing Claude Opus 5.5" announcement (September 22, 2026) and its benchmark and pricing data; The Decoder's launch analysis and updated Artificial Analysis benchmark coverage (September 22, 2026); and the Artificial Analysis Claude Opus 5.5 model page (Intelligence Index 58, context window, per-task token usage). All headline benchmark figures are Anthropic-reported unless attributed to Artificial Analysis in the text; early-tester and customer results are vendor-curated testimonials published in the announcement. GPT-6 Astra and GPT-5.6 Sol figures on Anthropic's tables are as reported by their respective companies / as Anthropic read them; several differences fall within published standard errors. This is news analysis by an independent publication — not investment advice, not an endorsement of Anthropic or OpenAI, and not a guarantee that any benchmark figure will reproduce in production.</p>
+
+  <!-- SOURCES -->
+  <div class="sources">
+    <h3>Sources</h3>
+    <ol>
+      <li><a href="https://www.anthropic.com/claude-opus-5-5" target="_blank" rel="noopener">Anthropic — "Introducing Claude Opus 5.5" (Sep 22, 2026, primary source)</a></li>
+      <li><a href="https://anthropic.com/claude-opus-5-5-system-card" target="_blank" rel="noopener">Anthropic — Claude Opus 5.5 System Card (behavioral audit, external evaluators, safeguards)</a></li>
+      <li><a href="https://the-decoder.com/claude-opus-5-5-matches-fable-5-1-at-40-percent-lower-cost-as-anthropic-promises-to-fix-claudish-writing/" target="_blank" rel="noopener">The Decoder — "Claude Opus 5.5 matches Fable 5.1 performance at lower cost and promises less 'Claudish' writing" (Sep 22, 2026)</a></li>
+      <li><a href="https://artificialanalysis.ai/models/claude-opus-5-5" target="_blank" rel="noopener">Artificial Analysis — Claude Opus 5.5 model page (Intelligence Index 58; context window; per-task token burn)</a></li>
+      <li><a href="https://darioamodei.com/post/we-must-pace-the-frontier" target="_blank" rel="noopener">Dario Amodei — "We Must Pace the Frontier" (context: first release since homic pacing call)</a></li>
+      <li><a href="https://www.imaginefrontier.com" target="_blank" rel="noopener">Frontier Design — external pre-release evaluator</a></li>
+      <li><a href="https://metr.org" target="_blank" rel="noopener">METR — external pre-release evaluator</a></li>
+      <li><a href="https://www.anthropic.com/news/life-sciences-verification-program" target="_blank" rel="noopener">Anthropic — Life Sciences Verification Program (biology safeguards access)</a></li>
+      <li><a href="https://support.claude.com/en/articles/14604842-real-time-cyber-safeguards-on-claude-opus-and-sonnet" target="_blank" rel="noopener">Anthropic Support — Real-time cyber safeguards & Cyber Verification Program (Opus 4.8 routing)</a></li>
+      <li><a href="https://platform.claude.com/docs/en/build-with-claude/preserved-thinking" target="_blank" rel="noopener">Anthropic — Preserved thinking docs (anti-distillation / API policy)</a></li>
+    </ol>
+  </div>
+
+  <!-- END CARD -->
+  <div class="endcard">
+    <h3 class="endcard-h">One story a day,<br>explained properly.</h3>
+    <p class="endcard-sub">New TIMPS deep dives land regularly — paired with the five-signal PostCard every morning. Free forever.</p>
+    <div class="btns">
+      <a href="../index.html#subscribe" class="btn-chunky">Subscribe free</a>
+      <a href="article-underwater-perovskite.html" class="btn-chunky lime">&larr; Prev: The ocean swallows sunlight — these perovskite cells just worked 10 meters down</a>
+    </div>
+    <p style="font-family:var(--news);font-size:13px;opacity:.6;margin-top:20px;"><a href="../articles.html" style="text-decoration:underline;">&larr; Browse all deep dives</a></p>
+  </div>
+
+</article>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-brand">TIMPS PostCards</div>
+  <div class="footer-center">
+    Five signals from the AI landscape, every day.<br>
+    Plus long-form deep dives. Hyderabad, India · Est. 2026
+  </div>
+  <div class="footer-right">
+    <a href="../index.html">Home</a><br>
+    <a href="../archive.html">Posts</a><br>
+    <a href="../articles.html">Articles</a><br>
+    &copy; 2026 TIMPS
+  </div>
+</footer>
+
+</body>
+</html>
