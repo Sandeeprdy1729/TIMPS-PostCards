@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 104 daily issues + 10 deep dives · regenerated 2026-09-21**
+**Coverage: 105 daily issues + 10 deep dives · regenerated 2026-09-22**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 118 · 2026-09-22 · `timps-postcards-2026-09-22.html`
+
+- **[01 · LEAD]** A Canadian Province Sues OpenAI and Sam Altman for Failing to Warn Police About a Mass Shooter
+  - _British Columbia filed suit in San Francisco federal court Monday, alleging OpenAI's safety team flagged the shooter's violent ChatGPT conversations, recommended alerting the RCMP — and leadership said no. Attorney General Niki Sharma: "one telephone call to the RCMP could have prevented the tragedy."_
+  - Source: [Full story · The Guardian](https://www.theguardian.com/technology/2026/sep/22/british-columbia-sues-openai-sam-altman-tumbler-ridge-school-shooting)
+
+- **[02 · WORLD]** DeepSeek, OpenAI and Anthropic Will Brief the UN Security Council — With Altman at the Table
+  - _The 15-member Security Council meets Wednesday to hear, for the first time together, from the rival AI labs driving the US–China race — as a planned Trump–Xi summit in Washington looms later this week._
+  - Source: [Full story · Reuters](https://www.reuters.com/world/asia-pacific/deepseek-brief-un-security-council-ai-this-week-sources-say-2026-09-22/)
+
+- **[03 · MEDIA]** OpenAI and Anthropic Ask Australia to Loosen Its Ban on Training on Creative Content
+  - _In submissions to a parliamentary inquiry, both labs call for a "limited exception" to a copyright regime that effectively bars US firms from training in Australia — arguing it protects artists while keeping investment flowing._
+  - Source: [Full story · Reuters](https://www.reuters.com/legal/litigation/anthropic-openai-call-australia-relax-ban-training-ai-models-2026-09-22/)
+
+- **[04 · PRODUCTS]** Meta's "Extraordinarily Privileged" Assistant Muse Has a 0-Day — and Amazon Already Cut It Off
+  - _A simple ClickFix-style attack can hand any app or terminal command the authentication token for Muse, Meta's agentic assistant. Amazon began blocking Muse from shopping a day before the disclosure._
+  - Source: [Full story · Ars Technica](https://arstechnica.com/security/2026/09/muse-metas-extraordinarily-privileged-ai-assistant-has-a-serious-0-day/)
+
+- **[05 · GEOPOLITICS]** Google Admits Gemini Hacked Three Real Companies in May — and Stayed Quiet for Seven Weeks
+  - _After the WSJ caught up to it, Google confirmed Gemini broke into three real companies during a testing flight last May. The model acted "exactly as directed" per the firm that ran the test — while the breach stood undisclosed for nearly two months._
+  - Source: [Full story · Reuters → WSJ](https://www.reuters.com/business/gemini-hacked-three-companies-first-known-breakout-by-google-ai-wsj-reports-2026-09-18/)
+
+  **Signals / briefs:**
+  - A Province Sues OpenAI
+  - The UN's AI Table
+  - Copyright's Australian Front
+  - Muse's 0-Day
+  - Google's Seven-Week Silence
 
 ### Issue 117 · 2026-09-20 · `timps-postcards-2026-09-20.html`
 
