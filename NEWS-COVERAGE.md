@@ -6,7 +6,7 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 105 daily issues + 10 deep dives · regenerated 2026-09-22**
+**Coverage: 105 daily issues + 11 deep dives · regenerated 2026-09-22**
 
 ---
 
@@ -3054,6 +3054,11 @@
 ---
 
 ## Deep Dive Articles — already covered
+
+- **№ 11 — Anthropic just shipped a model that matches its most capable one on most work — and priced it 40% below the old flagship** (`articles/article-claude-opus-5-5.html`)
+  - Deep Dive № 011 · Research · AI Models
+  - _Claude Opus 5.5 — the first model in a new 5.5 family — performs at the level of Claude Fable 5.1 on most work for ~40% less to run than Opus 5, with output >30% faster and a fix for Opus 5's "Claudish" writing. Testers finished a 680,000-line migration in under a day and a 200,000-line audit in under three hours; we break down every benchmark, the two rows where GPT-6 Astra still wins, and the asterisks Anthropic prints itself._
+  - Sandeep Thummala · 24 min read · Sep 22, 2026
 
 - **№ 10 — The ocean swallows sunlight — these perovskite cells just turned what's left into power, 10 meters below the sea** (`articles/article-underwater-perovskite.html`)
   - Deep Dive № 010 · Research · Energy
