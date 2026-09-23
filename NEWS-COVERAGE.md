@@ -6,7 +6,7 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 106 daily issues + 11 deep dives · regenerated 2026-09-23**
+**Coverage: 106 daily issues + 12 deep dives · regenerated 2026-09-23**
 
 ---
 
@@ -3083,6 +3083,11 @@
 ---
 
 ## Deep Dive Articles — already covered
+
+- **№ 12 — Ninety minutes after Opus 5.5 shipped, OpenAI answered — GPT-6 Sol and Luna bring Astra's method to the frontier's cheapest tiers** (`articles/article-gpt-6-sol-luna.html`)
+  - Deep Dive № 012 · Research · AI Models
+  - _GPT-6 Sol ($2 / $10) and GPT-6 Luna ($0.10 / $0.50) — trained with the same methods as GPT-6 Astra and priced 50% below their GPT-5.6 namesakes — are OpenAI's same-day counterpunch to Anthropic's Claude Opus 5.5. Sol matches Claude Fable 5.1 on merge-ready code at far lower cost, and both models roughly halve their hallucination rates; but the independent scorecards show the intelligence barely moved, with real max-effort regressions on DeepSWE and OSWorld. We break down every chart and the fine print of the 90%-off cache._
+  - Sandeep Thummala · 20 min read · Sep 23, 2026
 
 - **№ 11 — Anthropic just shipped a model that matches its most capable one on most work — and priced it 40% below the old flagship** (`articles/article-claude-opus-5-5.html`)
   - Deep Dive № 011 · Research · AI Models

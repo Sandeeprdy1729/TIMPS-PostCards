@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TIMPS">
+<link rel="manifest" href="../manifest.json">
+<link rel="apple-touch-icon" href="../assets/icon-192.png">
+<title>TIMPS Articles — OpenAI answers Opus 5.5 within 90 minutes: GPT-6 Sol and Luna cut frontier pricing in half — the full breakdown.</title>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream:  #EDE8DA;
+    --forest: #1C2E22;
+    --pink:   #E8B4E8;
+    --lime:   #DCF07A;
+    --lime-d: #C8DE60;
+    --black:  #111111;
+    --border: #1C2E22;
+    --card-bg:#F5F1E6;
+    --mono:   'Newsreader', Georgia, 'Times New Roman', serif;
+    --news:   'Newsreader', Georgia, 'Times New Roman', serif;
+    --serif:  'TIMPS', Georgia, serif;
+  }
+
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Black.woff2') format('woff2'); font-weight:900; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Bold.woff2') format('woff2'); font-weight:700; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-SemiBold.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--cream);
+    background-image:
+      linear-gradient(rgba(28,46,34,.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(28,46,34,.07) 1px, transparent 1px);
+    background-size: 38px 38px;
+    color: var(--forest);
+    font-family: var(--news);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  a { text-decoration: none; color: inherit; }
+
+  /* Deep dive typography — TIMPS (display) + Newsreader (prose & descriptions) */
+  .masthead-dek { font-family: var(--news); font-style: italic; font-size: 19px; }
+  .masthead-meta { font-family: var(--news); font-size: 13px; }
+  .lede { font-family: var(--news); font-size: 21px; }
+  .para { font-family: var(--news); font-size: 17px; }
+  .callout p { font-family: var(--news); font-size: 15.5px; }
+  .pullquote p { font-family: var(--news); font-size: 21px; }
+  .pullquote .attrib { font-family: var(--news); font-style: italic; font-size: 13px; }
+  .spec-row { font-family: var(--news); font-size: 14px; }
+  .fig-cap { font-family: var(--news); font-size: 12.5px; }
+  .bench-top { font-family: var(--news); font-size: 13.5px; }
+  .bench-note { font-family: var(--news); font-size: 13px; }
+  .sources li { font-family: var(--news); font-size: 13.5px; }
+  .endcard-sub { font-family: var(--news); font-size: 14.5px; }
+
+  /* ─── NAV ─── */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 48px;
+    background-color: rgba(237,232,218,.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1.5px solid rgba(28,46,34,.12);
+    background-image:
+      linear-gradient(rgba(28,46,34,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(28,46,34,.05) 1px, transparent 1px);
+    background-size: 38px 38px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--forest);
+    letter-spacing: -0.3px;
+  }
+  .nav-logo-mark { width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .nav-logo-mark img { width: 28px; height: 28px; object-fit: contain; }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-link {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--forest);
+    opacity: .55;
+    transition: opacity .15s;
+  }
+  .nav-link:hover { opacity: 1; }
+  .nav-link.active { opacity: 1; font-weight: 700; }
+  .nav-cta {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--forest);
+    background: var(--lime);
+    border: 2.5px solid var(--forest);
+    border-radius: 100px;
+    padding: 10px 24px;
+    transition: background .15s, transform .1s;
+    white-space: nowrap;
+  }
+  .nav-cta:hover { background: var(--lime-d); transform: translateY(-1px); }
+
+  /* ─── MASTHEAD ─── */
+  .masthead {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 72px 24px 24px;
+    text-align: center;
+  }
+  .masthead-kicker {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--forest);
+    background: var(--lime);
+    border: 2px solid var(--forest);
+    border-radius: 100px;
+    padding: 7px 16px;
+    margin-bottom: 28px;
+  }
+  .masthead-h {
+    font-family: var(--serif);
+    font-size: clamp(38px, 6.4vw, 72px);
+    font-weight: 900;
+    line-height: 1.04;
+    letter-spacing: -1.5px;
+    color: var(--forest);
+    margin-bottom: 20px;
+  }
+  .masthead-h em { font-style: italic; }
+  .masthead-dek {
+    font-family: var(--serif);
+    font-size: clamp(17px, 2.2vw, 21px);
+    font-style: italic;
+    line-height: 1.55;
+    color: var(--forest);
+    opacity: .85;
+    max-width: 660px;
+    margin: 0 auto 28px;
+  }
+  .masthead-meta {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--forest);
+    opacity: .5;
+    letter-spacing: .5px;
+  }
+  .masthead-meta b { font-weight: 700; opacity: 1; }
+
+  /* ─── FIGURE ─── */
+  .figure {
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    overflow: hidden;
+    box-shadow: 6px 6px 0 rgba(28,46,34,.14);
+    margin: 32px 0;
+  }
+  .figure img { width: 100%; display: block; }
+  .fig-cap {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+    padding: 12px 16px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--forest);
+    border-top: 1.5px solid rgba(28,46,34,.15);
+    opacity: .7;
+    letter-spacing: .3px;
+  }
+  .fig-tag {
+    flex-shrink: 0;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--forest);
+    opacity: .9;
+  }
+  .fig-cap a { text-decoration: underline; opacity: .8; }
+  .fig-cap a:hover { opacity: 1; }
+
+  /* ─── ARTICLE BODY ─── */
+  .article-body {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 8px 24px 64px;
+  }
+  .lede {
+    font-family: var(--serif);
+    font-size: 21px;
+    font-weight: 400;
+    line-height: 1.65;
+    color: var(--forest);
+    margin: 8px 0 28px;
+  }
+  .lede b { font-weight: 700; }
+  .para {
+    font-family: var(--mono);
+    font-size: 14px;
+    line-height: 1.85;
+    color: var(--forest);
+    opacity: .92;
+    margin: 0 0 20px;
+  }
+  .para b { font-weight: 700; opacity: 1; }
+  .para i { font-style: italic; }
+  .para a { text-decoration: underline; opacity: .85; }
+  .para a:hover { opacity: 1; }
+  .para ul { padding-left: 22px; margin: 0 0 20px; }
+  .para li { margin-bottom: 10px; }
+
+  .section-h {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin: 56px 0 18px;
+  }
+  .section-no {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--lime);
+    background: var(--forest);
+    border-radius: 8px;
+    padding: 5px 9px;
+    letter-spacing: 1px;
+    flex-shrink: 0;
+  }
+  .section-h h2 {
+    font-family: var(--serif);
+    font-size: clamp(24px, 3.6vw, 32px);
+    font-weight: 900;
+    letter-spacing: -0.6px;
+    line-height: 1.1;
+    color: var(--forest);
+  }
+
+  /* Callout cards */
+  .callout {
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    padding: 22px 24px;
+    margin: 28px 0;
+    box-shadow: 5px 5px 0 rgba(28,46,34,.12);
+  }
+  .callout-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--forest);
+    background: var(--lime);
+    border: 1.5px solid var(--forest);
+    border-radius: 100px;
+    padding: 4px 10px;
+    display: inline-block;
+    margin-bottom: 14px;
+  }
+  .callout-label.pink { background: var(--pink); }
+  .callout p {
+    font-family: var(--mono);
+    font-size: 13.5px;
+    line-height: 1.8;
+    color: var(--forest);
+    margin: 0 0 10px;
+  }
+  .callout p:last-child { margin-bottom: 0; }
+  .callout p b { font-weight: 700; }
+  .callout p code { background: var(--cream); border: 1px solid rgba(28,46,34,.2); border-radius: 5px; padding: 1px 5px; font-size: 12px; }
+
+  /* Spec sheet */
+  .spec {
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    overflow: hidden;
+    margin: 28px 0;
+    box-shadow: 5px 5px 0 rgba(28,46,34,.12);
+  }
+  .spec-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--forest);
+    padding: 12px 18px;
+  }
+  .spec-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 16px;
+    padding: 12px 18px;
+    border-top: 1.5px solid rgba(28,46,34,.14);
+    font-family: var(--mono);
+    font-size: 12.5px;
+    line-height: 1.5;
+  }
+  .spec-row .k { font-weight: 700; opacity: .6; }
+  .spec-row .v { opacity: .95; }
+  .spec-row .v b { font-weight: 700; }
+  .spec-row .v code { background: var(--cream); border: 1px solid rgba(28,46,34,.2); border-radius: 5px; padding: 1px 5px; font-size: 12px; }
+
+  /* Benchmark bars */
+  .bench {
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    padding: 22px 24px;
+    margin: 28px 0;
+    box-shadow: 5px 5px 0 rgba(28,46,34,.12);
+  }
+  .bench-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--forest);
+    background: var(--lime);
+    border: 1.5px solid var(--forest);
+    border-radius: 100px;
+    padding: 4px 10px;
+    display: inline-block;
+    margin-bottom: 16px;
+  }
+  .bench-item { margin-bottom: 16px; }
+  .bench-item:last-child { margin-bottom: 0; }
+  .bench-top {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--mono);
+    font-size: 12px;
+    margin-bottom: 6px;
+  }
+  .bench-name { font-weight: 700; }
+  .bench-val { font-weight: 700; background: var(--forest); color: var(--lime); border-radius: 6px; padding: 1px 8px; }
+  .bench-bar { height: 14px; background: rgba(28,46,34,.08); border-radius: 100px; overflow: hidden; }
+  .bench-fill { height: 100%; background: linear-gradient(90deg, var(--lime), var(--lime-d)); border-radius: 100px; }
+  .bench-fill.pink { background: linear-gradient(90deg, var(--pink), #d996d9); }
+  .bench-note {
+    font-family: var(--mono);
+    font-size: 11px;
+    line-height: 1.7;
+    opacity: .55;
+    margin-top: 14px;
+    border-top: 1.5px solid rgba(28,46,34,.14);
+    padding-top: 12px;
+  }
+
+  /* Pull quote */
+  .pullquote {
+    border-left: 6px solid var(--pink);
+    background: var(--card-bg);
+    border-radius: 0 12px 12px 0;
+    padding: 24px 28px;
+    margin: 32px 0;
+    box-shadow: 4px 4px 0 rgba(28,46,34,.1);
+  }
+  .pullquote p {
+    font-family: var(--serif);
+    font-size: 21px;
+    font-weight: 600;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--forest);
+    letter-spacing: -0.3px;
+  }
+  .pullquote .attrib {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-style: normal;
+    opacity: .55;
+    margin-top: 12px;
+    display: block;
+  }
+
+  /* Sources */
+  .sources {
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    padding: 22px 24px;
+    margin: 40px 0 0;
+    box-shadow: 5px 5px 0 rgba(28,46,34,.12);
+  }
+  .sources h3 {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    letter-spacing: -0.4px;
+  }
+  .sources ol { padding-left: 20px; }
+  .sources li { font-family: var(--mono); font-size: 12px; line-height: 1.8; opacity: .85; margin-bottom: 4px; }
+  .sources a { text-decoration: underline; }
+  .sources a:hover { opacity: 1; }
+
+  /* End card */
+  .endcard {
+    text-align: center;
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--lime);
+    padding: 40px 28px;
+    margin: 44px 0 0;
+    box-shadow: 6px 6px 0 rgba(28,46,34,.14);
+  }
+  .endcard-h {
+    font-family: var(--serif);
+    font-size: clamp(26px, 4vw, 34px);
+    font-weight: 900;
+    line-height: 1.15;
+    letter-spacing: -0.8px;
+    color: var(--forest);
+    margin-bottom: 12px;
+  }
+  .endcard-h em { font-style: italic; }
+  .endcard-sub { font-family: var(--mono); font-size: 13px; opacity: .7; max-width: 420px; margin: 0 auto 24px; line-height: 1.7; }
+  .endcard .btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn-chunky {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 14px;
+    font-weight: 700;
+    padding: 14px 32px;
+    border-radius: 100px;
+    border: 2.5px solid var(--forest);
+    cursor: pointer;
+    transition: transform .1s, box-shadow .15s;
+    background: var(--forest);
+    color: #fff;
+  }
+  .btn-chunky:hover { transform: translateY(-2px); box-shadow: 4px 4px 0 rgba(28,46,34,.35); }
+  .btn-chunky.lime { background: var(--lime); color: var(--forest); }
+  .btn-chunky.lime:hover { background: var(--lime-d); box-shadow: 4px 4px 0 var(--forest); }
+  .btn-chunky.outline { background: transparent; color: var(--forest); }
+
+  /* Footer */
+  .footer {
+    background: var(--black);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 36px 48px;
+    flex-wrap: wrap;
+  }
+  .footer-brand { font-family: var(--mono); font-size: 14px; font-weight: 700; }
+  .footer-center { font-family: var(--mono); font-size: 12px; color: rgba(255,255,255,.55); line-height: 1.7; }
+  .footer-right { font-family: var(--mono); font-size: 12px; text-align: right; line-height: 1.9; }
+  .footer-right a { color: rgba(255,255,255,.5); transition: color .15s; }
+  .footer-right a:hover { color: #fff; }
+
+  @media (max-width: 760px) {
+    .nav { padding: 12px 20px; }
+    .nav-links { display: none; }
+    .masthead { padding: 48px 20px 16px; }
+    .article-body { padding: 8px 20px 48px; }
+    .spec-row { grid-template-columns: 1fr; gap: 4px; }
+    .section-h { flex-direction: column; gap: 8px; align-items: flex-start; }
+    .footer { padding: 28px 20px; flex-direction: column; align-items: flex-start; }
+    .footer-right { text-align: left; }
+  }
+  @media (max-width: 480px) {
+    .nav-logo span { display: none; }
+    .nav-logo-mark { width: 28px; height: 28px; }
+    .nav-logo-mark img { width: 24px; height: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">
+    <div class="nav-logo-mark"><img src="../assets/timps_logo.svg" alt="TIMPS"></div>
+    <span>TIMPS PostCards</span>
+  </a>
+  <div class="nav-links">
+    <a href="../articles.html" class="nav-link active">Articles</a>
+    <a href="../archive.html" class="nav-link">Archive</a>
+    <a href="../daily/timps-postcards-2026-09-23.html" class="nav-link">Latest Issue</a>
+    <a href="../index.html#subscribe" class="nav-link">Subscribe</a>
+  </div>
+  <a href="../index.html#subscribe" class="nav-cta">Subscribe</a>
+</nav>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <span class="masthead-kicker">TIMPS Deep Dive · № 012</span>
+  <h1 class="masthead-h">Ninety minutes after Opus 5.5 shipped, OpenAI answered — GPT-6 Sol and Luna bring Astra's method to the frontier's <em>cheapest tiers</em></h1>
+  <p class="masthead-dek">On September 22, Anthropic's Claude Opus 5.5 got roughly 90 minutes of attention before OpenAI filled the news cycle with <b>GPT-6 Sol and GPT-6 Luna</b> — the mid and low tiers of the GPT-6 family, trained with the same methods as the flagship GPT-6 Astra and priced at <b>50% below</b> their GPT-5.6 counterparts: Sol at <b>$2 / $10</b> and Luna at <b>$0.10 / $0.50</b> per million tokens. On paper the gains are mostly cost and reliability, not raw intelligence — Sol matches Claude Fable 5.1 on merge-ready FrontierCode work at far lower cost and cuts hallucination roughly in half, while the brightest independent scorecards barely move. Here's what OpenAI actually shipped, every benchmark it published, where both models <i>regress</i> against the GPT-5.6 tiers they replace, and how the whole launch reads as a counterpunch.</p>
+  <div class="masthead-meta">
+    <b>Sandeep Thummala</b> &nbsp;·&nbsp; September 23, 2026 &nbsp;·&nbsp; 20 min read
+  </div>
+</header>
+
+<article class="article-body">
+
+  <!-- HERO FIGURE -->
+  <figure class="figure">
+    <img src="../assets/thumbs/article-gpt-6-sol-luna-hero.jpg" alt="OpenAI's official artwork for the GPT-6 Sol and Luna launch: a glowing sun and crescent moon against a star-filled sky">
+    <figcaption class="fig-cap">
+      <span class="fig-tag">Fig. 01</span>
+      <span>GPT-6 Sol and Luna — OpenAI's sun-and-moon tiers, announced September 22, 2026. Image via the official OpenAI announcement page.</span>
+    </figcaption>
+  </figure>
+
+  <!-- LEDE -->
+  <p class="lede"><b>Good morning.</b> On September 22, Anthropic shipped Claude Opus 5.5 — a cheaper, faster flagship aimed squarely at thinning OpenAI's pricing moat. Roughly <b>90 minutes later</b>, OpenAI filled the news cycle with a counterpunch of its own: <b>GPT-6 Sol and GPT-6 Luna</b>, the mid and low tiers of the GPT-6 family, trained with the same methods as the flagship <b>GPT-6 Astra</b> and sold at <b>half the price</b> of their GPT-5.6 namesakes. Sol — the coding-and-agents tier — drops to <b>$2 / $10</b> per million tokens; Luna, the high-volume workhorse, to <b>$0.10 / $0.50</b>. The pitch is that OpenAI can now do at two rungs below its flagship what its competitor does at its own flagship's price, and the first independent scorecards mostly agree — but the finer print shows the intelligence barely moved.</p>
+  <p class="para">The story here is that September 22 was a pincer move from two directions at once: Anthropic came for OpenAI's mid-market with a flagship-class model at a 40% discount, and OpenAI answered by dragging the <i>GPT-6</i> label — Astra's generation — down into the commodity tier at a 50% discount. For context: GPT-6 Astra landed on September 4 at <b>$10 / $50</b>, and GPT-5.6's same-named tiers sold at <b>$4 / $20</b> (Sol) and <b>$0.20 / $1.20</b> (Luna). Both new models inherit Astra's cleaner communication style and its alignment work, but the benchmark story is where the asterisks begin: on several tests the new models score <i>below</i> the GPT-5.6 models they replace at max effort. This is a pricing-and-reliability launch far more than an intelligence one — which is exactly the point OpenAI is trying to win. Here's the complete breakdown.</p>
+
+  <!-- SUMMARY -->
+  <div class="callout">
+    <span class="callout-label">One-card summary</span>
+    <p><b>What:</b> GPT-6 Sol and Luna, the mid and low tiers of OpenAI's GPT-6 family — trained with the same methods as GPT-6 Astra, priced <b>50% below</b> GPT-5.6 (Sol <b>$2 / $10</b>, Luna <b>$0.10 / $0.50</b> per million tokens) with 90%-off cached reads and improved prompt caching.</p>
+    <p><b>When:</b> Announced September 22, 2026 — roughly 90 minutes after Anthropic's Claude Opus 5.5 — available that day in ChatGPT Work and Codex (Plus, Pro, Business, Enterprise, Edu), with Free and Go users getting Luna in the desktop app. API model IDs <code>gpt-6-sol</code> and <code>gpt-6-luna</code>.</p>
+    <p><b>Why it matters:</b> OpenAI is betting the frontier's next battleground is cost per completed task, not leaderboard points. Sol matches Claude Fable 5.1 on merge-ready code at far lower cost and roughly halves hallucination; Luna undercuts GPT-5.6 Luna's price while matching its intelligence. But on some max-effort benchmarks both models score <i>below</i> the GPT-5.6 tiers they replace — the trade is real, and independent scorecards confirm it.</p>
+  </div>
+
+<!-- SECTION 01 -->
+  <div class="section-h"><span class="section-no">01</span><h2>What moved: the sun-and-moon counterpunch, explained</h2></div>
+  <p class="para">The sequence matters more than either release in isolation. On the morning of September 22, Anthropic presented Opus 5.5 as the proof that a flagship can be <i>both</i> strong and 40% cheaper to run. Roughly ninety minutes later, OpenAI responded by taking its newest generation and discounting it outright. GPT-6 Sol — the mid tier, <b>$2 / $10</b> per million input/output tokens — and GPT-6 Luna — the budget tier, <b>$0.10 / $0.50</b> — are the same generation as GPT-6 Astra, trained "with similar methods" and carrying Astra's advances in professional work, factuality, coding, computer use, and alignment into "faster, more affordable models." The price cut is a straight <b>50% versus GPT-5.6 promotional pricing</b> on both tiers.</p>
+  <p class="para">What did <i>not</i> move: the flagship position. OpenAI is explicit that "GPT-6 Astra continues to be our best model across the board." Sol is aimed at complex, expensive work — coding agents, tool-heavy automation — where cost per task decides whether a workload is runnable; Luna is aimed at "high-volume tasks with a clear goal," priced to be the default for bulk extraction and summarization at scale. Neither is OpenAI's most intelligent model, and the company isn't pretending otherwise. This is a distribution play wearing a product-launch's clothes.</p>
+
+  <!-- SECTION 02 -->
+  <div class="section-h"><span class="section-no">02</span><h2>The fine print: pricing, caching, and who gets what</h2></div>
+  <p class="para">The headline is a flat 50% cut on both tiers. The fine print adds three modifiers that matter far more to real workloads than the sticker price: <b>long prompts cost 2×</b> on input and cache reads and <b>1.5×</b> on output above 272K tokens; <b>Batch and Flex are half price</b>; and <b>Fast mode is double</b>. Cached input reads are <b>90% off</b> — <b>$0.20</b>/M for Sol, <b>$0.01</b>/M for Luna — which is the number any agent-builder actually cares about, since agent loops re-send most of their context on every turn.</p>
+  <p class="para">OpenAI also shipped what it calls "improved prompt caching for GPT-6" the same day: higher default cache-hit rates, explicit <b>cache breakpoints</b> so developers choose where cached prefixes end, a Prompt Caching Dashboard, and — the piece agent-builders will test hardest — the ability to <b>change reasoning effort or toggle tools mid-conversation without invalidating the cache</b>. GitHub reports that across billions of Copilot requests, these changes cut the share of prompt tokens needing fresh processing by more than <b>50%</b>. Availability: Sol and Luna are live in <b>ChatGPT Work and Codex</b> for Plus, Pro, Business, Enterprise, and Edu users; <b>Free and Go users can use Luna in the desktop app</b>. Neither model is in regular Chat yet, neither has an open Terra sibling (GPT-6 catalog lists <code>gpt-6-astra</code>, <code>gpt-6-sol</code>, <code>gpt-6-luna</code> — GPT-5.6 Terra is a different generation), and tokens run past a <b>922K-token max input</b> in a <b>1.05M-token</b> window with <b>128K</b> max output.</p>
+
+  <!-- SPEC SHEET -->
+  <div class="spec">
+    <div class="spec-head">GPT-6 Sol &amp; GPT-6 Luna — key numbers</div>
+    <div class="spec-row"><span class="k">Model IDs</span><span class="v"><code>gpt-6-sol</code>, <code>gpt-6-luna</code> — GPT-6 generation, trained with same methods as GPT-6 Astra</span></div>
+    <div class="spec-row"><span class="k">Pricing (per 1M tok)</span><span class="v">Sol <b>$2 / $10</b> (GPT-5.6 Sol: $4 / $20, −50%); Luna <b>$0.10 / $0.50</b> (GPT-5.6 Luna: $0.20 / $1.20, −50%)</span></div>
+    <div class="spec-row"><span class="k">Caching</span><span class="v">Cached reads <b>90% off</b> (Sol $0.20/M, Luna $0.01/M); cache writes Sol $2.50/M, Luna $0.125/M; >272K-token prompts 2× input / 1.5× output; Batch/Flex 50% off; Fast mode 2×</span></div>
+    <div class="spec-row"><span class="k">Context</span><span class="v"><b>1.05M</b> tokens (922K max input), <b>128K</b> max output; reasoning effort none→low→medium (default)→high→xhigh→max</span></div>
+    <div class="spec-row"><span class="k">Knowledge cutoff</span><span class="v">Sol: April 20, 2026; Luna: May 18, 2026</span></div>
+    <div class="spec-row"><span class="k">Availability</span><span class="v">ChatGPT Work + Codex (Plus/Pro/Business/Enterprise/Edu) and API on day one; Luna also in the desktop app for Free and Go users; not yet in regular Chat</span></div>
+    <div class="spec-row"><span class="k">Positioning</span><span class="v">GPT-6 Astra remains "best across the board"; Sol for complex/coding/agent work; Luna for high-volume tasks with a clear goal</span></div>
+  </div>
+
+  <!-- SECTION 03 -->
+  <div class="section-h"><span class="section-no">03</span><h2>The professional-work evidence: cost per task is the new ruler</h2></div>
+  <p class="para">OpenAI's own tables frame everything as score-versus-cost, not raw leaderboards. On <b>AutomationBench 1.0.6</b> — end-to-end business workflows across 47 tools in sales, marketing, operations, support, finance, and HR — GPT-6 Sol at xhigh effort scores <b>33.2% at $0.27 per task</b>. That beats Claude Opus 5 at max effort (26.9% at <b>11.1×</b> the cost), Claude Fable 5.1 with an Opus 5 fallback (31.4% at &gt;8.9× — and OpenAI notes that Fable's published cost <i>understates</i> its real bill, because the Opus 5 fallback fires on ~40% of tasks and its cost isn't reported), and GPT-6 Astra itself at low effort (30.3% at 3.9×). The sibling story: Luna at high effort improves on its predecessor by <b>5.4 percentage points at 58% lower cost per task</b>.</p>
+  <p class="para">On <b>Agents' Last Exam V1</b>, the long-horizon professional-work test spanning 55 sub-industries, GPT-6 Sol at max effort scores <b>56.4%</b> — above Claude Opus 5's highest score in the evaluation (55.9%) at <b>60% lower cost per task</b>. GPT-6 Astra still leads at 59.3%; Luna hits 50.9% at roughly $0.15 per task. And on OpenAI's internal factuality evaluation — built from real user-flagged errors, and deliberately harder than typical usage — GPT-6 Sol makes <b>about half as many mistakes as GPT-5.6 Sol</b>, approaching Astra-level reliability; Luna at higher effort levels "matches GPT-5.6 Sol at about a hundredth its cost."</p>
+
+  <!-- BENCH -->
+  <div class="bench">
+    <span class="bench-label">Professional work &amp; coding — OpenAI-published (best effort, per-task cost)</span>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">GPT-6 Sol — AutomationBench (xhigh)</span><span class="bench-val">33.2% · $0.27</span></div>
+      <div class="bench-bar"><div class="bench-fill" style="width:100%"></div></div>
+    </div>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">Claude Fable 5.1 w/ Opus 5 fallback (max)</span><span class="bench-val">31.4% · &gt;8.9×</span></div>
+      <div class="bench-bar"><div class="bench-fill pink" style="width:94%"></div></div>
+    </div>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">GPT-6 Astra (low)</span><span class="bench-val">30.3% · 3.9×</span></div>
+      <div class="bench-bar"><div class="bench-fill pink" style="width:91%"></div></div>
+    </div>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">Claude Opus 5 (max)</span><span class="bench-val">26.9% · 11.1×</span></div>
+      <div class="bench-bar"><div class="bench-fill pink" style="width:81%"></div></div>
+    </div>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">GPT-6 Sol — DeepSWE v1.1 (max)</span><span class="bench-val">68.8% · $2.74</span></div>
+      <div class="bench-bar"><div class="bench-fill lime" style="width:100%"></div></div>
+    </div>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">Claude Fable 5 — DeepSWE v1.1 (xhigh)</span><span class="bench-val">69.9% · $13.41</span></div>
+      <div class="bench-bar"><div class="bench-fill pink" style="width:101%"></div></div>
+    </div>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">GPT-5.6 Sol — DeepSWE v1.1 (max)</span><span class="bench-val">72.7% · $6.46</span></div>
+      <div class="bench-bar"><div class="bench-fill pink" style="width:103%"></div></div>
+    </div>
+    <div class="bench-note">GPT-6 Sol and Luna figures are OpenAI-reported; competitor figures are drawn from publicly available runs (Claude Opus 5 / Fable 5.1 per Anthropic). "×" multiples are cost per task relative to GPT-6 Sol. The Fable 5.1 AutomationBench figure omits the cost of its Opus 5 fallbacks, which occurred on ~40% of tasks. Note the DeepSWE rows: GPT-6 Sol scores below GPT-5.6 Sol at max effort — a real regression OpenAI does not lead with. Bars scaled to widest value in each grouping; the lime bar marks the new OpenAI release.</div>
+  </div>
+
+  <!-- SECTION 04 -->
+  <div class="section-h"><span class="section-no">04</span><h2>Coding and computer use: matching Fable 5.1 on merge-ready work</h2></div>
+  <p class="para">The coding story is where OpenAI leans hardest. On <b>FrontierCode 1.1 Main</b> — Cognition's test of whether an agent's changes are actually <i>mergeable</i> into a real codebase, graded on test quality, scope discipline, code style, and adherence to standards — GPT-6 Sol scores <b>49.3%</b>, up from 47.5% for GPT-5.6 Sol, and OpenAI says it "matches Claude Fable 5.1 at xhigh at much lower cost." Luna lands at 42.4% at roughly $0.11 per task. On <b>DeepSWE v1.1</b>, the long-horizon software-engineering benchmark, GPT-6 Sol at max effort scores <b>68.8%</b> — within <b>1.1 points</b> of Claude Fable 5's 69.9% at xhigh, at <b>approximately 80% lower cost per task</b> ($2.74 vs $13.41 per Artificial Analysis' chart readings). GPT-6 Luna at max scores <b>66.6%</b>, comparable to Claude Opus 5 and Fable 5 at medium effort, while costing <b>93% less than Opus 5 and 96% less than Fable 5</b> per task.</p>
+  <p class="para">Around coding, the cost-of-sustained-use argument gets a corporate footnote: OpenAI says internal daily API-valued token usage has "exceeded $600 for the median researcher and $7,000 for researchers at the 90th percentile," and that its own coding-agent usage "has grown exponentially." That's the economic justification for why a company that prides itself on frontier capability is now shipping cheap tiers with benchmark regressions in them: the constraint on agents is no longer capability, it's the running bill. On <b>OSWorld 2.0 offline</b> (long-horizon computer use), Sol at xhigh hits <b>60.5%</b> — similar to Claude Opus 5 at medium (60.3%) at ~80% lower cost — and Luna at max (52.7%) exceeds GPT-5.6 Sol at medium for one tenth of its cost, while Astra still owns the top of the chart (73.5% at max). OpenAI also brought Astra's communication style down: "more clarity, less jargon, fewer odd turns of phrase, fewer low-value details, and slightly shorter answers."</p>
+
+  <!-- SECTION 05 -->
+  <div class="section-h"><span class="section-no">05</span><h2>The independent read: reliability improved, intelligence barely moved</h2></div>
+  <p class="para">Independent evaluator <b>Artificial Analysis</b> ran both models on launch day, and its verdict largely matches OpenAI's framing with one crucial correction: <b>the gains are cost and factuality, not intelligence</b>. On its Intelligence Index v4.3 at max effort, GPT-6 Sol scores <b>48</b> (up from 47 for GPT-5.6 Sol) and Luna stays flat at <b>37</b> — for comparison, Claude Opus 5.5 registered <b>58</b> the same morning and GPT-6 Astra 53. Cost per Intelligence Index task roughly halves for Sol ($1.06 vs $1.99) and falls about 60% for Luna ($0.07 vs $0.18), though Luna burns ~25% more output tokens per task than its predecessor, which eats into the per-token discount.</p>
+  <p class="para">The <b>hallucination figure is the real upgrade</b>. On AA-Omniscience, GPT-6 Sol's hallucination rate on questions it should decline falls from <b>92% to 60%</b>, and Luna's from <b>93% to 77%</b> — matching OpenAI's claim of roughly half as many factual mistakes, and the single most important number for anyone using these models to summarize or extract from documents. It's still more than three-quarters wrong on the questions Luna should refuse, so grounding in sources remains mandatory. On the Coding Agent Index v1.5, Sol scores <b>57</b> (up from 55), landing on the Pareto frontier at about $3 per task while the top of that chart — Fable 5.1 and GPT-6 Astra at 62, Opus 5 at 60 — costs $7.50 to $12.50 per task.</p>
+
+  <!-- PULLQUOTE -->
+  <div class="pullquote">
+    <p>"GPT-6 Sol and Luna are a pricing and reliability release more than an intelligence release. Their independent intelligence scores barely move... What changes is cost per task, which roughly halves, and hallucination rates, which drop sharply."</p>
+    <span class="attrib">— Tosea.ai, "How to Use GPT-6 Sol and Luna" (Sep 23, 2026)</span>
+  </div>
+
+  <!-- SECTION 06 -->
+  <div class="section-h"><span class="section-no">06</span><h2>The counter-reading: where both models regress vs what they replace</h2></div>
+  <p class="para">First asterisk — the transparent one OpenAI prints itself. On <b>DeepSWE v1.1</b>, GPT-6 Sol at max effort scores <b>68.8%</b> versus GPT-5.6 Sol's <b>72.7%</b>; on <b>OSWorld 2.0</b> max, Sol hits 64.4% against GPT-5.6 Sol's 66.2%. At the very top of each model's effort range, the new tiers are roughly as capable as the GPT-5.6 models they replace — sometimes a little less — at a much lower cost per task. That is exactly the "cost–intelligence curve" OpenAI claims to lead, and it is not the same as "smarter than GPT-5.6." Anyone already running GPT-5.6 Sol at max purely for quality should test before switching.</p>
+  <p class="para">Second asterisk — Luna's coding regression is independent, not self-reported. Artificial Analysis measured GPT-6 Luna's Coding Agent Index at <b>41, down 2 points from GPT-5.6 Luna</b>, with falls on SWE-Atlas-QnA (44% vs 49%) and DeepSWE v1.1 (64% vs 66%). Luna's extra output tokens (51K vs 41K per task) partially offset its per-token discount, so the "intelligence same, cost lower" story is cleanest for high-volume, tool-light workloads — not for code.</p>
+  <p class="para">Third asterisk — the "90 minutes after Opus 5.5" framing cuts both ways. A counterpunch this fast is also a <i>reactive</i> release. OpenAI shipped GPT-6 Sol and Luna without the pre-release external evaluation Anthropic showcased for Opus 5.5, and the pricing drama (50% off) follows the exact playbook Anthropic used hours earlier (40% off) — both years' budget holds have now armed a price war where the market's cheapest frontier-capable tiers are falling every few weeks. The last asterisk is hallucination ceilings: even after the improvement, Luna is still wrong on 77% of the questions it should decline, and Sol on 60%, versus 59% for Opus 5.5 and 51% for GPT-6 Astra. Near the bottom of the price curve, cheap tokens still buy a lot of confidently wrong answers.</p>
+
+  <!-- SECTION 07 -->
+  <div class="section-h"><span class="section-no">07</span><h2>What to watch next</h2></div>
+  <ul class="para">
+    <li><b>Whether the price cut sticks.</b> GPT-5.6 Sol already took a 20%+ cut in August and Luna an 80% cut in July; GPT-6 Sol/Luna now halve again. Watch whether the GPT-5.6 tiers get re-positioned or quietly retired, and whether a GPT-6 Astra price cut follows.</li>
+    <li><b>Independent re-benchmarks at default effort.</b> Artificial Analysis' full model pages track <i>default (medium)</i> cost-per-task — that is the setting enterprises will actually run, not the max-effort leaderboards in the launch post.</li>
+    <li><b>Adoption in ChatGPT Work and Codex.</b> The interesting test of OpenAI's "cheap agents" claim is whether Copilot/ChatGPT Work routing shifts real coding load from Astra to Sol and whether teams report the claimed per-task halvings.</li>
+    <li><b>The caching dashboard.</b> Higher hit rates, explicit breakpoints, and non-breaking reasoning-effort changes are the parts agent-builders can verify within a week. GitHub's ">50% fresh-processing cut" is the number to pressure-test.</li>
+    <li><b>Anthropic's answer.</b> Opus 5.5's entire premise is per-task cost; Sol and Luna undercut that argument at the mid/low tiers. Watch for Sonnet 5.5 and Haiku 5.5 pricing announcements — they reset the same curve one rung down.</li>
+  </ul>
+
+  <!-- SECTION 08 -->
+  <div class="section-h"><span class="section-no">08</span><h2>The larger context: September 22 was a budget war, twice played</h2></div>
+  <p class="para">Read together, the two launches on September 22 are the clearest signal yet that the frontier's competitive axis has rotated from intelligence to <b>economics</b>. Anthropic argued, with Opus 5.5, that the flagship itself should cost 40% less to run. OpenAI's reply, ninety minutes later, was to argue that the intelligent frontier no longer needs a flagship at all — that the same generation's methods can be sold as a $2 coding workhorse and a $0.10 bulk-extraction utility, with 90%-off cache reads for the loops that actually run them. One lab took the crown off the flagship; the other showed how to sell the crown in halves.</p>
+  <p class="para">The consequence is compound. Agent builders can now choose a model by cost per completed task across a price range that spans <b>four orders of magnitude</b> — GPT-6 Luna at $0.10 input to GPT-6 Astra at $50 output — all within one family, one API, one tooling surface. That is a routing problem, not a scarcity problem, and it is exactly what makes frontier AI "abundant": the marginal cost of an acceptable answer keeps falling even as the price of the best answer stays premium. OpenAI's bet is that abundance wins — that teams will spend less money and more iterations, and that the market's default model will be the one you can afford to leave running overnight.</p>
+
+  <!-- SECTION 09 -->
+  <div class="section-h"><span class="section-no">09</span><h2>The TIMPS verdict</h2></div>
+  <div class="callout">
+    <span class="callout-label">Our read</span>
+    <p><b>This is OpenAI's most strategically legible release of 2026 — and its least flashy.</b> GPT-6 Sol and Luna do not raise the ceiling; they widen the base. Everything about the package — 50% price cut, 90%-off cached reads, non-breaking cache controls, better default hit rates, halved hallucination, Astra's communication style — is aimed at the two things agent economics actually care about: cost per completed task and how long a model can be trusted to run unattended.</p>
+    <p><b>Treat OpenAI's benchmark framing as directional, not exact.</b> The per-task cost multiples (Opus 5 at 11.1× Sol, Fable 5.1 at &gt;8.9×) are genuinely striking, but the comparison cleanest supports OpenAI because the × figures are OpenAI's reads of competitors' published runs. The independent scorecards carry the real news: cost per task roughly halves, hallucination roughly halves, and <i>intelligence barely moves</i> — Sol +1 index point, Luna flat, with real max-effort regressions on DeepSWE and OSWorld. This is a deluxe price cut with a reliability fix folded in, and nobody should mistake it for a capability jump.</p>
+    <p><b>The 90-minute counterpunch is the story even bigger than either model.</b> Anthropic and OpenAI are now openly trading on the same axis — per-task cost — and the cadence (Opus 5.5 at 07:00, Sol/Luna at 08:30, so to speak) makes the price curve the arena. For buyers, that is unambiguously good: the budget frontier is falling fast and the reliability of the cheap tier is finally improving. For the labs, it is a warning that differentiation is compressing into a single number.</p>
+    <p><b>What to actually do.</b> If you run GPT-5.6 Luna today, switch — same intelligence, ~60% lower cost per task, and hallucination nearly halved; just re-check any coding use. If you run GPT-5.6 Sol at max purely for quality, test GPT-6 Sol before switching — the savings are real but DeepSWE and OSWorld dipped at the top effort level. Keep a frontier model (Astra or Opus 5.5) for the steps where one wrong answer costs more than the tokens, and watch the default-effort cost curves — not the launch-day leaderboards — for where this actually lands.</p>
+  </div>
+
+  <p class="para" style="opacity:.6;font-size:13px;line-height:1.8;">Facts in this piece were compiled from OpenAI's official "Introducing GPT-6 Sol and Luna" announcement (September 22, 2026) and its benchmark, pricing, and caching data; the OpenAI "Better prompt caching for GPT-6" announcement (September 22, 2026); the OpenAI GPT-6 Sol and Luna API model documentation; Reuters and TechCrunch coverage of the launch; Artificial Analysis' GPT-6 Sol and Luna evaluations (Intelligence Index v4.3, Coding Agent Index v1.5, AA-Omniscience); and Tosea.ai's independent guide to GPT-6 Sol and Luna (September 23, 2026), including its transcriptions of OpenAI's effort-level charts and its AA-Omniscience hallucination readings. All OpenAI benchmark figures are OpenAI-reported unless attributed to Artificial Analysis in the text; competitor figures (Claude Opus 5, Claude Fable 5/5.1) are as reported by their respective companies. Artificial Analysis figures reflect its own runs. This is news analysis by an independent publication — not investment advice, not an endorsement of OpenAI or Anthropic, and not a guarantee that any benchmark figure will reproduce in production.</p>
+
+  <!-- SOURCES -->
+  <div class="sources">
+    <h3>Sources</h3>
+    <ol>
+      <li><a href="https://openai.com/index/introducing-gpt-6-sol-and-luna/" target="_blank" rel="noopener">OpenAI — "Introducing GPT-6 Sol and Luna" (Sep 22, 2026, primary source)</a></li>
+      <li><a href="https://openai.com/index/better-prompt-caching-for-gpt-6/" target="_blank" rel="noopener">OpenAI — "Better prompt caching for GPT-6" (Sep 22, 2026)</a></li>
+      <li><a href="https://developers.openai.com/api/docs/models/gpt-6-sol" target="_blank" rel="noopener">OpenAI API docs — GPT-6 Sol model documentation (specs, pricing, context)</a></li>
+      <li><a href="https://developers.openai.com/api/docs/models/gpt-6-luna" target="_blank" rel="noopener">OpenAI API docs — GPT-6 Luna model documentation (specs, pricing, context)</a></li>
+      <li><a href="https://www.reuters.com/technology/openai-expands-gpt-6-lineup-with-cheaper-sol-luna-models-2026-09-22" target="_blank" rel="noopener">Reuters — "OpenAI expands GPT-6 lineup with cheaper Sol and Luna models" (Sep 22, 2026)</a></li>
+      <li><a href="https://techcrunch.com/2026/09/22/openai-launches-gpt-6-sol-and-luna/" target="_blank" rel="noopener">TechCrunch — "OpenAI launches GPT-6 Sol and Luna, boasting lower cost and fewer mistakes" (Sep 22, 2026)</a></li>
+      <li><a href="https://artificialanalysis.ai/articles/gpt-6-sol-and-luna-push-the-cost-efficiency-frontier" target="_blank" rel="noopener">Artificial Analysis — "GPT-6 Sol and Luna push the cost efficiency frontier" (independent evaluations)</a></li>
+      <li><a href="https://tosea.ai/blog/gpt-6-sol-luna-complete-guide" target="_blank" rel="noopener">Tosea.ai — "How to Use GPT-6 Sol and Luna: Complete Guide to Benchmarks, Pricing and Tiers" (Sep 23, 2026)</a></li>
+      <li><a href="https://decrypt.co/378986/openai-launches-gpt-6-sol-luna-anthropic-claude-opus-5-5" target="_blank" rel="noopener">Decrypt — "OpenAI Launches GPT-6 Sol and Luna Minutes After Anthropic Drops Claude Opus 5.5" (Sep 22, 2026)</a></li>
+      <li><a href="https://siliconangle.com/2026/09/22/anthropic-releases-claude-opus-5-5-and-openai-counters-with-two-cheaper-gpt-6-models/" target="_blank" rel="noopener">SiliconANGLE — "Anthropic releases Claude Opus 5.5 and OpenAI counters with two cheaper GPT-6 models" (Sep 22, 2026)</a></li>
+      <li><a href="https://omniakey.com/blog/gpt-6-sol" target="_blank" rel="noopener">OmniaKey — "GPT-6 Sol: Release Date, Price and What's Real" (spec catalog: 922K max input, effort ladder, no gpt-6-terra)</a></li>
+    </ol>
+  </div>
+
+  <!-- END CARD -->
+  <div class="endcard">
+    <h3 class="endcard-h">One story a day,<br>explained properly.</h3>
+    <p class="endcard-sub">New TIMPS deep dives land regularly — paired with the five-signal PostCard every morning. Free forever.</p>
+    <div class="btns">
+      <a href="../index.html#subscribe" class="btn-chunky">Subscribe free</a>
+      <a href="article-claude-opus-5-5.html" class="btn-chunky lime">&larr; Prev: Anthropic just shipped a model that matches its most capable one on most work — and priced it 40% below the old flagship</a>
+    </div>
+    <p style="font-family:var(--news);font-size:13px;opacity:.6;margin-top:20px;"><a href="../articles.html" style="text-decoration:underline;">&larr; Browse all deep dives</a></p>
+  </div>
+
+</article>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-brand">TIMPS PostCards</div>
+  <div class="footer-center">
+    Five signals from the AI landscape, every day.<br>
+    Plus long-form deep dives. Hyderabad, India · Est. 2026
+  </div>
+  <div class="footer-right">
+    <a href="../index.html">Home</a><br>
+    <a href="../archive.html">Posts</a><br>
+    <a href="../articles.html">Articles</a><br>
+    &copy; 2026 TIMPS
+  </div>
+</footer>
+
+</body>
+</html>
