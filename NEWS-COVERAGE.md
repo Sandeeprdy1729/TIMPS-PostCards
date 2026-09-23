@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 105 daily issues + 11 deep dives · regenerated 2026-09-22**
+**Coverage: 106 daily issues + 11 deep dives · regenerated 2026-09-23**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 119 · 2026-09-23 · `daily/timps-postcards-2026-09-23.html`
+
+- **[01 · LEAD]** A Singapore Startup Builds the First 12-Inch 2D Semiconductor Platform — and Moore's Law Gets a New Room
+  - _Nexstrom closed a $12M seed to commercialize single-crystal two-dimensional semiconductors at full-size wafer scale, on production-ready tools — positioning itself for the industry's first 12-inch 2D growth as silicon nears its physical end._
+  - Source: [Full story · PR Newswire](https://www.prnewswire.com/news-releases/nexstrom-raises-12-million-seed-round-to-commercialize-the-first-12-inch-single-crystal-2d-semiconductor-platform-302885862.html)
+
+- **[02 · WORLD]** India's Semiconductor Line Enters Its Optimization Phase — a Gujarat Reporter Goes from 300 Million Units to Billions
+  - _The Renesas–CG Semi packaging venture at Sanand began commercial production in July and is now working to lift yields and throughput toward full rated capacity, with a second, far larger facility under construction. "Now we continue to optimise, like any factory," says Renesas's India president._
+  - Source: [Full story · Financial Express](https://www.financialexpress.com/business/news-renesas-chip-venture-enters-optimisation-phase-4344919/)
+
+- **[03 · MEDIA]** Stanford's Paper2Agent Turns Research Papers Into Working AI Agents — 74 of 100, Automatically
+  - _A new Nature-published pipeline reads a paper, finds its code, and rebuilds it as an executable MCP server — turning static manuscripts into "virtual corresponding authors" a model can call by name._
+  - Source: [Full story · Nature](https://www.nature.com/articles/s41586-026-11044-y)
+
+- **[04 · PRODUCTS]** IonQ Decodes Quantum Errors in Real Time — on a Single Off-the-Shelf CPU
+  - _The company says it has demonstrated the industry's first end-to-end, real-time quantum error-correction decoder running on one standard CPU — a compute bottleneck that has quietly capped every logical qubit so far._
+  - Source: [Full story · IonQ](https://ionq.com/news/ionq-demonstrates-industrys-first-end-to-end-real-time-quantum-error-decoder)
+
+- **[05 · GEOPOLITICS]** Perseverance Finds Mars Wasn't One Lake — It Was Three Eras of Water, Recorded in 185 Rocks
+  - _A Purdue-led analysis of the Margin Unit's 185+ bedrock targets shows ancient groundwater, a paleolake, and late hot-water veins each reshaped the same rocks — and that the samples Perseverance sealed may hold all three habitats._
+  - Source: [Full story · NASA / JPL](https://www.jpl.nasa.gov/news/nasa-discovery-reveals-complex-water-systems-on-early-mars/)
+
+  **Signals / briefs:**
+  - A 12-Inch Answer to Silicon's Wall
+  - India's Chip Line Ramps
+  - Papers That Run Themselves
+  - Quantum Decodes Live
+  - Mars Met Three Waters
 
 ### Issue 118 · 2026-09-22 · `daily/timps-postcards-2026-09-22.html`
 
