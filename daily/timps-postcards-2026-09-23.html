@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TIMPS">
+<link rel="manifest" href="../manifest.json">
+<link rel="apple-touch-icon" href="../assets/icon-192.png">
+<title>TIMPS PostCards — Issue 119</title>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --cream:  #EEECE2;
+    --forest: #3D3929;
+    --terra:  #DA7756;
+    --terra-d:#BD5D3A;
+    --black:  #111111;
+    --card-bg:#F0ECE0;
+    --mono:   'Newsreader', Georgia, 'Times New Roman', serif;
+    --serif:  'TIMPS', 'Playfair Display', Georgia, serif;
+  }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Black.woff2') format('woff2'); font-weight:900; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Bold.woff2') format('woff2'); font-weight:700; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-SemiBold.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--cream);
+    background-image:
+      linear-gradient(rgba(61,57,41,.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.07) 1px, transparent 1px);
+    background-size: 38px 38px;
+    font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+    color: var(--forest);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { text-decoration: none; color: inherit; }
+
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 48px;
+    background-color: rgba(238,236,226,.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1.5px solid rgba(61,57,41,.12);
+    background-image:
+      linear-gradient(rgba(61,57,41,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.05) 1px, transparent 1px);
+    background-size: 38px 38px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 15px;
+    font-weight: 600;
+    color: #000;
+    text-decoration: none;
+  }
+  .nav-logo-mark {
+    width: 34px; height: 34px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .nav-logo-mark img { width: 28px; height: 28px; object-fit: contain; }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-link {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: #000;
+    opacity: .65;
+    text-decoration: none;
+    transition: opacity .15s;
+  }
+  .nav-link:hover { opacity: 1; }
+  .nav-cta {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: #000;
+    background: var(--terra);
+    border: 2.5px solid #000;
+    border-radius: 100px;
+    padding: 10px 24px;
+    cursor: pointer;
+    transition: background .15s, transform .1s;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--terra-d); transform: translateY(-1px); }
+
+  .wrapper { max-width: 760px; margin: 0 auto; padding: 40px 20px 80px; display: flex; flex-direction: column; gap: 0; }
+
+  .cover-card { background: var(--card-bg); border-radius: 20px 20px 4px 4px; padding: 56px 48px 48px; text-align: center; position: relative; overflow: hidden; border: 1.5px solid rgba(61,57,41,.12); margin-bottom: 3px; }
+  .cover-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, var(--terra) 0%, var(--terra-d) 60%, #E0A88A 100%); }
+  .cover-eyebrow { font-family: var(--mono); font-size:10px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:20px; display:flex; align-items:center; justify-content:center; gap:10px; }
+  .cover-eyebrow::before,.cover-eyebrow::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .15; max-width:60px; }
+  .cover-title { font-family: var(--serif); font-size:58px; font-weight:900; line-height:1; letter-spacing:-1px; color: var(--forest); margin-bottom:8px; }
+  .cover-sub { font-family: var(--serif); font-size:13px; font-style:italic; color: var(--forest); opacity: .55; margin-bottom:28px; }
+  .cover-divider { width:48px; height:2px; background: var(--terra); margin:0 auto 24px; border-radius:2px; }
+  .cover-meta { display:flex; justify-content:center; gap:32px; font-family: var(--mono); font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .45; }
+  .cover-badge { display:inline-flex; align-items:center; gap:6px; background: var(--terra); color: #fff; border-radius:20px; padding:6px 18px; font-family: var(--mono); font-size:10px; letter-spacing:2px; text-transform:uppercase; margin-top:28px; }
+  .top5-pill { display:flex; justify-content:center; gap:10px; margin-top:32px; flex-wrap:wrap; }
+  .pill { background: var(--forest); color: var(--cream); border-radius:100px; padding:4px 14px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; }
+  .pill.light { background:transparent; color: var(--forest); border:1px solid rgba(61,57,41,.2); }
+
+  .section-label { display:flex; align-items:center; gap:12px; padding:10px 0 8px; font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .35; }
+  .section-label::before,.section-label::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .1; }
+
+  .story-card { border-radius:4px; border:1.5px solid rgba(61,57,41,.10); padding:36px 40px; margin-bottom:3px; position:relative; overflow:hidden; }
+  .story-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }
+
+  .card-sky      { background:#D6E8F0; } .card-sky::before      { background: #7AAFC0; }
+  .card-cream    { background: var(--card-bg); } .card-cream::before    { background: var(--terra); }
+  .card-blush    { background:#F5DDD0; } .card-blush::before    { background: #E0A88A; }
+  .card-lavender { background:#EAE6F5; } .card-lavender::before { background: #C8BEE8; }
+  .card-sage     { background:#D6E4D6; } .card-sage::before     { background: #8BAF8B; }
+
+  .page-chip { position:absolute; top:14px; right:16px; font-family: var(--mono); font-size:9px; letter-spacing:2px; text-transform:uppercase; color: var(--forest); opacity: .3; }
+  .card-routine { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:8px; }
+  .card-headline { font-family: var(--serif); font-size:28px; font-weight:900; line-height:1.15; color: var(--forest); margin-bottom:10px; }
+  .card-headline.lg { font-size:34px; }
+  .card-headline.sm { font-size:22px; }
+  .card-deck { font-family: var(--serif); font-style:italic; font-size:14px; line-height:1.55; color: var(--forest); opacity: .55; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid rgba(61,57,41,.12); }
+  .card-body { font-family: 'Lora', Georgia, serif; font-size:14px; line-height:1.7; color: var(--forest); }
+  .card-body p { margin-bottom:11px; }
+  .drop::first-letter { font-family: var(--serif); font-size:52px; font-weight:900; float:left; line-height:.78; margin:5px 6px 0 0; color: var(--terra); }
+  .clearfix::after { content:''; display:table; clear:both; }
+
+  .hl-terra { background: var(--terra); color: var(--forest); padding:0 4px; border-radius:2px; }
+  .hl-ink  { background: var(--forest); color: var(--cream); padding:0 4px; border-radius:2px; }
+  .hl-sage { background: #8BAF8B; color: #fff; padding:0 4px; border-radius:2px; }
+  .hl-lav  { background: #C8BEE8; color: var(--forest); padding:0 4px; border-radius:2px; }
+
+  .stat-box { float:right; margin:0 0 16px 24px; background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:16px 20px; text-align:center; min-width:120px; }
+  .stat-big { font-family: var(--serif); font-size:44px; font-weight:900; line-height:1; color: var(--forest); display:block; }
+  .stat-label { font-family: var(--mono); font-size:9.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .5; display:block; margin-top:4px; }
+
+  .img-frame { border:2px solid rgba(61,57,41,0.18); border-radius:12px; overflow:hidden; margin:16px 0; background: var(--card-bg); }
+  .img-frame img { width:100%; display:block; max-height:240px; object-fit:cover; border-bottom:1px solid rgba(61,57,41,.12); }
+  .img-caption { padding:8px 12px; font-family: var(--mono); font-size:10.5px; color: var(--forest); opacity: .6; font-style:italic; display:flex; align-items:center; justify-content:space-between; gap:8px; }
+  .img-caption a { font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; white-space:nowrap; font-style:normal; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; }
+  .img-caption a:hover { opacity: 1; }
+  .img-frame.float-right { float:right; width:220px; margin:0 0 16px 24px; }
+  .img-frame.float-right img { max-height:140px; }
+
+  .source-link { display:inline-flex; align-items:center; gap:5px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:12px; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; transition: opacity .15s; }
+  .source-link:hover { opacity: 1; }
+  .source-link::after { content:'↗'; font-size:9px; }
+
+  .signals-grid { display:flex; flex-direction:column; gap:14px; }
+  .signal-row { display:flex; align-items:flex-start; gap:14px; }
+  .signal-num { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family: var(--serif); font-size:13px; font-weight:900; flex-shrink:0; color:#fff; }
+  .signal-num.n1{background: var(--terra); color: var(--forest);} .signal-num.n2{background: var(--forest);} .signal-num.n3{background:#7AAFC0;} .signal-num.n4{background: var(--terra-d); color: var(--forest);} .signal-num.n5{background: var(--black);}
+  .signal-title { font-family: var(--serif); font-size:14px; font-weight:700; color: var(--forest); margin-bottom:2px; }
+  .signal-desc { font-family: 'Newsreader', Georgia, 'Times New Roman', serif; font-size:12px; line-height:1.65; color: var(--forest); opacity: .6; }
+  .signal-link { display:inline-block; font-family: var(--mono); font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:4px; border-bottom:1px solid rgba(61,57,41,.25); padding-bottom:1px; transition: opacity .15s; }
+  .signal-link:hover { opacity: 1; }
+
+  .themes-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .theme-item { padding:10px 14px; border-radius:8px; font-family: var(--serif); font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; text-align:center; border:1.5px solid rgba(61,57,41,.12); background: var(--cream); }
+
+  .tool-week { background: var(--forest); color: var(--cream); border-radius:12px; padding:18px 20px; text-align:center; margin-top:14px; }
+  .tool-week-eyebrow { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; opacity: .55; margin-bottom:6px; }
+  .tool-week-name { font-family: var(--serif); font-size:22px; font-weight:900; margin-bottom:4px; }
+  .tool-week-desc { font-family: 'Newsreader', Georgia, 'Times New Roman', serif; font-size:11.5px; opacity: .7; font-style:italic; }
+
+  .output-card { background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:18px 20px; margin-top:14px; }
+  .output-title { font-family: var(--serif); font-size:18px; font-weight:700; margin-bottom:8px; color: var(--forest); }
+  .tp-list { list-style:none; padding:0; margin:0; }
+  .tp-list li { padding:5px 0; font-family: 'Lora', Georgia, serif; font-size:12px; color: var(--forest); border-bottom:1px solid rgba(61,57,41,.07); display:flex; align-items:flex-start; gap:7px; }
+  .tp-list li::before { content:'·'; color: var(--terra); font-size:14px; line-height:1.2; flex-shrink:0; }
+  .tp-list li a { color: var(--forest); opacity: .8; text-decoration:none; }
+  .tp-list li a:hover { opacity: 1; }
+
+  .sources-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px 20px; }
+  .sources-grid a { font-family: var(--mono); font-size:11px; color: var(--forest); opacity: .55; text-decoration:none; border-bottom:1px solid rgba(61,57,41,.15); padding-bottom:1px; transition: opacity .15s; }
+  .sources-grid a:hover { opacity: 1; }
+
+  .footer {
+    background: var(--black);
+    padding: 28px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    border-radius: 4px 4px 20px 20px;
+    margin-top: 3px;
+  }
+  .footer-logo { display: flex; align-items: center; gap: 10px; }
+  .footer-mark { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; }
+  .footer-mark img { width: 24px; height: 24px; object-fit: contain; filter: brightness(10); }
+  .footer-brand { font-family: var(--mono); font-size: 13px; font-weight: 700; color: #fff; }
+  .footer-center { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.4); text-align: center; line-height: 1.6; }
+  .footer-right { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.3); text-align: right; line-height: 2; }
+  .footer-right a { color: rgba(255,255,255,.5); transition: color .15s; }
+  .footer-right a:hover { color: #fff; }
+
+  .page-layout { display: flex; align-items: flex-start; gap: 0; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+  .toc-sidebar { position: sticky; top: 80px; width: 170px; flex-shrink: 0; padding: 48px 0 0 0; }
+  .toc-nav { display: flex; flex-direction: column; gap: 0; }
+  .toc-link { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.5px; text-transform: uppercase; color: #000; opacity: .45; text-decoration: none; padding: 7px 12px; border-left: 2px solid transparent; transition: opacity .15s, border-color .15s; line-height: 1.3; }
+  .toc-link:hover { opacity: .85; }
+  .toc-link.active { opacity: 1; border-left-color: var(--terra); }
+  .section-anchor { scroll-margin-top: 80px; }
+
+  @media (max-width: 900px) {
+    .toc-sidebar { display: none; }
+    .page-layout { max-width: 760px; }
+  }
+
+  @media (max-width: 720px) {
+    .nav { padding: 12px 24px; }
+    .nav-links { display: none; }
+    .wrapper { padding: 20px 14px 60px; }
+    .cover-card { padding: 40px 24px; }
+    .story-card { padding: 28px 20px; }
+    .footer { padding: 24px; flex-direction: column; align-items: flex-start; }
+    .footer-center, .footer-right { text-align: left; }
+    .stat-box { float: none; margin: 0 0 16px 0; }
+    .img-frame.float-right { float: none; width: 100%; margin: 0 0 16px 0; }
+  }
+  @media (max-width: 480px) {
+    .nav-logo span { display: none; }
+    .cover-title { font-size: 40px; }
+    .card-headline.lg { font-size: 28px; }
+    .card-headline { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">
+    <div class="nav-logo-mark">
+      <img src="../assets/timps_logo.svg" alt="TIMPS">
+    </div>
+    <span>TIMPS PostCards</span>
+  </a>
+  <div class="nav-links">
+    <a href="../archive.html" class="nav-link">Archive</a>
+    <a href="timps-postcards-2026-09-23.html" class="nav-link">Latest Issue</a>
+    <a href="../index.html#subscribe" class="nav-link">Subscribe</a>
+  </div>
+  <a href="../index.html#subscribe" class="nav-cta">Subscribe</a>
+</nav>
+
+<div class="page-layout">
+
+  <aside class="toc-sidebar">
+    <nav class="toc-nav">
+      <a href="#strategy" class="toc-link">Strategy</a>
+      <a href="#world" class="toc-link">World</a>
+      <a href="#media" class="toc-link">Media</a>
+      <a href="#products" class="toc-link">Products</a>
+      <a href="#geopolitics" class="toc-link">Geopolitics</a>
+      <a href="#signals" class="toc-link">Signals</a>
+      <a href="#themes" class="toc-link">Themes</a>
+      <a href="#tool" class="toc-link">Watch</a>
+      <a href="#sources" class="toc-link">Sources</a>
+    </nav>
+  </aside>
+
+  <div class="wrapper">
+
+  <!-- COVER -->
+  <div id="intro" class="cover-card section-anchor">
+    <div class="cover-eyebrow">Est. 2026 · Hyderabad</div>
+    <div class="cover-title">TIMPS<br>PostCards</div>
+    <div class="cover-sub">AI Intelligence Digest · Your Daily Signal from the Machine Frontier</div>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+      <span>Issue 119</span>
+      <span>September 23, 2026</span>
+      <span>No. 146</span>
+    </div>
+    <div class="cover-badge">⬡ 119 Issues — Built with the TIMPS Ecosystem</div>
+    <div class="top5-pill">
+      <span class="pill">5 Top Signals</span>
+      <span class="pill light">Semiconductors Grow a Second Layer</span>
+      <span class="pill light">India's Chip Line Enters Optimization</span>
+      <span class="pill light">Papers That Run Themselves</span>
+      <span class="pill light">Quantum Decodes in Real Time</span>
+      <span class="pill light">Mars Met Three Waters</span>
+    </div>
+  </div>
+
+  <!-- CARD 1 - LEAD -->
+  <div id="strategy" class="story-card card-lavender section-anchor">
+    <div class="page-chip">01 · LEAD</div>
+    <div class="card-routine">Semiconductors &amp; Materials · The 12-Inch Moment</div>
+    <h1 class="card-headline lg">A Singapore Startup Builds the First 12-Inch 2D Semiconductor Platform — and Moore's Law Gets a New Room</h1>
+    <div class="card-deck">Nexstrom closed a $12M seed to commercialize single-crystal two-dimensional semiconductors at full-size wafer scale, on production-ready tools — positioning itself for the industry's first 12-inch 2D growth as silicon nears its physical end.</div>
+    <div class="stat-box">
+      <span class="stat-big">12"</span>
+      <span class="stat-label">First 2D Wafer-Scale Platform Target</span>
+    </div>
+    <div class="card-body clearfix">
+      <p class="drop">Every few decades the chip industry bets that the next transistor will not be silicon. This week it got a 12-inch answer in the making. <span class="hl-ink">Singapore's Nexstrom raised a $12 million seed round to commercialize single-crystal two-dimensional semiconductors at full wafer scale</span>, the company announced Tuesday — building the first platform designed to grow atomic-thin materials on the 12-inch tools fabs already run, and driving toward the industry's first 12-inch 2D wafer.</p>
+      <p>Two-dimensional materials — sheets just one or a few atoms thick — are the leading candidate to extend miniaturization beyond silicon's physical limits, where electrons leak through ever-thinner channels. The field has spent a decade proving the physics in centimeters and millimeters. <span class="hl-terra">Nexstrom's pitch is that it can go straight to 300mm: wafer-scale growth on production-ready manufacturing equipment, validated with industry partners inside existing chip workflows</span>. That matters as much for economics as for physics: a 2D material that needs bespoke machinery cannot compete on cost; one that drops into existing fabs can.</p>
+      <p>The round was led by <span class="hl-ink">Xora Innovation, with Foothill Ventures and SEEDS (an arm of SG Growth Capital) joining — $15 million total counting a $3 million non-dilutive grant</span>. The headline number is the schedule: <span class="hl-sage">Nexstrom's bet is that roadmaps like Intel's and TSMC's move to 2D materials in the late decade, and that its platform will be waiting on the loading dock when they do</span>. Nothing 12-inch has shipped yet — the milestone is the platform and the wafer-scale path, not a finished product. But for an industry staring at "a hard ceiling to how much silicon can be shrunk," the clock suddenly has a 300mm face on it.</p>
+    </div>
+    <a class="source-link" href="https://www.prnewswire.com/news-releases/nexstrom-raises-12-million-seed-round-to-commercialize-the-first-12-inch-single-crystal-2d-semiconductor-platform-302885862.html" target="_blank">Full story · PR Newswire</a>
+  </div>
+
+  <!-- CARD 2 - WORLD -->
+  <div id="world" class="story-card card-blush section-anchor">
+    <div class="page-chip">02 · WORLD</div>
+    <div class="card-routine">Semiconductors &amp; Geopolitics · The Sanand Ramp</div>
+    <h2 class="card-headline">India's Semiconductor Line Enters Its Optimization Phase — a Gujarat Reporter Goes from 300 Million Units to Billions</h2>
+    <div class="card-deck">The Renesas–CG Semi packaging venture at Sanand began commercial production in July and is now working to lift yields and throughput toward full rated capacity, with a second, far larger facility under construction. "Now we continue to optimise, like any factory," says Renesas's India president.</div>
+    <div class="stat-box">
+      <span class="stat-big">4B</span>
+      <span class="stat-label">Units/Yr Target Once G2 Comes Online</span>
+    </div>
+    <div class="card-body clearfix">
+      <p class="drop">India's chip bets are leaving the ribbon-cutting phase. <span class="hl-ink">The Renesas–CG Semi semiconductor packaging joint venture in Sanand, Gujarat, has entered its optimization phase — past initial commissioning, now lifting yields and throughput toward full rated capacity</span>, a senior Renesas executive told the Financial Express this week.</p>
+      <p>G1, which began production in July, has a <span class="hl-terra">peak capacity of 300 million units a year, and the plant's economics turn on a structure that spreads both risk and reward: Renesas holds a minority stake — about 6.8% — alongside Thailand's Stars Microelectronics, with majority owner CG Power and Industrial Solutions overseeing construction</span>. Renesas's contribution is technology transfer plus its role as an anchor customer, drawing on CG Semi's capacity for select chip lines.</p>
+      <p>The bigger news is what comes next. <span class="hl-ink">A second, substantially larger facility — G2 — is already under construction at the same site</span>, designed to scale the venture to roughly 4 billion units a year, an order of magnitude beyond G1, and expected operational late next year or early 2028. <span class="hl-sage">CG Semi is investing more than Rs 7,600 crore over five years across G1 and G2; the offtake agreement is non-exclusive, so CG Semi can also serve other customers</span>. That optionality is precisely the kind of volume anchor India's assembly-and-test ambitions have needed, and it sets up Renesas's next lane: packaging India-designed chips locally as the localisation push matures.</p>
+    </div>
+    <a class="source-link" href="https://www.financialexpress.com/business/news-renesas-chip-venture-enters-optimisation-phase-4344919/" target="_blank">Full story · Financial Express</a>
+  </div>
+
+  <!-- CARD 3 - MEDIA -->
+  <div id="media" class="story-card card-sage section-anchor">
+    <div class="page-chip">03 · MEDIA</div>
+    <div class="card-routine">Open Science &amp; AI · Papers That Run</div>
+    <h2 class="card-headline">Stanford's Paper2Agent Turns Research Papers Into Working AI Agents — 74 of 100, Automatically</h2>
+    <div class="card-deck">A new Nature-published pipeline reads a paper, finds its code, and rebuilds it as an executable MCP server — turning static manuscripts into "virtual corresponding authors" a model can call by name.</div>
+    <div class="stat-box">
+      <span class="stat-big">74</span>
+      <span class="stat-label">of 100 Papers Agentified, No Cleanup</span>
+    </div>
+    <div class="card-body clearfix">
+      <p class="drop">The scientific paper is 361 years old and still mostly a document. <span class="hl-ink">Stanford researchers have published a system in Nature that turns papers into software: Paper2Agent reads a manuscript, locates its repository, builds a working environment, and reconstitutes the method as an MCP server an AI assistant can call</span> — a "virtual corresponding author" whose analyses can be rerun and re-asked.</p>
+      <p>Tested adversarially, it performs: <span class="hl-terra">on 100 randomly sampled bioRxiv computational-biology papers — deliberately unfiltered, including repositories with messy documentation — the pipeline agentified 74 fully automatically, producing 599 candidate tools of which 593 passed validation</span>. The 74 agents scored 91.2% on 300 tutorial-derived questions, beating Claude Code given direct repository access (80.3%) — at a third of the cost and a third of the latency per query ($0.20 and 1.6 minutes vs. $0.38 and 4.3).</p>
+      <p>The 26 failures are their own finding: <span class="hl-ink">35% were papers with no executable code at all, 31% missing data or model files, 23% environment and dependency failures, 12% scripts hardwired to one dataset</span>. In other words, the system quantifies what most scientists already suspect — <span class="hl-sage">about a quarter of published computational research cannot be rerun even by an autonomous tool built to rerun it</span>. Paper2Agent's quiet revolution isn't only making papers executable; it's giving the reproducibility crisis a scorecard.</p>
+    </div>
+    <a class="source-link" href="https://www.nature.com/articles/s41586-026-11044-y" target="_blank">Full story · Nature</a>
+  </div>
+
+  <!-- CARD 4 - PRODUCTS -->
+  <div id="products" class="story-card card-sky section-anchor">
+    <div class="page-chip">04 · PRODUCTS</div>
+    <div class="card-routine">Quantum Computing · The Live Decoder</div>
+    <h2 class="card-headline">IonQ Decodes Quantum Errors in Real Time — on a Single Off-the-Shelf CPU</h2>
+    <div class="card-deck">The company says it has demonstrated the industry's first end-to-end, real-time quantum error-correction decoder running on one standard CPU — a compute bottleneck that has quietly capped every logical qubit so far.</div>
+    <div class="stat-box">
+      <span class="stat-big">408</span>
+      <span class="stat-label">Logical Qubits Decoded Real-Time in Tests</span>
+    </div>
+    <div class="card-body clearfix">
+      <p class="drop">Quantum computers are noisy by design, and the machines that correct the noise have become a bottleneck of their own. <span class="hl-ink">IonQ said Tuesday it has demonstrated the industry's first end-to-end real-time quantum error-correction decoder running on a single, standard, off-the-shelf CPU</span> — a step toward stripping the error-decoding problem out of the quantum system entirely.</p>
+      <p>Quantum error correction works by spreading a fragile logical qubit across many physical ones and constantly re-reading the syndrome — a wall of classical computation that historically demanded specialized hardware and kept up only with delay. <span class="hl-terra">IonQ says its decoder keeps pace in real time: in the accompanying arXiv research, the dual-decoder architecture ran benchmark circuits simulating up to 408 logical qubits across 88 memory blocks and magic factories — more than 31.5 million quantum operations at the "MegaQuOp" scale</span> — while the decoding itself ran on a single commodity CPU.</p>
+      <p>The substance behind the milestone is that it moves classical work out of the cryostat. <span class="hl-ink">Offloading decoding to ordinary CPUs keeps the quantum stack from growing ever more bespoke — and, said IonQ quantum research lead and paper co-author Nicolas Delfosse, "successfully validating real-time decoding across hundreds of logical qubits and over millions of logical operations is an important milestone" that "provides a practical path to commercial-scale fault-tolerant quantum computing."</span> <span class="hl-sage">Every serious path to fault-tolerant quantum computing — surface codes, LDPC, real-time noise tracking — terminates in faster decoding. Making it a software problem instead of a hardware one is how error correction becomes cheap enough to schedule</span>.</p>
+    </div>
+    <a class="source-link" href="https://ionq.com/news/ionq-demonstrates-industrys-first-end-to-end-real-time-quantum-error-decoder" target="_blank">Full story · IonQ</a>
+  </div>
+
+  <!-- CARD 5 - GEOPOLITICS -->
+  <div id="geopolitics" class="story-card card-cream section-anchor">
+    <div class="page-chip">05 · GEOPOLITICS</div>
+    <div class="card-routine">Planetary Science · The Margin Unit</div>
+    <h2 class="card-headline sm">Perseverance Finds Mars Wasn't One Lake — It Was Three Eras of Water, Recorded in 185 Rocks</h2>
+    <div class="card-deck">A Purdue-led analysis of the Margin Unit's 185+ bedrock targets shows ancient groundwater, a paleolake, and late hot-water veins each reshaped the same rocks — and that the samples Perseverance sealed may hold all three habitats.</div>
+    <div class="stat-box">
+      <span class="stat-big">3</span>
+      <span class="stat-label">Distinct Water Episodes on Early Mars</span>
+    </div>
+    <div class="card-body clearfix">
+      <p class="drop">The oldest question about Mars is not whether its water existed, but how many different waters it was. <span class="hl-ink">New research on Perseverance's Jezero crater findings shows the rocks around the crater rim were transformed by at least three separate watery environments — groundwater, a lake, then hydrothermal fluids — a sequence that reads like a geological diary</span>.</p>
+      <p>Perseverance drove through the Margin Unit, an enigmatic band ringing Jezero's inner rim, and SuperCam's laser scanned <span class="hl-terra">more than 185 bedrock targets</span> across ~870 feet (265 m) of elevation. Higher up, the rock was igneous olivine — barely touched by water. Lower down, <span class="hl-ink">it bore three generations of alteration: carbonate ridges left by CO2-rich groundwater, silicon-rich cement laid down when lake or groundwaters remobilized it, and late veins of calcium sulfate and fluorite, which on Earth form from hot (<i>hydrothermal</i>) fluids</span>.</p>
+      <p>The sequence matters far beyond geology: <span class="hl-sage">carbonates are exactly the minerals orbiters made Jezero famous for, and on Earth they form in shallow, life-capable waters — so mission scientists knew these were among the rocks Perseverance was sent to drill and seal for the planned Mars Sample Return</span>. Lead author Candice Bedford (Purdue) puts the twist plainly — <span class="hl-ink">the Margin Unit became "a crossroads for aqueous systems," not one calm shoreline</span>. Instead of one habitat, the rocks record a groundwater-fed lake and a hydrothermal system layered on top. <span class="hl-terra">For astrobiology, early Mars is not one environment but a stack of them — and the samples en route to Earth matter a little more now</span>.</p>
+    </div>
+    <a class="source-link" href="https://www.jpl.nasa.gov/news/nasa-discovery-reveals-complex-water-systems-on-early-mars/" target="_blank">Full story · NASA / JPL</a>
+  </div>
+
+  <!-- SIGNALS -->
+  <div id="signals" class="story-card card-cream section-anchor">
+    <div class="page-chip">06 · SIGNALS</div>
+    <div class="card-routine">5 Key Signals</div>
+    <h2 class="card-headline sm">What Moved the Machine Frontier Today</h2>
+    <div class="card-deck" style="border-bottom:none; padding-bottom:0; margin-bottom:16px;">A quick-scan recap of every story above.</div>
+    <div class="signals-grid">
+      <div class="signal-row">
+        <div class="signal-num n1">1</div>
+        <div>
+          <div class="signal-title">A 12-Inch Answer to Silicon's Wall</div>
+          <div class="signal-desc">Nexstrom's $12M seed bankrolls the first wafer-scale platform for 2D semiconductors — with 12-inch single-crystal growth within reach on production fab tools.</div>
+          <a class="signal-link" href="https://www.prnewswire.com/news-releases/nexstrom-raises-12-million-seed-round-to-commercialize-the-first-12-inch-single-crystal-2d-semiconductor-platform-302885862.html" target="_blank">PR Newswire ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n2">2</div>
+        <div>
+          <div class="signal-title">India's Chip Line Ramps</div>
+          <div class="signal-desc">The Renesas–CG Semi venture at Sanand enters optimization at 300M units/yr, with G2 under construction targeting ~4B — a minority-stake structure that spreads risk and anchors India's assembly ambitions.</div>
+          <a class="signal-link" href="https://www.financialexpress.com/business/news-renesas-chip-venture-enters-optimisation-phase-4344919/" target="_blank">Financial Express ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n3">3</div>
+        <div>
+          <div class="signal-title">Papers That Run Themselves</div>
+          <div class="signal-desc">Stanford's Paper2Agent auto-converts 74 of 100 unfiltered bioRxiv papers into validated MCP agents that beat a direct-repo baseline — and scores the reproducibility crisis in the process.</div>
+          <a class="signal-link" href="https://www.nature.com/articles/s41586-026-11044-y" target="_blank">Nature ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n4">4</div>
+        <div>
+          <div class="signal-title">Quantum Decodes Live</div>
+          <div class="signal-desc">IonQ runs an end-to-end real-time quantum error-correction decoder on one commodity CPU — offloading the noise-fighting wall of classical compute from the cryostat to software.</div>
+          <a class="signal-link" href="https://ionq.com/news/ionq-demonstrates-industrys-first-end-to-end-real-time-quantum-error-decoder" target="_blank">IonQ ↗</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n5">5</div>
+        <div>
+          <div class="signal-title">Mars Met Three Waters</div>
+          <div class="signal-desc">SuperCam's 185+ targets show the Margin Unit was altered by groundwater carbonates, a paleolake's silica remobilization, and late hot veins — a stack of habitats Perseverance sealed for return.</div>
+          <a class="signal-link" href="https://www.jpl.nasa.gov/news/nasa-discovery-reveals-complex-water-systems-on-early-mars/" target="_blank">NASA / JPL ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THEMES + TOOL + SOURCES -->
+  <div id="themes" class="story-card card-lavender section-anchor">
+    <div class="page-chip">07 · CLOSER</div>
+    <div class="card-routine">Top Themes</div>
+    <h2 class="card-headline sm">The Shape of Today's News</h2>
+    <div class="themes-grid" style="margin-top:16px;">
+      <div class="theme-item">Silicon Gets a Successor Schedule</div>
+      <div class="theme-item">India's Packaging Takes the Lead</div>
+      <div class="theme-item">Reproducibility Gets a Scorecard</div>
+      <div class="theme-item">Error Correction Becomes Software</div>
+      <div class="theme-item">Early Mars Was a Stack of Wet Worlds</div>
+      <div class="theme-item">Materials Are the Frontier's Clock</div>
+    </div>
+
+    <div id="tool" class="tool-week section-anchor">
+      <div class="tool-week-eyebrow">Company Watch of the Day</div>
+      <div class="tool-week-name">Nexstrom</div>
+      <div class="tool-week-desc">A Singapore startup betting $15M (with Temasek-backed Xora Innovation) that 2D semiconductors jump straight from lab to 12-inch wafers on existing fab tools. If its single-crystal growth really lands on 300mm, it doesn't just sell chips — it hands the world's fabs an off-ramp from silicon before TSMC and Intel reach the end of theirs.</div>
+    </div>
+
+    <div id="sources" class="output-card section-anchor">
+      <div class="output-title">Sources Cited</div>
+      <ul class="tp-list">
+        <li><a href="https://www.prnewswire.com/news-releases/nexstrom-raises-12-million-seed-round-to-commercialize-the-first-12-inch-single-crystal-2d-semiconductor-platform-302885862.html" target="_blank">Nexstrom raises $12 million seed round for first 12-inch 2D semiconductor platform (PR Newswire)</a></li>
+        <li><a href="https://www.financialexpress.com/business/news-renesas-chip-venture-enters-optimisation-phase-4344919/" target="_blank">Renesas chip venture enters optimisation phase (Financial Express)</a></li>
+        <li><a href="https://www.nature.com/articles/s41586-026-11044-y" target="_blank">Reimagining research papers as interactive and reliable AI agents (Nature)</a></li>
+        <li><a href="https://aiweekly.co/alerts/stanfords-paper2agent-turns-74-of-100-papers-into-ai-agents" target="_blank">Stanford's Paper2Agent turns 74 of 100 papers into AI agents (AI Weekly)</a></li>
+        <li><a href="https://theclarity.today/story/paper2agent-turns-research-papers-into-agents-that-rerun-the-science-518ba533" target="_blank">Paper2Agent converted 74 of 100 unfiltered papers into tested agents (The Clarity)</a></li>
+        <li><a href="https://ionq.com/news/ionq-demonstrates-industrys-first-end-to-end-real-time-quantum-error-decoder" target="_blank">IonQ demonstrates industry's first end-to-end real-time quantum error decoder (IonQ)</a></li>
+        <li><a href="https://www.jpl.nasa.gov/news/nasa-discovery-reveals-complex-water-systems-on-early-mars/" target="_blank">NASA discovery reveals complex water systems on early Mars (NASA / JPL)</a></li>
+        <li><a href="https://phys.org/news/2026-09-early-mars-reveal-episodes.html" target="_blank">Early Mars rocks reveal at least three separate water episodes (Phys.org)</a></li>
+        <li><a href="https://www.eurekalert.org/news-releases/1144930" target="_blank">Purdue-led study finds an ancient history of water on Mars (EurekAlert!)</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-logo">
+      <div class="footer-mark">
+        <img src="../assets/timps_logo.svg" alt="TIMPS">
+      </div>
+      <span class="footer-brand">TIMPS PostCards</span>
+    </div>
+    <div class="footer-center">
+      Issue 119 · September 23, 2026<br>
+      Hyderabad, India
+    </div>
+    <div class="footer-right">
+      <a href="../index.html">Home</a><br>
+      <a href="../archive.html">Archive</a><br>
+      &copy; 2026 TIMPS
+    </div>
+  </footer>
+
+</div> <!-- /wrapper -->
+</div> <!-- /page-layout -->
+</body>
+</html>
