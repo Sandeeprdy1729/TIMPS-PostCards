@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 107 daily issues + 12 deep dives · regenerated 2026-09-25**
+**Coverage: 108 daily issues + 12 deep dives · regenerated 2026-09-25**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 121 · 2026-09-25 · `daily/timps-postcards-2026-09-25.html`
+
+- **[01 · LEAD]** Trump and Xi Meet in Washington — With Superintelligence at the Center of the Table
+  - _A state dinner for a visiting president, held against an AI backdrop: Trump says "Super Intelligence will be a big topic of discussion," Xi insists AI "must always be under human control," and the world's AI chief executives sit in the same room where the next export-controls decision will be made._
+  - Source: [Full story · ThePrint / Reuters](https://theprint.in/world/trump-xi-summit-in-washington-begins-with-great-fanfare-but-low-expectations/3052708/)
+
+- **[02 · WORLD]** Altman and Amodei Ask the UN Security Council for Global AI Rules — and Washington Says No, for Now
+  - _In a first-of-its-kind UN Security Council meeting convened by France, the CEOs of OpenAI and Anthropic told the world's top body the industry cannot regulate itself — warning that the danger of superintelligent AI is "real and imminent" — while the US "totally rejected" the premise._
+  - Source: [Full story · Al Jazeera](https://www.aljazeera.com/news/2026/9/24/ai-corporate-leaders-tell-un-the-industry-needs-global-regulation)
+
+- **[03 · MEDIA]** CLOSEDQUORUM: The First Windows Malware Where a Committee of AIs Votes on the Next Move
+  - _Cisco Talos discloses an implant whose command-and-control is a rotating panel of four commercial LLMs — DeepSeek, Qwen, Mistral, Gemini — that vote steal, inject, persist, or move before the malware acts. A 16.4 MB Go binary, and a preview of how AI-native espionage will operate._
+  - Source: [Full story · Cisco Talos](https://blog.talosintelligence.com/the-closed-quorum-inside-the-first-reported-autonomous-ai-c2-implant/)
+
+- **[04 · PRODUCTS]** Meta Pivots to the Pocket: Camera-Free Audio Glasses at $349, and a Keychain AI That Holds Your Chips
+  - _Follow-up reporting on Meta's Connect reveals the strategic turn underneath the launches: Ray-Ban Meta Audio — glasses with six mics but no camera — ships October 13 for $349, while the "Muse Charm" keychain AI accessory is timed for the holidays, carrying Zuckerberg's bet that the smartphone's successor is a smarter accessory._
+  - Source: [Full story · Reuters](https://www.reuters.com/business/media-telecom/metas-charm-gadget-carries-ceo-zuckerbergs-big-ai-ambitions-2026-09-24/)
+
+- **[05 · GEOPOLITICS]** The Deal Beneath the Pomp: A US–China AI Dialogue, With an Incident Hotline at Its Core
+  - _Beside the summit optics, Treasury Secretary Bessent proposed a mechanism that could be the summit's enduring artifact: a US–China channel where either side notifies the other of an AI-related incident before it spirals — plus a trade-truce extension of roughly two months past the November deadline._
+  - Source: [Full story · AP / WTOP](https://wtop.com/national/2026/09/trump-and-xi-conclude-day-one-of-their-washington-summit/)
+
+  **Signals / briefs:**
+  - Superintelligence Diplomacy
+  - The UN Asks for Global Rules
+  - Malware That Votes
+  - Glasses Without a Camera
+  - An AI Incident Hotline
 
 ### Issue 120 · 2026-09-24 · `daily/timps-postcards-2026-09-24.html`
 
