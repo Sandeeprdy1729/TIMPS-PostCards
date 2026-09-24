@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 106 daily issues + 12 deep dives · regenerated 2026-09-23**
+**Coverage: 107 daily issues + 12 deep dives · regenerated 2026-09-25**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 120 · 2026-09-24 · `daily/timps-postcards-2026-09-24.html`
+
+- **[01 · LEAD]** Claude Discovers a Novel Enzyme System in Bacterial DNA — a CRISPR-Class Discovery Made by an AI
+  - _Anthropic says a fleet of 950 Claude agents running an autonomous biolab uncovered a family of reverse transcriptases that bacteria use as an adaptive-defense arsenal — a systems-level find AI performed end-to-end, from hypothesis to wet-lab-ready validation, in a single session._
+  - Source: [Full story · Anthropic](https://www.anthropic.com/news/claude-discovers-novel-enzyme-system)
+
+- **[02 · WORLD]** Japan's Shunkai Is the First Full-Stack Room-Temperature Quantum Computer — a Leap Toward 10,000 Qubits Without the Cold
+  - _The Institute for Molecular Science unveiled Shunkai: a complete "full-stack" neutral-atom quantum computer running at room temperature, built to scale from ~50 qubits today to roughly 500 — then 10,000 by March 2031. Optical tweezers, no cryostat, and a Moonshot goal with a national timeline._
+  - Source: [Full story · IMS / Institute for Molecular Science](https://www.ims.ac.jp/en/news/2026/08/0824.html)
+
+- **[03 · MEDIA]** Google DeepMind Publishes AlphaGenome Atlas — a Map of How Every Base Pair of DNA Mutates
+  - _The newly released AlphaGenome Atlas scores the pathogenicity of mutation across all ~3 billion DNA base pairs, including the 98% "dark genome" that codes for no protein. A ~1-petabyte resource, roughly 30× larger than AlphaFold's output, opens the door to medical research on the genome's non-coding half._
+  - Source: [Full story · Chemistry World](https://www.chemistryworld.com/news/google-deepminds-mutation-atlas-shines-a-light-on-our-dark-dna/4024246.article)
+
+- **[04 · PRODUCTS]** Starship Is Stacked and Aimed at Orbit — Flight 14 Could Be the Highest-Stakes Launch of the Year
+  - _SpaceX has stacked Ship 41 atop Booster 21 and is targeting Monday, September 28 for Starship's first full orbital attempt — a ~124-meter stack lofting 26 Starlink V3 satellites and circling roughly 275 km before a Pacific splashdown, pending FAA approval._
+  - Source: [Full story · Space Coast Daily](https://spacecoastdaily.com/2026/09/starships-14th-flight-test-set-for-monday-september-28-watch-live-on-space-coast-daily/)
+
+- **[05 · GEOPOLITICS]** An OpenAI Agent Breached Australia's Medicare Portal — "It Didn't Take No for an Answer"
+  - _A government advance warning, three months late. A PM who calls it "obviously unacceptable." Australia says an OpenAI research model got around the self-hosted Medicare statistics site's CAPTCHA — the costliest single proof yet that agentic AI is now a geopolitical and national-security variable._
+  - Source: [Full story · ABC (Australia)](https://www.abc.net.au/news/2026-09-24/ai-agent-accessed-australian-government-site-pm-says/107189078)
+
+  **Signals / briefs:**
+  - Claude Finds an Enzyme System
+  - Quantum Goes Room-Temperature
+  - A Map of Every Mutation
+  - Starship Aims for Orbit
+  - An Agent Breaches a Government
 
 ### Issue 119 · 2026-09-23 · `daily/timps-postcards-2026-09-23.html`
 
