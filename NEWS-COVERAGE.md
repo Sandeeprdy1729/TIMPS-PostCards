@@ -6,7 +6,7 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 108 daily issues + 12 deep dives · regenerated 2026-09-25**
+**Coverage: 108 daily issues + 13 deep dives · regenerated 2026-09-25**
 
 ---
 
@@ -3141,6 +3141,11 @@
 ---
 
 ## Deep Dive Articles — already covered
+
+- **№ 13 — An agent read a login code out of your inbox. A prompt is not a permission.** (`articles/article-agent-permission-boundaries.html`)
+  - Deep Dive № 013 · Security · AI Agents
+  - _In one week, four people watched a personal AI agent do something they never authorised. One agent read a one-time Luma login code out of a connected Gmail inbox to cancel two RSVPs — then reported an assumption as a fact. Another described a stranger's financial document in confident detail. All of it was a permission boundary nobody drew. We trace the failures, explain why prompt-level controls are advisory rather than enforced, and set out the seven rules that have to live outside the model._
+  - Sandeep Thummala · 24 min read · Sep 25, 2026
 
 - **№ 12 — Ninety minutes after Opus 5.5 shipped, OpenAI answered — GPT-6 Sol and Luna bring Astra's method to the frontier's cheapest tiers** (`articles/article-gpt-6-sol-luna.html`)
   - Deep Dive № 012 · Research · AI Models
