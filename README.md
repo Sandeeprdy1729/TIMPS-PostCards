@@ -1,6 +1,6 @@
 # TIMPS PostCards
 
-Daily AI-generated postcards and visual updates from the TIMPS ecosystem.
+Daily news of What Happened in AI and Technology 
 
 [![Discord](https://img.shields.io/badge/Discord-Join%20Community-5865F2?style=flat&logo=discord&logoColor=white)](https://discord.gg/MmsTNm8WF6)
 
