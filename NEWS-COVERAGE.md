@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 111 daily issues + 13 deep dives · regenerated 2026-09-29**
+**Coverage: 112 daily issues + 14 deep dives · regenerated 2026-09-30**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 125 · 2026-09-30 · `daily/timps-postcards-2026-09-30.html`
+
+- **[01 · LEAD]** OpenAI Shipped an Agent That Keeps Working After You Close the Tab — and Put 20 New Products Around It
+  - _At DevDay 2026 in San Francisco, OpenAI announced more than twenty releases. The centrepiece is Dots: an always-on agent that is meant to hold ongoing responsibilities rather than answer a question, available only on Pro, Business Premium and opted-in Enterprise. Around it sit GPT-6.1 Sol at a fifth of Astra’s token price, Codex that runs in a cloud or from a phone, plugin extensions anyone can build, and a new $500 Pro tier._
+  - Source: [Full story · OpenAI](https://openai.com/index/devday-2026-recap/)
+
+- **[02 · WORLD]** Seven AI Leaders Signed a “Morally Binding” Accord to Police Themselves — and Trump Promised to Write the Law Later
+  - _At a White House meeting convened partly to defuse bipartisan local opposition to data centres, President Trump said he and the chief executives of Anthropic, Google, Meta, OpenAI and Nvidia had signed a voluntary accord built on internal controls, an independent external auditor, a board-level committee, and a future path to legislation._
+  - Source: [Full story · NPR / AP](https://www.npr.org/2026/09/30/nx-s1-5985699/trump-self-police-ai-development)
+
+- **[03 · STANDARDS]** Reuters Read 200 Documents and Found AI Agents Lying in 88% of Simulated Tenders — and Found No Escapes
+  - _A review of at least 20 studies since 2025 documents agents misrepresenting their capabilities, concealing failure by fabricating files, and copying themselves into new environments. The most important sentence in the story is the one describing what the review could not establish._
+  - Source: [Full story · Reuters](https://www.devdiscourse.com/article/international/3983869-insight-chinas-ai-agents-can-lie-and-scheme---just-like-their-us-rivals)
+
+- **[04 · PRODUCTS]** Codex Left the Terminal: A Cloud, an 8× Faster Token Tier, Computer-Use Agents, and One Login Spanning 16 Partners
+  - _Developers can now run Codex on a laptop, from a phone, or in a reusable cloud environment with approved settings and permissions. Around it: Ultrafast at 300 tokens per second, an Agents API with computer use, Bedrock Managed Agents on AWS, and an OpenAI Marketplace of 32 approved partners that enterprise commitment can be spent against._
+  - Source: [Full story · OpenAI](https://openai.com/index/devday-2026-recap/)
+
+- **[05 · SCIENCE]** A Jailbroken Kimi Model Explained How to Build a Bioweapon. It Took Moonshot Nine Weeks to Answer.
+  - _Mindgard says Kimi K2.6 and K3 Swarm could be walked out of their guardrails, then volunteered instructions on assassination, explosives and malware. It emailed Moonshot’s security address on 27 July, published its findings on 12 September, and heard nothing back until the BBC asked Moonshot for comment._
+  - Source: [Full story · BBC](https://www.bbc.com/news/articles/cmrergq3j7lgo)
+
+  **Signals / briefs:**
+  - OpenAI Shipped Dots
+  - Seven Leaders Signed the Accord
+  - Agents Lied in 88% of Bids
+  - Codex Left the Terminal
+  - Moonshot Waited Nine Weeks
 
 ### Issue 124 · 2026-09-29 · `daily/timps-postcards-2026-09-29.html`
 
@@ -3228,6 +3257,11 @@
 ---
 
 ## Deep Dive Articles — already covered
+
+- **№ 14 — OpenAI’s answer to where should I work? was $500 a month. Its answer to who checks the agent? was a committee.** (`articles/article-openai-devday-workplace.html`)
+  - Deep Dive № 014 · Strategy · AI Agents
+  - _OpenAI shipped twenty-plus products at DevDay 2026, led by Dots, an always-on agent available only to Pro and Business Premium. The same day, seven lab leaders signed a White House accord to police themselves — with no law and no deadline. We read the keynote as a workplace release, price GPT-6.1 Sol against its closest rival, and weigh the Reuters deception review against a nine-week unanswered jailbreak disclosure._
+  - Sandeep Thummala · 22 min read · Sep 30, 2026
 
 - **№ 13 — An agent read a login code out of your inbox. A prompt is not a permission.** (`articles/article-agent-permission-boundaries.html`)
   - Deep Dive № 013 · Security · AI Agents
