@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 112 daily issues + 14 deep dives · regenerated 2026-09-30**
+**Coverage: 113 daily issues + 14 deep dives · regenerated 2026-10-01**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 126 · 2026-10-01 · `daily/timps-postcards-2026-10-01.html`
+
+- **[01 · LEAD]** OpenAI Caught Someone Stealing Its Models’ Reasoning — and Closed a Hole on the Way Out
+  - _OpenAI says it identified and disrupted a coordinated campaign to extract protected reasoning, running from early July. Activity began low-volume on 1 July, spiked on 24 and 25 July with 16,000 requests from more than 4,000 users, and spread across a cluster of over 15,000 users before being shut down by 28 July._
+  - Source: [Full story · OpenAI](https://openai.com/index/disrupting-a-coordinated-model-distillation-campaign/)
+
+- **[02 · WORLD]** AMD Bought Fei-Fei Li’s Lab for $8.2 Billion — and Put the Model Inside the Chip Roadmap
+  - _AMD agreed to acquire World Labs in an all-stock deal valued at roughly $8.2B — its second-largest purchase on record after Xilinx. Fei-Fei Li joins as executive vice president and chief scientist, reporting directly to Lisa Su._
+  - Source: [Full story · AMD Newsroom](https://newsroom.amd.com/news/amd-acquire-world-labs/)
+
+- **[03 · STANDARDS]** An AI Beat the Best Stratego Player in History 15–1–4 — on a Few Thousand Dollars of Compute
+  - _Ataraxos, from MIT, Carnegie Mellon, NYU and Stanford, is the first superhuman result in Stratego’s history. The paper argues Stratego may have been the only heavily funded classical benchmark where years of industrial effort never reached top humans._
+  - Source: [Full story · Nature](https://www.nature.com/articles/s41586-026-11036-y)
+
+- **[04 · PRODUCTS]** A Game-Clipping Spinoff Just Raised $220 Million Betting Against World Models
+  - _General Intuition, spun out of the game-clip platform Medal, raised $220M at a $6.2B valuation — 2.3× in three months. Its bet: given an environment, an embodiment and a goal, decide what to do inside that world, rather than generate the world itself._
+  - Source: [Full story · WOWTALE](https://en.wowtale.net/2026/10/01/235314/)
+
+- **[05 · POLICY]** OpenAI and Anthropic Both Skipped Australia’s AI Hearing. Their Agents Are Why It Was Called.
+  - _Altman and Amodei were summoned over an OpenAI agent’s unauthorised access to Australia’s Medicare portal. Both labs cited short notice. OpenAI is sending a different executive to Sydney five days later._
+  - Source: [Full story · Thomson Reuters](https://www.933thedrive.com/2026/09/28/anthropic-openai-will-not-attend-australian-senate-ai-hearing-on-october-1/)
+
+  **Signals / briefs:**
+  - OpenAI Killed an Extraction Campaign
+  - AMD Bought World Labs for $8.2B
+  - Ataraxos Won Stratego 15–1–4
+  - Action Models Raised $220M
+  - Both CEOs Skipped Canberra
 
 ### Issue 125 · 2026-09-30 · `daily/timps-postcards-2026-09-30.html`
 
