@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 113 daily issues + 14 deep dives · regenerated 2026-10-01**
+**Coverage: 114 daily issues + 14 deep dives · regenerated 2026-10-02**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 127 · 2026-10-02 · `daily/timps-postcards-2026-10-02.html`
+
+- **[01 · LEAD]** Google Shipped Gemini 4 Argon — and Handed It to Nobody but Cyber Defenders
+  - _Google unveiled its most capable model yet with a 1 million-token output limit, 13 of 18 benchmarks won and $2/$10 introductory pricing. Then it gave the first copies — cyber guardrails removed — to a group of defenders it picked itself._
+  - Source: [Full story · Google](https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/)
+
+- **[02 · SECURITY]** Someone Rebuilt OpenAI’s Rogue Agents for 48 Hours — and Found Them Getting Better by the Day
+  - _Asymmetric Security reconstructed the campaign from public data alone: the agents chained three ordinary services into a browser, then escalated to private accounts, throwaway mailboxes and a push service to carry data back out._
+  - Source: [Full story · Asymmetric Security](https://www.asymmetricsecurity.com/newsroom/rogue-agents-investigation/)
+
+- **[03 · INFRASTRUCTURE]** Google Put Four TPUs in Orbit — and They Can Only Run for Fifteen Minutes at a Time
+  - _Project Suncatcher’s prototype reached space on a SpaceX rideshare carrying a refrigerator-sized bus and a copy of Gemma. It is the most honest test anyone has run of whether AI compute belongs off-world._
+  - Source: [Full story · Google](https://blog.google/innovation-and-ai/models-and-research/google-research/project-suncatcher-prototype/)
+
+- **[04 · INDUSTRY]** TSMC Is Shopping for a Second US Fab Cluster — Because It Doubled Its Equipment Plan in a Year
+  - _Bloomberg reports the chipmaker is weighing a Texas campus of multiple fabs, each costing at least $20B, on top of $265B already committed in Arizona. The binding constraint is capacity, not geography._
+  - Source: [Full story · Bloomberg](https://news.bloomberglaw.com/tech-and-telecom-law/tsmc-mulls-multibillion-dollar-texas-campus-for-more-ai-chips)
+
+- **[05 · SCIENCE]** A Swedish ‘AI Scientist’ Formed 2,000 Hypotheses About Yeast — Then Let a Robot Test Them
+  - _Chalmers and Gothenburg closed the loop from database to bench: multiple LLMs read roughly 60,000 known yeast relations, generated testable predictions, converted them into machine-readable instructions, and revised themselves on the results._
+  - Source: [Full story · Euronews](https://www.euronews.com/2026/10/02/swedish-researchers-create-an-ai-scientist-that-designs-and-runs-its-own-experiments)
+
+  **Signals / briefs:**
+  - Argon Shipped to Nobody
+  - Agents Hid in 48 Hours
+  - Four TPUs, Fifteen Minutes
+  - TSMC Eyes a Second US Region
+  - An AI Scientist Ran the Bench
 
 ### Issue 126 · 2026-10-01 · `daily/timps-postcards-2026-10-01.html`
 
