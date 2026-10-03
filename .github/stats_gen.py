@@ -9,7 +9,7 @@ Called by .github/workflows/stats.yml. Reads from env:
 import datetime
 import json
 import os
-import sys
+import time
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -22,6 +22,11 @@ TZ = os.environ.get("GOATCOUNTER_TZ", "Asia/Kolkata")
 INSTALL_PATH = "/install"
 EARLIEST = datetime.date(2020, 1, 1)
 
+# GoatCounter intermittently answers 404 {"error":"not found"} on otherwise
+# valid /stats/* requests, so retry before treating it as fatal.
+RETRIES = 4
+BACKOFF = 3
+
 
 def api(path):
     req = urllib.request.Request(
@@ -29,8 +34,25 @@ def api(path):
         headers={"Authorization": "Bearer %s" % API_KEY,
                  "Content-Type": "application/json"},
     )
-    with urllib.request.urlopen(req, timeout=30) as resp:
-        return json.load(resp)
+    last = None
+    for attempt in range(RETRIES):
+        try:
+            with urllib.request.urlopen(req, timeout=30) as resp:
+                return json.load(resp)
+        except urllib.error.HTTPError as e:
+            detail = e.read().decode()[:300]
+            last = urllib.error.HTTPError(e.url, e.code, detail, e.headers, None)
+            # 401/403 mean the credentials are wrong; retrying won't help.
+            if e.code in (401, 403):
+                break
+            if attempt < RETRIES - 1:
+                wait = BACKOFF * (attempt + 1)
+                print("stats_gen: %s on %s, retrying in %ss"
+                      % (e.code, path, wait))
+                time.sleep(wait)
+                continue
+            raise last
+    raise last
 
 
 def fmt(dt):
@@ -49,6 +71,15 @@ def main():
 
     try:
         total = api("/stats/total?start=%s&end=%s" % (fmt(today_start), fmt(hour_start)))
+    except urllib.error.HTTPError as e:
+        # Upstream is flaky. Publishing nothing leaves the previous, still-valid
+        # stats.json live, so a red build would only be noise.
+        print("stats_gen: giving up on /stats/total after %d attempts "
+              "(%s: %s); keeping the previous stats.json"
+              % (RETRIES, e.code, e.reason))
+        return
+
+    try:
         hits = api(
             "/stats/hits?start=%s&end=%s&daily=true&path_by_name=true&include_paths=%s"
             % (fmt(datetime.datetime.combine(EARLIEST, datetime.time(), tz)),
@@ -56,8 +87,9 @@ def main():
                urllib.parse.quote(INSTALL_PATH))
         )
     except urllib.error.HTTPError as e:
-        print("stats_gen: API error %s: %s" % (e.code, e.read().decode()[:300]))
-        sys.exit(1)
+        print("stats_gen: /stats/hits unavailable (%s: %s); publishing pageviews only"
+              % (e.code, e.reason))
+        hits = {}
 
     today = 0
     online_now = 0
