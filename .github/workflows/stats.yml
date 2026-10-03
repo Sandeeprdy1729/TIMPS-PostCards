@@ -34,9 +34,6 @@ jobs:
         run: python3 .github/stats_gen.py
 
       - name: Push stats.json to the stats branch
-        env:
-          BEEHIVE_ID: ${{ secrets.BEEHIIV_PUB_ID }}
-          GOATCOUNTER_CODE: ${{ secrets.GOATCOUNTER_CODE }}
         run: |
           # Skip quietly when GOATCOUNTER_API_KEY isn't configured yet.
           test -f stats.json || { echo "stats.json not generated (missing API key?); skipping"; exit 0; }
@@ -47,8 +44,8 @@ jobs:
           git rm -rf --cached . >/dev/null 2>&1 || true
           # The project build command is "sh ./vercel-build.sh", so the orphan
           # branch has to carry it or every preview build dies with exit 127.
+          # config.js is deliberately not committed -- it is gitignored because
+          # it embeds the Beehiiv ID; Vercel regenerates it during the build.
           git add stats.json vercel-build.sh vercel.json
-          BEEHIVE_ID="$BEEHIVE_ID" GOATCOUNTER_CODE="$GOATCOUNTER_CODE" sh ./vercel-build.sh
-          git add config.js
           git commit -m "Update site stats $(date -u +%Y-%m-%dT%H:%M:%SZ)"
           git push --force origin stats
