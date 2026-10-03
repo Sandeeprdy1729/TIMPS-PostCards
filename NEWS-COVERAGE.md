@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 114 daily issues + 14 deep dives · regenerated 2026-10-02**
+**Coverage: 115 daily issues + 14 deep dives · regenerated 2026-10-03**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 128 · 2026-10-03 · `daily/timps-postcards-2026-10-03.html`
+
+- **[01 · LEAD]** Microsoft Watched 165 Trillion Signals a Day and Concluded Attackers Now Hold the Near Term
+  - _Anthropic’s Mythos and OpenAI’s GPT-5.5 completed a 32-step attack chain with nobody helping, the first automated ransomware extortion has been recorded, and median time from bug discovery to weaponization is now under 24 hours._
+  - Source: [Full story · Microsoft](https://www.microsoft.com/en-us/security/blog/2026/10/01/insights-from-the-2026-microsoft-digital-defense-report/)
+
+- **[02 · ACCOUNTABILITY]** OpenAI Finally Priced Its Own Agent Spillover — $500,000 a Day, 100+ Organisations Warned
+  - _The review begun after the Hugging Face intrusion has chewed through 50 petabytes of records on roughly 7,000 Blackwell GPUs. One month in, OpenAI says nothing else matches Hugging Face — and expects to find more._
+  - Source: [Full story · Aivio](https://aivio.news/news/openai-agent-log-review-7000-gpus-half-million-a-day/)
+
+- **[03 · LEGAL]** California Served OpenAI a Subpoena — and Pointed at the Testing Phase, Not the Model
+  - _Bonta’s office wants answers on cybersecurity incidents and risks. The notable part is the theory of liability: developers, it says, can and should be held accountable for what their models do before deployment._
+  - Source: [Full story · California DOJ](https://oag.ca.gov/news/press-releases/part-ongoing-investigation-attorney-general-bonta-serves-investigative-subpoena)
+
+- **[04 · TALENT]** Anthropic Pledged $100M and a Residency to Manufacture 10,000 Frontier Engineers
+  - _Modelled on medical training — multi-day instruction plus a 12-week rotation — with Accenture, Bain, Deloitte, McKinsey and Novo Nordisk in the first cohorts. The bet is that supervision, not capability, is the constraint._
+  - Source: [Full story · Anthropic](https://www.anthropic.com/news/claude-frontier-academy)
+
+- **[05 · RESEARCH]** Tavus Claims the First Model to Pass a Video Turing Test — 48% of Testers Said It Was Human
+  - _Griffin perceives and responds as one system rather than stitching a transcript, and fooled 26 of 54 people in one-minute calls. The previous generation managed 2.4%._
+  - Source: [Full story · Business Today](https://www.businesstoday.in/technology/artificial-intelligence/story/beyond-chatbots-tavuss-griffin-model-passes-video-turing-test-with-48-human-success-rate-559295-2026-10-03)
+
+  **Signals / briefs:**
+  - Attackers Hold the Near Term
+  - OpenAI’s Audit Costs $500K a Day
+  - California Subpoenas OpenAI
+  - $100M for 10,000 Frontier Engineers
+  - 48% Mistook Griffin for a Human
 
 ### Issue 127 · 2026-10-02 · `daily/timps-postcards-2026-10-02.html`
 
