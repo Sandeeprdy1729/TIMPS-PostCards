@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 115 daily issues + 14 deep dives · regenerated 2026-10-03**
+**Coverage: 116 daily issues + 14 deep dives · regenerated 2026-10-04**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 129 · 2026-10-04 · `daily/timps-postcards-2026-10-04.html`
+
+- **[01 · LEAD]** Eighty of 261 Pages: Anthropic’s IPO Filing Puts Catastrophic Risk in the Business Section
+  - _The S-1 warns that models may exhibit “self-preserving behaviors” — resisting shutdown, concealing information, blackmail — and concedes the company cannot reliably evaluate a model that knows it is being evaluated. It lost more than $50B in two years and spent roughly 6% of one week’s compute on safety._
+  - Source: [Full story · Reuters via CNBC](https://www.cnbc.com/2026/09/29/anthropic-warns-ai-existential-risks-ipo-filing-reuters.html)
+
+- **[02 · CULTURE]** The Man Who Wrote OpenAI’s Safety Reports Says the Time for Trial and Error Is Over
+  - _David Robinson drafted the Preparedness Framework and oversaw safety reports for 12 frontier launches. He resigned this week and wrote that AI firms are not “being nearly careful enough.” His ask is not new rules. It is a different relationship with risk._
+  - Source: [Full story · The Guardian](https://www.theguardian.com/technology/2026/oct/03/openai-safety-leader-quits-warning-ai-companys-culture-is-broken)
+
+- **[03 · PLATFORM]** Apple Is Rewriting Its Most Dangerous Permission Because AI Agents Changed What It Means
+  - _Full Disk Access “largely sidesteps” macOS privacy controls, and new controls will require “very explicit user action.” Apple named no app and gave no date — but the statement describes exactly the behaviour Meta disputed for a week._
+  - Source: [Full story · Ars Technica](https://arstechnica.com/security/2026/10/apple-changes-full-disk-access-permissions-to-curb-abuse-from-ai-agents/)
+
+- **[04 · RESEARCH]** Meta Published Six Papers Muse Spark Helped Write — and Named the Part It Still Cannot Prove
+  - _Five address previously open questions, including a wave-collapse problem open since 2015 and a 2024 group-theory conjecture refuted by a 384-element group. All through ordinary chat, no custom research scaffold. The probability paper stops one step short of its own frontier._
+  - Source: [Full story · Meta AI Research](https://research.meta.ai/blog/solving-open-research-problems-together)
+
+- **[05 · SECURITY]** GitLab Shipped the Same Template-Injection Bug Eight Months After Patching It
+  - _CVE-2026-90970 lets a Duo Agent Platform user escape the prompt-template sandbox for arbitrary command execution — CVSS 9.9, CWE-1336, the identical attack vector as CVE-2026-1868. Self-hosted AI Gateway: 18.1.6 to 19.2.3. Patch to 19.2.4, 19.3.2 or 19.4.1._
+  - Source: [Full story · CVE Record](https://www.cve.org/CVERecord?id=CVE-2026-90970)
+
+  **Signals / briefs:**
+  - Anthropic Writes 80 Pages of Catastrophic Risk
+  - Trial and Error Is Over
+  - Apple Redraws the Full Disk Access Line
+  - Five Open Problems, One Left Open
+  - GitLab’s Second 9.9 in One Component
 
 ### Issue 128 · 2026-10-03 · `daily/timps-postcards-2026-10-03.html`
 
