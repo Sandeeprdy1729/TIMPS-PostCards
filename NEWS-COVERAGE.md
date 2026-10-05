@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 116 daily issues + 14 deep dives · regenerated 2026-10-04**
+**Coverage: 117 daily issues + 14 deep dives · regenerated 2026-10-05**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 130 · 2026-10-05 · `daily/timps-postcards-2026-10-05.html`
+
+- **[01 · LEAD]** Someone Named the Computer Virus for AI Agents — and It Does Not Need a Network
+  - _Adversarial instructions planted in a report, stored in one assistant’s memory, reproduced inside a document it later writes, and read by a second assistant that has never spoken to the first. In large simulated environments GPT-5.6 Luna reached 60–80% of agents across chains of eight hops._
+  - Source: [Full story · arXiv](https://arxiv.org/abs/2609.35576)
+
+- **[02 · INDUSTRY]** OpenAI and Synopsys Agreed to Train a Model on the World’s Chip Design Software — and Split the Revenue by How Well It Designs Chips
+  - _GPT-Synopsys will operate Synopsys EDA tools directly, run on OpenAI-hosted infrastructure, and double-check itself against “sign-off or ground truth.” Synopsys raised FY2027 growth guidance to 15% on the news and shares rose as much as 7%._
+  - Source: [Full story · Synopsys](https://news.synopsys.com/2026-09-30-OpenAI-and-Synopsys-Announce-GPT-Synopsys-Frontier-Intelligence-to-Revolutionize-Chip-Design)
+
+- **[03 · INFRASTRUCTURE]** A $1.2 Billion Order Just Proved the Open Rack Is Buyable — 72 GPUs, Six Switch Trays, Direct Liquid Cooling
+  - _HPE’s first order for AMD Helios comes from Vultr, the world’s largest privately-held cloud, and it arrives with the constraint visible: Ethernet scale-up fabric over UALink, 72 Instinct MI455X GPUs per rack, and no proprietary interconnect._
+  - Source: [Full story · HPE](https://www.hpe.com/us/en/newsroom/press-release/2026/09/hpe-secures-its-first-amd-helios-order-in-12-billion-deal-with-vultr.html)
+
+- **[04 · PRODUCTS]** EliseAI Raised $350 Million at $4 Billion — and What It Actually Sells Is Phone Calls
+  - _One in six US apartments, $200M in ARR, and roughly 5 million calls a month. The round is entirely primary capital, so the valuation move is not shareholders cashing out._
+  - Source: [Full story · Fortune](https://fortune.com/2026/09/29/elise-ai-4-billion-valuation-funding-round-housing-unicorn-andreessen-bessemer/)
+
+- **[05 · WORLD]** Denmark Lost Its Population Register — Not to an Exploit, but to Someone Using a Company’s Valid Credentials
+  - _Names, addresses and CPR numbers for about 8.8 million people, from a register holding roughly 11 million records in a country of six million. People under name and address protection were not affected._
+  - Source: [Full story · Bloomberg](https://www.bloomberg.com/news/articles/2026-10-05/denmark-data-breach-exposes-8-8-million-people-s-personal-data)
+
+  **Signals / briefs:**
+  - A Virus With No Network
+  - OpenAI Signs the Chip Tools
+  - 72 GPUs, Six Switches, One Rack
+  - $350M to Answer the Phone
+  - Denmark’s 8.8 Million Records
 
 ### Issue 129 · 2026-10-04 · `daily/timps-postcards-2026-10-04.html`
 
