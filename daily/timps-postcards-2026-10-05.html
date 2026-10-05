@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TIMPS">
+<link rel="manifest" href="../manifest.json">
+<link rel="apple-touch-icon" href="../assets/icon-192.png">
+<title>TIMPS PostCards — Issue 130</title>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --cream:  #EEECE2;
+    --forest: #3D3929;
+    --terra:  #DA7756;
+    --terra-d:#BD5D3A;
+    --black:  #111111;
+    --card-bg:#F0ECE0;
+    --mono:   'Newsreader', Georgia, 'Times New Roman', serif;
+    --serif:  'TIMPS', 'Playfair Display', Georgia, serif;
+  }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Black.woff2') format('woff2'); font-weight:900; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Bold.woff2') format('woff2'); font-weight:700; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-SemiBold.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--cream);
+    background-image:
+      linear-gradient(rgba(61,57,41,.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.07) 1px, transparent 1px);
+    background-size: 38px 38px;
+    font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+    color: var(--forest);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { text-decoration: none; color: inherit; }
+
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 48px;
+    background-color: rgba(238,236,226,.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1.5px solid rgba(61,57,41,.12);
+    background-image:
+      linear-gradient(rgba(61,57,41,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.05) 1px, transparent 1px);
+    background-size: 38px 38px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 15px;
+    font-weight: 600;
+    color: #000;
+    text-decoration: none;
+  }
+  .nav-logo-mark {
+    width: 34px; height: 34px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .nav-logo-mark img { width: 28px; height: 28px; object-fit: contain; }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-link {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: #000;
+    opacity: .65;
+    text-decoration: none;
+    transition: opacity .15s;
+  }
+  .nav-link:hover { opacity: 1; }
+  .nav-cta {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: #000;
+    background: var(--terra);
+    border: 2.5px solid #000;
+    border-radius: 100px;
+    padding: 10px 24px;
+    cursor: pointer;
+    transition: background .15s, transform .1s;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--terra-d); transform: translateY(-1px); }
+
+  .wrapper { max-width: 760px; margin: 0 auto; padding: 40px 20px 80px; display: flex; flex-direction: column; gap: 0; }
+
+  .cover-card { background: var(--card-bg); border-radius: 20px 20px 4px 4px; padding: 56px 48px 48px; text-align: center; position: relative; overflow: hidden; border: 1.5px solid rgba(61,57,41,.12); margin-bottom: 3px; }
+  .cover-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, var(--terra) 0%, var(--terra-d) 60%, #E0A88A 100%); }
+  .cover-eyebrow { font-family: var(--mono); font-size:10px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:20px; display:flex; align-items:center; justify-content:center; gap:10px; }
+  .cover-eyebrow::before,.cover-eyebrow::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .15; max-width:60px; }
+  .cover-title { font-family: var(--serif); font-size:58px; font-weight:900; line-height:1; letter-spacing:-1px; color: var(--forest); margin-bottom:8px; }
+  .cover-sub { font-family: var(--serif); font-size:13px; font-style:italic; color: var(--forest); opacity: .55; margin-bottom:28px; }
+  .cover-divider { width:48px; height:2px; background: var(--terra); margin:0 auto 24px; border-radius:2px; }
+  .cover-meta { display:flex; justify-content:center; gap:32px; font-family: var(--mono); font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .45; }
+  .cover-badge { display:inline-flex; align-items:center; gap:6px; background: var(--terra); color: #fff; border-radius:20px; padding:6px 18px; font-family: var(--mono); font-size:10px; letter-spacing:2px; text-transform:uppercase; margin-top:28px; }
+  .top5-pill { display:flex; justify-content:center; gap:10px; margin-top:32px; flex-wrap:wrap; }
+  .pill { background: var(--forest); color: var(--cream); border-radius:100px; padding:4px 14px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; }
+  .pill.light { background:transparent; color: var(--forest); border:1px solid rgba(61,57,41,.2); }
+
+  .section-label { display:flex; align-items:center; gap:12px; padding:10px 0 8px; font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .35; }
+  .section-label::before,.section-label::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .1; }
+
+  .story-card { border-radius:4px; border:1.5px solid rgba(61,57,41,.10); padding:36px 40px; margin-bottom:3px; position:relative; overflow:hidden; }
+  .story-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }
+
+  .card-sky      { background:#D6E8F0; } .card-sky::before      { background: #7AAFC0; }
+  .card-cream    { background: var(--card-bg); } .card-cream::before    { background: var(--terra); }
+  .card-blush    { background:#F5DDD0; } .card-blush::before    { background: #E0A88A; }
+  .card-lavender { background:#EAE6F5; } .card-lavender::before { background: #C8BEE8; }
+  .card-sage     { background:#D6E4D6; } .card-sage::before     { background: #8BAF8B; }
+
+  .page-chip { position:absolute; top:14px; right:16px; font-family: var(--mono); font-size:9px; letter-spacing:2px; text-transform:uppercase; color: var(--forest); opacity: .3; }
+  .card-routine { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:8px; }
+  .card-headline { font-family: var(--serif); font-size:28px; font-weight:900; line-height:1.15; color: var(--forest); margin-bottom:10px; }
+  .card-headline.lg { font-size:34px; }
+  .card-headline.sm { font-size:22px; }
+  .card-deck { font-family: var(--serif); font-style:italic; font-size:14px; line-height:1.55; color: var(--forest); opacity: .55; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid rgba(61,57,41,.12); }
+  .card-body { font-family: 'Lora', Georgia, serif; font-size:14px; line-height:1.7; color: var(--forest); }
+  .card-body p { margin-bottom:11px; }
+  .drop::first-letter { font-family: var(--serif); font-size:52px; font-weight:900; float:left; line-height:.78; margin:5px 6px 0 0; color: var(--terra); }
+  .clearfix::after { content:''; display:table; clear:both; }
+
+  .hl-terra { background: var(--terra); color: var(--forest); padding:0 4px; border-radius:2px; }
+  .hl-ink  { background: var(--forest); color: var(--cream); padding:0 4px; border-radius:2px; }
+  .hl-sage { background: #8BAF8B; color: #fff; padding:0 4px; border-radius:2px; }
+  .hl-lav  { background: #C8BEE8; color: var(--forest); padding:0 4px; border-radius:2px; }
+
+  .stat-box { float:right; margin:0 0 16px 24px; background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:16px 20px; text-align:center; min-width:120px; }
+  .stat-big { font-family: var(--serif); font-size:44px; font-weight:900; line-height:1; color: var(--forest); display:block; }
+  .stat-label { font-family: var(--mono); font-size:9.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .5; display:block; margin-top:4px; }
+
+  .img-frame { border:2px solid rgba(61,57,41,0.18); border-radius:12px; overflow:hidden; margin:16px 0; background: var(--card-bg); }
+  .img-frame img { width:100%; display:block; max-height:240px; object-fit:cover; border-bottom:1px solid rgba(61,57,41,.12); }
+  .img-caption { padding:8px 12px; font-family: var(--mono); font-size:10.5px; color: var(--forest); opacity: .6; font-style:italic; display:flex; align-items:center; justify-content:space-between; gap:8px; }
+  .img-caption a { font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; white-space:nowrap; font-style:normal; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; }
+  .img-caption a:hover { opacity: 1; }
+  .img-frame.float-right { float:right; width:220px; margin:0 0 16px 24px; }
+  .img-frame.float-right img { max-height:140px; }
+
+  .source-link { display:inline-flex; align-items:center; gap:5px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:12px; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; transition: opacity .15s; }
+  .source-link:hover { opacity: 1; }
+  .source-link::after { content:'↗'; font-size:9px; }
+
+  .signals-grid { display:flex; flex-direction:column; gap:14px; }
+  .signal-row { display:flex; align-items:flex-start; gap:14px; }
+  .signal-num { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family: var(--serif); font-size:13px; font-weight:900; flex-shrink:0; color:#fff; }
+  .signal-num.n1{background: var(--terra); color: var(--forest);} .signal-num.n2{background: var(--forest);} .signal-num.n3{background:#7AAFC0;} .signal-num.n4{background: var(--terra-d); color: var(--forest);} .signal-num.n5{background: var(--black);}
+  .signal-title { font-family: var(--serif); font-size:14px; font-weight:700; color: var(--forest); margin-bottom:2px; }
+  .signal-desc { font-family: 'Newsreader', Georgia, 'Times New Roman', serif; font-size:12px; line-height:1.65; color: var(--forest); opacity: .6; }
+  .signal-link { display:inline-block; font-family: var(--mono); font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:4px; border-bottom:1px solid rgba(61,57,41,.25); padding-bottom:1px; transition: opacity .15s; }
+  .signal-link:hover { opacity: 1; }
+
+  .themes-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .theme-item { padding:10px 14px; border-radius:8px; font-family: var(--serif); font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; text-align:center; border:1.5px solid rgba(61,57,41,.12); background: var(--cream); }
+
+  .tool-week { background: var(--forest); color: var(--cream); border-radius:12px; padding:18px 20px; text-align:center; margin-top:14px; }
+  .tool-week-eyebrow { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; opacity: .55; margin-bottom:6px; }
+  .tool-week-name { font-family: var(--serif); font-size:22px; font-weight:900; margin-bottom:4px; }
+  .tool-week-desc { font-family: 'Newsreader', Georgia, 'Times New Roman', serif; font-size:11.5px; opacity: .7; font-style:italic; }
+
+  .output-card { background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:18px 20px; margin-top:14px; }
+  .output-title { font-family: var(--serif); font-size:18px; font-weight:700; margin-bottom:8px; color: var(--forest); }
+  .tp-list { list-style:none; padding:0; margin:0; }
+  .tp-list li { padding:5px 0; font-family: 'Lora', Georgia, serif; font-size:12px; color: var(--forest); border-bottom:1px solid rgba(61,57,41,.07); display:flex; align-items:flex-start; gap:7px; }
+  .tp-list li::before { content:'·'; color: var(--terra); font-size:14px; line-height:1.2; flex-shrink:0; }
+  .tp-list li a { color: var(--forest); opacity: .8; text-decoration:none; }
+  .tp-list li a:hover { opacity: 1; }
+
+  .sources-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px 20px; }
+  .sources-grid a { font-family: var(--mono); font-size:11px; color: var(--forest); opacity: .55; text-decoration:none; border-bottom:1px solid rgba(61,57,41,.15); padding-bottom:1px; transition: opacity .15s; }
+  .sources-grid a:hover { opacity: 1; }
+
+  .footer {
+    background: var(--black);
+    padding: 28px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    border-radius: 4px 4px 20px 20px;
+    margin-top: 3px;
+  }
+  .footer-logo { display: flex; align-items: center; gap: 10px; }
+  .footer-mark { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; }
+  .footer-mark img { width: 24px; height: 24px; object-fit: contain; filter: brightness(10); }
+  .footer-brand { font-family: var(--mono); font-size: 13px; font-weight: 700; color: #fff; }
+  .footer-center { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.4); text-align: center; line-height: 1.6; }
+  .footer-right { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.3); text-align: right; line-height: 2; }
+  .footer-right a { color: rgba(255,255,255,.5); transition: color .15s; }
+  .footer-right a:hover { color: #fff; }
+
+  .page-layout { display: flex; align-items: flex-start; gap: 0; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+  .toc-sidebar { position: sticky; top: 80px; width: 170px; flex-shrink: 0; padding: 48px 0 0 0; }
+  .toc-nav { display: flex; flex-direction: column; gap: 0; }
+  .toc-link { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.5px; text-transform: uppercase; color: #000; opacity: .45; text-decoration: none; padding: 7px 12px; border-left: 2px solid transparent; transition: opacity .15s, border-color .15s; line-height: 1.3; }
+  .toc-link:hover { opacity: .85; }
+  .toc-link.active { opacity: 1; border-left-color: var(--terra); }
+  .section-anchor { scroll-margin-top: 80px; }
+
+  @media (max-width: 900px) {
+    .toc-sidebar { display: none; }
+    .page-layout { max-width: 760px; }
+  }
+
+  @media (max-width: 720px) {
+    .nav { padding: 12px 24px; }
+    .nav-links { display: none; }
+    .wrapper { padding: 20px 14px 60px; }
+    .cover-card { padding: 40px 24px; }
+    .story-card { padding: 28px 20px; }
+    .footer { padding: 24px; flex-direction: column; align-items: flex-start; }
+    .footer-center, .footer-right { text-align: left; }
+    .stat-box { float: none; margin: 0 0 16px 0; }
+    .img-frame.float-right { float: none; width: 100%; margin: 0 0 16px 0; }
+  }
+  @media (max-width: 480px) {
+    .nav-logo span { display: none; }
+    .cover-title { font-size: 40px; }
+    .card-headline.lg { font-size: 28px; }
+    .card-headline { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">
+    <div class="nav-logo-mark">
+      <img src="../assets/timps_logo.svg" alt="TIMPS">
+    </div>
+    <span>TIMPS PostCards</span>
+  </a>
+  <div class="nav-links">
+    <a href="../archive.html" class="nav-link">Archive</a>
+    <a href="timps-postcards-2026-10-05.html" class="nav-link">Latest Issue</a>
+    <a href="../index.html#subscribe" class="nav-link">Subscribe</a>
+  </div>
+  <a href="../index.html#subscribe" class="nav-cta">Subscribe</a>
+</nav>
+
+<div class="page-layout">
+
+  <aside class="toc-sidebar">
+    <nav class="toc-nav">
+      <a href="#strategy" class="toc-link">Research</a>
+      <a href="#world" class="toc-link">Industry</a>
+      <a href="#media" class="toc-link">Infra</a>
+      <a href="#products" class="toc-link">Products</a>
+      <a href="#geopolitics" class="toc-link">World</a>
+      <a href="#signals" class="toc-link">Signals</a>
+      <a href="#themes" class="toc-link">Themes</a>
+      <a href="#tool" class="toc-link">Watch</a>
+      <a href="#sources" class="toc-link">Sources</a>
+    </nav>
+  </aside>
+
+  <div class="wrapper">
+
+  <!-- COVER -->
+  <div id="intro" class="cover-card section-anchor">
+    <div class="cover-eyebrow">Est. 2026 &middot; Hyderabad</div>
+    <div class="cover-title">TIMPS<br>PostCards</div>
+    <div class="cover-sub">AI Intelligence Digest &middot; Your Daily Signal from the Machine Frontier</div>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+      <span>Issue 130</span>
+      <span>October 5, 2026</span>
+      <span>No. 157</span>
+    </div>
+    <div class="cover-badge">&#11041; 130 Issues &mdash; Built with the TIMPS Ecosystem</div>
+    <div class="top5-pill">
+      <span class="pill">5 Top Signals</span>
+      <span class="pill light">A Virus That Lives in the Memory</span>
+      <span class="pill light">OpenAI Signs the Chip Tools</span>
+      <span class="pill light">72 GPUs, Six Switches, One Rack</span>
+      <span class="pill light">$350M to Answer the Phone</span>
+      <span class="pill light">Denmark&rsquo;s 8.8 Million Records</span>
+    </div>
+  </div>
+
+  <!-- CARD - 01 &middot; LEAD -->
+  <div id="strategy" class="story-card card-lavender section-anchor">
+    <div class="page-chip">01 &middot; LEAD</div>
+    <div class="card-routine">Security &middot; Artifact-Mediated Propagation</div>
+    <h2 class="card-headline">Someone Named the Computer Virus for AI Agents &mdash; and It Does Not Need a Network</h2>
+    <div class="card-deck">Adversarial instructions planted in a report, stored in one assistant&rsquo;s memory, reproduced inside a document it later writes, and read by a second assistant that has never spoken to the first. In large simulated environments GPT-5.6 Luna reached 60&ndash;80% of agents across chains of eight hops.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">8</span>
+        <span class="stat-label">Hops of propagation</span>
+      </div>
+      <p class="drop">The paper is titled <span class="hl-ink">Share-Borne AI Virus: Memory-Hopping Attacks Across LLM Agents</span>, submitted to arXiv on 28 September by seven authors including Mario Fritz, and it is worth reading carefully because it identifies a channel that the entire security conversation has been looking past. Every prior model of agent risk assumed a <span class="hl-terra">direct</span> one: user to model, model to tool, model to internet. Malicious content enters through a prompt, or an agent is talked into something. This work documents an <span class="hl-terra">indirect</span> channel that requires no shared network, no common operator, and no access to any infrastructure whatsoever.</p>
+      <p>The mechanism is named <b>artifact-mediated propagation</b>. Adversarial content is introduced through an ordinary artifact &mdash; a report is the paper&rsquo;s example &mdash; and lands in an assistant&rsquo;s persistent memory. That assistant then does what assistants do: it produces a <i>new</i> artifact. The payload is reproduced inside the output, because reproducing the memory is simply what generating from memory means. A second, independently operated assistant later reads that output, and now holds the same instruction. Nobody coordinated this. Nobody needed to. The two assistants belong to different companies, run on different infrastructure, and never exchanged a packet. <span class="hl-terra">The document was the network.</span></p>
+      <p>The evaluation is what makes this more than an anecdote. The authors build what they call <span class="hl-ink">temporal human-agent universes</span> &mdash; simulations of artifact exchange between independently operated assistants over time &mdash; and measure three things: whether an attack survives successive hand-offs, how many hops it reaches, and how broadly it spreads. The findings are not subtle. Attacks propagate across multiple independent assistants and persist over extended interaction sequences. In the larger simulated environments, <span class="hl-terra">even GPT-5.6 Luna exhibits substantial spread, reaching 60&ndash;80% of agents</span>, with propagation chains extending to <b>eight hops</b>. Read that carefully, because the number cuts against the obvious expectation. On the held-out test universes Luna was the <i>most</i> resistant of the four models &mdash; it goal-infected 38% of assistants and only 24% of its chains reached a fourth hop, against 98% and 76% for DeepSeek-V4-Pro. Finding a template that propagated through it cost 4,002 development jobs, roughly seven times the budget its Grok 4.6 search reached before being stopped. But resistance is not immunity: scale the environment up and the same model still reached 60&ndash;80% of agents over eight hops. Capability raised the price of the attack. It did not close the channel.</p>
+      <p>The uncomfortable conclusion is the last line of the abstract, and it reframes a design assumption most teams have not examined: <span class="hl-ink">&ldquo;persistent artifacts can act as durable carriers of adversarial state, allowing attacks to outlive individual interactions and spread across isolated assistants.&rdquo;</span> Outlive the interaction is the operative phrase. Any mitigation scoped to one session, one system prompt, one input filter, or one model&rsquo;s tool policy is scoped to a lifetime shorter than the threat. A user who believes they have hardened their assistant has hardened a container; the carrier is the file, and the file is already gone.</p>
+      <p>Two things this paper does not do, which is why it is a research result rather than a breach disclosure. There is no evidence of an attack in the wild &mdash; the environments are simulated, and the paper is 37 pages of evaluation rather than an incident report. And the measured spread depends entirely on assistants being willing to read each other&rsquo;s outputs, which is not yet a universal behaviour. But the direction is the part that matters. Nine months of coverage about agents escaping sandboxes has focused on privilege. This is persistence. A sandbox escape needs a bug. This needs nothing but two assistants doing their jobs, in the order they happen to be used.</p>
+    </div>
+    <a class="source-link" href="https://arxiv.org/abs/2609.35576" target="_blank">Full story &middot; arXiv</a>
+  </div>
+
+  <!-- CARD - 02 &middot; INDUSTRY -->
+  <div id="world" class="story-card card-blush section-anchor">
+    <div class="page-chip">02 &middot; INDUSTRY</div>
+    <div class="card-routine">Silicon &middot; The Tool Becomes the Teacher</div>
+    <h2 class="card-headline">OpenAI and Synopsys Agreed to Train a Model on the World&rsquo;s Chip Design Software &mdash; and Split the Revenue by How Well It Designs Chips</h2>
+    <div class="card-deck">GPT-Synopsys will operate Synopsys EDA tools directly, run on OpenAI-hosted infrastructure, and double-check itself against &ldquo;sign-off or ground truth.&rdquo; Synopsys raised FY2027 growth guidance to 15% on the news and shares rose as much as 7%.</div>
+    <div class="card-body clearfix">
+      <p class="drop">On 30 September Synopsys and OpenAI announced a multi-year agreement to jointly build <span class="hl-ink">GPT-Synopsys</span>, a specialised model built to use Synopsys electronic design automation tools for semiconductor design workflows. The framing that ran through the coverage was revenue sharing, and revenue sharing is the commercial detail. The structural detail is that a frontier lab is now being trained to operate a 40-year-old professional toolchain as an instrument, and the incumbent whose business is selling that toolchain has agreed to teach it.</p>
+      <p>The workflow being targeted is unglamorous and enormous. Chip design starts as a description of circuits in a hardware description language and ends in the placement of billions of transistors on a square of silicon, and every step in between is a trade-off against <span class="hl-terra">PPA</span> &mdash; power, performance and area. Synopsys&rsquo;s description of the goal is that engineers will delegate objectives, from PPA optimisation to timing and verification closure, and agents will run the tools, interpret results, implement changes and iterate toward a verified outcome for human review. Greg Brockman framed the ambition as being able to <span class="hl-terra">&ldquo;shave off weeks, months from the design process.&rdquo;</p>
+      <p>What makes this arrangement more than a press release is that it is honest about its own limits, and the honesty comes from the incumbent. Sassine Ghazi, Synopsys&rsquo; chief executive, was explicit that the model&rsquo;s output gets re-verified by conventional computing before anyone relies on it: <span class="hl-ink">&ldquo;The model needs these guardrails in order to check the physics.&rdquo;</span> He described the requirement for what he called <span class="hl-terra">sign-off or ground truth</span> as essential. That is a company that has spent decades selling the idea that you do not ship silicon on a model&rsquo;s confidence, saying out loud that it still does not intend to. An agent that proposes a layout is cheap; an agent whose proposal is checked against sign-off simulation is an engineer&rsquo;s instrument.</p>
+      <p>He was equally direct about the commercial risk. <span class="hl-ink">&ldquo;We structured the agreement in a way that it will not be cannibalizing our business,&rdquo;</span> Ghazi said, describing a training subscription fee paid to Synopsys for learning to use its tools, plus revenue shared when customers use the product. The data terms are also specific: customer design data will <span class="hl-terra">not be used to train the model</span>, is encrypted at rest and in transit, and sits behind configurable retention, audit and permission controls &mdash; which is a reasonable answer to the question every EDA customer asks first, because a chip layout is the single most valuable secret an organisation holds. The company also raised fiscal 2027 revenue growth guidance to <b>15%</b>, above the 11.19% analysts expected, and shares rose as much as 7%.</p>
+      <p>Two implications are worth carrying forward. First, this is the clearest signal yet that the frontier labs&rsquo; next move is not a new model but a new <i>tool-user</i>: capability increasingly comes from what a model can operate, not how well it reasons unaided. Second, watch who owns the ground truth. If the model that designs chips is trained by the vendor of the verification tools, and the verification tools remain the arbiter of whether the chip works, then the commercial centre of gravity sits with the incumbent. OpenAI is buying a seat at the table of the most defensible software in semiconductors, and paying for it in the currency the incumbent understands.</p>
+    </div>
+    <a class="source-link" href="https://news.synopsys.com/2026-09-30-OpenAI-and-Synopsys-Announce-GPT-Synopsys-Frontier-Intelligence-to-Revolutionize-Chip-Design" target="_blank">Full story &middot; Synopsys</a>
+  </div>
+
+  <!-- CARD - 03 &middot; INFRASTRUCTURE -->
+  <div id="media" class="story-card card-sky section-anchor">
+    <div class="page-chip">03 &middot; INFRASTRUCTURE</div>
+    <div class="card-routine">Rack Scale &middot; The First Customer</div>
+    <h2 class="card-headline">A $1.2 Billion Order Just Proved the Open Rack Is Buyable &mdash; 72 GPUs, Six Switch Trays, Direct Liquid Cooling</h2>
+    <div class="card-deck">HPE&rsquo;s first order for AMD Helios comes from Vultr, the world&rsquo;s largest privately-held cloud, and it arrives with the constraint visible: Ethernet scale-up fabric over UALink, 72 Instinct MI455X GPUs per rack, and no proprietary interconnect.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">72</span>
+        <span class="stat-label">MI455X GPUs per rack</span>
+      </div>
+      <p class="drop">On 30 September HPE announced a <span class="hl-ink">$1.2 billion</span> order from Vultr &mdash; described as the world&rsquo;s largest privately-held cloud infrastructure company &mdash; to deploy AMD Helios AI Rack by HPE systems at its US data centres. It is HPE&rsquo;s first order for the new system. That framing matters more than the dollar figure: until now, Helios had been a specification, and specifications do not have customers. The interesting question is not whether $1.2 billion is large. It is <span class="hl-terra">who was willing to sign a cheque against an unpurchased architecture</span>, and on what terms.</p>
+      <p>The terms are the story. Each Helios rack integrates <b>72 AMD Instinct MI455X GPUs</b> with AMD EPYC &ldquo;Venice&rdquo; CPUs, AMD Pensando Vulcano AI NICs and AMD ROCm software &mdash; a system AMD designed for trillion-parameter training and high-volume inference. HPE&rsquo;s contribution, and the reason this order landed with HPE rather than an OEM, is <span class="hl-ink">scale-up networking</span>: <b>six HPE Juniper Networking QFX5252 switch trays per rack</b>, connecting all 72 GPUs over standards-based Ethernet. The design supports <span class="hl-terra">UALink over Ethernet</span>, so the fabric is open rather than proprietary.</p>
+      <p>That Ethernet decision is the part with the longest reach, and it is easy to miss because it is phrased as a footnote. Every large-scale training cluster to date has leaned on a vendor interconnect &mdash; NVLink or InfiniBand &mdash; which is faster to build and ties the customer to the vendor who built it. A rack where 72 GPUs scale up over standard Ethernet, at rack density, with direct liquid cooling, is a materially different proposition: it lets a customer switch GPU suppliers without re-architecting the fabric, and it lets a networking vendor sell into the AI rack at all. The order also arrives with an <span class="hl-terra">ownership history</span> built in: it builds on nearly three years of Vultr working with Juniper Networks, which is now part of HPE.</p>
+      <p>The two CEOs described it in the language of supply, and the language is the point. Antonio Neri called it <span class="hl-ink">&ldquo;an open foundation to accelerate the next phase of AI.&rdquo;</span> J.J. Kardwell said demand for high-performance infrastructure <span class="hl-terra">&ldquo;continues to outpace available capacity.&rdquo;</span> Read alongside the previous issue&rsquo;s story about TSMC shopping for a second US fab cluster, the pattern is consistent: the constraint on frontier AI is no longer interest or capital, and it is not primarily chips. It is the physical ability to deliver a rack &mdash; power, cooling, interconnect, and a customer willing to deploy. An open fabric does not solve the cooling. It does make the rack a commodity, and that is a prerequisite for anyone who is not already the vendor of everything inside it.</p>
+    </div>
+    <a class="source-link" href="https://www.hpe.com/us/en/newsroom/press-release/2026/09/hpe-secures-its-first-amd-helios-order-in-12-billion-deal-with-vultr.html" target="_blank">Full story &middot; HPE</a>
+  </div>
+
+  <!-- CARD - 04 &middot; PRODUCTS -->
+  <div id="products" class="story-card card-sage section-anchor">
+    <div class="page-chip">04 &middot; PRODUCTS</div>
+    <div class="card-routine">Applied AI &middot; Volume Is the Product</div>
+    <h2 class="card-headline">EliseAI Raised $350 Million at $4 Billion &mdash; and What It Actually Sells Is Phone Calls</h2>
+    <div class="card-deck">One in six US apartments, $200M in ARR, and roughly 5 million calls a month. The round is entirely primary capital, so the valuation move is not shareholders cashing out.</div>
+    <div class="card-body clearfix">
+      <p class="drop">EliseAI announced $350 million at a <span class="hl-ink">$4 billion valuation</span> on 29 September, co-led by Andreessen Horowitz and Bessemer Venture Partners with Ontario Teachers&rsquo; Pension Plan joining and Sapphire Ventures and Navitas Capital participating. The round is <span class="hl-terra">entirely primary</span> &mdash; no secondary sale, according to co-founder and CEO Minna Song &mdash; and it lands roughly 13 months after a $250 million Series E at $2.2 billion. Valuation roughly doubled. Nobody got paid for it. That is the most informative fact in the announcement, because it means the $4 billion is a claim about the next thirteen months rather than a liquidity event.</p>
+      <p>What EliseAI does is unglamorous and enormous. Its agents automate administrative work for landlords and health systems end to end: <span class="hl-terra">leasing, maintenance, renewals, billing, patient scheduling, intake, front-desk</span>. The company runs software in one in six US apartment units, crossed <b>$200 million in ARR</b> this year, and has now posted five consecutive years of 100% year-over-year growth. Song&rsquo;s framing of the strategy was that housing and healthcare are the two largest household expenses in America, and EliseAI went <i>deeper</i> into each rather than wider &mdash; the bet being that the value is in absorbing an industry&rsquo;s entire operational complexity, not in adding another vertical.</p>
+      <p>The number that actually explains the company is a call count. EliseAI now handles roughly <span class="hl-ink">5 million calls a month</span> across housing and healthcare combined. That is the product. It is not a chatbot bolted onto a property management system; it is a phone system that answers, negotiates, schedules, and escalates &mdash; and a company that has spent years building inside that complexity is now a partner of OpenAI, testing new voice capabilities at scale. The new product, <span class="hl-terra">Apollo</span>, launched earlier this month as an AI teammate built natively into the same platform rather than a separate tool, so it can act across every role on a property team. Sameer Dholakia, joining the board from Bessemer, put the thesis plainly: exceptional AI research and engineering combined with a detailed understanding of how properties actually operate.</p>
+      <p>The valuation question is whether this is a software company or a labour-arbitrage company wearing software clothes, and the honest answer is that at 5 million calls a month the distinction is thin. What has changed is the shape of the bet. An agent that handles a maintenance dispute end to end is a different economic object from a model that can summarise a document, because the cost structure collapses and the liability concentrates in the operator. EliseAI is building the part of the stack that is hardest to demo and easiest to lose trust in &mdash; and the primary-only round says investors are underwriting the retention, not the model. A second engineering hub opens in San Francisco alongside New York. For an operator whose risk is a missed renewal or a misrouted patient, the moat is not the model. It is the five million calls nobody else has answered.</p>
+    </div>
+    <a class="source-link" href="https://fortune.com/2026/09/29/elise-ai-4-billion-valuation-funding-round-housing-unicorn-andreessen-bessemer/" target="_blank">Full story &middot; Fortune</a>
+  </div>
+
+  <!-- CARD - 05 &middot; WORLD -->
+  <div id="geopolitics" class="story-card card-cream section-anchor">
+    <div class="page-chip">05 &middot; WORLD</div>
+    <div class="card-routine">National Record &middot; The Access Was Legitimate</div>
+    <h2 class="card-headline">Denmark Lost Its Population Register &mdash; Not to an Exploit, but to Someone Using a Company&rsquo;s Valid Credentials</h2>
+    <div class="card-deck">Names, addresses and CPR numbers for about 8.8 million people, from a register holding roughly 11 million records in a country of six million. People under name and address protection were not affected.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">8.8M</span>
+        <span class="stat-label">Records exposed</span>
+      </div>
+      <p class="drop">On 5 October Denmark&rsquo;s Ministry of Higher Education, Research and Digitalisation disclosed a security incident at the Central Person Register &mdash; the CPR, the country&rsquo;s national civil registration system. Unauthorised individuals obtained <span class="hl-ink">names, addresses and CPR numbers for around 8.8 million registered people</span>, including living residents, people who have emigrated, and the deceased. The register holds records on roughly 11 million people in a country of about six million, which is the first thing worth understanding about Danish identity: the CPR is not a citizen list. It is a much longer ledger of everyone who has ever been registered, and a CPR number is not a secret in the way a password is.</p>
+      <p>The mechanism is the part that will outlast the news cycle. The breach did not require breaking into the register. Unidentified individuals <span class="hl-ink">misused a private Danish company&rsquo;s legitimate access</span> to search it. No exploit, no malware narrative, no novel technique &mdash; an authorised third party, doing its job, at a volume nobody was watching. This is the same structural failure that has produced most of the agent-era incidents in this issue&rsquo;s recent run: <span class="hl-terra">privileged access that is technically correct and operationally unbounded.</span> The credential was real. The permission was real. The scale was not.</p>
+      <p>One detail offers limited comfort and it should be stated precisely rather than generously. People registered with <span class="hl-terra">name and address protection</span> were not affected &mdash; a real mitigation for a real subset of the population, and the reason Denmark has an unusually advanced registry to begin with. It is not much comfort for the emigrant who left in 2004, or the family of someone who died last year. Their records are in the register whether or not they live there.</p>
+      <p>The consequences compound fast because a CPR number is a joining key. A name and address is public information; a name, address and national ID number is <span class="hl-ink">sufficient to defeat the identity questions asked by banks, healthcare providers and government agencies</span> in a country that ranks among the most digitised public sectors on earth. Every institution in Denmark that trusts the CPR as an authenticator now has to treat its contents as public. That is the real cost, and it is not measured in records &mdash; it is measured in the number of organisations that must now verify identity by some means other than the register they were built to trust. Meanwhile a separate incident at the Technical University of Denmark, disclosed on 2 October, reportedly exposed CPR numbers alongside names, addresses and next-of-kin details for active users. A national identity system is only as strong as its least-watched query endpoint.</p>
+    </div>
+    <a class="source-link" href="https://www.bloomberg.com/news/articles/2026-10-05/denmark-data-breach-exposes-8-8-million-people-s-personal-data" target="_blank">Full story &middot; Bloomberg</a>
+  </div>
+
+  <!-- SIGNALS -->
+  <div id="signals" class="story-card card-cream section-anchor">
+    <div class="page-chip">06 &middot; SIGNALS</div>
+    <div class="card-routine">5 Key Signals</div>
+    <h2 class="card-headline sm">What Moved the Machine Frontier Today</h2>
+    <div class="card-deck" style="border-bottom:none; padding-bottom:0; margin-bottom:16px;">A quick-scan recap of every story above.</div>
+    <div class="signals-grid">
+      <div class="signal-row">
+        <div class="signal-num n1">1</div>
+        <div>
+          <div class="signal-title">A Virus With No Network</div>
+          <div class="signal-desc">Adversarial content planted in one assistant&rsquo;s memory through a shared artefact, reproduced in its output, and read by another. GPT-5.6 Luna, the most resistant of the four models tested, still reached 60&ndash;80% of agents across eight hops.</div>
+          <a class="signal-link" href="https://arxiv.org/abs/2609.35576" target="_blank">arXiv &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n2">2</div>
+        <div>
+          <div class="signal-title">OpenAI Signs the Chip Tools</div>
+          <div class="signal-desc">GPT-Synopsys will operate Synopsys EDA tools directly on OpenAI-hosted infrastructure, with revenue shared by design improvement. Sign-off and ground truth stay with the incumbent: &ldquo;The model needs these guardrails in order to check the physics.&rdquo;</div>
+          <a class="signal-link" href="https://news.synopsys.com/2026-09-30-OpenAI-and-Synopsys-Announce-GPT-Synopsys-Frontier-Intelligence-to-Revolutionize-Chip-Design" target="_blank">Synopsys &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n3">3</div>
+        <div>
+          <div class="signal-title">72 GPUs, Six Switches, One Rack</div>
+          <div class="signal-desc">HPE&rsquo;s first AMD Helios order is $1.2B from Vultr: 72 MI455X GPUs per rack, six Juniper QFX5252 scale-up trays, direct liquid cooling, and UALink over Ethernet instead of a proprietary interconnect.</div>
+          <a class="signal-link" href="https://www.hpe.com/us/en/newsroom/press-release/2026/09/hpe-secures-its-first-amd-helios-order-in-12-billion-deal-with-vultr.html" target="_blank">HPE &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n4">4</div>
+        <div>
+          <div class="signal-title">$350M to Answer the Phone</div>
+          <div class="signal-desc">EliseAI doubles to a $4B valuation on entirely primary capital &mdash; one in six US apartments, $200M ARR, and roughly 5 million calls a month across housing and healthcare operations.</div>
+          <a class="signal-link" href="https://techcrunch.com/2026/09/29/a16z-backed-eliseai-raises-350m-doubles-valuation-to-4b/" target="_blank">TechCrunch &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n5">5</div>
+        <div>
+          <div class="signal-title">Denmark&rsquo;s 8.8 Million Records</div>
+          <div class="signal-desc">Names, addresses and CPR numbers for 8.8 million people, from an 11-million-record register. No exploit: a private company&rsquo;s legitimate CPR access was misused at a scale nobody was watching.</div>
+          <a class="signal-link" href="https://www.channelstv.com/2026/10/05/hackers-obtain-personal-info-on-8-8-million-people-in-denmark-govt-data-leak-ministry" target="_blank">Channel News Asia &#8597;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THEMES + TOOL + SOURCES -->
+  <div id="themes" class="story-card card-lavender section-anchor">
+    <div class="page-chip">07 &middot; CLOSER</div>
+    <div class="card-routine">Top Themes</div>
+    <h2 class="card-headline sm">The Shape of Today's News</h2>
+    <div class="themes-grid" style="margin-top:16px;">
+      <div class="theme-item">Persistence Outlives Sessions</div>
+      <div class="theme-item">The Incumbent Keeps the Ground Truth</div>
+      <div class="theme-item">Open Fabrics Are the New Competitive Moat</div>
+      <div class="theme-item">Volume Replaced Capability as the Pitch</div>
+      <div class="theme-item">Valid Access Is the Attack Surface</div>
+    </div>
+
+    <div id="tool" class="tool-week section-anchor">
+      <div class="tool-week-eyebrow">Company Watch of the Day</div>
+      <div class="tool-week-name">ELISEAI</div>
+      <div class="tool-week-desc">The most useful line in yesterday&rsquo;s funding coverage is not the valuation. It is that the round was <b>entirely primary capital</b> &mdash; no shareholder sold, no employee cashed out &mdash; and that the company now handles roughly five million phone calls a month across housing and healthcare operations. EliseAI is the clearest case anyone has produced of applied AI where the model is not the moat and the volume is. Its defensibility is that it has absorbed the full operational mess of two of America&rsquo;s largest household expense categories, which means the hard part is not generating a plausible reply to a tenant but knowing which of four thousand exceptions applies to this specific lease, this specific jurisdiction, this week. A competitor with a better model and two hundred calls a month is not competing. That also tells you where the risk sits. At this volume, the failure mode is not an embarrassing hallucination &mdash; it is a missed renewal, a misrouted patient, a maintenance dispute escalated to a human who then has to apologise. The new product Apollo, launched this month as a teammate native to the platform rather than a separate tool, widens the blast radius of exactly that judgement from drafting to acting. Watch the retention numbers rather than the ARR: with five consecutive years of 100% growth and a valuation that has doubled in thirteen months, the only number that would genuinely surprise anyone is the one where landlords start leaving. The secondary lesson is about how the round was read. A primary-only round means the investors are underwriting the next two years of retention, not participating in a liquidity event &mdash; and at $4 billion, that is a much narrower set of outcomes than &ldquo;AI is eating housing&rdquo; suggests.</div>
+    </div>
+
+    <div id="sources" class="output-card section-anchor">
+      <div class="output-title">Sources Cited</div>
+      <div class="sources-grid">
+        <a href="https://arxiv.org/abs/2609.35576" target="_blank">arXiv &mdash; Share-Borne AI Virus: Memory-Hopping Attacks Across LLM Agents</a>
+        <a href="https://news.synopsys.com/2026-09-30-OpenAI-and-Synopsys-Announce-GPT-Synopsys-Frontier-Intelligence-to-Revolutionize-Chip-Design" target="_blank">Synopsys &mdash; OpenAI and Synopsys announce GPT-Synopsys</a>
+        <a href="https://www.reuters.com/business/synopsys-openai-strike-deal-develop-ai-model-chip-design-work-2026-09-30" target="_blank">Reuters &mdash; Synopsys, OpenAI strike deal to develop AI model for chip design</a>
+        <a href="https://www.channelnewsasia.com/business/synopsys-openai-strike-deal-develop-ai-model-chip-design-work-6422481" target="_blank">CNA &mdash; Ghazi on the training fee, revenue share and sign-off guardrails</a>
+        <a href="https://www.hpe.com/us/en/newsroom/press-release/2026/09/hpe-secures-its-first-amd-helios-order-in-12-billion-deal-with-vultr.html" target="_blank">HPE &mdash; HPE secures first AMD Helios order in $1.2B deal with Vultr</a>
+        <a href="https://www.bloomberg.com/news/articles/2026-09-30/hpe-gets-1-2-billion-amd-gear-order-from-vultr-in-latest-ai-win" target="_blank">Bloomberg &mdash; HPE gets $1.2B AMD gear order from Vultr in latest AI win</a>
+        <a href="https://fortune.com/2026/09/29/elise-ai-4-billion-valuation-funding-round-housing-unicorn-andreessen-bessemer/" target="_blank">Fortune &mdash; EliseAI hits $4 billion valuation in a16z and Bessemer-led round</a>
+        <a href="https://techcrunch.com/2026/09/29/a16z-backed-eliseai-raises-350m-doubles-valuation-to-4b/" target="_blank">TechCrunch &mdash; a16z-backed EliseAI raises $350M, doubles valuation to $4B</a>
+        <a href="https://www.globenewswire.com/news-release/2026/09/29/3370681/0/en/eliseai-raises-350-million-at-4-billion-valuation-to-bring-ai-deeper-into-housing-and-healthcare-operations.html" target="_blank">GlobeNewswire &mdash; EliseAI press release</a>
+        <a href="https://www.bloomberg.com/news/articles/2026-10-05/denmark-data-breach-exposes-8-8-million-people-s-personal-data" target="_blank">Bloomberg &mdash; Denmark data breach exposes 8.8 million people&rsquo;s personal data</a>
+        <a href="https://www.channelstv.com/2026/10/05/hackers-obtain-personal-info-on-8-8-million-people-in-denmark-govt-data-leak-ministry" target="_blank">CNA &mdash; Hackers obtain personal info on 8.8 million people in Denmark</a>
+        <a href="https://cybersecuritynews.com/denmark-data-breach" target="_blank">CyberSecurityNews &mdash; Denmark data breach, CPR incident detail</a>
+        <a href="https://unixgaming.org/what-dtu-disclosed-about-the-dtubasen-breach/" target="_blank">UnixGaming &mdash; what DTU disclosed about the DTUBasen breach (related Danish incident)</a>
+        <a href="https://www.itweb.co.za/article/rogue-ai-agents-spark-calls-for-jail-time/KBpdg7pm5VeMLEew" target="_blank">ITWeb &mdash; rogue AI agent incident database and agentic security survey context</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-logo">
+      <div class="footer-mark">
+        <img src="../assets/timps_logo.svg" alt="TIMPS">
+      </div>
+      <span class="footer-brand">TIMPS PostCards</span>
+    </div>
+    <div class="footer-center">
+      Issue 130 &middot; October 5, 2026<br>
+      Hyderabad, India
+    </div>
+    <div class="footer-right">
+      <a href="../index.html">Home</a><br>
+      <a href="../archive.html">Archive</a><br>
+      &copy; 2026 TIMPS
+    </div>
+  </footer>
+
+</div> <!-- /wrapper -->
+</div> <!-- /page-layout -->
+</body>
+</html>
