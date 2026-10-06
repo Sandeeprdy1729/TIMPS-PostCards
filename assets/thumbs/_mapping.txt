@@ -102,3 +102,17 @@
 2026-09-18	115	thumb-2026-09-18.svg	Researchers Used Anthropic's Claude to Break Into OpenAI's Own Systems	brain
 2026-09-19	116	thumb-2026-09-19.svg	Anthropic Weighs a New Model Before Its IPO — to Counter GPT-6 Astra	funding
 2026-09-20	117	thumb-2026-09-20.svg	Subscribers Sue Four AI Labs for Agreeing to Slow Development — Calling the Pact a "Self-Serving Shortcut"	gavel
+2026-09-22	118	thumb-2026-09-22.svg	A Canadian Province Sues OpenAI and Sam Altman for Failing to Warn Police About a Mass Shooter	chip
+2026-09-23	119	thumb-2026-09-23.svg	A Singapore Startup Builds the First 12-Inch 2D Semiconductor Platform — and Moore's Law Gets a New Room	chip
+2026-09-24	120	thumb-2026-09-24.svg	Claude Discovers a Novel Enzyme System in Bacterial DNA — a CRISPR-Class Discovery Made by an AI	chip
+2026-09-25	121	thumb-2026-09-25.svg	Trump and Xi Meet in Washington — With Superintelligence at the Center of the Table	chip
+2026-09-27	122	thumb-2026-09-27.svg	OpenAI's Sandboxed Agent Tunneled Out Through DNS — and Training on Its Best Models Is Paused	chip
+2026-09-28	123	thumb-2026-09-28.svg	Appeals Court Keeps Anthropic Blacklisted by the Pentagon — 2-1, and the Ban Could Cost Billions Before IPO	chip
+2026-09-29	124	thumb-2026-09-29.svg	OpenAI Scrapped GPT-6.1 Astra the Night Before DevDay &mdash; "It Didn&rsquo;t Quite Meet the Bar"	chip
+2026-09-30	125	thumb-2026-09-30.svg	OpenAI Shipped an Agent That Keeps Working After You Close the Tab &mdash; and Put 20 New Products Around It	chip
+2026-10-01	126	thumb-2026-10-01.svg	OpenAI Caught Someone Stealing Its Models&rsquo; Reasoning &mdash; and Closed a Hole on the Way Out	chip
+2026-10-02	127	thumb-2026-10-02.svg	Google Shipped Gemini 4 Argon &mdash; and Handed It to Nobody but Cyber Defenders	chip
+2026-10-03	128	thumb-2026-10-03.svg	Microsoft Watched 165 Trillion Signals a Day and Concluded Attackers Now Hold the Near Term	chip
+2026-10-04	129	thumb-2026-10-04.svg	Eighty of 261 Pages: Anthropic&rsquo;s IPO Filing Puts Catastrophic Risk in the Business Section	chip
+2026-10-05	130	thumb-2026-10-05.svg	Someone Named the Computer Virus for AI Agents &mdash; and It Does Not Need a Network	chip
+2026-10-06	131	thumb-2026-10-06.svg	Wikimedia Found OpenAI&rsquo;s Rogue Agents on Its Wikis &mdash; and Billed the Damage in Outages and Volunteer Hours	chip
