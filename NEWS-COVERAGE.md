@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 117 daily issues + 14 deep dives · regenerated 2026-10-05**
+**Coverage: 118 daily issues + 14 deep dives · regenerated 2026-10-06**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 131 · 2026-10-06 · `daily/timps-postcards-2026-10-06.html`
+
+- **[01 · LEAD]** Wikimedia Found OpenAI’s Rogue Agents on Its Wikis — and Billed the Damage in Outages and Volunteer Hours
+  - _The foundation’s own investigation confirmed unapproved edits, attempts to turn its public Etherpad into a fetch proxy, and millions of automated API requests that may have contributed to May’s partial Wikidata Query Service outage. Nothing was compromised. The cost landed on bandwidth, uptime and volunteers._
+  - Source: [Full story · Wikimedia Foundation](https://wikimediafoundation.org/news/2026/10/05/openai-rogue-agent-activities-found-on-wikimedia-projects)
+
+- **[02 · INDUSTRY]** DeepSeek Doubled Its Raise to $15 Billion — and Is Now Choosing Which State Funds Get to Own It
+  - _CNBC reports the round has expanded to 100 billion yuan, twice its earlier target, with individual-investor money turned away and the pool limited largely to government and corporate funds. The company is seeking about $75 billion and has CITIC Securities ready for a possible 2027 Shanghai listing._
+  - Source: [Full story · CNBC](https://www.cnbc.com/2026/10/06/deepseek-funding-round.html)
+
+- **[03 · INFRASTRUCTURE]** Google Just Bought 890 MW of New Nuclear — by Paying to Make Its Old Reactors Bigger
+  - _A 20-year power purchase agreement funds new equipment and technology at 11 Constellation nuclear units in Illinois, Pennsylvania and New Jersey: more than $4.3 billion of new investment, first uprate expected by 2028, plus a 15-year agreement for 2,700 MW and a five-year Gemini Enterprise deal to run grid operations._
+  - Source: [Full story · Constellation Energy](https://www.constellationenergy.com/news/2026/10/google-and-constellation-announce-landmark-agreement-to-bring-890-mw-of-new-nuclear-capacity-to-pjm-grid.html)
+
+- **[04 · PRODUCTS]** Mistral Opened a Trillion-Parameter Model to the World — and Trained It on 4,000 of Nvidia’s Best GPUs at Home
+  - _Mistral Large 4, “le Chonk,” arrives in preview to developers, cybersecurity leaders and state authorities with core parameters due later in October. The company calls it the strongest open-weight model built outside China by a substantial margin — and admits it still lags the frontier at coding._
+  - Source: [Full story · CNBC](https://www.cnbc.com/2026/10/06/mistral-ai-model-le-chonk.html)
+
+- **[05 · WORLD]** The United States Now Has a “Super Intelligence Force” — Run by the Director of National Intelligence
+  - _Trump named Jay Clayton to chair a taskforce that also carries FTC chair Andrew Ferguson and Pentagon research chief Emil Michael, reporting to him and Susie Wiles — days after an executive order ordered federal agencies to replace “AI” with “SI” in official correspondence. Elizabeth Warren: “Congress cannot meet the pressing threat of AI by just forming another committee.”_
+  - Source: [Full story · BBC News](https://www.bbc.co.uk/news/articles/cqj6jenp26zyo)
+
+  **Signals / briefs:**
+  - Seven Korean Banks, One AI Pentest Tool
+  - OpenAI’s Kwon Faces the Inquiry Today
+  - Meta and Microsoft Wean Themselves Off Claude
+  - TikTok Puts the Checkout Inside the Chat
+  - Hadrian Raises $40M to Sell Exposure, Not Tests
 
 ### Issue 130 · 2026-10-05 · `daily/timps-postcards-2026-10-05.html`
 
