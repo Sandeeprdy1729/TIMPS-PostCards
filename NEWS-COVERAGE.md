@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 118 daily issues + 14 deep dives · regenerated 2026-10-06**
+**Coverage: 119 daily issues + 14 deep dives · regenerated 2026-10-07**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 132 · 2026-10-07 · `daily/timps-postcards-2026-10-07.html`
+
+- **[01 · LEAD]** Meta’s Muse Is Writing an Hourly Dossier on You — and the Instructions Say Not to Mention It
+  - _A TIME analysis of Muse’s internal instructions found continuously refreshed files on 4 million users and everyone they mention: how contacts met, their shared interests, their disputes, and the “tensions and alliances” inside the social group — plus an explicit directive not to tell users that “forgetting” leaves the original message in place._
+  - Source: [Full story · TIME](https://time.com/article/2026/10/06/meta-muse-ai-agent-privacy/)
+
+- **[02 · INDUSTRY]** Lambda Is Raising $4 Billion at $14.5 Billion — Its Final Stop Before the IPO
+  - _The Wall Street Journal reports Blackstone and Coatue are leading up to $4 billion of pre-money at $14.5 billion, with a 2027 listing targeted. An investor letter shows backlog running from $15 billion in June to $50 billion in September — most of the increase traceable to one $35 billion Anthropic commitment._
+  - Source: [Full story · TechCrunch](https://techcrunch.com/2026/10/06/ai-computing-startup-lambda-to-raise-4b-ahead-of-planned-ipo/)
+
+- **[03 · INFRASTRUCTURE]** SpaceX Wants to Borrow $40 Billion — Entirely to Buy Nvidia Chips
+  - _The Financial Times reports Apollo is leading a package of about $10 billion in bank loans plus $30 billion in investment-grade debt, with Pimco among the lenders in talks and a close expected in 2027. The stated purpose is the hardware Musk committed to exclusively in August: Nvidia, for data centers that must more than double their chip count by December._
+  - Source: [Full story · Reuters, via The Star](https://www.thestar.com.my/tech/tech-news/2026/10/07/spacex-seeks-40-billion-to-buy-nvidia-chips-ft-reports)
+
+- **[04 · PRODUCTS]** Sierra and Meta Wrote the Protocol for When Your Agent Goes Shopping — Stripe, Shopify and Walmart Signed
+  - _Personal Agent Protocol lets a personal assistant discover what a company offers, open an OAuth session on the customer’s behalf, and act under read-only or write permissions the customer grants. The v0.1 specification is due later this month, with Genesys, Rocket and Redfin joining and payments and push-notification extensions on the roadmap._
+  - Source: [Full story · Sierra](https://sierra.ai/blog/introducing-personal-agent-protocol)
+
+- **[05 · WORLD]** OpenAI Flew Jason Kwon to Sydney to Say Sorry — and Then Backed Australia’s Proposed Breach Law
+  - _Testifying before the Joint Select Committee, OpenAI’s chief strategy officer apologised for the Medicare agent breach, conceded the company should have notified the government much sooner, and said Altman did not know about it when he met Australia’s deputy prime minister on 1 September. Anthropic appeared the same day and also welcomed a mandatory reporting rule._
+  - Source: [Full story · ABC News (Australia)](https://www.abc.net.au/news/2026-10-06/openai-hearing-apology-key-takeaways/107235640)
+
+  **Signals / briefs:**
+  - Anthropic Merges Its Two Cyber Programs Into Three Access Tiers
+  - Common Sense Media Rates ChatGPT for Teens “Unacceptable Risk”
+  - Google Opens SynthID Detector to Everyone
+  - Surface Laptop Ultra Gets Its Price Question Today — and the Memory Bill Precedes It
+  - OpenAI’s First Human-Rights Hire Names the Thing That Keeps Her Up
 
 ### Issue 131 · 2026-10-06 · `daily/timps-postcards-2026-10-06.html`
 
