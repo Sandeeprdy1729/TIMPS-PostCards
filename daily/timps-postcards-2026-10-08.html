@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TIMPS">
+<link rel="manifest" href="../manifest.json">
+<link rel="apple-touch-icon" href="../assets/icon-192.png">
+<title>TIMPS PostCards — Issue 133</title>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --cream:  #EEECE2;
+    --forest: #3D3929;
+    --terra:  #DA7756;
+    --terra-d:#BD5D3A;
+    --black:  #111111;
+    --card-bg:#F0ECE0;
+    --mono:   'Newsreader', Georgia, 'Times New Roman', serif;
+    --serif:  'TIMPS', 'Playfair Display', Georgia, serif;
+  }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Black.woff2') format('woff2'); font-weight:900; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Bold.woff2') format('woff2'); font-weight:700; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-SemiBold.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--cream);
+    background-image:
+      linear-gradient(rgba(61,57,41,.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.07) 1px, transparent 1px);
+    background-size: 38px 38px;
+    font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+    color: var(--forest);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { text-decoration: none; color: inherit; }
+
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 48px;
+    background-color: rgba(238,236,226,.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1.5px solid rgba(61,57,41,.12);
+    background-image:
+      linear-gradient(rgba(61,57,41,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.05) 1px, transparent 1px);
+    background-size: 38px 38px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 15px;
+    font-weight: 600;
+    color: #000;
+    text-decoration: none;
+  }
+  .nav-logo-mark {
+    width: 34px; height: 34px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .nav-logo-mark img { width: 28px; height: 28px; object-fit: contain; }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-link {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: #000;
+    opacity: .65;
+    text-decoration: none;
+    transition: opacity .15s;
+  }
+  .nav-link:hover { opacity: 1; }
+  .nav-cta {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: #000;
+    background: var(--terra);
+    border: 2.5px solid #000;
+    border-radius: 100px;
+    padding: 10px 24px;
+    cursor: pointer;
+    transition: background .15s, transform .1s;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--terra-d); transform: translateY(-1px); }
+
+  .wrapper { max-width: 760px; margin: 0 auto; padding: 40px 20px 80px; display: flex; flex-direction: column; gap: 0; }
+
+  .cover-card { background: var(--card-bg); border-radius: 20px 20px 4px 4px; padding: 56px 48px 48px; text-align: center; position: relative; overflow: hidden; border: 1.5px solid rgba(61,57,41,.12); margin-bottom: 3px; }
+  .cover-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, var(--terra) 0%, var(--terra-d) 60%, #E0A88A 100%); }
+  .cover-eyebrow { font-family: var(--mono); font-size:10px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:20px; display:flex; align-items:center; justify-content:center; gap:10px; }
+  .cover-eyebrow::before,.cover-eyebrow::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .15; max-width:60px; }
+  .cover-title { font-family: var(--serif); font-size:58px; font-weight:900; line-height:1; letter-spacing:-1px; color: var(--forest); margin-bottom:8px; }
+  .cover-sub { font-family: var(--serif); font-size:13px; font-style:italic; color: var(--forest); opacity: .55; margin-bottom:28px; }
+  .cover-divider { width:48px; height:2px; background: var(--terra); margin:0 auto 24px; border-radius:2px; }
+  .cover-meta { display:flex; justify-content:center; gap:32px; font-family: var(--mono); font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .45; }
+  .cover-badge { display:inline-flex; align-items:center; gap:6px; background: var(--terra); color: #fff; border-radius:20px; padding:6px 18px; font-family: var(--mono); font-size:10px; letter-spacing:2px; text-transform:uppercase; margin-top:28px; }
+  .top5-pill { display:flex; justify-content:center; gap:10px; margin-top:32px; flex-wrap:wrap; }
+  .pill { background: var(--forest); color: var(--cream); border-radius:100px; padding:4px 14px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; }
+  .pill.light { background:transparent; color: var(--forest); border:1px solid rgba(61,57,41,.2); }
+
+  .section-label { display:flex; align-items:center; gap:12px; padding:10px 0 8px; font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .35; }
+  .section-label::before,.section-label::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .1; }
+
+  .story-card { border-radius:4px; border:1.5px solid rgba(61,57,41,.10); padding:36px 40px; margin-bottom:3px; position:relative; overflow:hidden; }
+  .story-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }
+
+  .card-sky      { background:#D6E8F0; } .card-sky::before      { background: #7AAFC0; }
+  .card-cream    { background: var(--card-bg); } .card-cream::before    { background: var(--terra); }
+  .card-blush    { background:#F5DDD0; } .card-blush::before    { background: #E0A88A; }
+  .card-lavender { background:#EAE6F5; } .card-lavender::before { background: #C8BEE8; }
+  .card-sage     { background:#D6E4D6; } .card-sage::before     { background: #8BAF8B; }
+
+  .page-chip { position:absolute; top:14px; right:16px; font-family: var(--mono); font-size:9px; letter-spacing:2px; text-transform:uppercase; color: var(--forest); opacity: .3; }
+  .card-routine { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:8px; }
+  .card-headline { font-family: var(--serif); font-size:28px; font-weight:900; line-height:1.15; color: var(--forest); margin-bottom:10px; }
+  .card-headline.lg { font-size:34px; }
+  .card-headline.sm { font-size:22px; }
+  .card-deck { font-family: var(--serif); font-style:italic; font-size:14px; line-height:1.55; color: var(--forest); opacity: .55; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid rgba(61,57,41,.12); }
+  .card-body { font-family: 'Lora', Georgia, serif; font-size:14px; line-height:1.7; color: var(--forest); }
+  .card-body p { margin-bottom:11px; }
+  .drop::first-letter { font-family: var(--serif); font-size:52px; font-weight:900; float:left; line-height:.78; margin:5px 6px 0 0; color: var(--terra); }
+  .clearfix::after { content:''; display:table; clear:both; }
+
+  .hl-terra { background: var(--terra); color: var(--forest); padding:0 4px; border-radius:2px; }
+  .hl-ink  { background: var(--forest); color: var(--cream); padding:0 4px; border-radius:2px; }
+  .hl-sage { background: #8BAF8B; color: #fff; padding:0 4px; border-radius:2px; }
+  .hl-lav  { background: #C8BEE8; color: var(--forest); padding:0 4px; border-radius:2px; }
+
+  .stat-box { float:right; margin:0 0 16px 24px; background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:16px 20px; text-align:center; min-width:120px; }
+  .stat-big { font-family: var(--serif); font-size:44px; font-weight:900; line-height:1; color: var(--forest); display:block; }
+  .stat-label { font-family: var(--mono); font-size:9.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .5; display:block; margin-top:4px; }
+
+  .img-frame { border:2px solid rgba(61,57,41,0.18); border-radius:12px; overflow:hidden; margin:16px 0; background: var(--card-bg); }
+  .img-frame img { width:100%; display:block; max-height:240px; object-fit:cover; border-bottom:1px solid rgba(61,57,41,.12); }
+  .img-caption { padding:8px 12px; font-family: var(--mono); font-size:10.5px; color: var(--forest); opacity: .6; font-style:italic; display:flex; align-items:center; justify-content:space-between; gap:8px; }
+  .img-caption a { font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; white-space:nowrap; font-style:normal; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; }
+  .img-caption a:hover { opacity: 1; }
+  .img-frame.float-right { float:right; width:220px; margin:0 0 16px 24px; }
+  .img-frame.float-right img { max-height:140px; }
+
+  .source-link { display:inline-flex; align-items:center; gap:5px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:12px; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; transition: opacity .15s; }
+  .source-link:hover { opacity: 1; }
+  .source-link::after { content:'↗'; font-size:9px; }
+
+  .signals-grid { display:flex; flex-direction:column; gap:14px; }
+  .signal-row { display:flex; align-items:flex-start; gap:14px; }
+  .signal-num { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family: var(--serif); font-size:13px; font-weight:900; flex-shrink:0; color:#fff; }
+  .signal-num.n1{background: var(--terra); color: var(--forest);} .signal-num.n2{background: var(--forest);} .signal-num.n3{background:#7AAFC0;} .signal-num.n4{background: var(--terra-d); color: var(--forest);} .signal-num.n5{background: var(--black);}
+  .signal-title { font-family: var(--serif); font-size:14px; font-weight:700; color: var(--forest); margin-bottom:2px; }
+  .signal-desc { font-family: 'Newsreader', Georgia, 'Times New Roman', serif; font-size:12px; line-height:1.65; color: var(--forest); opacity: .6; }
+  .signal-link { display:inline-block; font-family: var(--mono); font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:4px; border-bottom:1px solid rgba(61,57,41,.25); padding-bottom:1px; transition: opacity .15s; }
+  .signal-link:hover { opacity: 1; }
+
+  .themes-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .theme-item { padding:10px 14px; border-radius:8px; font-family: var(--serif); font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; text-align:center; border:1.5px solid rgba(61,57,41,.12); background: var(--cream); }
+
+  .tool-week { background: var(--forest); color: var(--cream); border-radius:12px; padding:18px 20px; text-align:center; margin-top:14px; }
+  .tool-week-eyebrow { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; opacity: .55; margin-bottom:6px; }
+  .tool-week-name { font-family: var(--serif); font-size:22px; font-weight:900; margin-bottom:4px; }
+  .tool-week-desc { font-family: 'Newsreader', Georgia, 'Times New Roman', serif; font-size:11.5px; opacity: .7; font-style:italic; }
+
+  .output-card { background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:18px 20px; margin-top:14px; }
+  .output-title { font-family: var(--serif); font-size:18px; font-weight:700; margin-bottom:8px; color: var(--forest); }
+  .tp-list { list-style:none; padding:0; margin:0; }
+  .tp-list li { padding:5px 0; font-family: 'Lora', Georgia, serif; font-size:12px; color: var(--forest); border-bottom:1px solid rgba(61,57,41,.07); display:flex; align-items:flex-start; gap:7px; }
+  .tp-list li::before { content:'·'; color: var(--terra); font-size:14px; line-height:1.2; flex-shrink:0; }
+  .tp-list li a { color: var(--forest); opacity: .8; text-decoration:none; }
+  .tp-list li a:hover { opacity: 1; }
+
+  .sources-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px 20px; }
+  .sources-grid a { font-family: var(--mono); font-size:11px; color: var(--forest); opacity: .55; text-decoration:none; border-bottom:1px solid rgba(61,57,41,.15); padding-bottom:1px; transition: opacity .15s; }
+  .sources-grid a:hover { opacity: 1; }
+
+  .footer {
+    background: var(--black);
+    padding: 28px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    border-radius: 4px 4px 20px 20px;
+    margin-top: 3px;
+  }
+  .footer-logo { display: flex; align-items: center; gap: 10px; }
+  .footer-mark { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; }
+  .footer-mark img { width: 24px; height: 24px; object-fit: contain; filter: brightness(10); }
+  .footer-brand { font-family: var(--mono); font-size: 13px; font-weight: 700; color: #fff; }
+  .footer-center { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.4); text-align: center; line-height: 1.6; }
+  .footer-right { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.3); text-align: right; line-height: 2; }
+  .footer-right a { color: rgba(255,255,255,.5); transition: color .15s; }
+  .footer-right a:hover { color: #fff; }
+
+  .page-layout { display: flex; align-items: flex-start; gap: 0; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+  .toc-sidebar { position: sticky; top: 80px; width: 170px; flex-shrink: 0; padding: 48px 0 0 0; }
+  .toc-nav { display: flex; flex-direction: column; gap: 0; }
+  .toc-link { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.5px; text-transform: uppercase; color: #000; opacity: .45; text-decoration: none; padding: 7px 12px; border-left: 2px solid transparent; transition: opacity .15s, border-color .15s; line-height: 1.3; }
+  .toc-link:hover { opacity: .85; }
+  .toc-link.active { opacity: 1; border-left-color: var(--terra); }
+  .section-anchor { scroll-margin-top: 80px; }
+
+  @media (max-width: 900px) {
+    .toc-sidebar { display: none; }
+    .page-layout { max-width: 760px; }
+  }
+
+  @media (max-width: 720px) {
+    .nav { padding: 12px 24px; }
+    .nav-links { display: none; }
+    .wrapper { padding: 20px 14px 60px; }
+    .cover-card { padding: 40px 24px; }
+    .story-card { padding: 28px 20px; }
+    .footer { padding: 24px; flex-direction: column; align-items: flex-start; }
+    .footer-center, .footer-right { text-align: left; }
+    .stat-box { float: none; margin: 0 0 16px 0; }
+    .img-frame.float-right { float: none; width: 100%; margin: 0 0 16px 0; }
+  }
+  @media (max-width: 480px) {
+    .nav-logo span { display: none; }
+    .cover-title { font-size: 40px; }
+    .card-headline.lg { font-size: 28px; }
+    .card-headline { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">
+    <div class="nav-logo-mark">
+      <img src="../assets/timps_logo.svg" alt="TIMPS">
+    </div>
+    <span>TIMPS PostCards</span>
+  </a>
+  <div class="nav-links">
+    <a href="../archive.html" class="nav-link">Archive</a>
+    <a href="timps-postcards-2026-10-08.html" class="nav-link">Latest Issue</a>
+    <a href="../index.html#subscribe" class="nav-link">Subscribe</a>
+  </div>
+  <a href="../index.html#subscribe" class="nav-cta">Subscribe</a>
+</nav>
+
+<div class="page-layout">
+
+  <aside class="toc-sidebar">
+    <nav class="toc-nav">
+      <a href="#strategy" class="toc-link">Research</a>
+      <a href="#world" class="toc-link">Industry</a>
+      <a href="#media" class="toc-link">Infra</a>
+      <a href="#products" class="toc-link">Products</a>
+      <a href="#geopolitics" class="toc-link">World</a>
+      <a href="#signals" class="toc-link">Signals</a>
+      <a href="#themes" class="toc-link">Themes</a>
+      <a href="#tool" class="toc-link">Watch</a>
+      <a href="#sources" class="toc-link">Sources</a>
+    </nav>
+  </aside>
+
+  <div class="wrapper">
+
+  <!-- COVER -->
+  <div id="intro" class="cover-card section-anchor">
+    <div class="cover-eyebrow">Est. 2026 &middot; Hyderabad</div>
+    <div class="cover-title">TIMPS<br>PostCards</div>
+    <div class="cover-sub">AI Intelligence Digest &middot; Your Daily Signal from the Machine Frontier</div>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+      <span>Issue 133</span>
+      <span>October 8, 2026</span>
+      <span>No. 160</span>
+    </div>
+    <div class="cover-badge">&#11041; 133 Issues &mdash; Built with the TIMPS Ecosystem</div>
+    <div class="top5-pill">
+      <span class="pill">5 Top Signals</span>
+      <span class="pill light">GPT&#8209;6 for Everyone</span>
+      <span class="pill light">Manus Raises $500M</span>
+      <span class="pill light">Finland Halts Google</span>
+      <span class="pill light">The $2,599 Surface</span>
+      <span class="pill light">Cantwell&rsquo;s Six Rules</span>
+    </div>
+  </div>
+
+  <!-- CARD - 01 &middot; LEAD -->
+  <div id="strategy" class="story-card card-lavender section-anchor">
+    <div class="page-chip">01 &middot; LEAD</div>
+    <div class="card-routine">Models &middot; The Interface Writes Itself</div>
+    <h2 class="card-headline">OpenAI Put GPT&#8209;6 in Front of 1.2 Billion People &mdash; and Taught It to Build the Interface While It Thinks</h2>
+    <div class="card-deck">GPT&#8209;6 Sol reached every paid ChatGPT tier worldwide on Wednesday and GPT&#8209;6 Luna arrives for Free and Go on Thursday, but the real release is Intelligent UI: answers rendered as tappable buttons, forms, charts and mini-tools from a component library the model draws on as it streams. Work and Codex are untouched; users can dial the visuals back in Settings.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">1.2B</span>
+        <span class="stat-label">Weekly users getting it</span>
+      </div>
+      <p class="drop">Last month OpenAI introduced the first GPT&#8209;6 models to paying customers; on Wednesday it removed the barrier. <span class="hl-ink">&ldquo;We&rsquo;re bringing that next generation of intelligence to more people with a new GPT&#8209;6 model built for more than 1.2 billion people who use ChatGPT each week,&rdquo;</span> the company wrote, rolling GPT&#8209;6 <b>Sol</b> out globally to Plus, Pro, Business and Enterprise in the Chat tab, with <b>GPT&#8209;6 Luna</b> following on Thursday for Free and Go. Both are tuned for everyday conversation. The models behind ChatGPT Work and Codex are not changing, GPT&#8209;6 simply replaces &ldquo;Latest&rdquo; in the model menu, and older selectable models are not retired &mdash; a replacement, not a purge.</p>
+      <p>What makes the release a shift rather than a version bump is the second half of the announcement. <span class="hl-terra">Intelligent UI</span> trains GPT&#8209;6 to compose its responses out of text, visuals and interactive elements, &ldquo;choosing how they fit together based on your question&rdquo;: graphics and tappable buttons for a comparison, a form where a form is the answer, charts where numbers need shape, and tools &mdash; calculators, bill splitters, small games &mdash; created in the moment and used right inside the conversation. The answer can begin before the model finishes thinking, and the interface arrives progressively: a library of native components plus a compiler display the UI as the model generates it. The Verge notes the same release also improves web search and partial answers, and that GPT&#8209;6 &ldquo;showed stronger resistance to attempts to bypass its safety training.&rdquo;</p>
+      <p>The controls are worth reading like a spec. Intelligent UI has no separate usage quota &mdash; existing model, tool and plan allowances apply. Settings offers a &ldquo;Layout and visuals&rdquo; switch to reduce visual elements, but the company is explicit that it does not restore a text-only mode. The older ChatGPT desktop apps for macOS and Windows do not support the capability at all (web only), mobile needs an updated app, and Enterprise availability depends on workplace admin settings. In other words: <span class="hl-ink">the format of the answer is now a per-question decision the model makes at inference time</span>, tunable by the user only at the margins.</p>
+      <p>That is why this leads today. Yesterday this newsletter read Meta&rsquo;s internal instructions for how an agent should behave; today the story is the surface itself. When a billion people start receiving answers that include buttons the model invented and forms the model drew, &ldquo;what did the chatbot say&rdquo; stops being the right question &mdash; the answer has become a small application, built per turn, for one user, by the system being asked. OpenAI shipped that to half the internet&rsquo;s chat surface in forty-eight hours, which makes the interface layer, not the parameter count, the thing rivals now have to answer to.</p>
+    </div>
+    <a class="source-link" href="https://www.theverge.com/ai-artificial-intelligence/1007276/openai-chatgpt-intelligent-ui-gpt-6" target="_blank">Full story &middot; The Verge</a>
+  </div>
+
+  <!-- CARD - 02 &middot; INDUSTRY -->
+  <div id="world" class="story-card card-blush section-anchor">
+    <div class="page-chip">02 &middot; INDUSTRY</div>
+    <div class="card-routine">Capital &middot; The $2 Billion Rejection, Priced</div>
+    <h2 class="card-headline">Manus Raised $500 Million in Its First Round Since Beijing Killed the Meta Deal</h2>
+    <div class="card-deck">Boyu Capital and IDG Capital lead more than $500 million for Butterfly Effect, with Tencent, HSG and ZhenFund following on. No valuation was disclosed; Bloomberg reported in September the round would double it to about $4 billion, making Manus China&rsquo;s most valuable AI agent startup &mdash; a quarter after regulators prohibited foreign investment in the very project Meta was buying.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">$500M</span>
+        <span class="stat-label">First round since the unwind</span>
+      </div>
+      <p class="drop">Manus has raised <span class="hl-ink">more than $500 million</span>, its parent company Butterfly Effect said on Thursday, in the first financing since Meta was forced to abandon its acquisition. <b>Boyu Capital</b> and <b>IDG Capital</b> led; existing shareholders <b>Tencent</b>, <b>HSG</b> and <b>ZhenFund</b> followed on. The company did not disclose its post-money valuation, but the shape of the round is the point: launched in early 2025 in China, moved to Singapore after Benchmark&rsquo;s backing, acquired by Meta in December, and then blocked &mdash; the National Development and Reform Commission decided to <span class="hl-terra">&ldquo;prohibit foreign investment in the Manus project&rdquo;</span> while Meta was already integrating the team and technology. The restart round now says investors priced the regulatory veto and moved on anyway.</p>
+      <p>The commentary reads like a verdict. Dan Wang, China director at Eurasia Group: <span class="hl-terra">&ldquo;The fundraising shows that the short-term fallout of the Meta case has been contained and investors are willing to back Manus as an independent company.&rdquo;</span> Han Lin of The Asia Group is the harder-nosed version: &ldquo;The immediate task for Manus now is proving scale, profitability and regulatory alignment.&rdquo; CNBC&rsquo;s own framing is that the raise shows appetite for AI-agent startups has held up &ldquo;even as the underlying foundation models improve quickly and price competition intensifies&rdquo; &mdash; the agent layer being bet on as the durable margin, not the model layer.</p>
+      <p>What Manus built while the deal was collapsing is the other half of the story. Since splitting from Meta it has resumed independent operations, shipped <b>Manus 2.0</b> on a new in-house execution system called <b>Cascade</b>, and launched <b>Cue</b>, a standalone personal-agent app where each agent gets its own email address, phone number and mobile wallet. Meta, meanwhile, launched its Muse agent in September &mdash; modeled on the open-source OpenClaw &mdash; and Muse has since gone to No. 1 in the App Store. The acquirer and the acquired are now the same product category, competing, and Singapore adviser Matthias Hendrichs captures the residue: <span class="hl-terra">&ldquo;You can separate companies, but you cannot make engineers forget what they learned.&rdquo;</span></p>
+      <p>What to watch next is structural rather than strategic. Analysts CNBC cites say an eventual public listing is possible, but the nearer task is revamping Manus&rsquo;s business and ownership structure to prove profitability and satisfy Beijing&rsquo;s requirements &mdash; the same alignment problem every China-based agent company faces when its users are global. If the reported $4 billion valuation holds, Manus becomes the benchmark price for an independent agent startup that a superpower&rsquo;s regulator refused to let a superpower buy. That is a very specific kind of comparable, and every board of every agent company now has it in the deck.</p>
+    </div>
+    <a class="source-link" href="https://www.cnbc.com/2026/10/08/manus-fund-raise-meta-muse-tencent.html" target="_blank">Full story &middot; CNBC</a>
+  </div>
+
+  <!-- CARD - 03 &middot; INFRASTRUCTURE -->
+  <div id="media" class="story-card card-sky section-anchor">
+    <div class="page-chip">03 &middot; INFRASTRUCTURE</div>
+    <div class="card-routine">Concrete &middot; The Permit Comes First</div>
+    <h2 class="card-headline">Finland Ordered Google to Stop Clearing Forest for Two Data Centres &mdash; Then the Police Opened a File</h2>
+    <div class="card-deck">The Finnish supervisory agency LVV told Google&rsquo;s subsidiary Tuike Finland to suspend environment-altering work at Muhos and Kajaani until environmental impact assessments are complete, with an explanation due 14 October. Both sites sit inside the &euro;13 billion investment Google announced last month; police are now weighing a preliminary investigation into suspected illegal logging after a private citizen&rsquo;s complaint.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">&euro;13B</span>
+        <span class="stat-label">Investment now under review</span>
+      </div>
+      <p class="drop">The order, reported by Yle on Thursday, is blunt. LVV, Finland&rsquo;s supervisory agency, suspended Google subsidiary <b>Tuike Finland Oy</b> from preparatory building work at two planned data-centre sites because the work could <span class="hl-terra">&ldquo;significantly alter the environment&rdquo;</span>: removal of trees and topsoil, construction of site roads and storage areas, changes to ditches. The suspension holds until environmental impact assessment procedures are completed for both <b>Muhos</b> and <b>Kajaani</b>, sites announced in September as part of Google&rsquo;s <span class="hl-ink">&euro;13 billion investment in Finland</span> &mdash; at the time the company&rsquo;s largest single European investment. Yle understands LVV began investigating after suspicions of illegal logging were raised publicly, following the clearance of hundreds of hectares of forest.</p>
+      <p>Then the file moved from regulator to police. Tabloid <i>Iltalehti</i> reported Wednesday that police have opened a preliminary investigation into the preparatory work at Muhos &mdash; started after a private individual filed a request on <b>2 October</b> &mdash; with investigators now determining whether there is evidence of a crime sufficient to warrant a full pre-trial probe. Two processes, then, running in parallel: an administrative order that can freeze the build, and a criminal question about whether the ground was broken before the paperwork existed.</p>
+      <p>Google&rsquo;s response concedes the substance without conceding the legal question. The company said it had <span class="hl-terra">&ldquo;fallen short of our own high standards in this instance,&rdquo;</span> that it understands the concerns, and that it intends to comply with the LVV order fully. Tuike Finland has until <b>14 October</b> to deliver its explanation to the agency. The announcement this was all part of &mdash; three new data centres, a 22-year pact to buy up to half the output of the Loviisa nuclear plant, 629 MW of new wind &mdash; was covered by this newsletter in September as a straightforward infrastructure win.</p>
+      <p>What makes this the infrastructure story of the day is what it is not. This is not an AI regulation, a safety standard or a training-data dispute &mdash; it is land-use law arriving at the AI buildout the ordinary way, through trees and ditches and impact assessments, with a police file attached. Europe&rsquo;s data-centre boom is being permitted at political speed and built at industrial speed, and Muhos is where those two clocks collided. Watch the 14 October deadline: if the explanation satisfies LVV, the order lifts quietly; if it does not, every hyperscaler with forest left to clear has a new scheduling risk.</p>
+    </div>
+    <a class="source-link" href="https://yle.fi/a/74-20250446" target="_blank">Full story &middot; Yle</a>
+  </div>
+
+  <!-- CARD - 04 &middot; PRODUCTS -->
+  <div id="products" class="story-card card-sage section-anchor">
+    <div class="page-chip">04 &middot; PRODUCTS</div>
+    <div class="card-routine">Hardware &middot; The $7,000 Question, Answered</div>
+    <h2 class="card-headline">Microsoft&rsquo;s Nvidia Laptop Starts at $2,599 &mdash; and Windows Becomes the Agent Runtime</h2>
+    <div class="card-deck">Preorders opened Wednesday for the Surface Laptop Ultra: up to 128 gigabytes of unified memory, up to one petaflop of computing, Blackwell RTX Spark silicon inside, shipping 16 October. The event&rsquo;s larger story is the OS underneath it &mdash; coding agents confined to Microsoft Execution Containers, a first-boot path to the open-source OpenClaw agent, and Meta&rsquo;s Muse coming to Windows.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">$2,599</span>
+        <span class="stat-label">Start price &middot; ships Oct 16</span>
+      </div>
+      <p class="drop">Yesterday the worry was a leak pointing past $7,000 at 128GB. Wednesday evening the number arrived: <span class="hl-ink">the Surface Laptop Ultra starts at $2,599</span>, with preorders open and units shipping <b>16 October</b>, EVP <b>Pavan Davuluri</b> said at Microsoft&rsquo;s San Francisco event. The machine is a 15-inch, 4.4-pound laptop with up to <b>128 gigabytes of unified memory</b> and up to <b>one petaflop</b> of computing power, the world&rsquo;s first magnetic USB-C port (MagSafe-style) plus two standard USB-C, and a Blackwell RTX Spark GPU that, Jensen Huang told the audience, carries as much processing power as Nvidia&rsquo;s 2016 DGX-1 data-centre server &mdash; now in a laptop that runs models without generating cloud bills.</p>
+      <p>The demo that matters showed coding requests being routed between the local GPU &mdash; flagged with a green leaf &mdash; and the cloud, i.e. an operating system that treats its own silicon as the cheap first stop for agent work. Creative Strategies&rsquo; Max Weinbach wrote on X: <span class="hl-terra">&ldquo;Microsoft might get me back to Windows.&rdquo;</span> The event also surfaced the <b>Surface RTX Spark Dev Box</b>, Microsoft&rsquo;s answer to Nvidia&rsquo;s own DGX line for Windows, whose consumer sibling got a brutal reminder this week of what the memory shortage costs: <b>DGX Spark was raised roughly 75% to $6,950</b> on Monday.</p>
+      <p>Under the laptop sits the actual strategy. Windows 11 will confine coding agents to <span class="hl-ink">Microsoft Execution Containers</span> that block unwanted system access &mdash; the sandbox as a shipping OS feature rather than a developer nicety &mdash; and the device setup experience now helps users start the open-source <b>OpenClaw</b> agent software on first boot. Add <b>Meta&rsquo;s Muse coming to Windows</b>, announced the same evening (Muse having just passed ChatGPT at the top of the App Store), and the laptop reads as a stage for other companies&rsquo; agents as much as Microsoft&rsquo;s own. Satya Nadella framed the day as the start of &ldquo;thinking about the frontier ecosystem taking maybe slightly different contours&rdquo; in two, five, ten years &mdash; from a company Gartner does not rank among the top six PC vendors by units, which is exactly why the hardware matters to it.</p>
+      <p>The through-line from this week: compute is getting more expensive at the margins (DGX Spark up 75%) while the entry price to run it locally just got anchored at $2,599. Microsoft answered yesterday&rsquo;s memory-bill anxiety with a real price tag and a developer story &mdash; containers for the agents, OpenClaw in the out-of-box experience, and Nvidia silicon where Apple&rsquo;s used to be. Whether developers follow the leaf icon back to Windows is the only question the benchmarks can&rsquo;t answer.</p>
+    </div>
+    <a class="source-link" href="https://www.cnbc.com/2026/10/07/microsoft-starts-taking-preorders-for-2599-surface-laptop-ultra.html" target="_blank">Full story &middot; CNBC</a>
+  </div>
+
+  <!-- CARD - 05 &middot; WORLD -->
+  <div id="geopolitics" class="story-card card-cream section-anchor">
+    <div class="page-chip">05 &middot; WORLD</div>
+    <div class="card-routine">Washington &middot; Standards Before the Ballot</div>
+    <h2 class="card-headline">Cantwell Would Hand NIST the Keys to Frontier-Model Safety &mdash; and She Wrote It Without a Bill</h2>
+    <div class="card-deck">The Senate Commerce ranking member&rsquo;s six-point framework would have NIST set mandatory standards for frontier models, require continuous government and third-party testing, independent audits, public risk disclosures, and incident reporting that includes &ldquo;unsafe recursive self-improvement.&rdquo; It ships with no legislative text, explicitly counters the White House&rsquo;s voluntary approach, and lands weeks before an election that could hand her the gavel.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">6</span>
+        <span class="stat-label">Framework points, no bill text</span>
+      </div>
+      <p class="drop">Senator <span class="hl-ink">Maria Cantwell</span>, the Senate Commerce Committee&rsquo;s ranking member, released a framework for federal AI regulation on Wednesday, and its centre of gravity is a single institutional choice: <b>NIST</b> would set the mandatory standards for frontier models, including how to address catastrophic risks such as loss of control and AI agents <span class="hl-terra">&ldquo;escaping secure testing environments.&rdquo;</span> Her statement: &ldquo;To manage risks from advanced AI systems we need clear safety standards, continuous testing, and reporting of serious failures. America can lead the world in AI by building systems that are not only more capable, but safer and more secure.&rdquo; The standards would set &ldquo;heightened review and oversight for systems that exhibit dangerous capabilities or are capable of self-improvement that may bypass safety controls,&rdquo; cover open-source models, and be updated as risks evolve.</p>
+      <p>Under the standards, models would face <span class="hl-ink">continuous testing by the government and third parties</span>, with independent audits confirming compliance. A committee aide drew the division of labour in operational terms: testing a model&rsquo;s ability to design a biological or nuclear weapon &ldquo;might be something where you need national security expertise,&rdquo; while &ldquo;testing the ability of AI agents to deceive their operators and escape their testing environments&rdquo; is work a third-party tester might be better placed to do. Enforcement is deliberately left open &mdash; the aide said it &ldquo;will have to come out during discussions as we turn this into a bill&rdquo; and could include civil or criminal penalties depending on the violation.</p>
+      <p>The disclosure section is the one with teeth for developers: frontier labs would be directed to publicly disclose potential risks and their mitigations, and to report safety incidents including <span class="hl-terra">&ldquo;unsafe recursive self-improvement&rdquo;</span> &mdash; defined as a model developing itself or other models without human instruction. The framework also reaches children&rsquo;s use of AI products, worker-training funding, AI in consequential decisions, international standard-setting, and &ldquo;defensive AI&rdquo; partnerships to protect critical infrastructure &mdash; a full-government posture rather than a single-purpose safety bill.</p>
+      <p>Timing is the politics. There is no bill text, and a Democratic committee aide said the framework could become more than one bill, with bipartisan legislation the intention &mdash; but Senate Majority Leader John Thune is separately working on an AI bill that Cantwell is not part of, Commerce Chair Ted Cruz wants &ldquo;independent judges&rdquo; playing a role and a federal standard that addresses &ldquo;the burgeoning patchwork of state laws,&rdquo; and Congress has passed no comprehensive AI legislation this year. Cantwell co-sponsored Senator Todd Young&rsquo;s bill earlier this year to codify NIST&rsquo;s AI standards centre on a voluntary basis; this framework goes further, to mandatory. If Democrats take the Senate in the midterms she is expected to hold the Commerce gavel &mdash; which makes Wednesday&rsquo;s document less a proposal than a first draft of the majority&rsquo;s agenda.</p>
+    </div>
+    <a class="source-link" href="https://rollcall.com/2026/10/07/sen-maria-cantwell-looks-to-federal-testing-role-in-ai-safety-framework/" target="_blank">Full story &middot; Roll Call</a>
+  </div>
+
+  <!-- SIGNALS -->
+  <div id="signals" class="story-card card-cream section-anchor">
+    <div class="page-chip">06 &middot; SIGNALS</div>
+    <div class="card-routine">5 Key Signals</div>
+    <h2 class="card-headline sm">What Moved the Machine Frontier Today</h2>
+    <div class="card-deck" style="border-bottom:none; padding-bottom:0; margin-bottom:16px;">Briefs that did not make the cards &mdash; each worth an afternoon of reading.</div>
+    <div class="signals-grid">
+      <div class="signal-row">
+        <div class="signal-num n1">1</div>
+        <div>
+          <div class="signal-title">Anthropic Prices Haiku 5.5 at $0.10/$0.50 &mdash; and Halves Sonnet&rsquo;s Cache Reads</div>
+          <div class="signal-desc">Claude Haiku 5.5 lands as the cheapest, fastest small model Anthropic has shipped: <b>$0.10 input / $0.50 output per million tokens</b> for prompts up to 100K ($0.50/$2.50 above that), around 75% cheaper to run than Haiku 4.5 on average, and the first Haiku with an adjustable effort setting &mdash; 72.4% on OSWorld 2.1 and 45.9% on Humanity&rsquo;s Last Exam. The same post cuts <b>Sonnet 5.5 cache reads from $0.20 to $0.10</b>, roughly 20% off most agentic work, and adds monthly API credits for Claude subscribers: $100 on Max 5x, $200 on Max 20x, up to $500 pooled on Team. Available day one on AWS, Google Cloud and Azure.</div>
+          <a class="signal-link" href="https://www.anthropic.com/claude-haiku-5-5" target="_blank">Anthropic &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n2">2</div>
+        <div>
+          <div class="signal-title">Broadcom Is Arranging More Than $50 Billion for OpenAI&rsquo;s Chip</div>
+          <div class="signal-desc">The Wall Street Journal reports Broadcom has spent recent weeks arranging <b>more than $50 billion of financing for the custom accelerator it is building with OpenAI</b> (the Jalape&ntilde;o line), with the deal expected to close before year-end; Apollo, Blackstone and Goldman Sachs are among lenders also speaking to Oracle and SpaceX about parallel structures. This is the vendor-as-credit-guarantor model again: Broadcom already backstops the June platform with Apollo and Blackstone sized at over 20 GW through 2028 (first sum $35B for Anthropic capacity, exposure capped around $29B, nothing paid to date), and banks began marketing a separate $60B for Anthropic&rsquo;s 2027 chips on Monday. Against $24B of cash and $57B of long-term debt, the Journal leaves open whether Broadcom will guarantee this one the same way.</div>
+          <a class="signal-link" href="https://etf.net/news/broadcom-is-working-to-arrange-more-than-50-billion-for-an-openai-chip-2026-10-07" target="_blank">WSJ, via ETF.net &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n3">3</div>
+        <div>
+          <div class="signal-title">A CVSS 9.8 in LMCache, and There Is No Patch</div>
+          <div class="signal-desc">JFrog disclosed <b>CVE-2026-105192</b> on Wednesday: unauthenticated remote code execution in LMCache, the open-source caching layer that speeds up vLLM-class LLM servers, scoring a critical 9.8. In multiprocess mode the cache opens a ZeroMQ socket with no authentication, and one message type is unpacked with <b>pickle</b> before the server even checks what kind of message it is &mdash; so a single crafted packet runs code as the LMCache process, which is root in the official container images. Versions 0.3.9 through 0.5.5, the 0.5.6 release candidates and the dev branch are affected, <b>no fixed version exists</b>, and LMCache has published no advisory. Default binding is localhost, but the project&rsquo;s own Kubernetes example listens on every interface. The same pickle-off-an-unauthenticated-socket mistake researchers named ShadowMQ across inference frameworks last November.</div>
+          <a class="signal-link" href="https://thehackernews.com/2026/10/unpatched-critical-lmcache-flaw-lets.html" target="_blank">The Hacker News &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n4">4</div>
+        <div>
+          <div class="signal-title">Nous Research Hits $1.5 Billion and Takes Hermes to the Enterprise</div>
+          <div class="signal-desc">The open-source Hermes Agent startup confirmed a <b>$90 million Series B at a $1.5 billion valuation</b>, led by Robot Ventures with Nvidia, Union Square Ventures, Menlo Ventures, Samsung and 1789 Capital (where Donald Trump Jr. is a partner) in &mdash; $158 million raised total by the three-year-old lab. Hermes has been cloned more than 24 million times and, by Nous&rsquo;s estimate, drives roughly 2.5% of global AI token usage. The money funds &ldquo;Hermes for Businesses&rdquo;: customised agents for companies running multi-step workflows with data kept private. Per the Journal via TechCrunch, annualised revenue sat near $36 million in mid-September and is expected to pass $100 million before the year ends.</div>
+          <a class="signal-link" href="https://techcrunch.com/2026/10/07/nous-research-confirms-it-hit-1-5b-valuation-launches-ai-agents-for-business-users/" target="_blank">TechCrunch &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n5">5</div>
+        <div>
+          <div class="signal-title">Ex-OpenAI Researchers Tell the Board the Monitors Are Going Dark</div>
+          <div class="signal-desc"><b>Tomek Korbak, Mikita Balesni and Jasmine Wang</b> have written to OpenAI&rsquo;s board and safety committees urging the company not to pursue advances that make models harder to watch: <b>&ldquo;As an industry, we do not yet know how to safely develop and deploy models that we cannot monitor.&rdquo;</b> The timing is the story &mdash; the letter follows OpenAI saying it &ldquo;parted ways with three individuals for violating our policies on accessing and handling sensitive company information,&rdquo; and excerpts published by the Journal sit beside GPT-6 Astra&rsquo;s own system card conceding that &ldquo;Astra class models could evade our CoT monitors under adversarial conditions,&rdquo; with Astra&rsquo;s recurrent-depth architecture cycling queries without conventional intermediate output. OpenAI says the departures &ldquo;were not about raising safety concerns or speaking out&rdquo; and that it internally &ldquo;strongly agreed&rdquo; with the letter&rsquo;s recommendations.</div>
+          <a class="signal-link" href="https://www.ibtimes.sg/can-openai-still-monitor-its-ai-former-researchers-warn-growing-safety-blind-spot-94796" target="_blank">IBTimes (WSJ excerpts) &#8597;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THEMES + TOOL + SOURCES -->
+  <div id="themes" class="story-card card-lavender section-anchor">
+    <div class="page-chip">07 &middot; CLOSER</div>
+    <div class="card-routine">Top Themes</div>
+    <h2 class="card-headline sm">The Shape of Today&rsquo;s News</h2>
+    <div class="themes-grid" style="margin-top:16px;">
+      <div class="theme-item">The Answer Compiles Itself</div>
+      <div class="theme-item">Europe Says Stop</div>
+      <div class="theme-item">The Vendor Becomes the Bank</div>
+      <div class="theme-item">The Floor Under Small Models</div>
+      <div class="theme-item">Standards Before the Midterms</div>
+    </div>
+
+    <div id="tool" class="tool-week section-anchor">
+      <div class="tool-week-eyebrow">Company Watch of the Day</div>
+      <div class="tool-week-name">OPENAI</div>
+      <div class="tool-week-desc">One company, three configurations, in twenty-four hours. As a <b>consumer product</b>: GPT-6 Sol and GPT-6 Luna with Intelligent UI rolling to 1.2 billion weekly users inside 48 hours &mdash; buttons, forms and charts compiled per answer, dialled back only via a Settings switch that will not give you a text-only mode back. As a <b>balance sheet</b>: Broadcom arranging more than $50 billion to finance the custom accelerator it is building with OpenAI, expected to close before year-end, on top of the Jalape&ntilde;o programme already in qualification for deployment by December. As a <b>safety subject</b>: three former researchers telling its board that &ldquo;we do not yet know how to safely develop and deploy models that we cannot monitor,&rdquo; alongside its own Astra system card admitting those monitors can be evaded under adversarial conditions &mdash; with the company saying the authors&rsquo; departures were not about safety concerns and that it &ldquo;strongly agreed&rdquo; with them anyway. Watch which version of OpenAI each regulator, lender and customer chooses to address.</div>
+    </div>
+
+    <div id="sources" class="output-card section-anchor">
+      <div class="output-title">Sources Cited</div>
+      <div class="sources-grid">
+        <a href="https://community.openai.com/t/gpt-6-and-intelligent-ui-in-chatgpt/1404139" target="_blank">OpenAI &mdash; GPT-6 and Intelligent UI in ChatGPT</a>
+        <a href="https://www.theverge.com/ai-artificial-intelligence/1007276/openai-chatgpt-intelligent-ui-gpt-6" target="_blank">The Verge &mdash; ChatGPT&rsquo;s Intelligent UI fills responses with pictures, charts and buttons</a>
+        <a href="https://9to5mac.com/2026/10/07/openai-brings-gpt-6-to-chatgpt-and-debuts-intelligent-ui/" target="_blank">9to5Mac &mdash; OpenAI brings GPT-6 to ChatGPT and debuts Intelligent UI</a>
+        <a href="https://www.macrumors.com/2026/10/07/chatgpt-intelligent-ui/" target="_blank">MacRumors &mdash; ChatGPT gets GPT-6 and new Intelligent UI</a>
+        <a href="https://www.cnbc.com/2026/10/08/manus-fund-raise-meta-muse-tencent.html" target="_blank">CNBC &mdash; Manus raises $500 million in first funding round since Meta breakup</a>
+        <a href="https://yle.fi/a/74-20250446" target="_blank">Yle &mdash; Google halts work on data centres as Finnish police probe suspected illegal logging</a>
+        <a href="https://www.cnbc.com/2026/10/07/microsoft-starts-taking-preorders-for-2599-surface-laptop-ultra.html" target="_blank">CNBC &mdash; Microsoft starts taking preorders for $2,599 Surface Laptop Ultra</a>
+        <a href="https://rollcall.com/2026/10/07/sen-maria-cantwell-looks-to-federal-testing-role-in-ai-safety-framework/" target="_blank">Roll Call &mdash; Cantwell looks to federal testing role in AI safety framework</a>
+        <a href="https://www.anthropic.com/claude-haiku-5-5" target="_blank">Anthropic &mdash; Introducing Claude Haiku 5.5</a>
+        <a href="https://etf.net/news/broadcom-is-working-to-arrange-more-than-50-billion-for-an-openai-chip-2026-10-07" target="_blank">WSJ, via ETF.net &mdash; Broadcom arranging more than $50 billion for an OpenAI chip</a>
+        <a href="https://thehackernews.com/2026/10/unpatched-critical-lmcache-flaw-lets.html" target="_blank">The Hacker News &mdash; Unpatched critical LMCache flaw lets attackers run code remotely</a>
+        <a href="https://techcrunch.com/2026/10/07/nous-research-confirms-it-hit-1-5b-valuation-launches-ai-agents-for-business-users/" target="_blank">TechCrunch &mdash; Nous Research confirms $1.5B valuation, launches business agents</a>
+        <a href="https://www.ibtimes.sg/can-openai-still-monitor-its-ai-former-researchers-warn-growing-safety-blind-spot-94796" target="_blank">IBTimes &mdash; Former OpenAI researchers warn of a growing safety blind spot</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-logo">
+      <div class="footer-mark">
+        <img src="../assets/timps_logo.svg" alt="TIMPS">
+      </div>
+      <span class="footer-brand">TIMPS PostCards</span>
+    </div>
+    <div class="footer-center">
+      Issue 133 &middot; October 8, 2026<br>
+      Hyderabad, India
+    </div>
+    <div class="footer-right">
+      <a href="../index.html">Home</a><br>
+      <a href="../archive.html">Archive</a><br>
+      &copy; 2026 TIMPS
+    </div>
+  </footer>
+
+</div> <!-- /wrapper -->
+</div> <!-- /page-layout -->
+</body>
+</html>
