@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 119 daily issues + 14 deep dives · regenerated 2026-10-07**
+**Coverage: 120 daily issues + 14 deep dives · regenerated 2026-10-08**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 133 · 2026-10-08 · `daily/timps-postcards-2026-10-08.html`
+
+- **[01 · LEAD]** OpenAI Put GPT‑6 in Front of 1.2 Billion People — and Taught It to Build the Interface While It Thinks
+  - _GPT‑6 Sol reached every paid ChatGPT tier worldwide on Wednesday and GPT‑6 Luna arrives for Free and Go on Thursday, but the real release is Intelligent UI: answers rendered as tappable buttons, forms, charts and mini-tools from a component library the model draws on as it streams. Work and Codex are untouched; users can dial the visuals back in Settings._
+  - Source: [Full story · The Verge](https://www.theverge.com/ai-artificial-intelligence/1007276/openai-chatgpt-intelligent-ui-gpt-6)
+
+- **[02 · INDUSTRY]** Manus Raised $500 Million in Its First Round Since Beijing Killed the Meta Deal
+  - _Boyu Capital and IDG Capital lead more than $500 million for Butterfly Effect, with Tencent, HSG and ZhenFund following on. No valuation was disclosed; Bloomberg reported in September the round would double it to about $4 billion, making Manus China’s most valuable AI agent startup — a quarter after regulators prohibited foreign investment in the very project Meta was buying._
+  - Source: [Full story · CNBC](https://www.cnbc.com/2026/10/08/manus-fund-raise-meta-muse-tencent.html)
+
+- **[03 · INFRASTRUCTURE]** Finland Ordered Google to Stop Clearing Forest for Two Data Centres — Then the Police Opened a File
+  - _The Finnish supervisory agency LVV told Google’s subsidiary Tuike Finland to suspend environment-altering work at Muhos and Kajaani until environmental impact assessments are complete, with an explanation due 14 October. Both sites sit inside the €13 billion investment Google announced last month; police are now weighing a preliminary investigation into suspected illegal logging after a private citizen’s complaint._
+  - Source: [Full story · Yle](https://yle.fi/a/74-20250446)
+
+- **[04 · PRODUCTS]** Microsoft’s Nvidia Laptop Starts at $2,599 — and Windows Becomes the Agent Runtime
+  - _Preorders opened Wednesday for the Surface Laptop Ultra: up to 128 gigabytes of unified memory, up to one petaflop of computing, Blackwell RTX Spark silicon inside, shipping 16 October. The event’s larger story is the OS underneath it — coding agents confined to Microsoft Execution Containers, a first-boot path to the open-source OpenClaw agent, and Meta’s Muse coming to Windows._
+  - Source: [Full story · CNBC](https://www.cnbc.com/2026/10/07/microsoft-starts-taking-preorders-for-2599-surface-laptop-ultra.html)
+
+- **[05 · WORLD]** Cantwell Would Hand NIST the Keys to Frontier-Model Safety — and She Wrote It Without a Bill
+  - _The Senate Commerce ranking member’s six-point framework would have NIST set mandatory standards for frontier models, require continuous government and third-party testing, independent audits, public risk disclosures, and incident reporting that includes “unsafe recursive self-improvement.” It ships with no legislative text, explicitly counters the White House’s voluntary approach, and lands weeks before an election that could hand her the gavel._
+  - Source: [Full story · Roll Call](https://rollcall.com/2026/10/07/sen-maria-cantwell-looks-to-federal-testing-role-in-ai-safety-framework/)
+
+  **Signals / briefs:**
+  - Anthropic Prices Haiku 5.5 at $0.10/$0.50 — and Halves Sonnet’s Cache Reads
+  - Broadcom Is Arranging More Than $50 Billion for OpenAI’s Chip
+  - A CVSS 9.8 in LMCache, and There Is No Patch
+  - Nous Research Hits $1.5 Billion and Takes Hermes to the Enterprise
+  - Ex-OpenAI Researchers Tell the Board the Monitors Are Going Dark
 
 ### Issue 132 · 2026-10-07 · `daily/timps-postcards-2026-10-07.html`
 
