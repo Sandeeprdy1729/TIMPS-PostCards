@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 120 daily issues + 14 deep dives · regenerated 2026-10-08**
+**Coverage: 121 daily issues + 14 deep dives · regenerated 2026-10-09**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 134 · 2026-10-09 · `daily/timps-postcards-2026-10-09.html`
+
+- **[01 · LEAD]** Google Gave Gemini Its Own Email Address — and a Model Picker That Can Reach for Claude
+  - _Google Cloud unveiled a universal Gemini agent on Thursday that takes “objectives, not just instructions,” works across Workspace, Microsoft 365, Slack, Jira, Git, BigQuery, Snowflake, Databricks and Postgres, and runs from its own Workspace account — its own email, calendar and directory listing — as if it were a colleague. It picks the best model for each job, and Google says that can mean a rival’s._
+  - Source: [Full story · TechCrunch](https://techcrunch.com/2026/10/08/google-brings-agentic-ai-to-gemini-starting-with-businesses/)
+
+- **[02 · INDUSTRY]** Firmus Pulled the Biggest ASX Float Since Telstra — and Pointed at the AI Trade Itself
+  - _The Nvidia-backed “AI factory” builder withdrew its A$43.7 billion listing on Friday morning after big investors refused A$11 a share, killing what would have been Australia’s largest IPO since 1997. Founded as a Tasmanian Bitcoin miner, valued at $1.85 billion a year ago and priced at $44 billion this week, Firmus now goes back to private markets — and is drawing up a Nasdaq listing instead._
+  - Source: [Full story · BBC](https://www.bbc.com/news/articles/ck9dzpw4ll8po)
+
+- **[03 · INFRASTRUCTURE]** Nvidia Committed $1 Billion to US Science — “Super Intelligence in the Hands of America’s Scientists”
+  - _At the White House’s “Science: A New Golden Age” summit on Thursday, Nvidia pledged $1 billion over five years for quantum computing, healthcare and energy security, and signed on to Phase 2 awards of Trump’s Genesis Mission. The chipmaker is now both the federal government’s biggest AI vendor and one of its research sponsors._
+  - Source: [Full story · NVIDIA Newsroom](https://nvidianews.nvidia.com/news/nvidia-commits-1-billion-to-advance-us-science-over-the-next-five-years)
+
+- **[04 · PRODUCTS]** Boston Dynamics Handed the Robots to Alexa’s Architect, Rohit Prasad
+  - _The Hyundai-owned robotics leader named Rohit Prasad CEO effective 7 October. He spent 12 years at Amazon building Alexa and creating the Nova foundation-model family, after nearly 14 years at Raytheon BBN. The mandate is explicit: combine world-class robotics with advanced AI to “commercialize intelligent machines at scale.”_
+  - Source: [Full story · Boston Dynamics](https://bostondynamics.com/news/boston-dynamics-appoints-rohit-prasad-as-chief-executive-officer/)
+
+- **[05 · WORLD]** USA Today Sued OpenAI — and Put a Number on the News: $250 Million
+  - _USA Today Co. and its local papers allege OpenAI trained on “hundreds of thousands” of their articles, filing in federal court in Manhattan on Thursday. “OpenAI’s commercial success rests on large-scale copyright infringement,” the publisher wrote — the latest newsroom to ask the courts to price the training data._
+  - Source: [Full story · The Verge](https://www.theverge.com/news/1008198/usa-today-openai-copyright-lawsuit)
+
+  **Signals / briefs:**
+  - OpenAI Disrupted Its First “Category 5” Influence Operation
+  - Anthropic Opened a Cyber Mission for Critical Infrastructure
+  - The FTC Is Close to Subpoena-Like Demands on the Labs
+  - Isomorphic Labs Is in Funding Talks at a $40 Billion-Plus Value
+  - Big Tech Priced Nearly Half a Trillion in AI Debt This Year
 
 ### Issue 133 · 2026-10-08 · `daily/timps-postcards-2026-10-08.html`
 
