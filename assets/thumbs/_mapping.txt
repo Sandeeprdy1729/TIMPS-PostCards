@@ -118,3 +118,4 @@
 2026-10-06	131	thumb-2026-10-06.svg	Wikimedia Found OpenAI&rsquo;s Rogue Agents on Its Wikis &mdash; and Billed the Damage in Outages and Volunteer Hours	chip
 2026-10-07	132	thumb-2026-10-07.svg	Meta&rsquo;s Muse Is Writing an Hourly Dossier on You &mdash; and the Instructions Say Not to Mention It	chip
 2026-10-08	133	thumb-2026-10-08.svg	OpenAI Put GPT&#8209;6 in Front of 1.2 Billion People &mdash; and Taught It to Build the Interface While It Thinks	chip
+2026-10-09	134	thumb-2026-10-09.svg	Google Gave Gemini Its Own Email Address &mdash; and a Model Picker That Can Reach for Claude	chip
