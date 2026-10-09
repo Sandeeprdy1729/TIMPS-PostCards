@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TIMPS">
+<link rel="manifest" href="../manifest.json">
+<link rel="apple-touch-icon" href="../assets/icon-192.png">
+<title>TIMPS PostCards — Issue 134</title>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --cream:  #EEECE2;
+    --forest: #3D3929;
+    --terra:  #DA7756;
+    --terra-d:#BD5D3A;
+    --black:  #111111;
+    --card-bg:#F0ECE0;
+    --mono:   'Newsreader', Georgia, 'Times New Roman', serif;
+    --serif:  'TIMPS', 'Playfair Display', Georgia, serif;
+  }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Black.woff2') format('woff2'); font-weight:900; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Bold.woff2') format('woff2'); font-weight:700; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-SemiBold.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--cream);
+    background-image:
+      linear-gradient(rgba(61,57,41,.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.07) 1px, transparent 1px);
+    background-size: 38px 38px;
+    font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+    color: var(--forest);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { text-decoration: none; color: inherit; }
+
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 48px;
+    background-color: rgba(238,236,226,.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1.5px solid rgba(61,57,41,.12);
+    background-image:
+      linear-gradient(rgba(61,57,41,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.05) 1px, transparent 1px);
+    background-size: 38px 38px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Special Elite', 'Courier New', Courier, monospace;
+    font-size: 15px;
+    font-weight: 400;
+    color: #000;
+    text-decoration: none;
+  }
+  .nav-logo-mark {
+    width: 34px; height: 34px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .nav-logo-mark img { width: 28px; height: 28px; object-fit: contain; }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-link {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: #000;
+    opacity: .65;
+    text-decoration: none;
+    transition: opacity .15s;
+  }
+  .nav-link:hover { opacity: 1; }
+  .nav-cta {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: #000;
+    background: var(--terra);
+    border: 2.5px solid #000;
+    border-radius: 100px;
+    padding: 10px 24px;
+    cursor: pointer;
+    transition: background .15s, transform .1s;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--terra-d); transform: translateY(-1px); }
+
+  .wrapper { max-width: 760px; margin: 0 auto; padding: 40px 20px 80px; display: flex; flex-direction: column; gap: 0; }
+
+  .cover-card { background: var(--card-bg); border-radius: 20px 20px 4px 4px; padding: 56px 48px 48px; text-align: center; position: relative; overflow: hidden; border: 1.5px solid rgba(61,57,41,.12); margin-bottom: 3px; }
+  .cover-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, var(--terra) 0%, var(--terra-d) 60%, #E0A88A 100%); }
+  .cover-eyebrow { font-family: var(--mono); font-size:10px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:20px; display:flex; align-items:center; justify-content:center; gap:10px; }
+  .cover-eyebrow::before,.cover-eyebrow::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .15; max-width:60px; }
+  .cover-title { font-family: var(--serif); font-size:58px; font-weight:900; line-height:1; letter-spacing:-1px; color: var(--forest); margin-bottom:8px; }
+  .cover-sub { font-family: var(--serif); font-size:13px; font-style:italic; color: var(--forest); opacity: .55; margin-bottom:28px; }
+  .cover-divider { width:48px; height:2px; background: var(--terra); margin:0 auto 24px; border-radius:2px; }
+  .cover-meta { display:flex; justify-content:center; gap:32px; font-family: var(--mono); font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .45; }
+  .cover-badge { display:inline-flex; align-items:center; gap:6px; background: var(--terra); color: #fff; border-radius:20px; padding:6px 18px; font-family: var(--mono); font-size:10px; letter-spacing:2px; text-transform:uppercase; margin-top:28px; }
+  .top5-pill { display:flex; justify-content:center; gap:10px; margin-top:32px; flex-wrap:wrap; }
+  .pill { background: var(--forest); color: var(--cream); border-radius:100px; padding:4px 14px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; }
+  .pill.light { background:transparent; color: var(--forest); border:1px solid rgba(61,57,41,.2); }
+
+  .section-label { display:flex; align-items:center; gap:12px; padding:10px 0 8px; font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .35; }
+  .section-label::before,.section-label::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .1; }
+
+  .story-card { border-radius:4px; border:1.5px solid rgba(61,57,41,.10); padding:36px 40px; margin-bottom:3px; position:relative; overflow:hidden; }
+  .story-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }
+
+  .card-sky      { background:#D6E8F0; } .card-sky::before      { background: #7AAFC0; }
+  .card-cream    { background: var(--card-bg); } .card-cream::before    { background: var(--terra); }
+  .card-blush    { background:#F5DDD0; } .card-blush::before    { background: #E0A88A; }
+  .card-lavender { background:#EAE6F5; } .card-lavender::before { background: #C8BEE8; }
+  .card-sage     { background:#D6E4D6; } .card-sage::before     { background: #8BAF8B; }
+
+  .page-chip { position:absolute; top:14px; right:16px; font-family: var(--mono); font-size:9px; letter-spacing:2px; text-transform:uppercase; color: var(--forest); opacity: .3; }
+  .card-routine { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:8px; }
+  .card-headline { font-family: var(--serif); font-size:28px; font-weight:900; line-height:1.15; color: var(--forest); margin-bottom:10px; }
+  .card-headline.lg { font-size:34px; }
+  .card-headline.sm { font-size:22px; }
+  .card-deck { font-family: var(--serif); font-style:italic; font-size:14px; line-height:1.55; color: var(--forest); opacity: .55; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid rgba(61,57,41,.12); }
+  .card-body { font-family: 'Lora', Georgia, serif; font-size:14px; line-height:1.7; color: var(--forest); }
+  .card-body p { margin-bottom:11px; }
+  .drop::first-letter { font-family: var(--serif); font-size:52px; font-weight:900; float:left; line-height:.78; margin:5px 6px 0 0; color: var(--terra); }
+  .clearfix::after { content:''; display:table; clear:both; }
+
+  .hl-terra { background: var(--terra); color: var(--forest); padding:0 4px; border-radius:2px; }
+  .hl-ink  { background: var(--forest); color: var(--cream); padding:0 4px; border-radius:2px; }
+  .hl-sage { background: #8BAF8B; color: #fff; padding:0 4px; border-radius:2px; }
+  .hl-lav  { background: #C8BEE8; color: var(--forest); padding:0 4px; border-radius:2px; }
+
+  .stat-box { float:right; margin:0 0 16px 24px; background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:16px 20px; text-align:center; min-width:120px; }
+  .stat-big { font-family: var(--serif); font-size:44px; font-weight:900; line-height:1; color: var(--forest); display:block; }
+  .stat-label { font-family: var(--mono); font-size:9.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .5; display:block; margin-top:4px; }
+
+  .img-frame { border:2px solid rgba(61,57,41,0.18); border-radius:12px; overflow:hidden; margin:16px 0; background: var(--card-bg); }
+  .img-frame img { width:100%; display:block; max-height:240px; object-fit:cover; border-bottom:1px solid rgba(61,57,41,.12); }
+  .img-caption { padding:8px 12px; font-family: var(--mono); font-size:10.5px; color: var(--forest); opacity: .6; font-style:italic; display:flex; align-items:center; justify-content:space-between; gap:8px; }
+  .img-caption a { font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; white-space:nowrap; font-style:normal; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; }
+  .img-caption a:hover { opacity: 1; }
+  .img-frame.float-right { float:right; width:220px; margin:0 0 16px 24px; }
+  .img-frame.float-right img { max-height:140px; }
+
+  .source-link { display:inline-flex; align-items:center; gap:5px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:12px; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; transition: opacity .15s; }
+  .source-link:hover { opacity: 1; }
+  .source-link::after { content:'↗'; font-size:9px; }
+
+  .signals-grid { display:flex; flex-direction:column; gap:14px; }
+  .signal-row { display:flex; align-items:flex-start; gap:14px; }
+  .signal-num { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family: var(--serif); font-size:13px; font-weight:900; flex-shrink:0; color:#fff; }
+  .signal-num.n1{background: var(--terra); color: var(--forest);} .signal-num.n2{background: var(--forest);} .signal-num.n3{background:#7AAFC0;} .signal-num.n4{background: var(--terra-d); color: var(--forest);} .signal-num.n5{background: var(--black);}
+  .signal-title { font-family: var(--serif); font-size:14px; font-weight:700; color: var(--forest); margin-bottom:2px; }
+  .signal-desc { font-family: 'Newsreader', Georgia, 'Times New Roman', serif; font-size:12px; line-height:1.65; color: var(--forest); opacity: .6; }
+  .signal-link { display:inline-block; font-family: var(--mono); font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:4px; border-bottom:1px solid rgba(61,57,41,.25); padding-bottom:1px; transition: opacity .15s; }
+  .signal-link:hover { opacity: 1; }
+
+  .themes-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .theme-item { padding:10px 14px; border-radius:8px; font-family: var(--serif); font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; text-align:center; border:1.5px solid rgba(61,57,41,.12); background: var(--cream); }
+
+  .tool-week { background: var(--forest); color: var(--cream); border-radius:12px; padding:18px 20px; text-align:center; margin-top:14px; }
+  .tool-week-eyebrow { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; opacity: .55; margin-bottom:6px; }
+  .tool-week-name { font-family: var(--serif); font-size:22px; font-weight:900; margin-bottom:4px; }
+  .tool-week-desc { font-family: 'Newsreader', Georgia, 'Times New Roman', serif; font-size:11.5px; opacity: .7; font-style:italic; }
+
+  .output-card { background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:18px 20px; margin-top:14px; }
+  .output-title { font-family: var(--serif); font-size:18px; font-weight:700; margin-bottom:8px; color: var(--forest); }
+  .tp-list { list-style:none; padding:0; margin:0; }
+  .tp-list li { padding:5px 0; font-family: 'Lora', Georgia, serif; font-size:12px; color: var(--forest); border-bottom:1px solid rgba(61,57,41,.07); display:flex; align-items:flex-start; gap:7px; }
+  .tp-list li::before { content:'·'; color: var(--terra); font-size:14px; line-height:1.2; flex-shrink:0; }
+  .tp-list li a { color: var(--forest); opacity: .8; text-decoration:none; }
+  .tp-list li a:hover { opacity: 1; }
+
+  .sources-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px 20px; }
+  .sources-grid a { font-family: var(--mono); font-size:11px; color: var(--forest); opacity: .55; text-decoration:none; border-bottom:1px solid rgba(61,57,41,.15); padding-bottom:1px; transition: opacity .15s; }
+  .sources-grid a:hover { opacity: 1; }
+
+  .footer {
+    background: var(--black);
+    padding: 28px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    border-radius: 4px 4px 20px 20px;
+    margin-top: 3px;
+  }
+  .footer-logo { display: flex; align-items: center; gap: 10px; }
+  .footer-mark { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; }
+  .footer-mark img { width: 24px; height: 24px; object-fit: contain; }
+  .footer-brand { font-family: 'Special Elite', 'Courier New', Courier, monospace; font-size: 13px; font-weight: 400; color: #fff; }
+  .footer-center { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.4); text-align: center; line-height: 1.6; }
+  .footer-right { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.3); text-align: right; line-height: 2; }
+  .footer-right a { color: rgba(255,255,255,.5); transition: color .15s; }
+  .footer-right a:hover { color: #fff; }
+
+  .page-layout { display: flex; align-items: flex-start; gap: 0; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+  .toc-sidebar { position: sticky; top: 80px; width: 170px; flex-shrink: 0; padding: 48px 0 0 0; }
+  .toc-nav { display: flex; flex-direction: column; gap: 0; }
+  .toc-link { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.5px; text-transform: uppercase; color: #000; opacity: .45; text-decoration: none; padding: 7px 12px; border-left: 2px solid transparent; transition: opacity .15s, border-color .15s; line-height: 1.3; }
+  .toc-link:hover { opacity: .85; }
+  .toc-link.active { opacity: 1; border-left-color: var(--terra); }
+  .section-anchor { scroll-margin-top: 80px; }
+
+  @media (max-width: 900px) {
+    .toc-sidebar { display: none; }
+    .page-layout { max-width: 760px; }
+  }
+
+  @media (max-width: 720px) {
+    .nav { padding: 12px 24px; }
+    .nav-links { display: none; }
+    .wrapper { padding: 20px 14px 60px; }
+    .cover-card { padding: 40px 24px; }
+    .story-card { padding: 28px 20px; }
+    .footer { padding: 24px; flex-direction: column; align-items: flex-start; }
+    .footer-center, .footer-right { text-align: left; }
+    .stat-box { float: none; margin: 0 0 16px 0; }
+    .img-frame.float-right { float: none; width: 100%; margin: 0 0 16px 0; }
+  }
+  @media (max-width: 480px) {
+    .nav-logo span { display: none; }
+    .cover-title { font-size: 40px; }
+    .card-headline.lg { font-size: 28px; }
+    .card-headline { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">
+    <div class="nav-logo-mark">
+      <img src="../assets/timps-postcards.png" alt="TIMPS">
+    </div>
+    <span>TIMPS PostCards</span>
+  </a>
+  <div class="nav-links">
+    <a href="../archive.html" class="nav-link">Archive</a>
+    <a href="timps-postcards-2026-10-09.html" class="nav-link">Latest Issue</a>
+    <a href="../index.html#subscribe" class="nav-link">Subscribe</a>
+  </div>
+  <a href="../index.html#subscribe" class="nav-cta">Subscribe</a>
+</nav>
+
+<div class="page-layout">
+
+  <aside class="toc-sidebar">
+    <nav class="toc-nav">
+      <a href="#strategy" class="toc-link">Research</a>
+      <a href="#world" class="toc-link">Industry</a>
+      <a href="#media" class="toc-link">Infra</a>
+      <a href="#products" class="toc-link">Products</a>
+      <a href="#geopolitics" class="toc-link">World</a>
+      <a href="#signals" class="toc-link">Signals</a>
+      <a href="#themes" class="toc-link">Themes</a>
+      <a href="#tool" class="toc-link">Watch</a>
+      <a href="#sources" class="toc-link">Sources</a>
+    </nav>
+  </aside>
+
+  <div class="wrapper">
+
+  <!-- COVER -->
+  <div id="intro" class="cover-card section-anchor">
+    <div class="cover-eyebrow">Est. 2026 &middot; Hyderabad</div>
+    <div class="cover-title">TIMPS<br>PostCards</div>
+    <div class="cover-sub">AI Intelligence Digest &middot; Your Daily Signal from the Machine Frontier</div>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+      <span>Issue 134</span>
+      <span>October 9, 2026</span>
+      <span>No. 161</span>
+    </div>
+    <div class="cover-badge">&#11041; 134 Issues &mdash; Built with the TIMPS Ecosystem</div>
+    <div class="top5-pill">
+      <span class="pill">5 Top Signals</span>
+      <span class="pill light">Gemini Goes to Work</span>
+      <span class="pill light">Firmus Pulls Its Float</span>
+      <span class="pill light">Nvidia Funds US Science</span>
+      <span class="pill light">Boston Dynamics&rsquo; AI CEO</span>
+      <span class="pill light">USA Today Sues OpenAI</span>
+    </div>
+  </div>
+
+  <!-- CARD - 01 &middot; LEAD -->
+  <div id="strategy" class="story-card card-lavender section-anchor">
+    <div class="page-chip">01 &middot; LEAD</div>
+    <div class="card-routine">Models &middot; The Agent Gets a Paycheck</div>
+    <h2 class="card-headline">Google Gave Gemini Its Own Email Address &mdash; and a Model Picker That Can Reach for Claude</h2>
+    <div class="card-deck">Google Cloud unveiled a universal Gemini agent on Thursday that takes &ldquo;objectives, not just instructions,&rdquo; works across Workspace, Microsoft 365, Slack, Jira, Git, BigQuery, Snowflake, Databricks and Postgres, and runs from its own Workspace account &mdash; its own email, calendar and directory listing &mdash; as if it were a colleague. It picks the best model for each job, and Google says that can mean a rival&rsquo;s.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">1B+</span>
+        <span class="stat-label">Monthly Gemini app users</span>
+      </div>
+      <p class="drop">On Thursday at its <b>Gemini at Work 2026</b> event, Google Cloud unveiled a single <span class="hl-ink">universal agent</span> that it says turns the enterprise AI stack from a set of assistants into one worker. &ldquo;You can give it <span class="hl-terra">objectives, not just instructions</span>,&rdquo; Cloud CEO <b>Thomas Kurian</b> said: the agent plans the work, reaches for skills and tools, connects to a company&rsquo;s own systems, and comes back with something finished inside the documents, inbox and developer environments people already use. It is in private preview with select customers now, and Google says it will be built into <b>Gemini Enterprise</b> at no extra charge for existing Workspace Business and Enterprise seats &mdash; a version update rather than a new product to buy.</p>
+      <p>The framing Google keeps returning to is the coworker. A Gemini agent can be a personal assistant or a persistent teammate with a defined role; in the coworker setup it gets <span class="hl-ink">its own Workspace account</span> &mdash; its own email address, calendar, Drive storage and company-directory entry &mdash; and colleagues reach it by @-mention, email or a shared chat. Its edits show up under its own name in version history, it sees only the files explicitly shared with it, and it operates under a cryptographically attested identity with least-privilege permissions inside what Google calls an Agent Sandbox, with an Agent Gateway policing traffic to and from third-party models.</p>
+      <p>The model layer is where the strategy bites. Rather than run everything on Gemini, the agent&rsquo;s <b>model picker</b> supports Google&rsquo;s own models <i>and</i> <span class="hl-terra">Anthropic&rsquo;s Claude</span> today, with more planned, and a <b>Smart Routing</b> layer sends each job to whichever model balances quality and cost. Administrators set hard project spend caps in the billing console and the agent pauses itself when one trips. Long-running jobs live in the cloud for hours or days, survive a closed laptop, and can spin up temporary teams of specialist sub-agents; a &ldquo;tasks inbox&rdquo; shows the thinking, the delegation, the skills and the code as they happen. It reaches users from web, iOS, Android, Windows, Mac, the command line, Workspace, Microsoft 365, Slack and headless deployments.</p>
+      <p>That is why this leads. Yesterday&rsquo;s lead was OpenAI teaching a model to build its own interface; today&rsquo;s is Google volunteering to be the layer that <span class="hl-ink">routes work to its rivals&rsquo; models</span> and handing software an identity in the org chart. The universal assistant is no longer the product &mdash; the orchestration, memory and governance around it are. Google published no benchmarks, no pricing at scale and no general-availability date, and the hard questions stay open: does every persistent coworker carry a license, and what does a runaway agent cost before the cap fires? But the direction is set. The assistant is being rehired as a colleague, and Google wants to be the one doing the hiring.</p>
+    </div>
+    <a class="source-link" href="https://techcrunch.com/2026/10/08/google-brings-agentic-ai-to-gemini-starting-with-businesses/" target="_blank">Full story &middot; TechCrunch</a>
+  </div>
+
+  <!-- CARD - 02 &middot; INDUSTRY -->
+  <div id="world" class="story-card card-blush section-anchor">
+    <div class="page-chip">02 &middot; INDUSTRY</div>
+    <div class="card-routine">Capital &middot; The Window Slams</div>
+    <h2 class="card-headline">Firmus Pulled the Biggest ASX Float Since Telstra &mdash; and Pointed at the AI Trade Itself</h2>
+    <div class="card-deck">The Nvidia-backed &ldquo;AI factory&rdquo; builder withdrew its A$43.7 billion listing on Friday morning after big investors refused A$11 a share, killing what would have been Australia&rsquo;s largest IPO since 1997. Founded as a Tasmanian Bitcoin miner, valued at $1.85 billion a year ago and priced at $44 billion this week, Firmus now goes back to private markets &mdash; and is drawing up a Nasdaq listing instead.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">A$43.7B</span>
+        <span class="stat-label">Float withdrawn</span>
+      </div>
+      <p class="drop">Firmus stopped trying at 9am Sydney time on Friday. The Nvidia-backed data-centre developer withdrew what would have been <span class="hl-ink">the largest ASX listing since Telstra in 1997</span> &mdash; a float the market had been told was worth about <b>A$44 billion</b> &mdash; after big investors refused to pay the marketed <b>A$11</b> a share. &ldquo;Firmus has decided to withdraw its application to list on the ASX,&rdquo; the board said, citing &ldquo;recent market volatility and prevailing market conditions&rdquo; and concluding that proceeding &ldquo;was not in the best interests of the Company and its shareholders.&rdquo; It will now raise from private markets and, per <i>The Australian</i>, draw up plans to try the <b>Nasdaq</b> next year instead.</p>
+      <p>The numbers explain the retreat. Firmus was valued at <b>$1.85 billion</b> last September, <b>$10.5 billion</b> in August and sought <b>$44 billion</b> this week &mdash; nearly tripling in two months on the strength of a pipeline rather than revenue. It has <b>46&nbsp;MW</b> of operating capacity against a 912&nbsp;MW pipeline and a 3.2&nbsp;GW growth-rights book, and its most recent full-year revenue was about <b>US$51 million</b>. This week it confirmed a <b>$73 billion partnership with CDC</b> was over after a test of its flagship cooling system flooded part of CDC&rsquo;s Melbourne data centre, and Australia&rsquo;s biggest super funds &mdash; Aware Super, UniSuper and Australian Retirement Trust &mdash; stayed out. &ldquo;It&rsquo;s disappointing. The ASX needs new stories and this could have been one if it was correctly priced,&rdquo; UniSuper&rsquo;s <b>John Pearce</b> told the BBC.</p>
+      <p>The Nvidia relationship is what made it a bellwether. The chipmaker backed Firmus in a <b>$330 million</b> round last year and has invested twice more; Blackstone, Jane Street and Coatue are also on the register, and Firmus says it has secured access to <b>170,000 Nvidia chips</b> for an Indonesian facility. It builds &ldquo;AI factories&rdquo; &mdash; data centres it owns, chips it owns, compute it rents to customers including Meta and OpenAI &mdash; a neocloud that is also an operator. On Wednesday its bankers were discussing cutting the price to about <b>A$9</b>; on Thursday they went quiet mid-book. Existing holders could have sold roughly <b>$17 billion</b> of stock on day one, more than twice the ~$7.9 billion of new money being raised. That mismatch, not a collapse in AI demand, is what killed it.</p>
+      <p>So the read is not that the bubble popped &mdash; Nvidia&rsquo;s AI-adjacent spending and buybacks remain enormous &mdash; but that the <span class="hl-terra">IPO window for AI infrastructure just slammed shut</span> for anyone whose valuation outran their assets. In the same week Manus raised more than $500 million in private money and Firmus was sent back to private markets, the message to every capex-heavy startup is the same: public investors will still fund AI, but at a price that reflects revenue, not the story. Watch the Nasdaq attempt, the November 30 share clawback clause on its backers, and whether CoreWeave &mdash; its closest listed comparable, down by half this year &mdash; can hold a line Firmus could not.</p>
+    </div>
+    <a class="source-link" href="https://www.bbc.com/news/articles/ck9dzpw4ll8po" target="_blank">Full story &middot; BBC</a>
+  </div>
+
+  <!-- CARD - 03 &middot; INFRASTRUCTURE -->
+  <div id="media" class="story-card card-sky section-anchor">
+    <div class="page-chip">03 &middot; INFRASTRUCTURE</div>
+    <div class="card-routine">Compute &middot; The State&rsquo;s New Patron</div>
+    <h2 class="card-headline">Nvidia Committed $1 Billion to US Science &mdash; &ldquo;Super Intelligence in the Hands of America&rsquo;s Scientists&rdquo;</h2>
+    <div class="card-deck">At the White House&rsquo;s &ldquo;Science: A New Golden Age&rdquo; summit on Thursday, Nvidia pledged $1 billion over five years for quantum computing, healthcare and energy security, and signed on to Phase 2 awards of Trump&rsquo;s Genesis Mission. The chipmaker is now both the federal government&rsquo;s biggest AI vendor and one of its research sponsors.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">$1B</span>
+        <span class="stat-label">Over five years</span>
+      </div>
+      <p class="drop">At a Washington event on Thursday, Nvidia committed <span class="hl-ink">$1 billion over five years</span> to build out American capacity for what it calls super-intelligence research &mdash; naming <b>quantum computing, healthcare and energy security</b> as the fields where it wants the United States to lead. The announcement came during the &ldquo;Science: A New Golden Age&rdquo; summit, where the Office of Science and Technology Policy marked the expansion of <b>President Trump&rsquo;s Genesis Mission</b>, of which Nvidia describes itself as a leading industry partner, to additional federal agencies.</p>
+      <p>The company&rsquo;s chief framed it as a pipeline from lab to industry. &ldquo;President Trump&rsquo;s Genesis Mission is launching a new golden age of American discovery,&rdquo; <b>Jensen Huang</b> said. &ldquo;<span class="hl-terra">With a $1 billion investment, NVIDIA is putting advanced Super Intelligence in the hands of America&rsquo;s scientists to accelerate breakthroughs in medicine, energy and materials. This is how America turns scientific leadership into industrial leadership, and innovation into jobs and opportunity for generations.</span>&rdquo; Nvidia paired the money with an open invitation for the science community to run R&amp;D on its compute and super-intelligence infrastructure.</p>
+      <p>The mechanics are deliberately broad. The $1 billion will flow to higher-education research institutions, to efforts to accelerate American leadership in quantum computing, and to cloud service providers serving U.S. government missions. Nvidia is also a named collaborator on several <b>Phase 2 Genesis Mission</b> awards announced the same day, spanning quantum computing, fusion, accelerator design and microelectronics. It is two decades into work with the national labs and last year partnered with the Department of Energy on the Genesis Mission itself, including building DOE&rsquo;s largest scientific supercomputer at <b>Argonne National Laboratory</b> and supporting seven new systems across Argonne and Los Alamos. The DOE&rsquo;s Under Secretary for Science, <b>Dar&iacute;o Gil</b>, directs the mission, which had already collected more than <b>$800 million</b> in partner commitments on 22 July.</p>
+      <p>The significance is not the dollar amount &mdash; Nvidia spends more than this on a single product line &mdash; but the structure. The federal government is now simultaneously the referee of the AI industry and one of its <span class="hl-ink">largest customers and patrons</span>, and Nvidia is the vendor that supplies both the chips and, increasingly, the science. It was the largest of several contributions the White House announced at the summit, alongside token discounts and cloud-credit pledges from peers, but it is the one that ties the company&rsquo;s ledger to national research priorities for the next five years. Whether &ldquo;super intelligence in the hands of America&rsquo;s scientists&rdquo; becomes industrial leadership is now a bet the country holds a position in.</p>
+    </div>
+    <a class="source-link" href="https://nvidianews.nvidia.com/news/nvidia-commits-1-billion-to-advance-us-science-over-the-next-five-years" target="_blank">Full story &middot; NVIDIA Newsroom</a>
+  </div>
+
+  <!-- CARD - 04 &middot; PRODUCTS -->
+  <div id="products" class="story-card card-sage section-anchor">
+    <div class="page-chip">04 &middot; PRODUCTS</div>
+    <div class="card-routine">Hardware &middot; Physical AI Gets a Chief</div>
+    <h2 class="card-headline">Boston Dynamics Handed the Robots to Alexa&rsquo;s Architect, Rohit Prasad</h2>
+    <div class="card-deck">The Hyundai-owned robotics leader named Rohit Prasad CEO effective 7 October. He spent 12 years at Amazon building Alexa and creating the Nova foundation-model family, after nearly 14 years at Raytheon BBN. The mandate is explicit: combine world-class robotics with advanced AI to &ldquo;commercialize intelligent machines at scale.&rdquo;</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">12 yrs</span>
+        <span class="stat-label">At Amazon, behind Alexa</span>
+      </div>
+      <p class="drop">Boston Dynamics has a new chief, and it is an AI executive rather than a career roboticist. The Hyundai-owned company named <b>Rohit Prasad</b> CEO effective <b>7 October</b>, promoting a man who spent <b>12 years at Amazon</b>, where he built <b>Alexa</b> from its earliest days into a consumer AI service used in hundreds of millions of households and, more recently, created the <b>Amazon Nova</b> foundation-model family for enterprises. Before Amazon he spent nearly 14 years at <b>Raytheon BBN Technologies</b> leading machine-learning research for government and commercial use; he has lived in the Boston area for more than 25 years.</p>
+      <p>The mandate is written into the announcement. Boston Dynamics says the appointment &ldquo;accelerates Boston Dynamics&rsquo; Physical AI strategy by combining world-class robotics with advanced AI capabilities to commercialize intelligent machines at scale.&rdquo; &ldquo;<span class="hl-terra">By bringing together advanced AI and robotics, we can build intelligent systems that create meaningful value in real-world environments, expand the reach of robotics across industries, and shape the next era of Physical AI</span>,&rdquo; Prasad said. Hyundai&rsquo;s vice chair and Boston Dynamics board chair, <b>Jaehoon Chang</b>, framed the combination plainly: the company&rsquo;s robotics, Prasad&rsquo;s record of turning AI into products at global scale, and Hyundai&rsquo;s manufacturing, logistics and mobility reach. Prasad is expected to join the board, subject to approval.</p>
+      <p>What he inherits is a portfolio mid-transition: <b>Spot</b>, the industrial quadruped that does inspections in places people should not stand; <b>Stretch</b>, the box-moving robot for logistics and retail; and <b>Atlas</b>, the electric humanoid still in development and the company&rsquo;s bet on general-purpose labor. The momentum behind that bet is Hyundai&rsquo;s, and it is accelerating &mdash; in September Boston Dynamics opened a &ldquo;Robotics Metaplant Application Center&rdquo; to train humanoid robots on real manufacturing tasks, the clearest signal yet that it means to move Atlas from demo reel to factory floor.</p>
+      <p>The Alexa playbook is the interesting part. Prasad&rsquo;s career is a study in taking a research demo and turning it into a product hundreds of millions of people use, then rebuilding it when the underlying model changed beneath it &mdash; exactly the pivot every robotics company now faces as language and vision models get bolted onto hardware. His defense-research background matters too, as governments become some of the most willing buyers of autonomous machines. Yesterday the frontier was a chatbot&rsquo;s interface; today Boston Dynamics put an AI-product executive in charge of making physical intelligence something you can actually order. The humans are getting a manager.</p>
+    </div>
+    <a class="source-link" href="https://bostondynamics.com/news/boston-dynamics-appoints-rohit-prasad-as-chief-executive-officer/" target="_blank">Full story &middot; Boston Dynamics</a>
+  </div>
+
+  <!-- CARD - 05 &middot; WORLD -->
+  <div id="geopolitics" class="story-card card-cream section-anchor">
+    <div class="page-chip">05 &middot; WORLD</div>
+    <div class="card-routine">Courts &middot; The Bill Comes Due</div>
+    <h2 class="card-headline">USA Today Sued OpenAI &mdash; and Put a Number on the News: $250 Million</h2>
+    <div class="card-deck">USA Today Co. and its local papers allege OpenAI trained on &ldquo;hundreds of thousands&rdquo; of their articles, filing in federal court in Manhattan on Thursday. &ldquo;OpenAI&rsquo;s commercial success rests on large-scale copyright infringement,&rdquo; the publisher wrote &mdash; the latest newsroom to ask the courts to price the training data.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">$250M+</span>
+        <span class="stat-label">Damages sought</span>
+      </div>
+      <p class="drop">USA Today and its local newsrooms sued OpenAI on Thursday, alleging the company trained its models on <span class="hl-ink">&ldquo;hundreds of thousands&rdquo;</span> of their articles and seeking more than <b>$250 million</b> in damages. The publisher &mdash; whose papers include <i>The Tennessean</i>, the <i>Indianapolis Star</i>, the <i>Columbus Dispatch</i> and <i>The Oklahoman</i> &mdash; filed in federal court in Manhattan, joining the growing line of news organizations taking the AI labs to court over how their work was used to build the models.</p>
+      <p>Its central claim is deliberately blunt. &ldquo;<span class="hl-terra">OpenAI&rsquo;s commercial success rests on large-scale copyright infringement</span>,&rdquo; the company wrote in the complaint, arguing that the value of its products was built in part on content the publisher never licensed for that purpose. The sum is notable both for its size and for who is asking: not a single flagship title but a national network whose local papers cover the routine news that large language models are especially hungry for and that is expensive to produce.</p>
+      <p>The suit lands in a crowded field. The <i>New York Times</i> and other publishers have pressed similar copyright claims, and the dispute has become a proxy for a larger question &mdash; whether the training phase of generative AI was, in the aggregate, a legally cognizable taking of the written web. News organizations argue both that their archives were copied without permission and that AI answers now divert the readers and ad dollars that funded the reporting in the first place, a slow-motion business injury layered on top of the copying claim.</p>
+      <p>Read alongside the rest of today, the timing is the point. On the same day the capital window for AI infrastructure slammed shut at Firmus and Nvidia committed a billion dollars to state science, USA Today put a number on one of the industry&rsquo;s least-priced inputs. <span class="hl-ink">Training data has always had a cost; the question is whether it will be paid in licenses, in settlements, or in judgments.</span> OpenAI can litigate for years, but every filing makes the eventual bill for the written web a little more legible &mdash; and a little harder to book as free.</p>
+    </div>
+    <a class="source-link" href="https://www.theverge.com/news/1008198/usa-today-openai-copyright-lawsuit" target="_blank">Full story &middot; The Verge</a>
+  </div>
+
+  <!-- SIGNALS -->
+  <div id="signals" class="story-card card-cream section-anchor">
+    <div class="page-chip">06 &middot; SIGNALS</div>
+    <div class="card-routine">5 Key Signals</div>
+    <h2 class="card-headline sm">What Moved the Machine Frontier Today</h2>
+    <div class="card-deck" style="border-bottom:none; padding-bottom:0; margin-bottom:16px;">Briefs that did not make the cards &mdash; each worth an afternoon of reading.</div>
+    <div class="signals-grid">
+      <div class="signal-row">
+        <div class="signal-num n1">1</div>
+        <div>
+          <div class="signal-title">OpenAI Disrupted Its First &ldquo;Category 5&rdquo; Influence Operation</div>
+          <div class="signal-desc">OpenAI&rsquo;s Thursday threat report described two &ldquo;false front&rdquo; campaigns it banned. The Russian effort, rated a <b>Category 5</b> &mdash; the second-highest on researchers&rsquo; impact scale and the first Category 5 operation OpenAI has disrupted in two and a half years &mdash; ran a fake think tank, the <b>Social Research Center</b>, staffed by unwitting Latin American employees, to launder anti-Ukraine messaging and influence local politics. It drew public comment from politicians in several countries and, OpenAI said, is &ldquo;the most complex attempt to run a front identity&rdquo; it has seen. A separate Iranian network used <b>seven fake journalist personas</b> to place nearly <b>100 articles</b> in about a dozen real outlets from July 2025 to October 2026, including Daily Kos and the Middle East Monitor, which pulled the author pages after NBC News asked. OpenAI rated that effort a Category 4 and said it looked like a for-hire commercial actor.</div>
+          <a class="signal-link" href="https://www.npr.org/2026/10/08/nx-s1-5995576/openai-russia-iran-influence-operations-chatgpt" target="_blank">NPR &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n2">2</div>
+        <div>
+          <div class="signal-title">Anthropic Opened a Cyber Mission for Critical Infrastructure</div>
+          <div class="signal-desc">Anthropic launched a <b>Critical Infrastructure Defense Program</b> aimed at the operational-technology and industrial-control systems behind power grids, water utilities, transportation networks and government systems &mdash; the environments where a model&rsquo;s mistake is measured in outages rather than wrong answers. It ships alongside a free <b>OSS Scanner</b> that runs vulnerability scans on open-source code, part of a push to get AI-assisted defense into the hands of the operators who run the physical economy before attackers who are already using AI get there first.</div>
+          <a class="signal-link" href="https://www.anthropic.com/news/anthropic-cyber-mission" target="_blank">Anthropic &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n3">3</div>
+        <div>
+          <div class="signal-title">The FTC Is Close to Subpoena-Like Demands on the Labs</div>
+          <div class="signal-desc">The Federal Trade Commission is nearing the point of sending <b>civil investigative demands</b> to frontier AI companies, a senior official told Semafor &mdash; an unusually public move, since the agency normally does not reveal an investigation before issuing CIDs, which carry subpoena-like force. The demands run to dozens of questions and target what companies have said about their products&rsquo; risks and other potential consumer harms, with OpenAI, Anthropic and possibly the evaluator <b>METR</b> named. The disclosure aligned with the administration&rsquo;s stated preference for enforcing existing law over writing new rules &mdash; and landed weeks before an election.</div>
+          <a class="signal-link" href="https://www.semafor.com/article/10/08/2026/ftc-advancing-on-its-ai-safety-probe" target="_blank">Semafor &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n4">4</div>
+        <div>
+          <div class="signal-title">Isomorphic Labs Is in Funding Talks at a $40 Billion-Plus Value</div>
+          <div class="signal-desc">Alphabet&rsquo;s drug-discovery unit <b>Isomorphic Labs</b> is in talks to raise at a valuation above <b>$40 billion</b>, Bloomberg Law reported Thursday &mdash; a striking number for a company with no approved drug. Spun out of DeepMind to apply AlphaFold-class models to medicine, Isomorphic has become the clearest test of whether AI-native discovery can be priced like a platform rather than a biotech. If the round lands near that mark, it will be among the largest valuations ever assigned to an Alphabet subsidiary still working toward its first clinical milestone.</div>
+          <a class="signal-link" href="https://news.bloomberglaw.com/ip-law/isomorphic-labs-in-funding-talks-at-40-billion-plus-value" target="_blank">Bloomberg Law &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n5">5</div>
+        <div>
+          <div class="signal-title">Big Tech Priced Nearly Half a Trillion in AI Debt This Year</div>
+          <div class="signal-desc">Oracle, Broadcom and SpaceX are among the borrowers that have priced <b>nearly half a trillion dollars</b> of new debt in 2026 to fund AI infrastructure, Bloomberg reported, with Broadcom alone sketching plans for roughly <b>$600 billion</b> in coming years and a fresh SpaceX deal near <b>$40 billion</b> to buy Nvidia chips. The stress is showing in insurance against default: credit-derivative prices imply a more than <b>20% five-year default risk</b> for Oracle, about 16% for SpaceX and even above 7% for Nvidia, while Oracle&rsquo;s protection costs hit a record Thursday. Investors are repricing the same AI buildout the equity market still rewards &mdash; the other half of the Firmus story.</div>
+          <a class="signal-link" href="https://uk.finance.yahoo.com/news/ai-debt-spree-hammers-tech-222451927.html" target="_blank">Bloomberg, via Yahoo Finance &#8597;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THEMES + TOOL + SOURCES -->
+  <div id="themes" class="story-card card-lavender section-anchor">
+    <div class="page-chip">07 &middot; CLOSER</div>
+    <div class="card-routine">Top Themes</div>
+    <h2 class="card-headline sm">The Shape of Today&rsquo;s News</h2>
+    <div class="themes-grid" style="margin-top:16px;">
+      <div class="theme-item">The Agent Gets a Paycheck</div>
+      <div class="theme-item">The Window Slams</div>
+      <div class="theme-item">The State Becomes the Patron</div>
+      <div class="theme-item">The Robot Gets a CEO</div>
+      <div class="theme-item">The Bill Comes Due</div>
+    </div>
+
+    <div id="tool" class="tool-week section-anchor">
+      <div class="tool-week-eyebrow">Company Watch of the Day</div>
+      <div class="tool-week-name">GOOGLE / ALPHABET</div>
+      <div class="tool-week-desc">Google shows up twice today, once as a product company and once as a holding company. As a <b>platform</b>: the universal Gemini agent gives the assistant its own Workspace identity and, more tellingly, a model picker that will route enterprise work to <b>Anthropic&rsquo;s Claude</b> &mdash; Google volunteering to be the orchestration layer even when the winning model belongs to a rival. As a <b>parent</b>: Isomorphic Labs, its DeepMind-derived drug-discovery subsidiary, is reportedly in funding talks at a valuation above <b>$40 billion</b> for a company with no approved product. One Google is selling an agent that works across everyone else&rsquo;s tools; the other is asking investors to price the long game of AI in medicine. The through-line is the same as the lead card&rsquo;s &mdash; own the layer that coordinates, not just the model at the bottom of it.</div>
+    </div>
+
+    <div id="sources" class="output-card section-anchor">
+      <div class="output-title">Sources Cited</div>
+      <div class="sources-grid">
+        <a href="https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/gemini-at-work/" target="_blank">Google &mdash; Google Cloud launches the Gemini agent</a>
+        <a href="https://techcrunch.com/2026/10/08/google-brings-agentic-ai-to-gemini-starting-with-businesses/" target="_blank">TechCrunch &mdash; Google brings agentic AI to Gemini, starting with businesses</a>
+        <a href="https://www.bbc.com/news/articles/ck9dzpw4ll8po" target="_blank">BBC &mdash; Nvidia-backed AI data centre firm scraps mega stock market listing</a>
+        <a href="https://www.theguardian.com/australia-news/2026/oct/09/firmus-pulls-asx-float-datacentre-investor-doubt-australia" target="_blank">The Guardian &mdash; Firmus pulls biggest ASX float since Telstra</a>
+        <a href="https://www.abc.net.au/news/2026-10-09/firmus-ipo-pulled-asx/107246230" target="_blank">ABC News &mdash; Firmus withdraws its ASX listing</a>
+        <a href="https://www.smh.com.au/technology/two-tech-outsiders-tried-to-sell-a-44bn-tech-company-it-didn-t-work-20261009-p6145h.html" target="_blank">The Sydney Morning Herald &mdash; How Firmus&rsquo;s record IPO bid collapsed</a>
+        <a href="https://nvidianews.nvidia.com/news/nvidia-commits-1-billion-to-advance-us-science-over-the-next-five-years" target="_blank">NVIDIA Newsroom &mdash; NVIDIA commits $1 billion to advance US science</a>
+        <a href="https://www.unite.ai/nvidia-announces-five-year-commitment-to-u-s-science-research/" target="_blank">Unite.AI &mdash; NVIDIA announces five-year commitment to US science</a>
+        <a href="https://bostondynamics.com/news/boston-dynamics-appoints-rohit-prasad-as-chief-executive-officer/" target="_blank">Boston Dynamics &mdash; Appoints Rohit Prasad as Chief Executive Officer</a>
+        <a href="https://www.theverge.com/news/1008198/usa-today-openai-copyright-lawsuit" target="_blank">The Verge &mdash; USA Today sues OpenAI over copyright</a>
+        <a href="https://cyberscoop.com/openai-disrupts-russia-iran-ai-influence-operations/" target="_blank">CyberScoop &mdash; OpenAI disrupts Russia and Iran influence operations</a>
+        <a href="https://www.npr.org/2026/10/08/nx-s1-5995576/openai-russia-iran-influence-operations-chatgpt" target="_blank">NPR &mdash; OpenAI caught Russians and Iranians using ChatGPT</a>
+        <a href="https://www.anthropic.com/news/anthropic-cyber-mission" target="_blank">Anthropic &mdash; Anthropic Cyber Mission</a>
+        <a href="https://www.semafor.com/article/10/08/2026/ftc-advancing-on-its-ai-safety-probe" target="_blank">Semafor &mdash; FTC advancing on its AI safety probe</a>
+        <a href="https://news.bloomberglaw.com/ip-law/isomorphic-labs-in-funding-talks-at-40-billion-plus-value" target="_blank">Bloomberg Law &mdash; Isomorphic Labs in funding talks at $40 billion-plus value</a>
+        <a href="https://uk.finance.yahoo.com/news/ai-debt-spree-hammers-tech-222451927.html" target="_blank">Bloomberg, via Yahoo Finance &mdash; AI debt spree hammers tech debt</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-logo">
+      <div class="footer-mark">
+        <img src="../assets/timps-postcards.png" alt="TIMPS">
+      </div>
+      <span class="footer-brand">TIMPS PostCards</span>
+    </div>
+    <div class="footer-center">
+      Issue 134 &middot; October 9, 2026<br>
+      Hyderabad, India
+    </div>
+    <div class="footer-right">
+      <a href="../index.html">Home</a><br>
+      <a href="../archive.html">Archive</a><br>
+      &copy; 2026 TIMPS
+    </div>
+  </footer>
+
+</div> <!-- /wrapper -->
+</div> <!-- /page-layout -->
+</body>
+</html>
