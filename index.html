@@ -1477,11 +1477,12 @@
       });
     }
     if (PUSH_API) {
-      await fetch(PUSH_API + '/api/subscribe', {
+      const resp = await fetch(PUSH_API + '/api/subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(sub)
       });
+      if (!resp.ok) throw new Error('subscribe failed: ' + resp.status);
     }
     localStorage.setItem('timps-push-on', '1');
     return true;
@@ -1506,17 +1507,26 @@
     }
   }
 
-  (function reflectPushState() {
+  // Keep the button honest: if the browser already granted permission,
+  // re-register the device with the backend on every load. subscribePush is
+  // idempotent, so this silently heals any device that failed to register
+  // earlier instead of showing a stale "on" state.
+  (async function syncPushState() {
     const btn = document.getElementById('notifBtn');
     if (!btn) return;
     if (!VAPID_PUBLIC_KEY || !PUSH_API) {
       btn.style.display = 'none';
       return;
     }
-    if (localStorage.getItem('timps-push-on') === '1' && 'Notification' in window && Notification.permission === 'granted') {
-      btn.textContent = 'Notifications are on';
-      btn.classList.add('on');
-      btn.disabled = true;
+    if ('Notification' in window && Notification.permission === 'granted') {
+      try {
+        await subscribePush();
+        btn.textContent = 'Notifications are on';
+        btn.classList.add('on');
+        btn.disabled = true;
+      } catch (e) {
+        btn.textContent = 'Get notified of new issues';
+      }
     }
   })();
 
