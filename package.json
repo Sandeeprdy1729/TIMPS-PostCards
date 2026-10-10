@@ -1,0 +1,10 @@
+{
+  "name": "timps-postcards",
+  "version": "1.0.0",
+  "private": true,
+  "description": "TIMPS PostCards static site + push notification API",
+  "dependencies": {
+    "@vercel/blob": "^0.27.2",
+    "web-push": "^3.6.7"
+  }
+}

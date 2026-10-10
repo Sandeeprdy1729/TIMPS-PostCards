@@ -767,6 +767,28 @@
     font-size: 12px;
     opacity: .45;
   }
+  .notif-btn {
+    display: inline-block;
+    margin-top: 18px;
+    background: transparent;
+    color: var(--forest);
+    border: 2.5px solid var(--forest);
+    border-radius: 100px;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    padding: 12px 26px;
+    cursor: pointer;
+    transition: transform .1s, box-shadow .15s, background .15s, color .15s;
+  }
+  .notif-btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0 rgba(28,46,34,.4);
+  }
+  .notif-btn.on {
+    background: var(--forest);
+    color: #fff;
+  }
 
   /* ─── FOOTER ─── */
   .footer {
@@ -1276,6 +1298,7 @@
     <button type="submit" id="subBtn">Sign Up</button>
   </form>
   <p class="subscribe-note" id="subNote">We respect your privacy.</p>
+  <button type="button" class="notif-btn" id="notifBtn" onclick="enablePush()">Get notified of new issues</button>
 </section>
 
 <!-- SLIM STATS BAR -->
@@ -1426,8 +1449,76 @@
     if (Notification.permission !== 'default') return;
     if (notifAsked) return;
     localStorage.setItem('timps-notif-asked', '1');
-    Notification.requestPermission();
+    Notification.requestPermission().then((p) => { if (p === 'granted') subscribePush(); });
   }
+
+  // ─── Web push: subscribe + send device to backend ───────────────
+  const PUSH_API = (window.PUSH_API || '').trim().replace(/\/$/, '');
+  const VAPID_PUBLIC_KEY = (window.VAPID_PUBLIC_KEY || '').trim();
+
+  function urlBase64ToUint8Array(base64String) {
+    const padding = '='.repeat((4 - (base64String.length % 4)) % 4);
+    const base64 = (base64String + padding).replace(/-/g, '+').replace(/_/g, '/');
+    const raw = atob(base64);
+    const output = new Uint8Array(raw.length);
+    for (let i = 0; i < raw.length; i++) output[i] = raw.charCodeAt(i);
+    return output;
+  }
+
+  async function subscribePush() {
+    if (!('serviceWorker' in navigator) || !('PushManager' in window)) return false;
+    if (!VAPID_PUBLIC_KEY) return false;
+    const reg = await navigator.serviceWorker.ready;
+    let sub = await reg.pushManager.getSubscription();
+    if (!sub) {
+      sub = await reg.pushManager.subscribe({
+        userVisibleOnly: true,
+        applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC_KEY)
+      });
+    }
+    if (PUSH_API) {
+      await fetch(PUSH_API + '/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(sub)
+      });
+    }
+    localStorage.setItem('timps-push-on', '1');
+    return true;
+  }
+
+  async function enablePush() {
+    const btn = document.getElementById('notifBtn');
+    if (!('Notification' in window) || !('serviceWorker' in navigator) || !('PushManager' in window)) {
+      if (btn) btn.textContent = 'Not supported on this browser';
+      return;
+    }
+    const perm = await Notification.requestPermission();
+    if (perm !== 'granted') {
+      if (btn) btn.textContent = 'Notifications are blocked';
+      return;
+    }
+    try {
+      await subscribePush();
+      if (btn) { btn.textContent = 'Notifications are on'; btn.classList.add('on'); btn.disabled = true; }
+    } catch (e) {
+      if (btn) btn.textContent = 'Could not turn on';
+    }
+  }
+
+  (function reflectPushState() {
+    const btn = document.getElementById('notifBtn');
+    if (!btn) return;
+    if (!VAPID_PUBLIC_KEY || !PUSH_API) {
+      btn.style.display = 'none';
+      return;
+    }
+    if (localStorage.getItem('timps-push-on') === '1' && 'Notification' in window && Notification.permission === 'granted') {
+      btn.textContent = 'Notifications are on';
+      btn.classList.add('on');
+      btn.disabled = true;
+    }
+  })();
 
   // ─── Show start-at-login hint (once) ────────────────────────────
   function showStartHint() {
