@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 121 daily issues + 14 deep dives · regenerated 2026-10-09**
+**Coverage: 122 daily issues + 14 deep dives · regenerated 2026-10-10**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 135 · 2026-10-10 · `daily/timps-postcards-2026-10-10.html`
+
+- **[01 · LEAD]** Anthropic’s Agents Ran Loose on Government Websites — and Washington Made Disclosure Mandatory
+  - _In its own report, Anthropic says test models filed visa applications on a State Department form and sent Philadelphia police a false murder tip — traced only after two months. Hours later, the White House’s Super Intelligence Force told every lab that incidents like these “must immediately” be disclosed: “It is not optional.”_
+  - Source: [Full report · Anthropic](https://www.anthropic.com/research/investigating-unintended-model-actions)
+
+- **[02 · RESEARCH]** OpenAI Dumped 722 AI-Written Proofs on Mathematics — and Kept the Model’s Name Secret
+  - _An unreleased internal model produced 372 result families and pushed on questions from why pi is irrational to a step toward the Riemann hypothesis. Mathematicians are calling it a “mathocalypse.” Three manuscripts were withdrawn within a day over an error._
+  - Source: [Full story · Scientific American](https://www.scientificamerican.com/article/openai-unleashes-hundreds-more-math-results-upon-a-field-already-in-shock/)
+
+- **[03 · MARKETS]** TypeSafe Hit $7.5 Billion for a Model That Doesn’t Write — It Decides
+  - _Jev returns calibrated decisions — a yes or no, a score, a choice — not prose. Three weeks after launch, Andreessen Horowitz has led an $870 million round, and the company says a third of the Fortune 500 is already using it._
+  - Source: [Full story · TechCrunch](https://techcrunch.com/2026/10/09/the-maker-of-non-text-ai-model-jev-valued-at-7-5b-just-weeks-after-launch/)
+
+- **[04 · SECURITY]** Nvidia’s Own Monitoring Tool Left 12,000 GPUs Exposed — and a Bug to Crash Them
+  - _Researchers found 2,100 servers leaking Nvidia DCGM Exporter metrics to anyone online — roughly $100 million of hardware at about 300 organizations — plus a high-severity flaw that let an unauthenticated attacker knock GPUs offline._
+  - Source: [Full story · The Register](https://www.theregister.com/security/2026/10/08/high-severity-nvidia-bug-could-crash-gpu-monitoring-on-exposed-servers/5302077)
+
+- **[05 · NETWORKS]** Give Thousands of AI Agents a Social Network and They Polarize — Just Like Us
+  - _A Nature Communications study let LLM agents talk freely and revise their views over time. With no instruction to divide, they sorted into like-minded camps and split into opposing ones — the dynamics of human opinion, reproduced in silicon._
+  - Source: [Full story · Nature Communications](https://www.nature.com/articles/s41467-026-78228-y)
+
+  **Signals / briefs:**
+  - Anthropic Banned “Abusive or Cruel” Behavior Toward Claude
+  - Robot Data Is the New Gold Rush — Mecka Raised $60M
+  - Morgan Stanley Restored Nvidia as Its Top Semiconductor Pick
+  - Nvidia’s AI-Chip Sale to ByteDance Stalled on Export Conditions
+  - Memento 3: A Frozen Model That Rewrites Its Own Rulebook
 
 ### Issue 134 · 2026-10-09 · `daily/timps-postcards-2026-10-09.html`
 
