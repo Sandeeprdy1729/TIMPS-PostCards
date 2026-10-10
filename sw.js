@@ -1,4 +1,4 @@
-const CACHE = "timps-postcards-v5";
+const CACHE = "timps-postcards-v6";
 
 const PRECACHE_URLS = [
   ".",
@@ -48,23 +48,21 @@ self.addEventListener("activate", (event) => {
 });
 
 self.addEventListener("push", (event) => {
-  if (!event.data) return;
+  let data = {};
   try {
-    const data = event.data.json();
-    self.registration.showNotification(data.title || "TIMPS PostCards", {
-      body: data.body || "New update available",
-      icon: data.icon || "assets/icon-192.png",
-      badge: "assets/icon-192.png",
-      data: { url: data.url || "." },
-      actions: data.actions || []
-    });
+    data = event.data ? event.data.json() : {};
   } catch {
-    self.registration.showNotification("TIMPS PostCards", {
-      body: event.data.text(),
-      icon: "assets/icon-192.png",
-      badge: "assets/icon-192.png"
-    });
+    data = { body: event.data ? event.data.text() : "New update available" };
   }
+  const title = data.title || "TIMPS PostCards";
+  const options = {
+    body: data.body || "New update available",
+    icon: data.icon || "assets/icon-192.png",
+    badge: "assets/icon-192.png",
+    data: { url: data.url || "." },
+    actions: data.actions || []
+  };
+  event.waitUntil(self.registration.showNotification(title, options));
 });
 
 self.addEventListener("notificationclick", (event) => {
