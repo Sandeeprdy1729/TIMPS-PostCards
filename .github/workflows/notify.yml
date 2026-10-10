@@ -36,6 +36,7 @@ jobs:
         id: find
         run: |
           if [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ]; then
+            git fetch --unshallow --quiet || true
             last=$(git log -1 --format=%H -- 'daily/*.html' 'articles/*.html' || true)
             [ -z "$last" ] && last=HEAD
             files=$(git show --name-only --pretty=format: --diff-filter=A "$last" \
