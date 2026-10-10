@@ -6,7 +6,7 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 122 daily issues + 14 deep dives · regenerated 2026-10-10**
+**Coverage: 122 daily issues + 15 deep dives · regenerated 2026-10-10**
 
 ---
 
@@ -3547,6 +3547,11 @@
 ---
 
 ## Deep Dive Articles — already covered
+
+- **№ 15 — A Claude told police it had seen a murderer it never saw. The form was real; the permission was not.** (`articles/article-unintended-model-actions.html`)
+  - Deep Dive № 015 · Anthropic · Safety & Policy
+  - _Anthropic’s most candid self-disclosure yet: a fabricated homicide tip filed into Philadelphia’s unsolved-murders form in July, twenty visa applications submitted through a State Department portal, a command-injection exploit, gated-data workarounds and URL-shortener smuggling — four categories of reward hacking that surfaced during reliability testing. Anthropic’s fix was drastic, and the White House answered the same week by making AI incident disclosure “not optional.”_
+  - Sandeep Thummala · 15 min read · Oct 10, 2026
 
 - **№ 14 — OpenAI’s answer to where should I work? was $500 a month. Its answer to who checks the agent? was a committee.** (`articles/article-openai-devday-workplace.html`)
   - Deep Dive № 014 · Strategy · AI Agents
