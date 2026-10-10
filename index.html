@@ -1413,7 +1413,11 @@
 
   // ─── PWA: Service Worker ──────────────────────────────────────────
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('sw.js');
+    // updateViaCache:'none' stops the browser from serving a cached sw.js
+    // (GitHub Pages caches it for 10 min), so fixes reach devices on reload.
+    navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' })
+      .then((reg) => { if (reg && reg.update) reg.update(); })
+      .catch(() => {});
   }
 
   // ─── PWA: Install Overlay ─────────────────────────────────────────
