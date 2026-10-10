@@ -1,13 +1,17 @@
-const CACHE = "timps-postcards-v4";
+const CACHE = "timps-postcards-v5";
 
 const PRECACHE_URLS = [
   ".",
   "index.html",
   "config.js",
+  "favicon.ico",
+  "assets/icon-16.png",
+  "assets/icon-32.png",
+  "assets/icon-48.png",
+  "assets/icon-180.png",
   "assets/icon-192.png",
   "assets/icon-512.png",
   "assets/timps-postcards.png",
-  "assets/timps_banner.svg",
   "assets/timps-hero-banner.png"
 ];
 

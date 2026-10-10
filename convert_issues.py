@@ -182,7 +182,7 @@ for filepath in issue_files:
   <footer class="footer">
     <div class="footer-logo">
       <div class="footer-mark">
-        <img src="../assets/timps_logo.svg" alt="TIMPS">
+        <img src="../assets/timps-postcards.png" alt="TIMPS">
       </div>
       <span class="footer-brand">TIMPS PostCards</span>
     </div>
@@ -212,6 +212,11 @@ for filepath in issue_files:
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/icon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/icon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="../assets/icon-48.png">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="../assets/icon-180.png">
 <title>{old_title}</title>
 {new_fonts_link}
 <style>
