@@ -40,7 +40,13 @@ jobs:
             exit 0
           fi
           file=$(printf '%s\n' "$files" | sort | tail -1)
+          case "$file" in
+            daily/*) type="issue" ;;
+            articles/*) type="article" ;;
+            *) type="update" ;;
+          esac
           echo "file=$file" >> "$GITHUB_OUTPUT"
+          echo "type=$type" >> "$GITHUB_OUTPUT"
           echo "skip=false" >> "$GITHUB_OUTPUT"
 
       - name: Read the page title
@@ -53,7 +59,7 @@ jobs:
           html = open(sys.argv[1], encoding="utf-8").read()
           m = re.search(r"<title>(.*?)</title>", html, re.S)
           title = m.group(1).strip() if m else "TIMPS PostCards"
-          print(re.sub(r"^TIMPS PostCards [\u2014\u00b7-]\s*", "", title))
+          print(re.sub(r"^TIMPS (?:PostCards|Articles)\s*[\u2014\u00b7-]\s*", "", title))
           PY
           )
           echo "title=$title" >> "$GITHUB_OUTPUT"
@@ -66,6 +72,7 @@ jobs:
           SITE_URL: ${{ secrets.SITE_URL }}
           FILE: ${{ steps.find.outputs.file }}
           TITLE: ${{ steps.find.outputs.title }}
+          TYPE: ${{ steps.find.outputs.type }}
         run: |
           if [ -z "$PUSH_API" ] || [ -z "$PUSH_SEND_SECRET" ]; then
             echo "Push not configured (PUSH_API / PUSH_SEND_SECRET missing); skipping."
@@ -73,8 +80,18 @@ jobs:
           fi
           base="${SITE_URL:-https://sandeeprdy1729.github.io/TIMPS-PostCards}"
           base="${base%/}"
-          jq -n --arg title "$TITLE" \
-                --arg body "New from TIMPS PostCards: $TITLE" \
+          if [ "$TYPE" = "issue" ]; then
+            notif_title="📬 New issue — $TITLE"
+            notif_body="Today's AI intelligence digest. Tap to read."
+          elif [ "$TYPE" = "article" ]; then
+            notif_title="📝 New deep dive — $TITLE"
+            notif_body="Fresh from TIMPS. Tap to read."
+          else
+            notif_title="New from TIMPS PostCards"
+            notif_body="$TITLE"
+          fi
+          jq -n --arg title "$notif_title" \
+                --arg body "$notif_body" \
                 --arg url "$base/$FILE" \
                 '{title:$title, body:$body, url:$url}' > payload.json
           echo "Sending push for $FILE"
