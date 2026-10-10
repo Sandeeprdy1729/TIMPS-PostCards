@@ -30,7 +30,7 @@ module.exports = async function handler(req, res) {
   }
 
   webpush.setVapidDetails(
-    process.env.VAPID_SUBJECT || "mailto:hello@timps.cc",
+    process.env.VAPID_SUBJECT || "mailto:timps.ai090@gmail.com",
     process.env.VAPID_PUBLIC_KEY,
     process.env.VAPID_PRIVATE_KEY
   );
