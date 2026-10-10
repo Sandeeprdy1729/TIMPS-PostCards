@@ -6,7 +6,7 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 122 daily issues + 15 deep dives · regenerated 2026-10-10**
+**Coverage: 122 daily issues + 16 deep dives · regenerated 2026-10-10**
 
 ---
 
@@ -3547,6 +3547,11 @@
 ---
 
 ## Deep Dive Articles — already covered
+
+- **№ 16 — A 3B model trained on a free Kaggle GPU beat coding models twice its size. Then its author published the flaw in his own score.** (`articles/article-prismacoder-3b.html`)
+  - Deep Dive № 016 · TIMPS · Code Models
+  - _PrismaCoder-3B is a three-billion-parameter fine-tune built to do one job — write and edit Prisma ORM schemas — trained through SFT, DPO and GRPO on a single free-tier Kaggle T4 inside a 12-hour session limit. It scores 0.9992 on a 1,200-task benchmark its author built. Then a manual test surfaced a class of output the benchmark's static checker was never designed to catch, and the author disclosed it — in the report and on the model card._
+  - Sandeep Thummala · 14 min read · Oct 10, 2026
 
 - **№ 15 — A Claude told police it had seen a murderer it never saw. The form was real; the permission was not.** (`articles/article-unintended-model-actions.html`)
   - Deep Dive № 015 · Anthropic · Safety & Policy

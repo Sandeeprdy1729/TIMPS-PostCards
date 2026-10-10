@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TIMPS">
+<link rel="manifest" href="../manifest.json">
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/icon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/icon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="../assets/icon-48.png">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="../assets/icon-180.png">
+<title>TIMPS Articles — PrismaCoder-3B, Explained</title>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream:  #EDE8DA;
+    --forest: #1C2E22;
+    --pink:   #E8B4E8;
+    --lime:   #DCF07A;
+    --lime-d: #C8DE60;
+    --black:  #111111;
+    --border: #1C2E22;
+    --card-bg:#F5F1E6;
+    --mono:   'Newsreader', Georgia, 'Times New Roman', serif;
+    --news:   'Newsreader', Georgia, 'Times New Roman', serif;
+    --serif:  'TIMPS', Georgia, serif;
+  }
+
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Black.woff2') format('woff2'); font-weight:900; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Bold.woff2') format('woff2'); font-weight:700; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-SemiBold.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--cream);
+    background-image:
+      linear-gradient(rgba(28,46,34,.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(28,46,34,.07) 1px, transparent 1px);
+    background-size: 38px 38px;
+    color: var(--forest);
+    font-family: var(--news);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  a { text-decoration: none; color: inherit; }
+
+  /* Deep dive typography — TIMPS (display) + Newsreader (prose & descriptions) */
+  .masthead-dek { font-family: var(--news); font-style: italic; font-size: 19px; }
+  .masthead-meta { font-family: var(--news); font-size: 13px; }
+  .lede { font-family: var(--news); font-size: 21px; }
+  .para { font-family: var(--news); font-size: 17px; }
+  .callout p { font-family: var(--news); font-size: 15.5px; }
+  .pullquote p { font-family: var(--news); font-size: 21px; }
+  .pullquote .attrib { font-family: var(--news); font-style: italic; font-size: 13px; }
+  .spec-row { font-family: var(--news); font-size: 14px; }
+  .fig-cap { font-family: var(--news); font-size: 12.5px; }
+  .bench-top { font-family: var(--news); font-size: 13.5px; }
+  .bench-note { font-family: var(--news); font-size: 13px; }
+  .sources li { font-family: var(--news); font-size: 13.5px; }
+  .endcard-sub { font-family: var(--news); font-size: 14.5px; }
+
+  /* ─── NAV ─── */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 48px;
+    background-color: rgba(237,232,218,.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1.5px solid rgba(28,46,34,.12);
+    background-image:
+      linear-gradient(rgba(28,46,34,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(28,46,34,.05) 1px, transparent 1px);
+    background-size: 38px 38px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Special Elite', 'Courier New', Courier, monospace;
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--forest);
+    letter-spacing: -0.3px;
+  }
+  .nav-logo-mark { width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .nav-logo-mark img { width: 28px; height: 28px; object-fit: contain; }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-link {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--forest);
+    opacity: .55;
+    transition: opacity .15s;
+  }
+  .nav-link:hover { opacity: 1; }
+  .nav-link.active { opacity: 1; font-weight: 700; }
+  .nav-cta {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--forest);
+    background: var(--lime);
+    border: 2.5px solid var(--forest);
+    border-radius: 100px;
+    padding: 10px 24px;
+    transition: background .15s, transform .1s;
+    white-space: nowrap;
+  }
+  .nav-cta:hover { background: var(--lime-d); transform: translateY(-1px); }
+
+  /* ─── MASTHEAD ─── */
+  .masthead {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 72px 24px 24px;
+    text-align: center;
+  }
+  .masthead-kicker {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--forest);
+    background: var(--lime);
+    border: 2px solid var(--forest);
+    border-radius: 100px;
+    padding: 7px 16px;
+    margin-bottom: 28px;
+  }
+  .masthead-h {
+    font-family: var(--serif);
+    font-size: clamp(38px, 6.4vw, 72px);
+    font-weight: 900;
+    line-height: 1.04;
+    letter-spacing: -1.5px;
+    color: var(--forest);
+    margin-bottom: 20px;
+  }
+  .masthead-h em { font-style: italic; }
+  .masthead-dek {
+    font-family: var(--serif);
+    font-size: clamp(17px, 2.2vw, 21px);
+    font-style: italic;
+    line-height: 1.55;
+    color: var(--forest);
+    opacity: .85;
+    max-width: 660px;
+    margin: 0 auto 28px;
+  }
+  .masthead-meta {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--forest);
+    opacity: .5;
+    letter-spacing: .5px;
+  }
+  .masthead-meta b { font-weight: 700; opacity: 1; }
+
+  /* ─── FIGURE ─── */
+  .figure {
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    overflow: hidden;
+    box-shadow: 6px 6px 0 rgba(28,46,34,.14);
+    margin: 32px 0;
+  }
+  .figure img { width: 100%; display: block; }
+  .fig-cap {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+    padding: 12px 16px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--forest);
+    border-top: 1.5px solid rgba(28,46,34,.15);
+    opacity: .7;
+    letter-spacing: .3px;
+  }
+  .fig-tag {
+    flex-shrink: 0;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--forest);
+    opacity: .9;
+  }
+  .fig-cap a { text-decoration: underline; opacity: .8; }
+  .fig-cap a:hover { opacity: 1; }
+
+  /* ─── ARTICLE BODY ─── */
+  .article-body {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 8px 24px 64px;
+  }
+  .lede {
+    font-family: var(--serif);
+    font-size: 21px;
+    font-weight: 400;
+    line-height: 1.65;
+    color: var(--forest);
+    margin: 8px 0 28px;
+  }
+  .lede b { font-weight: 700; }
+  .para {
+    font-family: var(--mono);
+    font-size: 14px;
+    line-height: 1.85;
+    color: var(--forest);
+    opacity: .92;
+    margin: 0 0 20px;
+  }
+  .para b { font-weight: 700; opacity: 1; }
+  .para a { text-decoration: underline; opacity: .85; }
+  .para a:hover { opacity: 1; }
+  .para ul { padding-left: 22px; margin: 0 0 20px; }
+  .para li { margin-bottom: 10px; }
+
+  .section-h {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin: 56px 0 18px;
+  }
+  .section-no {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--lime);
+    background: var(--forest);
+    border-radius: 8px;
+    padding: 5px 9px;
+    letter-spacing: 1px;
+    flex-shrink: 0;
+  }
+  .section-h h2 {
+    font-family: var(--serif);
+    font-size: clamp(24px, 3.6vw, 32px);
+    font-weight: 900;
+    letter-spacing: -0.6px;
+    line-height: 1.1;
+    color: var(--forest);
+  }
+
+  /* Callout cards */
+  .callout {
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    padding: 22px 24px;
+    margin: 28px 0;
+    box-shadow: 5px 5px 0 rgba(28,46,34,.12);
+  }
+  .callout-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--forest);
+    background: var(--lime);
+    border: 1.5px solid var(--forest);
+    border-radius: 100px;
+    padding: 4px 10px;
+    display: inline-block;
+    margin-bottom: 14px;
+  }
+  .callout-label.pink { background: var(--pink); }
+  .callout p {
+    font-family: var(--mono);
+    font-size: 13.5px;
+    line-height: 1.8;
+    color: var(--forest);
+    margin: 0 0 10px;
+  }
+  .callout p:last-child { margin-bottom: 0; }
+  .callout p b { font-weight: 700; }
+  .callout p code { background: var(--cream); border: 1px solid rgba(28,46,34,.2); border-radius: 5px; padding: 1px 5px; font-size: 12px; }
+
+  /* Spec sheet */
+  .spec {
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    overflow: hidden;
+    margin: 28px 0;
+    box-shadow: 5px 5px 0 rgba(28,46,34,.12);
+  }
+  .spec-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--forest);
+    padding: 12px 18px;
+  }
+  .spec-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 16px;
+    padding: 12px 18px;
+    border-top: 1.5px solid rgba(28,46,34,.14);
+    font-family: var(--mono);
+    font-size: 12.5px;
+    line-height: 1.5;
+  }
+  .spec-row .k { font-weight: 700; opacity: .6; }
+  .spec-row .v { opacity: .95; }
+  .spec-row .v b { font-weight: 700; }
+  .spec-row .v code { background: var(--cream); border: 1px solid rgba(28,46,34,.2); border-radius: 5px; padding: 1px 5px; font-size: 12px; }
+
+  /* Benchmark bars */
+  .bench {
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    padding: 22px 24px;
+    margin: 28px 0;
+    box-shadow: 5px 5px 0 rgba(28,46,34,.12);
+  }
+  .bench-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--forest);
+    background: var(--lime);
+    border: 1.5px solid var(--forest);
+    border-radius: 100px;
+    padding: 4px 10px;
+    display: inline-block;
+    margin-bottom: 16px;
+  }
+  .bench-item { margin-bottom: 16px; }
+  .bench-item:last-child { margin-bottom: 0; }
+  .bench-top {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--mono);
+    font-size: 12px;
+    margin-bottom: 6px;
+  }
+  .bench-name { font-weight: 700; }
+  .bench-val { font-weight: 700; background: var(--forest); color: var(--lime); border-radius: 6px; padding: 1px 8px; }
+  .bench-bar { height: 14px; background: rgba(28,46,34,.08); border-radius: 100px; overflow: hidden; }
+  .bench-fill { height: 100%; background: linear-gradient(90deg, var(--lime), var(--lime-d)); border-radius: 100px; }
+  .bench-fill.pink { background: linear-gradient(90deg, var(--pink), #d996d9); }
+  .bench-note {
+    font-family: var(--mono);
+    font-size: 11px;
+    line-height: 1.7;
+    opacity: .55;
+    margin-top: 14px;
+    border-top: 1.5px solid rgba(28,46,34,.14);
+    padding-top: 12px;
+  }
+
+  /* Pull quote */
+  .pullquote {
+    border-left: 6px solid var(--pink);
+    background: var(--card-bg);
+    border-radius: 0 12px 12px 0;
+    padding: 24px 28px;
+    margin: 32px 0;
+    box-shadow: 4px 4px 0 rgba(28,46,34,.1);
+  }
+  .pullquote p {
+    font-family: var(--serif);
+    font-size: 21px;
+    font-weight: 600;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--forest);
+    letter-spacing: -0.3px;
+  }
+  .pullquote .attrib {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-style: normal;
+    opacity: .55;
+    margin-top: 12px;
+    display: block;
+  }
+
+  /* Sources */
+  .sources {
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    padding: 22px 24px;
+    margin: 40px 0 0;
+    box-shadow: 5px 5px 0 rgba(28,46,34,.12);
+  }
+  .sources h3 {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    letter-spacing: -0.4px;
+  }
+  .sources ol { padding-left: 20px; }
+  .sources li { font-family: var(--mono); font-size: 12px; line-height: 1.8; opacity: .85; margin-bottom: 4px; }
+  .sources a { text-decoration: underline; }
+  .sources a:hover { opacity: 1; }
+
+  /* End card */
+  .endcard {
+    text-align: center;
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--lime);
+    padding: 40px 28px;
+    margin: 44px 0 0;
+    box-shadow: 6px 6px 0 rgba(28,46,34,.14);
+  }
+  .endcard-h {
+    font-family: var(--serif);
+    font-size: clamp(26px, 4vw, 34px);
+    font-weight: 900;
+    line-height: 1.15;
+    letter-spacing: -0.8px;
+    color: var(--forest);
+    margin-bottom: 12px;
+  }
+  .endcard-h em { font-style: italic; }
+  .endcard-sub { font-family: var(--mono); font-size: 13px; opacity: .7; max-width: 420px; margin: 0 auto 24px; line-height: 1.7; }
+  .endcard .btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn-chunky {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 14px;
+    font-weight: 700;
+    padding: 14px 32px;
+    border-radius: 100px;
+    border: 2.5px solid var(--forest);
+    cursor: pointer;
+    transition: transform .1s, box-shadow .15s;
+    background: var(--forest);
+    color: #fff;
+  }
+  .btn-chunky:hover { transform: translateY(-2px); box-shadow: 4px 4px 0 rgba(28,46,34,.35); }
+  .btn-chunky.lime { background: var(--lime); color: var(--forest); }
+  .btn-chunky.lime:hover { background: var(--lime-d); box-shadow: 4px 4px 0 var(--forest); }
+  .btn-chunky.outline { background: transparent; color: var(--forest); }
+
+  /* Footer */
+  .footer {
+    background: var(--black);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 36px 48px;
+    flex-wrap: wrap;
+  }
+  .footer-brand { font-family: 'Special Elite', 'Courier New', Courier, monospace; font-size: 14px; font-weight: 400; }
+  .footer-center { font-family: var(--mono); font-size: 12px; color: rgba(255,255,255,.55); line-height: 1.7; }
+  .footer-right { font-family: var(--mono); font-size: 12px; text-align: right; line-height: 1.9; }
+  .footer-right a { color: rgba(255,255,255,.5); transition: color .15s; }
+  .footer-right a:hover { color: #fff; }
+
+  @media (max-width: 760px) {
+    .nav { padding: 12px 20px; }
+    .nav-links { display: none; }
+    .masthead { padding: 48px 20px 16px; }
+    .article-body { padding: 8px 20px 48px; }
+    .spec-row { grid-template-columns: 1fr; gap: 4px; }
+    .section-h { flex-direction: column; gap: 8px; align-items: flex-start; }
+    .footer { padding: 28px 20px; flex-direction: column; align-items: flex-start; }
+    .footer-right { text-align: left; }
+  }
+  @media (max-width: 480px) {
+    .nav-logo span { display: none; }
+    .nav-logo-mark { width: 28px; height: 28px; }
+    .nav-logo-mark img { width: 24px; height: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">
+    <div class="nav-logo-mark"><img src="../assets/timps-postcards.png" alt="TIMPS"></div>
+    <span>TIMPS PostCards</span>
+  </a>
+  <div class="nav-links">
+    <a href="../articles.html" class="nav-link active">Articles</a>
+    <a href="../archive.html" class="nav-link">Archive</a>
+    <a href="../daily/timps-postcards-2026-10-10.html" class="nav-link">Latest Issue</a>
+    <a href="../index.html#subscribe" class="nav-link">Subscribe</a>
+  </div>
+  <a href="../index.html#subscribe" class="nav-cta">Subscribe</a>
+</nav>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <span class="masthead-kicker">TIMPS Deep Dive · № 016</span>
+  <h1 class="masthead-h">A 3B model trained on a free Kaggle GPU beat coding models twice its size. <em>Then its author published the flaw in his own score.</em></h1>
+  <p class="masthead-dek">PrismaCoder-3B is a three-billion-parameter assistant that does exactly one job — write and edit Prisma ORM schemas — fine-tuned on a single free-tier T4 for the price of a notebook session. It scores 0.9992 on a 1,200-task benchmark its own author built. Then a manual spot-check found a class of mistake the benchmark was never checking for, and the author said so — in the report, and again on the model card.</p>
+  <div class="masthead-meta">
+    <b>Sandeep Thummala</b> &nbsp;·&nbsp; October 10, 2026 &nbsp;·&nbsp; 12 min read
+  </div>
+</header>
+
+<article class="article-body">
+
+  <!-- HERO FIGURE -->
+  <figure class="figure">
+    <img src="../assets/thumbs/article-prismacoder-3b-hero.jpg" alt="The PrismaCoder-3B training pipeline: base model, QLoRA adapters, SFT, DPO and GRPO stages">
+    <figcaption class="fig-cap">
+      <span class="fig-tag">Fig. 01</span>
+      <span>The PrismaCoder-3B training pipeline: QLoRA adapters applied to Qwen2.5-Coder-3B-Instruct, with each stage merged back into the base before the next begins. <a href="https://timps-website.vercel.app/prismacoder-3b.html" target="_blank" rel="noopener">Figure via TIMPS</a>.</span>
+    </figcaption>
+  </figure>
+
+  <!-- LEDE -->
+  <p class="lede"><b>Good morning.</b> The received wisdom is that a model worth using has to be big, or paid for, or both. PrismaCoder-3B is a small argument against that. It is three billion parameters wide, trained to do exactly one thing — generate and edit <b>Prisma ORM</b> schemas and client code from plain-English instructions — and it was built on a single free-tier GPU on Kaggle, the kind of hardware anyone can borrow twelve hours at a time. On the project's own 1,200-task benchmark it scores <b>0.9992</b>. That number now ships with an asterisk its author wrote himself: the benchmark, until it is fixed, could not see one of the most common mistakes a Prisma schema can contain. Both halves of the story were published together, on purpose.</p>
+
+  <!-- SUMMARY -->
+  <div class="callout">
+    <span class="callout-label">One-card summary</span>
+    <p><b>What:</b> <b>PrismaCoder-3B</b> — a Qwen2.5-Coder-3B fine-tune specialized for Prisma ORM schema and client-code generation, trained through a three-stage pipeline (SFT → DPO → GRPO).</p>
+    <p><b>When:</b> September 2026, released on Hugging Face under <b>Apache-2.0</b> at <code>sandeeprdy1729/PrismaCoder-3B</code>. ~653 downloads in its first month.</p>
+    <p><b>Why it matters:</b> a working proof that narrow specialization plus a free GPU can beat far larger general models on one task — and a rare, source-verified case of an author disclosing the blind spot in his own evaluation rather than waiting to be caught.</p>
+  </div>
+
+  <!-- SECTION 01 -->
+  <div class="section-h"><span class="section-no">01</span><h2>What actually shipped</h2></div>
+  <p class="para">PrismaCoder-3B is a <b>fine-tune of Qwen2.5-Coder-3B-Instruct</b> — Alibaba's 3.09-billion-parameter coding model — narrowed onto a single framework. Instead of trying to write code in every language, it does one vertical extremely well: Prisma, the TypeScript/JavaScript ORM that a large share of Node.js developers use to talk to a database. Give it the schema you already have and an instruction ("add a Comment model related to Post, with a body and a createdAt"), and it writes the <code>schema.prisma</code> edit or the client query to match.</p>
+  <p class="para">The model is published on Hugging Face by <b>Sandeep Thummala</b>, under a research report on the TIMPS site that documents the whole method. It has a permissive <b>Apache-2.0</b> license and ships both merged fp16/bf16 weights and a GGUF export for running it locally through llama.cpp or Ollama. At three gigabytes of parameters, that means the entire thing runs on a laptop.</p>
+
+  <div class="spec">
+    <div class="spec-head">Spec sheet — PrismaCoder-3B</div>
+    <div class="spec-row"><span class="k">Model</span><span class="v"><b>PrismaCoder-3B</b> (~3B parameters)</span></div>
+    <div class="spec-row"><span class="k">Base model</span><span class="v">Qwen/Qwen2.5-Coder-3B-Instruct</span></div>
+    <div class="spec-row"><span class="k">Author</span><span class="v">Sandeep Thummala (TIMPS)</span></div>
+    <div class="spec-row"><span class="k">License</span><span class="v">Apache-2.0</span></div>
+    <div class="spec-row"><span class="k">Method</span><span class="v">QLoRA (r=16, &alpha;=32, 4-bit NF4), merged between stages</span></div>
+    <div class="spec-row"><span class="k">Pipeline</span><span class="v">SFT &rarr; DPO &rarr; GRPO &rarr; (self-play RL round 2)</span></div>
+    <div class="spec-row"><span class="k">Hardware</span><span class="v">1&times; free-tier NVIDIA T4 (16GB) on Kaggle</span></div>
+    <div class="spec-row"><span class="k">Training data</span><span class="v">PrismaForge · ~3,000 of ~17,500 records used</span></div>
+    <div class="spec-row"><span class="k">Benchmark</span><span class="v">PrismaBench · 1,200 tasks · static "V0" gate</span></div>
+    <div class="spec-row"><span class="k">Headline score</span><span class="v"><b>0.9992 pass@1</b> (Wilson 0.9953–0.9999)</span></div>
+  </div>
+
+  <!-- SECTION 02 -->
+  <div class="section-h"><span class="section-no">02</span><h2>How you train a specialist on a GPU you don't own</h2></div>
+  <p class="para">The interesting engineering here isn't the model — it's the constraint. Training ran on <b>a single free-tier NVIDIA T4 with 16GB of memory</b>, inside a Kaggle notebook that is killed every <b>twelve hours</b>. A three-stage RLHF-style pipeline is not a two-hour job, so the whole thing had to be built to survive being interrupted and resumed, over and over, without losing progress or corrupting the run.</p>
+  <p class="para">Two infrastructure bugs are worth recording because they generalize well beyond this project. First, Kaggle hands you a notebook that <i>provisions two T4s</i>; even when the code asks for one device, Hugging Face's <b>Trainer</b> quietly wraps the model in <code>torch.nn.DataParallel</code>. That produces a slow memory leak as activations get gathered onto one GPU, and the run dies with an out-of-memory error hours in. The fix is blunt: set <code>CUDA_VISIBLE_DEVICES=0</code> <i>before</i> anything imports CUDA, so the second GPU never exists. Second, GRPO's three passes per step (generate, then policy forward, then reference forward) <b>fragmented GPU memory</b> until the allocator refused to hand out space it nominally had. That one is healed with <code>expandable_segments:True</code> and a cache-clear every five steps.</p>
+  <p class="para">The lesson for anyone trying this at home: on free hardware, the training recipe is the easy part. <i>The session limit is the actual adversary</i>, and it is defeated with step-level checkpointing every 10–25 steps plus a resume mechanism you write yourself.</p>
+
+  <!-- SECTION 03 -->
+  <div class="section-h"><span class="section-no">03</span><h2>The three-stage recipe, in plain language</h2></div>
+  <p class="para">The model was taught in three passes, each merging its small adapter weights back into the base before the next began:</p>
+  <ul class="para">
+    <li><b>SFT — supervised fine-tuning.</b> Show the model thousands of correct examples: this instruction plus this schema, produce this output. The model learns the shape of the task.</li>
+    <li><b>DPO — direct preference optimization.</b> Show it <i>pairs</i> — one output better than another — and nudge it toward the preferred one. No reward model, no fragile RL loop; just "this, not that."</li>
+    <li><b>GRPO — group relative policy optimization.</b> The online-RL stage, the same family of method behind DeepSeek's reasoning breakthroughs. The model generates several candidate schemas; the same automated verifier scores them; and the ones that pass are reinforced. The verifier is both the data filter and the reward signal — a neat shortcut, and the source of the problem in Section 05.</li>
+  </ul>
+  <p class="para">Adaptation throughout is <b>QLoRA</b>: the base model is frozen and compressed to 4-bit, and only a tiny set of low-rank adapter matrices — a fraction of a percent of the parameters — is ever trained. That's what makes a 3B model fit inside 16GB alongside the optimizer. A fixed seed (<code>20260830</code>) makes the whole thing reproducible.</p>
+
+  <!-- SECTION 04 -->
+  <div class="section-h"><span class="section-no">04</span><h2>The evidence</h2></div>
+  <p class="para">On <b>PrismaBench</b> — a 1,200-task benchmark the project built itself, spanning twelve categories from greenfield schema authoring to security-relevant tasks across three difficulty levels — the model lands at <b>0.9992 pass@1</b>, with a Wilson 95% confidence interval of [0.9953, 0.9999]. Eleven of twelve categories are perfect; a single task in "complex reads" fails. One error, across 1,200.</p>
+  <p class="para">The more telling number is the <b>comparison</b>. On an identical 200-task subset, with the same prompts and the same greedy decoding, PrismaCoder-3B edges out every baseline — including models with far more parameters:</p>
+
+  <div class="bench">
+    <span class="bench-label">200-task subset · pass@1</span>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">PrismaCoder-3B (3B)</span><span class="bench-val">1.0000</span></div>
+      <div class="bench-bar"><div class="bench-fill" style="width:100%"></div></div>
+    </div>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">StarCoder2-3B (3B)</span><span class="bench-val">0.8950</span></div>
+      <div class="bench-bar"><div class="bench-fill pink" style="width:90%"></div></div>
+    </div>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">DeepSeek-Coder-1.3B-Instruct</span><span class="bench-val">0.8550</span></div>
+      <div class="bench-bar"><div class="bench-fill pink" style="width:86%"></div></div>
+    </div>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">CodeLlama-7B-Instruct</span><span class="bench-val">0.7400</span></div>
+      <div class="bench-bar"><div class="bench-fill pink" style="width:74%"></div></div>
+    </div>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">Qwen2.5-Coder-3B-Instruct (untrained base)</span><span class="bench-val">0.6700</span></div>
+      <div class="bench-bar"><div class="bench-fill pink" style="width:67%"></div></div>
+    </div>
+    <p class="bench-note">Same evaluator, same prompt construction, same greedy decoding (<code>max_new_tokens=768</code>) across every model. The 200-task figure and the full 1,200-task figure (0.9992) come from different, overlapping samples and are consistent with each other — the full-benchmark number is the authoritative one.</p>
+  </div>
+
+  <p class="para">The base model it was built from scores <b>0.67</b>. The fine-tuning is worth roughly a third of the available accuracy, on this task, for a training run that cost nothing but time.</p>
+
+  <!-- PULL QUOTE -->
+  <div class="pullquote">
+    <p>&ldquo;A benchmark result and the boundaries of what it measures are inseparable parts of the same claim.&rdquo;</p>
+    <span class="attrib">— from the PrismaCoder-3B research report</span>
+  </div>
+
+  <!-- SECTION 05 -->
+  <div class="section-h"><span class="section-no">05</span><h2>The flaw in the scoreboard</h2></div>
+  <p class="para">Here is where the story turns. After publishing, the author ran a plain manual test — the kind of thing a benchmark is supposed to prevent you from <i>having</i> to do. He asked the model for a simple User/Post relationship. It produced clean, confident, well-formatted output. It also produced this:</p>
+
+  <div class="callout">
+    <span class="callout-label pink">What the model wrote</span>
+    <p><code>author User "authorId" -&gt; "id"</code></p>
+    <p><b>That is not valid Prisma.</b> The real syntax is <code>author User @relation(fields: [authorId], references: [id])</code>. The string-arrow notation the model invented has no meaning in the Prisma schema language — and the reciprocal <code>posts Post[]</code> field Prisma requires on the other side of a one-to-many was missing entirely. Prisma's own <code>validate</code> command would reject the schema outright.</p>
+  </div>
+
+  <p class="para">So why did a benchmark that scores almost perfectly not catch it? The author went and read the checker's source code. The static "V0" gate — a lightweight validator called <b>LightValidator</b> — does three things: it confirms the output parses, that code fences are balanced, and that the model and field names mentioned are grounded in the schema it was handed. Its first check parses <i>the task's input schema</i>, not the model's output. Its second check looks for well-formed client call sites. Nowhere does it validate the generated <b>schema text as Prisma schema language</b> — and in particular it never inspects whether a relation field carries a correctly formed <code>@relation</code> attribute, or whether both sides of a relation exist.</p>
+  <p class="para">The consequence is exact and uncomfortable: <i>the more thoroughly the benchmark was designed around checking client queries, the more completely it ignored the one thing the model is still bad at.</i> A schema with a missing, malformed, or invented relation clause passes every check the gate performs. The author classified it plainly — "a structural limitation of the evaluation methodology, not an isolated scoring error" — and noted that it applies to <b>every</b> pass@1 number in the report.</p>
+
+  <!-- SECTION 06 -->
+  <div class="section-h"><span class="section-no">06</span><h2>What the numbers don't say</h2></div>
+  <p class="para">The disclosure doesn't stop at the relation bug. Read the fine print, and the claims get quieter in the right places:</p>
+  <ul class="para">
+    <li><b>The gate is static.</b> V0 checks form and grounding, not function. A fuller chain — actually running Prisma's validator, generating a client, type-checking and executing against a live database (the project's "V1–V5") — was designed but <b>never run</b>, because no Node.js ≥18 environment was available. So 0.9992 means "well-formed and schema-grounded," <i>not</i> "compiles and runs."</li>
+    <li><b>The benchmark is bespoke.</b> PrismaBench was built by the same project, for this model. That makes it useful for measuring progress and catching regressions — and useless as an independent leaderboard. The method itself demands that you say so out loud.</li>
+    <li><b>The card is more cautious than the report.</b> Hugging Face's model card lists only the base-model comparison as currently valid, and explains that comparisons against other released coding models "have not been run through this same evaluator on this same held-out task set." The report does include that 200-task comparison, with its decoding and prompt conditions matched — but the project is careful, on the card, about how far that generalizes.</li>
+    <li><b>The data is small.</b> Only ~3,000 of ~17,500 available training records were used, against a full-scale design target of 120,000 synthetic records. The author calls the result "a proof of concept at this data scale, not the ceiling of the method."</li>
+    <li><b>One checkpoint is unscored.</b> The published number comes from the GRPO checkpoint. A later self-play RL round 2 completed, matched GRPO's internal score, and has <b>not</b> been benchmarked on the full set.</li>
+  </ul>
+  <p class="para">None of this makes the result less real. It makes the claim honest. A high pass@1 under a fast, cheap, static gate is a genuine and reproducible signal — it just isn't a certificate of functional correctness, and the model card tells you to run <code>prisma validate</code> on anything it produces.</p>
+
+  <!-- SECTION 07 -->
+  <div class="section-h"><span class="section-no">07</span><h2>What to watch next</h2></div>
+  <ul class="para">
+    <li><b>The full gate chain (V1–V5).</b> This is the honest scoreboard. Re-running evaluation in a Node-enabled environment — validate, generate, type-check, execute — is what turns 0.9992 into a number that means something about working code.</li>
+    <li><b>Closing the relation gap.</b> Extending the static checker to parse generated schema as Prisma schema language, and to verify relation-clause completeness, is one focused fix — and the direct test of whether the disclosed limitation gets repaired or just disclosed.</li>
+    <li><b>Scale.</b> Retraining at the 120,000-record target, with the full curated preference set, is the experiment that tells you whether this was a lucky proof of concept or a method with a curve behind it.</li>
+    <li><b>The RL round 2 checkpoint.</b> Scored against the published GRPO checkpoint, it answers whether the self-play stage is worth anything on real tasks.</li>
+    <li><b>The wider pattern.</b> PrismaCoder-3B is one of a growing cluster of results — Overmind's legal, biomedical and aviation benchmarks among them — where a small model tuned on one task beats a frontier generalist on that task. The pattern is now established; the open question is how far it stretches, and how many of those wins survive a stricter gate.</li>
+  </ul>
+
+  <!-- SECTION 08 -->
+  <div class="section-h"><span class="section-no">08</span><h2>The TIMPS verdict</h2></div>
+  <div class="callout">
+    <span class="callout-label">Our read</span>
+    <p><b>The specialization is the point, not the size.</b> A 3B model on a free GPU did not out-reason a 7B or a frontier system; it out-<i>specialized</i> them, on one narrow, very regular task. That is a genuinely useful thing to be true, and it is repeatable by a single person on a laptop.</p>
+    <p><b>The disclosure is the actual headline.</b> It would have been easy to publish 0.9992 and stop. Finding a hole by hand, reading your own checker, and stamping the caveat onto the model card is the harder path — and it is the one that makes the number trustworthy rather than merely impressive.</p>
+    <p><b>Caveat the score hard.</b> 0.9992 is a static-gate pass, on a home-made benchmark, on a checkpoint that predates the final training round. Read it as "the specialization worked," not as "the code is correct."</p>
+    <p><b>The whole story in one line:</b> a free Kaggle GPU, three billion parameters, and an author honest enough to publish the flaw in his own scoreboard — which is a better advertisement for the method than the score ever was.</p>
+  </div>
+
+  <p class="para" style="opacity:.6;font-size:13px;line-height:1.8;">Facts in this piece were compiled from the PrismaCoder-3B model card on Hugging Face, the project's research report on timps-website.vercel.app, the Qwen2.5-Coder technical report and model cards, the original QLoRA, DPO and GRPO (DeepSeekMath) papers, and reporting on the broader small-specialist-model trend. Benchmark figures are as reported by the project and are not independently audited; the model's own card instructs users to validate generated schemas before use. This is news analysis by an independent publication — not investment advice, not AI advice, and not a substitute for running Prisma's own tooling against generated code.</p>
+
+  <!-- SOURCES -->
+  <div class="sources">
+    <h3>Sources</h3>
+    <ol>
+      <li><a href="https://huggingface.co/sandeeprdy1729/PrismaCoder-3B" target="_blank" rel="noopener">Hugging Face — PrismaCoder-3B model card (Sandeep Thummala, 2026)</a></li>
+      <li><a href="https://timps-website.vercel.app/prismacoder-3b.html" target="_blank" rel="noopener">TIMPS Research — PrismaCoder-3B: A Specialized Code-Generation Model for Prisma ORM (September 2026)</a></li>
+      <li><a href="https://huggingface.co/Qwen/Qwen2.5-Coder-3B-Instruct" target="_blank" rel="noopener">Hugging Face — Qwen2.5-Coder-3B-Instruct (base model)</a></li>
+      <li><a href="https://arxiv.org/html/2409.12186v3" target="_blank" rel="noopener">arXiv — Qwen2.5-Coder Technical Report (2024)</a></li>
+      <li><a href="https://www.prisma.io/" target="_blank" rel="noopener">Prisma — official documentation</a></li>
+      <li><a href="https://arxiv.org/abs/2305.14314" target="_blank" rel="noopener">arXiv — QLoRA: Efficient Finetuning of Quantized LLMs (Dettmers et al., 2023)</a></li>
+      <li><a href="https://arxiv.org/abs/2305.18290" target="_blank" rel="noopener">arXiv — Direct Preference Optimization (Rafailov et al., 2023)</a></li>
+      <li><a href="https://arxiv.org/abs/2402.03300" target="_blank" rel="noopener">arXiv — DeepSeekMath: Pushing the Limits of Mathematical Reasoning (GRPO method, 2024)</a></li>
+      <li><a href="https://completeaitraining.com/news/trained-small-language-models-outperform-frontier-models-on/" target="_blank" rel="noopener">Complete AI Training — Trained small language models outperform frontier models on specialized tasks (Overmind benchmarks, Oct 2026)</a></li>
+      <li><a href="https://chatgpt.ca/blog/small-specialized-models-beat-frontier" target="_blank" rel="noopener">Small specialized models beat the frontier at one job (Jul 2026)</a></li>
+    </ol>
+  </div>
+
+  <!-- END CARD -->
+  <div class="endcard">
+    <h3 class="endcard-h">One story a day,<br>explained properly.</h3>
+    <p class="endcard-sub">New TIMPS deep dives land regularly — paired with the five-signal PostCard every morning. Free forever.</p>
+    <div class="btns">
+      <a href="../index.html#subscribe" class="btn-chunky">Subscribe free</a>
+      <a href="article-unintended-model-actions.html" class="btn-chunky outline">&larr; Prev: Unintended model actions</a>
+    </div>
+    <p style="font-family:var(--news);font-size:13px;opacity:.6;margin-top:20px;"><a href="../articles.html" style="text-decoration:underline;">&larr; Browse all deep dives</a></p>
+  </div>
+
+</article>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-brand">TIMPS PostCards</div>
+  <div class="footer-center">
+    Five signals from the AI landscape, every day.<br>
+    Plus long-form deep dives. Hyderabad, India · Est. 2026
+  </div>
+  <div class="footer-right">
+    <a href="../index.html">Home</a><br>
+    <a href="../archive.html">Posts</a><br>
+    <a href="../articles.html">Articles</a><br>
+    &copy; 2026 TIMPS
+  </div>
+</footer>
+
+</body>
+</html>
