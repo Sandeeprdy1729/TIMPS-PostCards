@@ -1,0 +1,84 @@
+name: Send push notifications
+
+# Fires automatically whenever a new daily issue or deep-dive article is
+# published (pushed to main). Sends a web push to every subscribed device
+# via the Vercel backend in api/.
+#
+# Requires these repo secrets:
+#   PUSH_API           base URL of the push backend, e.g. https://timps-postcards.vercel.app
+#   PUSH_SEND_SECRET   shared secret; must equal PUSH_SEND_SECRET in Vercel env
+#   SITE_URL           optional; public site base (defaults to GitHub Pages)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "daily/**.html"
+      - "articles/**.html"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Find the newly published page
+        id: find
+        run: |
+          files=$(git diff --name-only HEAD^ HEAD -- 'daily/*.html' 'articles/*.html' \
+            | grep -v -E '(^|/)(index|archive|articles)\.html$' || true)
+          if [ -z "$files" ]; then
+            echo "No new issue or article in this push; nothing to send."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          file=$(printf '%s\n' "$files" | sort | tail -1)
+          echo "file=$file" >> "$GITHUB_OUTPUT"
+          echo "skip=false" >> "$GITHUB_OUTPUT"
+
+      - name: Read the page title
+        if: steps.find.outputs.skip == 'false'
+        env:
+          FILE: ${{ steps.find.outputs.file }}
+        run: |
+          title=$(python3 - "$FILE" <<'PY'
+          import re, sys
+          html = open(sys.argv[1], encoding="utf-8").read()
+          m = re.search(r"<title>(.*?)</title>", html, re.S)
+          title = m.group(1).strip() if m else "TIMPS PostCards"
+          print(re.sub(r"^TIMPS PostCards [\u2014\u00b7-]\s*", "", title))
+          PY
+          )
+          echo "title=$title" >> "$GITHUB_OUTPUT"
+
+      - name: Broadcast the push
+        if: steps.find.outputs.skip == 'false'
+        env:
+          PUSH_API: ${{ secrets.PUSH_API }}
+          PUSH_SEND_SECRET: ${{ secrets.PUSH_SEND_SECRET }}
+          SITE_URL: ${{ secrets.SITE_URL }}
+          FILE: ${{ steps.find.outputs.file }}
+          TITLE: ${{ steps.find.outputs.title }}
+        run: |
+          if [ -z "$PUSH_API" ] || [ -z "$PUSH_SEND_SECRET" ]; then
+            echo "Push not configured (PUSH_API / PUSH_SEND_SECRET missing); skipping."
+            exit 0
+          fi
+          base="${SITE_URL:-https://sandeeprdy1729.github.io/TIMPS-PostCards}"
+          base="${base%/}"
+          jq -n --arg title "$TITLE" \
+                --arg body "New from TIMPS PostCards: $TITLE" \
+                --arg url "$base/$FILE" \
+                '{title:$title, body:$body, url:$url}' > payload.json
+          echo "Sending push for $FILE"
+          curl -sS -X POST "$PUSH_API/api/send" \
+            -H "Content-Type: application/json" \
+            -H "x-push-secret: $PUSH_SEND_SECRET" \
+            --data @payload.json

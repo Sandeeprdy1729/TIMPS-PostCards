@@ -29,6 +29,8 @@ jobs:
         run: |
           echo "window.BEEHIIV_PUB_ID = '${{ secrets.BEEHIIV_PUB_ID }}';" > config.js
           echo "window.GOATCOUNTER_CODE = '${{ secrets.GOATCOUNTER_CODE }}';" >> config.js
+          echo "window.PUSH_API = '${{ secrets.PUSH_API }}';" >> config.js
+          echo "window.VAPID_PUBLIC_KEY = '${{ secrets.VAPID_PUBLIC_KEY }}';" >> config.js
           echo "config.js generated for deployment"
 
       - name: Setup Pages
