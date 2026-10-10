@@ -36,6 +36,7 @@ module.exports = async function handler(req, res) {
       await put(pathname, JSON.stringify(subscription), {
         access: "public",
         addRandomSuffix: false,
+        allowOverwrite: true,
         contentType: "application/json",
       });
       return res.status(200).json({ ok: true });
