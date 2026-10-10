@@ -53,11 +53,23 @@ module.exports = async function handler(req, res) {
           const resp = await fetch(blob.url);
           subscription = await resp.json();
         } catch (err) {
+          console.log(`PUSH fetch-fail pathname=${blob.pathname} err=${err.message}`);
           throw err;
         }
+        const host = (() => {
+          try {
+            return new URL(subscription.endpoint).host;
+          } catch {
+            return "bad-endpoint";
+          }
+        })();
         try {
-          await webpush.sendNotification(subscription, notification);
+          const result = await webpush.sendNotification(subscription, notification);
+          console.log(`PUSH ok host=${host} status=${result.statusCode}`);
         } catch (err) {
+          console.log(
+            `PUSH fail host=${host} status=${err.statusCode} body=${(err.body || err.message || "").toString().slice(0, 200)}`
+          );
           if (err.statusCode === 404 || err.statusCode === 410) {
             await del(blob.pathname);
           }
