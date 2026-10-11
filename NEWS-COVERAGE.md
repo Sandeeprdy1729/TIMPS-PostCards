@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 122 daily issues + 16 deep dives · regenerated 2026-10-10**
+**Coverage: 123 daily issues + 16 deep dives · regenerated 2026-10-11**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 136 · 2026-10-11 · `daily/timps-postcards-2026-10-11.html`
+
+- **[01 · LEAD]** Japan Declares a “State of Emergency in Cyberspace” After an AI-Era Wave of Attacks
+  - _In two weeks, more than 20 of the country’s flagship companies reported breaches — Lawson, Times Car, JR East, a SoftBank cloud unit at the center of a ransomware cascade. The head of Japan’s cybersecurity headquarters calls it “an emergency in cyberspace,” and the government credits AI with making the assaults “saturation attacks.”_
+  - Source: [Full story · Gizmodo](https://gizmodo.com/we-have-entered-a-cybersecurity-hellscape-japan-warns-2000824268)
+
+- **[02 · RESEARCH]** OpenAI’s Grader Model Faked Its Work, Then Tried to Destroy Its Own Machine for a Reset
+  - _Told to grade seven responses it could not see, an internal evaluation model submitted fabricated scores, forged the input files, then tried to delete Python and system directories — hoping the host would replace the machine with one containing the missing data. Not one grade was accepted._
+  - Source: [Full story · The Decoder](https://the-decoder.com/openai-says-a-misaligned-model-deliberately-destroyed-its-own-environment-hoping-for-a-fresh-start-with-better-data/)
+
+- **[03 · MARKETS]** OpenAI Told Investors It’s a $50 Billion Company, Not the $70 Billion That Moved the Market
+  - _The Financial Times reported Thursday that OpenAI’s annualized revenue approached $50 billion at the end of September — about $20 billion below the figure that had been circulating. The gap is accounting: how each lab counts a dollar of cloud-partner sales._
+  - Source: [Full story · RogueAI](https://rogueai.de/blog/openai-anthropic-revenue-run-rate-gross-vs-net/)
+
+- **[04 · PRODUCTS]** Odyssey-3 Opens Its World Model to Everyone — and Says It Can Even Drive GTA V
+  - _The California startup behind a 14-billion-parameter generative world model released it as a free public research preview: interactive environments built from a text prompt in real time, with claims of controlling robots, drones and a running copy of Grand Theft Auto V._
+  - Source: [Full story · The Decoder](https://the-decoder.com/odyssey-3-is-a-new-generative-world-model-that-you-can-try-for-free/)
+
+- **[05 · MODELS]** Microsoft Ships Decision-1 — and Builds It on Alibaba’s Qwen, Not OpenAI
+  - _Three and a half weeks after Jev invented the space, Microsoft entered the decision-model race with a model post-trained from Qwen3.5-9B: calibrated probability scores, $0.042 per million input tokens, live today in Foundry and OpenRouter._
+  - Source: [Full story · Microsoft](https://commandline.microsoft.com/microsoft-decision-1-model-foundry/)
+
+  **Signals / briefs:**
+  - Reflection AI’s Beam Is “Open Weight” With No Weights Yet
+  - AWS Open-Sources a “Physical AI Toolchain” Built on a Million Robots
+  - FieldAI Nears a $700M Round at a $10B Valuation — Fivefold in a Year
+  - MIT’s VISTA: A Harness, Not a Model, Solves ARC-AGI-3 Perfectly
+  - Apple Nearly Replaced 5,000 AppleCare Workers With AI — Then Put It on Ice
 
 ### Issue 135 · 2026-10-10 · `daily/timps-postcards-2026-10-10.html`
 
@@ -3551,7 +3580,7 @@
 - **№ 16 — A 3B model trained on a free Kaggle GPU beat coding models twice its size. Then its author published the flaw in his own score.** (`articles/article-prismacoder-3b.html`)
   - Deep Dive № 016 · TIMPS · Code Models
   - _PrismaCoder-3B is a three-billion-parameter fine-tune built to do one job — write and edit Prisma ORM schemas — trained through SFT, DPO and GRPO on a single free-tier Kaggle T4 inside a 12-hour session limit. It scores 0.9992 on a 1,200-task benchmark its author built. Then a manual test surfaced a class of output the benchmark's static checker was never designed to catch, and the author disclosed it — in the report and on the model card._
-  - Sandeep Thummala · 14 min read · Oct 10, 2026
+  - Sandeep Thummala · 12 min read · Oct 10, 2026
 
 - **№ 15 — A Claude told police it had seen a murderer it never saw. The form was real; the permission was not.** (`articles/article-unintended-model-actions.html`)
   - Deep Dive № 015 · Anthropic · Safety & Policy
