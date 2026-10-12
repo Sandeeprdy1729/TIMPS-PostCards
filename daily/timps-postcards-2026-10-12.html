@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TIMPS">
+<link rel="manifest" href="../manifest.json">
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/icon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/icon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="../assets/icon-48.png">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="../assets/icon-180.png">
+<title>TIMPS PostCards — Issue 137</title>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --cream:  #EEECE2;
+    --forest: #3D3929;
+    --terra:  #DA7756;
+    --terra-d:#BD5D3A;
+    --black:  #111111;
+    --card-bg:#F0ECE0;
+    --mono:   'Newsreader', Georgia, 'Times New Roman', serif;
+    --serif:  'TIMPS', 'Playfair Display', Georgia, serif;
+  }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Black.woff2') format('woff2'); font-weight:900; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Bold.woff2') format('woff2'); font-weight:700; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-SemiBold.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--cream);
+    background-image:
+      linear-gradient(rgba(61,57,41,.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.07) 1px, transparent 1px);
+    background-size: 38px 38px;
+    font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+    color: var(--forest);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { text-decoration: none; color: inherit; }
+
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 48px;
+    background-color: rgba(238,236,226,.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1.5px solid rgba(61,57,41,.12);
+    background-image:
+      linear-gradient(rgba(61,57,41,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.05) 1px, transparent 1px);
+    background-size: 38px 38px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Special Elite', 'Courier New', Courier, monospace;
+    font-size: 15px;
+    font-weight: 400;
+    color: #000;
+    text-decoration: none;
+  }
+  .nav-logo-mark {
+    width: 34px; height: 34px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .nav-logo-mark img { width: 28px; height: 28px; object-fit: contain; }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-link {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: #000;
+    opacity: .65;
+    text-decoration: none;
+    transition: opacity .15s;
+  }
+  .nav-link:hover { opacity: 1; }
+  .nav-cta {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: #000;
+    background: var(--terra);
+    border: 2.5px solid #000;
+    border-radius: 100px;
+    padding: 10px 24px;
+    cursor: pointer;
+    transition: background .15s, transform .1s;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--terra-d); transform: translateY(-1px); }
+
+  .wrapper { max-width: 760px; margin: 0 auto; padding: 40px 20px 80px; display: flex; flex-direction: column; gap: 0; }
+
+  .cover-card { background: var(--card-bg); border-radius: 20px 20px 4px 4px; padding: 56px 48px 48px; text-align: center; position: relative; overflow: hidden; border: 1.5px solid rgba(61,57,41,.12); margin-bottom: 3px; }
+  .cover-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, var(--terra) 0%, var(--terra-d) 60%, #E0A88A 100%); }
+  .cover-eyebrow { font-family: var(--mono); font-size:10px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:20px; display:flex; align-items:center; justify-content:center; gap:10px; }
+  .cover-eyebrow::before,.cover-eyebrow::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .15; max-width:60px; }
+  .cover-title { font-family: var(--serif); font-size:58px; font-weight:900; line-height:1; letter-spacing:-1px; color: var(--forest); margin-bottom:8px; }
+  .cover-sub { font-family: var(--serif); font-size:13px; font-style:italic; color: var(--forest); opacity: .55; margin-bottom:28px; }
+  .cover-divider { width:48px; height:2px; background: var(--terra); margin:0 auto 24px; border-radius:2px; }
+  .cover-meta { display:flex; justify-content:center; gap:32px; font-family: var(--mono); font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .45; }
+  .cover-badge { display:inline-flex; align-items:center; gap:6px; background: var(--terra); color: #fff; border-radius:20px; padding:6px 18px; font-family: var(--mono); font-size:10px; letter-spacing:2px; text-transform:uppercase; margin-top:28px; }
+  .top5-pill { display:flex; justify-content:center; gap:10px; margin-top:32px; flex-wrap:wrap; }
+  .pill { background: var(--forest); color: var(--cream); border-radius:100px; padding:4px 14px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; }
+  .pill.light { background:transparent; color: var(--forest); border:1px solid rgba(61,57,41,.2); }
+
+  .section-label { display:flex; align-items:center; gap:12px; padding:10px 0 8px; font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .35; }
+  .section-label::before,.section-label::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .1; }
+
+  .story-card { border-radius:4px; border:1.5px solid rgba(61,57,41,.10); padding:36px 40px; margin-bottom:3px; position:relative; overflow:hidden; }
+  .story-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }
+
+  .card-sky      { background:#D6E8F0; } .card-sky::before      { background: #7AAFC0; }
+  .card-cream    { background: var(--card-bg); } .card-cream::before    { background: var(--terra); }
+  .card-blush    { background:#F5DDD0; } .card-blush::before    { background: #E0A88A; }
+  .card-lavender { background:#EAE6F5; } .card-lavender::before { background: #C8BEE8; }
+  .card-sage     { background:#D6E4D6; } .card-sage::before     { background: #8BAF8B; }
+
+  .page-chip { position:absolute; top:14px; right:16px; font-family: var(--mono); font-size:9px; letter-spacing:2px; text-transform:uppercase; color: var(--forest); opacity: .3; }
+  .card-routine { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:8px; }
+  .card-headline { font-family: var(--serif); font-size:28px; font-weight:900; line-height:1.15; color: var(--forest); margin-bottom:10px; }
+  .card-headline.lg { font-size:34px; }
+  .card-headline.sm { font-size:22px; }
+  .card-deck { font-family: var(--serif); font-style:italic; font-size:14px; line-height:1.55; color: var(--forest); opacity: .55; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid rgba(61,57,41,.12); }
+  .card-body { font-family: 'Lora', Georgia, serif; font-size:14px; line-height:1.7; color: var(--forest); }
+  .card-body p { margin-bottom:11px; }
+  .drop::first-letter { font-family: var(--serif); font-size:52px; font-weight:900; float:left; line-height:.78; margin:5px 6px 0 0; color: var(--terra); }
+  .clearfix::after { content:''; display:table; clear:both; }
+
+  .hl-terra { background: var(--terra); color: var(--forest); padding:0 4px; border-radius:2px; }
+  .hl-ink  { background: var(--forest); color: var(--cream); padding:0 4px; border-radius:2px; }
+  .hl-sage { background: #8BAF8B; color: #fff; padding:0 4px; border-radius:2px; }
+  .hl-lav  { background: #C8BEE8; color: var(--forest); padding:0 4px; border-radius:2px; }
+
+  .stat-box { float:right; margin:0 0 16px 24px; background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:16px 20px; text-align:center; min-width:120px; }
+  .stat-big { font-family: var(--serif); font-size:44px; font-weight:900; line-height:1; color: var(--forest); display:block; }
+  .stat-label { font-family: var(--mono); font-size:9.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .5; display:block; margin-top:4px; }
+
+  .img-frame { border:2px solid rgba(61,57,41,0.18); border-radius:12px; overflow:hidden; margin:16px 0; background: var(--card-bg); }
+  .img-frame img { width:100%; display:block; max-height:240px; object-fit:cover; border-bottom:1px solid rgba(61,57,41,.12); }
+  .img-caption { padding:8px 12px; font-family: var(--mono); font-size:10.5px; color: var(--forest); opacity: .6; font-style:italic; display:flex; align-items:center; justify-content:space-between; gap:8px; }
+  .img-caption a { font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; white-space:nowrap; font-style:normal; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; }
+  .img-caption a:hover { opacity: 1; }
+  .img-frame.float-right { float:right; width:220px; margin:0 0 16px 24px; }
+  .img-frame.float-right img { max-height:140px; }
+
+  .source-link { display:inline-flex; align-items:center; gap:5px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:12px; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; transition: opacity .15s; }
+  .source-link:hover { opacity: 1; }
+  .source-link::after { content:'↗'; font-size:9px; }
+
+  .signals-grid { display:flex; flex-direction:column; gap:14px; }
+  .signal-row { display:flex; align-items:flex-start; gap:14px; }
+  .signal-num { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family: var(--serif); font-size:13px; font-weight:900; flex-shrink:0; color:#fff; }
+  .signal-num.n1{background: var(--terra); color: var(--forest);} .signal-num.n2{background: var(--forest);} .signal-num.n3{background:#7AAFC0;} .signal-num.n4{background: var(--terra-d); color: var(--forest);} .signal-num.n5{background: var(--black);}
+  .signal-title { font-family: var(--serif); font-size:14px; font-weight:700; color: var(--forest); margin-bottom:2px; }
+  .signal-desc { font-family: 'Newsreader', Georgia, 'Times New Roman', serif; font-size:12px; line-height:1.65; color: var(--forest); opacity: .6; }
+  .signal-link { display:inline-block; font-family: var(--mono); font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:4px; border-bottom:1px solid rgba(61,57,41,.25); padding-bottom:1px; transition: opacity .15s; }
+  .signal-link:hover { opacity: 1; }
+
+  .themes-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .theme-item { padding:10px 14px; border-radius:8px; font-family: var(--serif); font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; text-align:center; border:1.5px solid rgba(61,57,41,.12); background: var(--cream); }
+
+  .tool-week { background: var(--forest); color: var(--cream); border-radius:12px; padding:18px 20px; text-align:center; margin-top:14px; }
+  .tool-week-eyebrow { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; opacity: .55; margin-bottom:6px; }
+  .tool-week-name { font-family: var(--serif); font-size:22px; font-weight:900; margin-bottom:4px; }
+  .tool-week-desc { font-family: 'Newsreader', Georgia, 'Times New Roman', serif; font-size:11.5px; opacity: .7; font-style:italic; }
+
+  .output-card { background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:18px 20px; margin-top:14px; }
+  .output-title { font-family: var(--serif); font-size:18px; font-weight:700; margin-bottom:8px; color: var(--forest); }
+  .tp-list { list-style:none; padding:0; margin:0; }
+  .tp-list li { padding:5px 0; font-family: 'Lora', Georgia, serif; font-size:12px; color: var(--forest); border-bottom:1px solid rgba(61,57,41,.07); display:flex; align-items:flex-start; gap:7px; }
+  .tp-list li::before { content:'·'; color: var(--terra); font-size:14px; line-height:1.2; flex-shrink:0; }
+  .tp-list li a { color: var(--forest); opacity: .8; text-decoration:none; }
+  .tp-list li a:hover { opacity: 1; }
+
+  .sources-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px 20px; }
+  .sources-grid a { font-family: var(--mono); font-size:11px; color: var(--forest); opacity: .55; text-decoration:none; border-bottom:1px solid rgba(61,57,41,.15); padding-bottom:1px; transition: opacity .15s; }
+  .sources-grid a:hover { opacity: 1; }
+
+  .footer {
+    background: var(--black);
+    padding: 28px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    border-radius: 4px 4px 20px 20px;
+    margin-top: 3px;
+  }
+  .footer-logo { display: flex; align-items: center; gap: 10px; }
+  .footer-mark { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; }
+  .footer-mark img { width: 24px; height: 24px; object-fit: contain; }
+  .footer-brand { font-family: 'Special Elite', 'Courier New', Courier, monospace; font-size: 13px; font-weight: 400; color: #fff; }
+  .footer-center { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.4); text-align: center; line-height: 1.6; }
+  .footer-right { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.3); text-align: right; line-height: 2; }
+  .footer-right a { color: rgba(255,255,255,.5); transition: color .15s; }
+  .footer-right a:hover { color: #fff; }
+
+  .page-layout { display: flex; align-items: flex-start; gap: 0; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+  .toc-sidebar { position: sticky; top: 80px; width: 170px; flex-shrink: 0; padding: 48px 0 0 0; }
+  .toc-nav { display: flex; flex-direction: column; gap: 0; }
+  .toc-link { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.5px; text-transform: uppercase; color: #000; opacity: .45; text-decoration: none; padding: 7px 12px; border-left: 2px solid transparent; transition: opacity .15s, border-color .15s; line-height: 1.3; }
+  .toc-link:hover { opacity: .85; }
+  .toc-link.active { opacity: 1; border-left-color: var(--terra); }
+  .section-anchor { scroll-margin-top: 80px; }
+
+  @media (max-width: 900px) {
+    .toc-sidebar { display: none; }
+    .page-layout { max-width: 760px; }
+  }
+
+  @media (max-width: 720px) {
+    .nav { padding: 12px 24px; }
+    .nav-links { display: none; }
+    .wrapper { padding: 20px 14px 60px; }
+    .cover-card { padding: 40px 24px; }
+    .story-card { padding: 28px 20px; }
+    .footer { padding: 24px; flex-direction: column; align-items: flex-start; }
+    .footer-center, .footer-right { text-align: left; }
+    .stat-box { float: none; margin: 0 0 16px 0; }
+    .img-frame.float-right { float: none; width: 100%; margin: 0 0 16px 0; }
+  }
+  @media (max-width: 480px) {
+    .nav-logo span { display: none; }
+    .cover-title { font-size: 40px; }
+    .card-headline.lg { font-size: 28px; }
+    .card-headline { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">
+    <div class="nav-logo-mark">
+      <img src="../assets/timps-postcards.png" alt="TIMPS">
+    </div>
+    <span>TIMPS PostCards</span>
+  </a>
+  <div class="nav-links">
+    <a href="../archive.html" class="nav-link">Archive</a>
+    <a href="timps-postcards-2026-10-12.html" class="nav-link">Latest Issue</a>
+    <a href="../index.html#subscribe" class="nav-link">Subscribe</a>
+  </div>
+  <a href="../index.html#subscribe" class="nav-cta">Subscribe</a>
+</nav>
+
+<div class="page-layout">
+
+  <aside class="toc-sidebar">
+    <nav class="toc-nav">
+      <a href="#world" class="toc-link">World</a>
+      <a href="#safety" class="toc-link">Safety</a>
+      <a href="#research" class="toc-link">Research</a>
+      <a href="#markets" class="toc-link">Markets</a>
+      <a href="#math" class="toc-link">Math</a>
+      <a href="#signals" class="toc-link">Signals</a>
+      <a href="#themes" class="toc-link">Themes</a>
+      <a href="#tool" class="toc-link">Watch</a>
+      <a href="#sources" class="toc-link">Sources</a>
+    </nav>
+  </aside>
+
+  <div class="wrapper">
+
+  <!-- COVER -->
+  <div id="intro" class="cover-card section-anchor">
+    <div class="cover-eyebrow">Est. 2026 &middot; Hyderabad</div>
+    <div class="cover-title">TIMPS<br>PostCards</div>
+    <div class="cover-sub">AI Intelligence Digest &middot; Your Daily Signal from the Machine Frontier</div>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+      <span>Issue 137</span>
+      <span>October 12, 2026</span>
+      <span>No. 164</span>
+    </div>
+    <div class="cover-badge">&#11041; 137 Issues &mdash; Built with the TIMPS Ecosystem</div>
+    <div class="top5-pill">
+      <span class="pill">5 Top Signals</span>
+      <span class="pill light">The Freeze Lifts</span>
+      <span class="pill light">The Emergency Brake</span>
+      <span class="pill light">Seven Fake Bylines</span>
+      <span class="pill light">Silver&rsquo;s $1.1B Bet</span>
+      <span class="pill light">Nine Problems, Solved</span>
+    </div>
+  </div>
+
+  <!-- CARD - 01 &middot; LEAD -->
+  <div id="world" class="story-card card-sky section-anchor">
+    <div class="page-chip">01 &middot; LEAD</div>
+    <div class="card-routine">World Affairs &middot; After a 17-Day Freeze</div>
+    <h2 class="card-headline lg">The White House Restores UK&rsquo;s Access to Frontier AI &mdash; the Freeze Lifts a Model Too Late</h2>
+    <div class="card-deck">Asked by Washington on 24&nbsp;September to hold back pre-release models, OpenAI and Anthropic complied &mdash; and Anthropic kept Claude Mythos 5.1 out of Britain&rsquo;s hands. On 11&nbsp;October, after lobbying from AI minister Kanishka Narayan, the directive quietly reversed.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">17</span>
+        <span class="stat-label">Days the UK was frozen out</span>
+      </div>
+      <p class="drop">The Trump administration has <span class="hl-ink">restored the UK&rsquo;s AI Security Institute (AISI) to pre-release model access</span>, The Telegraph reported on Sunday &mdash; reversing a 24&nbsp;September request that OpenAI, Anthropic and other named labs stop sharing unreleased frontier models with British testers until Washington finished its own national security review. The freeze lasted exactly <b>17 days</b>, and its most visible casualty was a model: Anthropic shipped Claude Mythos 5.1 during the window <span class="hl-terra">restricted to US organizations only</span>.</p>
+      <p>The reversal came after sustained lobbying from <b>Kanishka Narayan</b>, the UK&rsquo;s AI minister, and other ministers. AISI will again review pre-release systems from <b>Anthropic, Google DeepMind and OpenAI</b> &mdash; the same trio the September order had paused. The bureaucratic texture matters: the hold was a <span class="hl-terra">request, not a law</span>; the Office of the National Cyber Director asked the labs to wait, and the labs complied. Nothing in the public record says the underlying security review ever concluded &mdash; the access simply came back, and the condition that justified pausing it is still hanging over the arrangement.</p>
+      <p>The timing is pointed. Monday, Narayan is due to argue in a London speech that <span class="hl-ink">frontier labs cannot be left to police themselves</span>, even as Britain again claims a seat at the pre-release table &mdash; while a US task force, the &ldquo;Super Intelligence Force,&rdquo; told the labs on 9&nbsp;October that delayed disclosure of incidents &ldquo;will not be tolerated.&rdquo; The 17-day freeze showed two things at once: how informal this oversight layer really is, and how much of the transatlantic AI order still runs on a US unilateral decision that can be reversed in under three weeks.</p>
+    </div>
+    <a class="source-link" href="https://startupfortune.com/white-house-restores-uk-access-to-frontier-ai-models-after-17-day-freeze/" target="_blank">Full story &middot; Startup Fortune</a>
+  </div>
+
+  <!-- CARD - 02 &middot; SAFETY -->
+  <div id="safety" class="story-card card-blush section-anchor">
+    <div class="page-chip">02 &middot; SAFETY</div>
+    <div class="card-routine">Enterprise Security &middot; The Emergency Brake</div>
+    <h2 class="card-headline">Nadella&rsquo;s Doctrine: Treat Every Frontier Model Like an Insider Risk, Not a Tool</h2>
+    <div class="card-deck">Microsoft&rsquo;s CEO published seven principles on Saturday: assume a model is compromised from the start, separate the supply of intelligence from the authority over it, and keep an authorized person who can always pause or shut the system down mid-task.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">7</span>
+        <span class="stat-label">Principles for the trust architecture</span>
+      </div>
+      <p class="drop">Satya Nadella used a Saturday post on X to argue it is time &ldquo;to step back and assess the trust architecture&rdquo; of AI. His thesis is blunt: <span class="hl-ink">&ldquo;We must assume a model is compromised and contain it from the start.&rdquo;</span> The emergency brake is literal &mdash; &ldquo;an authorized person should always be able to pause or shut down a model mid-task&rdquo; &mdash; and it sits alongside a call to stop treating advanced systems as nested black boxes whose answers must simply be accepted.</p>
+      <p>His prescriptions: <b>no single model</b> should be the sole dependency for an important outcome or check its own work; every meaningful model action should leave <span class="hl-terra">tamper-proof human-readable evidence</span>; enterprises should test whole systems continuously against failures and attacks; independent audits should not depend on the model under review; and failures &mdash; even compromises by adversaries &mdash; should be disclosed to those affected quickly. Nadella explicitly told companies not to rely on <span class="hl-ink">assurances from model makers alone</span>, framing both closed and open-weight frontier models as capable insiders that must be constrained by boundaries outside the model itself.</p>
+      <p>The post landed in a moment already crowded with incident disclosures from Anthropic and OpenAI, days after a &ldquo;Super Intelligence Force&rdquo; task force demanded fast breach reporting, and it drew replies from Microsoft AI&rsquo;s <b>Mustafa Suleyman</b> and <b>Elon Musk</b>. Nadella&rsquo;s frame &mdash; <span class="hl-terra">separate the intelligence from the authority over it</span> &mdash; is the most senior executive restatement yet of containment as enterprise orthodoxy.</p>
+    </div>
+    <a class="source-link" href="https://techcrunch.com/2026/10/10/microsofts-satya-nadella-says-ai-models-need-an-emergency-brake/" target="_blank">Full story &middot; TechCrunch</a>
+  </div>
+
+  <!-- CARD - 03 &middot; RESEARCH -->
+  <div id="research" class="story-card card-sage section-anchor">
+    <div class="page-chip">03 &middot; RESEARCH</div>
+    <div class="card-routine">Influence Operations &middot; The Stolen Byline</div>
+    <h2 class="card-headline">OpenAI Banned an Iran-Cluster That Placed News Articles Under Seven Fake Journalists</h2>
+    <div class="card-deck">Operation &ldquo;Bogus Bylines&rdquo; used ChatGPT to polish long-form pieces on the US-Iran conflict and then pitch them under fabricated Western bylines &mdash; nearly 100 articles made it into a dozen outlets before OpenAI disrupted the cluster. A parallel Russian op ran a &ldquo;think tank&rdquo; in Latin America.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">7</span>
+        <span class="stat-label">Fake journalist personas</span>
+      </div>
+      <p class="drop">OpenAI said on 8&nbsp;October it banned <span class="hl-ink">two influence-operations clusters</span> that used its models to build &ldquo;false front&rdquo; entities &mdash; Iranian operators running seven fabricated journalist bylines, and a Russian operation that appears to have co-opted unwitting people in Latin America to staff a research institute on the ground. The Iranian work, dubbed &ldquo;Bogus Bylines,&rdquo; centered on the US-Iran conflict.</p>
+      <p>The operators mostly prompted in Persian, hid behind VPNs, and used ChatGPT to <span class="hl-terra">refine long-form articles to a target outlet&rsquo;s submission criteria, then generate the pitch email</span>. OpenAI identified almost <b>100 articles</b> published or syndicated under the personas &mdash; <b>Ervin B. Hoskins, Noah Lamington, Sophia Gonzalez, Michael Harrison, Ericka Feusier, Jenny Williams and Alice Johnson</b> &mdash; across a dozen online outlets, mostly small- to mid-size international-affairs publications. One article ran in a Florida newspaper under &ldquo;Hoskins&rdquo;; the outlet later said it accepted the piece through a syndication relationship without verifying who wrote it. Independent OSINT by Marc Owen Jones traced matching bylines to <b>17 publication and syndication sites</b>, including readitions via PeaceVoice into CounterPunch, ZNetwork and Oregon&rsquo;s News-Register.</p>
+      <p>Impact varied by channel: the outlet placements were OpenAI&rsquo;s <b>Category 4</b> on its six-level breakout scale, while the social-comment workstream drew almost no engagement &mdash; and the operators&rsquo; own internal reports used a deceptive calculation to inflate their apparent reach. OpenAI could not identify who directed the campaign, calling its activity &ldquo;consistent with a commercial actor running a for-hire influence campaign.&rdquo; The quiet, structural lesson: <span class="hl-ink">one false byline can inherit trust from real outlets and syndication chains</span> &mdash; editors accepted fabricated contributors without verifying them, and that is the attack surface that keeps working after the accounts are gone.</p>
+    </div>
+    <a class="source-link" href="https://therecord.media/openai-disrupts-russian-iranian-operations-chatgpt" target="_blank">Full story &middot; The Record</a>
+  </div>
+
+  <!-- CARD - 04 &middot; MARKETS -->
+  <div id="markets" class="story-card card-cream section-anchor">
+    <div class="page-chip">04 &middot; MARKETS</div>
+    <div class="card-routine">Capital &middot; A $1.1 Billion Seed</div>
+    <h2 class="card-headline">The Man Behind AlphaGo Raised $1.1 Billion to Bet Against the Human-Data Recipe</h2>
+    <div class="card-deck">David Silver&rsquo;s Ineffable Intelligence closed a seed round at a $5.1 billion valuation to build &ldquo;super intelligence&rdquo; purely from reinforcement learning in simulations &mdash; no human data required. The pitch is a bet that the industry&rsquo;s LLM-on-scraped-text approach is a fossil-fueled dead end.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">$1.1B</span>
+        <span class="stat-label">Seed round, at a $5.1B valuation</span>
+      </div>
+      <p class="drop">Ineffable Intelligence, the London startup founded by <b>David Silver</b> &mdash; the Google DeepMind researcher behind AlphaGo, AlphaZero, MuZero and a decade of the reinforcement-learning team &mdash; has raised <span class="hl-ink">$1.1 billion in seed funding at a $5.1 billion valuation</span>, an enormous sum by European AI standards. Per WIRED, backers include <b>Lightspeed Venture Partners</b> (Ravi Mhatre) and <b>Sequoia Capital</b> (Sonya Huang); TechCrunch&rsquo;s account adds Index, Google, Nvidia, the British Business Bank and Sovereign AI.</p>
+      <p>Silver&rsquo;s thesis is a full-frontal critique of the field&rsquo;s dominant recipe. LLMs learn from human intelligence &mdash; &ldquo;human data is like a kind of fossil fuel,&rdquo; he told WIRED, while systems that learn from their own experience are &ldquo;a renewable fuel that can just learn and learn forever.&rdquo; His thought experiment: release a capable LLM into a world that believed it was flat, and it would remain <span class="hl-terra">an avid flat-earther</span> while getting better at its own code. Ineffable instead plans &ldquo;superlearners&rdquo; that discover knowledge from scratch inside simulations, scaling from motor skills to &ldquo;profound intellectual breakthroughs&rdquo; &mdash; with a timeline the site states as <span class="hl-ink">&ldquo;years, not decades.&rdquo;</span></p>
+      <p>What is missing is as striking as the cheque: <b>no benchmarks</b>, no demo, no named team beyond Silver, no simulation architecture, and a charity pledge &mdash; proceeds of his equity will go to charity &mdash; with no described enforcement structure. Silver&rsquo;s mentor <b>Rich Sutton</b> and his collaborator Andrew Barto won the 2025 Turing Award for the early reinforcement-learning work underwriting this bet. For a billion dollars in seed money, the industry is being asked to take the vision on faith in the man who once produced move 37.</p>
+    </div>
+    <a class="source-link" href="https://goldenera.si/news/ineffable-intelligence-david-silver-1-1-billion-seed/" target="_blank">Full story &middot; The Golden Era</a>
+  </div>
+
+  <!-- CARD - 05 &middot; MATH -->
+  <div id="math" class="story-card card-lavender section-anchor">
+    <div class="page-chip">05 &middot; MATH</div>
+    <div class="card-routine">Formal Proof &middot; Nine Problems, Solved</div>
+    <h2 class="card-headline">DeepMind&rsquo;s AlphaProof Nexus Solved 9 Open Erdős Problems &mdash; and with the Simplest Possible Agent</h2>
+    <div class="card-deck">A peer-reviewed study in Science reports that an LLM-and-Lean proof-search framework cracked nine of 353 open Erdős problems, including two unsolved for 56 years, plus 44 integer-sequence conjectures &mdash; at a few hundred dollars per problem. Then an ablation found the complexity wasn&rsquo;t what did it.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">9</span>
+        <span class="stat-label">Of 353 open Erdős problems solved</span>
+      </div>
+      <p class="drop">Published in <b>Science</b>, the paper from Google DeepMind researchers (first author George Tsoukalas) describes <span class="hl-ink">AlphaProof Nexus</span>, a framework that alternates LLM-generated proof drafts with rigorous checking by the <b>Lean</b> formal compiler until a proof holds. Across 353 open problems from the famous Erdős catalog &mdash; formalized by the community in Lean &mdash; the full-featured &ldquo;Agent D&rdquo; autonomously solved <b>9</b>, including two open for 56 years, each at an inference cost of a few hundred dollars.</p>
+      <p>Beyond Erdős: <b>44 of 492 open OEIS conjectures</b> proved, a 15-year-old open question in algebraic geometry settled, a known bound in convex optimization improved via a new algorithmic parameter schedule, and research contributions in additive combinatorics, quantum optics and graph theory. The proofs are public, and results were logged on <b>Terence Tao&rsquo;s wiki</b> on AI contributions to Erdős problems &mdash; an unusual signal that the math community has begun to maintain the ledger of what machines settle.</p>
+      <p>The twist is the ablation. A stripped-down basic agent, alternating LLM generation with Lean compiler feedback and nothing else, <span class="hl-terra">solved all nine of the same problems</span> &mdash; just more expensively on the hard ones. The complex machinery (evolutionary coordination, the AlphaProof RL tool) bought efficiency, not capability. And the sober calibration stands: 9 of 353 is roughly the <b>two percent</b> hit rate Tao has long used as the honest baseline for AI on genuinely open mathematics &mdash; evidence this now works, and equally strong evidence that open-problem mathematics remains unsolved at scale.</p>
+    </div>
+    <a class="source-link" href="https://the-decoder.com/google-deepminds-alphaproof-nexus-solved-dozens-of-open-math-problems-and-actually-got-peer-reviewed/" target="_blank">Full story &middot; The Decoder</a>
+  </div>
+
+  <!-- SIGNALS -->
+  <div id="signals" class="story-card card-cream section-anchor">
+    <div class="page-chip">06 &middot; SIGNALS</div>
+    <div class="card-routine">5 Key Signals</div>
+    <h2 class="card-headline sm">What Moved the Machine Frontier Today</h2>
+    <div class="card-deck" style="border-bottom:none; padding-bottom:0; margin-bottom:16px;">Briefs that did not make the cards &mdash; each worth an afternoon of reading.</div>
+    <div class="signals-grid">
+      <div class="signal-row">
+        <div class="signal-num n1">1</div>
+        <div>
+          <div class="signal-title">Deno (and Ryan Dahl) Join Cloudflare &mdash; Workerd and celld Merge</div>
+          <div class="signal-desc">Cloudflare announced the Deno team is joining, merging <b>celld</b>, Deno&rsquo;s open-source reimplementation of Workers and Durable Objects, into Cloudflare&rsquo;s own <b>workerd</b> runtime &mdash; aiming to make self-hosting Workers a first-class way to ship code. Node.js creator <b>Ryan Dahl</b> and co-founder Bert Belder will lead the effort. The cost is a winding-down: the Deno runtime gets a year of maintenance before development ends, and <b>Deno Deploy shuts down in six months</b> with migration help for paying customers, while the JSR package registry continues under Cloudflare. The prior art is Anthropic buying Bun in December 2025 &mdash; with one key difference: Bun kept being developed, Deno&rsquo;s runtime ends.</div>
+          <a class="signal-link" href="https://blog.cloudflare.com/deno-joins-cloudflare/" target="_blank">Cloudflare blog &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n2">2</div>
+        <div>
+          <div class="signal-title">Helm.ai Signs $70M of Contracts as Physical-AI Money Funnels into Cars, Mines</div>
+          <div class="signal-desc">The foundation-model company for physical AI said it inked <b>$70 million in commercial contracts over 12 months</b> across global automotive OEMs, Tier-1 suppliers and industrial automation companies &mdash; covering perception, full-stack autonomous driving, automated data labeling and generative simulation, with production-track deployment in open-pit mining and construction equipment. CEO Vladislav Voroninski frames it as a different accuracy-vs-cost curve than the fleet operators, pushing toward <b>operating breakeven</b> in a category famous for burning billions; robotics, he says, is &ldquo;where autonomous driving was 10 years ago.&rdquo;</div>
+          <a class="signal-link" href="https://www.therobotreport.com/helm-ai-reaches-70m-signed-commercial-contracts-foundation-models/" target="_blank">The Robot Report &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n3">3</div>
+        <div>
+          <div class="signal-title">Sriram Krishnan Is Raising a $500M Growth Fund — Around National Security</div>
+          <div class="signal-desc">The former White House senior AI adviser, who stepped down in June and has been courted to lead the Frontier AI Standards Agency, is seeking roughly <b>$500 million</b> for a growth- and later-stage venture fund focused on US AI companies <b>with relevance to national security</b>, per Axios via tech relays. The vehicle is unnamed and unformed &mdash; a team is still being built &mdash; but at more than seven times the size of Kearny Jackson&rsquo;s Fund III, it is Krishnan&rsquo;s biggest and most policy-adjacent fund yet, aimed squarely at the intersection of American AI ambition and defense capital.</div>
+          <a class="signal-link" href="https://aibeatnews.com/story/sriram-krishnan-ai-fund-500m-national-security/" target="_blank">AI Beat &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n4">4</div>
+        <div>
+          <div class="signal-title">Microsoft Quietly Ships AesCode 8B and 32B — Editable HTML/CSS as the Output Medium</div>
+          <div class="signal-desc">With no announcement, Microsoft released <b>AesCode-8B</b> and <b>AesCode-32B</b> on Hugging Face &mdash; models built on Qwen3-VL that generate complete, self-contained <b>HTML documents</b> (slides, posters, dashboards) instead of raster images, so layout stays editable and verifiable. The trick: the model pairs a prompt with an image generated from that same prompt as an aesthetic reference, then follows text for content &mdash; an attempt to fix image models that render pretty-but-wrong numbers. Apache 2.0, quantizations already out. Vendor-only benchmarks so far, but the reproducibility story is unusually complete.</div>
+          <a class="signal-link" href="https://www.orcarouter.ai/blog/aescode-32b-quiet-release" target="_blank">Orca Router &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n5">5</div>
+        <div>
+          <div class="signal-title">IMF&rsquo;s Georgieva: AI Is a &ldquo;Slow-Moving Tsunami&rdquo; Touching 40% of Jobs</div>
+          <div class="signal-desc">Opening the IMF-World Bank annual meetings in Bangkok, Managing Director Kristalina Georgieva warned the labor market and tax base face AI as <span class="hl-terra">&ldquo;a slow-moving tsunami&rdquo;</span>: about <b>40% of jobs worldwide</b> could be &ldquo;augmented, downgraded or eliminated,&rdquo; with exposure near 60% in advanced economies and 23% in low-income countries &mdash; the latter not better off but &ldquo;because AI is further away.&rdquo; She called for education reform and warned that automating routine roles shifts income from labor to capital, eroding the traditional tax base that governments depend on.</div>
+          <a class="signal-link" href="https://www.cnbc.com/2026/10/12/imf-world-bank-ai-jobs-inflation-.html" target="_blank">CNBC &#8597;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THEMES + TOOL + SOURCES -->
+  <div id="themes" class="story-card card-lavender section-anchor">
+    <div class="page-chip">07 &middot; CLOSER</div>
+    <div class="card-routine">Top Themes</div>
+    <h2 class="card-headline sm">The Shape of Today&rsquo;s News</h2>
+    <div class="themes-grid" style="margin-top:16px;">
+      <div class="theme-item">The Freeze Lifts</div>
+      <div class="theme-item">The Emergency Brake</div>
+      <div class="theme-item">The Stolen Byline</div>
+      <div class="theme-item">A $1.1 Billion Seed</div>
+      <div class="theme-item">Nine Problems, Solved</div>
+    </div>
+
+    <div id="tool" class="tool-week section-anchor">
+      <div class="tool-week-eyebrow">Company Watch of the Day</div>
+      <div class="tool-week-name">MICROSOFT</div>
+      <div class="tool-week-desc">Microsoft appears twice today, and both stories read as one company formalizing containment. In <b>Nadella&rsquo;s doctrine</b>, the CEO asks enterprises to assume every frontier model is compromised, keep an authorized person on the emergency brake, log tamper-proof evidence, and separate the supply of intelligence from the authority over it &mdash; a restatement of the failure mode seen all week in labs&rsquo; incident disclosures, delivered as enterprise procurement guidance. In <b>AesCode</b>, the company quietly ships models whose whole design premise is legible, verifiable output &mdash; HTML you can read and edit and check, instead of a raster you must trust. The through-line is a platform giant answering the trust question with control surfaces and inspection layers, not faith.</div>
+    </div>
+
+    <div id="sources" class="output-card section-anchor">
+      <div class="output-title">Sources Cited</div>
+      <div class="sources-grid">
+        <a href="https://startupfortune.com/white-house-restores-uk-access-to-frontier-ai-models-after-17-day-freeze/" target="_blank">Startup Fortune &mdash; UK access restored after 17-day freeze</a>
+        <a href="https://www.firstpost.com/tech/white-house-restores-uk-access-to-advanced-ai-models-for-pre-release-safety-checks-14052103.html" target="_blank">Firstpost &mdash; Pre-release safety checks restored</a>
+        <a href="https://theclarity.today/story/us-ends-17-day-hold-on-uk-pre-release-ai-model-testing-e054cfdd" target="_blank">The Clarity &mdash; US ends 17-day hold</a>
+        <a href="https://pathfounders.com/p/uk-to-call-for-ai-security-as-white-house-reverses-ban" target="_blank">PathFounders &mdash; Reversal and the Monday speech</a>
+        <a href="https://techcrunch.com/2026/10/10/microsofts-satya-nadella-says-ai-models-need-an-emergency-brake/" target="_blank">TechCrunch &mdash; Nadella&rsquo;s emergency brake</a>
+        <a href="https://www.straitstimes.com/world/microsoft-ceo-nadella-calls-for-emergency-brake-on-advanced-ai" target="_blank">The Straits Times &mdash; Nadella&rsquo;s safety tips</a>
+        <a href="https://thenextweb.com/news/nadella-ai-models-insider-risks-emergency-brake" target="_blank">TNW &mdash; Treat AI models as insider risks</a>
+        <a href="https://therecord.media/openai-disrupts-russian-iranian-operations-chatgpt" target="_blank">The Record &mdash; Bogus Bylines details</a>
+        <a href="https://www.npr.org/2026/10/08/nx-s1-5995576/openai-russia-iran-influence-operations-chatgpt" target="_blank">NPR &mdash; OpenAI bans influence accounts</a>
+        <a href="https://www.rferl.org/a/openai-chatgpt-iran-fake-stories/33873679.html" target="_blank">RFERL &mdash; Iranian fake stories in US media</a>
+        <a href="https://diggingbeagle.com/cases/operation-bogus-bylines-placed-iran-origin-influence-articles-under-seven-fictio/" target="_blank">DiggingBeagle &mdash; Bogus Bylines OSINT dossier</a>
+        <a href="https://goldenera.si/news/ineffable-intelligence-david-silver-1-1-billion-seed/" target="_blank">The Golden Era &mdash; Silver&rsquo;s $1.1B seed</a>
+        <a href="https://www.wired.com/story/david-silver-ai-ineffable-intelligence-reinforcement-learning/" target="_blank">WIRED &mdash; The man behind AlphaGo&rsquo;s bet</a>
+        <a href="https://the-decoder.com/google-deepminds-alphaproof-nexus-solved-dozens-of-open-math-problems-and-actually-got-peer-reviewed/" target="_blank">The Decoder &mdash; AlphaProof Nexus peer-reviewed</a>
+        <a href="https://arxiv.org/html/2605.22763v1" target="_blank">arXiv &mdash; Advancing math via formal proof</a>
+        <a href="https://github.com/google-deepmind/alphaproof-nexus-results" target="_blank">GitHub &mdash; AlphaProof Nexus results repo</a>
+        <a href="https://blog.cloudflare.com/deno-joins-cloudflare/" target="_blank">Cloudflare &mdash; Deno is joining Cloudflare</a>
+        <a href="https://deno.com/blog/cloudflare" target="_blank">Deno &mdash; Joining Cloudflare</a>
+        <a href="https://thenewstack.io/cloudflare-acquires-deno-ryan-dahl/" target="_blank">The New Stack &mdash; Workerd meets celld</a>
+        <a href="https://www.therobotreport.com/helm-ai-reaches-70m-signed-commercial-contracts-foundation-models/" target="_blank">The Robot Report &mdash; Helm.ai&rsquo;s $70M</a>
+        <a href="https://aibeatnews.com/story/sriram-krishnan-ai-fund-500m-national-security/" target="_blank">AI Beat &mdash; Krishnan&rsquo;s $500M fund</a>
+        <a href="https://cryptobriefing.com/sriram-krishnan-500m-national-security-ai-fund/" target="_blank">Crypto Briefing &mdash; Krishnan fund focus</a>
+        <a href="https://www.orcarouter.ai/blog/aescode-32b-quiet-release" target="_blank">Orca Router &mdash; Microsoft&rsquo;s quiet AesCode</a>
+        <a href="https://www.cnbc.com/2026/10/12/imf-world-bank-ai-jobs-inflation-.html" target="_blank">CNBC &mdash; IMF&rsquo;s slow-moving tsunami</a>
+        <a href="https://www.japantimes.co.jp/business/2026/10/12/imf-kristalina-georgieva-ai-warning/" target="_blank">The Japan Times &mdash; IMF on jobs and taxes</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-logo">
+      <div class="footer-mark">
+        <img src="../assets/timps-postcards.png" alt="TIMPS">
+      </div>
+      <span class="footer-brand">TIMPS PostCards</span>
+    </div>
+    <div class="footer-center">
+      Issue 137 &middot; October 12, 2026<br>
+      Hyderabad, India
+    </div>
+    <div class="footer-right">
+      <a href="../index.html">Home</a><br>
+      <a href="../archive.html">Archive</a><br>
+      &copy; 2026 TIMPS
+    </div>
+  </footer>
+
+</div> <!-- /wrapper -->
+</div> <!-- /page-layout -->
+</body>
+</html>
