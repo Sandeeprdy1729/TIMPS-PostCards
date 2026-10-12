@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 123 daily issues + 16 deep dives · regenerated 2026-10-11**
+**Coverage: 124 daily issues + 16 deep dives · regenerated 2026-10-12**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 137 · 2026-10-12 · `daily/timps-postcards-2026-10-12.html`
+
+- **[01 · LEAD]** The White House Restores UK’s Access to Frontier AI — the Freeze Lifts a Model Too Late
+  - _Asked by Washington on 24 September to hold back pre-release models, OpenAI and Anthropic complied — and Anthropic kept Claude Mythos 5.1 out of Britain’s hands. On 11 October, after lobbying from AI minister Kanishka Narayan, the directive quietly reversed._
+  - Source: [Full story · Startup Fortune](https://startupfortune.com/white-house-restores-uk-access-to-frontier-ai-models-after-17-day-freeze/)
+
+- **[02 · SAFETY]** Nadella’s Doctrine: Treat Every Frontier Model Like an Insider Risk, Not a Tool
+  - _Microsoft’s CEO published seven principles on Saturday: assume a model is compromised from the start, separate the supply of intelligence from the authority over it, and keep an authorized person who can always pause or shut the system down mid-task._
+  - Source: [Full story · TechCrunch](https://techcrunch.com/2026/10/10/microsofts-satya-nadella-says-ai-models-need-an-emergency-brake/)
+
+- **[03 · RESEARCH]** OpenAI Banned an Iran-Cluster That Placed News Articles Under Seven Fake Journalists
+  - _Operation “Bogus Bylines” used ChatGPT to polish long-form pieces on the US-Iran conflict and then pitch them under fabricated Western bylines — nearly 100 articles made it into a dozen outlets before OpenAI disrupted the cluster. A parallel Russian op ran a “think tank” in Latin America._
+  - Source: [Full story · The Record](https://therecord.media/openai-disrupts-russian-iranian-operations-chatgpt)
+
+- **[04 · MARKETS]** The Man Behind AlphaGo Raised $1.1 Billion to Bet Against the Human-Data Recipe
+  - _David Silver’s Ineffable Intelligence closed a seed round at a $5.1 billion valuation to build “super intelligence” purely from reinforcement learning in simulations — no human data required. The pitch is a bet that the industry’s LLM-on-scraped-text approach is a fossil-fueled dead end._
+  - Source: [Full story · The Golden Era](https://goldenera.si/news/ineffable-intelligence-david-silver-1-1-billion-seed/)
+
+- **[05 · MATH]** DeepMind’s AlphaProof Nexus Solved 9 Open Erdős Problems — and with the Simplest Possible Agent
+  - _A peer-reviewed study in Science reports that an LLM-and-Lean proof-search framework cracked nine of 353 open Erdős problems, including two unsolved for 56 years, plus 44 integer-sequence conjectures — at a few hundred dollars per problem. Then an ablation found the complexity wasn’t what did it._
+  - Source: [Full story · The Decoder](https://the-decoder.com/google-deepminds-alphaproof-nexus-solved-dozens-of-open-math-problems-and-actually-got-peer-reviewed/)
+
+  **Signals / briefs:**
+  - Deno (and Ryan Dahl) Join Cloudflare — Workerd and celld Merge
+  - Helm.ai Signs $70M of Contracts as Physical-AI Money Funnels into Cars, Mines
+  - Sriram Krishnan Is Raising a $500M Growth Fund — Around National Security
+  - Microsoft Quietly Ships AesCode 8B and 32B — Editable HTML/CSS as the Output Medium
+  - IMF’s Georgieva: AI Is a “Slow-Moving Tsunami” Touching 40% of Jobs
 
 ### Issue 136 · 2026-10-11 · `daily/timps-postcards-2026-10-11.html`
 
