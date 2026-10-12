@@ -3606,9 +3606,9 @@
 
 ## Deep Dive Articles — already covered
 
-- **№ 17 — Reverse engineering was the last human-only job in software. Now it is a one-line install — and a 132,000-star open-source project.** (`articles/article-reverse-engineering-agents.html`)
+- **№ 17 — Every product on Earth gets taken apart and rebuilt cheaper. Reverse engineering just went from a nation-state strategy to a one-line install.** (`articles/article-reverse-engineering-agents.html`)
   - Deep Dive № 017 · TIMPS · Agents
-  - _REA — "Reverse Engineer Anything" — hands a coding agent Ghidra, Hopper, IDA and ~50 tools so it can take an app apart down to the binary. Released quietly in April, it now sits at 132,000 stars. This is the tour of what that unlocked — a native LG TV Plex client, a 13-year-old Disney Infinity lock broken, a hidden GBA minigame found after 25 years, an unnamed FPS reconstructed to 83% byte-exact source by fifteen agents — and the new ways an agent can lie to you._
+  - _When anyone builds a product, someone takes it apart and rebuilds it cheaper — and that process just became a one-line install. REA hands a coding agent Ghidra, Hopper, IDA and ~50 tools so it can take an app apart down to the binary; released quietly in April, it now sits at 132,000 stars. The tour of what it unlocked — a native LG TV Plex client, a scriptable Fire TV and Kodak camera, a live laundry-room dashboard, a 13-year-old Disney Infinity lock broken, a hidden GBA minigame found after 25 years, an unnamed FPS rebuilt to 83% byte-exact source by fifteen agents — plus the new ways an agent can lie to you._
   - Sandeep Thummala · 12 min read · Oct 12, 2026
 
 - **№ 16 — A 3B model trained on a free Kaggle GPU beat coding models twice its size. Then its author published the flaw in his own score.** (`articles/article-prismacoder-3b.html`)
