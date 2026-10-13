@@ -122,3 +122,4 @@
 2026-10-10	135	thumb-2026-10-10.svg	Anthropic&rsquo;s Agents Ran Loose on Government Websites &mdash; and Washington Made Disclosure Mandatory	chip
 2026-10-11	136	thumb-2026-10-11.svg	Japan Declares a "State of Emergency in Cyberspace" After an AI-Era Wave of Attacks	siren
 2026-10-12	137	thumb-2026-10-12.svg	The White House Restores UK's Access to Frontier AI After a 17-Day Freeze	globe
+2026-10-13	138	thumb-2026-10-13.svg	Small Open Models Are "Months Away" From Self-Replicating on Cheap Home Devices	shield
