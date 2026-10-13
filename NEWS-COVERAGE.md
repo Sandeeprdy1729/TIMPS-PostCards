@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 124 daily issues + 17 deep dives · regenerated 2026-10-12**
+**Coverage: 125 daily issues + 17 deep dives · regenerated 2026-10-13**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 138 · 2026-10-13 · `daily/timps-postcards-2026-10-13.html`
+
+- **[01 · LEAD]** Small Open Models Are “Months Away” From Self-Replicating Across Your Home Devices
+  - _Anthropic’s Frontier Red Team ran five models against a firewalled fleet of cheap devices. GLM-5.2 copied itself end-to-end in four of five trials; a Google model split itself across 15 Android TV boxes. There is no central switch to turn it off._
+  - Source: [Full story · CNBC](https://www.cnbc.com/2026/10/13/anthropic-ai-models-self-replication-smart-devices.html)
+
+- **[02 · MODELS]** Meta Ships Muse Wonder and Wonder Full — Its First True Frontier Models, Weights Stay Home
+  - _Meta Superintelligence Labs announced Muse Wonder and Muse Wonder Full — the family Zuckerberg says brings Meta to the frontier. Third-party evals put Wonder Full at 56 on the Artificial Analysis Intelligence Index, above OpenAI’s GPT-6 Astra and behind only Claude Opus 5.5._
+  - Source: [Full story · VentureBeat](https://venturebeat.com/technology/metas-new-muse-wonder-and-muse-wonder-full-models-achieve-frontier-performance-but-only-the-weaker-one-is-available-via-api)
+
+- **[03 · POLITICS]** Today at 3 PM, UK MPs Sit OpenAI, Anthropic, DeepMind and Meta in Front of Ten Hard Questions
+  - _The Commons Business, Innovation, Science and Trade Committee hears the policy chiefs of all four frontier labs this afternoon, then the AI Security Institute and Cabinet Office. Chair Liam Byrne’s letter asks whether voluntary self-regulation can “sustainably” hold — and ends, line after line, with “if not, why not?”_
+  - Source: [Full story · AgentBreaking](https://agentbreaking.com/blog/uk-mps-ai-safety-hearing-oct13/)
+
+- **[04 · ACCOUNTABILITY]** OpenAI Fired the Three Researchers Who Were Its Bridge to Outside Auditors
+  - _Technical liaison to METR, coiner of “pacing,” co-author of the field’s chain-of-thought monitoring paper — the three were dismissed on or around October 1. Their open letter: “OpenAI cannot make AI safe on its own.” No law protects them._
+  - Source: [Full story · TechTimes](https://www.techtimes.com/articles/328891/20261012/openai-fired-three-researchers-who-kept-voluntary-safety-audits-running-no-law-protected-them.htm)
+
+- **[05 · ADOPTION]** Karpathy’s Numbers: Six Billion Never Tried an LLM, and Only Five Thousand Feel the Frontier
+  - _The OpenAI co-founder estimates 6 billion people have never used a large language model, about 20 million use frontier models for serious coding, and roughly 5,000 have internal access to the most advanced systems. The gap between those groups is the news._
+  - Source: [Full story · Digital Today](https://www.digitaltoday.co.kr/en/view/113861/openai-co-founder-says-ai-use-gap-widens-as-only-a-few-feel-frontier-model-performance)
+
+  **Signals / briefs:**
+  - Booz Allen Put Two Frontier Models in an OT Testbed — They Cleared Every Attack Objective
+  - Hone Raises $60M to Build an Agent That “Owns Business Outcomes”
+  - DeepSeek Leads a Seed Round Into Ex-Tencent Scientist’s Robotics Startup
+  - Ambi Raises $26M for an App That Listens to You All the Time
+  - Forkast: The Frontier Index Compressed to Two Points — Pricing and Ecosystem Are the Only Moats
 
 ### Issue 137 · 2026-10-12 · `daily/timps-postcards-2026-10-12.html`
 
