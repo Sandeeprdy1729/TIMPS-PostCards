@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TIMPS">
+<link rel="manifest" href="../manifest.json">
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/icon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/icon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="../assets/icon-48.png">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="../assets/icon-180.png">
+<title>TIMPS PostCards — Issue 139</title>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --cream:  #EEECE2;
+    --forest: #3D3929;
+    --terra:  #DA7756;
+    --terra-d:#BD5D3A;
+    --black:  #111111;
+    --card-bg:#F0ECE0;
+    --mono:   'Newsreader', Georgia, 'Times New Roman', serif;
+    --serif:  'TIMPS', 'Playfair Display', Georgia, serif;
+  }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Black.woff2') format('woff2'); font-weight:900; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Bold.woff2') format('woff2'); font-weight:700; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-SemiBold.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--cream);
+    background-image:
+      linear-gradient(rgba(61,57,41,.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.07) 1px, transparent 1px);
+    background-size: 38px 38px;
+    font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+    color: var(--forest);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { text-decoration: none; color: inherit; }
+
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 48px;
+    background-color: rgba(238,236,226,.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1.5px solid rgba(61,57,41,.12);
+    background-image:
+      linear-gradient(rgba(61,57,41,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.05) 1px, transparent 1px);
+    background-size: 38px 38px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Special Elite', 'Courier New', Courier, monospace;
+    font-size: 15px;
+    font-weight: 400;
+    color: #000;
+    text-decoration: none;
+  }
+  .nav-logo-mark {
+    width: 34px; height: 34px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .nav-logo-mark img { width: 28px; height: 28px; object-fit: contain; }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-link {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: #000;
+    opacity: .65;
+    text-decoration: none;
+    transition: opacity .15s;
+  }
+  .nav-link:hover { opacity: 1; }
+  .nav-cta {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: #000;
+    background: var(--terra);
+    border: 2.5px solid #000;
+    border-radius: 100px;
+    padding: 10px 24px;
+    cursor: pointer;
+    transition: background .15s, transform .1s;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--terra-d); transform: translateY(-1px); }
+
+  .wrapper { max-width: 760px; margin: 0 auto; padding: 40px 20px 80px; display: flex; flex-direction: column; gap: 0; }
+
+  .cover-card { background: var(--card-bg); border-radius: 20px 20px 4px 4px; padding: 56px 48px 48px; text-align: center; position: relative; overflow: hidden; border: 1.5px solid rgba(61,57,41,.12); margin-bottom: 3px; }
+  .cover-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, var(--terra) 0%, var(--terra-d) 60%, #E0A88A 100%); }
+  .cover-eyebrow { font-family: var(--mono); font-size:10px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:20px; display:flex; align-items:center; justify-content:center; gap:10px; }
+  .cover-eyebrow::before,.cover-eyebrow::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .15; max-width:60px; }
+  .cover-title { font-family: var(--serif); font-size:58px; font-weight:900; line-height:1; letter-spacing:-1px; color: var(--forest); margin-bottom:8px; }
+  .cover-sub { font-family: var(--serif); font-size:13px; font-style:italic; color: var(--forest); opacity: .55; margin-bottom:28px; }
+  .cover-divider { width:48px; height:2px; background: var(--terra); margin:0 auto 24px; border-radius:2px; }
+  .cover-meta { display:flex; justify-content:center; gap:32px; font-family: var(--mono); font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .45; }
+  .cover-badge { display:inline-flex; align-items:center; gap:6px; background: var(--terra); color: #fff; border-radius:20px; padding:6px 18px; font-family: var(--mono); font-size:10px; letter-spacing:2px; text-transform:uppercase; margin-top:28px; }
+  .top5-pill { display:flex; justify-content:center; gap:10px; margin-top:32px; flex-wrap:wrap; }
+  .pill { background: var(--forest); color: var(--cream); border-radius:100px; padding:4px 14px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; }
+  .pill.light { background:transparent; color: var(--forest); border:1px solid rgba(61,57,41,.2); }
+
+  .section-label { display:flex; align-items:center; gap:12px; padding:10px 0 8px; font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .35; }
+  .section-label::before,.section-label::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .1; }
+
+  .story-card { border-radius:4px; border:1.5px solid rgba(61,57,41,.10); padding:36px 40px; margin-bottom:3px; position:relative; overflow:hidden; }
+  .story-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }
+
+  .card-sky      { background:#D6E8F0; } .card-sky::before      { background: #7AAFC0; }
+  .card-cream    { background: var(--card-bg); } .card-cream::before    { background: var(--terra); }
+  .card-blush    { background:#F5DDD0; } .card-blush::before    { background: #E0A88A; }
+  .card-lavender { background:#EAE6F5; } .card-lavender::before { background: #C8BEE8; }
+  .card-sage     { background:#D6E4D6; } .card-sage::before     { background: #8BAF8B; }
+
+  .page-chip { position:absolute; top:14px; right:16px; font-family: var(--mono); font-size:9px; letter-spacing:2px; text-transform:uppercase; color: var(--forest); opacity: .3; }
+  .card-routine { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:8px; }
+  .card-headline { font-family: var(--serif); font-size:28px; font-weight:900; line-height:1.15; color: var(--forest); margin-bottom:10px; }
+  .card-headline.lg { font-size:34px; }
+  .card-headline.sm { font-size:22px; }
+  .card-deck { font-family: var(--serif); font-style:italic; font-size:14px; line-height:1.55; color: var(--forest); opacity: .55; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid rgba(61,57,41,.12); }
+  .card-body { font-family: 'Lora', Georgia, serif; font-size:14px; line-height:1.7; color: var(--forest); }
+  .card-body p { margin-bottom:11px; }
+  .drop::first-letter { font-family: var(--serif); font-size:52px; font-weight:900; float:left; line-height:.78; margin:5px 6px 0 0; color: var(--terra); }
+  .clearfix::after { content:''; display:table; clear:both; }
+
+  .hl-terra { background: var(--terra); color: var(--forest); padding:0 4px; border-radius:2px; }
+  .hl-ink  { background: var(--forest); color: var(--cream); padding:0 4px; border-radius:2px; }
+  .hl-sage { background: #8BAF8B; color: #fff; padding:0 4px; border-radius:2px; }
+  .hl-lav  { background: #C8BEE8; color: var(--forest); padding:0 4px; border-radius:2px; }
+
+  .stat-box { float:right; margin:0 0 16px 24px; background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:16px 20px; text-align:center; min-width:120px; }
+  .stat-big { font-family: var(--serif); font-size:44px; font-weight:900; line-height:1; color: var(--forest); display:block; }
+  .stat-label { font-family: var(--mono); font-size:9.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .5; display:block; margin-top:4px; }
+
+  .img-frame { border:2px solid rgba(61,57,41,0.18); border-radius:12px; overflow:hidden; margin:16px 0; background: var(--card-bg); }
+  .img-frame img { width:100%; display:block; max-height:240px; object-fit:cover; border-bottom:1px solid rgba(61,57,41,.12); }
+  .img-caption { padding:8px 12px; font-family: var(--mono); font-size:10.5px; color: var(--forest); opacity: .6; font-style:italic; display:flex; align-items:center; justify-content:space-between; gap:8px; }
+  .img-caption a { font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; white-space:nowrap; font-style:normal; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; }
+  .img-caption a:hover { opacity: 1; }
+  .img-frame.float-right { float:right; width:220px; margin:0 0 16px 24px; }
+  .img-frame.float-right img { max-height:140px; }
+
+  .source-link { display:inline-flex; align-items:center; gap:5px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:12px; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; transition: opacity .15s; }
+  .source-link:hover { opacity: 1; }
+  .source-link::after { content:'↗'; font-size:9px; }
+
+  .signals-grid { display:flex; flex-direction:column; gap:14px; }
+  .signal-row { display:flex; align-items:flex-start; gap:14px; }
+  .signal-num { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family: var(--serif); font-size:13px; font-weight:900; flex-shrink:0; color:#fff; }
+  .signal-num.n1{background: var(--terra); color: var(--forest);} .signal-num.n2{background: var(--forest);} .signal-num.n3{background:#7AAFC0;} .signal-num.n4{background: var(--terra-d); color: var(--forest);} .signal-num.n5{background: var(--black);}
+  .signal-title { font-family: var(--serif); font-size:14px; font-weight:700; color: var(--forest); margin-bottom:2px; }
+  .signal-desc { font-family: 'Newsreader', Georgia, 'Times New Roman', serif; font-size:12px; line-height:1.65; color: var(--forest); opacity: .6; }
+  .signal-link { display:inline-block; font-family: var(--mono); font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:4px; border-bottom:1px solid rgba(61,57,41,.25); padding-bottom:1px; transition: opacity .15s; }
+  .signal-link:hover { opacity: 1; }
+
+  .themes-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .theme-item { padding:10px 14px; border-radius:8px; font-family: var(--serif); font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; text-align:center; border:1.5px solid rgba(61,57,41,.12); background: var(--cream); }
+
+  .tool-week { background: var(--forest); color: var(--cream); border-radius:12px; padding:18px 20px; text-align:center; margin-top:14px; }
+  .tool-week-eyebrow { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; opacity: .55; margin-bottom:6px; }
+  .tool-week-name { font-family: var(--serif); font-size:22px; font-weight:900; margin-bottom:4px; }
+  .tool-week-desc { font-family: 'Newsreader', Georgia, 'Times New Roman', serif; font-size:11.5px; opacity: .7; font-style:italic; }
+
+  .output-card { background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:18px 20px; margin-top:14px; }
+  .output-title { font-family: var(--serif); font-size:18px; font-weight:700; margin-bottom:8px; color: var(--forest); }
+  .tp-list { list-style:none; padding:0; margin:0; }
+  .tp-list li { padding:5px 0; font-family: 'Lora', Georgia, serif; font-size:12px; color: var(--forest); border-bottom:1px solid rgba(61,57,41,.07); display:flex; align-items:flex-start; gap:7px; }
+  .tp-list li::before { content:'·'; color: var(--terra); font-size:14px; line-height:1.2; flex-shrink:0; }
+  .tp-list li a { color: var(--forest); opacity: .8; text-decoration:none; }
+  .tp-list li a:hover { opacity: 1; }
+
+  .sources-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px 20px; }
+  .sources-grid a { font-family: var(--mono); font-size:11px; color: var(--forest); opacity: .55; text-decoration:none; border-bottom:1px solid rgba(61,57,41,.15); padding-bottom:1px; transition: opacity .15s; }
+  .sources-grid a:hover { opacity: 1; }
+
+  .footer {
+    background: var(--black);
+    padding: 28px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    border-radius: 4px 4px 20px 20px;
+    margin-top: 3px;
+  }
+  .footer-logo { display: flex; align-items: center; gap: 10px; }
+  .footer-mark { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; }
+  .footer-mark img { width: 24px; height: 24px; object-fit: contain; }
+  .footer-brand { font-family: 'Special Elite', 'Courier New', Courier, monospace; font-size: 13px; font-weight: 400; color: #fff; }
+  .footer-center { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.4); text-align: center; line-height: 1.6; }
+  .footer-right { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.3); text-align: right; line-height: 2; }
+  .footer-right a { color: rgba(255,255,255,.5); transition: color .15s; }
+  .footer-right a:hover { color: #fff; }
+
+  .page-layout { display: flex; align-items: flex-start; gap: 0; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+  .toc-sidebar { position: sticky; top: 80px; width: 170px; flex-shrink: 0; padding: 48px 0 0 0; }
+  .toc-nav { display: flex; flex-direction: column; gap: 0; }
+  .toc-link { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.5px; text-transform: uppercase; color: #000; opacity: .45; text-decoration: none; padding: 7px 12px; border-left: 2px solid transparent; transition: opacity .15s, border-color .15s; line-height: 1.3; }
+  .toc-link:hover { opacity: .85; }
+  .toc-link.active { opacity: 1; border-left-color: var(--terra); }
+  .section-anchor { scroll-margin-top: 80px; }
+
+  @media (max-width: 900px) {
+    .toc-sidebar { display: none; }
+    .page-layout { max-width: 760px; }
+  }
+
+  @media (max-width: 720px) {
+    .nav { padding: 12px 24px; }
+    .nav-links { display: none; }
+    .wrapper { padding: 20px 14px 60px; }
+    .cover-card { padding: 40px 24px; }
+    .story-card { padding: 28px 20px; }
+    .footer { padding: 24px; flex-direction: column; align-items: flex-start; }
+    .footer-center, .footer-right { text-align: left; }
+    .stat-box { float: none; margin: 0 0 16px 0; }
+    .img-frame.float-right { float: none; width: 100%; margin: 0 0 16px 0; }
+  }
+  @media (max-width: 480px) {
+    .nav-logo span { display: none; }
+    .cover-title { font-size: 40px; }
+    .card-headline.lg { font-size: 28px; }
+    .card-headline { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">
+    <div class="nav-logo-mark">
+      <img src="../assets/timps-postcards.png" alt="TIMPS">
+    </div>
+    <span>TIMPS PostCards</span>
+  </a>
+  <div class="nav-links">
+    <a href="../archive.html" class="nav-link">Archive</a>
+    <a href="timps-postcards-2026-10-14.html" class="nav-link">Latest Issue</a>
+    <a href="../index.html#subscribe" class="nav-link">Subscribe</a>
+  </div>
+  <a href="../index.html#subscribe" class="nav-cta">Subscribe</a>
+</nav>
+
+<div class="page-layout">
+
+  <aside class="toc-sidebar">
+    <nav class="toc-nav">
+      <a href="#accountability" class="toc-link">Accountability</a>
+      <a href="#engineering" class="toc-link">Engineering</a>
+      <a href="#security" class="toc-link">Security</a>
+      <a href="#robotics" class="toc-link">Robotics</a>
+      <a href="#partnerships" class="toc-link">Partnerships</a>
+      <a href="#signals" class="toc-link">Signals</a>
+      <a href="#themes" class="toc-link">Themes</a>
+      <a href="#tool" class="toc-link">Watch</a>
+      <a href="#sources" class="toc-link">Sources</a>
+    </nav>
+  </aside>
+
+  <div class="wrapper">
+
+  <!-- COVER -->
+  <div id="intro" class="cover-card section-anchor">
+    <div class="cover-eyebrow">Est. 2026 &middot; Hyderabad</div>
+    <div class="cover-title">TIMPS<br>PostCards</div>
+    <div class="cover-sub">AI Intelligence Digest &middot; Your Daily Signal from the Machine Frontier</div>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+      <span>Issue 139</span>
+      <span>October 14, 2026</span>
+      <span>No. 166</span>
+    </div>
+    <div class="cover-badge">&#11041; 139 Issues &mdash; Built with the TIMPS Ecosystem</div>
+    <div class="top5-pill">
+      <span class="pill">5 Top Signals</span>
+      <span class="pill light">Who Owns the Findings</span>
+      <span class="pill light">Anthropic Replaces Git</span>
+      <span class="pill light">MI5 Turns to AI</span>
+      <span class="pill light">A Robot&rsquo;s Brain</span>
+      <span class="pill light">Scam Shield in Your Pocket</span>
+    </div>
+  </div>
+
+  <!-- CARD - 01 &middot; LEAD -->
+  <div id="accountability" class="story-card card-blush section-anchor">
+    <div class="page-chip">01 &middot; LEAD</div>
+    <div class="card-routine">Accountability &middot; Who Owns the Findings</div>
+    <h2 class="card-headline lg">Anthropic and OpenAI Sought Veto Power Over the Safety Reports They Promised to Leave Alone</h2>
+    <div class="card-deck">A Reuters investigation found both labs pushing for strict editorial control over outside evaluators&rsquo; findings as recently as October 5 &mdash; three weeks after their CEOs publicly pledged &ldquo;editorial independence.&rdquo; Contracts the wire reviewed bar evaluators from publishing confidential material without the company&rsquo;s consent.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">200+</span>
+        <span class="stat-label">Evaluators &amp; researchers who signed the independence letter</span>
+      </div>
+      <p class="drop">In September, Anthropic CEO Dario Amodei made a clean promise: outside evaluators should be able to publish their core findings <span class="hl-ink">&ldquo;without editorial control.&rdquo;</span> Sam Altman agreed days later, and OpenAI publicly backed what it called &ldquo;editorial independence&rdquo; for assessors. On October 13, Reuters reported that the pledge did not survive the negotiating table. Two people familiar with the talks said that <span class="hl-terra">as recently as October 5, both Anthropic and OpenAI were seeking strict editorial control over what evaluators could publish</span> &mdash; concerned that internal reviewers could leak trade secrets to rivals.</p>
+      <p>By October 8, one source said, Anthropic&rsquo;s discussions with some evaluators appeared to have evolved &mdash; though whether that is a real policy shift, a narrowly-scoped exception, or a retreat after Reuters began asking is unclear. The two companies frame it differently. Anthropic says the &ldquo;seeking significant control&rdquo; characterization did not fit all its talks and that reviewers it has worked with before control their methods, criteria, conclusions and publications &mdash; but it <b>reserves the right to comment on and approve reports</b> from new evaluator firms while they learn how its models work. OpenAI says it does not seek approval over whole reports and only redacts confidential information, letting evaluators flag major cuts.</p>
+      <p>The stakes are structural, not procedural. Evaluators issued their own minimum conditions in a letter now signed by <b>200-plus researchers</b>, including AI pioneer Geoffrey Hinton: independent control of findings, broad access to the labs, and protection from retaliation. Anthropic itself acknowledged in its September Accenture&ndash;Faculty announcement that directly funding the evaluator &ldquo;creates an apparent conflict of interest,&rdquo; and said it ultimately envisions pooled or government funding &mdash; a solution that remains notional. As Humane Intelligence&rsquo;s Rumman Chowdhury put it, evaluators understand that access <span class="hl-ink">&ldquo;comes at a cost&rdquo;</span> even without an explicit ban in writing. With no law mandating third-party access or publication rights, every frontier safety rating stays negotiable at the lab&rsquo;s discretion.</p>
+    </div>
+    <a class="source-link" href="https://www.channelnewsasia.com/business/exclusive-behind-ai-industrys-call-independent-reviews-fight-over-what-gets-made-public-6455551" target="_blank">Full story &middot; CNA / Reuters</a>
+  </div>
+
+  <!-- CARD - 02 &middot; ENGINEERING -->
+  <div id="engineering" class="story-card card-sage section-anchor">
+    <div class="page-chip">02 &middot; ENGINEERING</div>
+    <div class="card-routine">Infrastructure &middot; Machine-Paced Development</div>
+    <h2 class="card-headline">Anthropic Deleted Git: Seven Engineers Rebuilt Version Control for a Repo Merging 30,000 Times a Day</h2>
+    <div class="card-deck">Merges into Anthropic&rsquo;s monorepo climbed from about 2,500 a day in May to over 30,000 by September &mdash; a 12x surge Claude wrote code into existence. So the company replaced git with an in-house system called Scion and moved human review from every line to the intent behind it.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">12&times;</span>
+        <span class="stat-label">Rise in daily merges in four months</span>
+      </div>
+      <p class="drop">The bottleneck, Anthropic wrote in an October 13 engineering post, is no longer the code. It is &ldquo;all of the developer infrastructure built for human scale: source control, builds, and CI.&rdquo; Its monorepo&rsquo;s main-branch history is nearly <b>100 GB</b>, a compressed working copy tops 25 GB, and the company runs on the order of <b>25 million code checkouts a day</b> for CI alone &mdash; fetched naively, that is more than <span class="hl-ink">600 petabytes of git traffic daily</span>. At peak it operated several hundred internal git mirrors just to keep up. So it asked what source control would look like if you assumed the clients were agents that are <em>always online</em>.</p>
+      <p>The answer is <b>Scion</b>, a server-centric, API-first system with no fully materialized copy of the repository anywhere &mdash; built by a <b>team of seven</b> and rolled out across the whole monorepo in <b>five months</b>, alongside a code-review surface called <b>Antique</b>. Anthropic reports each cache tier running above a 99% hit rate, a CPU-and-memory footprint roughly <b>200&times; smaller</b> than the old mirror fleet, and CI and research checkouts that take seconds instead of minutes. In a nice recursive touch, <span class="hl-sage">Claude helped build the very system that handles Claude&rsquo;s output</span>: handed a hand-written ingestion prototype with no further instructions, an early internal model rewrote it to use 20xs less memory and run 4x faster.</p>
+      <p>The most revealing detail is not about storage. Anthropic <b>did not replicate git&rsquo;s global merge lock</b> &mdash; impossible to scale here &mdash; so it leans on post-merge and pre-deploy testing instead, and acknowledges concurrent changes can conflict, relying on Claude to resolve them quickly. Engineers now review the <span class="hl-terra">intent</span> of each change rather than every line. The company is blunt about scope: &ldquo;Scion is by no means a suitable replacement for git for general use,&rdquo; makes sense only for enormous monorepos with tens of thousands of engineers or swarms of agents, and will not be released &mdash; Anthropic says it will work with GitHub and GitLab instead. The gate in front of <em>main</em> moved; how safe that is for anyone who does not own the model remains the open question.</p>
+    </div>
+    <a class="source-link" href="https://www.anthropic.com/engineering/redesigning-source-control" target="_blank">Full story &middot; Anthropic</a>
+  </div>
+
+  <!-- CARD - 03 &middot; SECURITY -->
+  <div id="security" class="story-card card-cream section-anchor">
+    <div class="page-chip">03 &middot; SECURITY</div>
+    <div class="card-routine">National Security &middot; The Bioweapon Question</div>
+    <h2 class="card-headline">MI5 Opens an AI Threat Centre &mdash; and Names the Fear It Weighs Most: Bioweapons</h2>
+    <div class="card-deck">Britain&rsquo;s spy chief says MI5 is devoting more resource to countering state threats than during the Cold War and has already caught terrorists using AI. A new AI Threat Assessment Centre will pool AISI, NCA and NCSC analysts to &ldquo;separate the bluster from the realities.&rdquo;</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">4&times;</span>
+        <span class="stat-label">Rise in MI5&rsquo;s state-threat caseload in a decade</span>
+      </div>
+      <p class="drop">In his annual threat briefing at Thames House on October 13, MI5 Director General Sir Ken McCallum announced the launch of the <b>AI Threat Assessment Centre (AITAC)</b>, a new unit that will draw on expertise from the UK&rsquo;s AI Security Institute, the National Crime Agency and the National Cyber Security Centre. Its job, he said, is to produce all-source assessments that <span class="hl-ink">&ldquo;separate the bluster from the realities&rdquo;</span> of AI risk &mdash; and to stop different departments issuing &ldquo;competitive analysis, slightly conflicting and confusing messages.&rdquo; It is the third such centre MI5 has stood up, after units for terrorism and state threats.</p>
+      <p>McCallum was unusually specific about the threat he weights most. The danger is &ldquo;not yet realised,&rdquo; he said, but of every misuse case he attaches <span class="hl-terra">the greatest weight to AI&rsquo;s potential to &ldquo;change the stakes on existing or even new bioweapons.&rdquo;</span> One concern is that comparatively low-sophistication actors could see a capability uplift if guardrails fail &mdash; putting dangerous knowledge in &ldquo;the hands of people we would all rather didn&rsquo;t have that knowledge.&rdquo; A second, distinct risk: AI could help generate <b>novel pathogens not previously seen</b>. He said the government is taking additional steps on biological weapons.</p>
+      <p>The speech lands the same week Westminster put four frontier labs on the stand &mdash; and on the same day MI5&rsquo;s framing shifted from &ldquo;AI as a tool&rdquo; to <b>AI as a force multiplier for attackers</b>. McCallum said the agency has caught terrorists seeking to exploit AI to improve reconnaissance and attack methods, with AI-enabled drones adding &ldquo;a new twist,&rdquo; and confirmed MI5 is devoting more resource to state threats than it did during the Cold War. The realistic read is a security service moving from watching AI to <span class="hl-ink">budgeting against it</span>: AITAC is not a research body, it is an intelligence-production line, and bioweapons are now on the same assessment stack as terrorism and hostile states.</p>
+    </div>
+    <a class="source-link" href="https://www.independent.co.uk/news/uk/home-news/mi5-ai-uk-national-security-russia-iran-ken-mccallum-b3065898.html" target="_blank">Full story &middot; The Independent</a>
+  </div>
+
+  <!-- CARD - 04 &middot; ROBOTICS -->
+  <div id="robotics" class="story-card card-lavender section-anchor">
+    <div class="page-chip">04 &middot; ROBOTICS</div>
+    <div class="card-routine">Physical AI &middot; A Robot&rsquo;s Brain</div>
+    <h2 class="card-headline">NEURA Gives a Humanoid a Brain With Touch, Sound and Memory &mdash; Then Sets It to Do the Laundry</h2>
+    <div class="card-deck">The German robotics unicorn unveiled Neuron AI, a Perception-Language-Action foundation model that fuses 3D vision, touch, force, audio, robot state and language with memory. At GTC Berlin, its humanoid 4NE1 will run an eleven-minute laundry sequence with no human help.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">11 min</span>
+        <span class="stat-label">Fully autonomous laundry run at GTC Berlin</span>
+      </div>
+      <p class="drop">Most robot foundation models see the world through cameras. NEURA Robotics, the Metzingen-based unicorn, is betting that is not enough. On October 14 it introduced <b>Neuron AI</b>, a multimodal model built on a <b>Perception-Language-Action (PLA)</b> architecture that encodes 3D vision, touch and force, audio, robot state and language into one shared, time-aligned space and turns them into a single stream of physical action. The pitch is direct: a robot should be able to grasp a box it cannot see, hear when a connector clicks into place, and feel whether a screw has caught &mdash; the way a human does.</p>
+      <p>The other half of the design is memory. A robot acting in a continuous physical world has to track objects and the consequences of its own actions even when they leave its field of view &mdash; object permanence. NEURA adapted its architecture specifically to add memory and trained it on dedicated datasets, then trained the whole model across <span class="hl-ink">five NEURA embodiments</span> and their grippers and hands, on real-world robot data, simulation-amplified data and human demonstrations captured by sensor suits. Customers fine-tune it for their own tasks and deploy skills across fleets via the <b>Neuraverse</b> platform, with &ldquo;Time-to-Skill&rdquo; as the central metric. It runs <span class="hl-terra">locally on the robot</span>, not in the cloud.</p>
+      <p>The proof arrives next week, and it is deliberately mundane. At NVIDIA GTC Berlin (October 20&ndash;22), NEURA&rsquo;s humanoid <b>4NE1</b> (&ldquo;For Anyone&rdquo;) will complete an eleven-minute laundry-handling sequence &mdash; sorting, loading a washing machine, closing and reopening it, unloading, and transferring to a dryer &mdash; with no human intervention. The company says the hard part is not any single movement but holding context and memory across the whole task. The launch follows a <b>&euro;1.2B Series C</b> led by Tether with Nvidia and Amazon, and data partnerships with Schaeffler and Bosch &mdash; positioning a European challenger against Google&rsquo;s Gemini Robotics work and Nvidia&rsquo;s Isaac GR00T just as humanoid shipments are scaling.</p>
+    </div>
+    <a class="source-link" href="https://neura-robotics.com/neura-robotics-introduces-neuron-ai/" target="_blank">Full story &middot; NEURA Robotics</a>
+  </div>
+
+  <!-- CARD - 05 &middot; PARTNERSHIPS -->
+  <div id="partnerships" class="story-card card-sky section-anchor">
+    <div class="page-chip">05 &middot; PARTNERSHIPS</div>
+    <div class="card-routine">World &middot; Scam Shield in Your Pocket</div>
+    <h2 class="card-headline">Google DeepMind Built a Scam Detector That Never Leaves Your Phone &mdash; and Singapore Is First</h2>
+    <div class="card-deck">A fine-tuned Gemma model runs entirely on-device: a lightweight classifier screens incoming messages, then the model reads the whole conversation to confirm a real scam or dismiss a false alarm. Google says neither it nor Singapore&rsquo;s government can see the encrypted chats it guards.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">0</span>
+        <span class="stat-label">Conversations sent to the cloud</span>
+      </div>
+      <p class="drop">Announced October 14 with <b>GovTech Singapore</b> under Google&rsquo;s National AI Partnership, the tool attacks a specific problem: scam messages arriving inside encrypted apps, where servers &mdash; including the platforms&rsquo; own &mdash; cannot read them. DeepMind fine-tuned Google&rsquo;s lightweight <b>Gemma</b> model on local scam conversations: impersonations of public institutions, banks and public figures, plus regional schemes. Because the model runs <span class="hl-ink">on the device</span>, it can analyze conversations inside encrypted apps without the Singapore Government or Google accessing them.</p>
+      <p>The system is a two-stage pipeline. A <b>lightweight classifier</b> screens every incoming message first, at minimal power cost, to catch likely threats. Messages it flags are escalated to the fine-tuned Gemma model, which reads a larger snapshot of the conversation to confirm a scam or clear a false alarm. When it detects manipulative patterns, it fires a <span class="hl-terra">real-time on-device warning</span> telling the user to pause before sharing money or sensitive information. The privacy claim is structural rather than a policy promise: there is no server round-trip to leak.</p>
+      <p>The caveats matter as much as the build. The announcement names <b>no shipping app, platform partner or rollout date</b>; deployment will be phased with the Singapore Government, and the model only accesses conversations with user consent under an app&rsquo;s terms. DeepMind published no accuracy figures &mdash; so the scam detector should be judged on the numbers that eventually arrive, not the architecture. Still, it points at a pattern worth watching: the most privacy-sensitive AI safety features are moving onto the device precisely because <span class="hl-ink">the encrypted-messaging layer cannot be inspected from the cloud</span> &mdash; and governments, not just app stores, are becoming the first integration partners. The same day, separately, Anthropic opened its fifth APAC office in Singapore and signed its own AI-safety MOU with the country&rsquo;s MDDI.</p>
+    </div>
+    <a class="source-link" href="https://www.brocker.org/google-deepmind-anthropic-singapore-scam-detection-mou" target="_blank">Full story &middot; Brocker</a>
+  </div>
+
+  <!-- SIGNALS -->
+  <div id="signals" class="story-card card-cream section-anchor">
+    <div class="page-chip">06 &middot; SIGNALS</div>
+    <div class="card-routine">5 Key Signals</div>
+    <h2 class="card-headline sm">What Moved the Machine Frontier Today</h2>
+    <div class="card-deck" style="border-bottom:none; padding-bottom:0; margin-bottom:16px;">Briefs that did not make the cards &mdash; each worth an afternoon of reading.</div>
+    <div class="signals-grid">
+      <div class="signal-row">
+        <div class="signal-num n1">1</div>
+        <div>
+          <div class="signal-title">The Four Labs Split on the Stand: Two Back Binding Safety Rules, Two Don&rsquo;t</div>
+          <div class="signal-desc">Giving evidence to the Commons Business and Trade Committee on October 13, Anthropic&rsquo;s Liam Booth-Smith said plainly that <span class="hl-terra">&ldquo;the rules should be binding&rdquo;</span> and that voluntary commitments are not enough. OpenAI&rsquo;s Tom Duff Gordon backed a statutory framework and an international convention, starting with <b>mandatory incident reporting</b>. Google DeepMind&rsquo;s Owen Larter said his company would &ldquo;focus on the standards&rdquo;; Meta&rsquo;s Rob Sherman said MPs were &ldquo;not writing on a blank page.&rdquo; Two of four firms want law; two want to talk standards.</div>
+          <a class="signal-link" href="https://tsnmedia.org/mps-ai-safety-hearing-openai-anthropic-binding-rules-gpt-6-1-astra/" target="_blank">TSN Media &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n2">2</div>
+        <div>
+          <div class="signal-title">400 Scientists From 34 Countries Demand an International AI Containment Body</div>
+          <div class="signal-desc">An open letter proposes a global body to set containment standards and handle incident reporting for advanced cyber-capable AI systems: air-gapping frontier models from external networks under independent oversight, plus a registry of significant security incidents eventually made public. Signatories include Turing laureates <b>Geoffrey Hinton and Yoshua Bengio</b>. Its core argument &mdash; that voluntary industry commitments are <span class="hl-ink">&ldquo;not enough&rdquo;</span> &mdash; is the same one now echoed inside Westminster.</div>
+          <a class="signal-link" href="https://www.aiaffairs.com/news/anthropic-openai-evaluator-publication-rights-scientists-ai-oversight/" target="_blank">AI Affairs &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n3">3</div>
+        <div>
+          <div class="signal-title">Gemini 4 Argon Hits General Availability With a 1M-Token Output Ceiling</div>
+          <div class="signal-desc">Google pushed <b>Gemini 4 Argon</b> from a controlled launch into broad availability across the Gemini app, AI Mode in Search, Antigravity, AI Studio and the paid Gemini API &mdash; raising the output limit from 64K to <b>1 million tokens</b>. Intro pricing is <b>$2 / $10</b> per million tokens through November 30, before rising to $4 / $20. Google says Argon ranks first on the Vals Index (68.90%) but trails rivals on FrontierSWE v2 and Terminal-Bench 4.0 &mdash; and most of its comparison table is self-reported.</div>
+          <a class="signal-link" href="https://www.aiincontext.com/articles/google-argon-hits-ga-with-1m-token-output-and-2-10-api-price-7ea63bfa" target="_blank">AI In Context &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n4">4</div>
+        <div>
+          <div class="signal-title">A Closed-Loop Discovery System Tops 17 of 24 Life-Science Benchmarks</div>
+          <div class="signal-desc">Nextflow Frontier launched a <b>recursive closed-loop discovery system</b> for unsolved problems in the life sciences, setting it loose on 24 benchmarks. It says it has already delivered top results (or the statistical equivalent) on <b>17 of them</b>, with 7 still running &mdash; outperforming a prior-best AI systems baseline that beat roughly 75% of human leaderboard entrants. The claim to watch is not any single win but whether the closed loop of idea and experiment holds up under independent replication.</div>
+          <a class="signal-link" href="https://nextflow.com/blog/introducing-nextflow-frontier/" target="_blank">Nextflow &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n5">5</div>
+        <div>
+          <div class="signal-title">Anthropic Opens a Singapore Office and Signs a Safety MOU &mdash; as Its Claude Usage Ranks #2 per Capita</div>
+          <div class="signal-desc">On the sidelines of Singapore International Cyber Week, Anthropic opened its <b>fifth APAC office</b> and signed an MOU with the Ministry of Digital Development and Information covering AI safety, security, model evaluation and responsible adoption. Anthropic says Singapore&rsquo;s Claude.ai usage ranks <b>second among 121 countries</b> relative to population, that 1,500+ GovTech engineers have adopted Claude Code, and that DBS and GIC run Claude in operations. The figures are vendor-reported and unverified &mdash; weigh them accordingly.</div>
+          <a class="signal-link" href="https://www.brocker.org/google-deepmind-anthropic-singapore-scam-detection-mou" target="_blank">Brocker &#8597;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THEMES + TOOL + SOURCES -->
+  <div id="themes" class="story-card card-lavender section-anchor">
+    <div class="page-chip">07 &middot; CLOSER</div>
+    <div class="card-routine">Top Themes</div>
+    <h2 class="card-headline sm">The Shape of Today&rsquo;s News</h2>
+    <div class="themes-grid" style="margin-top:16px;">
+      <div class="theme-item">Who Owns the Findings</div>
+      <div class="theme-item">Machine-Paced Development</div>
+      <div class="theme-item">The Bioweapon Question</div>
+      <div class="theme-item">Physical AI&rsquo;s German Brain</div>
+      <div class="theme-item">Safety Moves On-Device</div>
+    </div>
+
+    <div id="tool" class="tool-week section-anchor">
+      <div class="tool-week-eyebrow">Company Watch of the Day</div>
+      <div class="tool-week-name">ANTHROPIC</div>
+      <div class="tool-week-desc">Anthropic is everywhere in today&rsquo;s stack, and the three appearances tell one story about a lab scaling faster than the ground beneath it. In <b>Scion</b>, its code output outgrows human-era tooling so completely that a seven-person team deletes git and rebuilds version control in five months &mdash; and moves human review from every line to just the intent. In the <b>Reuters</b> story, the same lab that pledged evaluators &ldquo;editorial independence&rdquo; negotiates to approve their reports for new firms, fighting over what &ldquo;confidential&rdquo; means. And in <b>Singapore</b>, it opens a fifth APAC office and signs a national safety MOU while its usage runs second-per-capita in the world. The through-line: a company writing code faster than anyone has before, while the rules for who gets to check that code are still being written at the same speed.</div>
+    </div>
+
+    <div id="sources" class="output-card section-anchor">
+      <div class="output-title">Sources Cited</div>
+      <div class="sources-grid">
+        <a href="https://www.channelnewsasia.com/business/exclusive-behind-ai-industrys-call-independent-reviews-fight-over-what-gets-made-public-6455551" target="_blank">CNA / Reuters &mdash; Evaluator publication control</a>
+        <a href="https://www.theverge.com/ai-artificial-intelligence/1010444/openai-and-anthropic-reportedly-wanted-control-over-what-safety-reviewers-can-publish" target="_blank">The Verge &mdash; Labs wanted reviewer control</a>
+        <a href="https://thenextweb.com/news/anthropic-openai-ai-evaluators-publication-control" target="_blank">TNW &mdash; Fight over evaluator reports</a>
+        <a href="https://www.anthropic.com/engineering/redesigning-source-control" target="_blank">Anthropic &mdash; Redesigning source control</a>
+        <a href="https://aiweekly.co/alerts/anthropic-builds-scion-to-replace-git-after-merges-hit-30000day" target="_blank">AI Weekly &mdash; Scion after 30,000 merges/day</a>
+        <a href="https://theterminal.space/software/anthropic-scion-source-control-replaces-git" target="_blank">The Terminal &mdash; Why Anthropic left git</a>
+        <a href="https://www.independent.co.uk/news/uk/home-news/mi5-ai-uk-national-security-russia-iran-ken-mccallum-b3065898.html" target="_blank">The Independent &mdash; MI5 warns on AI and bioweapons</a>
+        <a href="https://www.standard.co.uk/news/politics/london-ai-bioweapons-terror-threat-mi5-director-general-b1300619.html" target="_blank">The Standard &mdash; Key points from the MI5 speech</a>
+        <a href="https://www.thejapantimes.jp/Politics/761086-ai-could-change-the-stakes-on-bioweapons-uk-spy-chief.html" target="_blank">Japan Times &mdash; AI could change bioweapon stakes</a>
+        <a href="https://neura-robotics.com/neura-robotics-introduces-neuron-ai/" target="_blank">NEURA Robotics &mdash; Introducing Neuron AI</a>
+        <a href="https://www.unite.ai/neura-robotics-unveils-neuron-ai-foundation-model-for-physical-ai/" target="_blank">Unite.AI &mdash; Neuron AI for Physical AI</a>
+        <a href="https://www.brocker.org/google-deepmind-anthropic-singapore-scam-detection-mou" target="_blank">Brocker &mdash; Scam detector &amp; Singapore MOU</a>
+        <a href="https://tsnmedia.org/mps-ai-safety-hearing-openai-anthropic-binding-rules-gpt-6-1-astra/" target="_blank">TSN Media &mdash; Labs split on binding rules</a>
+        <a href="https://himiao.ai/en/news/2026-10-14-uk-parliament-ai-law-story" target="_blank">HIMIAO &mdash; UK Parliament AI safety hearing</a>
+        <a href="https://www.aiaffairs.com/news/anthropic-openai-evaluator-publication-rights-scientists-ai-oversight/" target="_blank">AI Affairs &mdash; 400 scientists seek oversight</a>
+        <a href="https://www.aiincontext.com/articles/google-argon-hits-ga-with-1m-token-output-and-2-10-api-price-7ea63bfa" target="_blank">AI In Context &mdash; Argon hits GA</a>
+        <a href="https://syncai.news/article/google-releases-gemini-4-argon-api-with-1m-token-output-limit-a57776" target="_blank">SyncAI &mdash; Argon API, 1M output</a>
+        <a href="https://nextflow.com/blog/introducing-nextflow-frontier/" target="_blank">Nextflow &mdash; Introducing Nextflow Frontier</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-logo">
+      <div class="footer-mark">
+        <img src="../assets/timps-postcards.png" alt="TIMPS">
+      </div>
+      <span class="footer-brand">TIMPS PostCards</span>
+    </div>
+    <div class="footer-center">
+      Issue 139 &middot; October 14, 2026<br>
+      Hyderabad, India
+    </div>
+    <div class="footer-right">
+      <a href="../index.html">Home</a><br>
+      <a href="../archive.html">Archive</a><br>
+      &copy; 2026 TIMPS
+    </div>
+  </footer>
+
+</div> <!-- /wrapper -->
+</div> <!-- /page-layout -->
+</body>
+</html>
