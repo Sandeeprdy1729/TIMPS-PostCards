@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 125 daily issues + 17 deep dives · regenerated 2026-10-13**
+**Coverage: 126 daily issues + 17 deep dives · regenerated 2026-10-14**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 139 · 2026-10-14 · `daily/timps-postcards-2026-10-14.html`
+
+- **[01 · LEAD]** Anthropic and OpenAI Sought Veto Power Over the Safety Reports They Promised to Leave Alone
+  - _A Reuters investigation found both labs pushing for strict editorial control over outside evaluators’ findings as recently as October 5 — three weeks after their CEOs publicly pledged “editorial independence.” Contracts the wire reviewed bar evaluators from publishing confidential material without the company’s consent._
+  - Source: [Full story · CNA / Reuters](https://www.channelnewsasia.com/business/exclusive-behind-ai-industrys-call-independent-reviews-fight-over-what-gets-made-public-6455551)
+
+- **[02 · ENGINEERING]** Anthropic Deleted Git: Seven Engineers Rebuilt Version Control for a Repo Merging 30,000 Times a Day
+  - _Merges into Anthropic’s monorepo climbed from about 2,500 a day in May to over 30,000 by September — a 12x surge Claude wrote code into existence. So the company replaced git with an in-house system called Scion and moved human review from every line to the intent behind it._
+  - Source: [Full story · Anthropic](https://www.anthropic.com/engineering/redesigning-source-control)
+
+- **[03 · SECURITY]** MI5 Opens an AI Threat Centre — and Names the Fear It Weighs Most: Bioweapons
+  - _Britain’s spy chief says MI5 is devoting more resource to countering state threats than during the Cold War and has already caught terrorists using AI. A new AI Threat Assessment Centre will pool AISI, NCA and NCSC analysts to “separate the bluster from the realities.”_
+  - Source: [Full story · The Independent](https://www.independent.co.uk/news/uk/home-news/mi5-ai-uk-national-security-russia-iran-ken-mccallum-b3065898.html)
+
+- **[04 · ROBOTICS]** NEURA Gives a Humanoid a Brain With Touch, Sound and Memory — Then Sets It to Do the Laundry
+  - _The German robotics unicorn unveiled Neuron AI, a Perception-Language-Action foundation model that fuses 3D vision, touch, force, audio, robot state and language with memory. At GTC Berlin, its humanoid 4NE1 will run an eleven-minute laundry sequence with no human help._
+  - Source: [Full story · NEURA Robotics](https://neura-robotics.com/neura-robotics-introduces-neuron-ai/)
+
+- **[05 · PARTNERSHIPS]** Google DeepMind Built a Scam Detector That Never Leaves Your Phone — and Singapore Is First
+  - _A fine-tuned Gemma model runs entirely on-device: a lightweight classifier screens incoming messages, then the model reads the whole conversation to confirm a real scam or dismiss a false alarm. Google says neither it nor Singapore’s government can see the encrypted chats it guards._
+  - Source: [Full story · Brocker](https://www.brocker.org/google-deepmind-anthropic-singapore-scam-detection-mou)
+
+  **Signals / briefs:**
+  - The Four Labs Split on the Stand: Two Back Binding Safety Rules, Two Don’t
+  - 400 Scientists From 34 Countries Demand an International AI Containment Body
+  - Gemini 4 Argon Hits General Availability With a 1M-Token Output Ceiling
+  - A Closed-Loop Discovery System Tops 17 of 24 Life-Science Benchmarks
+  - Anthropic Opens a Singapore Office and Signs a Safety MOU — as Its Claude Usage Ranks #2 per Capita
 
 ### Issue 138 · 2026-10-13 · `daily/timps-postcards-2026-10-13.html`
 
