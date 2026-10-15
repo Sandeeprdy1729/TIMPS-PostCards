@@ -124,3 +124,4 @@
 2026-10-12	137	thumb-2026-10-12.svg	The White House Restores UK's Access to Frontier AI After a 17-Day Freeze	globe
 2026-10-13	138	thumb-2026-10-13.svg	Small Open Models Are "Months Away" From Self-Replicating on Cheap Home Devices	shield
 2026-10-14	139	thumb-2026-10-14.svg	Anthropic and OpenAI Sought Veto Power Over the Safety Reports They Promised to Leave Alone	unlock
+2026-10-15	140	thumb-2026-10-15.svg	Brussels Opens the AI Act's First Probes — and Names OpenAI and Anthropic	gavel
