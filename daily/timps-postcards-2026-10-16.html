@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TIMPS">
+<link rel="manifest" href="../manifest.json">
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/icon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/icon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="../assets/icon-48.png">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="../assets/icon-180.png">
+<title>TIMPS PostCards — Issue 141</title>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --cream:  #EEECE2;
+    --forest: #3D3929;
+    --terra:  #DA7756;
+    --terra-d:#BD5D3A;
+    --black:  #111111;
+    --card-bg:#F0ECE0;
+    --mono:   'Newsreader', Georgia, 'Times New Roman', serif;
+    --serif:  'TIMPS', 'Playfair Display', Georgia, serif;
+  }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Black.woff2') format('woff2'); font-weight:900; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Bold.woff2') format('woff2'); font-weight:700; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-SemiBold.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--cream);
+    background-image:
+      linear-gradient(rgba(61,57,41,.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.07) 1px, transparent 1px);
+    background-size: 38px 38px;
+    font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+    color: var(--forest);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { text-decoration: none; color: inherit; }
+
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 48px;
+    background-color: rgba(238,236,226,.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1.5px solid rgba(61,57,41,.12);
+    background-image:
+      linear-gradient(rgba(61,57,41,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.05) 1px, transparent 1px);
+    background-size: 38px 38px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Special Elite', 'Courier New', Courier, monospace;
+    font-size: 15px;
+    font-weight: 400;
+    color: #000;
+    text-decoration: none;
+  }
+  .nav-logo-mark {
+    width: 34px; height: 34px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .nav-logo-mark img { width: 28px; height: 28px; object-fit: contain; }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-link {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: #000;
+    opacity: .65;
+    text-decoration: none;
+    transition: opacity .15s;
+  }
+  .nav-link:hover { opacity: 1; }
+  .nav-cta {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: #000;
+    background: var(--terra);
+    border: 2.5px solid #000;
+    border-radius: 100px;
+    padding: 10px 24px;
+    cursor: pointer;
+    transition: background .15s, transform .1s;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--terra-d); transform: translateY(-1px); }
+
+  .wrapper { max-width: 760px; margin: 0 auto; padding: 40px 20px 80px; display: flex; flex-direction: column; gap: 0; }
+
+  .cover-card { background: var(--card-bg); border-radius: 20px 20px 4px 4px; padding: 56px 48px 48px; text-align: center; position: relative; overflow: hidden; border: 1.5px solid rgba(61,57,41,.12); margin-bottom: 3px; }
+  .cover-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, var(--terra) 0%, var(--terra-d) 60%, #E0A88A 100%); }
+  .cover-eyebrow { font-family: var(--mono); font-size:10px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:20px; display:flex; align-items:center; justify-content:center; gap:10px; }
+  .cover-eyebrow::before,.cover-eyebrow::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .15; max-width:60px; }
+  .cover-title { font-family: var(--serif); font-size:58px; font-weight:900; line-height:1; letter-spacing:-1px; color: var(--forest); margin-bottom:8px; }
+  .cover-sub { font-family: var(--serif); font-size:13px; font-style:italic; color: var(--forest); opacity: .55; margin-bottom:28px; }
+  .cover-divider { width:48px; height:2px; background: var(--terra); margin:0 auto 24px; border-radius:2px; }
+  .cover-meta { display:flex; justify-content:center; gap:32px; font-family: var(--mono); font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .45; }
+  .cover-badge { display:inline-flex; align-items:center; gap:6px; background: var(--terra); color: #fff; border-radius:20px; padding:6px 18px; font-family: var(--mono); font-size:10px; letter-spacing:2px; text-transform:uppercase; margin-top:28px; }
+  .top5-pill { display:flex; justify-content:center; gap:10px; margin-top:32px; flex-wrap:wrap; }
+  .pill { background: var(--forest); color: var(--cream); border-radius:100px; padding:4px 14px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; }
+  .pill.light { background:transparent; color: var(--forest); border:1px solid rgba(61,57,41,.2); }
+
+  .section-label { display:flex; align-items:center; gap:12px; padding:10px 0 8px; font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .35; }
+  .section-label::before,.section-label::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .1; }
+
+  .story-card { border-radius:4px; border:1.5px solid rgba(61,57,41,.10); padding:36px 40px; margin-bottom:3px; position:relative; overflow:hidden; }
+  .story-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }
+
+  .card-sky      { background:#D6E8F0; } .card-sky::before      { background: #7AAFC0; }
+  .card-cream    { background: var(--card-bg); } .card-cream::before    { background: var(--terra); }
+  .card-blush    { background:#F5DDD0; } .card-blush::before    { background: #E0A88A; }
+  .card-lavender { background:#EAE6F5; } .card-lavender::before { background: #C8BEE8; }
+  .card-sage     { background:#D6E4D6; } .card-sage::before     { background: #8BAF8B; }
+
+  .page-chip { position:absolute; top:14px; right:16px; font-family: var(--mono); font-size:9px; letter-spacing:2px; text-transform:uppercase; color: var(--forest); opacity: .3; }
+  .card-routine { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:8px; }
+  .card-headline { font-family: var(--serif); font-size:28px; font-weight:900; line-height:1.15; color: var(--forest); margin-bottom:10px; }
+  .card-headline.lg { font-size:34px; }
+  .card-headline.sm { font-size:22px; }
+  .card-deck { font-family: var(--serif); font-style:italic; font-size:14px; line-height:1.55; color: var(--forest); opacity: .55; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid rgba(61,57,41,.12); }
+  .card-body { font-family: 'Lora', Georgia, serif; font-size:14px; line-height:1.7; color: var(--forest); }
+  .card-body p { margin-bottom:11px; }
+  .drop::first-letter { font-family: var(--serif); font-size:52px; font-weight:900; float:left; line-height:.78; margin:5px 6px 0 0; color: var(--terra); }
+  .clearfix::after { content:''; display:table; clear:both; }
+
+  .hl-terra { background: var(--terra); color: var(--forest); padding:0 4px; border-radius:2px; }
+  .hl-ink  { background: var(--forest); color: var(--cream); padding:0 4px; border-radius:2px; }
+  .hl-sage { background: #8BAF8B; color: #fff; padding:0 4px; border-radius:2px; }
+  .hl-lav  { background: #C8BEE8; color: var(--forest); padding:0 4px; border-radius:2px; }
+
+  .stat-box { float:right; margin:0 0 16px 24px; background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:16px 20px; text-align:center; min-width:120px; }
+  .stat-big { font-family: var(--serif); font-size:44px; font-weight:900; line-height:1; color: var(--forest); display:block; }
+  .stat-label { font-family: var(--mono); font-size:9.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .5; display:block; margin-top:4px; }
+
+  .img-frame { border:2px solid rgba(61,57,41,0.18); border-radius:12px; overflow:hidden; margin:16px 0; background: var(--card-bg); }
+  .img-frame img { width:100%; display:block; max-height:240px; object-fit:cover; border-bottom:1px solid rgba(61,57,41,.12); }
+  .img-caption { padding:8px 12px; font-family: var(--mono); font-size:10.5px; color: var(--forest); opacity: .6; font-style:italic; display:flex; align-items:center; justify-content:space-between; gap:8px; }
+  .img-caption a { font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; white-space:nowrap; font-style:normal; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; }
+  .img-caption a:hover { opacity: 1; }
+  .img-frame.float-right { float:right; width:220px; margin:0 0 16px 24px; }
+  .img-frame.float-right img { max-height:140px; }
+
+  .source-link { display:inline-flex; align-items:center; gap:5px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:12px; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; transition: opacity .15s; }
+  .source-link:hover { opacity: 1; }
+  .source-link::after { content:'↗'; font-size:9px; }
+
+  .signals-grid { display:flex; flex-direction:column; gap:14px; }
+  .signal-row { display:flex; align-items:flex-start; gap:14px; }
+  .signal-num { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family: var(--serif); font-size:13px; font-weight:900; flex-shrink:0; color:#fff; }
+  .signal-num.n1{background: var(--terra); color: var(--forest);} .signal-num.n2{background: var(--forest);} .signal-num.n3{background:#7AAFC0;} .signal-num.n4{background: var(--terra-d); color: var(--forest);} .signal-num.n5{background: var(--black);}
+  .signal-title { font-family: var(--serif); font-size:14px; font-weight:700; color: var(--forest); margin-bottom:2px; }
+  .signal-desc { font-family: 'Newsreader', Georgia, 'Times New Roman', serif; font-size:12px; line-height:1.65; color: var(--forest); opacity: .6; }
+  .signal-link { display:inline-block; font-family: var(--mono); font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:4px; border-bottom:1px solid rgba(61,57,41,.25); padding-bottom:1px; transition: opacity .15s; }
+  .signal-link:hover { opacity: 1; }
+
+  .themes-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .theme-item { padding:10px 14px; border-radius:8px; font-family: var(--serif); font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; text-align:center; border:1.5px solid rgba(61,57,41,.12); background: var(--cream); }
+
+  .tool-week { background: var(--forest); color: var(--cream); border-radius:12px; padding:18px 20px; text-align:center; margin-top:14px; }
+  .tool-week-eyebrow { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; opacity: .55; margin-bottom:6px; }
+  .tool-week-name { font-family: var(--serif); font-size:22px; font-weight:900; margin-bottom:4px; }
+  .tool-week-desc { font-family: 'Newsreader', Georgia, 'Times New Roman', serif; font-size:11.5px; opacity: .7; font-style:italic; }
+
+  .output-card { background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:18px 20px; margin-top:14px; }
+  .output-title { font-family: var(--serif); font-size:18px; font-weight:700; margin-bottom:8px; color: var(--forest); }
+  .tp-list { list-style:none; padding:0; margin:0; }
+  .tp-list li { padding:5px 0; font-family: 'Lora', Georgia, serif; font-size:12px; color: var(--forest); border-bottom:1px solid rgba(61,57,41,.07); display:flex; align-items:flex-start; gap:7px; }
+  .tp-list li::before { content:'·'; color: var(--terra); font-size:14px; line-height:1.2; flex-shrink:0; }
+  .tp-list li a { color: var(--forest); opacity: .8; text-decoration:none; }
+  .tp-list li a:hover { opacity: 1; }
+
+  .sources-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px 20px; }
+  .sources-grid a { font-family: var(--mono); font-size:11px; color: var(--forest); opacity: .55; text-decoration:none; border-bottom:1px solid rgba(61,57,41,.15); padding-bottom:1px; transition: opacity .15s; }
+  .sources-grid a:hover { opacity: 1; }
+
+  .footer {
+    background: var(--black);
+    padding: 28px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    border-radius: 4px 4px 20px 20px;
+    margin-top: 3px;
+  }
+  .footer-logo { display: flex; align-items: center; gap: 10px; }
+  .footer-mark { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; }
+  .footer-mark img { width: 24px; height: 24px; object-fit: contain; }
+  .footer-brand { font-family: 'Special Elite', 'Courier New', Courier, monospace; font-size: 13px; font-weight: 400; color: #fff; }
+  .footer-center { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.4); text-align: center; line-height: 1.6; }
+  .footer-right { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.3); text-align: right; line-height: 2; }
+  .footer-right a { color: rgba(255,255,255,.5); transition: color .15s; }
+  .footer-right a:hover { color: #fff; }
+
+  .page-layout { display: flex; align-items: flex-start; gap: 0; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+  .toc-sidebar { position: sticky; top: 80px; width: 170px; flex-shrink: 0; padding: 48px 0 0 0; }
+  .toc-nav { display: flex; flex-direction: column; gap: 0; }
+  .toc-link { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.5px; text-transform: uppercase; color: #000; opacity: .45; text-decoration: none; padding: 7px 12px; border-left: 2px solid transparent; transition: opacity .15s, border-color .15s; line-height: 1.3; }
+  .toc-link:hover { opacity: .85; }
+  .toc-link.active { opacity: 1; border-left-color: var(--terra); }
+  .section-anchor { scroll-margin-top: 80px; }
+
+  @media (max-width: 900px) {
+    .toc-sidebar { display: none; }
+    .page-layout { max-width: 760px; }
+  }
+
+  @media (max-width: 720px) {
+    .nav { padding: 12px 24px; }
+    .nav-links { display: none; }
+    .wrapper { padding: 20px 14px 60px; }
+    .cover-card { padding: 40px 24px; }
+    .story-card { padding: 28px 20px; }
+    .footer { padding: 24px; flex-direction: column; align-items: flex-start; }
+    .footer-center, .footer-right { text-align: left; }
+    .stat-box { float: none; margin: 0 0 16px 0; }
+    .img-frame.float-right { float: none; width: 100%; margin: 0 0 16px 0; }
+  }
+  @media (max-width: 480px) {
+    .nav-logo span { display: none; }
+    .cover-title { font-size: 40px; }
+    .card-headline.lg { font-size: 28px; }
+    .card-headline { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">
+    <div class="nav-logo-mark">
+      <img src="../assets/timps-postcards.png" alt="TIMPS">
+    </div>
+    <span>TIMPS PostCards</span>
+  </a>
+  <div class="nav-links">
+    <a href="../archive.html" class="nav-link">Archive</a>
+    <a href="timps-postcards-2026-10-16.html" class="nav-link">Latest Issue</a>
+    <a href="../index.html#subscribe" class="nav-link">Subscribe</a>
+  </div>
+  <a href="../index.html#subscribe" class="nav-cta">Subscribe</a>
+</nav>
+
+<div class="page-layout">
+
+  <aside class="toc-sidebar">
+    <nav class="toc-nav">
+      <a href="#models" class="toc-link">Models</a>
+      <a href="#science" class="toc-link">Science</a>
+      <a href="#silicon" class="toc-link">Silicon</a>
+      <a href="#governance" class="toc-link">Governance</a>
+      <a href="#engineering" class="toc-link">Engineering</a>
+      <a href="#signals" class="toc-link">Signals</a>
+      <a href="#themes" class="toc-link">Themes</a>
+      <a href="#tool" class="toc-link">Watch</a>
+      <a href="#sources" class="toc-link">Sources</a>
+    </nav>
+  </aside>
+
+  <div class="wrapper">
+
+  <!-- COVER -->
+  <div id="intro" class="cover-card section-anchor">
+    <div class="cover-eyebrow">Est. 2026 &middot; Hyderabad</div>
+    <div class="cover-title">TIMPS<br>PostCards</div>
+    <div class="cover-sub">AI Intelligence Digest &middot; Your Daily Signal from the Machine Frontier</div>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+      <span>Issue 141</span>
+      <span>October 16, 2026</span>
+      <span>No. 168</span>
+    </div>
+    <div class="cover-badge">&#11041; 141 Issues &mdash; Built with the TIMPS Ecosystem</div>
+    <div class="top5-pill">
+      <span class="pill">5 Top Signals</span>
+      <span class="pill light">816B on Two Macs</span>
+      <span class="pill light">Apple and Meta Call a Truce</span>
+      <span class="pill light">Silicon by the Gigawatt</span>
+      <span class="pill light">An AI Lab Partner</span>
+      <span class="pill light">A Provenance Dispute</span>
+    </div>
+  </div>
+
+  <!-- CARD - 01 &middot; LEAD -->
+  <div id="models" class="story-card card-blush section-anchor">
+    <div class="page-chip">01 &middot; LEAD</div>
+    <div class="card-routine">Open Weights &middot; Apple and Meta Call a Truce</div>
+    <h2 class="card-headline lg">Meta Puts Its Biggest Model in the Open &mdash; and Makes Two Mac Studios Enough to Run It</h2>
+    <div class="card-deck">Muse Spark Open is an 816-billion-parameter mixture-of-experts model Meta calls the most capable US open-weight release yet. It runs locally on a pair of M5 Ultra Mac Studios &mdash; built with Apple, ending years of hostility between the two firms.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">816B</span>
+        <span class="stat-label">Total parameters, 42B active per token</span>
+      </div>
+      <p class="drop">On Thursday Meta released the weights of <b>Muse Spark Open</b>, which it calls &ldquo;the most capable US open-weight model to date.&rdquo; It is a mixture-of-experts model with <b>816 billion</b> total parameters and <span class="hl-ink">42 billion active per token</span>, a 1 million token context window, and native support for text, image, video and audio input. Meta built it for coding and agentic work &mdash; long-horizon tasks, complex software engineering, multi-step reasoning &mdash; and shipped it to Hugging Face, SageMaker, Google Cloud Model Garden and Microsoft Foundry, plus a roster of API platforms.</p>
+      <p>The byline is the shock. Meta worked with <b>Apple</b> to optimise the model to run directly on Mac Studio using Apple&rsquo;s MLX framework: a cluster of two (or up to four) Mac Studios with M5 Ultra chips and 512 GB of unified memory can host it. Apple&rsquo;s John Ternus and Mark Zuckerberg exchanged congratulations on X the same day. The two companies have spent years suing and sniping at each other over headsets, privacy and App Store commissions &mdash; and now they shipped a flagship model side by side. For developers, the practical message is that <span class="hl-terra">running a frontier open model no longer requires renting a rack of GPUs</span>; two desktop workstations will do.</p>
+      <p>The fine print is the licence, not the benchmarks. Meta&rsquo;s terms no longer cap use by monthly actives but by revenue: an API provider offering Muse Spark Open that earns more than <b>$20 million a year</b> must sign a separate agreement and tag its product &ldquo;Built with Muse Spark Open.&rdquo; That barely touches a consumer app that runs the model for itself &mdash; and puts a direct gate in front of clouds and API resellers. Meta claims it beats Chinese open rivals like GLM 5.3 and Kimi K3 on agentic evals such as MCP-Atlas and JobBench, but trails them on some coding benchmarks, and its self-reported Artificial Analysis score of 39 sits below six Chinese models. Independent testing will decide the ranking; the licence already decides the business model.</p>
+    </div>
+    <a class="source-link" href="https://officechai.com/ai/muse-spark-open-benchmarks/" target="_blank">Full story &middot; OfficeChai</a>
+  </div>
+
+  <!-- CARD - 02 &middot; SCIENCE -->
+  <div id="science" class="story-card card-sage section-anchor">
+    <div class="page-chip">02 &middot; SCIENCE</div>
+    <div class="card-routine">Discovery &middot; AI as Lab Partner</div>
+    <h2 class="card-headline">A Researcher and an AI Agent Found an Antibiotic Lead in a Single Session</h2>
+    <div class="card-deck">Using Google DeepMind&rsquo;s Antigravity, a scientist and an agent collapsed a search that spans several databases into one workflow &mdash; and surfaced a 97-amino-acid bacteriocin candidate against respiratory pathogens. It is a prediction, not a drug.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">97</span>
+        <span class="stat-label">Amino acids in the candidate bacteriocin</span>
+      </div>
+      <p class="drop">Google DeepMind described how a researcher and an AI agent found a new antimicrobial-peptide candidate in a single session using <b>Antigravity</b>, the company&rsquo;s agentic development platform. The candidate is a <span class="hl-ink">97-amino-acid bacteriocin</span> &mdash; a protein that bacteria make to kill rival bacteria &mdash; predicted to act against the pathogens behind respiratory infections. The workflow used <b>ProtNLM</b>, a model that predicts biological function from amino-acid sequence, to screen proteins of unknown function in UniProt.</p>
+      <p>What the agent changed was not the science so much as the friction. The work normally spreads across several databases, structural analysis and literature review; Antigravity runs it inside one session, with the researcher setting the strategic direction while the agent coordinates database use, structural prediction and synthesis. DeepMind frames the human as the one who chooses the problem; the agent does the triage that used to consume days. The same week, OpenAI launched its <b>Rosalind Academic Plan</b>, sponsoring access to its life-sciences model GPT-Rosalind for university labs &mdash; two labs racing to become the default research partner.</p>
+      <p>The caveats are load-bearing. This is a candidate generated on a computer, predicted to be active and now in wet-lab validation &mdash; the post itself calls it a plausible lead, not a result. Whether the peptide becomes anything still gets decided at the bench, by biology, not by the model. But the pattern is worth watching: as these tools turn literature-and-database search into a single agentic loop, the bottleneck in discovery moves <span class="hl-terra">from finding ideas to testing them</span> &mdash; which is exactly where AI cannot help.</p>
+    </div>
+    <a class="source-link" href="https://tekopen.com/en/post/news-for-16-10-2026-ai-expands-into-agents-research-and-digital-shopping" target="_blank">Full story &middot; Tekopen</a>
+  </div>
+
+  <!-- CARD - 03 &middot; SILICON -->
+  <div id="silicon" class="story-card card-sky section-anchor">
+    <div class="page-chip">03 &middot; SILICON</div>
+    <div class="card-routine">Hardware &middot; Silicon by the Gigawatt</div>
+    <h2 class="card-headline">Microsoft Maps a Multi-Gigawatt Future for Its Own AI Chip</h2>
+    <div class="card-deck">Azure&rsquo;s third-generation Maia accelerator enters production in 2027 and will scale to gigawatts of deployment, Microsoft says &mdash; targeting 40% more tokens per watt than leading GPU systems to serve its own Copilot and agent workloads.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">40%</span>
+        <span class="stat-label">More tokens per watt than leading GPU systems</span>
+      </div>
+      <p class="drop">Microsoft cloud chief Scott Guthrie announced that <b>Azure Maia 300</b> &mdash; the third generation of the company&rsquo;s in-house AI accelerator &mdash; will enter production in <b>2027</b>, and that from then the Maia family will scale to <span class="hl-terra">multi-gigawatt deployments</span>, becoming the primary inference system for Microsoft&rsquo;s own products and services. The chip is designed as a complete system for the workloads inference now produces: long-context reasoning, latency-sensitive conversation and sustained multi-step agentic tasks.</p>
+      <p>The numbers Microsoft published are aggressive. Maia 300 is expected to deliver <b>40% more tokens per watt</b> than leading GPU-based systems, and a full 96-accelerator rack should reach up to <b>seven times</b> the rack-scale token throughput of Maia 200. The accelerator carries 288 GB of memory with 18 TB/s of bandwidth, a 2.5x bandwidth step over its predecessor. Maia 200 is already in production across the US, Europe and Australia, powering built-in AI in Teams, Copilot and Cowork at up to 1.7x tokens per watt, with GitHub Copilot and Microsoft Foundry joining by year end.</p>
+      <p>The strategic tell is in who sells what. Microsoft AI CEO Mustafa Suleyman put it plainly: the company has to work across the full stack, all the way down to the silicon &mdash; reducing its dependence on Nvidia pricing for the very products that define its AI business. Every hyperscaler is now building its own inference chip, and the meaning of &ldquo;compute&rdquo; is quietly shifting: the goal is not the biggest training cluster but <span class="hl-ink">the cheapest token at the highest volume</span>. As the buildout&rsquo;s cost rattles credit markets, the company selling the most tokens has the most to gain from owning the chip underneath them.</p>
+    </div>
+    <a class="source-link" href="https://dev.to/hiroki-ii-ai/ai-daily-digest-october-16-2026-eu-ai-act-reaches-openai-and-anthropic-maia-300-targets-p32" target="_blank">Full story &middot; DEV Digest</a>
+  </div>
+
+  <!-- CARD - 04 &middot; GOVERNANCE -->
+  <div id="governance" class="story-card card-cream section-anchor">
+    <div class="page-chip">04 &middot; GOVERNANCE</div>
+    <div class="card-routine">Safety &middot; The Review Burden Moves Out</div>
+    <h2 class="card-headline">Anthropic Moves Enterprise Safety Monitoring Into the Customer&rsquo;s Own Cloud</h2>
+    <div class="card-deck">Under Enterprise Frontier Safeguards, the activity data used to detect misuse can live in the customer&rsquo;s AWS, Azure or Google Cloud account under customer-managed keys &mdash; and flagged signals go straight to the customer&rsquo;s team, not Anthropic&rsquo;s.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">0</span>
+        <span class="stat-label">Monitoring data retained on Anthropic&rsquo;s servers</span>
+      </div>
+      <p class="drop">Anthropic announced <b>Enterprise Frontier Safeguards</b>, a system that combines zero data retention with misuse detection. Activity data used for monitoring can now be stored in the customer&rsquo;s own cloud account &mdash; on <span class="hl-ink">Amazon S3, Azure Blob Storage or Google Cloud Storage</span> &mdash; under customer-managed encryption keys. When automated monitoring flags a pattern, the signal goes straight to the customer&rsquo;s review team, with no human review by Anthropic staff. The feature costs nothing from Anthropic; the cloud provider bills for the storage.</p>
+      <p>The same disclosure detailed Anthropic&rsquo;s response to this summer&rsquo;s sandbox escapes: a classifier that detects and blocks attempts to leave the test environment in real time, a pause on some external cyber evaluations, and new network-isolation requirements for partners. Internally, the company cut standing access to systems holding model weights, set its infrastructure to block outbound traffic by default, and temporarily moved about <b>150 product engineers</b> into security work. The pattern across both halves of the announcement is the same: <span class="hl-terra">the review burden, and the data behind it, now sits with the customer.</span></p>
+      <p>Read together with card 05, it is a coherent pivot. On the same day regulators and state attorneys general were subpoenaing and suing AI labs, Anthropic moved its enterprise safety posture outward &mdash; to the customer&rsquo;s cloud and to independent evaluators such as METR, which it is now granting employee-level access with no veto over publication. That is either a genuine transfer of accountability or a neat way to hold the data without holding the liability. The test is not the architecture; it is whether customers actually run the review, and whether Anthropic ever has to answer for a misuse it can no longer see.</p>
+    </div>
+    <a class="source-link" href="https://dev.to/hiroki-ii-ai/ai-daily-digest-october-16-2026-eu-ai-act-reaches-openai-and-anthropic-maia-300-targets-p32" target="_blank">Full story &middot; DEV Digest</a>
+  </div>
+
+  <!-- CARD - 05 &middot; ENGINEERING -->
+  <div id="engineering" class="story-card card-lavender section-anchor">
+    <div class="page-chip">05 &middot; ENGINEERING</div>
+    <div class="card-routine">Provenance &middot; A Copied Design?</div>
+    <h2 class="card-headline">Anthropic&rsquo;s Homegrown Git Replacement Is Accused of Copying Meta&rsquo;s</h2>
+    <div class="card-deck">A former Meta engineer alleges Scion, the version-control system Anthropic built to replace git, deliberately borrowed from Meta&rsquo;s internal Mononoke. An Anthropic engineer replied publicly &mdash; and the blog now carries an acknowledgment.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">214</span>
+        <span class="stat-label">Points the accusation reached on Hacker News</span>
+      </div>
+      <p class="drop">Two days after Anthropic published an engineering case study on <b>Scion</b> &mdash; the in-house system it built to replace git for a monorepo merging 30,000 times a day &mdash; the origin story became contested. A former Meta engineer writing as <b>Rain</b> published two posts accusing Scion of <span class="hl-terra">deliberately and blatantly copying Meta&rsquo;s internal Mononoke system</span>: he says the &ldquo;derived data&rdquo; design is strikingly similar, that the changeset concept traces to the same lineage, and that the personnel overlap makes an unintentional resemblance unlikely.</p>
+      <p>The dispute then resolved itself in public, which is the interesting part. An Anthropic engineer responded on Hacker News, and the official blog added an acknowledgment to Mononoke; Rain said his position stands while confirming the attribution was added. No third-party has ruled on whether the copying charge holds. Only two facts are confirmed: <span class="hl-ink">the acknowledgment is in</span>, and the discussion keeps growing &mdash; the thread reached 214 points. Meanwhile Anthropic is simultaneously pitching independent evaluators with &ldquo;we cannot veto your findings&rdquo; &mdash; the same posture that makes a fast, quiet correction here both consistent and convenient.</p>
+      <p>The episode is a case study in the new provenance problem. As agent-written code and machine-paced infrastructure spread, the systems inside the labs are no longer obviously novel or obviously borrowed &mdash; and the norms for crediting a design, as opposed to a line of code, are unwritten. Anthropic&rsquo;s story was that seven engineers rebuilt version control from first principles in five months. The follow-up question, now on the record, is <span class="hl-terra">from which first principles, and whose?</span></p>
+    </div>
+    <a class="source-link" href="https://ai-daily.musxiao.com/" target="_blank">Full story &middot; AI Frontier Daily</a>
+  </div>
+
+  <!-- SIGNALS -->
+  <div id="signals" class="story-card card-cream section-anchor">
+    <div class="page-chip">06 &middot; SIGNALS</div>
+    <div class="card-routine">5 Key Signals</div>
+    <h2 class="card-headline sm">What Moved the Machine Frontier Today</h2>
+    <div class="card-deck" style="border-bottom:none; padding-bottom:0; margin-bottom:16px;">Briefs that did not make the cards &mdash; each worth an afternoon of reading.</div>
+    <div class="signals-grid">
+      <div class="signal-row">
+        <div class="signal-num n1">1</div>
+        <div>
+          <div class="signal-title">Nvidia Answers with the Nemotron 3.5 Twins: 120B for the Frontier, 74B for 24GB</div>
+          <div class="signal-desc">Nvidia released three open-weight models at once. The flagship, <b>Nemotron 3.5 Super VL</b> (120B total, ~12B active), is a multimodal agent model that Artificial Analysis scores at 26.5 &mdash; the top US open-weight model, roughly twice its predecessor. Two siblings target local and edge: <b>Bolt 74B-A9B</b> compresses into <b>24GB</b> of consumer VRAM, and Bolt E4B needs only 4GB. From data centre to laptop GPU in one release &mdash; timed to Nvidia&rsquo;s own RTX and DGX Spark sales.</div>
+          <a class="signal-link" href="https://ai-daily.musxiao.com/" target="_blank">AI Frontier Daily &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n2">2</div>
+        <div>
+          <div class="signal-title">Nvidia Open-Sources Its Entire Run:ai Platform &mdash; and Reportedly Eyes ReflectionAI</div>
+          <div class="signal-desc">Nvidia released the whole <b>Run:ai</b> GPU-orchestration platform as open source, following its $700M acquisition, including the KAI Scheduler, a GPU Fractioning Operator, resource management and a workload map &mdash; with eight DSX partners supporting integrations. Separately, the Financial Times reports Nvidia is weighing further investment in, or an outright purchase of, open-source startup <b>ReflectionAI</b>, possibly structured as an acqhire to avoid regulatory scrutiny.</div>
+          <a class="signal-link" href="https://blog.brainosi.com/en/2026-10-16-anthropic-self-replication-ramp-60b-brutal-open-source-tech-roundup/" target="_blank">Brain OS Institute &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n3">3</div>
+        <div>
+          <div class="signal-title">OpenAI Opens Its Life-Sciences Model to University Labs</div>
+          <div class="signal-desc">OpenAI launched the <b>Rosalind Academic Plan</b>, giving eligible academic research labs sponsored access to <b>GPT-Rosalind</b>, its life-sciences domain model, and related tools. It arrives alongside Google DeepMind&rsquo;s wet-lab peptide work and a cluster of science-focused agent releases &mdash; and it is a reminder that &ldquo;who gets access&rdquo; is now a research-policy question, not just a commercial one.</div>
+          <a class="signal-link" href="https://www.thekush.codes/news/md" target="_blank">The Kush &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n4">4</div>
+        <div>
+          <div class="signal-title">Google&rsquo;s Universal Cart Goes Live in the US: One Cart Across Search and Gemini</div>
+          <div class="signal-desc">Google made <b>Universal Cart</b> available to US users after previewing it at I/O in May: products found in Search or the Gemini app collect into one cart across retailers, with alerts when a saved item&rsquo;s price drops or restocks, and checkout suggestions that factor in card perks and promo codes. Checkout runs on Google&rsquo;s <b>Universal Commerce Protocol</b> &mdash; the open standard built so other companies&rsquo; agents can plug into retailers the same way Gemini just did.</div>
+          <a class="signal-link" href="https://saazora.com/blog/ai-saas-news-today-october-16-2026.html" target="_blank">Saazora &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n5">5</div>
+        <div>
+          <div class="signal-title">Physical Intelligence Opens Robot Foundation Models Through an API</div>
+          <div class="signal-desc">Physical Intelligence began offering its robotics foundation models to outside developers through the <b>Pi API</b> for hosted fine-tuning and inference. Developers upload robot data, fine-tune a model on compute the company manages, then run it on their own robot through a hosted inference gateway. Because the models are hosted, the company can swap in improvements underneath &mdash; the robotics equivalent of an API-first model release, and a sign that robot intelligence is following the same distribution playbook as language models.</div>
+          <a class="signal-link" href="https://dev.to/hiroki-ii-ai/ai-daily-digest-october-16-2026-eu-ai-act-reaches-openai-and-anthropic-maia-300-targets-p32" target="_blank">DEV Digest &#8597;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THEMES + TOOL + SOURCES -->
+  <div id="themes" class="story-card card-lavender section-anchor">
+    <div class="page-chip">07 &middot; CLOSER</div>
+    <div class="card-routine">Top Themes</div>
+    <h2 class="card-headline sm">The Shape of Today&rsquo;s News</h2>
+    <div class="themes-grid" style="margin-top:16px;">
+      <div class="theme-item">US Open Weights Return</div>
+      <div class="theme-item">Silicon by the Gigawatt</div>
+      <div class="theme-item">AI as Lab Partner</div>
+      <div class="theme-item">The Review Burden Moves Out</div>
+      <div class="theme-item">Provenance and Ownership</div>
+    </div>
+
+    <div id="tool" class="tool-week section-anchor">
+      <div class="tool-week-eyebrow">Company Watch of the Day</div>
+      <div class="tool-week-name">META</div>
+      <div class="tool-week-desc">Meta spent the week making moves that look, on the surface, like a return to its open-source roots &mdash; and, underneath, like a carefully drawn business model. <b>Muse Spark Open</b> is a genuine gift: 816 billion parameters, native multimodality, a 1M-token context, and a partnership with <b>Apple</b> that lets two Mac Studios run a frontier-class model locally, ending years of litigation and sniping between the two firms. But the licence rewrites the rules of &ldquo;open.&rdquo; Instead of capping use by monthly actives, it caps by revenue: resell this model as an API and clear $20M a year, and you owe Meta an agreement. That is openness for the people who use models and a toll booth for the people who sell them &mdash; a precise strike at the cloud middlemen, taken the same week Nvidia flooded the same shelf with its own open-weight Nemotron models. The strategy is legible: cede the weights, keep the market. Whether it strengthens the case that the US can lead in open AI, or just relocates the tollgate from the model to the marketplace, is now the argument to watch.</div>
+    </div>
+
+    <div id="sources" class="output-card section-anchor">
+      <div class="output-title">Sources Cited</div>
+      <div class="sources-grid">
+        <a href="https://officechai.com/ai/muse-spark-open-benchmarks/" target="_blank">OfficeChai &mdash; Meta releases Muse Spark Open</a>
+        <a href="https://aiparabellum.com/meta-muse-spark-open-weight-model/" target="_blank">AI Parabellum &mdash; 816B, runs on two Macs</a>
+        <a href="https://www.techmeme.com/?full=t" target="_blank">Techmeme &mdash; Muse Spark Open tops the news</a>
+        <a href="https://www.digitaltoday.co.kr/en/view/115313/us-big-tech-targets-open-weight-ai-models-meta-steps-up-offensive-after-nvidia" target="_blank">DigitalToday &mdash; US big tech, open weights</a>
+        <a href="https://dev.to/hiroki-ii-ai/ai-daily-digest-october-16-2026-eu-ai-act-reaches-openai-and-anthropic-maia-300-targets-p32" target="_blank">DEV &mdash; Maia 300, safeguards, Pi API</a>
+        <a href="https://www.dailyaithread.com/en/" target="_blank">Daily AI Thread &mdash; Antigravity peptide, watchdogs</a>
+        <a href="https://tekopen.com/en/post/news-for-16-10-2026-ai-expands-into-agents-research-and-digital-shopping" target="_blank">Tekopen &mdash; Peptide candidate, METR access</a>
+        <a href="https://www.thekush.codes/news/md" target="_blank">The Kush &mdash; Rosalind plan, Chrome controls</a>
+        <a href="https://ai-daily.musxiao.com/" target="_blank">AI Frontier Daily &mdash; Muse/Apple, Scion dispute</a>
+        <a href="https://aibriefs.news/briefing/2026-10-16" target="_blank">AIBriefs &mdash; Gemini 4 Argon, OpenAI manuscripts</a>
+        <a href="https://saazora.com/blog/ai-saas-news-today-october-16-2026.html" target="_blank">Saazora &mdash; Universal Cart, FTC, Muse</a>
+        <a href="https://pharma.intelligence-synthesis.com/en/ai-news/2026-10-16-morning.html" target="_blank">Intelligence Synthesis &mdash; Meta, Nvidia, Meta tax credit</a>
+        <a href="https://blog.brainosi.com/en/2026-10-16-anthropic-self-replication-ramp-60b-brutal-open-source-tech-roundup/" target="_blank">Brain OS &mdash; Nvidia open-sources Run:ai</a>
+        <a href="https://www.cnbctv18.com/technology/anthropic-grants-outside-evaluator-metr-employee-level-access-in-ai-safety-push-20013094.htm" target="_blank">CNBC TV18 &mdash; Anthropic grants METR access</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-logo">
+      <div class="footer-mark">
+        <img src="../assets/timps-postcards.png" alt="TIMPS">
+      </div>
+      <span class="footer-brand">TIMPS PostCards</span>
+    </div>
+    <div class="footer-center">
+      Issue 141 &middot; October 16, 2026<br>
+      Hyderabad, India
+    </div>
+    <div class="footer-right">
+      <a href="../index.html">Home</a><br>
+      <a href="../archive.html">Archive</a><br>
+      &copy; 2026 TIMPS
+    </div>
+  </footer>
+
+</div> <!-- /wrapper -->
+</div> <!-- /page-layout -->
+</body>
+</html>
