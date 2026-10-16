@@ -6,11 +6,69 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 126 daily issues + 17 deep dives · regenerated 2026-10-14**
+**Coverage: 128 daily issues + 17 deep dives · regenerated 2026-10-16**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 141 · 2026-10-16 · `daily/timps-postcards-2026-10-16.html`
+
+- **[01 · LEAD]** Meta Puts Its Biggest Model in the Open — and Makes Two Mac Studios Enough to Run It
+  - _Muse Spark Open is an 816-billion-parameter mixture-of-experts model Meta calls the most capable US open-weight release yet. It runs locally on a pair of M5 Ultra Mac Studios — built with Apple, ending years of hostility between the two firms._
+  - Source: [Full story · OfficeChai](https://officechai.com/ai/muse-spark-open-benchmarks/)
+
+- **[02 · SCIENCE]** A Researcher and an AI Agent Found an Antibiotic Lead in a Single Session
+  - _Using Google DeepMind’s Antigravity, a scientist and an agent collapsed a search that spans several databases into one workflow — and surfaced a 97-amino-acid bacteriocin candidate against respiratory pathogens. It is a prediction, not a drug._
+  - Source: [Full story · Tekopen](https://tekopen.com/en/post/news-for-16-10-2026-ai-expands-into-agents-research-and-digital-shopping)
+
+- **[03 · SILICON]** Microsoft Maps a Multi-Gigawatt Future for Its Own AI Chip
+  - _Azure’s third-generation Maia accelerator enters production in 2027 and will scale to gigawatts of deployment, Microsoft says — targeting 40% more tokens per watt than leading GPU systems to serve its own Copilot and agent workloads._
+  - Source: [Full story · DEV Digest](https://dev.to/hiroki-ii-ai/ai-daily-digest-october-16-2026-eu-ai-act-reaches-openai-and-anthropic-maia-300-targets-p32)
+
+- **[04 · GOVERNANCE]** Anthropic Moves Enterprise Safety Monitoring Into the Customer’s Own Cloud
+  - _Under Enterprise Frontier Safeguards, the activity data used to detect misuse can live in the customer’s AWS, Azure or Google Cloud account under customer-managed keys — and flagged signals go straight to the customer’s team, not Anthropic’s._
+  - Source: [Full story · DEV Digest](https://dev.to/hiroki-ii-ai/ai-daily-digest-october-16-2026-eu-ai-act-reaches-openai-and-anthropic-maia-300-targets-p32)
+
+- **[05 · ENGINEERING]** Anthropic’s Homegrown Git Replacement Is Accused of Copying Meta’s
+  - _A former Meta engineer alleges Scion, the version-control system Anthropic built to replace git, deliberately borrowed from Meta’s internal Mononoke. An Anthropic engineer replied publicly — and the blog now carries an acknowledgment._
+  - Source: [Full story · AI Frontier Daily](https://ai-daily.musxiao.com/)
+
+  **Signals / briefs:**
+  - Nvidia Answers with the Nemotron 3.5 Twins: 120B for the Frontier, 74B for 24GB
+  - Nvidia Open-Sources Its Entire Run:ai Platform — and Reportedly Eyes ReflectionAI
+  - OpenAI Opens Its Life-Sciences Model to University Labs
+  - Google’s Universal Cart Goes Live in the US: One Cart Across Search and Gemini
+  - Physical Intelligence Opens Robot Foundation Models Through an API
+
+### Issue 140 · 2026-10-15 · `daily/timps-postcards-2026-10-15.html`
+
+- **[01 · LEAD]** Brussels Opens the AI Act’s First Probes — and Names OpenAI and Anthropic
+  - _The European Commission’s AI Office sent its first formal information requests to two frontier labs over a summer of agent “escapes,” after documenting more than twenty loss-of-control incidents across the industry this year._
+  - Source: [Full story · AI News Online](https://ai-news-online.com/briefing/2026-10-15/)
+
+- **[02 · ACCOUNTABILITY]** The FTC Subpoenas OpenAI and Anthropic — 50-Plus Pages Each, and Executives Must Testify
+  - _Civil investigative demands landed on both labs on October 14, seeking incident records, security measures and marketing claims, as federal regulators convert months of warnings into formal process._
+  - Source: [Full story · Tech Startups](https://techstartups.com/2026/10/15/top-tech-news-today-october-15-2026-anthropic-cisco-gartner-google-openai-ramp-tsmc-more/)
+
+- **[03 · LITIGATION]** Eight States Sue OpenAI, Saying ChatGPT Harmed Children and Misled Parents
+  - _Attorneys general in Arizona, Arkansas, Idaho, Iowa, Kansas, Montana, Nebraska and West Virginia filed separate consumer-protection suits on October 14, seeking penalties, data deletion and age checks._
+  - Source: [Full story · University 365](https://www.university-365.com/post/ai-news-thursday-15-october-2026-gemini-4-argon-paid-rollout-google-meta-ai-race-microsoft-open-weight-model)
+
+- **[04 · BUSINESS]** Anthropic Tells Investors It Booked $16.8B in a Quarter — Then the Valuation Talk Slips
+  - _At a closed investor day, the lab reported Q3 revenue up roughly 45% from $11.6B and profit on an adjusted basis. But the growth decelerated — and the IPO figure under discussion slid from about $2T toward $1.5T._
+  - Source: [Full story · The Diary of AI](https://thediaryofai.com/ai-news-20261015/)
+
+- **[05 · INDUSTRY]** Bank of America Puts 4,000 People on the Flaws AI Found
+  - _After Anthropic’s Mythos model surfaced thousands of serious software vulnerabilities, the bank assembled 1,000 contractors and 3,000 staff to fix them — a rare, concrete look at the labour bill behind “AI-powered security.”_
+  - Source: [Full story · Daily AI Thread](https://www.dailyaithread.com/en/)
+
+  **Signals / briefs:**
+  - NYC’s Comptroller Asks Anthropic to Pause Its IPO Over Safety Concerns
+  - Anthropic Publishes US Midterm Election Safeguards for Claude
+  - xAI’s Grok Voice 3.0 Tops the Speech-to-Speech Index at 86.9
+  - FBI Arrests an OpenAI Engineer Accused of Bugging the Executive Conference Room
+  - The Buildout Wobbles: IMF Warns of an AI Bust as CoreWeave Bonds Near 15%
 
 ### Issue 139 · 2026-10-14 · `daily/timps-postcards-2026-10-14.html`
 
