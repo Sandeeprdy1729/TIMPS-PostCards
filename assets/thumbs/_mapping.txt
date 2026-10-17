@@ -126,3 +126,4 @@
 2026-10-14	139	thumb-2026-10-14.svg	Anthropic and OpenAI Sought Veto Power Over the Safety Reports They Promised to Leave Alone	unlock
 2026-10-15	140	thumb-2026-10-15.svg	Brussels Opens the AI Act's First Probes — and Names OpenAI and Anthropic	gavel
 2026-10-16	141	thumb-2026-10-16.svg	Meta Puts Its Biggest Model in the Open — and Makes Two Mac Studios Enough to Run It	server
+2026-10-17	142	thumb-2026-10-17.svg	Anthropic Offers Wall Street a 10% Yield to Fund a $60 Billion Chip Deal	coins
