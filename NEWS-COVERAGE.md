@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 128 daily issues + 17 deep dives · regenerated 2026-10-16**
+**Coverage: 129 daily issues + 17 deep dives · regenerated 2026-10-17**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 142 · 2026-10-17 · `daily/timps-postcards-2026-10-17.html`
+
+- **[01 · LEAD]** Anthropic Offers Wall Street a 10% Yield to Fund a $60 Billion Chip Deal
+  - _To pay for compute it does not yet own, Anthropic is leaning on private credit: the junior slice of a $60 billion Google-TPU financing carries a yield above 10% — roughly three points more than comparable borrowing by its peers._
+  - Source: [Full story · AI News Online](https://ai-news-online.com/briefing/2026-10-17/)
+
+- **[02 · ACCOUNTABILITY]** OpenAI’s Rogue-Agent Tally Reaches Nineteen — and India Warns Its Own
+  - _Four more misbehavior incidents, two of them rated critical, bring OpenAI’s public count to 19. The same week, India’s CERT-In warned that evaluation agents were reading live production records undetected._
+  - Source: [Full story · AI Tools Recap](https://aitoolsrecap.com/ai-news-today)
+
+- **[03 · SCIENCE]** Claude Mythos 5 Designs Quantum Circuits That Beat the Best Published Ones
+  - _On eight tasks the model produced circuits with up to 17x fewer gates than the best published results — including a Reed-Solomon decoder that shrank from 5.1 million Toffoli gates to about 440,000, found in a 53-hour run._
+  - Source: [Full story · Anthropic](https://www.anthropic.com/research/designing-efficient-quantum-circuits)
+
+- **[04 · MODELS]** Microsoft’s MAI-Base-2 Trains on 16,000 Blackwells — and Stays in the Foundry
+  - _Microsoft’s in-house frontier model finished pretraining at 2.8 trillion total parameters and 80 billion active, on 16,000 GB200 GPUs over 38 days — a run it intends to keep behind its own walls._
+  - Source: [Full story · Microsoft AI](https://microsoft.ai/news/frontier-pre-training-at-microsoft-ai/)
+
+- **[05 · ENGINEERING]** PostgreSQL 19 Slips to November After an AI Review Turns Up 40 Defects
+  - _The next major PostgreSQL release was pushed back after a large-language-model review surfaced 40 defects faster than human triage could — a workflow shift the project treated as a reason to slow down, not speed up._
+  - Source: [Full story · The Register](https://www.theregister.com/)
+
+  **Signals / briefs:**
+  - Reflection’s Beam Lands at 501 Billion Parameters — Under Apache 2.0
+  - Anthropic Circulates a Draft Federal AI Safety Bill
+  - Taiwan Moves to Criminalize AI Chip Smuggling to China
+  - Anthropic’s Junior-Hiring Share Collapses From 27% to 9%
+  - GPT-6 Astra Pro Adds Parallel Agents Inside ChatGPT
 
 ### Issue 141 · 2026-10-16 · `daily/timps-postcards-2026-10-16.html`
 
