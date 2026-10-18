@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TIMPS">
+<link rel="manifest" href="../manifest.json">
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/icon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/icon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="../assets/icon-48.png">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="../assets/icon-180.png">
+<title>TIMPS Articles — Debloating a TV With an Agent</title>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream:  #EDE8DA;
+    --forest: #1C2E22;
+    --pink:   #E8B4E8;
+    --lime:   #DCF07A;
+    --lime-d: #C8DE60;
+    --black:  #111111;
+    --border: #1C2E22;
+    --card-bg:#F5F1E6;
+    --mono:   'Newsreader', Georgia, 'Times New Roman', serif;
+    --news:   'Newsreader', Georgia, 'Times New Roman', serif;
+    --serif:  'TIMPS', Georgia, serif;
+  }
+
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Black.woff2') format('woff2'); font-weight:900; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Bold.woff2') format('woff2'); font-weight:700; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-SemiBold.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--cream);
+    background-image:
+      linear-gradient(rgba(28,46,34,.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(28,46,34,.07) 1px, transparent 1px);
+    background-size: 38px 38px;
+    color: var(--forest);
+    font-family: var(--news);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  a { text-decoration: none; color: inherit; }
+
+  /* Deep dive typography — TIMPS (display) + Newsreader (prose & descriptions) */
+  .masthead-dek { font-family: var(--news); font-style: italic; font-size: 19px; }
+  .masthead-meta { font-family: var(--news); font-size: 13px; }
+  .lede { font-family: var(--news); font-size: 21px; }
+  .para { font-family: var(--news); font-size: 17px; }
+  .callout p { font-family: var(--news); font-size: 15.5px; }
+  .pullquote p { font-family: var(--news); font-size: 21px; }
+  .pullquote .attrib { font-family: var(--news); font-style: italic; font-size: 13px; }
+  .spec-row { font-family: var(--news); font-size: 14px; }
+  .fig-cap { font-family: var(--news); font-size: 12.5px; }
+  .bench-top { font-family: var(--news); font-size: 13.5px; }
+  .bench-note { font-family: var(--news); font-size: 13px; }
+  .sources li { font-family: var(--news); font-size: 13.5px; }
+  .endcard-sub { font-family: var(--news); font-size: 14.5px; }
+
+  /* ─── NAV ─── */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 48px;
+    background-color: rgba(237,232,218,.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1.5px solid rgba(28,46,34,.12);
+    background-image:
+      linear-gradient(rgba(28,46,34,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(28,46,34,.05) 1px, transparent 1px);
+    background-size: 38px 38px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Special Elite', 'Courier New', Courier, monospace;
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--forest);
+    letter-spacing: -0.3px;
+  }
+  .nav-logo-mark { width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .nav-logo-mark img { width: 28px; height: 28px; object-fit: contain; }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-link {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--forest);
+    opacity: .55;
+    transition: opacity .15s;
+  }
+  .nav-link:hover { opacity: 1; }
+  .nav-link.active { opacity: 1; font-weight: 700; }
+  .nav-cta {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--forest);
+    background: var(--lime);
+    border: 2.5px solid var(--forest);
+    border-radius: 100px;
+    padding: 10px 24px;
+    transition: background .15s, transform .1s;
+    white-space: nowrap;
+  }
+  .nav-cta:hover { background: var(--lime-d); transform: translateY(-1px); }
+
+  /* ─── MASTHEAD ─── */
+  .masthead {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 72px 24px 24px;
+    text-align: center;
+  }
+  .masthead-kicker {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--forest);
+    background: var(--lime);
+    border: 2px solid var(--forest);
+    border-radius: 100px;
+    padding: 7px 16px;
+    margin-bottom: 28px;
+  }
+  .masthead-h {
+    font-family: var(--serif);
+    font-size: clamp(38px, 6.4vw, 72px);
+    font-weight: 900;
+    line-height: 1.04;
+    letter-spacing: -1.5px;
+    color: var(--forest);
+    margin-bottom: 20px;
+  }
+  .masthead-h em { font-style: italic; }
+  .masthead-dek {
+    font-family: var(--serif);
+    font-size: clamp(17px, 2.2vw, 21px);
+    font-style: italic;
+    line-height: 1.55;
+    color: var(--forest);
+    opacity: .85;
+    max-width: 660px;
+    margin: 0 auto 28px;
+  }
+  .masthead-meta {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--forest);
+    opacity: .5;
+    letter-spacing: .5px;
+  }
+  .masthead-meta b { font-weight: 700; opacity: 1; }
+
+  /* ─── FIGURE ─── */
+  .figure {
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    overflow: hidden;
+    box-shadow: 6px 6px 0 rgba(28,46,34,.14);
+    margin: 32px 0;
+  }
+  .figure img { width: 100%; display: block; }
+  .fig-cap {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+    padding: 12px 16px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--forest);
+    border-top: 1.5px solid rgba(28,46,34,.15);
+    opacity: .7;
+    letter-spacing: .3px;
+  }
+  .fig-tag {
+    flex-shrink: 0;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--forest);
+    opacity: .9;
+  }
+  .fig-cap a { text-decoration: underline; opacity: .8; }
+  .fig-cap a:hover { opacity: 1; }
+
+  /* ─── ARTICLE BODY ─── */
+  .article-body {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 8px 24px 64px;
+  }
+  .lede {
+    font-family: var(--serif);
+    font-size: 21px;
+    font-weight: 400;
+    line-height: 1.65;
+    color: var(--forest);
+    margin: 8px 0 28px;
+  }
+  .lede b { font-weight: 700; }
+  .para {
+    font-family: var(--mono);
+    font-size: 14px;
+    line-height: 1.85;
+    color: var(--forest);
+    opacity: .92;
+    margin: 0 0 20px;
+  }
+  .para b { font-weight: 700; opacity: 1; }
+  .para a { text-decoration: underline; opacity: .85; }
+  .para a:hover { opacity: 1; }
+  .para ul { padding-left: 22px; margin: 0 0 20px; }
+  .para li { margin-bottom: 10px; }
+
+  .section-h {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin: 56px 0 18px;
+  }
+  .section-no {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--lime);
+    background: var(--forest);
+    border-radius: 8px;
+    padding: 5px 9px;
+    letter-spacing: 1px;
+    flex-shrink: 0;
+  }
+  .section-h h2 {
+    font-family: var(--serif);
+    font-size: clamp(24px, 3.6vw, 32px);
+    font-weight: 900;
+    letter-spacing: -0.6px;
+    line-height: 1.1;
+    color: var(--forest);
+  }
+
+  /* Callout cards */
+  .callout {
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    padding: 22px 24px;
+    margin: 28px 0;
+    box-shadow: 5px 5px 0 rgba(28,46,34,.12);
+  }
+  .callout-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--forest);
+    background: var(--lime);
+    border: 1.5px solid var(--forest);
+    border-radius: 100px;
+    padding: 4px 10px;
+    display: inline-block;
+    margin-bottom: 14px;
+  }
+  .callout-label.pink { background: var(--pink); }
+  .callout p {
+    font-family: var(--mono);
+    font-size: 13.5px;
+    line-height: 1.8;
+    color: var(--forest);
+    margin: 0 0 10px;
+  }
+  .callout p:last-child { margin-bottom: 0; }
+  .callout p b { font-weight: 700; }
+  .callout p code { background: var(--cream); border: 1px solid rgba(28,46,34,.2); border-radius: 5px; padding: 1px 5px; font-size: 12px; }
+
+  /* Spec sheet */
+  .spec {
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    overflow: hidden;
+    margin: 28px 0;
+    box-shadow: 5px 5px 0 rgba(28,46,34,.12);
+  }
+  .spec-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--forest);
+    padding: 12px 18px;
+  }
+  .spec-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 16px;
+    padding: 12px 18px;
+    border-top: 1.5px solid rgba(28,46,34,.14);
+    font-family: var(--mono);
+    font-size: 12.5px;
+    line-height: 1.5;
+  }
+  .spec-row .k { font-weight: 700; opacity: .6; }
+  .spec-row .v { opacity: .95; }
+  .spec-row .v b { font-weight: 700; }
+  .spec-row .v code { background: var(--cream); border: 1px solid rgba(28,46,34,.2); border-radius: 5px; padding: 1px 5px; font-size: 12px; }
+
+  /* Benchmark bars */
+  .bench {
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    padding: 22px 24px;
+    margin: 28px 0;
+    box-shadow: 5px 5px 0 rgba(28,46,34,.12);
+  }
+  .bench-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--forest);
+    background: var(--lime);
+    border: 1.5px solid var(--forest);
+    border-radius: 100px;
+    padding: 4px 10px;
+    display: inline-block;
+    margin-bottom: 16px;
+  }
+  .bench-item { margin-bottom: 16px; }
+  .bench-item:last-child { margin-bottom: 0; }
+  .bench-top {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--mono);
+    font-size: 12px;
+    margin-bottom: 6px;
+  }
+  .bench-name { font-weight: 700; }
+  .bench-val { font-weight: 700; background: var(--forest); color: var(--lime); border-radius: 6px; padding: 1px 8px; }
+  .bench-bar { height: 14px; background: rgba(28,46,34,.08); border-radius: 100px; overflow: hidden; }
+  .bench-fill { height: 100%; background: linear-gradient(90deg, var(--lime), var(--lime-d)); border-radius: 100px; }
+  .bench-fill.pink { background: linear-gradient(90deg, var(--pink), #d996d9); }
+  .bench-note {
+    font-family: var(--mono);
+    font-size: 11px;
+    line-height: 1.7;
+    opacity: .55;
+    margin-top: 14px;
+    border-top: 1.5px solid rgba(28,46,34,.14);
+    padding-top: 12px;
+  }
+
+  /* Pull quote */
+  .pullquote {
+    border-left: 6px solid var(--pink);
+    background: var(--card-bg);
+    border-radius: 0 12px 12px 0;
+    padding: 24px 28px;
+    margin: 32px 0;
+    box-shadow: 4px 4px 0 rgba(28,46,34,.1);
+  }
+  .pullquote p {
+    font-family: var(--serif);
+    font-size: 21px;
+    font-weight: 600;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--forest);
+    letter-spacing: -0.3px;
+  }
+  .pullquote .attrib {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-style: normal;
+    opacity: .55;
+    margin-top: 12px;
+    display: block;
+  }
+
+  /* Sources */
+  .sources {
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--card-bg);
+    padding: 22px 24px;
+    margin: 40px 0 0;
+    box-shadow: 5px 5px 0 rgba(28,46,34,.12);
+  }
+  .sources h3 {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    letter-spacing: -0.4px;
+  }
+  .sources ol { padding-left: 20px; }
+  .sources li { font-family: var(--mono); font-size: 12px; line-height: 1.8; opacity: .85; margin-bottom: 4px; }
+  .sources a { text-decoration: underline; }
+  .sources a:hover { opacity: 1; }
+
+  /* End card */
+  .endcard {
+    text-align: center;
+    border: 2.5px solid var(--forest);
+    border-radius: 12px;
+    background: var(--lime);
+    padding: 40px 28px;
+    margin: 44px 0 0;
+    box-shadow: 6px 6px 0 rgba(28,46,34,.14);
+  }
+  .endcard-h {
+    font-family: var(--serif);
+    font-size: clamp(26px, 4vw, 34px);
+    font-weight: 900;
+    line-height: 1.15;
+    letter-spacing: -0.8px;
+    color: var(--forest);
+    margin-bottom: 12px;
+  }
+  .endcard-h em { font-style: italic; }
+  .endcard-sub { font-family: var(--mono); font-size: 13px; opacity: .7; max-width: 420px; margin: 0 auto 24px; line-height: 1.7; }
+  .endcard .btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn-chunky {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 14px;
+    font-weight: 700;
+    padding: 14px 32px;
+    border-radius: 100px;
+    border: 2.5px solid var(--forest);
+    cursor: pointer;
+    transition: transform .1s, box-shadow .15s;
+    background: var(--forest);
+    color: #fff;
+  }
+  .btn-chunky:hover { transform: translateY(-2px); box-shadow: 4px 4px 0 rgba(28,46,34,.35); }
+  .btn-chunky.lime { background: var(--lime); color: var(--forest); }
+  .btn-chunky.lime:hover { background: var(--lime-d); box-shadow: 4px 4px 0 var(--forest); }
+  .btn-chunky.outline { background: transparent; color: var(--forest); }
+
+  /* Footer */
+  .footer {
+    background: var(--black);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 36px 48px;
+    flex-wrap: wrap;
+  }
+  .footer-brand { font-family: 'Special Elite', 'Courier New', Courier, monospace; font-size: 14px; font-weight: 400; }
+  .footer-center { font-family: var(--mono); font-size: 12px; color: rgba(255,255,255,.55); line-height: 1.7; }
+  .footer-right { font-family: var(--mono); font-size: 12px; text-align: right; line-height: 1.9; }
+  .footer-right a { color: rgba(255,255,255,.5); transition: color .15s; }
+  .footer-right a:hover { color: #fff; }
+
+  @media (max-width: 760px) {
+    .nav { padding: 12px 20px; }
+    .nav-links { display: none; }
+    .masthead { padding: 48px 20px 16px; }
+    .article-body { padding: 8px 20px 48px; }
+    .spec-row { grid-template-columns: 1fr; gap: 4px; }
+    .section-h { flex-direction: column; gap: 8px; align-items: flex-start; }
+    .footer { padding: 28px 20px; flex-direction: column; align-items: flex-start; }
+    .footer-right { text-align: left; }
+  }
+  @media (max-width: 480px) {
+    .nav-logo span { display: none; }
+    .nav-logo-mark { width: 28px; height: 28px; }
+    .nav-logo-mark img { width: 24px; height: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">
+    <div class="nav-logo-mark"><img src="../assets/timps-postcards.png" alt="TIMPS"></div>
+    <span>TIMPS PostCards</span>
+  </a>
+  <div class="nav-links">
+    <a href="../articles.html" class="nav-link active">Articles</a>
+    <a href="../archive.html" class="nav-link">Archive</a>
+    <a href="../daily/timps-postcards-2026-10-17.html" class="nav-link">Latest Issue</a>
+    <a href="../index.html#subscribe" class="nav-link">Subscribe</a>
+  </div>
+  <a href="../index.html#subscribe" class="nav-cta">Subscribe</a>
+</nav>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <span class="masthead-kicker">TIMPS Deep Dive · № 018</span>
+  <h1 class="masthead-h">I let a coding agent take my TV apart over Wi-Fi. <em>It asked permission 22 times — and the TV still tried to undo its work.</em></h1>
+  <p class="masthead-dek">A cheap Android TV stick with 1 GB of memory had become slow, cluttered and full of recommendations I never asked for. So I handed it to Claude Code with one rule — ask me before every change — and watched an agent sort ninety system packages into plain English, switch off twenty-two of them, verify a sideloaded app’s signature, and catch the manufacturer quietly reinstalling an app I had just removed. Here is what the experiment shows about agents that drive real devices, and where people are already taking the idea next.</p>
+  <div class="masthead-meta">
+    <b>Sanjay Utchula</b> &nbsp;·&nbsp; October 18, 2026 &nbsp;·&nbsp; 18 min read
+  </div>
+</header>
+
+<article class="article-body">
+
+  <!-- HERO FIGURE -->
+  <figure class="figure">
+    <img src="../assets/thumbs/article-tv-debloat-hero.jpg" alt="An Android TV permission prompt asking whether to allow AT4K Launcher to read all TV listings, with the Allow button highlighted by default">
+    <figcaption class="fig-cap">
+      <span class="fig-tag">Fig. 01</span>
+      <span>The prompt that undid a “Deny”: on Android TV permission dialogs, <i>Allow</i> is focused first, so one press of OK on a remote grants it. Screenshot captured over ADB from the author’s TV, October 18, 2026.</span>
+    </figcaption>
+  </figure>
+
+  <!-- LEDE -->
+  <p class="lede"><b>Good morning.</b> Two days ago, <b>Ryan Doyle</b> posted that he had “hacked” his TV with Claude Code — no ads, no bloatware, no lag — by sending the agent the TV’s listing and asking whether it could. This morning <b>Harshit Satija</b> went further and put a small decision model between himself and the screen. I wanted to know what this looks like on the most ordinary hardware there is: a <b>Xiaomi Mi TV Stick</b> running Android TV 9 on <b>981 MB of usable RAM</b>, of which only <b>254 MB</b> was free when I started. No root, no custom firmware, no soldering. Just an official debugging switch, a laptop on the same Wi-Fi, and an agent that had to ask before it touched anything.</p>
+
+  <!-- SUMMARY -->
+  <div class="callout">
+    <span class="callout-label">One-card summary</span>
+    <p><b>What:</b> a hands-on test of an AI coding agent (Claude Code) debloating a 1 GB Android TV stick over Wi-Fi using Android’s built-in debugging bridge, <code>adb</code> — every change approved one by one, every app disabled rather than deleted, every step logged with an undo command.</p>
+    <p><b>When:</b> October 18, 2026, one afternoon, after Ryan Doyle’s (October 16) and Harshit Satija’s (October 18) posts on agent-modified TVs.</p>
+    <p><b>Why it matters:</b> consumer devices ship with official remote-control interfaces most owners never touch. Agents make those interfaces usable by anyone who can describe what they want — which is liberating, and also means the agent’s permission habits, and the device maker’s, suddenly matter a lot.</p>
+  </div>
+
+  <!-- SECTION 01 -->
+  <div class="section-h"><span class="section-no">01</span><h2>The setup took three taps</h2></div>
+  <p class="para">Every Android device carries a debugging interface called the <b>Android Debug Bridge</b>. On a TV you unlock it the slightly ridiculous way — tap <i>Build</i> seven times in the About menu — then switch on <b>USB/network debugging</b> in Developer options. The first time a computer connects, the TV puts up an <i>Allow USB debugging?</i> box with the computer’s key fingerprint. Tick “always allow,” press OK, and the laptop can now list packages, read and write settings, install apps and take screenshots over Wi-Fi.</p>
+  <p class="para">The agent found the Android SDK already installed on my PC, confirmed the TV was answering on port 5555, and connected. Its first attempt came back <code>unauthorized</code>; it stopped and told me exactly what to tap on the TV. That pattern — try, hit a human gate, explain the gate, wait — repeated all afternoon, and it is the most important design decision in the whole exercise.</p>
+
+  <div class="spec">
+    <div class="spec-head">The test device</div>
+    <div class="spec-row"><span class="k">Device</span><span class="v"><b>Xiaomi Mi TV Stick</b> (model MiTV_AESP0, Amlogic chip)</span></div>
+    <div class="spec-row"><span class="k">OS</span><span class="v">Android TV 9, international firmware with Google services</span></div>
+    <div class="spec-row"><span class="k">Memory</span><span class="v"><b>981 MB</b> total · <b>254 MB</b> free at the start</span></div>
+    <div class="spec-row"><span class="k">Storage</span><span class="v">4.7 GB data partition, ~1 GB free</span></div>
+    <div class="spec-row"><span class="k">Control path</span><span class="v"><code>adb</code> over Wi-Fi from a Windows laptop; agent: Claude Code</span></div>
+    <div class="spec-row"><span class="k">Root / custom ROM</span><span class="v"><b>None.</b> Only Android’s own Developer options</span></div>
+  </div>
+
+  <!-- SECTION 02 -->
+  <div class="section-h"><span class="section-no">02</span><h2>Plain English before any change</h2></div>
+  <p class="para">My instructions were blunt. Before changing anything, list every app on the TV in plain English, split into three groups — <b>safe to turn off</b>, <b>needed by the TV</b>, and <b>apps I use</b> — and check free memory. Never touch Google Play, the keyboard, Bluetooth (the remote depends on it) or anything the picture output needs. Disable, don’t delete. Keep a list of every change and how to undo it.</p>
+  <p class="para">The agent pulled roughly <b>90 system packages</b> plus the user-installed apps and came back with a table a non-engineer could read. Package names like <code>tv.alphonso.alphonso_eula</code> became “ad tracking that records what you watch.” <code>com.miui.tv.analytics</code> became “sends usage data to Xiaomi.” It flagged three separate screensaver engines, a print spooler on a device with no printer, two bug-report senders, and a duplicate test copy of a remote-control plugin. It also volunteered a sharper warning I hadn’t asked for: several sideloaded apps came from outside the Play Store, one with a placeholder <code>com.example</code> package name — a classic sign of software nobody has properly published or checked.</p>
+  <p class="para">It separated a middle category, too: things that were safe to remove <i>only depending on how I use the TV</i>. Chromecast built-in was using ~76 MB, but disabling it would break casting. Google Assistant could go, but the microphone button on the remote would stop working. Those stayed on. That nuance is what made the list trustworthy enough to approve.</p>
+
+  <div class="callout">
+    <span class="callout-label pink">How a change looked</span>
+    <p><code>adb shell pm disable-user --user 0 com.miui.tv.analytics</code></p>
+    <p>→ <code>Package com.miui.tv.analytics new state: disabled-user</code></p>
+    <p><b>Undo:</b> <code>adb shell pm enable com.miui.tv.analytics</code> — written into the change log the moment it ran, alongside a one-click PowerShell script that reverses everything at once.</p>
+  </div>
+
+  <!-- SECTION 03 -->
+  <div class="section-h"><span class="section-no">03</span><h2>Twenty-two switches and a restart</h2></div>
+  <p class="para">I approved twenty apps from the safe list in one go; later I added Xiaomi’s PatchWall content catalogue and, eventually, the stock Google TV launcher once a replacement was in place. After a restart the agent did two checks I would not have thought to ask for: it confirmed every disabled package was still disabled, and it explicitly re-checked that the protected apps — Play Store, keyboard, Bluetooth, the remote service, the Amlogic display stack — were still on.</p>
+  <p class="para">It was equally careful about the numbers. The first reading after the restart showed <i>less</i> free memory than before, because Play Services was busy syncing. Instead of reporting that, it sampled once a minute for five minutes and reported the settled value.</p>
+
+  <div class="bench">
+    <span class="bench-label">Free memory on a 981 MB TV stick</span>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">Before · stock launcher, all services</span><span class="bench-val">254 MB</span></div>
+      <div class="bench-bar"><div class="bench-fill pink" style="width:25.9%"></div></div>
+    </div>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">After cleanup · settled after restart</span><span class="bench-val">335 MB</span></div>
+      <div class="bench-bar"><div class="bench-fill" style="width:34.1%"></div></div>
+    </div>
+    <div class="bench-item">
+      <div class="bench-top"><span class="bench-name">Final setup · Apple TV–style launcher + apps cached</span><span class="bench-val">≈255 MB</span></div>
+      <div class="bench-bar"><div class="bench-fill" style="width:26%"></div></div>
+    </div>
+    <p class="bench-note"><b>MemAvailable</b> read from <code>/proc/meminfo</code> over ADB; bar width is the share of total RAM. The cleanup freed roughly <b>80 MB — about a third more headroom</b>. I then spent most of it on a prettier launcher and left YouTube and the Play Store cached in the background. A final pass launched every remaining app in turn: all opened in <b>1.0–6.3 seconds</b> and none crashed or froze.</p>
+  </div>
+
+  <!-- SECTION 04 -->
+  <div class="section-h"><span class="section-no">04</span><h2>Where it got weird</h2></div>
+  <p class="para"><b>The flicker that I caused.</b> I had asked for all animations off. The first replacement home screen, the open-source <b>FLauncher</b>, immediately developed a constantly flickering selection highlight. Screenshots couldn’t catch it — each one is a single frame — so the agent reasoned it through: a looping highlight animation running at an animator speed of zero restarts every frame. Restoring the animator speed while leaving window and transition animations off fixed it — and the same flicker returned on the next launcher the moment I set it back to zero. The common “turn all animations off for speed” tip has a cost on some launchers.</p>
+  <p class="para"><b>The permission I never granted.</b> The Apple TV–style launcher I settled on, <b>AT4K</b>, kept showing a “Watch Next” row of suggested videos — exactly the recommendations I was trying to remove. The agent traced it to one runtime permission, <code>READ_TV_LISTINGS</code>, which reported <code>granted=true</code> although I had pressed Deny. The cause is in Fig. 01: on Android TV permission dialogs, the <i>Allow</i> button is focused by default, so pressing OK immediately grants it. On the second attempt I pressed Down first. The permission now reads <code>granted=false, flags=[USER_SET]</code>, and the row is gone.</p>
+  <p class="para"><b>The TV fought back.</b> I asked the agent to uninstall a streaming app I no longer use. Minutes later, while installing something else, it noticed the app was back. The package record told the story: installer <code>com.xiaomi.mitv.updateservice</code>, first installed at 09:58 — two minutes earlier. The manufacturer’s update service had silently pushed it back. The only way to stop that was to disable the update service itself, which also pauses firmware updates. The agent spelled out the trade-off before I agreed, and the log now says to re-enable it every few months.</p>
+
+  <div class="pullquote">
+    <p>&ldquo;Installer: com.xiaomi.mitv.updateservice. First install time: 09:58:57.&rdquo; — two lines of package metadata that turned a mysterious reappearing app into a clear, fixable cause.</p>
+    <span class="attrib">— <code>dumpsys package</code> output on the test device, October 18, 2026</span>
+  </div>
+
+  <!-- SECTION 05 -->
+  <div class="section-h"><span class="section-no">05</span><h2>Checking what goes back on</h2></div>
+  <p class="para">Removing software is the easy half. I also wanted an ad-free YouTube client, and the obvious candidate, <b>SmartTube</b>, is an open-source app that is deliberately <i>not</i> on the Play Store. It has a recent history worth respecting: in late 2025 its developer disclosed that his build machine had been compromised and a few official builds shipped with malware, after which Google and Amazon auto-removed the old app and a newly signed version took over.</p>
+  <p class="para">So the agent showed me the file name, version and size before downloading anything, pulled the stable build only from the developer’s GitHub release, and checked it two ways: the file’s <b>SHA-256</b> matched both GitHub’s recorded digest and the hash the developer had published in the release notes, and <code>apksigner</code> confirmed a valid signature from a single signer. It was candid about the limit: GitHub publishes no official certificate fingerprint for the new key, so the strongest claim available was “this is exactly the file the developer’s account published after the incident.” Then it installed the app. It is also worth saying plainly that third-party YouTube clients sit outside YouTube’s terms of service.</p>
+
+  <!-- SECTION 06 -->
+  <div class="section-h"><span class="section-no">06</span><h2>The caveats</h2></div>
+  <ul class="para">
+    <li><b>The agent was not flawless.</b> It initially filed PatchWall under “needed by the TV” out of caution, and corrected itself only when I asked. Two of its own test scripts broke on PowerShell quirks and had to be rerun. Approval-per-change caught nothing dangerous, but it did catch mistakes.</li>
+    <li><b>Debugging is a door.</b> With network debugging on, any device on your Wi-Fi can ask to control the TV. Each new device still needs an on-screen Allow — the same Allow that, as above, is easy to press by accident. I switched it off when I was done.</li>
+    <li><b>Updates are now manual.</b> Disabling the update service stopped forced installs and also security patches. That is my trade-off to manage, not a free win.</li>
+    <li><b>1 GB is still 1 GB.</b> The heaviest remaining app left ~189 MB free while running. Agents can remove bloat; they cannot add RAM.</li>
+    <li><b>Disable, don’t delete.</b> Nothing here touched the system partition. Every disabled package can be re-enabled with one command or from Settings → Apps, and the uninstalled stock apps can be restored with <code>cmd package install-existing</code>.</li>
+  </ul>
+
+  <!-- SECTION 07 -->
+  <div class="section-h"><span class="section-no">07</span><h2>What to watch next: content-first TVs</h2></div>
+  <p class="para">Harshit Satija’s post points to where this goes. After using Claude Code to strip his TV, he still disliked the app grid, so he placed Liquid AI’s small <b>d1-3B</b> decision model between himself and the screen: he says what he wants, and the model chooses the app and sends the ADB commands. It is the same plumbing this piece used, with the agent moved from setup time to every evening on the sofa.</p>
+  <div class="pullquote">
+    <p>&ldquo;Content-first, not apps-first.&rdquo;</p>
+    <span class="attrib">— Harshit Satija, on putting a decision model in front of his TV</span>
+  </div>
+  <ul class="para">
+    <li><b>Where the model runs.</b> A 1 GB stick cannot host a 3B model. Expect a small always-on box, a phone or a home server to become the TV’s “brain,” with the TV reduced to a display and a decoder.</li>
+    <li><b>Standing permissions.</b> A content-first setup needs debugging left on permanently. That makes the TV’s permission UX — default-focused Allow buttons included — part of your home network’s security model.</li>
+    <li><b>Manufacturers’ counter-moves.</b> A vendor that silently reinstalls partner apps will not love agents that remove them. Watch for debugging restrictions, or for vendors shipping their own agent hooks instead.</li>
+    <li><b>Reverse engineering meets the living room.</b> Our <a href="article-reverse-engineering-agents.html">Deep Dive № 017</a> covered an agent-built native Plex client for LG TVs. Debloating is the gentle end of the same spectrum: agents making devices behave the way their owners want.</li>
+  </ul>
+
+  <!-- SECTION 08 -->
+  <div class="section-h"><span class="section-no">08</span><h2>The TIMPS verdict</h2></div>
+  <div class="callout">
+    <span class="callout-label">Our read</span>
+    <p><b>The interface was always there; agents made it usable.</b> Nothing in this test was a hack. ADB, <code>pm disable-user</code> and runtime permissions are documented Android features. What changed is that a person can now describe the outcome in plain language and let an agent do the package archaeology.</p>
+    <p><b>Approval-per-change is the feature, not the friction.</b> Twenty-two separate yeses felt slow for about five minutes. They turned out to be the reason I trusted the result — and the moments where the agent stopped to explain a trade-off (casting, voice search, firmware updates) were the most valuable part of the afternoon.</p>
+    <p><b>Your device is not the only actor.</b> The most surprising finding wasn’t about the agent at all: the TV’s own update service reinstalled software behind my back, and its permission dialogs default to Allow. An agent working on a device has to treat the device’s own behaviour as something to verify, not assume.</p>
+    <p><b>The whole story in one line:</b> an afternoon, a debugging switch and a careful agent turned a sluggish TV stick into a clean, reversible setup — and showed that the next fight over the living room may be between the agents owners bring and the software manufacturers ship.</p>
+  </div>
+
+  <p class="para" style="opacity:.6;font-size:13px;line-height:1.8;">Facts in this piece come from the author’s own test on October 18, 2026: package lists, memory readings, permission states and install records were read directly from the device over ADB, and every change was logged with its undo command. Details about other people’s projects are as reported in their public posts and repositories listed below. This is a first-person hands-on account published by an independent publication — not a manufacturer-endorsed procedure, not security advice, and not a recommendation to violate any service’s terms. If you try this, disable rather than delete, and keep your own undo log.</p>
+
+  <!-- SOURCES -->
+  <div class="sources">
+    <h3>Sources</h3>
+    <ol>
+      <li><a href="https://x.com/doooyle/status/2111196679680540724" target="_blank" rel="noopener">Ryan Doyle (@doooyle) on X — hacking a TV with Claude Code: ads, bloatware, spyware and lag removed (Oct 16, 2026)</a></li>
+      <li><a href="https://x.com/harshitsatija/status/2111731520641896945" target="_blank" rel="noopener">Harshit Satija (@harshitsatija) on X — adding Liquid AI’s d1-3B decision model to a modified TV, “content-first, not apps-first” (Oct 18, 2026)</a></li>
+      <li><a href="https://developer.android.com/tools/adb" target="_blank" rel="noopener">Android Developers — Android Debug Bridge (adb) documentation</a></li>
+      <li><a href="https://github.com/yuliskov/SmartTube" target="_blank" rel="noopener">GitHub — yuliskov/SmartTube: README security announcement and official release builds</a></li>
+      <li><a href="https://github.com/yuliskov/SmartTube/releases/tag/32.56s" target="_blank" rel="noopener">GitHub — SmartTube 32.56 Stable release notes with per-build VirusTotal hashes</a></li>
+      <li><a href="https://www.androidauthority.com/smarttube-malware-fix-3620773/" target="_blank" rel="noopener">Android Authority — SmartTube malware incident and the newly signed clean release</a></li>
+      <li><a href="https://www.aftvnews.com/?p=45764" target="_blank" rel="noopener">AFTVnews — If you use SmartTube, uninstall it and install the new version due to a security issue</a></li>
+      <li><a href="https://troypoint.com/at4k-launcher/" target="_blank" rel="noopener">Troypoint — AT4K Launcher overview: free vs premium features</a></li>
+      <li><a href="https://hipertextual.com/software/android-como-apple-tv-at4k-launcher/" target="_blank" rel="noopener">Hipertextual — AT4K Launcher brings an Apple TV–style interface to Android TV</a></li>
+      <li><a href="https://www.androidauthority.com/google-tv-arc-launcher-3656748/" target="_blank" rel="noopener">Android Authority — Arc Launcher, an open-source Apple TV–inspired launcher</a></li>
+      <li><a href="https://github.com/truefedex/tv-bro" target="_blank" rel="noopener">GitHub — truefedex/tv-bro: open-source, remote-friendly Android TV browser</a></li>
+    </ol>
+  </div>
+
+  <!-- END CARD -->
+  <div class="endcard">
+    <h3 class="endcard-h">One story a day,<br>explained properly.</h3>
+    <p class="endcard-sub">New TIMPS deep dives land regularly — paired with the five-signal PostCard every morning. Free forever.</p>
+    <div class="btns">
+      <a href="../index.html#subscribe" class="btn-chunky">Subscribe free</a>
+      <a href="article-reverse-engineering-agents.html" class="btn-chunky outline">&larr; Prev: Reverse engineering, explained</a>
+    </div>
+    <p style="font-family:var(--news);font-size:13px;opacity:.6;margin-top:20px;"><a href="../articles.html" style="text-decoration:underline;">&larr; Browse all deep dives</a></p>
+  </div>
+
+</article>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-brand">TIMPS PostCards</div>
+  <div class="footer-center">
+    Five signals from the AI landscape, every day.<br>
+    Plus long-form deep dives. Hyderabad, India · Est. 2026
+  </div>
+  <div class="footer-right">
+    <a href="../index.html">Home</a><br>
+    <a href="../archive.html">Posts</a><br>
+    <a href="../articles.html">Articles</a><br>
+    &copy; 2026 TIMPS
+  </div>
+</footer>
+
+</body>
+</html>
