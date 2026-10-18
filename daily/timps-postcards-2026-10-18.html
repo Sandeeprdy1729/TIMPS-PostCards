@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TIMPS">
+<link rel="manifest" href="../manifest.json">
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/icon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/icon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="../assets/icon-48.png">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="../assets/icon-180.png">
+<title>TIMPS PostCards — Issue 143</title>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --cream:  #EEECE2;
+    --forest: #3D3929;
+    --terra:  #DA7756;
+    --terra-d:#BD5D3A;
+    --black:  #111111;
+    --card-bg:#F0ECE0;
+    --mono:   'Newsreader', Georgia, 'Times New Roman', serif;
+    --serif:  'TIMPS', 'Playfair Display', Georgia, serif;
+  }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Black.woff2') format('woff2'); font-weight:900; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Bold.woff2') format('woff2'); font-weight:700; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-SemiBold.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--cream);
+    background-image:
+      linear-gradient(rgba(61,57,41,.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.07) 1px, transparent 1px);
+    background-size: 38px 38px;
+    font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+    color: var(--forest);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { text-decoration: none; color: inherit; }
+
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 48px;
+    background-color: rgba(238,236,226,.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1.5px solid rgba(61,57,41,.12);
+    background-image:
+      linear-gradient(rgba(61,57,41,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.05) 1px, transparent 1px);
+    background-size: 38px 38px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Special Elite', 'Courier New', Courier, monospace;
+    font-size: 15px;
+    font-weight: 400;
+    color: #000;
+    text-decoration: none;
+  }
+  .nav-logo-mark {
+    width: 34px; height: 34px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .nav-logo-mark img { width: 28px; height: 28px; object-fit: contain; }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-link {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: #000;
+    opacity: .65;
+    text-decoration: none;
+    transition: opacity .15s;
+  }
+  .nav-link:hover { opacity: 1; }
+  .nav-cta {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: #000;
+    background: var(--terra);
+    border: 2.5px solid #000;
+    border-radius: 100px;
+    padding: 10px 24px;
+    cursor: pointer;
+    transition: background .15s, transform .1s;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--terra-d); transform: translateY(-1px); }
+
+  .wrapper { max-width: 760px; margin: 0 auto; padding: 40px 20px 80px; display: flex; flex-direction: column; gap: 0; }
+
+  .cover-card { background: var(--card-bg); border-radius: 20px 20px 4px 4px; padding: 56px 48px 48px; text-align: center; position: relative; overflow: hidden; border: 1.5px solid rgba(61,57,41,.12); margin-bottom: 3px; }
+  .cover-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, var(--terra) 0%, var(--terra-d) 60%, #E0A88A 100%); }
+  .cover-eyebrow { font-family: var(--mono); font-size:10px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:20px; display:flex; align-items:center; justify-content:center; gap:10px; }
+  .cover-eyebrow::before,.cover-eyebrow::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .15; max-width:60px; }
+  .cover-title { font-family: var(--serif); font-size:58px; font-weight:900; line-height:1; letter-spacing:-1px; color: var(--forest); margin-bottom:8px; }
+  .cover-sub { font-family: var(--serif); font-size:13px; font-style:italic; color: var(--forest); opacity: .55; margin-bottom:28px; }
+  .cover-divider { width:48px; height:2px; background: var(--terra); margin:0 auto 24px; border-radius:2px; }
+  .cover-meta { display:flex; justify-content:center; gap:32px; font-family: var(--mono); font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .45; }
+  .cover-badge { display:inline-flex; align-items:center; gap:6px; background: var(--terra); color: #fff; border-radius:20px; padding:6px 18px; font-family: var(--mono); font-size:10px; letter-spacing:2px; text-transform:uppercase; margin-top:28px; }
+  .top5-pill { display:flex; justify-content:center; gap:10px; margin-top:32px; flex-wrap:wrap; }
+  .pill { background: var(--forest); color: var(--cream); border-radius:100px; padding:4px 14px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; }
+  .pill.light { background:transparent; color: var(--forest); border:1px solid rgba(61,57,41,.2); }
+
+  .section-label { display:flex; align-items:center; gap:12px; padding:10px 0 8px; font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .35; }
+  .section-label::before,.section-label::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .1; }
+
+  .story-card { border-radius:4px; border:1.5px solid rgba(61,57,41,.10); padding:36px 40px; margin-bottom:3px; position:relative; overflow:hidden; }
+  .story-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }
+
+  .card-sky      { background:#D6E8F0; } .card-sky::before      { background: #7AAFC0; }
+  .card-cream    { background: var(--card-bg); } .card-cream::before    { background: var(--terra); }
+  .card-blush    { background:#F5DDD0; } .card-blush::before    { background: #E0A88A; }
+  .card-lavender { background:#EAE6F5; } .card-lavender::before { background: #C8BEE8; }
+  .card-sage     { background:#D6E4D6; } .card-sage::before     { background: #8BAF8B; }
+
+  .page-chip { position:absolute; top:14px; right:16px; font-family: var(--mono); font-size:9px; letter-spacing:2px; text-transform:uppercase; color: var(--forest); opacity: .3; }
+  .card-routine { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:8px; }
+  .card-headline { font-family: var(--serif); font-size:28px; font-weight:900; line-height:1.15; color: var(--forest); margin-bottom:10px; }
+  .card-headline.lg { font-size:34px; }
+  .card-headline.sm { font-size:22px; }
+  .card-deck { font-family: var(--serif); font-style:italic; font-size:14px; line-height:1.55; color: var(--forest); opacity: .55; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid rgba(61,57,41,.12); }
+  .card-body { font-family: 'Lora', Georgia, serif; font-size:14px; line-height:1.7; color: var(--forest); }
+  .card-body p { margin-bottom:11px; }
+  .drop::first-letter { font-family: var(--serif); font-size:52px; font-weight:900; float:left; line-height:.78; margin:5px 6px 0 0; color: var(--terra); }
+  .clearfix::after { content:''; display:table; clear:both; }
+
+  .hl-terra { background: var(--terra); color: var(--forest); padding:0 4px; border-radius:2px; }
+  .hl-ink  { background: var(--forest); color: var(--cream); padding:0 4px; border-radius:2px; }
+  .hl-sage { background: #8BAF8B; color: #fff; padding:0 4px; border-radius:2px; }
+  .hl-lav  { background: #C8BEE8; color: var(--forest); padding:0 4px; border-radius:2px; }
+
+  .stat-box { float:right; margin:0 0 16px 24px; background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:16px 20px; text-align:center; min-width:120px; }
+  .stat-big { font-family: var(--serif); font-size:44px; font-weight:900; line-height:1; color: var(--forest); display:block; }
+  .stat-label { font-family: var(--mono); font-size:9.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .5; display:block; margin-top:4px; }
+
+  .img-frame { border:2px solid rgba(61,57,41,0.18); border-radius:12px; overflow:hidden; margin:16px 0; background: var(--card-bg); }
+  .img-frame img { width:100%; display:block; max-height:240px; object-fit:cover; border-bottom:1px solid rgba(61,57,41,.12); }
+  .img-caption { padding:8px 12px; font-family: var(--mono); font-size:10.5px; color: var(--forest); opacity: .6; font-style:italic; display:flex; align-items:center; justify-content:space-between; gap:8px; }
+  .img-caption a { font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; white-space:nowrap; font-style:normal; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; }
+  .img-caption a:hover { opacity: 1; }
+  .img-frame.float-right { float:right; width:220px; margin:0 0 16px 24px; }
+  .img-frame.float-right img { max-height:140px; }
+
+  .source-link { display:inline-flex; align-items:center; gap:5px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:12px; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; transition: opacity .15s; }
+  .source-link:hover { opacity: 1; }
+  .source-link::after { content:'↗'; font-size:9px; }
+
+  .signals-grid { display:flex; flex-direction:column; gap:14px; }
+  .signal-row { display:flex; align-items:flex-start; gap:14px; }
+  .signal-num { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family: var(--serif); font-size:13px; font-weight:900; flex-shrink:0; color:#fff; }
+  .signal-num.n1{background: var(--terra); color: var(--forest);} .signal-num.n2{background: var(--forest);} .signal-num.n3{background:#7AAFC0;} .signal-num.n4{background: var(--terra-d); color: var(--forest);} .signal-num.n5{background: var(--black);}
+  .signal-title { font-family: var(--serif); font-size:14px; font-weight:700; color: var(--forest); margin-bottom:2px; }
+  .signal-desc { font-family: 'Newsreader', Georgia, 'Times New Roman', serif; font-size:12px; line-height:1.65; color: var(--forest); opacity: .6; }
+  .signal-link { display:inline-block; font-family: var(--mono); font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:4px; border-bottom:1px solid rgba(61,57,41,.25); padding-bottom:1px; transition: opacity .15s; }
+  .signal-link:hover { opacity: 1; }
+
+  .themes-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .theme-item { padding:10px 14px; border-radius:8px; font-family: var(--serif); font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; text-align:center; border:1.5px solid rgba(61,57,41,.12); background: var(--cream); }
+
+  .tool-week { background: var(--forest); color: var(--cream); border-radius:12px; padding:18px 20px; text-align:center; margin-top:14px; }
+  .tool-week-eyebrow { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; opacity: .55; margin-bottom:6px; }
+  .tool-week-name { font-family: var(--serif); font-size:22px; font-weight:900; margin-bottom:4px; }
+  .tool-week-desc { font-family: 'Newsreader', Georgia, 'Times New Roman', serif; font-size:11.5px; opacity: .7; font-style:italic; }
+
+  .output-card { background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:18px 20px; margin-top:14px; }
+  .output-title { font-family: var(--serif); font-size:18px; font-weight:700; margin-bottom:8px; color: var(--forest); }
+  .tp-list { list-style:none; padding:0; margin:0; }
+  .tp-list li { padding:5px 0; font-family: 'Lora', Georgia, serif; font-size:12px; color: var(--forest); border-bottom:1px solid rgba(61,57,41,.07); display:flex; align-items:flex-start; gap:7px; }
+  .tp-list li::before { content:'·'; color: var(--terra); font-size:14px; line-height:1.2; flex-shrink:0; }
+  .tp-list li a { color: var(--forest); opacity: .8; text-decoration:none; }
+  .tp-list li a:hover { opacity: 1; }
+
+  .sources-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px 20px; }
+  .sources-grid a { font-family: var(--mono); font-size:11px; color: var(--forest); opacity: .55; text-decoration:none; border-bottom:1px solid rgba(61,57,41,.15); padding-bottom:1px; transition: opacity .15s; }
+  .sources-grid a:hover { opacity: 1; }
+
+  .footer {
+    background: var(--black);
+    padding: 28px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    border-radius: 4px 4px 20px 20px;
+    margin-top: 3px;
+  }
+  .footer-logo { display: flex; align-items: center; gap: 10px; }
+  .footer-mark { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; }
+  .footer-mark img { width: 24px; height: 24px; object-fit: contain; }
+  .footer-brand { font-family: 'Special Elite', 'Courier New', Courier, monospace; font-size: 13px; font-weight: 400; color: #fff; }
+  .footer-center { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.4); text-align: center; line-height: 1.6; }
+  .footer-right { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.3); text-align: right; line-height: 2; }
+  .footer-right a { color: rgba(255,255,255,.5); transition: color .15s; }
+  .footer-right a:hover { color: #fff; }
+
+  .page-layout { display: flex; align-items: flex-start; gap: 0; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+  .toc-sidebar { position: sticky; top: 80px; width: 170px; flex-shrink: 0; padding: 48px 0 0 0; }
+  .toc-nav { display: flex; flex-direction: column; gap: 0; }
+  .toc-link { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.5px; text-transform: uppercase; color: #000; opacity: .45; text-decoration: none; padding: 7px 12px; border-left: 2px solid transparent; transition: opacity .15s, border-color .15s; line-height: 1.3; }
+  .toc-link:hover { opacity: .85; }
+  .toc-link.active { opacity: 1; border-left-color: var(--terra); }
+  .section-anchor { scroll-margin-top: 80px; }
+
+  @media (max-width: 900px) {
+    .toc-sidebar { display: none; }
+    .page-layout { max-width: 760px; }
+  }
+
+  @media (max-width: 720px) {
+    .nav { padding: 12px 24px; }
+    .nav-links { display: none; }
+    .wrapper { padding: 20px 14px 60px; }
+    .cover-card { padding: 40px 24px; }
+    .story-card { padding: 28px 20px; }
+    .footer { padding: 24px; flex-direction: column; align-items: flex-start; }
+    .footer-center, .footer-right { text-align: left; }
+    .stat-box { float: none; margin: 0 0 16px 0; }
+    .img-frame.float-right { float: none; width: 100%; margin: 0 0 16px 0; }
+  }
+  @media (max-width: 480px) {
+    .nav-logo span { display: none; }
+    .cover-title { font-size: 40px; }
+    .card-headline.lg { font-size: 28px; }
+    .card-headline { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">
+    <div class="nav-logo-mark">
+      <img src="../assets/timps-postcards.png" alt="TIMPS">
+    </div>
+    <span>TIMPS PostCards</span>
+  </a>
+  <div class="nav-links">
+    <a href="../archive.html" class="nav-link">Archive</a>
+    <a href="timps-postcards-2026-10-18.html" class="nav-link">Latest Issue</a>
+    <a href="../index.html#subscribe" class="nav-link">Subscribe</a>
+  </div>
+  <a href="../index.html#subscribe" class="nav-cta">Subscribe</a>
+</nav>
+
+<div class="page-layout">
+
+  <aside class="toc-sidebar">
+    <nav class="toc-nav">
+      <a href="#agents" class="toc-link">Agents</a>
+      <a href="#geopolitics" class="toc-link">Geopolitics</a>
+      <a href="#models" class="toc-link">Models</a>
+      <a href="#science" class="toc-link">Science</a>
+      <a href="#business" class="toc-link">Business</a>
+      <a href="#signals" class="toc-link">Signals</a>
+      <a href="#themes" class="toc-link">Themes</a>
+      <a href="#tool" class="toc-link">Watch</a>
+      <a href="#sources" class="toc-link">Sources</a>
+    </nav>
+  </aside>
+
+  <div class="wrapper">
+
+  <!-- COVER -->
+  <div id="intro" class="cover-card section-anchor">
+    <div class="cover-eyebrow">Est. 2026 &middot; Hyderabad</div>
+    <div class="cover-title">TIMPS<br>PostCards</div>
+    <div class="cover-sub">AI Intelligence Digest &middot; Your Daily Signal from the Machine Frontier</div>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+      <span>Issue 143</span>
+      <span>October 18, 2026</span>
+      <span>No. 170</span>
+    </div>
+    <div class="cover-badge">&#11041; 143 Issues &mdash; Built with the TIMPS Ecosystem</div>
+    <div class="top5-pill">
+      <span class="pill">5 Top Signals</span>
+      <span class="pill light">The Web Puts Up Walls</span>
+      <span class="pill light">Fencing the Frontier</span>
+      <span class="pill light">Open Weights Keep Coming</span>
+      <span class="pill light">Science the Machines Can Check</span>
+      <span class="pill light">Defaults Are the New Lock-In</span>
+    </div>
+  </div>
+
+  <!-- CARD - 01 &middot; LEAD -->
+  <div id="agents" class="story-card card-blush section-anchor">
+    <div class="page-chip">01 &middot; LEAD</div>
+    <div class="card-routine">Access &middot; The Web Puts Up Walls</div>
+    <h2 class="card-headline lg">Banks and Airlines Start Shutting the Door on AI Agents</h2>
+    <div class="card-deck">JPMorgan Chase and Charles Schwab now block outside AI agents from customer accounts, and Delta will not let them book tickets &mdash; a quiet reversal of the assumption that the web is open to anything that can browse it.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">80M</span>
+        <span class="stat-label">JPMorgan customers behind the wall</span>
+      </div>
+      <p class="drop">The Verge reported that a widening set of sites is closing itself to AI agents: <b>JPMorgan Chase</b> and <b>Charles Schwab</b> are blocking outside agents from customer accounts, <b>Delta Air Lines</b> will not let them book tickets, and users report agents such as <b>Muse</b>, <b>Grok</b> and <b>Dots</b> bouncing off retailers and directories including Yelp, eBay and Zillow. On JPMorgan&rsquo;s third-quarter call, chief executive <b>Jamie Dimon</b> put the bank&rsquo;s position plainly: <span class="hl-ink">&ldquo;we&rsquo;re not going to just allow any outside agent&rdquo;</span> &mdash; citing the risk of rogue agents acting at volume. The bank serves roughly 80 million consumer customers, and its wall now stands between them and any assistant that is not its own.</p>
+      <p>The technical reason is easy to see and the commercial reason is not. The web was built for two kinds of traffic: people who click ads and crawlers that respect a robots file. An agent looks like the second and behaves like the first, spending a company&rsquo;s compute, moving its data and transacting in its systems without ever seeing its advertising. That makes agents simultaneously a security question, a liability question and a revenue question &mdash; and the cheapest answer to all three is to block first and negotiate later. The result is a default that has quietly flipped: a year ago, being reachable by an agent was the point; now it is something a company opts into.</p>
+      <p>What is being built instead is a permissions layer. Some labs and platforms are drafting open standards that let a site declare what an agent may and may not do, so that access is granted rather than assumed. That is a reasonable answer to a real problem, but it also moves the internet&rsquo;s centre of gravity: <span class="hl-terra">the open, crawlable web is being replaced by a web of gates, and whichever standard defines the gate becomes the place the value accrues</span>. The agents are ready. The doors are not.</p>
+    </div>
+    <a class="source-link" href="https://www.theverge.com/ai-artificial-intelligence/1013195/ai-agents-blocked-web" target="_blank">Full story &middot; The Verge</a>
+  </div>
+
+  <!-- CARD - 02 &middot; GEOPOLITICS -->
+  <div id="geopolitics" class="story-card card-sage section-anchor">
+    <div class="page-chip">02 &middot; GEOPOLITICS</div>
+    <div class="card-routine">Policy &middot; Fencing the Frontier</div>
+    <h2 class="card-headline">China Moves to Fence In Its Own AI Frontier</h2>
+    <div class="card-deck">Beijing proposed adding 23 AI technologies &mdash; including the weights and source code of its biggest models &mdash; to its export-control list, treating its own frontier as a strategic asset rather than a global public good.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">23</span>
+        <span class="stat-label">AI technologies in the draft list</span>
+      </div>
+      <p class="drop">China&rsquo;s Ministry of Commerce published a draft that would add <b>40 technologies</b> to its export-control catalogue, <span class="hl-ink">23 of them AI-related</span>. The proposal covers the things that define a frontier: large models above roughly <b>2 trillion parameters</b> or near the top of public benchmarks, along with their <b>weights and source code</b>; chip designs at or below <b>14 nanometres</b> or built with advanced 2.5D and 3D stacking; large compute clusters; and agent technology. Two carve-outs soften it &mdash; open-source and already-published research are exempt, and applications or APIs hosted abroad are still allowed, while simply running a covered model abroad counts as an export.</p>
+      <p>The politics run opposite to the past several years. Export controls have been a Western tool aimed at keeping advanced chips and models away from China; now Beijing is drafting rules to keep its own best work at home. The justification breaks from pure security language &mdash; the draft cites the need to &ldquo;ensure AI remains under human control&rdquo; &mdash; and the effect is to treat a country&rsquo;s frontier labs as national champions whose outputs are a matter of state, not of who downloads the weights fastest. The draft takes effect for pre-registration from <b>October 16</b>, with public comment open until <b>November 15</b>, so the final line is not yet fixed.</p>
+      <p>The timing is what makes it interesting. In the same week, Western labs kept releasing open weights that anyone, in any country, can run &mdash; a reminder that <span class="hl-terra">the frontier is not a border you can quietly lock</span>. A model already mirrored across the world is hard to recall; a rule that governs what leaves can only govern what leaves next. China is discovering the same lesson the West has spent two years learning: in machine learning, the weights do not respect the map.</p>
+    </div>
+    <a class="source-link" href="https://apnews.com/article/china-export-restrictions-ai-chips-solar-us-5ac381c0c6d6628bbea2e0da7d855a5b" target="_blank">Full story &middot; AP News</a>
+  </div>
+
+  <!-- CARD - 03 &middot; MODELS -->
+  <div id="models" class="story-card card-cream section-anchor">
+    <div class="page-chip">03 &middot; MODELS</div>
+    <div class="card-routine">Release &middot; Open Weights Keep Coming</div>
+    <h2 class="card-headline">DeepSeek Ships a Frontier-Class Model Under an MIT Licence</h2>
+    <div class="card-deck">V4.1-Flash-1017 posts 77.0 on the DeepSWE software benchmark &mdash; above Claude Opus 5&rsquo;s 74.0 &mdash; with a million-token context window and a licence that imposes almost no conditions.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">77.0</span>
+        <span class="stat-label">DeepSWE v1.1, vs Opus 5&rsquo;s 74.0</span>
+      </div>
+      <p class="drop"><b>DeepSeek</b> released <b>V4.1-Flash-1017</b> on Hugging Face under the permissive <span class="hl-ink">MIT licence</span>, and the numbers are the point: <b>77.0</b> on the DeepSWE v1.1 software-engineering benchmark, ahead of <b>Claude Opus 5</b> at 74.0, and <b>60.5</b> on Automation-Bench against 50.3. The model carries a <b>million-token</b> context window and adds OpenSearch plus Search-and-Fetch APIs, and DeepSeek describes it as a Pareto improvement over its own September Flash release &mdash; more capable and no more expensive to run.</p>
+      <p>The contrast with the day&rsquo;s other story is the story. Hours after Beijing published a draft to fence in large Chinese models by size and benchmark rank, a Chinese lab put a frontier-class coding model on the internet with a licence that allows almost anything, weights attached. That is not a contradiction so much as a race: a state trying to define what a frontier is while its own labs race to give that frontier away. Size and benchmark thresholds are, in effect, a list of what is worth protecting &mdash; and DeepSeek publishing under MIT is a way of staying ahead of the fence.</p>
+      <p>For everyone outside the argument, the practical result is a familiar one. A model that scores at Opus-5 level on coding, runs under an unrestricted licence and takes a million tokens of context is now something a developer can download on a Sunday. The gap between the frontier and what is freely available has again narrowed &mdash; and the interesting question is no longer who has the best model, but <span class="hl-terra">what happens to the economics of the best model when a near-peer of it is free</span>.</p>
+    </div>
+    <a class="source-link" href="https://huggingface.co/deepseek-ai" target="_blank">Full story &middot; Hugging Face</a>
+  </div>
+
+  <!-- CARD - 04 &middot; SCIENCE -->
+  <div id="science" class="story-card card-sky section-anchor">
+    <div class="page-chip">04 &middot; SCIENCE</div>
+    <div class="card-routine">Discovery &middot; Science the Machines Can Check</div>
+    <h2 class="card-headline">In Under 30 Minutes, a Machine Traces Five NIST Curve Seeds to 1990s Code</h2>
+    <div class="card-deck">An Anthropic researcher used lattice reduction to trace the seeds behind five NIST elliptic curves to a 1990s C random-number generator keyed on Unix timestamps &mdash; a long-open question, answered on a laptop.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">5</span>
+        <span class="stat-label">NIST curve seeds traced to one PRNG</span>
+      </div>
+      <p class="drop">Anthropic published research tracing the provenance of the seeds behind five NIST elliptic curves &mdash; <b>P-192, P-224, P-256, P-384 and P-521</b> &mdash; whose origin has been an open sore since the standards were set in the late 1990s. Using <b>LLL lattice reduction</b>, the team recovered the seed for each curve and identified the generator that produced them: the <b>lrand48/drand48</b> linear-congruential random-number generator from the C standard library, seeded with <b>Unix timestamps</b> between May 1997 and April 1998. The seed for P-256 turned up at the <b>1,842nd</b> candidate; only the seed behind the binary field curve <b>B-163</b> remains unexplained.</p>
+      <p>The value here is not that anything is broken. It is the opposite: recovering the seed makes the curves <i>more</i> auditable, because it shows the constants were generated in an ordinary, reproducible way rather than chosen to hide a trapdoor &mdash; the fear that has hung over NIST curves since the Dual_EC affair. Anthropic put a <b>$36,864</b> bounty on the result, which was claimed and donated in full to <b>ISRG</b>, the organisation behind Let&rsquo;s Encrypt, and the finding was independently reproduced by the cryptographer <b>Filippo Valsorda</b>. A result that a handful of specialists can verify, on public inputs, is exactly the kind of claim the field can bank.</p>
+      <p>What makes it a sign of the times is the shape of the work: a search-and-verify problem, spanning a large space of plausible inputs, where a machine can run the search and a human can check the one answer it returns. That is the template for AI-assisted mathematics and science &mdash; not a machine asserting a truth, but a machine narrowing a haystack until the needle is <span class="hl-terra">something a person can confirm without trusting the machine</span>. A 25-year-old question settled in under half an hour is the marketing; verifiability is the substance.</p>
+    </div>
+    <a class="source-link" href="https://www.anthropic.com/research/ecdsa-curve-origins" target="_blank">Full story &middot; Anthropic</a>
+  </div>
+
+  <!-- CARD - 05 &middot; BUSINESS -->
+  <div id="business" class="story-card card-lavender section-anchor">
+    <div class="page-chip">05 &middot; BUSINESS</div>
+    <div class="card-routine">Platforms &middot; Defaults Are the New Lock-In</div>
+    <h2 class="card-headline">Replit Drops Anthropic and Makes ChatGPT the Default</h2>
+    <div class="card-deck">The coding platform&rsquo;s chief executive said it is no longer working with Anthropic, citing cost and performance, and is pointing its agent at OpenAI by default &mdash; a small switch that speaks to how model vendors are chosen now.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">OpenAI</span>
+        <span class="stat-label">Replit Agent&rsquo;s new default model</span>
+      </div>
+      <p class="drop">Replit chief executive <b>Amjad Masad</b> said the company is <b>no longer working with Anthropic</b> and has made <b>OpenAI</b> the default for its coding agent, in comments reported by TechCrunch. He cited a mix of cost and performance &mdash; telling the interviewer he thinks &ldquo;ChatGPT is better now&rdquo; &mdash; while noting that users can still select a Claude model if they want one. Insiders have pushed back on the framing, and the change is a re-pointing of a default rather than a hard removal, but the direction is clear: a coding platform has decided which lab its agent reaches for first.</p>
+      <p>That is where the leverage sits in 2026. Model quality across the top labs is close enough that a platform rarely switches because one is clearly the best; it switches on price, latency, reliability and the terms of the partnership. Because most users never change a default, the default is the product &mdash; which turns a procurement decision inside a single company into a meaningful shift in market share. The era of developers hand-picking a model per task is giving way to platforms deciding for everyone at once, and the vendors know it.</p>
+      <p>The wider lesson is about lock-in, and where it now lives. A year ago the fear was vendor lock-in through proprietary weights; today the more consequential lock-in is at the layer above &mdash; the default a platform sets, the integration it bakes in, the model it quietly trains its users to expect. Replit replacing one lab with another is not a crisis for anyone, but it is a reminder that <span class="hl-terra">in a market of near-equals, the winner is often whoever owns the unexamined choice</span>.</p>
+    </div>
+    <a class="source-link" href="https://techcrunch.com/2026/10/17/replit-is-no-longer-working-with-anthropic-ceo-says/" target="_blank">Full story &middot; TechCrunch</a>
+  </div>
+
+  <!-- SIGNALS -->
+  <div id="signals" class="story-card card-cream section-anchor">
+    <div class="page-chip">06 &middot; SIGNALS</div>
+    <div class="card-routine">5 Key Signals</div>
+    <h2 class="card-headline sm">What Moved the Machine Frontier Today</h2>
+    <div class="card-deck" style="border-bottom:none; padding-bottom:0; margin-bottom:16px;">Briefs that did not make the cards &mdash; each worth an afternoon of reading.</div>
+    <div class="signals-grid">
+      <div class="signal-row">
+        <div class="signal-num n1">1</div>
+        <div>
+          <div class="signal-title">Meta Strips the AI-Training Clause From Its Commercial Terms</div>
+          <div class="signal-desc">Meta removed language from its commercial terms that had reserved the right to use business customers&rsquo; content for AI training, effective <b>October 30</b>. The clause had been a quiet grievance for enterprise buyers weighing whether to build on Meta&rsquo;s platforms; dropping it is a concession that, for paying customers, data provenance now outweighs a free source of training data.</div>
+          <a class="signal-link" href="https://aibriefs.news/briefing/2026-10-18" target="_blank">AI Briefs &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n2">2</div>
+        <div>
+          <div class="signal-title">Microsoft&rsquo;s Streaming Speech Model Takes the Top Spot</div>
+          <div class="signal-desc"><b>MAI-Transcribe-2-Streaming</b> debuted at number one on Artificial Analysis&rsquo; speech leaderboard, giving Microsoft a best-in-class claim in a category where it has usually been a buyer rather than a builder. Streaming transcription is the substrate for voice agents, so a leader here is a quiet statement about where Microsoft intends the next round of interfaces to run.</div>
+          <a class="signal-link" href="https://aibriefs.news/briefing/2026-10-18" target="_blank">AI Briefs &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n3">3</div>
+        <div>
+          <div class="signal-title">AMD Pitches a CPU-First Rack for Agentic AI</div>
+          <div class="signal-desc">At the Open Compute Project summit, AMD detailed <b>Helion</b>, a reference rack built around CPUs rather than GPUs for agentic workloads. The bet is that much of an agent&rsquo;s day is orchestration, tool calls and I/O &mdash; work that does not need a matrix multiplier &mdash; so a rack tuned for control flow can do it more cheaply than an accelerator with HBM to spare.</div>
+          <a class="signal-link" href="https://aibriefs.news/briefing/2026-10-18" target="_blank">AI Briefs &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n4">4</div>
+        <div>
+          <div class="signal-title">Reflection Serves a Trillion Beam Tokens in a Day</div>
+          <div class="signal-desc">Reflection said it served <b>one trillion tokens</b> of its open-weight <b>Beam</b> model in <b>24 hours</b>, and reset rate limits to keep up. The number is less a benchmark than a demand signal: a permissively licensed frontier model attracts a volume of inference that a company&rsquo;s own capacity has to sprint to match, which is the flip side of giving the weights away.</div>
+          <a class="signal-link" href="https://aibriefs.news/briefing/2026-10-18" target="_blank">AI Briefs &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n5">5</div>
+        <div>
+          <div class="signal-title">FLUX 3 Image Klein Puts Frontier Image Generation on a Laptop</div>
+          <div class="signal-desc">Black Forest Labs released <b>FLUX 3 Image Klein</b>, a <b>5.6-billion-parameter</b> open-weights image model that ranks at the top of open text-to-image and editing evaluations yet runs on a single consumer GPU &mdash; down to roughly 8&nbsp;GB of VRAM. Small, capable and downloadable is the same combination the labs keep aiming at for language; it is now the default for images.</div>
+          <a class="signal-link" href="https://bfl.ai/blog/flux-3-image-klein" target="_blank">Black Forest Labs &#8597;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THEMES + TOOL + SOURCES -->
+  <div id="themes" class="story-card card-lavender section-anchor">
+    <div class="page-chip">07 &middot; CLOSER</div>
+    <div class="card-routine">Top Themes</div>
+    <h2 class="card-headline sm">The Shape of Today&rsquo;s News</h2>
+    <div class="themes-grid" style="margin-top:16px;">
+      <div class="theme-item">The Web Puts Up Walls</div>
+      <div class="theme-item">Fencing the Frontier</div>
+      <div class="theme-item">Open Weights Keep Coming</div>
+      <div class="theme-item">Science the Machines Can Check</div>
+      <div class="theme-item">Defaults Are the New Lock-In</div>
+    </div>
+
+    <div id="tool" class="tool-week section-anchor">
+      <div class="tool-week-eyebrow">Company Watch of the Day</div>
+      <div class="tool-week-name">DEEPSEEK</div>
+      <div class="tool-week-desc">DeepSeek is the day&rsquo;s sharpest contradiction. China&rsquo;s commerce ministry published a draft to fence in large models by size and benchmark rank &mdash; and in the same window DeepSeek put a frontier-class coding model on Hugging Face under the <b>MIT licence</b>, weights attached, scoring above Claude Opus 5 on the DeepSWE benchmark with a million-token context. That is not defiance so much as a strategy: a state drawing a line around what a frontier model is, and a lab racing to give that frontier away before the line hardens. It is also the through-line of the whole issue. Banks fence their systems against agents; Beijing fences its models; DeepSeek and Black Forest Labs hand capable models to anyone with a GPU; Anthropic opens up a 25-year-old cryptographic secret to prove it was generated honestly. Read together, the day was about who controls access &mdash; and the answer kept splitting between those building walls and those pulling them down.</div>
+    </div>
+
+    <div id="sources" class="output-card section-anchor">
+      <div class="output-title">Sources Cited</div>
+      <div class="sources-grid">
+        <a href="https://www.theverge.com/ai-artificial-intelligence/1013195/ai-agents-blocked-web" target="_blank">The Verge &mdash; Websites block AI agents</a>
+        <a href="https://www.cnbc.com/2026/10/13/jpmorgan-ai-agents-account-access.html" target="_blank">CNBC &mdash; JPMorgan blocks third-party agents</a>
+        <a href="https://apnews.com/article/china-export-restrictions-ai-chips-solar-us-5ac381c0c6d6628bbea2e0da7d855a5b" target="_blank">AP News &mdash; China proposes AI export controls</a>
+        <a href="https://thenextweb.com/news/china-ai-export-controls-draft" target="_blank">The Next Web &mdash; China&rsquo;s AI export-control draft</a>
+        <a href="https://huggingface.co/deepseek-ai" target="_blank">Hugging Face &mdash; DeepSeek V4.1-Flash-1017, MIT</a>
+        <a href="https://www.anthropic.com/research/ecdsa-curve-origins" target="_blank">Anthropic &mdash; NIST elliptic-curve seed origins</a>
+        <a href="https://words.filippo.io/seeds-solved/" target="_blank">Filippo Valsorda &mdash; Verifying the curve seeds</a>
+        <a href="https://techcrunch.com/2026/10/17/replit-is-no-longer-working-with-anthropic-ceo-says/" target="_blank">TechCrunch &mdash; Replit drops Anthropic</a>
+        <a href="https://bfl.ai/blog/flux-3-image-klein" target="_blank">Black Forest Labs &mdash; FLUX 3 Image Klein open weights</a>
+        <a href="https://aibriefs.news/briefing/2026-10-18" target="_blank">AI Briefs &mdash; Daily briefing, October 18</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-logo">
+      <div class="footer-mark">
+        <img src="../assets/timps-postcards.png" alt="TIMPS">
+      </div>
+      <span class="footer-brand">TIMPS PostCards</span>
+    </div>
+    <div class="footer-center">
+      Issue 143 &middot; October 18, 2026<br>
+      Hyderabad, India
+    </div>
+    <div class="footer-right">
+      <a href="../index.html">Home</a><br>
+      <a href="../archive.html">Archive</a><br>
+      &copy; 2026 TIMPS
+    </div>
+  </footer>
+
+</div> <!-- /wrapper -->
+</div> <!-- /page-layout -->
+</body>
+</html>
