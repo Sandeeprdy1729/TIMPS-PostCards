@@ -3753,8 +3753,8 @@
 
 - **№ 18 — I let a coding agent take my TV apart over Wi-Fi. It asked permission 22 times — and the TV still tried to undo its work.** (`articles/article-tv-debloat.html`)
   - Deep Dive № 018 · TIMPS · Hands-on
-  - _A 1 GB Android TV stick, Claude Code, and one rule: ask before every change. The agent sorted ninety system packages into plain English, switched off twenty-two, freed about a third more memory, verified a sideloaded app’s signature — and caught the manufacturer’s update service silently reinstalling an app that had just been removed. Plus where it goes next: content-first TVs driven by a small model._
-  - Sanjay Utchula · 18 min read · Oct 18, 2026
+  - _A 1 GB Android TV stick, Claude Code, and one rule: ask before every change. The agent sorted ninety system packages into plain English, switched off twenty-two, freed about a third more memory, and caught the manufacturer’s update service silently reinstalling an app that had just been removed. Plus where it goes next: content-first TVs driven by a small model._
+  - Sanjay Utchula · 17 min read · Oct 18, 2026
 
 - **№ 17 — Every product on Earth gets taken apart and rebuilt cheaper. Reverse engineering just went from a nation-state strategy to a one-line install.** (`articles/article-reverse-engineering-agents.html`)
   - Deep Dive № 017 · TIMPS · Agents

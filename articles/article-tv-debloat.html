@@ -520,9 +520,9 @@
 <header class="masthead">
   <span class="masthead-kicker">TIMPS Deep Dive · № 018</span>
   <h1 class="masthead-h">I let a coding agent take my TV apart over Wi-Fi. <em>It asked permission 22 times — and the TV still tried to undo its work.</em></h1>
-  <p class="masthead-dek">A cheap Android TV stick with 1 GB of memory had become slow, cluttered and full of recommendations I never asked for. So I handed it to Claude Code with one rule — ask me before every change — and watched an agent sort ninety system packages into plain English, switch off twenty-two of them, verify a sideloaded app’s signature, and catch the manufacturer quietly reinstalling an app I had just removed. Here is what the experiment shows about agents that drive real devices, and where people are already taking the idea next.</p>
+  <p class="masthead-dek">A cheap Android TV stick with 1 GB of memory had become slow, cluttered and full of recommendations I never asked for. So I handed it to Claude Code with one rule — ask me before every change — and watched an agent sort ninety system packages into plain English, switch off twenty-two of them, and catch the manufacturer quietly reinstalling an app I had just removed. Here is what the experiment shows about agents that drive real devices, and where people are already taking the idea next.</p>
   <div class="masthead-meta">
-    <b>Sanjay Utchula</b> &nbsp;·&nbsp; October 18, 2026 &nbsp;·&nbsp; 18 min read
+    <b>Sanjay Utchula</b> &nbsp;·&nbsp; October 18, 2026 &nbsp;·&nbsp; 17 min read
   </div>
 </header>
 
@@ -566,7 +566,7 @@
   <!-- SECTION 02 -->
   <div class="section-h"><span class="section-no">02</span><h2>Plain English before any change</h2></div>
   <p class="para">My instructions were blunt. Before changing anything, list every app on the TV in plain English, split into three groups — <b>safe to turn off</b>, <b>needed by the TV</b>, and <b>apps I use</b> — and check free memory. Never touch Google Play, the keyboard, Bluetooth (the remote depends on it) or anything the picture output needs. Disable, don’t delete. Keep a list of every change and how to undo it.</p>
-  <p class="para">The agent pulled roughly <b>90 system packages</b> plus the user-installed apps and came back with a table a non-engineer could read. Package names like <code>tv.alphonso.alphonso_eula</code> became “ad tracking that records what you watch.” <code>com.miui.tv.analytics</code> became “sends usage data to Xiaomi.” It flagged three separate screensaver engines, a print spooler on a device with no printer, two bug-report senders, and a duplicate test copy of a remote-control plugin. It also volunteered a sharper warning I hadn’t asked for: several sideloaded apps came from outside the Play Store, one with a placeholder <code>com.example</code> package name — a classic sign of software nobody has properly published or checked.</p>
+  <p class="para">The agent pulled roughly <b>90 system packages</b> plus the user-installed apps and came back with a table a non-engineer could read. Package names like <code>tv.alphonso.alphonso_eula</code> became “ad tracking that records what you watch.” <code>com.miui.tv.analytics</code> became “sends usage data to Xiaomi.” It flagged three separate screensaver engines, a print spooler on a device with no printer, two bug-report senders, and a duplicate test copy of a remote-control plugin. It also volunteered a warning I hadn’t asked for: several sideloaded apps came from outside the Play Store, one with a placeholder <code>com.example</code> package name — a classic sign of software nobody has properly published or checked.</p>
   <p class="para">It separated a middle category, too: things that were safe to remove <i>only depending on how I use the TV</i>. Chromecast built-in was using ~76 MB, but disabling it would break casting. Google Assistant could go, but the microphone button on the remote would stop working. Those stayed on. That nuance is what made the list trustworthy enough to approve.</p>
 
   <div class="callout">
@@ -610,12 +610,7 @@
   </div>
 
   <!-- SECTION 05 -->
-  <div class="section-h"><span class="section-no">05</span><h2>Checking what goes back on</h2></div>
-  <p class="para">Removing software is the easy half. I also wanted an ad-free YouTube client, and the obvious candidate, <b>SmartTube</b>, is an open-source app that is deliberately <i>not</i> on the Play Store. It has a recent history worth respecting: in late 2025 its developer disclosed that his build machine had been compromised and a few official builds shipped with malware, after which Google and Amazon auto-removed the old app and a newly signed version took over.</p>
-  <p class="para">So the agent showed me the file name, version and size before downloading anything, pulled the stable build only from the developer’s GitHub release, and checked it two ways: the file’s <b>SHA-256</b> matched both GitHub’s recorded digest and the hash the developer had published in the release notes, and <code>apksigner</code> confirmed a valid signature from a single signer. It was candid about the limit: GitHub publishes no official certificate fingerprint for the new key, so the strongest claim available was “this is exactly the file the developer’s account published after the incident.” Then it installed the app. It is also worth saying plainly that third-party YouTube clients sit outside YouTube’s terms of service.</p>
-
-  <!-- SECTION 06 -->
-  <div class="section-h"><span class="section-no">06</span><h2>The caveats</h2></div>
+  <div class="section-h"><span class="section-no">05</span><h2>The caveats</h2></div>
   <ul class="para">
     <li><b>The agent was not flawless.</b> It initially filed PatchWall under “needed by the TV” out of caution, and corrected itself only when I asked. Two of its own test scripts broke on PowerShell quirks and had to be rerun. Approval-per-change caught nothing dangerous, but it did catch mistakes.</li>
     <li><b>Debugging is a door.</b> With network debugging on, any device on your Wi-Fi can ask to control the TV. Each new device still needs an on-screen Allow — the same Allow that, as above, is easy to press by accident. I switched it off when I was done.</li>
@@ -624,8 +619,8 @@
     <li><b>Disable, don’t delete.</b> Nothing here touched the system partition. Every disabled package can be re-enabled with one command or from Settings → Apps, and the uninstalled stock apps can be restored with <code>cmd package install-existing</code>.</li>
   </ul>
 
-  <!-- SECTION 07 -->
-  <div class="section-h"><span class="section-no">07</span><h2>What to watch next: content-first TVs</h2></div>
+  <!-- SECTION 06 -->
+  <div class="section-h"><span class="section-no">06</span><h2>What to watch next: content-first TVs</h2></div>
   <p class="para">Harshit Satija’s post points to where this goes. After using Claude Code to strip his TV, he still disliked the app grid, so he placed Liquid AI’s small <b>d1-3B</b> decision model between himself and the screen: he says what he wants, and the model chooses the app and sends the ADB commands. It is the same plumbing this piece used, with the agent moved from setup time to every evening on the sofa.</p>
   <div class="pullquote">
     <p>&ldquo;Content-first, not apps-first.&rdquo;</p>
@@ -638,8 +633,8 @@
     <li><b>Reverse engineering meets the living room.</b> Our <a href="article-reverse-engineering-agents.html">Deep Dive № 017</a> covered an agent-built native Plex client for LG TVs. Debloating is the gentle end of the same spectrum: agents making devices behave the way their owners want.</li>
   </ul>
 
-  <!-- SECTION 08 -->
-  <div class="section-h"><span class="section-no">08</span><h2>The TIMPS verdict</h2></div>
+  <!-- SECTION 07 -->
+  <div class="section-h"><span class="section-no">07</span><h2>The TIMPS verdict</h2></div>
   <div class="callout">
     <span class="callout-label">Our read</span>
     <p><b>The interface was always there; agents made it usable.</b> Nothing in this test was a hack. ADB, <code>pm disable-user</code> and runtime permissions are documented Android features. What changed is that a person can now describe the outcome in plain language and let an agent do the package archaeology.</p>
@@ -657,14 +652,9 @@
       <li><a href="https://x.com/doooyle/status/2111196679680540724" target="_blank" rel="noopener">Ryan Doyle (@doooyle) on X — hacking a TV with Claude Code: ads, bloatware, spyware and lag removed (Oct 16, 2026)</a></li>
       <li><a href="https://x.com/harshitsatija/status/2111731520641896945" target="_blank" rel="noopener">Harshit Satija (@harshitsatija) on X — adding Liquid AI’s d1-3B decision model to a modified TV, “content-first, not apps-first” (Oct 18, 2026)</a></li>
       <li><a href="https://developer.android.com/tools/adb" target="_blank" rel="noopener">Android Developers — Android Debug Bridge (adb) documentation</a></li>
-      <li><a href="https://github.com/yuliskov/SmartTube" target="_blank" rel="noopener">GitHub — yuliskov/SmartTube: README security announcement and official release builds</a></li>
-      <li><a href="https://github.com/yuliskov/SmartTube/releases/tag/32.56s" target="_blank" rel="noopener">GitHub — SmartTube 32.56 Stable release notes with per-build VirusTotal hashes</a></li>
-      <li><a href="https://www.androidauthority.com/smarttube-malware-fix-3620773/" target="_blank" rel="noopener">Android Authority — SmartTube malware incident and the newly signed clean release</a></li>
-      <li><a href="https://www.aftvnews.com/?p=45764" target="_blank" rel="noopener">AFTVnews — If you use SmartTube, uninstall it and install the new version due to a security issue</a></li>
       <li><a href="https://troypoint.com/at4k-launcher/" target="_blank" rel="noopener">Troypoint — AT4K Launcher overview: free vs premium features</a></li>
       <li><a href="https://hipertextual.com/software/android-como-apple-tv-at4k-launcher/" target="_blank" rel="noopener">Hipertextual — AT4K Launcher brings an Apple TV–style interface to Android TV</a></li>
       <li><a href="https://www.androidauthority.com/google-tv-arc-launcher-3656748/" target="_blank" rel="noopener">Android Authority — Arc Launcher, an open-source Apple TV–inspired launcher</a></li>
-      <li><a href="https://github.com/truefedex/tv-bro" target="_blank" rel="noopener">GitHub — truefedex/tv-bro: open-source, remote-friendly Android TV browser</a></li>
     </ol>
   </div>
 
