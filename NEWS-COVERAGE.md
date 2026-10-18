@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 129 daily issues + 18 deep dives · regenerated 2026-10-18**
+**Coverage: 130 daily issues + 18 deep dives · regenerated 2026-10-19**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 143 · 2026-10-18 · `daily/timps-postcards-2026-10-18.html`
+
+- **[01 · LEAD]** Banks and Airlines Start Shutting the Door on AI Agents
+  - _JPMorgan Chase and Charles Schwab now block outside AI agents from customer accounts, and Delta will not let them book tickets — a quiet reversal of the assumption that the web is open to anything that can browse it._
+  - Source: [Full story · The Verge](https://www.theverge.com/ai-artificial-intelligence/1013195/ai-agents-blocked-web)
+
+- **[02 · GEOPOLITICS]** China Moves to Fence In Its Own AI Frontier
+  - _Beijing proposed adding 23 AI technologies — including the weights and source code of its biggest models — to its export-control list, treating its own frontier as a strategic asset rather than a global public good._
+  - Source: [Full story · AP News](https://apnews.com/article/china-export-restrictions-ai-chips-solar-us-5ac381c0c6d6628bbea2e0da7d855a5b)
+
+- **[03 · MODELS]** DeepSeek Ships a Frontier-Class Model Under an MIT Licence
+  - _V4.1-Flash-1017 posts 77.0 on the DeepSWE software benchmark — above Claude Opus 5’s 74.0 — with a million-token context window and a licence that imposes almost no conditions._
+  - Source: [Full story · Hugging Face](https://huggingface.co/deepseek-ai)
+
+- **[04 · SCIENCE]** In Under 30 Minutes, a Machine Traces Five NIST Curve Seeds to 1990s Code
+  - _An Anthropic researcher used lattice reduction to trace the seeds behind five NIST elliptic curves to a 1990s C random-number generator keyed on Unix timestamps — a long-open question, answered on a laptop._
+  - Source: [Full story · Anthropic](https://www.anthropic.com/research/ecdsa-curve-origins)
+
+- **[05 · BUSINESS]** Replit Drops Anthropic and Makes ChatGPT the Default
+  - _The coding platform’s chief executive said it is no longer working with Anthropic, citing cost and performance, and is pointing its agent at OpenAI by default — a small switch that speaks to how model vendors are chosen now._
+  - Source: [Full story · TechCrunch](https://techcrunch.com/2026/10/17/replit-is-no-longer-working-with-anthropic-ceo-says/)
+
+  **Signals / briefs:**
+  - Meta Strips the AI-Training Clause From Its Commercial Terms
+  - Microsoft’s Streaming Speech Model Takes the Top Spot
+  - AMD Pitches a CPU-First Rack for Agentic AI
+  - Reflection Serves a Trillion Beam Tokens in a Day
+  - FLUX 3 Image Klein Puts Frontier Image Generation on a Laptop
 
 ### Issue 142 · 2026-10-17 · `daily/timps-postcards-2026-10-17.html`
 
