@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 130 daily issues + 18 deep dives · regenerated 2026-10-19**
+**Coverage: 131 daily issues + 18 deep dives · regenerated 2026-10-19**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 144 · 2026-10-19 · `daily/timps-postcards-2026-10-19.html`
+
+- **[01 · LEAD]** Anthropic Pledges 5% of Itself to the Public Good
+  - _The lab is committing 5% of its shares to a new Public Benefit Fund that grows as the company does — and says roughly 20% of Anthropic is now pledged to the public, on the eve of an IPO as soon as November._
+  - Source: [Full story · Anthropic](https://www.anthropic.com/news/public-benefit-fund)
+
+- **[02 · GEOPOLITICS]** NVIDIA Asks Its Memory Makers to Share One Fab
+  - _NVIDIA has told Samsung, SK Hynix and Micron to build the base dies for its custom HBM on TSMC’s 3-nanometre line — and Samsung, which has always built its own, agreed._
+  - Source: [Full story · Seoul Economic Daily](https://en.sedaily.com/finance/2026/10/18/samsung-to-use-tsmc-for-base-die-in-nvidias-custom-hbm)
+
+- **[03 · MODELS]** DeepSeek Hands Its Search Engine to Every Agent
+  - _A day after shipping a frontier coding model, DeepSeek opened standalone Search and Fetch APIs — the web returned as JSON or Markdown — at $0.75 per 1,000 calls, free through Claude Code and Codex until November._
+  - Source: [Full story · DeepSeek API Docs](https://api-docs.deepseek.com/guides/search/)
+
+- **[04 · SCIENCE]** NVIDIA Puts $250 Million Behind Teaching Agents to Behave
+  - _As Jensen Huang said he would cut chip supply to any buyer building unsafe AI, NVIDIA pledged $250 million in compute over five years to UK research on controlling autonomous agents._
+  - Source: [Full story · NVIDIA Newsroom](https://nvidianews.nvidia.com/news/nvidia-commits-250-million-to-advance-uk-agentic-safety-and-security-research-over-the-next-five-years)
+
+- **[05 · BUSINESS]** A Bankrupt Chatbot’s Staff Becomes Disney’s AI Team
+  - _After Character.AI filed for bankruptcy, a court filing showed Disney agreed to hire at least 60 of its people — most of the workforce — for around $60 million a year, with $7.5 million of a $20 million deal up front._
+  - Source: [Full story · TechCrunch](https://techcrunch.com/2026/10/18/disney-agrees-to-hire-the-majority-of-character-ais-workforce/)
+
+  **Signals / briefs:**
+  - Microsoft Walks Away From a UK Data Centre Over Power
+  - Modal Triples Its Valuation and Crosses $1 Billion in Revenue
+  - Anthropic Acquires Opaque for “Confidential AI”
+  - Cohere Moves to Buy AISLE, the Autonomous Bug-Hunter
+  - NVIDIA Opens a 2.8-Trillion-Token Corpus for Indian Languages
 
 ### Issue 143 · 2026-10-18 · `daily/timps-postcards-2026-10-18.html`
 
