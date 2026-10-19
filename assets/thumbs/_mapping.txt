@@ -128,3 +128,4 @@
 2026-10-16	141	thumb-2026-10-16.svg	Meta Puts Its Biggest Model in the Open — and Makes Two Mac Studios Enough to Run It	server
 2026-10-17	142	thumb-2026-10-17.svg	Anthropic Offers Wall Street a 10% Yield to Fund a $60 Billion Chip Deal	coins
 2026-10-18	143	thumb-2026-10-18.svg	Banks and Airlines Start Shutting the Door on AI Agents	shield
+2026-10-19	144	thumb-2026-10-19.svg	Anthropic Pledges 5% of Itself to the Public Good	coins
