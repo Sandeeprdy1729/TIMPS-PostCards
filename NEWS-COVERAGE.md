@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 131 daily issues + 18 deep dives · regenerated 2026-10-19**
+**Coverage: 132 daily issues + 18 deep dives · regenerated 2026-10-20**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 145 · 2026-10-20 · `daily/timps-postcards-2026-10-20.html`
+
+- **[01 · LEAD]** Amazon Takes Its Best Shot at Nvidia’s Software Moat
+  - _AWS released TorchNeuron, a tool that moves PyTorch apps onto its Trainium chip by changing one line of configuration — and it is pushing changes upstream so PyTorch stops defaulting to Nvidia._
+  - Source: [Full story · TechCrunch](https://techcrunch.com/2026/10/19/amazon-is-taking-its-biggest-shot-at-nvidia-yet-with-new-torchneuron-dev-tool/)
+
+- **[02 · GEOPOLITICS]** Washington Orders DeepSeek Out of Every Civilian Agency
+  - _The Department of Homeland Security moved to bar DeepSeek from all federal civilian systems and contracts — days after the company shipped its strongest model yet._
+  - Source: [Full story · CyberScoop](https://cyberscoop.com/dhs-bans-deepseek-federal-agencies/)
+
+- **[03 · MODELS]** Inception’s Mercury 3 Writes a Thousand Tokens a Second
+  - _A diffusion model more than 40× the size of Mercury 1 now runs at 1,068 tokens per second with a million-token context — and the vendor says it beats GPT-6 Luna and Claude Haiku 5.5._
+  - Source: [Full story · Inception Labs](https://www.inceptionlabs.ai/blog/introducing-mercury-3)
+
+- **[04 · SCIENCE]** Microsoft Says Your Own Agents Are the Insider Threat
+  - _Guardian Agents watches the AI agents a company deploys, running on the premise that frontier models “cannot be trusted” — not because they are malicious, but because they are unpredictable._
+  - Source: [Full story · TechCrunch](https://techcrunch.com/2026/10/19/microsoft-says-ai-agents-are-like-insider-threats-as-frontier-models-cant-be-trusted/)
+
+- **[05 · BUSINESS]** Tenstorrent Doubles Its Valuation to $6.2 Billion
+  - _The open-weight chip challenger raised $1.5 billion, more than doubling its 2024 mark, betting that inference — not training — is where Nvidia’s grip can be pried loose._
+  - Source: [Full story · TechCrunch](https://techcrunch.com/2026/10/19/tenstorrent-hits-6-2b-valuation-to-scale-open-weight-ai-chips/)
+
+  **Signals / briefs:**
+  - Nscale and Anthropic Eye a Second $45 Billion Deal
+  - Meta’s Muse Gave a Buyer a Seller’s Home Address
+  - One Hacker, an Army of Agents, 100+ Broken Sites
+  - Huang: Two Gigawatts Is Worth $80 Billion to Nvidia
+  - OpenCode Breach Runs Up Users’ AI Bills
 
 ### Issue 144 · 2026-10-19 · `daily/timps-postcards-2026-10-19.html`
 
