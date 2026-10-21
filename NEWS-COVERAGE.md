@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 132 daily issues + 18 deep dives · regenerated 2026-10-20**
+**Coverage: 133 daily issues + 18 deep dives · regenerated 2026-10-21**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 146 · 2026-10-21 · `daily/timps-postcards-2026-10-21.html`
+
+- **[01 · LEAD]** China Bets $35 Billion on the One Chip It Can Still Buy
+  - _ByteDance, Alibaba and Tencent ordered more than 3 million export-compliant RTX Pro 5500 cards — a book larger than Nvidia’s entire 2027 production plan for the card._
+  - Source: [Full story · Tom’s Hardware](https://www.tomshardware.com/pc-components/gpus/chinas-tech-giants-drop-usd35-billion-on-export-compliant-nvidia-rtx-pro-5500-workstation-gpu-orders-to-power-ai-ambitions-according-to-reports-bytedance-alibaba-and-tencent-order-3-million-cards-despite-warnings-that-only-10-percent-of-orders-are-fulfillable)
+
+- **[02 · CAPITAL]** Anthropic’s $750 Billion Tab, and Its Landlords Are Now Rivals
+  - _A leaked S-1 shows an $80.7 billion first-half loss, a $750 billion cloud ambition, and a company that needs AWS, Google and Microsoft precisely as they become competitors._
+  - Source: [Full story · TechCrunch](https://techcrunch.com/2026/10/20/anthropics-cloud-partnerships-are-getting-messy/)
+
+- **[03 · GOVERNMENT]** Google Opens Gemini to the Government
+  - _A preview for federal, state and local agencies arrives with connectors into the systems government already runs — and HHS and Missouri are already using it._
+  - Source: [Full story · Google Cloud Press Corner](https://www.googlecloudpresscorner.com/2026-10-20-Google-Public-Sector-Launches-Gemini-for-Government-Services)
+
+- **[04 · SECURITY]** GitHub Puts a Firewall in the Install Path
+  - _The new package firewall sits between coding agents and the npm registry, inspecting packages before they run — which is exactly where credentials were being stolen._
+  - Source: [Full story · GitHub](https://github.blog/changelog/2026-10-20-github-package-firewall-in-public-preview/)
+
+- **[05 · INFRASTRUCTURE]** The AI That Runs the Skies Raises $325 Million
+  - _ASI, the Boston company behind an $875 million FAA air-traffic contract, is now worth $3 billion — and it is pushing forecasting into grids, logistics and the military._
+  - Source: [Full story · The Next Web](https://thenextweb.com/news/asi-325m-series-c-3bn-valuation-air-space-intelligence)
+
+  **Signals / briefs:**
+  - SpaceX and Tesla Form Committees to Study a Merger
+  - OpenAI Buys Orchestra Bio for Its Biotech Push
+  - Meta’s Muse Hits 10 Million US Downloads in 40 Days
+  - Reliable Robotics Raises $115 Million to Automate Flight
+  - VideoGen Promises 10-Minute Films From One Prompt
 
 ### Issue 145 · 2026-10-20 · `daily/timps-postcards-2026-10-20.html`
 
