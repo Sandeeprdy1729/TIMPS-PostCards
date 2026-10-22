@@ -131,3 +131,4 @@
 2026-10-19	144	thumb-2026-10-19.svg	Anthropic Pledges 5% of Itself to the Public Good	coins
 2026-10-20	145	thumb-2026-10-20.svg	Amazon Takes Its Best Shot at Nvidia's Software Moat	server
 2026-10-21	146	thumb-2026-10-21.svg	China Bets $35 Billion on the One Chip It Can Still Buy	chip
+2026-10-22	147	thumb-2026-10-22.svg	AI Found the Flaw in 70% of the Web. The Attackers Found It First.	shield
