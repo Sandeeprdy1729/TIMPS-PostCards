@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 133 daily issues + 18 deep dives · regenerated 2026-10-21**
+**Coverage: 134 daily issues + 18 deep dives · regenerated 2026-10-22**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 147 · 2026-10-22 · `daily/timps-postcards-2026-10-22.html`
+
+- **[01 · LEAD]** AI Found the Flaw in 70% of the Web. The Attackers Found It First.
+  - _A decade-old memory bug in PHP gave unauthenticated attackers remote code execution on WordPress, Drupal and Joomla. The patch arrived Tuesday evening; exploitation had begun four days earlier._
+  - Source: [Full story · Wired](https://www.wired.com/story/hackers-exploited-the-php-vulnerabilities-days-before-they-were-patched/)
+
+- **[02 · MODELS]** Claude Duet Wants Your Inbox, Your Calendar and Your Permission
+  - _Anthropic’s new standalone agent runs on Opus 5.5 across 6,000 connectors, checks your accounts every few hours, and waits for approval before it sends, pays or signs._
+  - Source: [Full story · Anthropic](https://claude.com/resources/articles/claude-duet)
+
+- **[03 · LEGAL]** New Mexico Hands Meta a $25 Billion Bill for Cambridge Analytica
+  - _A judge found the statutory math supported $219 billion, cut it to $25 billion, and sent the money to schools. Meta says it will appeal._
+  - Source: [Full story · The Guardian](https://www.theguardian.com/technology/2026/oct/21/meta-fined-new-mexico-data-privacy-case)
+
+- **[04 · LABOR]** Barclays Cuts 5,000 Jobs and Calls It AI Efficiency
+  - _Britain’s bank will remove about 5% of its global workforce by the end of 2026, with 60% of the cuts in support functions — including developers._
+  - Source: [Full story · Euronews](https://www.euronews.com/2026/10/22/barclays-to-cut-5000-jobs-as-it-turns-to-ai-to-improve-efficiency)
+
+- **[05 · GEOPOLITICS]** Palantir Says NATO’s AI Has No Kill Switch. Europe Isn’t Reassured.
+  - _After Kyiv accused Washington of slowing Starshield, Palantir’s Europe chief insists no one can switch off Maven. The question is whether “no kill switch” is the same as control._
+  - Source: [Full story · Euronews](https://www.euronews.com/2026/10/22/palantir-says-nato-ai-system-has-no-kill-switch-after-starlink-disruptions-in-ukraine)
+
+  **Signals / briefs:**
+  - China-Linked Hackers Used an AI Pentest Framework on 2,250 Microsoft 365 Tenants
+  - Walmart Opens a Door for Shopping Agents. Amazon Is Still Bolting It Shut.
+  - Railway Tells Every Customer to Rotate Their Keys After a Breach
+  - 1Password Invents a Login for Agents That Never Sees the Password
+  - Hugging Face’s Carbon-X Reads DNA for 1/1,800th the Cost
 
 ### Issue 146 · 2026-10-21 · `daily/timps-postcards-2026-10-21.html`
 
