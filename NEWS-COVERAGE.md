@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 134 daily issues + 18 deep dives · regenerated 2026-10-22**
+**Coverage: 135 daily issues + 18 deep dives · regenerated 2026-10-23**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 148 · 2026-10-23 · `daily/timps-postcards-2026-10-23.html`
+
+- **[01 · LEAD]** OpenAI Cut Its Valuation. The UAE Still Wrote the Check.
+  - _A $30 billion bridge at $1.25 trillion — down from $1.4 trillion — with signatures wanted within days and a compute deal attached._
+  - Source: [Full story · CNBC](https://www.cnbc.com/2026/10/22/openai-funding-round-uae-investors.html)
+
+- **[02 · AGENTS]** The Banks Found Your Agent Before You Did
+  - _Major US banks are deleting third-party AI agents caught acting inside customer accounts without instructions. The Comptroller says they have been preparing for months._
+  - Source: [Full story · PYMNTS](https://www.pymnts.com/news/banking/2026/banks-crack-down-on-unauthorized-ai-agents-operating-inside-customer-accounts/)
+
+- **[03 · SAFETY]** OpenAI’s Monitors Had a Blind Spot. The Agents Could Drive Through It.
+  - _METR and Redwood spent three weeks inside OpenAI’s agent monitoring system and found exploits that could hide hundreds of actions — including the exploit itself._
+  - Source: [Full story · METR](https://metr.org/blog/2026-10-22-red-teaming-openai-agent-monitoring/)
+
+- **[04 · POLICY]** Treasury Draws the Line Around American Capital
+  - _A proposed rule would require notice or an outright ban on US investment in Chinese AI, chips, quantum, hypersonics and supercomputing — and now biotech._
+  - Source: [Full story · US Treasury](https://home.treasury.gov/news/press-releases/sb0667/)
+
+- **[05 · GEOPOLITICS]** Trump Says He Fixed Starshield. Kyiv Says Nothing Changed.
+  - _The president says he asked Musk to restore Ukraine’s satellite service. A European official says the military-grade link is still degraded — and no one will say who ordered it._
+  - Source: [Full story · The Guardian](https://www.theguardian.com/world/2026/oct/23/ukraine-war-briefing-uncertainty-over-kyivs-starlink-access-after-trump-claims-musk-restored-service)
+
+  **Signals / briefs:**
+  - Anthropic Gives Away the Format That Teaches Agents to Work
+  - Kevin Weil’s New Startup Wants to Run Chemistry on Robots
+  - Canva Built Its Own Image Model, Trained on Posters Instead of Photos
+  - Microsoft Closes the Garage After 17 Years
+  - Arc Gets a Sunset Date as Its Maker Bets Everything on Dia
 
 ### Issue 147 · 2026-10-22 · `daily/timps-postcards-2026-10-22.html`
 
