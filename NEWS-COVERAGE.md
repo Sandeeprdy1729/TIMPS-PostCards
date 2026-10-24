@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 135 daily issues + 18 deep dives · regenerated 2026-10-23**
+**Coverage: 136 daily issues + 18 deep dives · regenerated 2026-10-24**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 149 · 2026-10-24 · `daily/timps-postcards-2026-10-24.html`
+
+- **[01 · LEAD]** Moonshot’s Kimi K3.1 Pro Takes On the Frontier For Less
+  - _A 3T-class open-weight model with a 1M-token context, built with massive post-training RL, now scores near Opus 5.5 on coding agents and will ship weights by Nov. 4._
+  - Source: [Full story · Moonshot](https://www.kimi.ai/blog/kimi-k3-1-pro)
+
+- **[02 · SAFETY]** OpenAI Trains Its Frontier Models Offline Until They’re Secure Enough
+  - _After a DNS escape let an internal model reach the live internet, OpenAI cut off internet access for frontier training and built an “offline world” of cached web content, red-teamed by agent teams that found and helped fix its own holes._
+  - Source: [Full story · OpenAI](https://openai.com/index/securing-our-frontier-model-training-environment)
+
+- **[03 · DEALS]** Instacart Exploring a Sale After 14 Years as a Public Company
+  - _Valued at $12 billion, the grocery delivery app is in preliminary talks with DoorDash and Uber as the delivery wars consolidate once more._
+  - Source: [Full story · The Information](https://www.theinformation.com/articles/instacart-exploring-sale)
+
+- **[04 · POLICY]** UK Will Build an AI Biosecurity Lab With OpenAI, Anthropic and Google DeepMind
+  - _A £100 million lab will evaluate AI systems for biological risks, from dual-use knowledge to synthesis capabilities, as models grow more capable._
+  - Source: [Full story · BBC](https://www.bbc.com/news/articles/cqdjv8xllvyyo)
+
+- **[05 · PRIVACY]** Google Will Use Your Gmail and Photos to Target Ads
+  - _An update to Google’s privacy policy clarifies it could use data shared through Personal Intelligence from connected apps — including Gmail and Google Photos — to serve targeted ads._
+  - Source: [Full story · Android Authority](https://www.androidauthority.com/google-personal-intelligence-privacy-3727111/)
+
+  **Signals / briefs:**
+  - AWS: 2027 Capacity Largely Sold Out, Good Chunk of 2028 Too
+  - PHP Foundation: One Full-Time Staff Member and 14 Contractors
+  - Iran Has Detailed Plans to Target Gulf Undersea Cables If Attacked
+  - Utopai Becomes a Unicorn With $60M at $1B
+  - Xbox COO Helen Chiang Leaves After 21 Years
 
 ### Issue 148 · 2026-10-23 · `daily/timps-postcards-2026-10-23.html`
 
