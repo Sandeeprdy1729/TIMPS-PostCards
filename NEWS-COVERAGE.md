@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 136 daily issues + 18 deep dives · regenerated 2026-10-24**
+**Coverage: 137 daily issues + 18 deep dives · regenerated 2026-10-25**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 150 · 2026-10-25 · `daily/timps-postcards-2026-10-25.html`
+
+- **[01 · LEAD]** OpenAI Undercuts Anthropic as Replit Flips Its Largest AI Spend
+  - _Anthropic discontinued a key discount, OpenAI offered 30%+ off in a deal worth over $100M/year, and Replit moved most of its spend from Anthropic to OpenAI._
+  - Source: [Full story · The Information](https://www.theinformation.com/articles/anthropics-margin-openais-opportunity)
+
+- **[02 · SPEECH]** Jack Dorsey’s Block Unveils Dessa, a Speech-to-Speech Model Trained on Human Conversation
+  - _Dessa runs locally on an M4 Max MacBook Pro or better and aims for more natural timing by learning directly from speech, not just transcribed text._
+  - Source: [Full story · The Verge](https://www.theverge.com/ai-artificial-intelligence/1017906/jack-dorsey-block-dessa-ai-voi)
+
+- **[03 · ECONOMY]** Apollo Finds No Financial Payoff From AI Outside of Tech
+  - _Despite massive investment, companies outside the tech sector have seen no financial payoff from AI so far — and for many it’s becoming a margin-hurting cost center._
+  - Source: [Full story · Apollo](https://www.apollo.com/wealth/insights-news/insights/daily-spark/no-signs-of-ai-payoff-outside-of-tech)
+
+- **[04 · GEOPOLITICS]** Ukraine Says Starshield Is Working Normally Again After Trump Calls Musk
+  - _US officials say President Trump asked Elon Musk to restore the service after restrictions hampered Ukraine’s drone forces since October 14._
+  - Source: [Full story · Wall Street Journal](https://www.wsj.com/world/europe/ukraines-military-starlink-is-working-again-kyiv-says-7ad)
+
+- **[05 · DEALS]** LSEG to Buy Octus for $3.54 Billion as Credit Data Consolidates
+  - _The London Stock Exchange Group is acquiring the New York-based credit intelligence platform from Permira and Octus’ management to strengthen its private markets presence._
+  - Source: [Full story · Wall Street Journal](https://www.wsj.com/business/deals/london-stock-exchange-group-agrees-to-buy-octus-from-pe-firms-for-3-54-billion-3cb40a7c)
+
+  **Signals / briefs:**
+  - Instagram Launches Apple TV App for Reels and Live Shows
+  - Meta Unseats Musk as Tech Villain in Brazil’s Election
+  - Inside OpenAI’s Plan to Protect the PHP Ecosystem
+  - AI-Powered School Alpha Falls Short of Its Goals
+  - Ciena CEO: AI Demand Outpacing Supply for Optical Networking
 
 ### Issue 149 · 2026-10-24 · `daily/timps-postcards-2026-10-24.html`
 
