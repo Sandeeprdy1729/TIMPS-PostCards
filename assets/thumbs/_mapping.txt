@@ -136,3 +136,4 @@
 2026-10-24	149	thumb-2026-10-24.svg	Moonshot's Kimi K3.1 Pro Takes On the Frontier For Less	brain
 2026-10-24	149	thumb-2026-10-24.svg	Moonshot's Kimi K3.1 Pro Takes On the Frontier For Less	brain
 2026-10-25	150	thumb-2026-10-25.jpg	OpenAI Undercuts Anthropic as Replit Flips Its Largest AI Spend	deal
+2026-10-26	151	thumb-2026-10-26.jpg	Apple iPhone Duo Teardown Reveals Foldable Growing Pains	hardware

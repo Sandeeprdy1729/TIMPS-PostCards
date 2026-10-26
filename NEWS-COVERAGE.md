@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 137 daily issues + 18 deep dives · regenerated 2026-10-25**
+**Coverage: 138 daily issues + 18 deep dives · regenerated 2026-10-26**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 151 · 2026-10-26 · `daily/timps-postcards-2026-10-26.html`
+
+- **[01 · LEAD]** iPhone Duo Teardown Reveals Repairable Foldable With Crease Cracks
+  - _iFixit gives the iPhone Duo a 5/10 repairability score, praises Apple’s repair tricks, but warns inner-screen repairs are brutal and owners report cracks along the fold._
+  - Source: [Full story · iFixit](https://www.ifixit.com/News/119895/iphone-duo-teardown)
+
+- **[02 · AI]** Inside Slack’s Salesforce Culture Clash
+  - _Benioff spent just ~1 hour with Butterfield before the deal, didn’t use Slack; Butterfield quit after a Davos celebrity panel as cultures collided._
+  - Source: [Full story · Building Slack](https://buildingslack.com/salesforce-part-two/)
+
+- **[03 · COMPUTE]** Musk: SpaceX Closed $40B in GPU Debt as Credit Markets Shut Off
+  - _Debt markets have all but closed to AI data center companies, leaving 200+ neoclouds facing death and consolidation._
+  - Source: [Full story · Elon Musk / X](https://x.com/elonmusk/status/2114434646914068862)
+
+- **[04 · WEARABLES]** Amazon Bee Is a $75 AI Wearable That Listens to Everything
+  - _The tiny always-listening device excels at summarizing conversations and suggesting follow-ups, but raises serious privacy questions._
+  - Source: [Full story · Spyglass](https://spyglass.org/amazon-bee/)
+
+- **[05 · ROBOTICS]** Toyota Plans to Deploy 400,000 Factory Robots With $6.4B Annual Budget
+  - _The automaker is expanding its robotics push via its Walden spinoff, competing with Tesla and China in intelligent automation._
+  - Source: [Full story · Financial Times](https://www.ft.com/content/8bf93407-6b93-4ebb-b54b-f290ebd563e3)
+
+  **Signals / briefs:**
+  - Apple Tweaks macOS for Touch-Screen MacBook Pro
+  - India’s Chip Design Startups Struggle to Scale
+  - Data Center Late Fees Hit $5M Per Day
+  - HFT Firms Spend Billions on AI and Data Centers
+  - Marissa Mayer Builds Dazzle, an AI Assistant for Non-Tech Users
 
 ### Issue 150 · 2026-10-25 · `daily/timps-postcards-2026-10-25.html`
 
