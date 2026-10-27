@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 138 daily issues + 18 deep dives · regenerated 2026-10-26**
+**Coverage: 139 daily issues + 18 deep dives · regenerated 2026-10-27**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 152 · 2026-10-27 · `daily/timps-postcards-2026-10-27.html`
+
+- **[01 · LEAD]** Anthropic Files for IPO, Targeting Up to $2T Valuation
+  - _The Claude maker files S-1 on Nasdaq under ticker ANT, reporting $16.3B revenue and $80.7B net loss in H1 2026 as it eyes a mid-November listing._
+  - Source: [Full story · Anthropic S-1](https://www.anthropic.com/news/s1-sec)
+
+- **[02 · INFRASTRUCTURE]** Broadcom Arranges $63B Deal to Finance Anthropic’s Chip Purchases
+  - _A massive SPV deal backed by BofA, Blackstone, Citi and Morgan Stanley shows the lengths companies will go to secure AI compute._
+  - Source: [Full story · Bloomberg](https://www.bloomberg.com/news/articles/2026-10-26/broadcom-arranges-63-billion-deal-to-finance-anthropic)
+
+- **[03 · MODELS]** OpenAI Announces Scientific Breakthroughs, Releases GPT-6.1 Terra
+  - _The lab reports progress on ETH, harmonic analysis and quantum field theory, while shipping a faster computer-use model._
+  - Source: [Full story · OpenAI](https://openai.com/index/building-scientific-understanding-with-academic-communities/)
+
+- **[04 · GEOPOLITICS]** China’s AI Bubble Bursts as US Tightens Curbs
+  - _Star 50 AI and chip index down 40% in four months, wiping $480B, while US courts push back on China blacklist._
+  - Source: [Full story · Reuters](https://www.reuters.com/world/china/china-ai-bubble-has-already-burst-2026-10-26/)
+
+- **[05 · ENTERPRISE]** Microsoft to Cut 60,000 Jobs as AI Reshapes Workforce
+  - _Buyouts across US, Canada, India and UK as Big Tech continues to trim costs while investing billions in AI infrastructure._
+  - Source: [Full story · Bloomberg](https://www.bloomberg.com/news/articles/2026-10-26/microsoft-to-offer-buyouts-to-60-000-workers-in-latest-cut)
+
+  **Signals / briefs:**
+  - Apple Releases iOS 27.2
+  - $100M+ in Data Center Freight Stolen
+  - AI Groups Spent $78.5M on 2026 Elections
+  - ChatGPT Cracks Down on Political Deepfakes
+  - Anthropic’s Unusual Succession Plan
 
 ### Issue 151 · 2026-10-26 · `daily/timps-postcards-2026-10-26.html`
 
