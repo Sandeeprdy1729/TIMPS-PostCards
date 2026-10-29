@@ -6,11 +6,69 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 139 daily issues + 18 deep dives · regenerated 2026-10-27**
+**Coverage: 141 daily issues + 18 deep dives · regenerated 2026-10-29**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 154 · 2026-10-29 · `daily/timps-postcards-2026-10-29.html`
+
+- **[01 · LEAD]** Apple Unveils Touchscreen MacBook Pro With ProLED XDR Display
+  - _After years of saying it would never happen, Apple brings touch to the Mac with tandem OLED, Dynamic Island, and M5 Pro/Max chips._
+  - Source: [Full story · Apple Newsroom](https://www.apple.com/newsroom/2026/10/apple-unveils-groundbreaking-macbook-pro-with-proled-xdr-display/)
+
+- **[02 · EARNINGS]** Alphabet Misses as AI Mode Slows Search Growth, Microsoft Beats
+  - _GOOG drops 9%+ on weak search monetization, while Microsoft posts strong Azure growth and $10B in OpenAI revenue._
+  - Source: [Full story · CNBC](https://www.cnbc.com/2026/10/28/alphabet-googl-earnings-q3-2026.html)
+
+- **[03 · AI]** Google Unveils Gemini 4 Carbon, Its Strongest Cybersecurity Model
+  - _Rolling out to select defenders via Fairwind as the AI arms race extends to security capabilities._
+  - Source: [Full story · Google Blog](https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/)
+
+- **[04 · SECURITY]** Massive Leak Exposes 41,000+ DHS Employees Including Undercover Agents
+  - _Hackers breached DHS’ Okta login system, leaking CBP, ICE and other agency workers’ personal data._
+  - Source: [Full story · Wired](https://www.wired.com/story/massive-leak-exposes-41000-homeland-security-workers-including-undercover-ice-agents/)
+
+- **[05 · CHIPS]** Samsung Hits Record Profits as HBM Sells Out Through 2027
+  - _Memory prices surge as AI demand overwhelms supply, while Marvell eyes $83B Lumentum acquisition._
+  - Source: [Full story · CNBC](https://www.cnbc.com/2026/10/29/samsung-electronics-third-quarter-earnings.html)
+
+  **Signals / briefs:**
+  - Cognition Valued at $70B-$80B in New Talks
+  - ServiceNow Shares Plunge 15%+
+  - Xreal Aura Launches with Android XR
+  - Zillow to Pay $212.5M in Zillow Offers Settlement
+  - AI Memory Prices Quintupled
+
+### Issue 153 · 2026-10-28 · `daily/timps-postcards-2026-10-28.html`
+
+- **[01 · LEAD]** OpenAI Plans to Buy Google TPUs as Memory Crunch Deepens
+  - _Diversification from Nvidia takes a major step forward, while SK Hynix locks up majority of 2027-2028 HBM output through 2030._
+  - Source: [Full story · The Neuron](https://www.theneuron.ai/digest/everything-that-happened-in-ai-today-wednesday-october-28-2026/)
+
+- **[02 · MODELS]** OpenAI Ships GPT-6.1 Terra, Liquid AI Debuts LFM3 Family
+  - _Faster, cheaper computer-use models hit the API as open-weight multimodal options proliferate._
+  - Source: [Full story · e/acc Daily](https://e-acc.ai/daily/2026-10-28)
+
+- **[03 · INFRASTRUCTURE]** Oracle Goes All-In on AI, Nvidia-Meta Expand Partnership
+  - _ChatGPT and Codex land in Oracle apps as $40B SpaceX financing and massive Meta equity raises underscore infrastructure appetite._
+  - Source: [Full story · Best Productivity Resources](https://bestproductivityresources.com/articles/ai-and-tech-news-28-october-2026)
+
+- **[04 · RESEARCH]** Google DeepMind Unveils Genie 4 With Native Audio
+  - _Real-time interactive world simulation takes a leap forward with music, dialogue, and natural-language steering._
+  - Source: [Full story · The Neuron](https://www.theneuron.ai/digest/everything-that-happened-in-ai-today-wednesday-october-28-2026/)
+
+- **[05 · POLICY & SOCIETY]** Anthropic Expands GSA Deal, Governments Eye AI Job Cuts
+  - _Federal discount program grows as Netherlands plans major public-sector automation._
+  - Source: [Full story · The Neuron](https://www.theneuron.ai/digest/everything-that-happened-in-ai-today-wednesday-october-28-2026/)
+
+  **Signals / briefs:**
+  - Axiom Formalizes Classification of Finite Simple Groups
+  - Cloudflare GLM-5.3 Data Exposure
+  - Anthropic Finds Exploits via Unreleased Model
+  - Malaysia Seizes $12.1M in AI Chips
+  - Analysts Follow AI Nudges 86% of the Time
 
 ### Issue 152 · 2026-10-27 · `daily/timps-postcards-2026-10-27.html`
 
