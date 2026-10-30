@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 141 daily issues + 18 deep dives · regenerated 2026-10-29**
+**Coverage: 142 daily issues + 18 deep dives · regenerated 2026-10-30**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 155 · 2026-10-30 · `daily/timps-postcards-2026-10-30.html`
+
+- **[01 · LEAD]** Binance Investigates $6.3B Hack, Blames Compromised DevOps Laptop
+  - _TRM Labs attributes it to North Korea's TraderTraitor; Binance pledges to cover all losses in what could be the largest crypto theft ever._
+  - Source: [Full story · The Block](https://www.theblock.co/news/markets/2026-10-29-binance-investigating-hack-suspicious-outflows-5-billion-432171)
+
+- **[02 · CLOUD]** Amazon AWS Grows 39% as Spending Hits $220B Capex Target
+  - _AWS revenue beats at $45.98B with record operating margin, but Amazon's free cash flow turns deeply negative on AI infrastructure spend._
+  - Source: [Full story · CNBC](https://www.cnbc.com/2026/10/29/aws-q3-earnings-report-2026.html)
+
+- **[03 · CHIPS]** Intel Plunges 23% on Weak PC Demand and Bleak Outlook
+  - _Client computing falls 5% as memory prices soar; CFO says PC slowdown will continue through first half of next year._
+  - Source: [Full story · CNBC](https://www.cnbc.com/2026/10/29/intel-intc-q3-earnings-report-2026-.html)
+
+- **[04 · PLATFORMS]** Reddit Moves to Logged-In-Only Access to Fight AI Scraping
+  - _The platform plans to require login for full access in select markets, as DAUs miss expectations and revenue growth slows._
+  - Source: [Full story · Axios](https://www.axios.com/2026/10/29/reddit-logged-in-ai-search-incognito)
+
+- **[05 · MARKETS]** NYSE Owner Plans US-Regulated Hyperliquid Perpetual Markets
+  - _ICE takes stake in Trade.xyz as traditional finance moves deeper into crypto derivatives._
+  - Source: [Full story · Bloomberg](https://www.bloomberg.com/news/articles/2026-10-29/nyse-owner-plans-market-for-hyperliquid-perpetual-futures-in-us)
+
+  **Signals / briefs:**
+  - Alphabet Wipes $500B on Earnings Miss
+  - China-Linked Hackers Used AI to Attack 200+ Orgs
+  - Nvidia in Talks to Back Anthropic Data Center
+  - Pinterest Misses, Guides Lower
+  - Mistral Releases Large 4 Weights
 
 ### Issue 154 · 2026-10-29 · `daily/timps-postcards-2026-10-29.html`
 
