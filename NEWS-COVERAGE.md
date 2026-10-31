@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 142 daily issues + 18 deep dives · regenerated 2026-10-30**
+**Coverage: 143 daily issues + 18 deep dives · regenerated 2026-10-31**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 156 · 2026-10-31 · `daily/timps-postcards-2026-10-31.html`
+
+- **[01 · LEAD]** Neoclouds Shut Out of the Bond Market as AI’s Cheap-Money Era Ends
+  - _CoreWeave, Nebius and Nscale have effectively lost access to debt markets in recent weeks, as lenders demand tougher terms from the companies building AI’s data centers._
+  - Source: [Full story · Wall Street Journal](https://www.wsj.com/finance/the-new-bottleneck-in-americas-ai-build-out-a-shortage-of-cheap-money-0c14c84d)
+
+- **[02 · MARKETS]** S&P Cuts Meta’s Outlook to Negative as AI Capex Swallows Its Cash Flow
+  - _The rating agency kept Meta at AA- but flagged “uncertainty” over whether its AI spending will ever earn its keep. The stock fell 15% in October, its worst month in four years._
+  - Source: [Full story · CNBC](https://www.cnbc.com/2026/10/30/meta-outlook-to-revised-to-negative-by-sp-after-cash-flow-negative.html)
+
+- **[03 · FUNDING]** OpenAI’s Mega-Round Shrinks as Investors Trim Their Commitments
+  - _Roughly $11B has been committed against a $30B target, and the round is now reported at about $20B at a $1.25T valuation — down from $30B at $1.4T._
+  - Source: [Full story · Wall Street Journal](https://www.wsj.com/tech/ai/openai-raises-less-than-half-of-30-billion-target-in-latest-round-91aecdc5)
+
+- **[04 · SECURITY]** Tampered Claude Code Extension Backdoors Cursor’s Marketplace for 11 Hours
+  - _A malicious build of Anthropic’s extension shipped a persistent SSH backdoor to macOS and Windows machines. Cursor says up to 5,000 users were affected._
+  - Source: [Full story · Cursor Security Notice](https://cursor.com/blog/claude-code-extension-security-notice)
+
+- **[05 · CHIPS]** Intel’s Worst Day Since the 1970s Wipes $12B Off the Government’s Stake
+  - _Shares closed down 28.58% after guidance blamed an Israel plant shutdown and a soft PC market — a first real test of Lip-Bu Tan’s turnaround._
+  - Source: [Full story · CNBC](https://www.cnbc.com/2026/10/30/amazon-intel-earnings-big-tech-ai-spending-concerns.html)
+
+  **Signals / briefs:**
+  - Baseten Seeks $2B at Up to $30B Valuation
+  - Google in Talks to Join Golden Dome Program
+  - Big AI Backs a Single Opt-Out Token for Crawlers
+  - OpenAI Tightens Weapons Answers for Teens
+  - Powerlattice Raises $86M for AI Power Chiplets
 
 ### Issue 155 · 2026-10-30 · `daily/timps-postcards-2026-10-30.html`
 
