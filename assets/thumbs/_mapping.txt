@@ -140,3 +140,4 @@
 2026-10-28	153	thumb-2026-10-28.svg	OpenAI Plans to Buy Google TPUs as Memory Crunch Deepens	chip
 2026-10-29	154	thumb-2026-10-29.jpg	Apple Unveils Touchscreen MacBook Pro With ProLED Display	apple
 2026-10-30	155	thumb-2026-10-30.jpg	Binance Investigates Record $6.3B Hack	hack
+2026-10-31	156	thumb-2026-10-31.jpg	Neoclouds Shut Out of the Bond Market as AI's Cheap-Money Era Ends	chip

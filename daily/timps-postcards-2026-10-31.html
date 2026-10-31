@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TIMPS">
+<link rel="manifest" href="../manifest.json">
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/icon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/icon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="../assets/icon-48.png">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="../assets/icon-180.png">
+<title>TIMPS PostCards — Issue 156</title>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --cream:  #EEECE2;
+    --forest: #3D3929;
+    --terra:  #DA7756;
+    --terra-d:#BD5D3A;
+    --black:  #111111;
+    --card-bg:#F0ECE0;
+    --mono:   'Newsreader', Georgia, 'Times New Roman', serif;
+    --serif:  'TIMPS', 'Playfair Display', Georgia, serif;
+  }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Black.woff2') format('woff2'); font-weight:900; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Bold.woff2') format('woff2'); font-weight:700; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-SemiBold.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--cream);
+    background-image:
+      linear-gradient(rgba(61,57,41,.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.07) 1px, transparent 1px);
+    background-size: 38px 38px;
+    font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+    color: var(--forest);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { text-decoration: none; color: inherit; }
+
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 48px;
+    background-color: rgba(238,236,226,.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1.5px solid rgba(61,57,41,.12);
+    background-image:
+      linear-gradient(rgba(61,57,41,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.05) 1px, transparent 1px);
+    background-size: 38px 38px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Special Elite', 'Courier New', Courier, monospace;
+    font-size: 15px;
+    font-weight: 400;
+    color: #000;
+    text-decoration: none;
+  }
+  .nav-logo-mark {
+    width: 34px; height: 34px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .nav-logo-mark img { width: 28px; height: 28px; object-fit: contain; }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-link {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: #000;
+    opacity: .65;
+    text-decoration: none;
+    transition: opacity .15s;
+  }
+  .nav-link:hover { opacity: 1; }
+  .nav-cta {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: #000;
+    background: var(--terra);
+    border: 2.5px solid #000;
+    border-radius: 100px;
+    padding: 10px 24px;
+    cursor: pointer;
+    transition: background .15s, transform .1s;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--terra-d); transform: translateY(-1px); }
+
+  .wrapper { max-width: 760px; margin: 0 auto; padding: 40px 20px 80px; display: flex; flex-direction: column; gap: 0; }
+
+  .cover-card { background: var(--card-bg); border-radius: 20px 20px 4px 4px; padding: 56px 48px 48px; text-align: center; position: relative; overflow: hidden; border: 1.5px solid rgba(61,57,41,.12); margin-bottom: 3px; }
+  .cover-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, var(--terra) 0%, var(--terra-d) 60%, #E0A88A 100%); }
+  .cover-eyebrow { font-family: var(--mono); font-size:10px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:20px; display:flex; align-items:center; justify-content:center; gap:10px; }
+  .cover-eyebrow::before,.cover-eyebrow::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .15; max-width:60px; }
+  .cover-title { font-family: var(--serif); font-size:58px; font-weight:900; line-height:1; letter-spacing:-1px; color: var(--forest); margin-bottom:8px; }
+  .cover-sub { font-family: var(--serif); font-size:13px; font-style:italic; color: var(--forest); opacity: .55; margin-bottom:28px; }
+  .cover-divider { width:48px; height:2px; background: var(--terra); margin:0 auto 24px; border-radius:2px; }
+  .cover-meta { display:flex; justify-content:center; gap:32px; font-family: var(--mono); font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .45; }
+  .cover-badge { display:inline-flex; align-items:center; gap:6px; background: var(--terra); color: #fff; border-radius:20px; padding:6px 18px; font-family: var(--mono); font-size:10px; letter-spacing:2px; text-transform:uppercase; margin-top:28px; }
+  .top5-pill { display:flex; justify-content:center; gap:10px; margin-top:32px; flex-wrap:wrap; }
+  .pill { background: var(--forest); color: var(--cream); border-radius:100px; padding:4px 14px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; }
+  .pill.light { background:transparent; color: var(--forest); border:1px solid rgba(61,57,41,.2); }
+
+  .section-label { display:flex; align-items:center; gap:12px; padding:10px 0 8px; font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .35; }
+  .section-label::before,.section-label::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .1; }
+
+  .story-card { border-radius:4px; border:1.5px solid rgba(61,57,41,.10); padding:36px 40px; margin-bottom:3px; position:relative; overflow:hidden; }
+  .story-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }
+
+  .card-sky      { background:#D6E8F0; } .card-sky::before      { background: #7AAFC0; }
+  .card-cream    { background: var(--card-bg); } .card-cream::before    { background: var(--terra); }
+  .card-blush    { background:#F5DDD0; } .card-blush::before    { background: #E0A88A; }
+  .card-lavender { background:#EAE6F5; } .card-lavender::before { background: #C8BEE8; }
+  .card-sage     { background:#D6E4D6; } .card-sage::before     { background: #8BAF8B; }
+
+  .page-chip { position:absolute; top:14px; right:16px; font-family: var(--mono); font-size:9px; letter-spacing:2px; text-transform:uppercase; color: var(--forest); opacity: .3; }
+  .card-routine { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:8px; }
+  .card-headline { font-family: var(--serif); font-size:28px; font-weight:900; line-height:1.15; color: var(--forest); margin-bottom:10px; }
+  .card-headline.lg { font-size:34px; }
+  .card-headline.sm { font-size:22px; }
+  .card-deck { font-family: var(--serif); font-style:italic; font-size:14px; line-height:1.55; color: var(--forest); opacity: .55; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid rgba(61,57,41,.12); }
+  .card-body { font-family: 'Lora', Georgia, serif; font-size:14px; line-height:1.7; color: var(--forest); }
+  .card-body p { margin-bottom:11px; }
+  .drop::first-letter { font-family: var(--serif); font-size:52px; font-weight:900; float:left; line-height:.78; margin:5px 6px 0 0; color: var(--terra); }
+  .clearfix::after { content:''; display:table; clear:both; }
+
+  .hl-terra { background: var(--terra); color: var(--forest); padding:0 4px; border-radius:2px; }
+  .hl-ink  { background: var(--forest); color: var(--cream); padding:0 4px; border-radius:2px; }
+  .hl-sage { background: #8BAF8B; color: #fff; padding:0 4px; border-radius:2px; }
+  .hl-lav  { background: #C8BEE8; color: var(--forest); padding:0 4px; border-radius:2px; }
+
+  .stat-box { float:right; margin:0 0 16px 24px; background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:16px 20px; text-align:center; min-width:120px; }
+  .stat-big { font-family: var(--serif); font-size:44px; font-weight:900; line-height:1; color: var(--forest); display:block; }
+  .stat-label { font-family: var(--mono); font-size:9.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .5; display:block; margin-top:4px; }
+
+  .img-frame { border:2px solid rgba(61,57,41,0.18); border-radius:12px; overflow:hidden; margin:16px 0; background: var(--card-bg); }
+  .img-frame img { width:100%; display:block; max-height:240px; object-fit:cover; border-bottom:1px solid rgba(61,57,41,.12); }
+  .img-caption { padding:8px 12px; font-family: var(--mono); font-size:10.5px; color: var(--forest); opacity: .6; font-style:italic; display:flex; align-items:center; justify-content:space-between; gap:8px; }
+  .img-caption a { font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; white-space:nowrap; font-style:normal; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; }
+  .img-caption a:hover { opacity: 1; }
+  .img-frame.float-right { float:right; width:220px; margin:0 0 16px 24px; }
+  .img-frame.float-right img { max-height:140px; }
+
+  .source-link { display:inline-flex; align-items:center; gap:5px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:12px; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; transition: opacity .15s; }
+  .source-link:hover { opacity: 1; }
+  .source-link::after { content:'↗'; font-size:9px; }
+
+  .signals-grid { display:flex; flex-direction:column; gap:14px; }
+  .signal-row { display:flex; align-items:flex-start; gap:14px; }
+  .signal-num { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family: var(--serif); font-size:13px; font-weight:900; flex-shrink:0; color:#fff; }
+  .signal-num.n1{background: var(--terra); color: var(--forest);} .signal-num.n2{background: var(--forest);} .signal-num.n3{background:#7AAFC0;} .signal-num.n4{background: var(--terra-d); color: var(--forest);} .signal-num.n5{background: var(--black);}
+  .signal-title { font-family: var(--serif); font-size:14px; font-weight:700; color: var(--forest); margin-bottom:2px; }
+  .signal-desc { font-family: 'Newsreader', Georgia, 'Times New Roman', serif; font-size:12px; line-height:1.65; color: var(--forest); opacity: .6; }
+  .signal-link { display:inline-block; font-family: var(--mono); font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:4px; border-bottom:1px solid rgba(61,57,41,.25); padding-bottom:1px; transition: opacity .15s; }
+  .signal-link:hover { opacity: 1; }
+
+  .themes-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .theme-item { padding:10px 14px; border-radius:8px; font-family: var(--serif); font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; text-align:center; border:1.5px solid rgba(61,57,41,.12); background: var(--cream); }
+
+  .tool-week { background: var(--forest); color: var(--cream); border-radius:12px; padding:18px 20px; text-align:center; margin-top:14px; }
+  .tool-week-eyebrow { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; opacity: .55; margin-bottom:6px; }
+  .tool-week-name { font-family: var(--serif); font-size:22px; font-weight:900; margin-bottom:4px; }
+  .tool-week-desc { font-family: 'Newsreader', Georgia, 'Times New Roman', serif; font-size:11.5px; opacity: .7; font-style:italic; }
+
+  .output-card { background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:18px 20px; margin-top:14px; }
+  .output-title { font-family: var(--serif); font-size:18px; font-weight:700; margin-bottom:8px; color: var(--forest); }
+  .tp-list { list-style:none; padding:0; margin:0; }
+  .tp-list li { padding:5px 0; font-family: 'Lora', Georgia, serif; font-size:12px; color: var(--forest); border-bottom:1px solid rgba(61,57,41,.07); display:flex; align-items:flex-start; gap:7px; }
+  .tp-list li::before { content:'·'; color: var(--terra); font-size:14px; line-height:1.2; flex-shrink:0; }
+  .tp-list li a { color: var(--forest); opacity: .8; text-decoration:none; }
+  .tp-list li a:hover { opacity: 1; }
+
+  .sources-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px 20px; }
+  .sources-grid a { font-family: var(--mono); font-size:11px; color: var(--forest); opacity: .55; text-decoration:none; border-bottom:1px solid rgba(61,57,41,.15); padding-bottom:1px; transition: opacity .15s; }
+  .sources-grid a:hover { opacity: 1; }
+
+  .footer {
+    background: var(--black);
+    padding: 28px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    border-radius: 4px 4px 20px 20px;
+    margin-top: 3px;
+  }
+  .footer-logo { display: flex; align-items: center; gap: 10px; }
+  .footer-mark { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; }
+  .footer-mark img { width: 24px; height: 24px; object-fit: contain; }
+  .footer-brand { font-family: 'Special Elite', 'Courier New', Courier, monospace; font-size: 13px; font-weight: 400; color: #fff; }
+  .footer-center { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.4); text-align: center; line-height: 1.6; }
+  .footer-right { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.3); text-align: right; line-height: 2; }
+  .footer-right a { color: rgba(255,255,255,.5); transition: color .15s; }
+  .footer-right a:hover { color: #fff; }
+
+  .page-layout { display: flex; align-items: flex-start; gap: 0; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+  .toc-sidebar { position: sticky; top: 80px; width: 170px; flex-shrink: 0; padding: 48px 0 0 0; }
+  .toc-nav { display: flex; flex-direction: column; gap: 0; }
+  .toc-link { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.5px; text-transform: uppercase; color: #000; opacity: .45; text-decoration: none; padding: 7px 12px; border-left: 2px solid transparent; transition: opacity .15s, border-color .15s; line-height: 1.3; }
+  .toc-link:hover { opacity: .85; }
+  .toc-link.active { opacity: 1; border-left-color: var(--terra); }
+  .section-anchor { scroll-margin-top: 80px; }
+
+  @media (max-width: 900px) {
+    .toc-sidebar { display: none; }
+    .page-layout { max-width: 760px; }
+  }
+
+  @media (max-width: 720px) {
+    .nav { padding: 12px 24px; }
+    .nav-links { display: none; }
+    .wrapper { padding: 20px 14px 60px; }
+    .cover-card { padding: 40px 24px; }
+    .story-card { padding: 28px 20px; }
+    .footer { padding: 24px; flex-direction: column; align-items: flex-start; }
+    .footer-center, .footer-right { text-align: left; }
+    .stat-box { float: none; margin: 0 0 16px 0; }
+    .img-frame.float-right { float: none; width: 100%; margin: 0 0 16px 0; }
+  }
+  @media (max-width: 480px) {
+    .nav-logo span { display: none; }
+    .cover-title { font-size: 40px; }
+    .card-headline.lg { font-size: 28px; }
+    .card-headline { font-size: 24px; }
+  }
+</style>
+
+</head>
+
+<body>
+
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">
+    <div class="nav-logo-mark"><img src="../assets/timps-postcards.png" alt="TIMPS"></div>
+    <span>TIMPS PostCards</span>
+  </a>
+  <div class="nav-links">
+    <a href="../articles.html" class="nav-link">Articles</a>
+    <a href="../archive.html" class="nav-link">Archive</a>
+    <a href="timps-postcards-2026-10-31.html" class="nav-link">Latest Issue</a>
+    <a href="../index.html#subscribe" class="nav-link">Subscribe</a>
+  </div>
+  <a href="../index.html#subscribe" class="nav-cta">Subscribe</a>
+</nav>
+
+<div class="page-layout">
+  <aside class="toc-sidebar">
+    <nav class="toc-nav">
+      <a href="#capital" class="toc-link">Capital</a>
+      <a href="#markets" class="toc-link">Markets</a>
+      <a href="#funding" class="toc-link">Funding</a>
+      <a href="#security" class="toc-link">Security</a>
+      <a href="#chips" class="toc-link">Chips</a>
+      <a href="#signals" class="toc-link">Signals</a>
+      <a href="#themes" class="toc-link">Themes</a>
+      <a href="#tool" class="toc-link">Watch</a>
+      <a href="#sources" class="toc-link">Sources</a>
+    </nav>
+  </aside>
+
+  <div class="wrapper">
+
+  <div id="intro" class="cover-card section-anchor">
+    <div class="cover-eyebrow">Est. 2026 &middot; Hyderabad</div>
+    <div class="cover-title">TIMPS<br>PostCards</div>
+    <div class="cover-sub">AI Intelligence Digest &middot; Your Daily Signal from the Machine Frontier</div>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+      <span>Issue 156</span>
+      <span>October 31, 2026</span>
+      <span>No. 183</span>
+    </div>
+    <div class="cover-badge">&#11041; 156 Issues &mdash; Built with the TIMPS Ecosystem</div>
+    <div class="top5-pill">
+      <span class="pill">5 Top Signals</span>
+      <span class="pill light">Neocloud Bond Shutout</span>
+      <span class="pill light">S&amp;P Cuts Meta Outlook</span>
+      <span class="pill light">OpenAI Round Shrinks</span>
+      <span class="pill light">Cursor Backdoor</span>
+      <span class="pill light">Intel -29%</span>
+    </div>
+  </div>
+
+  <div id="capital" class="story-card card-blush section-anchor">
+    <div class="page-chip">01 &middot; LEAD</div>
+    <div class="card-routine">Capital &middot; The Cheap-Money Bottleneck</div>
+    <h2 class="card-headline lg">Neoclouds Shut Out of the Bond Market as AI&rsquo;s Cheap-Money Era Ends</h2>
+    <div class="card-deck">CoreWeave, Nebius and Nscale have effectively lost access to debt markets in recent weeks, as lenders demand tougher terms from the companies building AI&rsquo;s data centers.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">3</span>
+        <span class="stat-label">neoclouds priced out</span>
+      </div>
+      <p class="drop"><b>CoreWeave</b>, <b>Nebius</b> and <b>Nscale</b> have effectively been shut out of the bond market in recent weeks, according to the <b>Wall Street Journal</b>, as lenders and investors demand stricter terms and higher compensation for backing the AI build-out. The three are the purest plays on renting GPU capacity to AI labs, and all of them fund enormous data-center construction with borrowed money.</p>
+      <p>The shift is not that capital has vanished &mdash; it is that the price of it has changed. Investors are getting choosier about their bets as the build-out enters a new phase, one where the question is no longer whether demand exists but whether the cash flows arrive fast enough to service the debt taken on to meet it.</p>
+      <p><span class="hl-ink">For two years the binding constraint on AI was chips. This week it became the cost of capital. When the companies that exist purely to finance GPUs can no longer borrow, the entire stack above them &mdash; labs, model training runs, and the leases that underwrite them &mdash; starts to reprice.</span></p>
+    </div>
+    <a class="source-link" href="https://www.wsj.com/finance/the-new-bottleneck-in-americas-ai-build-out-a-shortage-of-cheap-money-0c14c84d" target="_blank">Full story &middot; Wall Street Journal</a>
+  </div>
+
+  <div id="markets" class="story-card card-sky section-anchor">
+    <div class="page-chip">02 &middot; MARKETS</div>
+    <div class="card-routine">Credit &middot; Meta Downgrade</div>
+    <h2 class="card-headline">S&amp;P Cuts Meta&rsquo;s Outlook to Negative as AI Capex Swallows Its Cash Flow</h2>
+    <div class="card-deck">The rating agency kept Meta at AA- but flagged &ldquo;uncertainty&rdquo; over whether its AI spending will ever earn its keep. The stock fell 15% in October, its worst month in four years.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">-15%</span>
+        <span class="stat-label">META in October</span>
+      </div>
+      <p class="drop"><b>S&amp;P Global Ratings</b> revised <b>Meta&rsquo;s</b> outlook from stable to negative on Friday, holding the credit rating at <b>AA-</b> but warning of &ldquo;uncertainty&rdquo; around the company&rsquo;s elevated capital expenditure and its negative free cash flow. The agency also questioned Meta&rsquo;s ability to monetize its AI investments relative to peers that are spending just as heavily on data centers.</p>
+      <p>Meta has rolled out its <b>Muse</b> AI agent app and related foundation models, but S&amp;P said it &ldquo;is unclear when these revenue streams will generate material contributions that exceed their rising costs over the next few years.&rdquo; The shares fell <b>15%</b> across October &mdash; their worst month in four years &mdash; as the market repriced the cost of staying in the race.</p>
+      <p><span class="hl-terra">Credit raters are now asking the question equity investors have spent a year avoiding: at what point does spending money faster than you earn it become a balance-sheet problem rather than a growth strategy?</span></p>
+    </div>
+    <a class="source-link" href="https://www.cnbc.com/2026/10/30/meta-outlook-to-revised-to-negative-by-sp-after-cash-flow-negative.html" target="_blank">Full story &middot; CNBC</a>
+  </div>
+
+  <div id="funding" class="story-card card-sage section-anchor">
+    <div class="page-chip">03 &middot; FUNDING</div>
+    <div class="card-routine">Private Markets &middot; The Big Cheque</div>
+    <h2 class="card-headline">OpenAI&rsquo;s Mega-Round Shrinks as Investors Trim Their Commitments</h2>
+    <div class="card-deck">Roughly $11B has been committed against a $30B target, and the round is now reported at about $20B at a $1.25T valuation &mdash; down from $30B at $1.4T.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">$11B</span>
+        <span class="stat-label">committed so far</span>
+      </div>
+      <p class="drop"><b>OpenAI</b> has secured roughly <b>$11 billion</b> in commitments for its latest funding round, less than half of its initial <b>$30 billion</b> target, and expects to raise more over the coming weeks, according to the <b>Wall Street Journal</b>. The <b>Financial Times</b> reports the company is now seeking about <b>$20 billion</b> at a <b>$1.25 trillion</b> valuation &mdash; down from $30 billion at $1.4 trillion &mdash; as some investors cut the size of their cheques amid a broader AI selloff.</p>
+      <p>The retrenchment is selective rather than total. Inference startup <b>Baseten</b> is in the market for about <b>$2 billion</b> across two tranches valuing it at $26 billion and $30 billion, up sharply from $13 billion in June. Money is still chasing the picks and shovels; it is simply less willing to pay any price for the headline asset.</p>
+      <p><span class="hl-ink">A round that shrinks by a third while the valuation falls by a tenth is the market&rsquo;s way of saying the growth story is intact but the price of admission was wrong. Watch who fills the gap &mdash; and on what terms.</span></p>
+    </div>
+    <a class="source-link" href="https://www.wsj.com/tech/ai/openai-raises-less-than-half-of-30-billion-target-in-latest-round-91aecdc5" target="_blank">Full story &middot; Wall Street Journal</a>
+  </div>
+
+  <div id="security" class="story-card card-lavender section-anchor">
+    <div class="page-chip">04 &middot; SECURITY</div>
+    <div class="card-routine">Supply Chain &middot; Marketplace Backdoor</div>
+    <h2 class="card-headline">Tampered Claude Code Extension Backdoors Cursor&rsquo;s Marketplace for 11 Hours</h2>
+    <div class="card-deck">A malicious build of Anthropic&rsquo;s extension shipped a persistent SSH backdoor to macOS and Windows machines. Cursor says up to 5,000 users were affected.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">11 hrs</span>
+        <span class="stat-label">exposure window</span>
+      </div>
+      <p class="drop">Between roughly <b>2:27am</b> and <b>1:35pm PT</b> on October 29, a maliciously modified version of <b>Anthropic&rsquo;s Claude Code</b> extension was available in the <b>Cursor VS Code Extension Marketplace</b>. Versions <b>2.1.312</b> and <b>2.1.313</b> ran code that appended an attacker&rsquo;s public key &mdash; labelled <b>svc-telemetry</b> &mdash; to <b>~/.ssh/authorized_keys</b>, installing a persistent SSH backdoor on macOS and Windows machines. <b>Reuters</b> reports up to <b>5,000 users</b> were affected.</p>
+      <p>Anthropic said it did not build or publish the tampered build. Cursor pulled it and published detection and remediation scripts that remove the extension, the persistence mechanisms, the tunnel processes and the attacker&rsquo;s key. Anyone who installed or updated the extension inside that window should check their authorized keys immediately.</p>
+      <p><span class="hl-lav">The package registry is the new perimeter. A trusted name, a trusted marketplace and a version bump were all an attacker needed &mdash; and the window was measured in hours, not days. Every agent toolchain now inherits this risk.</span></p>
+    </div>
+    <a class="source-link" href="https://cursor.com/blog/claude-code-extension-security-notice" target="_blank">Full story &middot; Cursor Security Notice</a>
+  </div>
+
+  <div id="chips" class="story-card card-cream section-anchor">
+    <div class="page-chip">05 &middot; CHIPS</div>
+    <div class="card-routine">Semiconductors &middot; Worst Day Since the 1970s</div>
+    <h2 class="card-headline">Intel&rsquo;s Worst Day Since the 1970s Wipes $12B Off the Government&rsquo;s Stake</h2>
+    <div class="card-deck">Shares closed down 28.58% after guidance blamed an Israel plant shutdown and a soft PC market &mdash; a first real test of Lip-Bu Tan&rsquo;s turnaround.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">-28.58%</span>
+        <span class="stat-label">Friday close</span>
+      </div>
+      <p class="drop"><b>Intel</b> shares plummeted <b>28.58%</b> on Friday &mdash; their worst single day since the 1970s &mdash; after the chipmaker issued weaker-than-expected guidance, citing a plant shutdown in Israel and continued softness in the PC market. The drop wiped roughly <b>$12 billion</b> off the value of the <b>US government&rsquo;s 10% stake</b>, and about <b>$6 billion</b> off Nvidia&rsquo;s holding.</p>
+      <p>It is a sharp reversal for CEO <b>Lip-Bu Tan</b>, who was hired in March 2025 to revive a company that missed the early years of the AI boom. Intel shares had been up about <b>150%</b> this year heading into the report on demand for CPUs in agentic AI workloads. <b>D.A. Davidson</b> downgraded the stock to neutral on Friday under the title &ldquo;Not fixed yet.&rdquo;</p>
+      <p><span class="hl-terra">Intel&rsquo;s recovery was priced as a completed story. One quarter of guidance just turned it back into an open question &mdash; and the government&rsquo;s balance sheet is now along for the ride.</span></p>
+    </div>
+    <a class="source-link" href="https://www.cnbc.com/2026/10/30/amazon-intel-earnings-big-tech-ai-spending-concerns.html" target="_blank">Full story &middot; CNBC</a>
+  </div>
+
+  <div id="signals" class="story-card card-cream section-anchor">
+    <div class="page-chip">06 &middot; SIGNALS</div>
+    <div class="card-routine">5 Key Signals</div>
+    <h2 class="card-headline sm">What Moved the Machine Frontier Today</h2>
+    <div class="card-deck" style="border-bottom:none;padding-bottom:0;margin-bottom:16px;">Briefs worth an afternoon of reading.</div>
+    <div class="signals-grid">
+      <div class="signal-row">
+        <div class="signal-num n1">1</div>
+        <div>
+          <div class="signal-title">Baseten Seeks $2B at Up to $30B Valuation</div>
+          <div class="signal-desc">The inference startup is raising across two tranches, up from a $13B valuation in June after a $1.5B round.</div>
+          <a class="signal-link" href="https://www.bloomberg.com/news/articles/2026-10-30/baseten-set-for-30-billion-valuation-with-new-funding" target="_blank">Bloomberg &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n2">2</div>
+        <div>
+          <div class="signal-title">Google in Talks to Join Golden Dome Program</div>
+          <div class="signal-desc">Alphabet is discussing a role securing the data that feeds software built for the Pentagon&rsquo;s missile-defense effort.</div>
+          <a class="signal-link" href="https://www.bloomberg.com/news/articles/2026-10-30/alphabet-is-in-talks-to-join-trump-s-golden-dome-defense-program" target="_blank">Bloomberg &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n3">3</div>
+        <div>
+          <div class="signal-title">Big AI Backs a Single Opt-Out Token for Crawlers</div>
+          <div class="signal-desc">OpenAI, Google, Microsoft and Anthropic will honor an IETF &ldquo;policy token&rdquo; in robots.txt that sets training preferences across crawlers.</div>
+          <a class="signal-link" href="https://www.theverge.com/tech/1023763/openai-google-microsoft-ai-scraping-standard-opt-out" target="_blank">The Verge &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n4">4</div>
+        <div>
+          <div class="signal-title">OpenAI Tightens Weapons Answers for Teens</div>
+          <div class="signal-desc">ChatGPT will restrict weapons-related information for younger users even when a question appears harmless.</div>
+          <a class="signal-link" href="https://www.reuters.com/business/media-telecom/openai-limit-weapons-information-teens-chatgpt-violence-prevention-push-2026-10-30/" target="_blank">Reuters &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n5">5</div>
+        <div>
+          <div class="signal-title">Powerlattice Raises $86M for AI Power Chiplets</div>
+          <div class="signal-desc">The Vancouver, WA startup says its power-delivery chiplet can cut AI compute power needs by more than 50%.</div>
+          <a class="signal-link" href="https://www.geekwire.com/2026/filing-chip-startup-powerlattice-raises-86m-to-ease-ais-power-crunch/" target="_blank">GeekWire &#8597;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="themes" class="story-card card-lavender section-anchor">
+    <div class="page-chip">07 &middot; CLOSER</div>
+    <div class="card-routine">Top Themes</div>
+    <h2 class="card-headline sm">The Shape of Today&rsquo;s News</h2>
+    <div class="themes-grid" style="margin-top:16px;">
+      <div class="theme-item">AI Credit Squeeze</div>
+      <div class="theme-item">Capex vs Cash Flow</div>
+      <div class="theme-item">Funding Reset</div>
+      <div class="theme-item">Marketplace Supply Chain</div>
+      <div class="theme-item">Chip Volatility</div>
+    </div>
+
+    <div id="tool" class="tool-week section-anchor">
+      <div class="tool-week-eyebrow">Company Watch of the Day</div>
+      <div class="tool-week-name">COREWEAVE</div>
+      <div class="tool-week-desc"><b>CoreWeave</b> is the clearest bellwether for the AI build-out&rsquo;s financing layer. It rents GPU capacity on multi-year contracts and funds the underlying data centers with debt &mdash; which makes it exquisitely sensitive to exactly what just changed. If lenders are demanding tougher terms and higher yields from neoclouds, CoreWeave&rsquo;s growth math gets harder: every new megawatt costs more to finance, and every contract has to clear a higher bar. The company is not alone &mdash; Nebius and Nscale face the same wall &mdash; but CoreWeave&rsquo;s scale makes it the one to watch. Its next bond or loan pricing will tell you whether this week was a wobble or a regime change.</div>
+    </div>
+
+    <div id="sources" class="output-card section-anchor">
+      <div class="output-title">Sources Cited</div>
+      <div class="sources-grid">
+        <a href="https://www.wsj.com/finance/the-new-bottleneck-in-americas-ai-build-out-a-shortage-of-cheap-money-0c14c84d" target="_blank">WSJ &mdash; neocloud bond shutout</a>
+        <a href="https://www.cnbc.com/2026/10/30/meta-outlook-to-revised-to-negative-by-sp-after-cash-flow-negative.html" target="_blank">CNBC &mdash; S&amp;P cuts Meta outlook</a>
+        <a href="https://www.wsj.com/tech/ai/openai-raises-less-than-half-of-30-billion-target-in-latest-round-91aecdc5" target="_blank">WSJ &mdash; OpenAI round shrinks</a>
+        <a href="https://www.ft.com/content/7a3ad950-1b3b-4d9e-8c15-65a61ae6180f" target="_blank">FT &mdash; OpenAI valuation reset</a>
+        <a href="https://cursor.com/blog/claude-code-extension-security-notice" target="_blank">Cursor &mdash; extension security notice</a>
+        <a href="https://www.reuters.com/business/media-telecom/cursor-says-up-5000-users-affected-by-tampered-claude-code-extension-2026-10-30/" target="_blank">Reuters &mdash; 5,000 users affected</a>
+        <a href="https://www.cnbc.com/2026/10/30/amazon-intel-earnings-big-tech-ai-spending-concerns.html" target="_blank">CNBC &mdash; Intel worst day</a>
+        <a href="https://www.bloomberg.com/news/articles/2026-10-30/baseten-set-for-30-billion-valuation-with-new-funding" target="_blank">Bloomberg &mdash; Baseten round</a>
+        <a href="https://www.bloomberg.com/news/articles/2026-10-30/alphabet-is-in-talks-to-join-trump-s-golden-dome-defense-program" target="_blank">Bloomberg &mdash; Google and Golden Dome</a>
+        <a href="https://www.theverge.com/tech/1023763/openai-google-microsoft-ai-scraping-standard-opt-out" target="_blank">The Verge &mdash; crawler opt-out token</a>
+        <a href="https://www.reuters.com/business/media-telecom/openai-limit-weapons-information-teens-chatgpt-violence-prevention-push-2026-10-30/" target="_blank">Reuters &mdash; OpenAI teen safeguards</a>
+        <a href="https://www.geekwire.com/2026/filing-chip-startup-powerlattice-raises-86m-to-ease-ais-power-crunch/" target="_blank">GeekWire &mdash; Powerlattice $86M</a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-logo">
+      <div class="footer-mark"><img src="../assets/timps-postcards.png" alt="TIMPS"></div>
+      <span class="footer-brand">TIMPS PostCards</span>
+    </div>
+    <div class="footer-center">Issue 156 &middot; October 31, 2026<br>Hyderabad, India</div>
+    <div class="footer-right">
+      <a href="../index.html">Home</a><br>
+      <a href="../archive.html">Archive</a><br>
+      &copy; 2026 TIMPS
+    </div>
+  </footer>
+
+</div></div>
+</body>
+</html>
