@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 143 daily issues + 18 deep dives · regenerated 2026-10-31**
+**Coverage: 144 daily issues + 18 deep dives · regenerated 2026-11-01**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 157 · 2026-11-01 · `daily/timps-postcards-2026-11-01.html`
+
+- **[01 · LEAD]** AI Has Come for Arizona’s Water
+  - _TSMC was welcomed with open arms. The hyperscale data centers that followed are not — and Arizonans are lining up at city council meetings to say so._
+  - Source: [Full story · The Verge](https://www.theverge.com/cs/features/1016650/arizona-water-data-center-tsmc)
+
+- **[02 · ELECTIONS]** Six Chatbots Built 3,000 Voter Guides. Nearly Half Couldn’t Name the District.
+  - _Copilot cited an AI-generated site called the Ballot Brief in 75% of tests and ChatGPT in 22%, as errors in the underlying data flowed straight through to voters._
+  - Source: [Full story · The Washington Post](https://www.washingtonpost.com/technology/2026/10/30/how-an-obscure-website-became-force-americas-election-information-machine/)
+
+- **[03 · ROBOTICS]** Meta Built a Humanoid Called Max With China’s Fourier in Three Months
+  - _The 106-pound prototype runs on Nvidia’s Jetson Thor and has a face built to mimic expressions. A second robot is already in the works._
+  - Source: [Full story · The Information](https://www.theinformation.com/articles/meta-built-humanoid-prototype-chinese-startup-ramp-robotics-push)
+
+- **[04 · SECURITY]** A Shared ChatGPT Link Was Enough to Take Over an Account
+  - _Parameter Labs bypassed ChatGPT’s sandbox and content security policy so that a public share could run JavaScript inside any signed-in session that opened it._
+  - Source: [Full story · Parameter Labs](https://www.parameter.ai/labs/we-found-a-gap-at-openai)
+
+- **[05 · CRYPTO]** Binance Says It Has Replaced 90% of the $6.3B It Lost
+  - _The exchange set aside more than $6.34B of company funds; the last 10% sits in less liquid tokens. On Saturday, the FBI blamed North Korea._
+  - Source: [Full story · BBC News](https://www.bbc.com/news/articles/ckpdg3ql4169o)
+
+  **Signals / briefs:**
+  - Altman: Put the DRAM in the Data Center
+  - AI Detectors Are Rewriting How Humans Write
+  - Linux TCP Flaw Scores 9.8 Critical
+  - Google’s Satellite Answers Its First Prompt in Orbit
+  - Apple’s Ternus: No AI for AI’s Sake
 
 ### Issue 156 · 2026-10-31 · `daily/timps-postcards-2026-10-31.html`
 
