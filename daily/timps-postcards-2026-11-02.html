@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TIMPS">
+<link rel="manifest" href="../manifest.json">
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/icon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/icon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="../assets/icon-48.png">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="../assets/icon-180.png">
+<title>TIMPS PostCards — Issue 158</title>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --cream:  #EEECE2;
+    --forest: #3D3929;
+    --terra:  #DA7756;
+    --terra-d:#BD5D3A;
+    --black:  #111111;
+    --card-bg:#F0ECE0;
+    --mono:   'Newsreader', Georgia, 'Times New Roman', serif;
+    --serif:  'TIMPS', 'Playfair Display', Georgia, serif;
+  }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Black.woff2') format('woff2'); font-weight:900; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Bold.woff2') format('woff2'); font-weight:700; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-SemiBold.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--cream);
+    background-image:
+      linear-gradient(rgba(61,57,41,.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.07) 1px, transparent 1px);
+    background-size: 38px 38px;
+    font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+    color: var(--forest);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { text-decoration: none; color: inherit; }
+
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 48px;
+    background-color: rgba(238,236,226,.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1.5px solid rgba(61,57,41,.12);
+    background-image:
+      linear-gradient(rgba(61,57,41,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.05) 1px, transparent 1px);
+    background-size: 38px 38px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Special Elite', 'Courier New', Courier, monospace;
+    font-size: 15px;
+    font-weight: 400;
+    color: #000;
+    text-decoration: none;
+  }
+  .nav-logo-mark {
+    width: 34px; height: 34px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .nav-logo-mark img { width: 28px; height: 28px; object-fit: contain; }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-link {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: #000;
+    opacity: .65;
+    text-decoration: none;
+    transition: opacity .15s;
+  }
+  .nav-link:hover { opacity: 1; }
+  .nav-cta {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: #000;
+    background: var(--terra);
+    border: 2.5px solid #000;
+    border-radius: 100px;
+    padding: 10px 24px;
+    cursor: pointer;
+    transition: background .15s, transform .1s;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--terra-d); transform: translateY(-1px); }
+
+  .wrapper { max-width: 760px; margin: 0 auto; padding: 40px 20px 80px; display: flex; flex-direction: column; gap: 0; }
+
+  .cover-card { background: var(--card-bg); border-radius: 20px 20px 4px 4px; padding: 56px 48px 48px; text-align: center; position: relative; overflow: hidden; border: 1.5px solid rgba(61,57,41,.12); margin-bottom: 3px; }
+  .cover-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, var(--terra) 0%, var(--terra-d) 60%, #E0A88A 100%); }
+  .cover-eyebrow { font-family: var(--mono); font-size:10px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:20px; display:flex; align-items:center; justify-content:center; gap:10px; }
+  .cover-eyebrow::before,.cover-eyebrow::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .15; max-width:60px; }
+  .cover-title { font-family: var(--serif); font-size:58px; font-weight:900; line-height:1; letter-spacing:-1px; color: var(--forest); margin-bottom:8px; }
+  .cover-sub { font-family: var(--serif); font-size:13px; font-style:italic; color: var(--forest); opacity: .55; margin-bottom:28px; }
+  .cover-divider { width:48px; height:2px; background: var(--terra); margin:0 auto 24px; border-radius:2px; }
+  .cover-meta { display:flex; justify-content:center; gap:32px; font-family: var(--mono); font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .45; }
+  .cover-badge { display:inline-flex; align-items:center; gap:6px; background: var(--terra); color: #fff; border-radius:20px; padding:6px 18px; font-family: var(--mono); font-size:10px; letter-spacing:2px; text-transform:uppercase; margin-top:28px; }
+  .top5-pill { display:flex; justify-content:center; gap:10px; margin-top:32px; flex-wrap:wrap; }
+  .pill { background: var(--forest); color: var(--cream); border-radius:100px; padding:4px 14px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; }
+  .pill.light { background:transparent; color: var(--forest); border:1px solid rgba(61,57,41,.2); }
+
+  .section-label { display:flex; align-items:center; gap:12px; padding:10px 0 8px; font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .35; }
+  .section-label::before,.section-label::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .1; }
+
+  .story-card { border-radius:4px; border:1.5px solid rgba(61,57,41,.10); padding:36px 40px; margin-bottom:3px; position:relative; overflow:hidden; }
+  .story-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }
+
+  .card-sky      { background:#D6E8F0; } .card-sky::before      { background: #7AAFC0; }
+  .card-cream    { background: var(--card-bg); } .card-cream::before    { background: var(--terra); }
+  .card-blush    { background:#F5DDD0; } .card-blush::before    { background: #E0A88A; }
+  .card-lavender { background:#EAE6F5; } .card-lavender::before { background: #C8BEE8; }
+  .card-sage     { background:#D6E4D6; } .card-sage::before     { background: #8BAF8B; }
+
+  .page-chip { position:absolute; top:14px; right:16px; font-family: var(--mono); font-size:9px; letter-spacing:2px; text-transform:uppercase; color: var(--forest); opacity: .3; }
+  .card-routine { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:8px; }
+  .card-headline { font-family: var(--serif); font-size:28px; font-weight:900; line-height:1.15; color: var(--forest); margin-bottom:10px; }
+  .card-headline.lg { font-size:34px; }
+  .card-headline.sm { font-size:22px; }
+  .card-deck { font-family: var(--serif); font-style:italic; font-size:14px; line-height:1.55; color: var(--forest); opacity: .55; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid rgba(61,57,41,.12); }
+  .card-body { font-family: 'Lora', Georgia, serif; font-size:14px; line-height:1.7; color: var(--forest); }
+  .card-body p { margin-bottom:11px; }
+  .drop::first-letter { font-family: var(--serif); font-size:52px; font-weight:900; float:left; line-height:.78; margin:5px 6px 0 0; color: var(--terra); }
+  .clearfix::after { content:''; display:table; clear:both; }
+
+  .hl-terra { background: var(--terra); color: var(--forest); padding:0 4px; border-radius:2px; }
+  .hl-ink  { background: var(--forest); color: var(--cream); padding:0 4px; border-radius:2px; }
+  .hl-sage { background: #8BAF8B; color: #fff; padding:0 4px; border-radius:2px; }
+  .hl-lav  { background: #C8BEE8; color: var(--forest); padding:0 4px; border-radius:2px; }
+
+  .stat-box { float:right; margin:0 0 16px 24px; background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:16px 20px; text-align:center; min-width:120px; }
+  .stat-big { font-family: var(--serif); font-size:44px; font-weight:900; line-height:1; color: var(--forest); display:block; }
+  .stat-label { font-family: var(--mono); font-size:9.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .5; display:block; margin-top:4px; }
+
+  .img-frame { border:2px solid rgba(61,57,41,0.18); border-radius:12px; overflow:hidden; margin:16px 0; background: var(--card-bg); }
+  .img-frame img { width:100%; display:block; max-height:240px; object-fit:cover; border-bottom:1px solid rgba(61,57,41,.12); }
+  .img-caption { padding:8px 12px; font-family: var(--mono); font-size:10.5px; color: var(--forest); opacity: .6; font-style:italic; display:flex; align-items:center; justify-content:space-between; gap:8px; }
+  .img-caption a { font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; white-space:nowrap; font-style:normal; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; }
+  .img-caption a:hover { opacity: 1; }
+  .img-frame.float-right { float:right; width:220px; margin:0 0 16px 24px; }
+  .img-frame.float-right img { max-height:140px; }
+
+  .source-link { display:inline-flex; align-items:center; gap:5px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:12px; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; transition: opacity .15s; }
+  .source-link:hover { opacity: 1; }
+  .source-link::after { content:'↗'; font-size:9px; }
+
+  .signals-grid { display:flex; flex-direction:column; gap:14px; }
+  .signal-row { display:flex; align-items:flex-start; gap:14px; }
+  .signal-num { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family: var(--serif); font-size:13px; font-weight:900; flex-shrink:0; color:#fff; }
+  .signal-num.n1{background: var(--terra); color: var(--forest);} .signal-num.n2{background: var(--forest);} .signal-num.n3{background:#7AAFC0;} .signal-num.n4{background: var(--terra-d); color: var(--forest);} .signal-num.n5{background: var(--black);}
+  .signal-title { font-family: var(--serif); font-size:14px; font-weight:700; color: var(--forest); margin-bottom:2px; }
+  .signal-desc { font-family: 'Newsreader', Georgia, 'Times New Roman', serif; font-size:12px; line-height:1.65; color: var(--forest); opacity: .6; }
+  .signal-link { display:inline-block; font-family: var(--mono); font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:4px; border-bottom:1px solid rgba(61,57,41,.25); padding-bottom:1px; transition: opacity .15s; }
+  .signal-link:hover { opacity: 1; }
+
+  .themes-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .theme-item { padding:10px 14px; border-radius:8px; font-family: var(--serif); font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; text-align:center; border:1.5px solid rgba(61,57,41,.12); background: var(--cream); }
+
+  .tool-week { background: var(--forest); color: var(--cream); border-radius:12px; padding:18px 20px; text-align:center; margin-top:14px; }
+  .tool-week-eyebrow { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; opacity: .55; margin-bottom:6px; }
+  .tool-week-name { font-family: var(--serif); font-size:22px; font-weight:900; margin-bottom:4px; }
+  .tool-week-desc { font-family: 'Newsreader', Georgia, 'Times New Roman', serif; font-size:11.5px; opacity: .7; font-style:italic; }
+
+  .output-card { background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:18px 20px; margin-top:14px; }
+  .output-title { font-family: var(--serif); font-size:18px; font-weight:700; margin-bottom:8px; color: var(--forest); }
+  .tp-list { list-style:none; padding:0; margin:0; }
+  .tp-list li { padding:5px 0; font-family: 'Lora', Georgia, serif; font-size:12px; color: var(--forest); border-bottom:1px solid rgba(61,57,41,.07); display:flex; align-items:flex-start; gap:7px; }
+  .tp-list li::before { content:'·'; color: var(--terra); font-size:14px; line-height:1.2; flex-shrink:0; }
+  .tp-list li a { color: var(--forest); opacity: .8; text-decoration:none; }
+  .tp-list li a:hover { opacity: 1; }
+
+  .sources-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px 20px; }
+  .sources-grid a { font-family: var(--mono); font-size:11px; color: var(--forest); opacity: .55; text-decoration:none; border-bottom:1px solid rgba(61,57,41,.15); padding-bottom:1px; transition: opacity .15s; }
+  .sources-grid a:hover { opacity: 1; }
+
+  .footer {
+    background: var(--black);
+    padding: 28px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    border-radius: 4px 4px 20px 20px;
+    margin-top: 3px;
+  }
+  .footer-logo { display: flex; align-items: center; gap: 10px; }
+  .footer-mark { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; }
+  .footer-mark img { width: 24px; height: 24px; object-fit: contain; }
+  .footer-brand { font-family: 'Special Elite', 'Courier New', Courier, monospace; font-size: 13px; font-weight: 400; color: #fff; }
+  .footer-center { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.4); text-align: center; line-height: 1.6; }
+  .footer-right { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.3); text-align: right; line-height: 2; }
+  .footer-right a { color: rgba(255,255,255,.5); transition: color .15s; }
+  .footer-right a:hover { color: #fff; }
+
+  .page-layout { display: flex; align-items: flex-start; gap: 0; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+  .toc-sidebar { position: sticky; top: 80px; width: 170px; flex-shrink: 0; padding: 48px 0 0 0; }
+  .toc-nav { display: flex; flex-direction: column; gap: 0; }
+  .toc-link { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.5px; text-transform: uppercase; color: #000; opacity: .45; text-decoration: none; padding: 7px 12px; border-left: 2px solid transparent; transition: opacity .15s, border-color .15s; line-height: 1.3; }
+  .toc-link:hover { opacity: .85; }
+  .toc-link.active { opacity: 1; border-left-color: var(--terra); }
+  .section-anchor { scroll-margin-top: 80px; }
+
+  @media (max-width: 900px) {
+    .toc-sidebar { display: none; }
+    .page-layout { max-width: 760px; }
+  }
+
+  @media (max-width: 720px) {
+    .nav { padding: 12px 24px; }
+    .nav-links { display: none; }
+    .wrapper { padding: 20px 14px 60px; }
+    .cover-card { padding: 40px 24px; }
+    .story-card { padding: 28px 20px; }
+    .footer { padding: 24px; flex-direction: column; align-items: flex-start; }
+    .footer-center, .footer-right { text-align: left; }
+    .stat-box { float: none; margin: 0 0 16px 0; }
+    .img-frame.float-right { float: none; width: 100%; margin: 0 0 16px 0; }
+  }
+  @media (max-width: 480px) {
+    .nav-logo span { display: none; }
+    .cover-title { font-size: 40px; }
+    .card-headline.lg { font-size: 28px; }
+    .card-headline { font-size: 24px; }
+  }
+</style>
+
+</head>
+
+<body>
+
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">
+    <div class="nav-logo-mark"><img src="../assets/timps-postcards.png" alt="TIMPS"></div>
+    <span>TIMPS PostCards</span>
+  </a>
+  <div class="nav-links">
+    <a href="../articles.html" class="nav-link">Articles</a>
+    <a href="../archive.html" class="nav-link">Archive</a>
+    <a href="timps-postcards-2026-11-02.html" class="nav-link">Latest Issue</a>
+    <a href="../index.html#subscribe" class="nav-link">Subscribe</a>
+  </div>
+  <a href="../index.html#subscribe" class="nav-cta">Subscribe</a>
+</nav>
+
+<div class="page-layout">
+  <aside class="toc-sidebar">
+    <nav class="toc-nav">
+      <a href="#math" class="toc-link">Mathematics</a>
+      <a href="#benchmark" class="toc-link">The 12%</a>
+      <a href="#infra" class="toc-link">Cold Chain</a>
+      <a href="#agents" class="toc-link">Civ50</a>
+      <a href="#policy" class="toc-link">Policy</a>
+      <a href="#signals" class="toc-link">Signals</a>
+      <a href="#themes" class="toc-link">Themes</a>
+      <a href="#tool" class="toc-link">Watch</a>
+      <a href="#sources" class="toc-link">Sources</a>
+    </nav>
+  </aside>
+
+  <div class="wrapper">
+
+  <div id="intro" class="cover-card section-anchor">
+    <div class="cover-eyebrow">Est. 2026 &middot; Hyderabad</div>
+    <div class="cover-title">TIMPS<br>PostCards</div>
+    <div class="cover-sub">AI Intelligence Digest &middot; Your Daily Signal from the Machine Frontier</div>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+      <span>Issue 158</span>
+      <span>November 2, 2026</span>
+      <span>No. 185</span>
+    </div>
+    <div class="cover-badge">&#11041; 158 Issues &mdash; Built with the TIMPS Ecosystem</div>
+    <div class="top5-pill">
+      <span class="pill">5 Top Signals</span>
+      <span class="pill light">Navier&ndash;Stokes</span>
+      <span class="pill light">The 12% Frontier</span>
+      <span class="pill light">Freezer Attacks</span>
+      <span class="pill light">Civ50</span>
+      <span class="pill light">Compute Campuses</span>
+    </div>
+  </div>
+
+  <div id="math" class="story-card card-blush section-anchor">
+    <div class="page-chip">01 &middot; LEAD</div>
+    <div class="card-routine">Mathematics &middot; The Deliberative Process</div>
+    <h2 class="card-headline lg">AI Solved Navier&ndash;Stokes. Terence Tao Says It Is Breaking Mathematics.</h2>
+    <div class="card-deck">OpenAI&rsquo;s 700-paper dump and a Millennium Prize proof landed within eight weeks. At Caltech, the field&rsquo;s most trusted voice warned that the slow process which produces new problems &ldquo;is what&rsquo;s being destroyed.&rdquo;</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">700+</span>
+        <span class="stat-label">papers in one dump</span>
+      </div>
+      <p class="drop">On <b>September 8</b>, <b>OpenAI</b> announced it had solved <b>Navier&ndash;Stokes</b> existence and smoothness &mdash; one of the seven <b>Clay Millennium Prize</b> problems, each worth <b>$1 million</b>, and an acorn that top mathematicians had spent careers nudging forward. Three days later, <b>Terence Tao</b> walked on stage at <b>Caltech</b> in jeans and a <i>Great Wave</i> T-shirt with a confession: he had used PowerPoint because he did not want to ask AI for a fancy slide. &ldquo;I have had the strangest week ever in my life,&rdquo; he said.</p>
+      <p>The timeline is now absurdly compressed. In January, <b>GPT-5.2 Pro</b> appeared to solve <b>Erd&#337;s Problem #728</b> largely on its own. On <b>May 20</b>, OpenAI published a proof of <b>Erd&#337;s #90</b>, the unit-distance problem &mdash; not a marshmallow. By <b>October 6</b>, the company released more than <b>700 research papers</b> in a single dump. Mathematicians found some of them badly written, some unattributed, and some simply wrong.</p>
+      <p><span class="hl-ink">The deeper damage is not a wrong proof. It is volume. AI-generated submissions are overwhelming journals and databases, the volunteer referees who hold the field together are drowning in slop, and sometimes the person submitting a paper does not understand it. Answers are arriving faster than insight can be built from them.</span></p>
+      <p>&ldquo;We have to slow down,&rdquo; Tao said. &ldquo;It&rsquo;s insane, the pace.&rdquo; Asked where the next problems will come from, he pointed at the thing no benchmark measures: the slow, deliberative process of working toward a solution. &ldquo;And this is what&rsquo;s being destroyed.&rdquo;</p>
+    </div>
+    <a class="source-link" href="https://www.newyorker.com/magazine/2026/11/09/the-year-math-changed-forever" target="_blank">Full story &middot; The New Yorker</a>
+  </div>
+
+  <div id="benchmark" class="story-card card-sky section-anchor">
+    <div class="page-chip">02 &middot; BENCHMARK</div>
+    <div class="card-routine">Capability &middot; The Honest Map</div>
+    <h2 class="card-headline">The Best AI in the World Scores 12%</h2>
+    <div class="card-deck">SemiAnalysis built a benchmark across eleven domains where the first trillion dollars of AI revenue will be made. Opus 5.5 wins overall &mdash; and in finance and legal work, almost every model scores zero.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">12%</span>
+        <span class="stat-label">best model&rsquo;s score</span>
+      </div>
+      <p class="drop"><b>GDPx</b>, published this morning by <b>SemiAnalysis</b>, is an attempt to replace a benchmark built before agents existed. <b>OpenAI&rsquo;s GDPval</b> arrived in September 2025 with tasks that were precisely specified, non-interactive and spoon-fed: here is a short prompt, here is one PDF, write a fifteen-page recommendation. Real work does not look like that. Real work starts with gathering context from messy systems nobody handed you.</p>
+      <p>So the team went to <b>14 specialised data partners</b> and built tasks across <b>11 domains</b>: chip design, cybersecurity, biology, finance, legal, quant trading, recursive self-improvement, hardware design, materials science, alignment and software engineering. Labs pay <b>$5,000+</b> for a single high-quality task. The result is a benchmark nobody saturates. <b>Opus 5.5</b> is the best all-around model and wins quant trading, hardware design and chip design. <b>Gemini 4 Carbon</b> takes biology and software engineering. <b>GPT-6 Astra</b> wins RSI and materials science.</p>
+      <p><span class="hl-terra">Read the 12% correctly. It is not a benchmark failure; it is the first honest map of where frontier intelligence actually clears the bar and where it does not. Finance and legal tasks score essentially zero because the models cannot yet do the job &mdash; not because the graders are unfair. SemiAnalysis also flags that safety classifiers sandbagged Opus and Astra in cyber, bio and alignment, which is its own kind of capability finding.</span></p>
+    </div>
+    <a class="source-link" href="https://newsletter.semianalysis.com/p/gdpx-measuring-frontier-model-capabilities" target="_blank">Full story &middot; SemiAnalysis</a>
+  </div>
+
+  <div id="infra" class="story-card card-sage section-anchor">
+    <div class="page-chip">03 &middot; INFRASTRUCTURE</div>
+    <div class="card-routine">Critical Systems &middot; Two Weekends</div>
+    <h2 class="card-headline">Someone Turned Europe&rsquo;s Freezers Into Ovens &mdash; Twice</h2>
+    <div class="card-deck">Three weeks after roughly 700 French supermarkets were hit, dozens of stores in Sweden, Belgium and Luxembourg woke to fridges near 50&deg;C. The same weekend, Ukraine&rsquo;s and Russia&rsquo;s alert apps pushed fake nuclear warnings.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">50&deg;C</span>
+        <span class="stat-label">fridge setpoint</span>
+      </div>
+      <p class="drop">The French wave hit overnight on <b>October 11&ndash;12</b>. Attackers reached internet-connected refrigeration controllers &mdash; equipment from <b>Danfoss</b> and <b>Copeland</b> &mdash; and remotely forced defrost cycles until store temperatures climbed to about <b>50&deg;C (122&deg;F)</b>, destroying stock and starting fires at some outlets. <b>Claroty&rsquo;s Team82</b> had warned about exactly this in August, in a report titled <i>Freeze the Controller, Defrost the Food</i>, and demonstrated a hidden &ldquo;code-of-the-day&rdquo; authentication bypass at <b>DEF CON</b>.</p>
+      <p>Nobody fixed the fleet in time. On Monday morning, <b>ICA</b> and <b>Coop</b> stores in Sweden reported fridges and freezers overheating overnight; <b>Delhaize</b> and <b>Carrefour</b> stores in Belgium were hit, along with shops in Luxembourg. Some managers described temperatures near <b>50&deg;C</b>. Belgium&rsquo;s Centre for Cybersecurity said it was following the incident closely. It is still unconfirmed whether the attacks share the French software flaw or the same operator.</p>
+      <p><span class="hl-sage">The cold chain is not the only exposed surface. Late Sunday, Ukraine&rsquo;s <b>Air Alert</b> app pushed nationwide red-level warnings plus fake radiation, chemical and street-fighting alerts before the Air Force told users it had been compromised. Hours later Russia&rsquo;s emergencies ministry said its own app had suffered a &ldquo;massive cyberattack&rdquo; and sent false information. Cheap internet-facing controllers now sit behind groceries and civil defence alike.</span></p>
+    </div>
+    <a class="source-link" href="https://www.politico.eu/article/new-supermarket-hack-in-belgium-sweden-luxembourg/" target="_blank">Full story &middot; POLITICO</a>
+  </div>
+
+  <div id="agents" class="story-card card-lavender section-anchor">
+    <div class="page-chip">04 &middot; AGENTS</div>
+    <div class="card-routine">Multi-Agent &middot; Civ50</div>
+    <h2 class="card-headline">Fifty Agents Built a Government Before They Built a Farm</h2>
+    <div class="card-deck">YC Labs gave 50 GPT-6.1 Sol agents three hours and one instruction: build a thriving civilization. They wrote permits, appointed a fertilizer czar, and ran a no-blame inquiry over a chicken.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">616</span>
+        <span class="stat-label">DMs to Ada</span>
+      </div>
+      <p class="drop"><b>YC Labs</b> and <b>Olam Labs</b> dropped <b>50 GPT-6.1 Sol</b> agents into a survival <b>Minecraft</b> world for three hours. The only goal: &ldquo;Build a thriving civilization.&rdquo; They had a shared directory, a shared sandbox and direct messages, and they exchanged about <b>5,900 messages</b>. <b>22 of the run&rsquo;s 34 deaths</b> came on the first night. After that the colony turned cautious, huddled in lit shelters, and governed.</p>
+      <p>Leadership emerged from roster order. Most agents messaged <b>Ada</b> first because she was listed first; she received <b>616 DMs</b> and became leader without a vote. Four agents spent <b>11 minutes</b> appointing a &ldquo;sole fertilizer operator&rdquo; for a single piece of bone meal. One agent eating a chicken meant for another triggered a three-minute &ldquo;no blame&rdquo; inquiry that produced a written protocol. The farms never really arrived.</p>
+      <p><span class="hl-lav">The competitive runs are the uncomfortable part. In nine 45-minute <b>Bed Wars</b> games, GPT beat Claude Opus 5.5 <b>6&ndash;3</b>; in seven <b>Mindustry</b> games, <b>6&ndash;1</b>. Claude teams kept one leader and approved plans with &ldquo;+1&rdquo; votes, and never switched leaders while losing. GPT teams split ownership, shared resources, messaged 5&ndash;30&times; more often, and when a tool broke, one agent found a workaround and broadcast it. These are the same shapes you see in coding fleets: accidental bosses, role fixation, coordination overhead.</span></p>
+    </div>
+    <a class="source-link" href="https://labs.ycombinator.com/projects/games/index.html" target="_blank">Full story &middot; YC Labs</a>
+  </div>
+
+  <div id="policy" class="story-card card-cream section-anchor">
+    <div class="page-chip">05 &middot; POLICY</div>
+    <div class="card-routine">Washington &middot; The Vocabulary War</div>
+    <h2 class="card-headline">OpenAI&rsquo;s Post-Midterm Plan: &ldquo;Speed Limits&rdquo; and &ldquo;AI Compute Campuses&rdquo;</h2>
+    <div class="card-deck">Days before the vote, OpenAI&rsquo;s policy shop revealed a Washington blitz: mandatory safeguards for frontier models, state &ldquo;community compacts&rdquo;, and a new name for data centers.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">Nov 9</span>
+        <span class="stat-label">lame-duck session</span>
+      </div>
+      <p class="drop">Right after Tuesday&rsquo;s midterms, <b>OpenAI</b> plans to launch a policy and public-relations campaign timed to the lame-duck session that opens <b>November 9</b>, <b>Axios</b> reported on Sunday. The context is a Washington that is about to get less friendly: after two years of a sympathetic White House, Democrats are favoured to take the House, and the 2028 field starts forming the day after the vote.</p>
+      <p>The first plank is <b>&ldquo;speed limits&rdquo;</b> &mdash; new proposals for mandatory safeguards on the most powerful systems, paired with a more aggressive congressional push. &ldquo;You&rsquo;re going to see us talk more and more about the concept of speed limits,&rdquo; chief global affairs officer <b>Chris Lehane</b> told Axios. &ldquo;Our belief is people should always remain in control of this technology.&rdquo; The second plank is a rebrand: the infrastructure OpenAI is building should be called <b>&ldquo;AI compute campuses,&rdquo;</b> not data centers, and should come with state legislation giving host communities a meaningful say.</p>
+      <p><span class="hl-terra">A company asking to be regulated is usually asking to write the rules. The rebrand is the tell. Data centers became a political punching bag this cycle over power, water, noise and bills; &ldquo;campus&rdquo; is a word designed to survive a town council meeting. Lehane&rsquo;s own framing gives the game away: &ldquo;AI is going to be the issue in 2028.&rdquo;</span></p>
+    </div>
+    <a class="source-link" href="https://www.axios.com/2026/11/01/scoop-openai-post-midterm-policy" target="_blank">Full story &middot; Axios</a>
+  </div>
+
+  <div id="signals" class="story-card card-cream section-anchor">
+    <div class="page-chip">06 &middot; SIGNALS</div>
+    <div class="card-routine">5 Key Signals</div>
+    <h2 class="card-headline sm">What Moved the Machine Frontier Today</h2>
+    <div class="card-deck" style="border-bottom:none;padding-bottom:0;margin-bottom:16px;">Briefs worth an afternoon of reading.</div>
+    <div class="signals-grid">
+      <div class="signal-row">
+        <div class="signal-num n1">1</div>
+        <div>
+          <div class="signal-title">Binance Lost $3.64B in 9.5 Hours</div>
+          <div class="signal-desc">Net outflows hit 2.1% of assets after withdrawals reopened post-hack; DefiLlama counts $5.86B over 24 hours as bitcoin eased to $77,900.</div>
+          <a class="signal-link" href="https://www.theblock.co/news/business/2026-11-01-binance-sees-3-64-billion-in-net-outflows-after-reopening-withdrawals-following-record-hack-432259" target="_blank">The Block &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n2">2</div>
+        <div>
+          <div class="signal-title">Anthropic Will Sell $3.5B of Its IPO to Japan</div>
+          <div class="signal-desc">Up to &yen;552.9B of shares, managed by Mizuho, as the Claude maker lines up a listing investors have discussed at a ~$1.5T valuation.</div>
+          <a class="signal-link" href="https://www.reuters.com/world/asia-pacific/anthropic-plans-sell-35-billion-shares-japan-investors-ipo-filing-shows-2026-11-02" target="_blank">Reuters &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n3">3</div>
+        <div>
+          <div class="signal-title">400 Apps That Are Not What They Say</div>
+          <div class="signal-desc">A WIRED investigation found a network of apps and domains posing as pet-portrait and tutoring tools, loading explicit deepfake generators behind an App Store review cloaking layer.</div>
+          <a class="signal-link" href="https://www.wired.com/story/hundreds-of-mundane-ai-apps-are-hiding-abusive-deepfake-features/" target="_blank">WIRED &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n4">4</div>
+        <div>
+          <div class="signal-title">$52M for Agents That Answer the Plumber&rsquo;s Phone</div>
+          <div class="signal-desc">Broccoli AI, which sells AI agents to plumbing, HVAC and electrical firms, raised a $22M Series A and a $30M Series B at a reported ~$300M valuation.</div>
+          <a class="signal-link" href="https://fortune.com/2026/10/28/broccoli-ai-funding-khosla-ventures-marcelle-flowers-plumbing-gen-z-founders/" target="_blank">Fortune &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n5">5</div>
+        <div>
+          <div class="signal-title">The Father of Liquid Crystals Dies at 101</div>
+          <div class="signal-desc">Cyril Hilsum, the British physicist whose work on liquid crystals enabled flat-panel displays, has died. Every screen you read this on is downstream.</div>
+          <a class="signal-link" href="https://www.nytimes.com/2026/11/01/technology/cyril-hilsum-dead.html" target="_blank">The New York Times &#8597;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="themes" class="story-card card-lavender section-anchor">
+    <div class="page-chip">07 &middot; CLOSER</div>
+    <div class="card-routine">Top Themes</div>
+    <h2 class="card-headline sm">The Shape of Today&rsquo;s News</h2>
+    <div class="themes-grid" style="margin-top:16px;">
+      <div class="theme-item">The Deliberative Process</div>
+      <div class="theme-item">Honest Benchmarks</div>
+      <div class="theme-item">OT Under Attack</div>
+      <div class="theme-item">Agent Societies</div>
+      <div class="theme-item">Who Writes the Rules</div>
+    </div>
+
+    <div id="tool" class="tool-week section-anchor">
+      <div class="tool-week-eyebrow">Company Watch of the Day</div>
+      <div class="tool-week-name">KIOXIA</div>
+      <div class="tool-week-desc"><b>Kioxia</b> just posted the kind of quarter every AI hardware maker dreams about &mdash; revenue up <b>453%</b> year on year &mdash; and the market took as much as <b>15%</b> off its shares anyway. The NAND maker guided December-quarter operating profit to <b>&yen;2 trillion ($12.7B)</b>, short of the <b>&yen;2.35 trillion</b> consensus and barely above the September quarter. CFO <b>Yoshihiko Kawamura</b> blamed shipment timing, not demand, and promised rapid growth again by March. Maybe. But Kioxia sells only NAND, while Samsung and SK Hynix can bundle DRAM, the other half of every AI rack. Put that beside today&rsquo;s GDPx number &mdash; a frontier that scores <b>12%</b> &mdash; and you get the two questions of the moment: how fast can capability compound, and how long can the memory trade price it as if it already has?</div>
+    </div>
+
+    <div id="sources" class="output-card section-anchor">
+      <div class="output-title">Sources Cited</div>
+      <div class="sources-grid">
+        <a href="https://www.newyorker.com/magazine/2026/11/09/the-year-math-changed-forever" target="_blank">The New Yorker &mdash; Terence Tao</a>
+        <a href="https://terrytao.wordpress.com/2026/11/01/mathematics-has-changed-lets-act-like-it/" target="_blank">What&rsquo;s new &mdash; Calegari on math</a>
+        <a href="https://newsletter.semianalysis.com/p/gdpx-measuring-frontier-model-capabilities" target="_blank">SemiAnalysis &mdash; GDPx</a>
+        <a href="https://www.politico.eu/article/new-supermarket-hack-in-belgium-sweden-luxembourg/" target="_blank">POLITICO &mdash; freezer attacks</a>
+        <a href="https://www.theguardian.com/world/2026/nov/02/supermarket-freezers-across-europe-hit-by-second-suspected-cyber-attack" target="_blank">The Guardian &mdash; freezer attacks</a>
+        <a href="https://www.bbc.com/news/articles/c51kdy1ew7zvo" target="_blank">BBC &mdash; Ukraine and Russia alerts</a>
+        <a href="https://labs.ycombinator.com/projects/games/index.html" target="_blank">YC Labs &mdash; Agents in Games</a>
+        <a href="https://www.axios.com/2026/11/01/scoop-openai-post-midterm-policy" target="_blank">Axios &mdash; OpenAI&rsquo;s blitz</a>
+        <a href="https://www.theblock.co/news/business/2026-11-01-binance-sees-3-64-billion-in-net-outflows-after-reopening-withdrawals-following-record-hack-432259" target="_blank">The Block &mdash; Binance outflows</a>
+        <a href="https://www.reuters.com/world/asia-pacific/anthropic-plans-sell-35-billion-shares-japan-investors-ipo-filing-shows-2026-11-02" target="_blank">Reuters &mdash; Anthropic Japan</a>
+        <a href="https://www.wired.com/story/hundreds-of-mundane-ai-apps-are-hiding-abusive-deepfake-features/" target="_blank">WIRED &mdash; deepfake app network</a>
+        <a href="https://fortune.com/2026/10/28/broccoli-ai-funding-khosla-ventures-marcelle-flowers-plumbing-gen-z-founders/" target="_blank">Fortune &mdash; Broccoli AI</a>
+        <a href="https://www.bloomberg.com/news/articles/2026-11-02/kioxia-shares-tumble-after-outlook-suggests-demand-leveling-off" target="_blank">Bloomberg &mdash; Kioxia</a>
+        <a href="https://www.nytimes.com/2026/11/01/technology/cyril-hilsum-dead.html" target="_blank">NYT &mdash; Cyril Hilsum</a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-logo">
+      <div class="footer-mark"><img src="../assets/timps-postcards.png" alt="TIMPS"></div>
+      <span class="footer-brand">TIMPS PostCards</span>
+    </div>
+    <div class="footer-center">Issue 158 &middot; November 2, 2026<br>Hyderabad, India</div>
+    <div class="footer-right">
+      <a href="../index.html">Home</a><br>
+      <a href="../archive.html">Archive</a><br>
+      &copy; 2026 TIMPS
+    </div>
+  </footer>
+
+</div></div>
+</body>
+</html>

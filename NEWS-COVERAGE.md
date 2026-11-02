@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 144 daily issues + 18 deep dives · regenerated 2026-11-01**
+**Coverage: 145 daily issues + 18 deep dives · regenerated 2026-11-02**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 158 · 2026-11-02 · `daily/timps-postcards-2026-11-02.html`
+
+- **[01 · LEAD]** AI Solved Navier–Stokes. Terence Tao Says It Is Breaking Mathematics.
+  - _OpenAI’s 700-paper dump and a Millennium Prize proof landed within eight weeks. At Caltech, the field’s most trusted voice warned that the slow process which produces new problems “is what’s being destroyed.”_
+  - Source: [Full story · The New Yorker](https://www.newyorker.com/magazine/2026/11/09/the-year-math-changed-forever)
+
+- **[02 · BENCHMARK]** The Best AI in the World Scores 12%
+  - _SemiAnalysis built a benchmark across eleven domains where the first trillion dollars of AI revenue will be made. Opus 5.5 wins overall — and in finance and legal work, almost every model scores zero._
+  - Source: [Full story · SemiAnalysis](https://newsletter.semianalysis.com/p/gdpx-measuring-frontier-model-capabilities)
+
+- **[03 · INFRASTRUCTURE]** Someone Turned Europe’s Freezers Into Ovens — Twice
+  - _Three weeks after roughly 700 French supermarkets were hit, dozens of stores in Sweden, Belgium and Luxembourg woke to fridges near 50°C. The same weekend, Ukraine’s and Russia’s alert apps pushed fake nuclear warnings._
+  - Source: [Full story · POLITICO](https://www.politico.eu/article/new-supermarket-hack-in-belgium-sweden-luxembourg/)
+
+- **[04 · AGENTS]** Fifty Agents Built a Government Before They Built a Farm
+  - _YC Labs gave 50 GPT-6.1 Sol agents three hours and one instruction: build a thriving civilization. They wrote permits, appointed a fertilizer czar, and ran a no-blame inquiry over a chicken._
+  - Source: [Full story · YC Labs](https://labs.ycombinator.com/projects/games/index.html)
+
+- **[05 · POLICY]** OpenAI’s Post-Midterm Plan: “Speed Limits” and “AI Compute Campuses”
+  - _Days before the vote, OpenAI’s policy shop revealed a Washington blitz: mandatory safeguards for frontier models, state “community compacts”, and a new name for data centers._
+  - Source: [Full story · Axios](https://www.axios.com/2026/11/01/scoop-openai-post-midterm-policy)
+
+  **Signals / briefs:**
+  - Binance Lost $3.64B in 9.5 Hours
+  - Anthropic Will Sell $3.5B of Its IPO to Japan
+  - 400 Apps That Are Not What They Say
+  - $52M for Agents That Answer the Plumber’s Phone
+  - The Father of Liquid Crystals Dies at 101
 
 ### Issue 157 · 2026-11-01 · `daily/timps-postcards-2026-11-01.html`
 
