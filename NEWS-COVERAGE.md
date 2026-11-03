@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 145 daily issues + 18 deep dives · regenerated 2026-11-02**
+**Coverage: 146 daily issues + 18 deep dives · regenerated 2026-11-03**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 159 · 2026-11-03 · `daily/timps-postcards-2026-11-03.html`
+
+- **[01 · LEAD]** Apple’s First Quarter Under Ternus Comes With an “Unprecedented” Memory Bill
+  - _Record September revenue. Record earnings per share. And a holiday gross-margin guide of 45–46%, its lowest since 2023, because the AI boom has repriced the memory inside every Mac, iPad and iPhone._
+  - Source: [Full story · Apple Newsroom](https://www.apple.com/newsroom/2026/11/apple-reports-fourth-quarter-results/)
+
+- **[02 · FRONTIER]** Anthropic Tells IPO Investors It May Be About to Cross the RSI Line
+  - _A new risk factor in the revised S-1 says internal forecasts, not current models, suggest the company may “imminently meet” its own definition of dramatically accelerated progress — and that it might not notice the crossing until afterwards._
+  - Source: [Full story · TechCrunch](https://techcrunch.com/2026/11/02/anthropic-warns-that-its-very-close-to-rsi-capability-aka-self-building-ai/)
+
+- **[03 · EXPORT CONTROLS]** Nvidia’s New China Rule Is 51% — and It Was Never Written Down
+  - _Cloud providers that buy Nvidia chips must now sell at least 51% of their services to non-Chinese customers. Five sources told the FT the requirement arrived verbally, through sales teams, and covers only new contracts._
+  - Source: [Full story · Financial Times](https://www.ft.com/content/1902df70-1380-4588-bad5-171352b575f2)
+
+- **[04 · RESEARCH]** The Model Read the Weights and Fixed the Model
+  - _A new paper reports frontier LLMs reading and rewriting raw neural-network weights — no gradients, no training loop. GPT-6 Astra lifted Qwen3.5-0.8B’s maths score from 7.9% to 48.1% by editing 0.016% of its parameters._
+  - Source: [Full story · Rikiya Takehi](https://rikiyat.github.io/blog/weight-space-programming/)
+
+- **[05 · ENTERPRISE]** Salesforce Pays $2.7 Billion for the Voice on the Other End of the Phone
+  - _Cresta’s voice agents resolve complex calls end to end and coach the humans who still take them. Salesforce is folding the nine-year-old Stanford spinout into Agentforce and Service Cloud._
+  - Source: [Full story · Salesforce](https://www.salesforce.com/news/stories/salesforce-signs-definitive-agreement-to-acquire-cresta/)
+
+  **Signals / briefs:**
+  - Britain Puts a Date on AI Ransomware
+  - CrowdStrike Buys the Flight Recorder and the Fuzzer
+  - Mercado Bitcoin Closes the Doors
+  - Shopify Grew 32% and Fell 15%
+  - Dreambeans Leaves America
 
 ### Issue 158 · 2026-11-02 · `daily/timps-postcards-2026-11-02.html`
 
