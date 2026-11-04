@@ -15,7 +15,7 @@
 ### Issue 160 · 2026-11-04 · `daily/timps-postcards-2026-11-04.html`
 
 - **[01 · LEAD]** AMD’s Data Center Revenue Nearly Doubled. The CPU Is the Reason.
-  - _Revenue rose 45% to $13.38 billion. Data center hit $8.5 billion, 64% of the company. And guidance of $17 billion for the December quarter would put AMD ahead of Intel as the largest x86 vendor for the first time._
+  - _Revenue rose 45% to $13.38 billion. Data center hit $8.5 billion, 64% of the company. And guidance of $17 billion for the December quarter could put AMD ahead of Intel as the largest x86 vendor for the first time._
   - Source: [Full story · CNBC](https://www.cnbc.com/2026/11/03/amd-amd-q3-earnings-report-2026-.html)
 
 - **[02 · INFRASTRUCTURE]** America Is Building Transmission Lines at a Quarter of Its 2013 Pace
