@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 146 daily issues + 18 deep dives · regenerated 2026-11-03**
+**Coverage: 147 daily issues + 18 deep dives · regenerated 2026-11-04**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 160 · 2026-11-04 · `daily/timps-postcards-2026-11-04.html`
+
+- **[01 · LEAD]** AMD’s Data Center Revenue Nearly Doubled. The CPU Is the Reason.
+  - _Revenue rose 45% to $13.38 billion. Data center hit $8.5 billion, 64% of the company. And guidance of $17 billion for the December quarter would put AMD ahead of Intel as the largest x86 vendor for the first time._
+  - Source: [Full story · CNBC](https://www.cnbc.com/2026/11/03/amd-amd-q3-earnings-report-2026-.html)
+
+- **[02 · INFRASTRUCTURE]** America Is Building Transmission Lines at a Quarter of Its 2013 Pace
+  - _The US added nearly 4,000 miles of high-voltage line in 2013 and under 900 in 2024. One 102-mile project took 13 years. Hyperscalers will spend about $900 billion this year; the wires may decide where it lands._
+  - Source: [Full story · Financial Times](https://www.ft.com/content/20d5599f-8955-4184-a2a0-ac1296e400f3)
+
+- **[03 · SOFTWARE]** Canva Cut 22% of Its Staff to Get Small Again
+  - _Melanie Perkins told staff the company must “refound Canva” after growth slowed for the first time in a decade. 1,271 roles go, product, growth and platform merge, and Sydney becomes the centre of gravity._
+  - Source: [Full story · The Age](https://www.theage.com.au/technology/canva-unveils-mass-job-cuts-in-hardest-moment-of-its-history-20261104-p61b62.html)
+
+- **[04 · ECONOMICS]** Revolut Moved 2,000 Engineers Off Claude and Cut Its AI Bill 90%
+  - _Self-hosted GLM on 56 Nvidia B200s costs about a tenth of frontier APIs. The surprise is where the gains came from: debugging, Jira tickets and the work nobody used to spend tokens on._
+  - Source: [Full story · The Register](https://www.theregister.com/ai-and-ml/2026/11/03/british-fintech-revolut-slashes-ai-coding-costs-10x-by-cutting-out-claude-and-going-self-hosted/5307345)
+
+- **[05 · TRUST]** Anthropic Built a Receipt for Which Model Answered You
+  - _FlashProve attaches a ~19 MB zero-knowledge proof to a 1,024-token response, generated at over 100 tokens per second on one H100. It costs 70–95× normal serving — and it makes a silent model swap detectable._
+  - Source: [Full story · Anthropic](https://www.anthropic.com/research/provable-inference)
+
+  **Signals / briefs:**
+  - The Head of Claude Code Product Leaves
+  - China’s Robot Money Moves From Bodies to Brains
+  - Pharma CEOs Do Not Buy the AI-Cures-Everything Story
+  - OpenAI Hires Uber’s President for Corporate Affairs
+  - One Engineer, 200 Pull Requests a Month
 
 ### Issue 159 · 2026-11-03 · `daily/timps-postcards-2026-11-03.html`
 

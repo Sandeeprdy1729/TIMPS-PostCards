@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TIMPS">
+<link rel="manifest" href="../manifest.json">
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/icon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/icon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="../assets/icon-48.png">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="../assets/icon-180.png">
+<title>TIMPS PostCards — Issue 160</title>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --cream:  #EEECE2;
+    --forest: #3D3929;
+    --terra:  #DA7756;
+    --terra-d:#BD5D3A;
+    --black:  #111111;
+    --card-bg:#F0ECE0;
+    --mono:   'Newsreader', Georgia, 'Times New Roman', serif;
+    --serif:  'TIMPS', 'Playfair Display', Georgia, serif;
+  }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Black.woff2') format('woff2'); font-weight:900; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Bold.woff2') format('woff2'); font-weight:700; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-SemiBold.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--cream);
+    background-image:
+      linear-gradient(rgba(61,57,41,.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.07) 1px, transparent 1px);
+    background-size: 38px 38px;
+    font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+    color: var(--forest);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { text-decoration: none; color: inherit; }
+
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 48px;
+    background-color: rgba(238,236,226,.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1.5px solid rgba(61,57,41,.12);
+    background-image:
+      linear-gradient(rgba(61,57,41,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.05) 1px, transparent 1px);
+    background-size: 38px 38px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Special Elite', 'Courier New', Courier, monospace;
+    font-size: 15px;
+    font-weight: 400;
+    color: #000;
+    text-decoration: none;
+  }
+  .nav-logo-mark {
+    width: 34px; height: 34px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .nav-logo-mark img { width: 28px; height: 28px; object-fit: contain; }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-link {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: #000;
+    opacity: .65;
+    text-decoration: none;
+    transition: opacity .15s;
+  }
+  .nav-link:hover { opacity: 1; }
+  .nav-cta {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: #000;
+    background: var(--terra);
+    border: 2.5px solid #000;
+    border-radius: 100px;
+    padding: 10px 24px;
+    cursor: pointer;
+    transition: background .15s, transform .1s;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--terra-d); transform: translateY(-1px); }
+
+  .wrapper { max-width: 760px; margin: 0 auto; padding: 40px 20px 80px; display: flex; flex-direction: column; gap: 0; }
+
+  .cover-card { background: var(--card-bg); border-radius: 20px 20px 4px 4px; padding: 56px 48px 48px; text-align: center; position: relative; overflow: hidden; border: 1.5px solid rgba(61,57,41,.12); margin-bottom: 3px; }
+  .cover-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, var(--terra) 0%, var(--terra-d) 60%, #E0A88A 100%); }
+  .cover-eyebrow { font-family: var(--mono); font-size:10px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:20px; display:flex; align-items:center; justify-content:center; gap:10px; }
+  .cover-eyebrow::before,.cover-eyebrow::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .15; max-width:60px; }
+  .cover-title { font-family: var(--serif); font-size:58px; font-weight:900; line-height:1; letter-spacing:-1px; color: var(--forest); margin-bottom:8px; }
+  .cover-sub { font-family: var(--serif); font-size:13px; font-style:italic; color: var(--forest); opacity: .55; margin-bottom:28px; }
+  .cover-divider { width:48px; height:2px; background: var(--terra); margin:0 auto 24px; border-radius:2px; }
+  .cover-meta { display:flex; justify-content:center; gap:32px; font-family: var(--mono); font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .45; }
+  .cover-badge { display:inline-flex; align-items:center; gap:6px; background: var(--terra); color: #fff; border-radius:20px; padding:6px 18px; font-family: var(--mono); font-size:10px; letter-spacing:2px; text-transform:uppercase; margin-top:28px; }
+  .top5-pill { display:flex; justify-content:center; gap:10px; margin-top:32px; flex-wrap:wrap; }
+  .pill { background: var(--forest); color: var(--cream); border-radius:100px; padding:4px 14px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; }
+  .pill.light { background:transparent; color: var(--forest); border:1px solid rgba(61,57,41,.2); }
+
+  .section-label { display:flex; align-items:center; gap:12px; padding:10px 0 8px; font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .35; }
+  .section-label::before,.section-label::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .1; }
+
+  .story-card { border-radius:4px; border:1.5px solid rgba(61,57,41,.10); padding:36px 40px; margin-bottom:3px; position:relative; overflow:hidden; }
+  .story-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }
+
+  .card-sky      { background:#D6E8F0; } .card-sky::before      { background: #7AAFC0; }
+  .card-cream    { background: var(--card-bg); } .card-cream::before    { background: var(--terra); }
+  .card-blush    { background:#F5DDD0; } .card-blush::before    { background: #E0A88A; }
+  .card-lavender { background:#EAE6F5; } .card-lavender::before { background: #C8BEE8; }
+  .card-sage     { background:#D6E4D6; } .card-sage::before     { background: #8BAF8B; }
+
+  .page-chip { position:absolute; top:14px; right:16px; font-family: var(--mono); font-size:9px; letter-spacing:2px; text-transform:uppercase; color: var(--forest); opacity: .3; }
+  .card-routine { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:8px; }
+  .card-headline { font-family: var(--serif); font-size:28px; font-weight:900; line-height:1.15; color: var(--forest); margin-bottom:10px; }
+  .card-headline.lg { font-size:34px; }
+  .card-headline.sm { font-size:22px; }
+  .card-deck { font-family: var(--serif); font-style:italic; font-size:14px; line-height:1.55; color: var(--forest); opacity: .55; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid rgba(61,57,41,.12); }
+  .card-body { font-family: 'Lora', Georgia, serif; font-size:14px; line-height:1.7; color: var(--forest); }
+  .card-body p { margin-bottom:11px; }
+  .drop::first-letter { font-family: var(--serif); font-size:52px; font-weight:900; float:left; line-height:.78; margin:5px 6px 0 0; color: var(--terra); }
+  .clearfix::after { content:''; display:table; clear:both; }
+
+  .hl-terra { background: var(--terra); color: var(--forest); padding:0 4px; border-radius:2px; }
+  .hl-ink  { background: var(--forest); color: var(--cream); padding:0 4px; border-radius:2px; }
+  .hl-sage { background: #8BAF8B; color: #fff; padding:0 4px; border-radius:2px; }
+  .hl-lav  { background: #C8BEE8; color: var(--forest); padding:0 4px; border-radius:2px; }
+
+  .stat-box { float:right; margin:0 0 16px 24px; background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:16px 20px; text-align:center; min-width:120px; }
+  .stat-big { font-family: var(--serif); font-size:44px; font-weight:900; line-height:1; color: var(--forest); display:block; }
+  .stat-label { font-family: var(--mono); font-size:9.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .5; display:block; margin-top:4px; }
+
+  .img-frame { border:2px solid rgba(61,57,41,0.18); border-radius:12px; overflow:hidden; margin:16px 0; background: var(--card-bg); }
+  .img-frame img { width:100%; display:block; max-height:240px; object-fit:cover; border-bottom:1px solid rgba(61,57,41,.12); }
+  .img-caption { padding:8px 12px; font-family: var(--mono); font-size:10.5px; color: var(--forest); opacity: .6; font-style:italic; display:flex; align-items:center; justify-content:space-between; gap:8px; }
+  .img-caption a { font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; white-space:nowrap; font-style:normal; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; }
+  .img-caption a:hover { opacity: 1; }
+  .img-frame.float-right { float:right; width:220px; margin:0 0 16px 24px; }
+  .img-frame.float-right img { max-height:140px; }
+
+  .source-link { display:inline-flex; align-items:center; gap:5px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:12px; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; transition: opacity .15s; }
+  .source-link:hover { opacity: 1; }
+  .source-link::after { content:'↗'; font-size:9px; }
+
+  .signals-grid { display:flex; flex-direction:column; gap:14px; }
+  .signal-row { display:flex; align-items:flex-start; gap:14px; }
+  .signal-num { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family: var(--serif); font-size:13px; font-weight:900; flex-shrink:0; color:#fff; }
+  .signal-num.n1{background: var(--terra); color: var(--forest);} .signal-num.n2{background: var(--forest);} .signal-num.n3{background:#7AAFC0;} .signal-num.n4{background: var(--terra-d); color: var(--forest);} .signal-num.n5{background: var(--black);}
+  .signal-title { font-family: var(--serif); font-size:14px; font-weight:700; color: var(--forest); margin-bottom:2px; }
+  .signal-desc { font-family: 'Newsreader', Georgia, 'Times New Roman', serif; font-size:12px; line-height:1.65; color: var(--forest); opacity: .6; }
+  .signal-link { display:inline-block; font-family: var(--mono); font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:4px; border-bottom:1px solid rgba(61,57,41,.25); padding-bottom:1px; transition: opacity .15s; }
+  .signal-link:hover { opacity: 1; }
+
+  .themes-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .theme-item { padding:10px 14px; border-radius:8px; font-family: var(--serif); font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; text-align:center; border:1.5px solid rgba(61,57,41,.12); background: var(--cream); }
+
+  .tool-week { background: var(--forest); color: var(--cream); border-radius:12px; padding:18px 20px; text-align:center; margin-top:14px; }
+  .tool-week-eyebrow { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; opacity: .55; margin-bottom:6px; }
+  .tool-week-name { font-family: var(--serif); font-size:22px; font-weight:900; margin-bottom:4px; }
+  .tool-week-desc { font-family: 'Newsreader', Georgia, 'Times New Roman', serif; font-size:11.5px; opacity: .7; font-style:italic; }
+
+  .output-card { background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:18px 20px; margin-top:14px; }
+  .output-title { font-family: var(--serif); font-size:18px; font-weight:700; margin-bottom:8px; color: var(--forest); }
+  .tp-list { list-style:none; padding:0; margin:0; }
+  .tp-list li { padding:5px 0; font-family: 'Lora', Georgia, serif; font-size:12px; color: var(--forest); border-bottom:1px solid rgba(61,57,41,.07); display:flex; align-items:flex-start; gap:7px; }
+  .tp-list li::before { content:'·'; color: var(--terra); font-size:14px; line-height:1.2; flex-shrink:0; }
+  .tp-list li a { color: var(--forest); opacity: .8; text-decoration:none; }
+  .tp-list li a:hover { opacity: 1; }
+
+  .sources-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px 20px; }
+  .sources-grid a { font-family: var(--mono); font-size:11px; color: var(--forest); opacity: .55; text-decoration:none; border-bottom:1px solid rgba(61,57,41,.15); padding-bottom:1px; transition: opacity .15s; }
+  .sources-grid a:hover { opacity: 1; }
+
+  .footer {
+    background: var(--black);
+    padding: 28px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    border-radius: 4px 4px 20px 20px;
+    margin-top: 3px;
+  }
+  .footer-logo { display: flex; align-items: center; gap: 10px; }
+  .footer-mark { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; }
+  .footer-mark img { width: 24px; height: 24px; object-fit: contain; }
+  .footer-brand { font-family: 'Special Elite', 'Courier New', Courier, monospace; font-size: 13px; font-weight: 400; color: #fff; }
+  .footer-center { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.4); text-align: center; line-height: 1.6; }
+  .footer-right { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.3); text-align: right; line-height: 2; }
+  .footer-right a { color: rgba(255,255,255,.5); transition: color .15s; }
+  .footer-right a:hover { color: #fff; }
+
+  .page-layout { display: flex; align-items: flex-start; gap: 0; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+  .toc-sidebar { position: sticky; top: 80px; width: 170px; flex-shrink: 0; padding: 48px 0 0 0; }
+  .toc-nav { display: flex; flex-direction: column; gap: 0; }
+  .toc-link { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.5px; text-transform: uppercase; color: #000; opacity: .45; text-decoration: none; padding: 7px 12px; border-left: 2px solid transparent; transition: opacity .15s, border-color .15s; line-height: 1.3; }
+  .toc-link:hover { opacity: .85; }
+  .toc-link.active { opacity: 1; border-left-color: var(--terra); }
+  .section-anchor { scroll-margin-top: 80px; }
+
+  @media (max-width: 900px) {
+    .toc-sidebar { display: none; }
+    .page-layout { max-width: 760px; }
+  }
+
+  @media (max-width: 720px) {
+    .nav { padding: 12px 24px; }
+    .nav-links { display: none; }
+    .wrapper { padding: 20px 14px 60px; }
+    .cover-card { padding: 40px 24px; }
+    .story-card { padding: 28px 20px; }
+    .footer { padding: 24px; flex-direction: column; align-items: flex-start; }
+    .footer-center, .footer-right { text-align: left; }
+    .stat-box { float: none; margin: 0 0 16px 0; }
+    .img-frame.float-right { float: none; width: 100%; margin: 0 0 16px 0; }
+  }
+  @media (max-width: 480px) {
+    .nav-logo span { display: none; }
+    .cover-title { font-size: 40px; }
+    .card-headline.lg { font-size: 28px; }
+    .card-headline { font-size: 24px; }
+  }
+</style>
+
+</head>
+
+<body>
+
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">
+    <div class="nav-logo-mark"><img src="../assets/timps-postcards.png" alt="TIMPS"></div>
+    <span>TIMPS PostCards</span>
+  </a>
+  <div class="nav-links">
+    <a href="../articles.html" class="nav-link">Articles</a>
+    <a href="../archive.html" class="nav-link">Archive</a>
+    <a href="timps-postcards-2026-11-04.html" class="nav-link">Latest Issue</a>
+    <a href="../index.html#subscribe" class="nav-link">Subscribe</a>
+  </div>
+  <a href="../index.html#subscribe" class="nav-cta">Subscribe</a>
+</nav>
+
+<div class="page-layout">
+  <aside class="toc-sidebar">
+    <nav class="toc-nav">
+      <a href="#amd" class="toc-link">The CPU Return</a>
+      <a href="#grid" class="toc-link">The Grid</a>
+      <a href="#canva" class="toc-link">Refounding Canva</a>
+      <a href="#revolut" class="toc-link">Cheap Tokens</a>
+      <a href="#proof" class="toc-link">Proof of Model</a>
+      <a href="#signals" class="toc-link">Signals</a>
+      <a href="#themes" class="toc-link">Themes</a>
+      <a href="#tool" class="toc-link">Watch</a>
+      <a href="#sources" class="toc-link">Sources</a>
+    </nav>
+  </aside>
+
+  <div class="wrapper">
+
+  <div id="intro" class="cover-card section-anchor">
+    <div class="cover-eyebrow">Est. 2026 &middot; Hyderabad</div>
+    <div class="cover-title">TIMPS<br>PostCards</div>
+    <div class="cover-sub">AI Intelligence Digest &middot; Your Daily Signal from the Machine Frontier</div>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+      <span>Issue 160</span>
+      <span>November 4, 2026</span>
+      <span>No. 187</span>
+    </div>
+    <div class="cover-badge">&#11041; 160 Issues &mdash; Built with the TIMPS Ecosystem</div>
+    <div class="top5-pill">
+      <span class="pill">5 Top Signals</span>
+      <span class="pill light">The CPU Return</span>
+      <span class="pill light">The Grid</span>
+      <span class="pill light">Refounding Canva</span>
+      <span class="pill light">Cheap Tokens</span>
+      <span class="pill light">Proof of Model</span>
+    </div>
+  </div>
+
+  <div id="amd" class="story-card card-blush section-anchor">
+    <div class="page-chip">01 &middot; LEAD</div>
+    <div class="card-routine">Semiconductors &middot; The CPU Return</div>
+    <h2 class="card-headline lg">AMD&rsquo;s Data Center Revenue Nearly Doubled. The CPU Is the Reason.</h2>
+    <div class="card-deck">Revenue rose 45% to $13.38 billion. Data center hit $8.5 billion, 64% of the company. And guidance of $17 billion for the December quarter would put AMD ahead of Intel as the largest x86 vendor for the first time.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">$17B</span>
+        <span class="stat-label">Q4 revenue guide</span>
+      </div>
+      <p class="drop"><b>AMD</b> reported third-quarter results on Tuesday that beat expectations almost everywhere it counts. Revenue of <b>$13.38 billion</b> was up <b>45%</b> from <b>$9.25 billion</b> a year earlier and ahead of the <b>$13.09 billion</b> consensus tracked by LSEG. Data center revenue reached <b>$8.5 billion</b>, up <b>97%</b>, and now accounts for <b>64%</b> of the business, against <b>47%</b> a year ago. The stock rose about <b>8%</b> in extended trading after three straight days of losses.</p>
+      <p>The guidance was the louder number. AMD expects roughly <b>$17 billion</b> in December-quarter revenue, above the <b>$16.2 billion</b> analysts expected and above Intel&rsquo;s <b>$15 billion to $16 billion</b> projection &mdash; a range that, if it holds, would make AMD the largest x86 processor vendor for the first time. Gross margin is guided to <b>55%</b>, a hair under the <b>55.3%</b> StreetAccount consensus. On the call, <b>Lisa Su</b> said she expects server revenue to double year over year in 2027 and data center AI growth to accelerate even faster than the company projected 90 days ago. &ldquo;We have worked across our supply chain to secure the wafers, substrates, advanced packaging, memory, and other key components needed to support much higher growth next year,&rdquo; she said.</p>
+      <p>The surprise is which part of the data center is doing the work. AMD spent years chasing Nvidia in GPUs. What has revived it is the server CPU, because agentic applications spin up virtual machines and leave them running for hours, doing work with little human supervision. &ldquo;Adoption is just starting, and we expect demand to grow sharply as agents are deployed more broadly and take on more complex work,&rdquo; Su said. AMD&rsquo;s Helios rack-scale systems now count <b>Meta</b>, <b>Microsoft</b>, <b>Anthropic</b>, <b>OpenAI</b> and <b>Oracle</b> among their early users, and the company has agreed to invest <b>$1 billion</b> in Meta&rsquo;s equity offering and up to <b>$5 billion</b> in Anthropic.</p>
+      <p><span class="hl-terra">The old PC business is shrinking underneath all of this. Client and gaming revenue fell <b>8%</b> to <b>$3.7 billion</b>, with gaming down <b>40%</b> year over year, and global PC shipments fell <b>4%</b> in the second quarter as memory costs climbed, according to Counterpoint Research. Intel&rsquo;s data center revenue grew <b>78%</b> in the same quarter and its stock still fell <b>29%</b> on weak guidance. The market is no longer paying for growth. It is paying for growth with supply locked up and a margin that holds. AMD is up about <b>125%</b> this year, and Tuesday&rsquo;s move was a bet that the CPU is no longer the boring part of the AI stack.</span></p>
+      <p>There is a version of this story where the agentic boom is a temporary re-rating. Agents are compute-hungry, but they are also the easiest workload to move to whichever chip is cheapest, and AMD&rsquo;s own guidance implies margins slightly below consensus. The company&rsquo;s answer is that the constraint is physical: wafers, substrates, packaging and memory are booked, and the customers building agent infrastructure need general-purpose compute that is actually available. That is a supply argument, not a performance argument, and it is the first time in this cycle that AMD has been able to make one.</p>
+    </div>
+    <a class="source-link" href="https://www.cnbc.com/2026/11/03/amd-amd-q3-earnings-report-2026-.html" target="_blank">Full story &middot; CNBC</a>
+  </div>
+
+  <div id="grid" class="story-card card-sky section-anchor">
+    <div class="page-chip">02 &middot; INFRASTRUCTURE</div>
+    <div class="card-routine">Energy &middot; The Transmission Bottleneck</div>
+    <h2 class="card-headline">America Is Building Transmission Lines at a Quarter of Its 2013 Pace</h2>
+    <div class="card-deck">The US added nearly 4,000 miles of high-voltage line in 2013 and under 900 in 2024. One 102-mile project took 13 years. Hyperscalers will spend about $900 billion this year; the wires may decide where it lands.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">166 GW</span>
+        <span class="stat-label">projected US demand growth by 2030</span>
+      </div>
+      <p class="drop">The <b>Financial Times</b> built its Big Read around a single line: <b>Cardinal-Hickory Creek</b>, 102 miles of high-voltage transmission between Iowa and Wisconsin, which took <b>13 years</b> to complete and entered service in 2024. The story is not that one project was slow. It is that the slow project is typical. The US built nearly <b>4,000 miles</b> of high-voltage transmission in 2013 and under <b>900 miles</b> in 2024, a quarter of the pace a decade earlier. Major projects now take about a decade on average. China has built more transmission lines in 15 years than the US has in its history.</p>
+      <p>The demand behind that comparison is enormous. <b>JPMorgan</b> expects hyperscalers to spend about <b>$900 billion</b> on AI projects this year, and <b>Grid Strategies</b> expects US electricity demand to rise by <b>166 gigawatts</b> by 2030 &mdash; roughly the load of <b>15 New York Cities</b>. The constraint is not generation alone. It is the ability to move power to new computing loads, through a system where utilities, regional grid operators, states, <b>FERC</b>, environmental reviews and litigation all hold overlapping authority. Asked whether the US can build fast enough, <b>ITC</b> chief executive <b>Krista Tanner</b> told the FT: &ldquo;Increasingly, I worry that the answer is no.&rdquo;</p>
+      <p>The permitting record is messier than the rhetoric. The <b>Niskanen Center</b> found that more than <b>25%</b> of major projects under federal review between 2010 and 2020 were delayed or cancelled &mdash; though <b>16 of 18</b> lawsuits ultimately failed. <b>S&amp;P</b> says utilities plan <b>$1.3 trillion</b> of generation and transmission investment by 2030, most of it recovered through customer bills, and Pew finds half of Americans already think data centers are bad for household energy costs. &ldquo;You can mandate all of this thinking about what lines need to be built,&rdquo; <b>Advait Arun</b> of the Center for Public Enterprise told the FT. &ldquo;But at no point does anyone have to build anything.&rdquo;</p>
+      <p><span class="hl-ink">Capital is already routing around the grid. <b>Cleanview</b> counts <b>59</b> behind-the-meter generation sites, more than a quarter of planned US data center capacity, including an AWS campus beside the Susquehanna nuclear plant. <b>Google</b> signed deals in Tennessee, Arkansas and Michigan this year to curtail load in exchange for faster grid access. Advanced conductors, sensors and demand-flexibility software can squeeze more out of existing lines, and a bipartisan Senate bill from September would speed federal reviews. The counterargument is that none of this adds up to 166 gigawatts. <b>Jigar Shah</b> says flexibility plus modest upgrades could meet US needs for a decade; <b>AEP</b>&rsquo;s <b>David Stader</b> says it does not give that scale, and <b>RFF</b>&rsquo;s <b>Jesse Buchsbaum</b> warns the demand forecast may be too high, leaving ratepayers with the bill for infrastructure that never gets used. <b>PJM</b>&rsquo;s market monitor has raised rationing or blackouts as the bleakest case.</span></p>
+      <p>For the AI buildout, this is a different kind of bottleneck from chips. A fab can be accelerated with money. A transmission line cannot be compressed by a purchase order, and the states that host the cheapest power are not always the ones that welcome the load. The competitive question is shifting from who has the most accelerators to who can physically connect them.</p>
+    </div>
+    <a class="source-link" href="https://www.ft.com/content/20d5599f-8955-4184-a2a0-ac1296e400f3" target="_blank">Full story &middot; Financial Times</a>
+  </div>
+
+  <div id="canva" class="story-card card-sage section-anchor">
+    <div class="page-chip">03 &middot; SOFTWARE</div>
+    <div class="card-routine">Restructuring &middot; Refounding at Scale</div>
+    <h2 class="card-headline">Canva Cut 22% of Its Staff to Get Small Again</h2>
+    <div class="card-deck">Melanie Perkins told staff the company must &ldquo;refound Canva&rdquo; after growth slowed for the first time in a decade. 1,271 roles go, product, growth and platform merge, and Sydney becomes the centre of gravity.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">22%</span>
+        <span class="stat-label">of staff, 1,271 roles</span>
+      </div>
+      <p class="drop"><b>Canva</b> will cut <b>1,271 jobs</b>, or <b>22%</b> of its workforce, in the first company-wide redundancy round in its thirteen-year history. Co-founder and chief executive <b>Melanie Perkins</b> told staff on Wednesday that the Sydney design-software maker needed to &ldquo;refound Canva&rdquo; and return to small, empowered teams after its growth slowed this year for the first time in a decade. Some roles will go; others will be asked to relocate to centralised hubs. Staff leaving will keep access to Slack and Gmail until the end of the week.</p>
+      <p>The structure changes with the headcount. Canva is merging its product, growth and platform teams into a single product organisation and cutting management layers. Sydney will become the primary home for more product teams, and hybrid staff will be expected in the office two to three days a week from January. &ldquo;This is without doubt the hardest moment in our thirteen-year history,&rdquo; Perkins wrote. &ldquo;After exploring a wide range of alternatives, I&rsquo;ve come to the difficult conclusion that small changes won&rsquo;t be enough.&rdquo;</p>
+      <p>The financial backdrop explains the urgency. Canva has more than <b>265 million</b> monthly users across <b>37</b> countries, but it cut its own valuation to <b>$31 billion</b> this year and downgraded its revenue forecast by a third, to about <b>20%</b> growth. Sales grew <b>38%</b> in 2025 and <b>45%</b> the year before. <b>Blackbird</b>, its largest venture backer, marked the company down <b>17%</b> to <b>$34.9 billion</b> in August, from the <b>$42 billion</b> price set in a share sale last year; <b>Airtree</b> followed. An IPO once expected for 2027 has reportedly been shelved.</p>
+      <p><span class="hl-sage">Perkins did not directly blame AI, but the economics are tangled with it. Canva delayed the rollout of its biggest AI-led software update because the cost of running AI for more than <b>200 million</b> free users was eating into profit. &ldquo;Historically, the cost to create a design cost us essentially nothing,&rdquo; co-founder <b>Cliff Obrecht</b> said in August. &ldquo;The cost of goods to serve a user has gone from cents per month to many, many more cents.&rdquo; The company has <b>$1.5 billion</b> in the bank, so this is not a solvency story. It is a story about a software business whose marginal cost stopped being zero at the same moment investors began punishing anyone who looked like they might be disrupted by AI. Rival <b>Figma</b> is down <b>44%</b> this year despite strong revenue growth. Canva&rsquo;s answer is to shrink the organisation before the market shrinks it for them.</span></p>
+      <p>Australia&rsquo;s tech sector is absorbing the same shock. <b>Atlassian</b> cut <b>1,600</b> jobs in March, <b>WiseTech Global</b> announced <b>2,000</b> the same month, and <b>Commonwealth Bank</b> confirmed <b>300</b> cuts the same day. The pattern is consistent: the companies that sold seats and storage are now paying for inference, and the ones that grew fastest on free users have the least room to pass the bill through.</p>
+    </div>
+    <a class="source-link" href="https://www.theage.com.au/technology/canva-unveils-mass-job-cuts-in-hardest-moment-of-its-history-20261104-p61b62.html" target="_blank">Full story &middot; The Age</a>
+  </div>
+
+  <div id="revolut" class="story-card card-lavender section-anchor">
+    <div class="page-chip">04 &middot; ECONOMICS</div>
+    <div class="card-routine">Inference &middot; Cheap Tokens</div>
+    <h2 class="card-headline">Revolut Moved 2,000 Engineers Off Claude and Cut Its AI Bill 90%</h2>
+    <div class="card-deck">Self-hosted GLM on 56 Nvidia B200s costs about a tenth of frontier APIs. The surprise is where the gains came from: debugging, Jira tickets and the work nobody used to spend tokens on.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">~90%</span>
+        <span class="stat-label">lower inference cost</span>
+      </div>
+      <p class="drop"><b>Revolut</b> says it cut AI coding inference costs by roughly <b>90%</b> in less than a year by making self-hosted models its default instead of commercial services such as <b>Claude Code</b>. <b>David Abitbol</b>, the fintech&rsquo;s operations and infrastructure lead, described the shift at the AI Engineer conference in New York last month. Revolut rolled AI coding tools out to roughly <b>2,000</b> engineers and saw a <b>60%</b> improvement in coding time and a <b>70%</b> improvement in lead time. It started on <b>GLM-5.1</b>, moved to <b>GLM-5.3</b>, and now serves the model on <b>56 Nvidia B200 GPUs</b> &mdash; the equivalent of seven eight-GPU DGX B200 systems.</p>
+      <p>The migration began with a budget problem. Revolut had deployed <b>Gemini</b> in early 2025 and <b>Claude Code</b> in early 2026, and capped usage because costs were unpredictable. &ldquo;We were highly skeptical about the cost of AI,&rdquo; Abitbol said. &ldquo;We were seeing engineers spend <b>$1,000</b> a month, <b>$10,000</b> a month with not so much ROI.&rdquo; Self-hosting GLM at about <b>$0.30 per million input and output tokens</b> cost roughly a tenth of Codex or Claude Code. GLM 5.1 is not a small model: about <b>754 billion</b> total parameters, <b>40 billion</b> active per token, roughly <b>380 GB</b> of GPU memory for the weights alone, plus <b>6&ndash;26 GB</b> per user for context.</p>
+      <p>The performance work mattered as much as the hardware. Revolut tuned hyperparameters, moved to <b>NVFP4</b> quantization, disaggregated prefill and decode, and cut context lengths. Abitbol&rsquo;s conclusion is blunt: &ldquo;Long context is a scam. You really need to be mindful of that. Even though you can serve one million tokens, <b>256</b> [thousand] is really what you need.&rdquo; The target is sub-<b>3-second</b> time to first token at around 256,000 tokens of context, with generation at about <b>200 tokens per second</b>. &ldquo;As soon as you exceed 5 seconds, my Slack inbox starts to blow up,&rdquo; he said. Engineers signing in after 5pm get closer to <b>800 tokens per second</b>.</p>
+      <p><span class="hl-lav">The behavioural finding is the one worth keeping. When tokens are cheap, engineers stop rationing them. Revolut&rsquo;s biggest gains came not from writing code faster but from pointing the model at debugging, <b>Jira</b> tickets and <b>Confluence</b> pages &mdash; work that previously never justified the spend. &ldquo;When you have unlimited tokens, you&rsquo;re free to do that,&rdquo; Abitbol said. &ldquo;You no longer have to save your tokens for the end of the quarter or the most difficult task.&rdquo; The model router still sends vision work to Gemini or GPT Luna because GLM is text-only, and Abitbol concedes that Chinese open-weights models carry privacy concerns &mdash; though he argues the risk is the API running out of China, not the weights running on-prem or in a regional cloud. The economics are flat: &ldquo;We don&rsquo;t have any bill shock at the end of the month, and the frontier is the exception.&rdquo;</span></p>
+      <p>This is the counter-narrative to the assumption that AI coding costs must rise with usage. For a company with the engineering depth to run its own inference stack, the marginal cost of an agentic workflow can fall by an order of magnitude. For everyone else, the bill still arrives monthly.</p>
+    </div>
+    <a class="source-link" href="https://www.theregister.com/ai-and-ml/2026/11/03/british-fintech-revolut-slashes-ai-coding-costs-10x-by-cutting-out-claude-and-going-self-hosted/5307345" target="_blank">Full story &middot; The Register</a>
+  </div>
+
+  <div id="proof" class="story-card card-cream section-anchor">
+    <div class="page-chip">05 &middot; TRUST</div>
+    <div class="card-routine">Cryptography &middot; Proof of Model</div>
+    <h2 class="card-headline">Anthropic Built a Receipt for Which Model Answered You</h2>
+    <div class="card-deck">FlashProve attaches a ~19 MB zero-knowledge proof to a 1,024-token response, generated at over 100 tokens per second on one H100. It costs 70&ndash;95&times; normal serving &mdash; and it makes a silent model swap detectable.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">19 MB</span>
+        <span class="stat-label">proof per 1,024-token request</span>
+      </div>
+      <p class="drop"><b>Anthropic</b> released <b>FlashProve</b>, an open-source prototype for what it calls provable inference: a way for a user to verify that a response came from the model a provider claims served it, rather than a cheaper model quietly substituted by a routing service or an attacker tampering with the token stream. The work is published under <b>Apache 2.0</b>, with executable code, <b>Lean</b> formal proofs and a technical description of the protocol.</p>
+      <p>The mechanism is a <b>zkSNARK</b>, a zero-knowledge succinct argument that a computation was executed correctly. The provider sends a short proof alongside the response; the user verifies it in seconds on a CPU. The proof reveals nothing about the model&rsquo;s weights, which is what makes it usable by a provider that will not hand over its parameters. For a <b>400-billion-parameter</b> mixture-of-experts model &mdash; <b>Llama 4 Maverick</b> at 4-bit quantization &mdash; a single <b>H100</b> generates proofs at over <b>100 tokens per second</b>, with a proof size of about <b>19 MB</b> per 1,024-token request. That is <b>70 to 95 times</b> the GPU time that <b>vLLM</b> takes to process prompts of the same length.</p>
+      <p>The use cases are broader than consumer trust. An independent evaluator testing a model before release needs to know the model being evaluated is the one being served. A company buying inference through a third-party router wants assurance the tokens came from the model it paid for. A compromised server, or a more capable model impersonating a weaker one to evade classifiers, would have to produce valid proofs for the expected weights to escape detection &mdash; which it cannot do. A regulator trying to verify that a provider is serving inference rather than training could ask for certificates covering a period of traffic.</p>
+      <p><span class="hl-terra">The limits are real. FlashProve is a prototype, the overhead is large, and the proof shows that the claimed model produced the response &mdash; not that the same hardware was not also training something else on the side. Anthropic positions it as an intermediate research result, published so others can improve it. But the framing matters. The company&rsquo;s Frontier Safety Roadmap committed it to a prototype for verifying inference traffic by <b>September 30, 2026</b>, and this is that prototype. If proofs get cheap enough to attach by default, &ldquo;which model am I talking to&rdquo; stops being a question of trust and becomes a question of arithmetic.</span></p>
+      <p>There is an uncomfortable implication for the router economy. A lot of AI infrastructure is built on the assumption that the model behind an API is opaque and interchangeable. A verifiable receipt turns model identity into a product attribute that can be checked, priced and, eventually, required.</p>
+    </div>
+    <a class="source-link" href="https://www.anthropic.com/research/provable-inference" target="_blank">Full story &middot; Anthropic</a>
+  </div>
+
+  <div id="signals" class="story-card card-cream section-anchor">
+    <div class="page-chip">06 &middot; SIGNALS</div>
+    <div class="card-routine">5 Key Signals</div>
+    <h2 class="card-headline sm">What Moved the Machine Frontier Today</h2>
+    <div class="card-deck" style="border-bottom:none;padding-bottom:0;margin-bottom:16px;">Briefs worth an afternoon of reading.</div>
+    <div class="signals-grid">
+      <div class="signal-row">
+        <div class="signal-num n1">1</div>
+        <div>
+          <div class="signal-title">The Head of Claude Code Product Leaves</div>
+          <div class="signal-desc"><b>Cat Wu</b>, head of product for <b>Claude Code</b> and one of the small group behind its launch, left Anthropic on Friday and announced it on X on Tuesday. She also oversaw <b>Cowork</b>, the company&rsquo;s non-coding agent tool. Wu joined in summer 2024 after testing an early prototype, briefly decamped to <b>Cursor</b> with creator <b>Boris Cherny</b>, and returned weeks later. <b>Thariq Shihipar</b>, another Claude Code staffer, left last month. The exits land weeks before a landmark IPO.</div>
+          <a class="signal-link" href="https://www.businessinsider.com/claude-code-leader-cat-wu-exits-anthropic-before-big-ipo-2026-11" target="_blank">Business Insider &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n2">2</div>
+        <div>
+          <div class="signal-title">China&rsquo;s Robot Money Moves From Bodies to Brains</div>
+          <div class="signal-desc">Chinese embodied-AI companies raised about <b>$13 billion</b> across <b>322 deals</b> in the first half of 2026, roughly <b>5&times;</b> a year earlier, according to <b>ITjuzi</b>. The top 20 companies took <b>59%</b> of the RMB <b>93.5 billion</b> total, led by <b>X Square Robot</b>&rsquo;s RMB <b>6.3 billion</b> Series C. Angel rounds alone topped <b>100</b> deals, and Beijing led all cities with <b>100</b>. The shift is from hardware that can run and flip to the models that let it decide what to do.</div>
+          <a class="signal-link" href="https://www.reuters.com/world/china/chinas-robot-makers-have-mastered-moves-now-comes-race-brains-2026-11-01/" target="_blank">Reuters &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n3">3</div>
+        <div>
+          <div class="signal-title">Pharma CEOs Do Not Buy the AI-Cures-Everything Story</div>
+          <div class="signal-desc">No drug designed by artificial intelligence has won <b>FDA</b> clearance, and pharmaceutical leaders are skeptical of claims that AI could cure most diseases within a decade, according to the <b>Wall Street Journal</b>. The obstacle is not compute but biology: the models can generate candidates faster than trials can validate them, and the industry&rsquo;s failure rate is set by human physiology, not by the speed of the design loop.</div>
+          <a class="signal-link" href="https://www.wsj.com/tech/ai/silicon-valley-promises-ai-will-cure-disease-drugmaker-ceos-arent-buying-it-5218511c" target="_blank">Wall Street Journal &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n4">4</div>
+        <div>
+          <div class="signal-title">OpenAI Hires Uber&rsquo;s President for Corporate Affairs</div>
+          <div class="signal-desc"><b>Jill Hazelbaker</b>, Uber&rsquo;s president and chief corporate affairs officer, is joining <b>OpenAI</b> in the same role, reporting to president <b>Greg Brockman</b>. The hire brings a political and communications operator into a company facing regulatory scrutiny, litigation and a public debate about AI&rsquo;s costs. It is also a signal about what OpenAI thinks it needs next: not another researcher, but someone who can manage governments, press and public trust.</div>
+          <a class="signal-link" href="https://www.axios.com/2026/11/03/jill-hazelbaker-openai-uber" target="_blank">Axios &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n5">5</div>
+        <div>
+          <div class="signal-title">One Engineer, 200 Pull Requests a Month</div>
+          <div class="signal-desc">In the winning essay of The Pragmatic Engineer&rsquo;s challenge, <b>Neil Kakkar</b> documents going from <b>8&ndash;20</b> pull requests a month at PostHog to <b>200+</b> at AI-native startup <b>Tano</b> &mdash; roughly <b>11&times;</b> his old output. The tradeoffs are new: constant context switching, lost shared context, less focus on design, and anxiety about plan limits. Old constraints vanished too, including communications overhead and code review. The result is faster shipping and more breaking things.</div>
+          <a class="signal-link" href="https://newsletter.pragmaticengineer.com/p/how-software-engineering-is-changing" target="_blank">The Pragmatic Engineer &#8597;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="themes" class="story-card card-lavender section-anchor">
+    <div class="page-chip">07 &middot; CLOSER</div>
+    <div class="card-routine">Top Themes</div>
+    <h2 class="card-headline sm">The Shape of Today&rsquo;s News</h2>
+    <div class="themes-grid" style="margin-top:16px;">
+      <div class="theme-item">The CPU Return</div>
+      <div class="theme-item">Wires, Not Watts</div>
+      <div class="theme-item">Refounding at Scale</div>
+      <div class="theme-item">Cheap Tokens, New Habits</div>
+      <div class="theme-item">Proof of Model</div>
+    </div>
+
+    <div id="tool" class="tool-week section-anchor">
+      <div class="tool-week-eyebrow">Company Watch of the Day</div>
+      <div class="tool-week-name">META</div>
+      <div class="tool-week-desc"><b>Meta</b> raised <b>$15 billion</b> in a five-part US dollar bond sale on Tuesday and drew as much as <b>$58 billion</b> in orders, about <b>3.9&times;</b> the deal. The longest tranche, maturing in <b>2056</b>, priced at <b>2.2 percentage points</b> over Treasuries after guidance tightened by 0.3 points &mdash; still nearly <b>0.9 points</b> wider than a comparable note Meta sold in April. Its new <b>10-year</b> yields <b>6.55%</b>, roughly a point above the average AA-rated peer and half a point above BBB debt; yields across the stack ran from <b>5.85%</b> to <b>7.53%</b>. The dollar deal is the biggest piece of a cross-border financing expected to top <b>$20 billion</b>, with a debut euro sale opening Wednesday. Meta&rsquo;s total debt stood at <b>$83.67 billion</b> on September 30, and capex is guided to <b>$135&ndash;145 billion</b> this year. It posted negative free cash flow of <b>$2.12 billion</b> last quarter; <b>S&amp;P</b> cut its outlook to negative on October 30 and forecasts free operating cash flow shortfalls of <b>$39 billion</b> in 2026 and <b>$71 billion</b> in 2027. The bond demand is real. So is the price of it: Big Tech debt now carries its widest premium to the broader investment-grade market since <b>2003</b>.</div>
+    </div>
+
+    <div id="sources" class="output-card section-anchor">
+      <div class="output-title">Sources Cited</div>
+      <div class="sources-grid">
+        <a href="https://www.cnbc.com/2026/11/03/amd-amd-q3-earnings-report-2026-.html" target="_blank">CNBC &mdash; AMD Q3 results</a>
+        <a href="https://www.theregister.com/2026/11/03/amd-q4-guidance-intel/" target="_blank">The Register &mdash; AMD vs Intel</a>
+        <a href="https://www.ft.com/content/20d5599f-8955-4184-a2a0-ac1296e400f3" target="_blank">Financial Times &mdash; US power grid</a>
+        <a href="https://dealroom.co/news/other-1rfje3f-why-america-is-struggling-to-power-the-ai-boom/" target="_blank">Dealroom &mdash; grid data points</a>
+        <a href="https://www.theage.com.au/technology/canva-unveils-mass-job-cuts-in-hardest-moment-of-its-history-20261104-p61b62.html" target="_blank">The Age &mdash; Canva restructuring</a>
+        <a href="https://www.theregister.com/ai-and-ml/2026/11/03/british-fintech-revolut-slashes-ai-coding-costs-10x-by-cutting-out-claude-and-going-self-hosted/5307345" target="_blank">The Register &mdash; Revolut inference costs</a>
+        <a href="https://www.anthropic.com/research/provable-inference" target="_blank">Anthropic &mdash; FlashProve</a>
+        <a href="https://techcrunch.com/2026/11/03/anthropic-is-working-on-a-system-to-prove-ai-models-identity/" target="_blank">TechCrunch &mdash; provable inference</a>
+        <a href="https://www.businessinsider.com/claude-code-leader-cat-wu-exits-anthropic-before-big-ipo-2026-11" target="_blank">Business Insider &mdash; Cat Wu exit</a>
+        <a href="https://www.reuters.com/world/china/chinas-robot-makers-have-mastered-moves-now-comes-race-brains-2026-11-01/" target="_blank">Reuters &mdash; China embodied AI</a>
+        <a href="https://www.wsj.com/tech/ai/silicon-valley-promises-ai-will-cure-disease-drugmaker-ceos-arent-buying-it-5218511c" target="_blank">Wall Street Journal &mdash; pharma AI</a>
+        <a href="https://www.axios.com/2026/11/03/jill-hazelbaker-openai-uber" target="_blank">Axios &mdash; Hazelbaker to OpenAI</a>
+        <a href="https://newsletter.pragmaticengineer.com/p/how-software-engineering-is-changing" target="_blank">The Pragmatic Engineer &mdash; two eras</a>
+        <a href="https://www.bloomberg.com/news/articles/2026-11-03/meta-kicks-off-debt-offering-in-push-to-fund-ai-investments" target="_blank">Bloomberg &mdash; Meta bond sale</a>
+        <a href="https://www.reuters.com/technology/meta-raises-15-billion-five-part-us-bond-sale-fund-ai-expansion-2026-11-03/" target="_blank">Reuters &mdash; Meta $15B bond</a>
+        <a href="https://www.cnbc.com/2026/11/03/meta-bond-sale-ai-funding.html" target="_blank">CNBC &mdash; Meta capex and outlook</a>
+        <a href="https://en.sedaily.com/international/2026/11/04/meta-draws-58-billion-in-orders-for-15-billion-bond-sale" target="_blank">Seoul Economic Daily &mdash; order book</a>
+        <a href="https://www.zawya.com/en/capital-markets/ai-shaping-digital-future/meta-kicks-off-first-euro-bond-sale-in-latest-test-for-tech-sector-1931584" target="_blank">Zawya/Reuters &mdash; Meta euro bond</a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-logo">
+      <div class="footer-mark"><img src="../assets/timps-postcards.png" alt="TIMPS"></div>
+      <span class="footer-brand">TIMPS PostCards</span>
+    </div>
+    <div class="footer-center">Issue 160 &middot; November 4, 2026<br>Hyderabad, India</div>
+    <div class="footer-right">
+      <a href="../index.html">Home</a><br>
+      <a href="../archive.html">Archive</a><br>
+      &copy; 2026 TIMPS
+    </div>
+  </footer>
+
+</div></div>
+</body>
+</html>
