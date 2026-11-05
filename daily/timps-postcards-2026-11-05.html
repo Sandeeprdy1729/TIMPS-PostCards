@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TIMPS">
+<link rel="manifest" href="../manifest.json">
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/icon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/icon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="../assets/icon-48.png">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="../assets/icon-180.png">
+<title>TIMPS PostCards — Issue 161</title>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --cream:  #EEECE2;
+    --forest: #3D3929;
+    --terra:  #DA7756;
+    --terra-d:#BD5D3A;
+    --black:  #111111;
+    --card-bg:#F0ECE0;
+    --mono:   'Newsreader', Georgia, 'Times New Roman', serif;
+    --serif:  'TIMPS', 'Playfair Display', Georgia, serif;
+  }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Black.woff2') format('woff2'); font-weight:900; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Bold.woff2') format('woff2'); font-weight:700; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-SemiBold.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--cream);
+    background-image:
+      linear-gradient(rgba(61,57,41,.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.07) 1px, transparent 1px);
+    background-size: 38px 38px;
+    font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+    color: var(--forest);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { text-decoration: none; color: inherit; }
+
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 48px;
+    background-color: rgba(238,236,226,.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1.5px solid rgba(61,57,41,.12);
+    background-image:
+      linear-gradient(rgba(61,57,41,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.05) 1px, transparent 1px);
+    background-size: 38px 38px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Special Elite', 'Courier New', Courier, monospace;
+    font-size: 15px;
+    font-weight: 400;
+    color: #000;
+    text-decoration: none;
+  }
+  .nav-logo-mark {
+    width: 34px; height: 34px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .nav-logo-mark img { width: 28px; height: 28px; object-fit: contain; }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-link {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: #000;
+    opacity: .65;
+    text-decoration: none;
+    transition: opacity .15s;
+  }
+  .nav-link:hover { opacity: 1; }
+  .nav-cta {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: #000;
+    background: var(--terra);
+    border: 2.5px solid #000;
+    border-radius: 100px;
+    padding: 10px 24px;
+    cursor: pointer;
+    transition: background .15s, transform .1s;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--terra-d); transform: translateY(-1px); }
+
+  .wrapper { max-width: 760px; margin: 0 auto; padding: 40px 20px 80px; display: flex; flex-direction: column; gap: 0; }
+
+  .cover-card { background: var(--card-bg); border-radius: 20px 20px 4px 4px; padding: 56px 48px 48px; text-align: center; position: relative; overflow: hidden; border: 1.5px solid rgba(61,57,41,.12); margin-bottom: 3px; }
+  .cover-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, var(--terra) 0%, var(--terra-d) 60%, #E0A88A 100%); }
+  .cover-eyebrow { font-family: var(--mono); font-size:10px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:20px; display:flex; align-items:center; justify-content:center; gap:10px; }
+  .cover-eyebrow::before,.cover-eyebrow::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .15; max-width:60px; }
+  .cover-title { font-family: var(--serif); font-size:58px; font-weight:900; line-height:1; letter-spacing:-1px; color: var(--forest); margin-bottom:8px; }
+  .cover-sub { font-family: var(--serif); font-size:13px; font-style:italic; color: var(--forest); opacity: .55; margin-bottom:28px; }
+  .cover-divider { width:48px; height:2px; background: var(--terra); margin:0 auto 24px; border-radius:2px; }
+  .cover-meta { display:flex; justify-content:center; gap:32px; font-family: var(--mono); font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .45; }
+  .cover-badge { display:inline-flex; align-items:center; gap:6px; background: var(--terra); color: #fff; border-radius:20px; padding:6px 18px; font-family: var(--mono); font-size:10px; letter-spacing:2px; text-transform:uppercase; margin-top:28px; }
+  .top5-pill { display:flex; justify-content:center; gap:10px; margin-top:32px; flex-wrap:wrap; }
+  .pill { background: var(--forest); color: var(--cream); border-radius:100px; padding:4px 14px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; }
+  .pill.light { background:transparent; color: var(--forest); border:1px solid rgba(61,57,41,.2); }
+
+  .section-label { display:flex; align-items:center; gap:12px; padding:10px 0 8px; font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .35; }
+  .section-label::before,.section-label::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .1; }
+
+  .story-card { border-radius:4px; border:1.5px solid rgba(61,57,41,.10); padding:36px 40px; margin-bottom:3px; position:relative; overflow:hidden; }
+  .story-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }
+
+  .card-sky      { background:#D6E8F0; } .card-sky::before      { background: #7AAFC0; }
+  .card-cream    { background: var(--card-bg); } .card-cream::before    { background: var(--terra); }
+  .card-blush    { background:#F5DDD0; } .card-blush::before    { background: #E0A88A; }
+  .card-lavender { background:#EAE6F5; } .card-lavender::before { background: #C8BEE8; }
+  .card-sage     { background:#D6E4D6; } .card-sage::before     { background: #8BAF8B; }
+
+  .page-chip { position:absolute; top:14px; right:16px; font-family: var(--mono); font-size:9px; letter-spacing:2px; text-transform:uppercase; color: var(--forest); opacity: .3; }
+  .card-routine { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:8px; }
+  .card-headline { font-family: var(--serif); font-size:28px; font-weight:900; line-height:1.15; color: var(--forest); margin-bottom:10px; }
+  .card-headline.lg { font-size:34px; }
+  .card-headline.sm { font-size:22px; }
+  .card-deck { font-family: var(--serif); font-style:italic; font-size:14px; line-height:1.55; color: var(--forest); opacity: .55; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid rgba(61,57,41,.12); }
+  .card-body { font-family: 'Lora', Georgia, serif; font-size:14px; line-height:1.7; color: var(--forest); }
+  .card-body p { margin-bottom:11px; }
+  .drop::first-letter { font-family: var(--serif); font-size:52px; font-weight:900; float:left; line-height:.78; margin:5px 6px 0 0; color: var(--terra); }
+  .clearfix::after { content:''; display:table; clear:both; }
+
+  .hl-terra { background: var(--terra); color: var(--forest); padding:0 4px; border-radius:2px; }
+  .hl-ink  { background: var(--forest); color: var(--cream); padding:0 4px; border-radius:2px; }
+  .hl-sage { background: #8BAF8B; color: #fff; padding:0 4px; border-radius:2px; }
+  .hl-lav  { background: #C8BEE8; color: var(--forest); padding:0 4px; border-radius:2px; }
+
+  .stat-box { float:right; margin:0 0 16px 24px; background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:16px 20px; text-align:center; min-width:120px; }
+  .stat-big { font-family: var(--serif); font-size:44px; font-weight:900; line-height:1; color: var(--forest); display:block; }
+  .stat-label { font-family: var(--mono); font-size:9.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .5; display:block; margin-top:4px; }
+
+  .img-frame { border:2px solid rgba(61,57,41,0.18); border-radius:12px; overflow:hidden; margin:16px 0; background: var(--card-bg); }
+  .img-frame img { width:100%; display:block; max-height:240px; object-fit:cover; border-bottom:1px solid rgba(61,57,41,.12); }
+  .img-caption { padding:8px 12px; font-family: var(--mono); font-size:10.5px; color: var(--forest); opacity: .6; font-style:italic; display:flex; align-items:center; justify-content:space-between; gap:8px; }
+  .img-caption a { font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; white-space:nowrap; font-style:normal; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; }
+  .img-caption a:hover { opacity: 1; }
+  .img-frame.float-right { float:right; width:220px; margin:0 0 16px 24px; }
+  .img-frame.float-right img { max-height:140px; }
+
+  .source-link { display:inline-flex; align-items:center; gap:5px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:12px; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; transition: opacity .15s; }
+  .source-link:hover { opacity: 1; }
+  .source-link::after { content:'↗'; font-size:9px; }
+
+  .signals-grid { display:flex; flex-direction:column; gap:14px; }
+  .signal-row { display:flex; align-items:flex-start; gap:14px; }
+  .signal-num { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family: var(--serif); font-size:13px; font-weight:900; flex-shrink:0; color:#fff; }
+  .signal-num.n1{background: var(--terra); color: var(--forest);} .signal-num.n2{background: var(--forest);} .signal-num.n3{background:#7AAFC0;} .signal-num.n4{background: var(--terra-d); color: var(--forest);} .signal-num.n5{background: var(--black);}
+  .signal-title { font-family: var(--serif); font-size:14px; font-weight:700; color: var(--forest); margin-bottom:2px; }
+  .signal-desc { font-family: 'Newsreader', Georgia, 'Times New Roman', serif; font-size:12px; line-height:1.65; color: var(--forest); opacity: .6; }
+  .signal-link { display:inline-block; font-family: var(--mono); font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:4px; border-bottom:1px solid rgba(61,57,41,.25); padding-bottom:1px; transition: opacity .15s; }
+  .signal-link:hover { opacity: 1; }
+
+  .themes-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .theme-item { padding:10px 14px; border-radius:8px; font-family: var(--serif); font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; text-align:center; border:1.5px solid rgba(61,57,41,.12); background: var(--cream); }
+
+  .tool-week { background: var(--forest); color: var(--cream); border-radius:12px; padding:18px 20px; text-align:center; margin-top:14px; }
+  .tool-week-eyebrow { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; opacity: .55; margin-bottom:6px; }
+  .tool-week-name { font-family: var(--serif); font-size:22px; font-weight:900; margin-bottom:4px; }
+  .tool-week-desc { font-family: 'Newsreader', Georgia, 'Times New Roman', serif; font-size:11.5px; opacity: .7; font-style:italic; }
+
+  .output-card { background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:18px 20px; margin-top:14px; }
+  .output-title { font-family: var(--serif); font-size:18px; font-weight:700; margin-bottom:8px; color: var(--forest); }
+  .tp-list { list-style:none; padding:0; margin:0; }
+  .tp-list li { padding:5px 0; font-family: 'Lora', Georgia, serif; font-size:12px; color: var(--forest); border-bottom:1px solid rgba(61,57,41,.07); display:flex; align-items:flex-start; gap:7px; }
+  .tp-list li::before { content:'·'; color: var(--terra); font-size:14px; line-height:1.2; flex-shrink:0; }
+  .tp-list li a { color: var(--forest); opacity: .8; text-decoration:none; }
+  .tp-list li a:hover { opacity: 1; }
+
+  .sources-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px 20px; }
+  .sources-grid a { font-family: var(--mono); font-size:11px; color: var(--forest); opacity: .55; text-decoration:none; border-bottom:1px solid rgba(61,57,41,.15); padding-bottom:1px; transition: opacity .15s; }
+  .sources-grid a:hover { opacity: 1; }
+
+  .footer {
+    background: var(--black);
+    padding: 28px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    border-radius: 4px 4px 20px 20px;
+    margin-top: 3px;
+  }
+  .footer-logo { display: flex; align-items: center; gap: 10px; }
+  .footer-mark { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; }
+  .footer-mark img { width: 24px; height: 24px; object-fit: contain; }
+  .footer-brand { font-family: 'Special Elite', 'Courier New', Courier, monospace; font-size: 13px; font-weight: 400; color: #fff; }
+  .footer-center { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.4); text-align: center; line-height: 1.6; }
+  .footer-right { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.3); text-align: right; line-height: 2; }
+  .footer-right a { color: rgba(255,255,255,.5); transition: color .15s; }
+  .footer-right a:hover { color: #fff; }
+
+  .page-layout { display: flex; align-items: flex-start; gap: 0; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+  .toc-sidebar { position: sticky; top: 80px; width: 170px; flex-shrink: 0; padding: 48px 0 0 0; }
+  .toc-nav { display: flex; flex-direction: column; gap: 0; }
+  .toc-link { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.5px; text-transform: uppercase; color: #000; opacity: .45; text-decoration: none; padding: 7px 12px; border-left: 2px solid transparent; transition: opacity .15s, border-color .15s; line-height: 1.3; }
+  .toc-link:hover { opacity: .85; }
+  .toc-link.active { opacity: 1; border-left-color: var(--terra); }
+  .section-anchor { scroll-margin-top: 80px; }
+
+  @media (max-width: 900px) {
+    .toc-sidebar { display: none; }
+    .page-layout { max-width: 760px; }
+  }
+
+  @media (max-width: 720px) {
+    .nav { padding: 12px 24px; }
+    .nav-links { display: none; }
+    .wrapper { padding: 20px 14px 60px; }
+    .cover-card { padding: 40px 24px; }
+    .story-card { padding: 28px 20px; }
+    .footer { padding: 24px; flex-direction: column; align-items: flex-start; }
+    .footer-center, .footer-right { text-align: left; }
+    .stat-box { float: none; margin: 0 0 16px 0; }
+    .img-frame.float-right { float: none; width: 100%; margin: 0 0 16px 0; }
+  }
+  @media (max-width: 480px) {
+    .nav-logo span { display: none; }
+    .cover-title { font-size: 40px; }
+    .card-headline.lg { font-size: 28px; }
+    .card-headline { font-size: 24px; }
+  }
+</style>
+
+</head>
+
+<body>
+
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">
+    <div class="nav-logo-mark"><img src="../assets/timps-postcards.png" alt="TIMPS"></div>
+    <span>TIMPS PostCards</span>
+  </a>
+  <div class="nav-links">
+    <a href="../articles.html" class="nav-link">Articles</a>
+    <a href="../archive.html" class="nav-link">Archive</a>
+    <a href="timps-postcards-2026-11-05.html" class="nav-link">Latest Issue</a>
+    <a href="../index.html#subscribe" class="nav-link">Subscribe</a>
+  </div>
+  <a href="../index.html#subscribe" class="nav-cta">Subscribe</a>
+</nav>
+
+<div class="page-layout">
+  <aside class="toc-sidebar">
+    <nav class="toc-nav">
+      <a href="#backlash" class="toc-link">The Backlash</a>
+      <a href="#starlink" class="toc-link">A Fourth Carrier</a>
+      <a href="#apple" class="toc-link">AI on a Budget</a>
+      <a href="#linux" class="toc-link">948 Ways to Root</a>
+      <a href="#tools" class="toc-link">The Tool Layer</a>
+      <a href="#signals" class="toc-link">Signals</a>
+      <a href="#themes" class="toc-link">Themes</a>
+      <a href="#tool" class="toc-link">Watch</a>
+      <a href="#sources" class="toc-link">Sources</a>
+    </nav>
+  </aside>
+
+  <div class="wrapper">
+
+  <div id="intro" class="cover-card section-anchor">
+    <div class="cover-eyebrow">Est. 2026 &middot; Hyderabad</div>
+    <div class="cover-title">TIMPS<br>PostCards</div>
+    <div class="cover-sub">AI Intelligence Digest &middot; Your Daily Signal from the Machine Frontier</div>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+      <span>Issue 161</span>
+      <span>November 5, 2026</span>
+      <span>No. 188</span>
+    </div>
+    <div class="cover-badge">&#11041; 161 Issues &mdash; Built with the TIMPS Ecosystem</div>
+    <div class="top5-pill">
+      <span class="pill">5 Top Signals</span>
+      <span class="pill light">The Backlash</span>
+      <span class="pill light">A Fourth Carrier</span>
+      <span class="pill light">AI on a Budget</span>
+      <span class="pill light">948 Ways to Root</span>
+      <span class="pill light">The Tool Layer</span>
+    </div>
+  </div>
+
+  <div id="backlash" class="story-card card-blush section-anchor">
+    <div class="page-chip">01 &middot; LEAD</div>
+    <div class="card-routine">Politics &middot; The Data Center Backlash</div>
+    <h2 class="card-headline lg">The Blue Wave Just Put Half of America&rsquo;s Data Centers in Play</h2>
+    <div class="card-deck">Voters in 38-plus jurisdictions passed bans or restrictions on data centers. Democratic wins in Texas, Georgia, Ohio and Pennsylvania expose about 50% of planned US AI capacity to new scrutiny. Data center stocks fell. The giants rose.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">38+</span>
+        <span class="stat-label">jurisdictions that voted to restrict data centers</span>
+      </div>
+      <p class="drop">The <b>Washington Post</b> counted at least <b>38</b> US jurisdictions where voters rejected or restricted data centers on Tuesday, and a television network exit poll found <b>56%</b> said AI and data centers were a major or crucial factor in their vote. <b>Bloomberg</b> put a number on the consequence: Democratic gubernatorial wins from <b>Texas</b> and <b>Georgia</b> to <b>Ohio</b> and <b>Pennsylvania</b> are set to expose about <b>50%</b> of AI data center proposals to more scrutiny and pushback. In Texas, <b>James Talarico</b> flipped a Senate seat and <b>Gina Hinojosa</b> won the governor&rsquo;s race, ending a Democratic drought that ran back decades.</p>
+      <p>The market split the verdict in two. Data center names sold off on the expectation of a slower buildout: <b>Hut 8</b> fell <b>23%</b>, <b>IREN</b> <b>11%</b>, <b>Core Scientific</b> <b>10%</b> and <b>Applied Digital</b> <b>7%</b>, according to <b>Reuters</b>. <b>CoreWeave</b> bonds sank to new lows as Texas projects moved into the crosshairs. Then the megacaps went the other way. <b>Bloomberg</b> reported that shares of the largest technology companies led the market higher as investors bet a Democrat-controlled Congress would slow the AI capex that has been draining free cash flow. The same election was read as bad for the builders and good for the balance sheets paying for them.</p>
+      <p>The political bill arrived with a personal invoice. <b>Elon Musk</b> spent roughly <b>$446 million</b> across the cycle, including about <b>$200 million</b> on Texas races, and his preferred candidates &mdash; <b>Ken Paxton</b> among them &mdash; lost almost everywhere. <b>Tesla</b> fell about <b>4.5%</b> in premarket trading and <b>SpaceX</b> about <b>5%</b>, per the <b>New York Times</b>. <b>The Information</b> reported that the sweep creates uncertainty for Texas&rsquo;s booming AI data center sector and for Musk&rsquo;s companies. He posted, with some resignation, that his &ldquo;election-interfering space lasers didn&rsquo;t work this time.&rdquo;</p>
+      <p><span class="hl-terra">The mechanism matters more than the scoreboard. A governor appoints utility commissioners, signs siting bills and sets the tone for permitting. A state legislature can write moratoriums. County boards can block a substation. For an industry that has spent two years arguing that its constraint is wafers, transformers and gas turbines, Tuesday added a fourth: political licence, which cannot be bought with a purchase order and is now priced into the bond market. Renewables stocks rose on the same day, a reminder that the electorate is not anti-energy. It is anti-this-kind-of-energy, in this place, on these terms.</span></p>
+      <p>There is a version of this that is overread. Midterm turnout is not a referendum on a single industry, and several of the tightest data center measures passed narrowly. But the direction is unambiguous, and it runs through the states with the cheapest power and the fastest permitting &mdash; the exact places the buildout was counting on. The next quarter&rsquo;s guidance calls will be less about accelerators and more about where, exactly, a company is allowed to plug them in.</p>
+    </div>
+    <a class="source-link" href="https://www.washingtonpost.com/technology/2026/11/04/voters-pass-over-20-ballot-measures-ban-or-restrict-data-centers/" target="_blank">Full story &middot; The Washington Post</a>
+  </div>
+
+  <div id="starlink" class="story-card card-sky section-anchor">
+    <div class="page-chip">02 &middot; INFRASTRUCTURE</div>
+    <div class="card-routine">Networks &middot; Starlink Mobile</div>
+    <h2 class="card-headline">SpaceX Is Building America&rsquo;s Fourth Carrier</h2>
+    <div class="card-deck">A multiyear Qualcomm deal puts Dragonwing radios and 5G software into tens of thousands of US cell sites from 2027. SpaceX gets a terrestrial network to go with its satellites. Qualcomm gets a flagship customer as phones stall.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">10,000s</span>
+        <span class="stat-label">US 5G sites planned from 2027</span>
+      </div>
+      <p class="drop"><b>Qualcomm</b> signed a multiyear agreement to supply <b>Dragonwing</b> hardware and network software for &ldquo;tens of thousands&rdquo; of cell sites in <b>SpaceX</b>&rsquo;s planned US-wide <b>5G</b> network, with deployment beginning in <b>2027</b>. SpaceX will use Qualcomm&rsquo;s <b>QRU100</b> and <b>QDU100</b> platforms, <b>64T64R</b> Massive MIMO radios and commercial-grade Layer 1 software. <b>Starlink</b> described the plan as the first fully integrated US nationwide satellite and terrestrial network, one that keeps phones connected &ldquo;no matter where they are.&rdquo;</p>
+      <p>The strategic shape is unusual. America has effectively been a three-carrier market since T-Mobile and Sprint merged in 2020. SpaceX is not proposing to roam onto those networks; it is proposing to build a fourth, using satellites for coverage and its own ground radios for capacity. That is a far larger and more capital-hungry project than the direct-to-cell experiments of the past two years, and it puts SpaceX in direct competition with the carriers it once hoped to partner with.</p>
+      <p>For Qualcomm, the deal is a hedge against its core market. The company reported fourth-quarter revenue of <b>$10.3 billion</b>, down <b>8%</b>, with handset revenue down <b>26%</b> to <b>$5.14 billion</b> as a memory shortage squeezed smartphone sales. Chief executive <b>Cristiano Amon</b> framed the SpaceX win as a path to &ldquo;AI-native 6G,&rdquo; a phrase that means less than it promises but signals where the growth is meant to come from. Infrastructure is a better business than a phone upgrade cycle that arrives every three years and can be postponed.</p>
+      <p><span class="hl-ink">The financing is as interesting as the technology. <b>Goldman Sachs</b> and <b>Apollo</b> are in talks with investors to sell portions of SpaceX&rsquo;s roughly <b>$40 billion</b> chip financing, asking some for up to <b>$500 million</b> before syndication, according to <b>Bloomberg</b>. Building a national carrier is a decade-long balance-sheet commitment, not a product launch. The satellites are already up. The cell sites are the hard part, and they are the part that looks a lot like the terrestrial buildout the rest of the industry just got punished for in the polls.</span></p>
+      <p>The obvious caveats are spectrum, execution and time. A 2027 start is a statement of intent, not a coverage map, and the incumbents will not make it easy. But the direction is clear: the company that made launch cheap is now trying to make the last mile cheap too. If it works, the fourth carrier is not a new entrant with a new brand. It is a satellite company that decided the ground was the bottleneck.</p>
+    </div>
+    <a class="source-link" href="https://www.bloomberg.com/news/articles/2026-11-04/qualcomm-to-build-equipment-for-spacex-s-us-mobile-phone-network" target="_blank">Full story &middot; Bloomberg</a>
+  </div>
+
+  <div id="apple" class="story-card card-cream section-anchor">
+    <div class="page-chip">03 &middot; ECONOMICS</div>
+    <div class="card-routine">Cost Control &middot; AI Budgets</div>
+    <h2 class="card-headline">Apple Put Its Own Engineers on an AI Budget</h2>
+    <div class="card-deck">Some engineers saw their daily AI spending cap cut from $300 to $200, with plans for $100 &mdash; and some teams as low as $25. The company pushing AI hardest is now rationing it.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">$200</span>
+        <span class="stat-label">daily AI cap, down from $300</span>
+      </div>
+      <p class="drop"><b>Apple</b> has cut the daily artificial-intelligence spending allowance for some engineers to <b>$200</b> from <b>$300</b>, with plans to reduce it to as little as <b>$100</b>, and some teams could see limits fall to <b>$25</b>, according to <b>Bloomberg</b>&rsquo;s <b>Mark Gurman</b>. The cuts are part of a cost-control push under chief executive <b>John Ternus</b> and have stoked staff fears of layoffs &mdash; even as the company urges employees to use AI more.</p>
+      <p>That contradiction is the story. Apple spent the first phase of the AI cycle telling investors it would not chase capex at any price. It has been slower than its peers to build training clusters and more dependent on partners and on-device processing. What it did have was a large, expensive engineering organisation experimenting with frontier models. A daily cap is a simple way to make that experimentation legible as a line item, and a simple way to make an engineer think twice before pointing an agent at a long refactor.</p>
+      <p>The caps also function as a model-selection tool. At <b>$100</b> a day, one widely shared breakdown estimated an engineer could run about <b>40</b> tasks on a frontier model at medium reasoning effort, or <b>166</b> on a cheaper Chinese model, or <b>2,500</b> on the lowest-cost option. A budget is a routing policy by another name. When the allowance is generous, teams default to the best model; when it is tight, they learn to use the cheap one for the boring work and save the expensive one for the hard part. That is exactly the behaviour the industry has been trying to engineer into its inference stacks.</p>
+      <p><span class="hl-terra">The wider pattern is that AI is moving from a capex argument to an opex argument. The first two years of the boom were about who could build the most GPUs. The next two are about who can afford to run them. <b>Canva</b> delayed an AI feature because serving free users cost more than it earned. <b>Revolut</b> moved <b>2,000</b> engineers onto self-hosted models and cut its inference bill by about <b>90%</b>. Apple&rsquo;s version is blunter: a per-person ceiling, reviewed daily. None of these companies are anti-AI. They are anti-surprise.</span></p>
+      <p>For employees, the message is that token spend is now a performance metric, like travel or headcount. For Apple, the risk is that the ceiling binds hardest on the engineers doing the most exploratory work &mdash; the ones whose experiments are least likely to fit inside a $25 daily allowance. The company has said it wants to be fast follower. Fast followers still need to pay for their tokens.</p>
+    </div>
+    <a class="source-link" href="https://www.bloomberg.com/news/articles/2026-11-04/apple-cuts-internal-ai-usage-budgets-in-move-to-reduce-spending" target="_blank">Full story &middot; Bloomberg</a>
+  </div>
+
+  <div id="linux" class="story-card card-lavender section-anchor">
+    <div class="page-chip">04 &middot; SECURITY</div>
+    <div class="card-routine">Security &middot; Machine-Discovered Bugs</div>
+    <h2 class="card-headline">OpenAI Found 948 Ways to Root Linux. The Bill Was $1.2 Million.</h2>
+    <div class="card-deck">An autonomous pipeline built on an unreleased cyber model validated and prepared patches for 948 local privilege-escalation bugs in the Linux kernel &mdash; about $1,000 per vulnerability.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">948</span>
+        <span class="stat-label">kernel flaws found and patched</span>
+      </div>
+      <p class="drop"><b>OpenAI</b> published details of an autonomous security pipeline that, in a single run using an unreleased cyber model, validated and generated patches for <b>948</b> local privilege-escalation vulnerabilities in the <b>Linux</b> kernel at a total API cost of <b>$1.2 million</b>. A local privilege escalation is the class of bug that turns an ordinary user account into root. Nearly a thousand of them, found and patched in one sweep, is not an incremental improvement in security tooling. It is a change in the unit economics of finding bugs.</p>
+      <p>The pipeline is the product. OpenAI describes a loop that discovers candidate flaws, writes an exploit to prove the flaw is real, and then generates a patch that closes it &mdash; the three steps that used to require a separate, sustained human investigation for each finding. The company framed the result as &ldquo;a thousand fewer paths to root&rdquo; and said the work is an example of how security research that once required a dedicated effort per bug can increasingly be run as a systematic process.</p>
+      <p><b>Greg Brockman</b> put the number plainly: almost <b>1,000</b> local privilege escalations found, validated and prepared for patching at about <b>$1,000 per vulnerability</b>, which he called &ldquo;an emerging scalable approach to significantly hardening both open source and proprietary projects.&rdquo; The patches are prepared, not necessarily merged; upstream maintainers still have to review them, and a kernel patch is not a kernel fix until it ships. But the discovery and validation work, historically the expensive part, has collapsed in price.</p>
+      <p><span class="hl-lav">The same capability cuts both ways. <b>Andrew Case</b> noted that nearly a thousand ways from a regular user to full system control is &ldquo;quite concerning&rdquo; given the default lack of driver-signing enforcement. A model that can find and weaponise a flaw can also find and weaponise it faster than a defender can patch. <b>Eric Wallace</b> said the company is now allocating a significant amount of frontier compute toward discovery, which is either reassuring or alarming depending on which side of the patch you are on. The honest answer is that vulnerability research has become cheap enough to industrialise, and the institutions that consume its output &mdash; maintainers, distros, CISA, every overworked security team &mdash; have not.</span></p>
+      <p>What happens next is a disclosure problem more than a research problem. If a single lab can generate a thousand valid kernel patches in a run, the bottleneck moves to review, coordination and embargo discipline. The finding is impressive. The harder question is whether the ecosystem can absorb the volume without either missing a critical bug in the flood or shipping a patch that breaks something worse.</p>
+    </div>
+    <a class="source-link" href="https://openai.com/index/a-thousand-fewer-paths-to-root/" target="_blank">Full story &middot; OpenAI</a>
+  </div>
+
+  <div id="tools" class="story-card card-sage section-anchor">
+    <div class="page-chip">05 &middot; SOFTWARE</div>
+    <div class="card-routine">Consolidation &middot; Coding Agents</div>
+    <h2 class="card-headline">In One Day, the Coding-Tool Layer Got Bought Twice</h2>
+    <div class="card-deck">Meta acquired Conductor, which runs multiple coding agents in parallel. OpenAI acquired Pierre Computer and will fold its code storage into Codex. Cat Wu, late of Claude Code, joined OpenAI to run core product.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">2</span>
+        <span class="stat-label">coding-tool acquisitions in a day</span>
+      </div>
+      <p class="drop"><b>Meta</b> acquired <b>Conductor</b>, a startup that lets software engineers manage multiple AI coding agents running in parallel. Chief executive <b>Charlie Holtz</b> said the team will join <b>Meta Superintelligence Labs</b>. On the same day, <b>OpenAI</b> acquired <b>Pierre Computer</b>, a developer-tools company whose open-source work already powers parts of <b>Codex</b>, and said it will integrate Pierre&rsquo;s Code Storage feature directly into Codex. <b>Axios</b> framed the Pierre deal as OpenAI moving into territory long dominated by <b>GitHub</b>.</p>
+      <p>The two deals point at the same layer. The model is becoming a commodity; the workflow around it is not. Conductor&rsquo;s bet was that engineers would soon supervise fleets of agents rather than edit files one at a time, and that the orchestration layer &mdash; which agent is doing what, on which branch, with which context &mdash; would become the place where value accrues. Pierre&rsquo;s bet was that code storage itself is the durable asset: whoever holds the repository holds the context, the history and the permission model.</p>
+      <p>OpenAI also hired <b>Cat Wu</b>, who left <b>Anthropic</b> last week, to lead product management for core products. Wu was the product lead for <b>Claude Code</b> and oversaw <b>Cowork</b>, Anthropic&rsquo;s non-coding agent tool. Her move completes a remarkable week of talent and asset consolidation across the three labs, and it signals that the fight is no longer only about which model writes better code. It is about owning the surface where the code is written, stored and reviewed.</p>
+      <p><span class="hl-sage">That is a familiar pattern with an unfamiliar speed. In earlier platform shifts, the tool layer consolidated over years: IDEs, version control, CI, package registries, each absorbing the one below it. Here the acquisitions landed within hours of each other, and the buyers are the model labs themselves, not the tooling companies. The risk is straightforward. If the company that supplies the model also owns the repository, the orchestrator and the review surface, the &ldquo;open ecosystem&rdquo; that made coding agents useful becomes a set of APIs that one vendor can re-price. The benefit is also straightforward: less glue code, fewer integrations, and a single place to fix the context problems that currently make multi-agent work unreliable.</span></p>
+      <p>Developers will vote with their repositories. The interesting question is not whether Meta and OpenAI can build these tools &mdash; they just bought them &mdash; but whether the next generation of coding startups can still reach distribution without being acquired by the lab whose model they depend on.</p>
+    </div>
+    <a class="source-link" href="https://www.axios.com/2026/11/04/meta-acquires-ai-coding-startup-conductor" target="_blank">Full story &middot; Axios</a>
+  </div>
+
+  <div id="signals" class="story-card card-cream section-anchor">
+    <div class="page-chip">06 &middot; SIGNALS</div>
+    <div class="card-routine">5 Key Signals</div>
+    <h2 class="card-headline sm">What Moved the Machine Frontier Today</h2>
+    <div class="card-deck" style="border-bottom:none;padding-bottom:0;margin-bottom:16px;">Briefs worth an afternoon of reading.</div>
+    <div class="signals-grid">
+      <div class="signal-row">
+        <div class="signal-num n1">1</div>
+        <div>
+          <div class="signal-title">Uber&rsquo;s AI Agents Booked Exactly Four Rides</div>
+          <div class="signal-desc"><b>Uber</b> reported <b>320 million</b> trips over Halloween week. Of those, <b>500 orders</b> and <b>four rides</b> were completed through AI agents, according to <b>Eric Seufert</b>, who called agentic commerce &ldquo;a mirage.&rdquo; The company otherwise beat on revenue at <b>$14.8 billion</b>, up <b>10%</b>, with gross bookings up <b>20%</b> to <b>$59.8 billion</b> and trips up <b>16%</b> to <b>4.1 billion</b>. It plans to scale its autonomous fleet to <b>2,000-plus</b> vehicles in 2027.</div>
+          <a class="signal-link" href="https://www.ft.com/content/2fc1bfc2-4d16-4eb2-a8d4-eaef4f4571af" target="_blank">Financial Times &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n2">2</div>
+        <div>
+          <div class="signal-title">Meta&rsquo;s First Euro Bond Drew &euro;53 Billion in Orders</div>
+          <div class="signal-desc"><b>Meta</b> raised <b>&euro;9 billion</b> from its debut euro bond sale, drawing a record <b>&euro;53 billion</b> of orders &mdash; roughly <b>5.9&times;</b> covered &mdash; and paying about <b>1.4&times;</b> the risk premium <b>Alphabet</b> offered for similar debt this week. The deal came a day after a <b>$15 billion</b> dollar sale, bringing two-day fundraising to about <b>$25 billion</b>. Meta&rsquo;s debt-funded AI buildout is now the largest test of investor appetite for hyperscaler credit.</div>
+          <a class="signal-link" href="https://www.bloomberg.com/news/articles/2026-11-04/meta-starts-debut-euro-bond-sale-after-15-billion-dollar-deal" target="_blank">Bloomberg &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n3">3</div>
+        <div>
+          <div class="signal-title">Sequoia Raises $10 Billion and Shrinks Itself</div>
+          <div class="signal-desc"><b>Sequoia</b> raised about <b>$10 billion</b> in new funds and announced it is shutting down its <b>Arc</b> accelerator and <b>Scouts</b> program, merging its early-stage and growth teams, flattening the partnership and closing its <b>London</b> office after six years. The memo, titled &ldquo;The Sequoia of Tomorrow,&rdquo; reverses two decades of geographic and organisational expansion. The message to founders: fewer partners, bigger cheques, one office that matters.</div>
+          <a class="signal-link" href="https://techcrunch.com/2026/11/04/sequoia-hits-rewind-undoing-20-years-of-expansion/" target="_blank">TechCrunch &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n4">4</div>
+        <div>
+          <div class="signal-title">Pangram Says It Can Spot AI Video Frame by Frame</div>
+          <div class="signal-desc"><b>Pangram</b> released <b>Image 1.0</b>, which it says identifies <b>99.2%</b> of AI-generated images at a <b>0.27%</b> false-positive rate, and <b>Image Flash 1.0</b>, a lighter model for video that reaches <b>98.57%</b> accuracy by checking frames individually &mdash; against <b>84.2%</b> for the next-best competitor. It ships inside the company&rsquo;s Chrome extension. Pangram delayed the launch after its own detector flagged real photos from iPhone 18 Pros as synthetic.</div>
+          <a class="signal-link" href="https://www.pangram.com/blog/introducing-pangram-image-1-0" target="_blank">Pangram &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n5">5</div>
+        <div>
+          <div class="signal-title">China Blocks SoftBank&rsquo;s $5.4 Billion Robot Deal</div>
+          <div class="signal-desc">China has told <b>SoftBank</b> it will not allow the <b>$5.4 billion</b> acquisition of <b>ABB</b>&rsquo;s robotics division to proceed, according to the <b>Financial Times</b>. China is the unit&rsquo;s biggest market, and the decision lands as Beijing tightens control over the industrial robotics supply chain. The deal had been one of the largest cross-border automation transactions of the year, and it is now the latest example of geopolitics overriding a signed agreement.</div>
+          <a class="signal-link" href="https://www.ft.com/content/f10c3e24-45e4-47ff-bde2-24a8de90aec4" target="_blank">Financial Times &#8597;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="themes" class="story-card card-lavender section-anchor">
+    <div class="page-chip">07 &middot; CLOSER</div>
+    <div class="card-routine">Top Themes</div>
+    <h2 class="card-headline sm">The Shape of Today&rsquo;s News</h2>
+    <div class="themes-grid" style="margin-top:16px;">
+      <div class="theme-item">The Data Center Backlash</div>
+      <div class="theme-item">A Fourth Carrier</div>
+      <div class="theme-item">AI Budget Discipline</div>
+      <div class="theme-item">Machine-Discovered Bugs</div>
+      <div class="theme-item">Buying the Tool Layer</div>
+    </div>
+
+    <div id="tool" class="tool-week section-anchor">
+      <div class="tool-week-eyebrow">Company Watch of the Day</div>
+      <div class="tool-week-name">QUALCOMM</div>
+      <div class="tool-week-desc"><b>Qualcomm</b> reported fourth-quarter revenue of <b>$10.3 billion</b>, down <b>8%</b> year over year but slightly above the <b>$10.1 billion</b> consensus, and handset revenue of <b>$5.14 billion</b>, down <b>26%</b> and short of the <b>$5.25 billion</b> expected, as a memory shortage weighed on smartphone sales. The stock fell more than <b>8%</b> after hours. The same day, <b>SpaceX</b> selected Qualcomm&rsquo;s <b>Dragonwing</b> platforms, Massive MIMO radios and Layer 1 software for tens of thousands of US 5G cell sites from <b>2027</b>. Chief executive <b>Cristiano Amon</b> called the combination a path to &ldquo;AI-native 6G.&rdquo; The juxtaposition is the whole investment case: the phone business is shrinking, the licensing business is holding near <b>$5.6 billion</b> a year, and the infrastructure bet is now large enough to matter but not yet large enough to offset the handset decline. Qualcomm also completed its <b>5G</b> licence renewals this quarter, which stabilises the highest-margin line while the new one scales.</div>
+    </div>
+
+    <div id="sources" class="output-card section-anchor">
+      <div class="output-title">Sources Cited</div>
+      <div class="sources-grid">
+        <a href="https://www.washingtonpost.com/technology/2026/11/04/voters-pass-over-20-ballot-measures-ban-or-restrict-data-centers/" target="_blank">Washington Post &mdash; data center ballot measures</a>
+        <a href="https://www.bloomberg.com/news/articles/2026-11-04/ai-data-center-boom-is-set-for-upheaval-after-us-election-rout" target="_blank">Bloomberg &mdash; AI buildout and the election</a>
+        <a href="https://www.reuters.com/business/us-stock-index-futures-steady-democrats-seize-congress-2026-11-04/" target="_blank">Reuters &mdash; data center stocks fall</a>
+        <a href="https://www.bloomberg.com/news/articles/2026-11-04/big-tech-stocks-soar-as-traders-bet-democrats-will-slow-ai-spend" target="_blank">Bloomberg &mdash; megacaps rally</a>
+        <a href="https://www.bloomberg.com/news/articles/2026-11-04/coreweave-bonds-hit-new-lows-as-texas-data-centers-in-crosshairs" target="_blank">Bloomberg &mdash; CoreWeave bonds</a>
+        <a href="https://www.politico.eu/article/elon-musk-dealt-major-blow-in-midterm-elections-2026/" target="_blank">Politico &mdash; Musk&rsquo;s midterm losses</a>
+        <a href="https://www.nytimes.com/2026/11/04/business/musk-elections-spacex-tesla-stocks.html" target="_blank">New York Times &mdash; Tesla and SpaceX slide</a>
+        <a href="https://www.qualcomm.com/news/releases/2026/11/spacex-selects-qualcomm-to-accelerate-starlink-mobile-s-nationwide-5g-network" target="_blank">Qualcomm &mdash; SpaceX selects Dragonwing</a>
+        <a href="https://www.reuters.com/business/media-telecom/qualcomm-signs-major-5g-infrastructure-deal-with-spacex-starlink-mobile-network-2026-11-04/" target="_blank">Reuters &mdash; Qualcomm&ndash;SpaceX 5G deal</a>
+        <a href="https://www.cnbc.com/2026/11/04/spacex-strikes-deal-with-qualcomm-for-mobile-network-infrastructure.html" target="_blank">CNBC &mdash; Starlink Mobile 5G</a>
+        <a href="https://www.bloomberg.com/news/articles/2026-11-04/goldman-apollo-in-talks-to-sell-spacex-s-40-billion-ai-deal" target="_blank">Bloomberg &mdash; SpaceX chip financing</a>
+        <a href="https://www.bloomberg.com/news/articles/2026-11-04/apple-cuts-internal-ai-usage-budgets-in-move-to-reduce-spending" target="_blank">Bloomberg &mdash; Apple AI budgets</a>
+        <a href="https://9to5mac.com/2026/11/04/report-apple-reduces-employees-ai-token-allowances-as-ternus-moves-to-cut-costs/" target="_blank">9to5Mac &mdash; Apple spending caps</a>
+        <a href="https://openai.com/index/a-thousand-fewer-paths-to-root/" target="_blank">OpenAI &mdash; a thousand fewer paths to root</a>
+        <a href="https://cybersecuritynews.com/openai-uncovers-948-linux-kernel-vulnerabilities/" target="_blank">Cyber Security News &mdash; 948 kernel flaws</a>
+        <a href="https://www.axios.com/2026/11/04/meta-acquires-ai-coding-startup-conductor" target="_blank">Axios &mdash; Meta acquires Conductor</a>
+        <a href="https://www.axios.com/2026/11/04/openai-pierre-computer-github" target="_blank">Axios &mdash; OpenAI acquires Pierre</a>
+        <a href="https://www.businessinsider.com/cat-wu-joins-openai-from-anthropic-product-lead-coup-2026-11" target="_blank">Business Insider &mdash; Cat Wu to OpenAI</a>
+        <a href="https://www.ft.com/content/2fc1bfc2-4d16-4eb2-a8d4-eaef4f4571af" target="_blank">Financial Times &mdash; Uber Q3</a>
+        <a href="https://www.bloomberg.com/news/articles/2026-11-04/meta-starts-debut-euro-bond-sale-after-15-billion-dollar-deal" target="_blank">Bloomberg &mdash; Meta euro bond</a>
+        <a href="https://techcrunch.com/2026/11/04/sequoia-hits-rewind-undoing-20-years-of-expansion/" target="_blank">TechCrunch &mdash; Sequoia reorg</a>
+        <a href="https://www.pangram.com/blog/introducing-pangram-image-1-0" target="_blank">Pangram &mdash; Image 1.0</a>
+        <a href="https://www.ft.com/content/f10c3e24-45e4-47ff-bde2-24a8de90aec4" target="_blank">Financial Times &mdash; China blocks SoftBank</a>
+        <a href="https://www.bloomberg.com/news/articles/2026-11-04/qualcomm-s-push-into-new-markets-helps-make-up-for-phone-slump" target="_blank">Bloomberg &mdash; Qualcomm Q4</a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-logo">
+      <div class="footer-mark"><img src="../assets/timps-postcards.png" alt="TIMPS"></div>
+      <span class="footer-brand">TIMPS PostCards</span>
+    </div>
+    <div class="footer-center">Issue 161 &middot; November 5, 2026<br>Hyderabad, India</div>
+    <div class="footer-right">
+      <a href="../index.html">Home</a><br>
+      <a href="../archive.html">Archive</a><br>
+      &copy; 2026 TIMPS
+    </div>
+  </footer>
+
+</div></div>
+</body>
+</html>

@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 147 daily issues + 18 deep dives · regenerated 2026-11-04**
+**Coverage: 148 daily issues + 18 deep dives · regenerated 2026-11-05**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 161 · 2026-11-05 · `daily/timps-postcards-2026-11-05.html`
+
+- **[01 · LEAD]** The Blue Wave Just Put Half of America’s Data Centers in Play
+  - _Voters in 38-plus jurisdictions passed bans or restrictions on data centers. Democratic wins in Texas, Georgia, Ohio and Pennsylvania expose about 50% of planned US AI capacity to new scrutiny. Data center stocks fell. The giants rose._
+  - Source: [Full story · The Washington Post](https://www.washingtonpost.com/technology/2026/11/04/voters-pass-over-20-ballot-measures-ban-or-restrict-data-centers/)
+
+- **[02 · INFRASTRUCTURE]** SpaceX Is Building America’s Fourth Carrier
+  - _A multiyear Qualcomm deal puts Dragonwing radios and 5G software into tens of thousands of US cell sites from 2027. SpaceX gets a terrestrial network to go with its satellites. Qualcomm gets a flagship customer as phones stall._
+  - Source: [Full story · Bloomberg](https://www.bloomberg.com/news/articles/2026-11-04/qualcomm-to-build-equipment-for-spacex-s-us-mobile-phone-network)
+
+- **[03 · ECONOMICS]** Apple Put Its Own Engineers on an AI Budget
+  - _Some engineers saw their daily AI spending cap cut from $300 to $200, with plans for $100 — and some teams as low as $25. The company pushing AI hardest is now rationing it._
+  - Source: [Full story · Bloomberg](https://www.bloomberg.com/news/articles/2026-11-04/apple-cuts-internal-ai-usage-budgets-in-move-to-reduce-spending)
+
+- **[04 · SECURITY]** OpenAI Found 948 Ways to Root Linux. The Bill Was $1.2 Million.
+  - _An autonomous pipeline built on an unreleased cyber model validated and prepared patches for 948 local privilege-escalation bugs in the Linux kernel — about $1,000 per vulnerability._
+  - Source: [Full story · OpenAI](https://openai.com/index/a-thousand-fewer-paths-to-root/)
+
+- **[05 · SOFTWARE]** In One Day, the Coding-Tool Layer Got Bought Twice
+  - _Meta acquired Conductor, which runs multiple coding agents in parallel. OpenAI acquired Pierre Computer and will fold its code storage into Codex. Cat Wu, late of Claude Code, joined OpenAI to run core product._
+  - Source: [Full story · Axios](https://www.axios.com/2026/11/04/meta-acquires-ai-coding-startup-conductor)
+
+  **Signals / briefs:**
+  - Uber’s AI Agents Booked Exactly Four Rides
+  - Meta’s First Euro Bond Drew €53 Billion in Orders
+  - Sequoia Raises $10 Billion and Shrinks Itself
+  - Pangram Says It Can Spot AI Video Frame by Frame
+  - China Blocks SoftBank’s $5.4 Billion Robot Deal
 
 ### Issue 160 · 2026-11-04 · `daily/timps-postcards-2026-11-04.html`
 
