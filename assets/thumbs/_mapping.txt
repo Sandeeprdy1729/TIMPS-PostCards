@@ -146,3 +146,4 @@
 2026-11-03	159	thumb-2026-11-03.jpg	Apple Ternus First Quarter Comes With an Unprecedented Memory Bill	chip
 2026-11-04	160	thumb-2026-11-04.jpg	AMD Data Center Revenue Nearly Doubled. The CPU Is the Reason.	chip
 2026-11-05	161	thumb-2026-11-05.jpg	The Blue Wave Just Put Half of America's Data Centers in Play	chip
+2026-11-06	162	thumb-2026-11-06.jpg	Wall Street Repriced the AI Trade by $2.5 Trillion in One Day	chip

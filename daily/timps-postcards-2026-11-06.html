@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TIMPS">
+<link rel="manifest" href="../manifest.json">
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/icon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/icon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="../assets/icon-48.png">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="../assets/icon-180.png">
+<title>TIMPS PostCards — Issue 162</title>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --cream:  #EEECE2;
+    --forest: #3D3929;
+    --terra:  #DA7756;
+    --terra-d:#BD5D3A;
+    --black:  #111111;
+    --card-bg:#F0ECE0;
+    --mono:   'Newsreader', Georgia, 'Times New Roman', serif;
+    --serif:  'TIMPS', 'Playfair Display', Georgia, serif;
+  }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Black.woff2') format('woff2'); font-weight:900; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Bold.woff2') format('woff2'); font-weight:700; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-SemiBold.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--cream);
+    background-image:
+      linear-gradient(rgba(61,57,41,.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.07) 1px, transparent 1px);
+    background-size: 38px 38px;
+    font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+    color: var(--forest);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { text-decoration: none; color: inherit; }
+
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 48px;
+    background-color: rgba(238,236,226,.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1.5px solid rgba(61,57,41,.12);
+    background-image:
+      linear-gradient(rgba(61,57,41,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.05) 1px, transparent 1px);
+    background-size: 38px 38px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Special Elite', 'Courier New', Courier, monospace;
+    font-size: 15px;
+    font-weight: 400;
+    color: #000;
+    text-decoration: none;
+  }
+  .nav-logo-mark {
+    width: 34px; height: 34px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .nav-logo-mark img { width: 28px; height: 28px; object-fit: contain; }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-link {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: #000;
+    opacity: .65;
+    text-decoration: none;
+    transition: opacity .15s;
+  }
+  .nav-link:hover { opacity: 1; }
+  .nav-cta {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: #000;
+    background: var(--terra);
+    border: 2.5px solid #000;
+    border-radius: 100px;
+    padding: 10px 24px;
+    cursor: pointer;
+    transition: background .15s, transform .1s;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--terra-d); transform: translateY(-1px); }
+
+  .wrapper { max-width: 760px; margin: 0 auto; padding: 40px 20px 80px; display: flex; flex-direction: column; gap: 0; }
+
+  .cover-card { background: var(--card-bg); border-radius: 20px 20px 4px 4px; padding: 56px 48px 48px; text-align: center; position: relative; overflow: hidden; border: 1.5px solid rgba(61,57,41,.12); margin-bottom: 3px; }
+  .cover-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, var(--terra) 0%, var(--terra-d) 60%, #E0A88A 100%); }
+  .cover-eyebrow { font-family: var(--mono); font-size:10px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:20px; display:flex; align-items:center; justify-content:center; gap:10px; }
+  .cover-eyebrow::before,.cover-eyebrow::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .15; max-width:60px; }
+  .cover-title { font-family: var(--serif); font-size:58px; font-weight:900; line-height:1; letter-spacing:-1px; color: var(--forest); margin-bottom:8px; }
+  .cover-sub { font-family: var(--serif); font-size:13px; font-style:italic; color: var(--forest); opacity: .55; margin-bottom:28px; }
+  .cover-divider { width:48px; height:2px; background: var(--terra); margin:0 auto 24px; border-radius:2px; }
+  .cover-meta { display:flex; justify-content:center; gap:32px; font-family: var(--mono); font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .45; }
+  .cover-badge { display:inline-flex; align-items:center; gap:6px; background: var(--terra); color: #fff; border-radius:20px; padding:6px 18px; font-family: var(--mono); font-size:10px; letter-spacing:2px; text-transform:uppercase; margin-top:28px; }
+  .top5-pill { display:flex; justify-content:center; gap:10px; margin-top:32px; flex-wrap:wrap; }
+  .pill { background: var(--forest); color: var(--cream); border-radius:100px; padding:4px 14px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; }
+  .pill.light { background:transparent; color: var(--forest); border:1px solid rgba(61,57,41,.2); }
+
+  .section-label { display:flex; align-items:center; gap:12px; padding:10px 0 8px; font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .35; }
+  .section-label::before,.section-label::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .1; }
+
+  .story-card { border-radius:4px; border:1.5px solid rgba(61,57,41,.10); padding:36px 40px; margin-bottom:3px; position:relative; overflow:hidden; }
+  .story-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }
+
+  .card-sky      { background:#D6E8F0; } .card-sky::before      { background: #7AAFC0; }
+  .card-cream    { background: var(--card-bg); } .card-cream::before    { background: var(--terra); }
+  .card-blush    { background:#F5DDD0; } .card-blush::before    { background: #E0A88A; }
+  .card-lavender { background:#EAE6F5; } .card-lavender::before { background: #C8BEE8; }
+  .card-sage     { background:#D6E4D6; } .card-sage::before     { background: #8BAF8B; }
+
+  .page-chip { position:absolute; top:14px; right:16px; font-family: var(--mono); font-size:9px; letter-spacing:2px; text-transform:uppercase; color: var(--forest); opacity: .3; }
+  .card-routine { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:8px; }
+  .card-headline { font-family: var(--serif); font-size:28px; font-weight:900; line-height:1.15; color: var(--forest); margin-bottom:10px; }
+  .card-headline.lg { font-size:34px; }
+  .card-headline.sm { font-size:22px; }
+  .card-deck { font-family: var(--serif); font-style:italic; font-size:14px; line-height:1.55; color: var(--forest); opacity: .55; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid rgba(61,57,41,.12); }
+  .card-body { font-family: 'Lora', Georgia, serif; font-size:14px; line-height:1.7; color: var(--forest); }
+  .card-body p { margin-bottom:11px; }
+  .drop::first-letter { font-family: var(--serif); font-size:52px; font-weight:900; float:left; line-height:.78; margin:5px 6px 0 0; color: var(--terra); }
+  .clearfix::after { content:''; display:table; clear:both; }
+
+  .hl-terra { background: var(--terra); color: var(--forest); padding:0 4px; border-radius:2px; }
+  .hl-ink  { background: var(--forest); color: var(--cream); padding:0 4px; border-radius:2px; }
+  .hl-sage { background: #8BAF8B; color: #fff; padding:0 4px; border-radius:2px; }
+  .hl-lav  { background: #C8BEE8; color: var(--forest); padding:0 4px; border-radius:2px; }
+
+  .stat-box { float:right; margin:0 0 16px 24px; background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:16px 20px; text-align:center; min-width:120px; }
+  .stat-big { font-family: var(--serif); font-size:44px; font-weight:900; line-height:1; color: var(--forest); display:block; }
+  .stat-label { font-family: var(--mono); font-size:9.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .5; display:block; margin-top:4px; }
+
+  .img-frame { border:2px solid rgba(61,57,41,0.18); border-radius:12px; overflow:hidden; margin:16px 0; background: var(--card-bg); }
+  .img-frame img { width:100%; display:block; max-height:240px; object-fit:cover; border-bottom:1px solid rgba(61,57,41,.12); }
+  .img-caption { padding:8px 12px; font-family: var(--mono); font-size:10.5px; color: var(--forest); opacity: .6; font-style:italic; display:flex; align-items:center; justify-content:space-between; gap:8px; }
+  .img-caption a { font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; white-space:nowrap; font-style:normal; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; }
+  .img-caption a:hover { opacity: 1; }
+  .img-frame.float-right { float:right; width:220px; margin:0 0 16px 24px; }
+  .img-frame.float-right img { max-height:140px; }
+
+  .source-link { display:inline-flex; align-items:center; gap:5px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:12px; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; transition: opacity .15s; }
+  .source-link:hover { opacity: 1; }
+  .source-link::after { content:'↗'; font-size:9px; }
+
+  .signals-grid { display:flex; flex-direction:column; gap:14px; }
+  .signal-row { display:flex; align-items:flex-start; gap:14px; }
+  .signal-num { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family: var(--serif); font-size:13px; font-weight:900; flex-shrink:0; color:#fff; }
+  .signal-num.n1{background: var(--terra); color: var(--forest);} .signal-num.n2{background: var(--forest);} .signal-num.n3{background:#7AAFC0;} .signal-num.n4{background: var(--terra-d); color: var(--forest);} .signal-num.n5{background: var(--black);}
+  .signal-title { font-family: var(--serif); font-size:14px; font-weight:700; color: var(--forest); margin-bottom:2px; }
+  .signal-desc { font-family: 'Newsreader', Georgia, 'Times New Roman', serif; font-size:12px; line-height:1.65; color: var(--forest); opacity: .6; }
+  .signal-link { display:inline-block; font-family: var(--mono); font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:4px; border-bottom:1px solid rgba(61,57,41,.25); padding-bottom:1px; transition: opacity .15s; }
+  .signal-link:hover { opacity: 1; }
+
+  .themes-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .theme-item { padding:10px 14px; border-radius:8px; font-family: var(--serif); font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; text-align:center; border:1.5px solid rgba(61,57,41,.12); background: var(--cream); }
+
+  .tool-week { background: var(--forest); color: var(--cream); border-radius:12px; padding:18px 20px; text-align:center; margin-top:14px; }
+  .tool-week-eyebrow { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; opacity: .55; margin-bottom:6px; }
+  .tool-week-name { font-family: var(--serif); font-size:22px; font-weight:900; margin-bottom:4px; }
+  .tool-week-desc { font-family: 'Newsreader', Georgia, 'Times New Roman', serif; font-size:11.5px; opacity: .7; font-style:italic; }
+
+  .output-card { background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:18px 20px; margin-top:14px; }
+  .output-title { font-family: var(--serif); font-size:18px; font-weight:700; margin-bottom:8px; color: var(--forest); }
+  .tp-list { list-style:none; padding:0; margin:0; }
+  .tp-list li { padding:5px 0; font-family: 'Lora', Georgia, serif; font-size:12px; color: var(--forest); border-bottom:1px solid rgba(61,57,41,.07); display:flex; align-items:flex-start; gap:7px; }
+  .tp-list li::before { content:'·'; color: var(--terra); font-size:14px; line-height:1.2; flex-shrink:0; }
+  .tp-list li a { color: var(--forest); opacity: .8; text-decoration:none; }
+  .tp-list li a:hover { opacity: 1; }
+
+  .sources-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px 20px; }
+  .sources-grid a { font-family: var(--mono); font-size:11px; color: var(--forest); opacity: .55; text-decoration:none; border-bottom:1px solid rgba(61,57,41,.15); padding-bottom:1px; transition: opacity .15s; }
+  .sources-grid a:hover { opacity: 1; }
+
+  .footer {
+    background: var(--black);
+    padding: 28px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    border-radius: 4px 4px 20px 20px;
+    margin-top: 3px;
+  }
+  .footer-logo { display: flex; align-items: center; gap: 10px; }
+  .footer-mark { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; }
+  .footer-mark img { width: 24px; height: 24px; object-fit: contain; }
+  .footer-brand { font-family: 'Special Elite', 'Courier New', Courier, monospace; font-size: 13px; font-weight: 400; color: #fff; }
+  .footer-center { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.4); text-align: center; line-height: 1.6; }
+  .footer-right { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.3); text-align: right; line-height: 2; }
+  .footer-right a { color: rgba(255,255,255,.5); transition: color .15s; }
+  .footer-right a:hover { color: #fff; }
+
+  .page-layout { display: flex; align-items: flex-start; gap: 0; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+  .toc-sidebar { position: sticky; top: 80px; width: 170px; flex-shrink: 0; padding: 48px 0 0 0; }
+  .toc-nav { display: flex; flex-direction: column; gap: 0; }
+  .toc-link { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.5px; text-transform: uppercase; color: #000; opacity: .45; text-decoration: none; padding: 7px 12px; border-left: 2px solid transparent; transition: opacity .15s, border-color .15s; line-height: 1.3; }
+  .toc-link:hover { opacity: .85; }
+  .toc-link.active { opacity: 1; border-left-color: var(--terra); }
+  .section-anchor { scroll-margin-top: 80px; }
+
+  @media (max-width: 900px) {
+    .toc-sidebar { display: none; }
+    .page-layout { max-width: 760px; }
+  }
+
+  @media (max-width: 720px) {
+    .nav { padding: 12px 24px; }
+    .nav-links { display: none; }
+    .wrapper { padding: 20px 14px 60px; }
+    .cover-card { padding: 40px 24px; }
+    .story-card { padding: 28px 20px; }
+    .footer { padding: 24px; flex-direction: column; align-items: flex-start; }
+    .footer-center, .footer-right { text-align: left; }
+    .stat-box { float: none; margin: 0 0 16px 0; }
+    .img-frame.float-right { float: none; width: 100%; margin: 0 0 16px 0; }
+  }
+  @media (max-width: 480px) {
+    .nav-logo span { display: none; }
+    .cover-title { font-size: 40px; }
+    .card-headline.lg { font-size: 28px; }
+    .card-headline { font-size: 24px; }
+  }
+</style>
+
+</head>
+
+<body>
+
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">
+    <div class="nav-logo-mark"><img src="../assets/timps-postcards.png" alt="TIMPS"></div>
+    <span>TIMPS PostCards</span>
+  </a>
+  <div class="nav-links">
+    <a href="../articles.html" class="nav-link">Articles</a>
+    <a href="../archive.html" class="nav-link">Archive</a>
+    <a href="timps-postcards-2026-11-06.html" class="nav-link">Latest Issue</a>
+    <a href="../index.html#subscribe" class="nav-link">Subscribe</a>
+  </div>
+  <a href="../index.html#subscribe" class="nav-cta">Subscribe</a>
+</nav>
+
+<div class="page-layout">
+  <aside class="toc-sidebar">
+    <nav class="toc-nav">
+      <a href="#rout" class="toc-link">The Repricing</a>
+      <a href="#compact" class="toc-link">The Compact</a>
+      <a href="#metr" class="toc-link">The Acceleration</a>
+      <a href="#cyber" class="toc-link">Aligned Offense</a>
+      <a href="#wyoming" class="toc-link">The Counter-Bet</a>
+      <a href="#signals" class="toc-link">Signals</a>
+      <a href="#themes" class="toc-link">Themes</a>
+      <a href="#tool" class="toc-link">Watch</a>
+      <a href="#sources" class="toc-link">Sources</a>
+    </nav>
+  </aside>
+
+  <div class="wrapper">
+
+  <div id="intro" class="cover-card section-anchor">
+    <div class="cover-eyebrow">Est. 2026 &middot; Hyderabad</div>
+    <div class="cover-title">TIMPS<br>PostCards</div>
+    <div class="cover-sub">AI Intelligence Digest &middot; Your Daily Signal from the Machine Frontier</div>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+      <span>Issue 162</span>
+      <span>November 6, 2026</span>
+      <span>No. 189</span>
+    </div>
+    <div class="cover-badge">&#11041; 162 Issues &mdash; Built with the TIMPS Ecosystem</div>
+    <div class="top5-pill">
+      <span class="pill">5 Top Signals</span>
+      <span class="pill light">The Repricing</span>
+      <span class="pill light">The Compact</span>
+      <span class="pill light">The Acceleration</span>
+      <span class="pill light">Aligned Offense</span>
+      <span class="pill light">The Counter-Bet</span>
+    </div>
+  </div>
+
+  <div id="rout" class="story-card card-blush section-anchor">
+    <div class="page-chip">01 &middot; LEAD</div>
+    <div class="card-routine">Markets &middot; The $2.5 Trillion Repricing</div>
+    <h2 class="card-headline lg">Wall Street Repriced the AI Trade by $2.5 Trillion in One Day</h2>
+    <div class="card-deck">The Nasdaq 100 fell 6% and lost a record $2.3 trillion of value. The Philadelphia chip index dropped 12%. The Magnificent Seven shed $1 trillion. Bitcoin slid to $76,000. Two days after voters punished data centers, the market decided the buildout has a new risk premium.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">$2.5T</span>
+        <span class="stat-label">wiped from tech stocks in a single session</span>
+      </div>
+      <p class="drop">Technology stocks had their worst day since <b>2020</b> on Thursday. The <b>Nasdaq 100</b> fell <b>6%</b>, losing a record <b>$2.3 trillion</b> in index value, while the Philadelphia semiconductor index plunged <b>12%</b>, according to <b>Bloomberg</b>. The <b>Wall Street Journal</b> put the broader damage at <b>$2.5 trillion</b> and called it an &ldquo;AI reality check.&rdquo; <b>CNBC</b> calculated that the Magnificent Seven alone lost <b>$1 trillion</b>. By Friday morning the sell-off had gone global, battering <b>SK Hynix</b>, <b>Samsung</b>, <b>SoftBank</b> and <b>TSMC</b> across Asia.</p>
+      <p>The proximate cause was Tuesday&rsquo;s election, and the market&rsquo;s reading of it was blunt: a Democratic Congress and a wave of data-center-skeptical state governments make the next gigawatt harder to permit, and therefore cheaper to postpone. <b>Reuters</b> reported the Nasdaq was set to confirm a correction. <b>MarketWatch</b> reported the worst day for tech stocks since 2020. <b>CoinDesk</b> noted <b>Bitcoin</b> falling to <b>$76,000</b> as the same trade unwound. Investors did not sell because AI stopped working. They sold because the cost of building it went up in a way no spreadsheet had modelled.</p>
+      <p>The tell is what happened to the private markets on the same day. Major investors told the <b>Wall Street Journal</b> they are skeptical that <b>Anthropic</b> can hold a <b>$1.5 trillion</b> valuation in its IPO, with one saying the number could land closer to <b>$1 trillion</b>. A public-market repricing that arrives a week before a flagship listing sets the anchor for everything behind it. If the largest AI lab in the queue is worth a third less than its last private mark, every growth-stage round priced against that mark is now a negotiation.</p>
+      <p><span class="hl-terra">What broke was not the technology story. It was the financing story. The last two years of the boom ran on a simple premise: build capacity, and the demand will be there to pay for it. That premise assumed uninterrupted political permission, cheap debt and a market willing to underwrite losses in exchange for growth. Thursday removed the first assumption, and the second and third followed within hours. <b>Jim Cramer</b> told CNBC the sell-off &ldquo;isn&rsquo;t over, but it isn&rsquo;t another dot-com crash.&rdquo; That may be the most useful framing available: this is a cost-of-capital event, not a verdict on whether models get better.</span></p>
+      <p>The political reaction was immediate and unsubtle. <b>Donald Trump</b> posted that the market had suffered &ldquo;one of the Worst Days in History based on the results of the Election&rdquo; and told voters they had only themselves to blame. Both parties now own the number. The useful question for the next quarter is narrower: which companies can fund their buildout from cash flow, and which were depending on the market staying in a generous mood. Thursday sorted them, loudly.</p>
+    </div>
+    <a class="source-link" href="https://www.wsj.com/finance/stocks/wall-street-gets-2-5-trillion-ai-reality-check-with-historic-rout-of-tech-stocks-93985d7c" target="_blank">Full story &middot; The Wall Street Journal</a>
+  </div>
+
+  <div id="compact" class="story-card card-sky section-anchor">
+    <div class="page-chip">02 &middot; POLICY</div>
+    <div class="card-routine">Politics &middot; OpenAI&rsquo;s Community Compact</div>
+    <h2 class="card-headline">OpenAI Renamed Data Centers &ldquo;Compute Campuses&rdquo; &mdash; and Promised to Pay for the Power</h2>
+    <div class="card-deck">Two days after voters rejected data centers in dozens of jurisdictions, OpenAI published a National Community Compact: no NDAs with public officials, published construction plans, and full electricity and grid costs paid by the company. It also conceded it may need to reset its 2027 capacity plans.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">38+</span>
+        <span class="stat-label">localities that voted to restrict data centers</span>
+      </div>
+      <p class="drop"><b>OpenAI</b> published two documents on Thursday: a <b>National Community Compact</b> and an <b>AI Infrastructure That Works for America</b> policy blueprint. The commitments are specific. OpenAI says it will not use nondisclosure agreements with public officials, will publish construction plans, will pay the full electricity and grid costs of its future data centers, will fund protections for local customers if a project falls through, and will lower power usage during peak times. It also endorsed a national effort to support affordable, reliable electricity for the families and businesses living near its sites.</p>
+      <p>The timing is the story. <b>Semafor</b> counted at least <b>38</b> localities across nine states where voters moved to ban or restrict data center construction on Tuesday. <b>DatacenterDynamics</b> reported that more than half of US hyperscale data center projects now face &ldquo;regulatory friction.&rdquo; OpenAI&rsquo;s chief global affairs officer, <b>Chris Lehane</b>, put it plainly: &ldquo;Voters made their concerns about data centers clear in this week&rsquo;s elections, and we need to listen and respond with concrete action.&rdquo; The <b>New York Times</b> framed it as a pledge to give data center towns more say.</p>
+      <p>The vocabulary changed too. &ldquo;Data center&rdquo; became &ldquo;compute campus&rdquo; across both documents, a rebrand that the industry&rsquo;s critics noticed within minutes. <b>Haseeb Qureshi</b> marvelled at how quickly the pivot came. <b>Jon Favreau</b> was less charmed: &ldquo;The days of the AI industry acting as their own government are coming to an end. No one trusts their promises and voluntary agreements.&rdquo; That is the central weakness of a voluntary compact. It is a promise made by the party that benefits from keeping it, enforceable by no one.</p>
+      <p><span class="hl-ink">The most consequential sentence in the coverage came from the <b>Wall Street Journal</b>, not OpenAI. By Wednesday morning, senior leaders at the company were discussing whether the election results meant they would have to reset expectations for data center capacity in 2027. A policy document is a communications product. A capacity reset is a capital-allocation decision. If the second follows the first, then Tuesday did not merely change the industry&rsquo;s messaging &mdash; it changed its arithmetic. <b>Meta</b>&rsquo;s president, <b>Dina Powell McCormick</b>, said the same thing at the WSJ Tech conference in blunter terms: building new US data centers will be &ldquo;harder,&rdquo; though expanding existing ones will be easier.</span></p>
+      <p>There is a version of this that works. Paying your own power bill, publishing your plans and letting elected officials speak on the record are all things a serious infrastructure company should have been doing already. The question is whether the compact survives contact with a quarterly earnings cycle. A promise is cheap in the week you are being blamed and expensive in the year you are being compared to a competitor who skipped it.</p>
+    </div>
+    <a class="source-link" href="https://openai.com/index/setting-new-standard-responsible-ai-infrastructure" target="_blank">Full story &middot; OpenAI</a>
+  </div>
+
+  <div id="metr" class="story-card card-lavender section-anchor">
+    <div class="page-chip">03 &middot; FRONTIER</div>
+    <div class="card-routine">AI Safety &middot; Recursive Self-Improvement</div>
+    <h2 class="card-headline">METR Says Anthropic Is Accelerating. Anthropic Redacted the Proof.</h2>
+    <div class="card-deck">An independent assessment finds Anthropic&rsquo;s models improving about twice as fast as they did a year ago, with roughly 80% of the speed-up driven by the company&rsquo;s own researchers using AI. The lab that has campaigned hardest for pacing the frontier redacted the evidence METR found most informative.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">2&times;</span>
+        <span class="stat-label">rate of capability improvement, versus a year ago</span>
+      </div>
+      <p class="drop"><b>METR</b> published an independent assessment of AI R&amp;D acceleration at <b>Anthropic</b> on Thursday. Its headline finding: the company&rsquo;s models are improving roughly <b>twice as fast</b> as they did between March 2024 and October 2025. Most of that acceleration &mdash; on the order of <b>80%</b> &mdash; is attributed to Anthropic&rsquo;s own researchers using AI in their daily work, largely as an experimentation and coding aid. METR estimates the company has probably crossed the <b>2&times;</b> threshold in its Responsible Scaling Policy, and may now be running closer to <b>3&times;</b>.</p>
+      <p>That is the recursive-self-improvement argument arriving as a measurement rather than a manifesto. For a decade the case for AI accelerating AI was made in essays and extrapolated curves. METR, which was given access to nonpublic information across Anthropic&rsquo;s pipeline from pretraining to reinforcement learning, has now put a number on one company. Readers going through the document noted that it surfaces details of an unreleased internal model &mdash; referred to as <b>Model 4</b> &mdash; that finished training in October 2026 and scored <b>178.6</b> on the company&rsquo;s internal capability index.</p>
+      <p>The controversy is about what was withheld. METR submitted a roughly <b>100-page</b> report to Anthropic; for the public version, the company redacted a majority of the evidence METR said it found most informative, including parts of METR&rsquo;s methodology, on the grounds that disclosure could accelerate other AI developers. METR&rsquo;s own note is unusually pointed: readers &ldquo;must rely on our judgment more than we consider ideal.&rdquo; <b>Anthropic</b> co-founder <b>Sam McCandlish</b> said the company will share more on its safety work in the coming months.</p>
+      <p><span class="hl-lav">This is the awkward part. <b>Dario Amodei</b> has spent two years publicly endorsing &ldquo;pacing the frontier&rdquo; &mdash; the idea that the industry should deliberately slow down when capabilities run ahead of safety. METR&rsquo;s assessment describes a company that is, by the measurable evidence, moving faster than it was a year ago, and choosing not to publish the evidence that would let outsiders check the work. Both things can be true: the redactions may be genuinely defensible on security grounds, and an independent evaluation that most people cannot audit is a weaker institution than one they can. <b>Casey Newton</b> summarised the tension best &mdash; a full report was submitted, and the public got the version with the interesting parts removed.</span></p>
+      <p>The broader point is that the safety debate has moved from prediction to instrumentation. We now have third-party evaluators measuring the thing everyone used to argue about, and the first result is neither a clean all-clear nor a disaster. It is a number that says the curve steepened, published alongside a redaction notice. The next fight will be over who gets to see the raw data &mdash; and whether a claim of competitive harm is enough to keep it hidden.</p>
+    </div>
+    <a class="source-link" href="https://metr.org/blog/2026-11-05-anthropic-ai-rd-acceleration-assessment/" target="_blank">Full story &middot; METR</a>
+  </div>
+
+  <div id="cyber" class="story-card card-sage section-anchor">
+    <div class="page-chip">04 &middot; SECURITY</div>
+    <div class="card-routine">Security &middot; Aligned Offense</div>
+    <h2 class="card-headline">GPT-6 Cyber Found 81 Firefox Flaws. It Was Trained to Stay in Its Lane.</h2>
+    <div class="card-deck">OpenAI&rsquo;s new security model is rated Critical, beats GPT-6 Astra on cyber benchmarks, and is the same model behind yesterday&rsquo;s 948 Linux kernel exploits. It launches behind a gate, at a higher API price than Anthropic and Google, with a promise that it will not go rogue.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">81</span>
+        <span class="stat-label">previously unknown Firefox vulnerabilities</span>
+      </div>
+      <p class="drop"><b>OpenAI</b> released <b>GPT-6 Cyber</b>, a security-focused model it says outperforms <b>GPT-6 Astra</b> on cyber benchmarks, is better at finding vulnerabilities, and is meaningfully less likely to go rogue. The company says it identified more than <b>81</b> previously unknown vulnerabilities in <b>Firefox</b>. It also confirms that this is the model behind Wednesday&rsquo;s announcement of <b>948</b> local privilege-escalation flaws in the <b>Linux</b> kernel &mdash; the run that cost about <b>$1.2 million</b> in API calls.</p>
+      <p>Access is deliberately narrow. GPT-6 Cyber launches first to a limited set of customers in OpenAI&rsquo;s <b>Daybreak Red</b> program, with a separate <b>Daybreak Red for Critical Infrastructure</b> track for approved defenders, and <b>Daybreak Blue</b> for verified defenders and open-source maintainers validating vulnerabilities. The company published a system card alongside the model and gave it a <b>Critical</b> cybersecurity rating, the highest tier. <b>VentureBeat</b> noted the API price is higher than comparable offerings from <b>Anthropic</b> and <b>Google</b>.</p>
+      <p>The framing OpenAI is selling is &ldquo;aligned offense.&rdquo; A model that can write an exploit is also the only kind of model that can prove a vulnerability is real before a patch is written, and the company argues that pairing stronger capability with better alignment is the only sustainable way to ship it. Early users are enthusiastic. <b>Stefan Esser</b>, a veteran kernel and PHP security researcher, said the model is &ldquo;lightyears ahead of everything I used.&rdquo; <b>Konstantine</b> at Daybreak called it a substantial step up from GPT-5.6 Cyber &mdash; and noted it beats Astra even when Astra is not refusing.</p>
+      <p><span class="hl-sage">The unresolved question is volume. If one lab can generate a thousand valid kernel patches in a run and 81 Firefox bugs in another, the bottleneck moves from discovery to triage, review and embargo discipline &mdash; the unpaid, understaffed part of the open-source security stack. A model that finds bugs faster than maintainers can read them is not automatically safer. <b>Tim Fernholz</b> at TechCrunch asked the right question in his headline: is a new cybersecurity model enough? The capability is real. Whether the institutions that consume its output can absorb it is a separate problem, and nobody shipped a model for that this week.</span></p>
+      <p>There is also a market signal buried here. OpenAI priced cyber capability above its competitors and gated it, which is what you do with a product you believe is scarce. Security is turning into the first domain where frontier models are sold less as a chat interface and more as a licensed instrument with an authorised-user list. That is a different business model from the one that built the consumer AI market, and it may prove more durable.</p>
+    </div>
+    <a class="source-link" href="https://openai.com/index/introducing-gpt-6-cyber/" target="_blank">Full story &middot; OpenAI</a>
+  </div>
+
+  <div id="wyoming" class="story-card card-cream section-anchor">
+    <div class="page-chip">05 &middot; INFRASTRUCTURE</div>
+    <div class="card-routine">Buildout &middot; Google in Wyoming</div>
+    <h2 class="card-headline">Google Is Building a $17 Billion Data Center the Day After the Backlash</h2>
+    <div class="card-deck">The first Google data center in Wyoming comes with a promise to pay for all the power it uses, a Community Council, and a first-of-a-kind carbon-capture project nearly a gigawatt in scale. The buildout did not stop. It changed its terms.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">$17B</span>
+        <span class="stat-label">investment in Laramie County, Wyoming</span>
+      </div>
+      <p class="drop"><b>Google</b> said it will spend <b>$17 billion</b> to build its first data center in <b>Wyoming</b>, in Laramie County, in partnership with <b>Tallgrass Energy</b>. The company committed to pay for all the power the facility uses and to form a <b>Community Council</b> to address growth concerns, according to its own announcement and <b>Reuters</b>. The timing &mdash; the day after an election in which data centers lost almost everywhere they appeared on a ballot &mdash; was not subtle.</p>
+      <p>The technical detail is more interesting than the politics. The project includes a first-of-a-kind carbon-capture system that captures emissions from fuel cells and stores them, with roughly <b>1 gigawatt</b> of capture capacity, according to <b>Jack Andreasen Cavanaugh</b>, who tracks such projects. Clean, firm, on-demand power has been the missing piece in every hyperscaler&rsquo;s decarbonisation plan. If it works at this scale, it changes what a data center can credibly promise a host community about its own emissions &mdash; and it gives Google a template it can take to the next county.</p>
+      <p>Read alongside OpenAI&rsquo;s compact, a pattern emerges. The industry has stopped arguing that data centers are good for you and started agreeing to pay for the things voters said they were worried about: grid costs, local services, transparency and a seat at the table. Google&rsquo;s version is the most concrete because it attaches a number and a technology to each promise. Paying your own power bill is cheap relative to the political cost of not doing it.</p>
+      <p><span class="hl-terra">The counter-argument is that this is what the industry should have been doing from the beginning, and that a single well-designed project in a state with abundant land and energy is not a rebuttal to 38 localities saying no. Both are fair. But the strategic direction is clear: the next wave of buildouts will be fewer, larger, more expensive per site, and negotiated with local governments rather than announced to them. The era of the surprise data center is over. What replaces it looks a lot like the way the industry used to build power plants &mdash; with a community liaison, a benefits agreement, and a very long permitting calendar.</span></p>
+      <p>For investors, the Wyoming announcement is the counterweight to Thursday&rsquo;s rout. The capital has not been withdrawn. It has been repriced and re-routed toward places where the politics can be settled in advance. That is slower, and slower is exactly what the market punished this week.</p>
+    </div>
+    <a class="source-link" href="https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/wyoming-data-center/" target="_blank">Full story &middot; Google</a>
+  </div>
+
+  <div id="signals" class="story-card card-cream section-anchor">
+    <div class="page-chip">06 &middot; SIGNALS</div>
+    <div class="card-routine">5 Key Signals</div>
+    <h2 class="card-headline sm">What Moved the Machine Frontier Today</h2>
+    <div class="card-deck" style="border-bottom:none;padding-bottom:0;margin-bottom:16px;">Briefs worth an afternoon of reading.</div>
+    <div class="signals-grid">
+      <div class="signal-row">
+        <div class="signal-num n1">1</div>
+        <div>
+          <div class="signal-title">Microsoft Is Getting Sick of the Neoclouds</div>
+          <div class="signal-desc"><b>Microsoft</b> is tightening oversight of some data center projects, stepping away from those it deems risky, and debating whether to sign new neocloud deals, according to <b>Bloomberg</b>. The first casualty is measurable: <b>IREN</b> says about <b>$4 billion</b> in annualized revenue is being delayed at a customer&rsquo;s request, and the company has pushed back deliveries on a <b>$9.7 billion</b> Texas project after Microsoft-requested networking changes. IREN still plans a <b>$15 billion</b> spending push. The company that invented the neocloud boom is now re-underwriting it.</div>
+          <a class="signal-link" href="https://www.bloomberg.com/news/articles/2026-11-05/microsoft-sours-on-neoclouds-iren-nebius-nscale-on-delays-costs" target="_blank">Bloomberg &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n2">2</div>
+        <div>
+          <div class="signal-title">Thinking Machines Ships a 594B Model That Costs $0.30 a Million Tokens</div>
+          <div class="signal-desc"><b>Thinking Machines Lab</b> released <b>Inkling 2 Small</b>, a mixture-of-experts model with <b>594 billion</b> total and <b>17 billion</b> active parameters, scoring <b>31</b> on the Artificial Analysis Intelligence Index and matching <b>Gemini 3.8 Flash</b>. It is available on Tinker today, with full weights to follow after safety testing. Pre-training took about <b>68 hours</b> on GB300s and 17 million post-training rollouts over nine days. Separately, the lab is reported to be raising <b>$5 billion</b> led by <b>Accel</b> at a <b>$40 billion</b> pre-money valuation.</div>
+          <a class="signal-link" href="https://thinkingmachines.ai/news/inkling-2-small/" target="_blank">Thinking Machines &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n3">3</div>
+        <div>
+          <div class="signal-title">The New York Times Is Buying Letterboxd for $330 Million</div>
+          <div class="signal-desc">The <b>New York Times</b> has entered exclusive negotiations to acquire <b>Letterboxd</b>, the cinephile review and list-making community, for roughly <b>$330 million</b>. <b>A24</b> dropped out after price expectations rose. The deal would extend the strategy the Times has run with <b>Cooking</b> and <b>Games</b> &mdash; buy a passionate niche audience, then sell it subscriptions and advertising &mdash; into the last corner of the internet where people still write long, sincere paragraphs about things they love.</div>
+          <a class="signal-link" href="https://www.nytimes.com/2026/11/05/business/letterboxd-new-york-times-company.html" target="_blank">New York Times &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n4">4</div>
+        <div>
+          <div class="signal-title">Meta&rsquo;s Muse Can Now Call You Back</div>
+          <div class="signal-desc"><b>Meta</b> rolled out real-time voice and animated avatars in its <b>Muse</b> app across mobile, web and Mac in the US. <b>Muse Realtime Voice</b> and <b>Muse Realtime Avatar</b> are built to keep voice, expression and gesture in sync, and the agent responds immediately &mdash; you can interrupt it mid-sentence. Users pick from multiple voices, and <b>Zuckerberg</b> and <b>Alexandr Wang</b> both promoted the launch. The assistant stops being a text box and becomes something closer to a face.</div>
+          <a class="signal-link" href="https://www.theverge.com/tech/1028015/meta-muse-ai-voice-mode-expressive-avatar" target="_blank">The Verge &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n5">5</div>
+        <div>
+          <div class="signal-title">The First Touchscreen MacBook Is a Screen Review</div>
+          <div class="signal-desc">Reviews landed for the <b>MacBook Pro with PROLED XDR Display</b>, Apple&rsquo;s first touchscreen laptop and its return to a glowing logo. The consensus: the tandem OLED is the best display on any laptop, the machine is noticeably lighter, and touch is a $400 option most reviewers shrugged at. <b>Engadget</b> called it &ldquo;lighter, brighter, but the touchscreen doesn&rsquo;t add much.&rdquo; Apple also confirmed the glowing logo can be turned off, via a Terminal command.</div>
+          <a class="signal-link" href="https://www.engadget.com/2307215/apple-macbook-pro-with-proled-xdr-display-review/" target="_blank">Engadget &#8597;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="themes" class="story-card card-lavender section-anchor">
+    <div class="page-chip">07 &middot; CLOSER</div>
+    <div class="card-routine">Top Themes</div>
+    <h2 class="card-headline sm">The Shape of Today&rsquo;s News</h2>
+    <div class="themes-grid" style="margin-top:16px;">
+      <div class="theme-item">The $2.5 Trillion Repricing</div>
+      <div class="theme-item">The Compute Campus Compact</div>
+      <div class="theme-item">Recursive Self-Improvement</div>
+      <div class="theme-item">Aligned Offense</div>
+      <div class="theme-item">Building Through the Backlash</div>
+    </div>
+
+    <div id="tool" class="tool-week section-anchor">
+      <div class="tool-week-eyebrow">Company Watch of the Day</div>
+      <div class="tool-week-name">CLOUDFLARE</div>
+      <div class="tool-week-desc">On the worst day for technology stocks since 2020, <b>Cloudflare</b> went the other way. The company reported third-quarter revenue of <b>$782.5 million</b>, up <b>39%</b> year over year and comfortably above the <b>$737.2 million</b> consensus, its fastest sales growth in nearly four years. It posted a net loss of <b>$34.1 million</b> and raised its full-year 2026 guidance anyway. The stock jumped more than <b>14%</b> after hours. The explanation is structural rather than sentimental: Cloudflare sells the security, routing and edge compute that every AI product needs whether or not the buildout slows. <b>Bloomberg</b> attributed the raised outlook to AI-driven network demand. That is the asymmetry worth noting this week. Companies paid for the privilege of pouring concrete were repriced by 12% in a session; the company that sells the plumbing those buildings will use was repriced upward. If the next phase of AI is an opex argument rather than a capex argument, the picks-and-shovels trade does not disappear. It moves up the stack, away from the real estate and toward the traffic.</div>
+    </div>
+
+    <div id="sources" class="output-card section-anchor">
+      <div class="output-title">Sources Cited</div>
+      <div class="sources-grid">
+        <a href="https://www.wsj.com/finance/stocks/wall-street-gets-2-5-trillion-ai-reality-check-with-historic-rout-of-tech-stocks-93985d7c" target="_blank">WSJ &mdash; $2.5 trillion rout</a>
+        <a href="https://www.bloomberg.com/news/articles/2026-11-05/us-stock-futures-diverge-as-chip-selloff-extends-into-second-day" target="_blank">Bloomberg &mdash; Nasdaq 100 falls 6%</a>
+        <a href="https://www.cnbc.com/2026/11/06/tech-stocks-sk-hynix-samsung-softbank.html" target="_blank">CNBC &mdash; Asian chip stocks tumble</a>
+        <a href="https://www.nytimes.com/2026/11/05/business/stocks-midterms-artificial-intelligence.html" target="_blank">New York Times &mdash; post-midterm sell-off</a>
+        <a href="https://www.marketwatch.com/story/tech-stocks-log-worst-day-since-2020-as-carnage-comes-to-the-ai-trade-56109845" target="_blank">MarketWatch &mdash; worst day since 2020</a>
+        <a href="https://www.theguardian.com/business/2026/nov/05/nasdaq-heading-for-worst-day-in-18-months-as-wall-street-sustains-widespread-losses" target="_blank">Guardian &mdash; Nasdaq&rsquo;s worst day</a>
+        <a href="https://www.wsj.com/finance/major-investors-are-skeptical-anthropic-ipo-can-achieve-1-5-trillion-valuation-ca965d8b" target="_blank">WSJ &mdash; Anthropic IPO valuation</a>
+        <a href="https://www.reuters.com/business/microsoft-tightens-oversight-neocloud-data-center-projects-bloomberg-news-2026-11-05/" target="_blank">Reuters &mdash; Microsoft neocloud oversight</a>
+        <a href="https://openai.com/index/setting-new-standard-responsible-ai-infrastructure" target="_blank">OpenAI &mdash; responsible AI infrastructure</a>
+        <a href="https://cdn.openai.com/pdf/compute-campus-policy-blueprint.pdf" target="_blank">OpenAI &mdash; Compute Campus blueprint</a>
+        <a href="https://www.cnbc.com/2026/11/05/openai-to-pay-for-data-center-power-after-election-shows-ai-concern.html" target="_blank">CNBC &mdash; OpenAI pledges to pay for power</a>
+        <a href="https://www.nytimes.com/2026/11/05/technology/openai-data-centers-midterms.html" target="_blank">New York Times &mdash; data center towns get a say</a>
+        <a href="https://www.bloomberg.com/news/articles/2026-11-05/openai-to-change-how-it-handles-data-center-efforts-after-outcry" target="_blank">Bloomberg &mdash; OpenAI changes approach</a>
+        <a href="https://www.wsj.com/tech/ai/meta-president-says-midterm-results-will-make-building-data-centers-harder-f1d27c93" target="_blank">WSJ &mdash; Meta on building &ldquo;harder&rdquo;</a>
+        <a href="https://www.fastcompany.com/91636791/anthropic-metr-ai-claude-acceleration" target="_blank">Fast Company &mdash; Anthropic acceleration</a>
+        <a href="https://metr.org/blog/2026-11-05-anthropic-ai-rd-acceleration-assessment/" target="_blank">METR &mdash; AI R&amp;D acceleration assessment</a>
+        <a href="https://metr.org/blog/2026-11-05-rd-section-anthropic-risk-report-august-2026-review/" target="_blank">METR &mdash; review of Anthropic risk report</a>
+        <a href="https://www.businessinsider.com/anthropic-metr-ai-researchers-report-productivity-recursive-self-improvement-2026-11" target="_blank">Business Insider &mdash; three takeaways</a>
+        <a href="https://openai.com/index/introducing-gpt-6-cyber/" target="_blank">OpenAI &mdash; GPT-6 Cyber</a>
+        <a href="https://cyberscoop.com/openai-gpt-6-cyber-security-model/" target="_blank">CyberScoop &mdash; 81 Firefox flaws</a>
+        <a href="https://venturebeat.com/technology/openai-launches-gpt-6-cyber-with-stronger-exploit-research-and-higher-api-price-than-anthropic-and-google" target="_blank">VentureBeat &mdash; GPT-6 Cyber pricing</a>
+        <a href="https://the-decoder.com/openais-gpt-6-cyber-can-both-break-into-systems-and-propose-how-to-fix-them/" target="_blank">The Decoder &mdash; break in, fix it</a>
+        <a href="https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/wyoming-data-center/" target="_blank">Google &mdash; Wyoming data center</a>
+        <a href="https://www.reuters.com/world/us/google-plans-17-billion-wyoming-data-center-amid-rising-threats-curbs-2026-11-05/" target="_blank">Reuters &mdash; Google&rsquo;s $17 billion plan</a>
+        <a href="https://www.bloomberg.com/news/articles/2026-11-05/microsoft-sours-on-neoclouds-iren-nebius-nscale-on-delays-costs" target="_blank">Bloomberg &mdash; Microsoft sours on neoclouds</a>
+        <a href="https://www.cnbc.com/2026/11/05/iren-earnings-report-q1-2027-.html" target="_blank">CNBC &mdash; IREN delays $4 billion</a>
+        <a href="https://thinkingmachines.ai/news/inkling-2-small/" target="_blank">Thinking Machines &mdash; Inkling 2 Small</a>
+        <a href="https://www.businessinsider.com/thinking-machines-lab-is-closing-5-billion-new-round-2026-11" target="_blank">Business Insider &mdash; Thinking Machines raise</a>
+        <a href="https://www.nytimes.com/2026/11/05/business/letterboxd-new-york-times-company.html" target="_blank">New York Times &mdash; Letterboxd deal</a>
+        <a href="https://www.theverge.com/tech/1028015/meta-muse-ai-voice-mode-expressive-avatar" target="_blank">The Verge &mdash; Meta Muse voice</a>
+        <a href="https://www.engadget.com/2307215/apple-macbook-pro-with-proled-xdr-display-review/" target="_blank">Engadget &mdash; MacBook Pro review</a>
+        <a href="https://www.9to5mac.com/2026/11/05/apple-explains-how-to-turn-off-the-new-macbook-pros-glowing-logo/" target="_blank">9to5Mac &mdash; turning off the glowing logo</a>
+        <a href="https://www.wsj.com/business/earnings/cloudflare-stock-surges-on-lifted-full-year-outlook-third-quarter-revenue-growth-984186bf" target="_blank">WSJ &mdash; Cloudflare Q3</a>
+        <a href="https://cloudflare.net/news/news-details/2026/Cloudflare-Announces-Third-Quarter-2026-Financial-Results/default.aspx" target="_blank">Cloudflare &mdash; Q3 2026 results</a>
+        <a href="https://siliconangle.com/2026/11/05/cloudflare-shares-surge-as-revenue-growth-accelerates-to-39-and-outlook-rises/" target="_blank">SiliconANGLE &mdash; Cloudflare surge</a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-logo">
+      <div class="footer-mark"><img src="../assets/timps-postcards.png" alt="TIMPS"></div>
+      <span class="footer-brand">TIMPS PostCards</span>
+    </div>
+    <div class="footer-center">Issue 162 &middot; November 6, 2026<br>Hyderabad, India</div>
+    <div class="footer-right">
+      <a href="../index.html">Home</a><br>
+      <a href="../archive.html">Archive</a><br>
+      &copy; 2026 TIMPS
+    </div>
+  </footer>
+
+</div></div>
+</body>
+</html>

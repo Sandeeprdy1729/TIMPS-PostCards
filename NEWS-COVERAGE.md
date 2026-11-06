@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 148 daily issues + 18 deep dives · regenerated 2026-11-05**
+**Coverage: 149 daily issues + 18 deep dives · regenerated 2026-11-06**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 162 · 2026-11-06 · `daily/timps-postcards-2026-11-06.html`
+
+- **[01 · LEAD]** Wall Street Repriced the AI Trade by $2.5 Trillion in One Day
+  - _The Nasdaq 100 fell 6% and lost a record $2.3 trillion of value. The Philadelphia chip index dropped 12%. The Magnificent Seven shed $1 trillion. Bitcoin slid to $76,000. Two days after voters punished data centers, the market decided the buildout has a new risk premium._
+  - Source: [Full story · The Wall Street Journal](https://www.wsj.com/finance/stocks/wall-street-gets-2-5-trillion-ai-reality-check-with-historic-rout-of-tech-stocks-93985d7c)
+
+- **[02 · POLICY]** OpenAI Renamed Data Centers “Compute Campuses” — and Promised to Pay for the Power
+  - _Two days after voters rejected data centers in dozens of jurisdictions, OpenAI published a National Community Compact: no NDAs with public officials, published construction plans, and full electricity and grid costs paid by the company. It also conceded it may need to reset its 2027 capacity plans._
+  - Source: [Full story · OpenAI](https://openai.com/index/setting-new-standard-responsible-ai-infrastructure)
+
+- **[03 · FRONTIER]** METR Says Anthropic Is Accelerating. Anthropic Redacted the Proof.
+  - _An independent assessment finds Anthropic’s models improving about twice as fast as they did a year ago, with roughly 80% of the speed-up driven by the company’s own researchers using AI. The lab that has campaigned hardest for pacing the frontier redacted the evidence METR found most informative._
+  - Source: [Full story · METR](https://metr.org/blog/2026-11-05-anthropic-ai-rd-acceleration-assessment/)
+
+- **[04 · SECURITY]** GPT-6 Cyber Found 81 Firefox Flaws. It Was Trained to Stay in Its Lane.
+  - _OpenAI’s new security model is rated Critical, beats GPT-6 Astra on cyber benchmarks, and is the same model behind yesterday’s 948 Linux kernel exploits. It launches behind a gate, at a higher API price than Anthropic and Google, with a promise that it will not go rogue._
+  - Source: [Full story · OpenAI](https://openai.com/index/introducing-gpt-6-cyber/)
+
+- **[05 · INFRASTRUCTURE]** Google Is Building a $17 Billion Data Center the Day After the Backlash
+  - _The first Google data center in Wyoming comes with a promise to pay for all the power it uses, a Community Council, and a first-of-a-kind carbon-capture project nearly a gigawatt in scale. The buildout did not stop. It changed its terms._
+  - Source: [Full story · Google](https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/wyoming-data-center/)
+
+  **Signals / briefs:**
+  - Microsoft Is Getting Sick of the Neoclouds
+  - Thinking Machines Ships a 594B Model That Costs $0.30 a Million Tokens
+  - The New York Times Is Buying Letterboxd for $330 Million
+  - Meta’s Muse Can Now Call You Back
+  - The First Touchscreen MacBook Is a Screen Review
 
 ### Issue 161 · 2026-11-05 · `daily/timps-postcards-2026-11-05.html`
 
