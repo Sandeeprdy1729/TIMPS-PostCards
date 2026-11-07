@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 149 daily issues + 18 deep dives · regenerated 2026-11-06**
+**Coverage: 150 daily issues + 18 deep dives · regenerated 2026-11-07**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 163 · 2026-11-07 · `daily/timps-postcards-2026-11-07.html`
+
+- **[01 · LEAD]** Congress Wants Jensen Huang to Explain a Relationship U.S. Intelligence Calls a Spy Operation
+  - _Three House committee chairs have asked Nvidia’s CEO to brief them on Nov. 18 about Alice Huang, a Megaspeed executive U.S. intelligence concluded was recruited by China’s MSS. The company says she received ordinary business information. The timing — one day after earnings — is the tell._
+  - Source: [Full story · CNBC](https://www.cnbc.com/2026/11/05/nvidia-jensen-huang-china-spy-congress.html)
+
+- **[02 · CAPITAL]** Anthropic Wants to List at $1.75 Trillion. OpenAI Just Closed at $1.25 Trillion.
+  - _OpenAI has closed roughly $11 billion of new funding at a $1.25 trillion valuation, with the round possibly reaching $20 billion. Anthropic still plans to list before Thanksgiving, targeting $80–100 billion at $1.25–1.75 trillion. The private market has picked a number. The public market gets to vote._
+  - Source: [Full story · Financial Times](https://www.ft.com/content/314e17df-e7af-4814-b208-70a0557cb452)
+
+- **[03 · INFRASTRUCTURE]** Microsoft Is Quietly Unplugging the AI Capacity It Rented From Oracle
+  - _Microsoft has been turning off rented computing capacity from Oracle after declining to renew a 2023 deal, because the hardware ran older Nvidia chips. It is also offering buyouts to 60,000 employees. The buildout’s second act is subtraction._
+  - Source: [Full story · Bloomberg](https://www.bloomberg.com/news/articles/2026-11-06/microsoft-is-winding-down-oracle-deal-to-rent-ai-cloud-capa)
+
+- **[04 · SUPPLY CHAIN]** Nvidia Asked TSMC to Make Memory. TSMC Is Considering It.
+  - _With AI demand straining DRAM supply, TSMC is weighing 3D DRAM manufacturing at its biggest customer’s request. The bottleneck has moved from logic to memory — and the foundry that owns logic may end up owning the stack._
+  - Source: [Full story · The Information](https://www.theinformation.com/articles/tsmc-weighs-making-advanced-memory-chips-capture-ai-spending)
+
+- **[05 · FRONTIER]** An AI Model Settled a Quantum Question That Had Been Open Since 2008
+  - _PSI says a system running a non-public Anthropic model proved the Aaronson–Ambainis conjecture, and Lean verified every step. It is the clearest case yet of a machine producing new mathematics rather than retrieving old mathematics._
+  - Source: [Full story · PSI](https://psi.inc/research/aaronson-ambainis/)
+
+  **Signals / briefs:**
+  - Nvidia Is Asking Southeast Asian Customers to Track Their Chips
+  - Google Bought $548 Million of Qualcomm
+  - Brussels Says TikTok’s Algorithm Trapped Users in “Rabbit Holes”
+  - The DOJ Says Three Men Used AI to Impersonate CEOs in a $129 Million Fraud
+  - Fox Closes Its $22 Billion Roku Deal Early
 
 ### Issue 162 · 2026-11-06 · `daily/timps-postcards-2026-11-06.html`
 
