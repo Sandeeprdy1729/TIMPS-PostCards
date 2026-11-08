@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 150 daily issues + 18 deep dives · regenerated 2026-11-07**
+**Coverage: 151 daily issues + 18 deep dives · regenerated 2026-11-08**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 164 · 2026-11-08 · `daily/timps-postcards-2026-11-08.html`
+
+- **[01 · LEAD]** U.S. Cleared Nvidia’s Best AI Chips for Chinese Firms With Empty Offices
+  - _A New York Times investigation found that some Chinese companies licensed by the Commerce Department to handle Nvidia’s H200 chips have vacant offices, no public records and owners tied to firms under U.S. sanctions. The paperwork was approved. In some cases, the company was not there._
+  - Source: [Full story · New York Times](https://www.nytimes.com/2026/11/07/business/economy/nvidia-chips-chinese-firms.html)
+
+- **[02 · CAPITAL]** A $63 Million Super PAC Beat a $100 Million Machine. Then Washington Changed Hands.
+  - _Public First, funded by Dario Amodei and other AI-safety advocates, put more than $63 million into the midterms. Ten of the 17 congressional candidates it backed won. Now Democrats are planning a flood of AI bills, and Elizabeth Warren is a top contender for the Senate Banking gavel._
+  - Source: [Full story · Bloomberg](https://www.bloomberg.com/news/articles/2026-11-07/ai-safety-advocates-make-gains-after-110-million-midterm-fight)
+
+- **[03 · INFRASTRUCTURE]** Google Bought the Wyoming Data Center Crusoe Pitched. Then It Pledged $17 Billion.
+  - _Crusoe spent years selecting the site, winning permits and arranging power in southeast Wyoming. Google has now bought the site out from under it and will build the project itself. The neocloud middle layer just lost its most visible deal._
+  - Source: [Full story · Bloomberg](https://www.bloomberg.com/news/articles/2026-11-06/google-takes-over-wyoming-data-center-that-crusoe-had-pitched)
+
+- **[04 · SUPPLY CHAIN]** Huawei Built a Desktop PC With No Intel, No Qualcomm and Nothing Imported
+  - _Huawei’s Qinyun HM650 desktops run HarmonyOS on a Kirin X90 and, the company says, use 100% domestically made components. They are aimed at government and enterprise buyers — precisely the customers export controls were meant to constrain._
+  - Source: [Full story · South China Morning Post](https://www.scmp.com/tech/tech-trends/article/3373435/no-intel-no-qualcomm-huawei-unveils-desktop-built-entirely-china-made-components)
+
+- **[05 · FRONTIER]** OpenAI Says It Disproved the Exponential Time Hypothesis. Its Co-Author Calls the News “Shocking.”
+  - _A longstanding assumption held that some problems would always be hard for computers to solve quickly. OpenAI says it has a disproof, and Russell Impagliazzo, who helped formulate the hypothesis, told the Times the result is “shocking news” — with implications that reach chip design and encryption._
+  - Source: [Full story · New York Times](https://www.nytimes.com/2026/11/06/science/ai-exponential-time-hypothesis.html)
+
+  **Signals / briefs:**
+  - Axon Puts $1.2 Billion Into Skydio at a $5.2 Billion Valuation
+  - The Treasury Cuts MEXC Off From the U.S. Financial System
+  - Tesla Will Wind Down the Cybertruck to Build More Cybercabs
+  - Hundreds of Exposed Copies of a Chinese AI Hacking Tool Are Running in the Open
+  - India’s IT Lobby Warns That AI Could Strand Fresh Engineering Graduates
 
 ### Issue 163 · 2026-11-07 · `daily/timps-postcards-2026-11-07.html`
 
