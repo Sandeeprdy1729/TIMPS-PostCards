@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 151 daily issues + 18 deep dives · regenerated 2026-11-08**
+**Coverage: 152 daily issues + 18 deep dives · regenerated 2026-11-09**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 165 · 2026-11-09 · `daily/timps-postcards-2026-11-09.html`
+
+- **[01 · LEAD]** Nvidia’s Board Opens an Independent Investigation After Jensen Huang Admits the Affair
+  - _The board said Sunday it had begun an independent inquiry into Huang’s relationship with Alice Huang, a Chinese citizen and Megaspeed executive U.S. intelligence assessed had been recruited by China’s Ministry of State Security. In an email to employees, the CEO wrote: “I was unfaithful to my wife.”_
+  - Source: [Full story · CNBC](https://www.cnbc.com/2026/11/08/jensen-huang-nvidia-china-spy-congress.html)
+
+- **[02 · CAPITAL]** Sequoia Deleted 20 Years of Expansion With One Memo and $10 Billion
+  - _Sequoia raised roughly $10 billion in new funds — then closed its London office, shut down Arc and Scouts, merged its early and growth teams, flattened its partnership and installed seven general partners. The Roelof Botha era is being unwound in public._
+  - Source: [Full story · TechCrunch](https://techcrunch.com/2026/11/04/sequoia-hits-rewind-undoing-20-years-of-expansion/)
+
+- **[03 · INFRASTRUCTURE]** Anthropic Bought 1.7 Gigawatts of Gas Generators for $3.4 Billion. They Were Ordered Two Years Ago.
+  - _The FT reports Anthropic took over commitments for 1.7 GW of heavy-duty generators from San Antonio’s OnePWR Solutions, plus the engineering and construction to install them. The machines were ordered from Caterpillar around two years ago and needed a buyer with financing._
+  - Source: [Full story · CNBC / Financial Times](https://www.cnbc.com/2026/11/08/anthropic-generator-deal-ai-data-centers.html)
+
+- **[04 · PRODUCTS]** Amazon Is Hiring for a “New-to-World” Home Robot While Astro Sits in the Trash Heap
+  - _CNBC found job posts describing a new home robot that navigates “dynamic home environments” and runs “autonomous operation alongside family members.” It follows Astro, the $1,450 device that shipped to a few thousand invite-only customers and never left beta._
+  - Source: [Full story · CNBC](https://www.cnbc.com/2026/11/08/amazon-home-robot-fauna-sprout.html)
+
+- **[05 · FRONTIER]** Tencent’s Chief AI Scientist Says AI Will Soon “Master Biology.” He Thinks Anthropic Has a Point.
+  - _At a rare public appearance in Hong Kong, Yao Shunyu said AI’s cyber abilities will soon be followed by biological ones that reach “a threshold where it’s actually possible to do harm.” He called Anthropic’s case for closed frontier models a “strong argument” — while insisting open weights also strengthen defense._
+  - Source: [Full story · South China Morning Post](https://www.scmp.com/tech/big-tech/article/3373697/ai-will-soon-master-biology-unleashing-new-safety-risks-tencent-ai-chief-warns)
+
+  **Signals / briefs:**
+  - AI Companies Sold or Priced $300 Billion of Stock in 2026
+  - Professional Services Added 70,000 Jobs in October, the Most Since 2022
+  - Commerce’s AI Safety Center Was Asked to Report to a White House Office
+  - DeepSeek’s Harness Hit 1.54 Million Daily Users in Under Three Months
+  - GenRobot AI Raised $100 Million to Collect Human Data for Robots
 
 ### Issue 164 · 2026-11-08 · `daily/timps-postcards-2026-11-08.html`
 

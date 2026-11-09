@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TIMPS">
+<link rel="manifest" href="../manifest.json">
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/icon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/icon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="../assets/icon-48.png">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="../assets/icon-180.png">
+<title>TIMPS PostCards — Issue 165</title>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --cream:  #EEECE2;
+    --forest: #3D3929;
+    --terra:  #DA7756;
+    --terra-d:#BD5D3A;
+    --black:  #111111;
+    --card-bg:#F0ECE0;
+    --mono:   'Newsreader', Georgia, 'Times New Roman', serif;
+    --serif:  'TIMPS', 'Playfair Display', Georgia, serif;
+  }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Black.woff2') format('woff2'); font-weight:900; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Bold.woff2') format('woff2'); font-weight:700; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-SemiBold.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--cream);
+    background-image:
+      linear-gradient(rgba(61,57,41,.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.07) 1px, transparent 1px);
+    background-size: 38px 38px;
+    font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+    color: var(--forest);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { text-decoration: none; color: inherit; }
+
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 48px;
+    background-color: rgba(238,236,226,.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1.5px solid rgba(61,57,41,.12);
+    background-image:
+      linear-gradient(rgba(61,57,41,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.05) 1px, transparent 1px);
+    background-size: 38px 38px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Special Elite', 'Courier New', Courier, monospace;
+    font-size: 15px;
+    font-weight: 400;
+    color: #000;
+    text-decoration: none;
+  }
+  .nav-logo-mark {
+    width: 34px; height: 34px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .nav-logo-mark img { width: 28px; height: 28px; object-fit: contain; }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-link {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: #000;
+    opacity: .65;
+    text-decoration: none;
+    transition: opacity .15s;
+  }
+  .nav-link:hover { opacity: 1; }
+  .nav-cta {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: #000;
+    background: var(--terra);
+    border: 2.5px solid #000;
+    border-radius: 100px;
+    padding: 10px 24px;
+    cursor: pointer;
+    transition: background .15s, transform .1s;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--terra-d); transform: translateY(-1px); }
+
+  .wrapper { max-width: 760px; margin: 0 auto; padding: 40px 20px 80px; display: flex; flex-direction: column; gap: 0; }
+
+  .cover-card { background: var(--card-bg); border-radius: 20px 20px 4px 4px; padding: 56px 48px 48px; text-align: center; position: relative; overflow: hidden; border: 1.5px solid rgba(61,57,41,.12); margin-bottom: 3px; }
+  .cover-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, var(--terra) 0%, var(--terra-d) 60%, #E0A88A 100%); }
+  .cover-eyebrow { font-family: var(--mono); font-size:10px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:20px; display:flex; align-items:center; justify-content:center; gap:10px; }
+  .cover-eyebrow::before,.cover-eyebrow::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .15; max-width:60px; }
+  .cover-title { font-family: var(--serif); font-size:58px; font-weight:900; line-height:1; letter-spacing:-1px; color: var(--forest); margin-bottom:8px; }
+  .cover-sub { font-family: var(--serif); font-size:13px; font-style:italic; color: var(--forest); opacity: .55; margin-bottom:28px; }
+  .cover-divider { width:48px; height:2px; background: var(--terra); margin:0 auto 24px; border-radius:2px; }
+  .cover-meta { display:flex; justify-content:center; gap:32px; font-family: var(--mono); font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .45; }
+  .cover-badge { display:inline-flex; align-items:center; gap:6px; background: var(--terra); color: #fff; border-radius:20px; padding:6px 18px; font-family: var(--mono); font-size:10px; letter-spacing:2px; text-transform:uppercase; margin-top:28px; }
+  .top5-pill { display:flex; justify-content:center; gap:10px; margin-top:32px; flex-wrap:wrap; }
+  .pill { background: var(--forest); color: var(--cream); border-radius:100px; padding:4px 14px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; }
+  .pill.light { background:transparent; color: var(--forest); border:1px solid rgba(61,57,41,.2); }
+
+  .section-label { display:flex; align-items:center; gap:12px; padding:10px 0 8px; font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .35; }
+  .section-label::before,.section-label::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .1; }
+
+  .story-card { border-radius:4px; border:1.5px solid rgba(61,57,41,.10); padding:36px 40px; margin-bottom:3px; position:relative; overflow:hidden; }
+  .story-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }
+
+  .card-sky      { background:#D6E8F0; } .card-sky::before      { background: #7AAFC0; }
+  .card-cream    { background: var(--card-bg); } .card-cream::before    { background: var(--terra); }
+  .card-blush    { background:#F5DDD0; } .card-blush::before    { background: #E0A88A; }
+  .card-lavender { background:#EAE6F5; } .card-lavender::before { background: #C8BEE8; }
+  .card-sage     { background:#D6E4D6; } .card-sage::before     { background: #8BAF8B; }
+
+  .page-chip { position:absolute; top:14px; right:16px; font-family: var(--mono); font-size:9px; letter-spacing:2px; text-transform:uppercase; color: var(--forest); opacity: .3; }
+  .card-routine { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:8px; }
+  .card-headline { font-family: var(--serif); font-size:28px; font-weight:900; line-height:1.15; color: var(--forest); margin-bottom:10px; }
+  .card-headline.lg { font-size:34px; }
+  .card-headline.sm { font-size:22px; }
+  .card-deck { font-family: var(--serif); font-style:italic; font-size:14px; line-height:1.55; color: var(--forest); opacity: .55; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid rgba(61,57,41,.12); }
+  .card-body { font-family: 'Lora', Georgia, serif; font-size:14px; line-height:1.7; color: var(--forest); }
+  .card-body p { margin-bottom:11px; }
+  .drop::first-letter { font-family: var(--serif); font-size:52px; font-weight:900; float:left; line-height:.78; margin:5px 6px 0 0; color: var(--terra); }
+  .clearfix::after { content:''; display:table; clear:both; }
+
+  .hl-terra { background: var(--terra); color: var(--forest); padding:0 4px; border-radius:2px; }
+  .hl-ink  { background: var(--forest); color: var(--cream); padding:0 4px; border-radius:2px; }
+  .hl-sage { background: #8BAF8B; color: #fff; padding:0 4px; border-radius:2px; }
+  .hl-lav  { background: #C8BEE8; color: var(--forest); padding:0 4px; border-radius:2px; }
+
+  .stat-box { float:right; margin:0 0 16px 24px; background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:16px 20px; text-align:center; min-width:120px; }
+  .stat-big { font-family: var(--serif); font-size:44px; font-weight:900; line-height:1; color: var(--forest); display:block; }
+  .stat-label { font-family: var(--mono); font-size:9.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .5; display:block; margin-top:4px; }
+
+  .img-frame { border:2px solid rgba(61,57,41,0.18); border-radius:12px; overflow:hidden; margin:16px 0; background: var(--card-bg); }
+  .img-frame img { width:100%; display:block; max-height:240px; object-fit:cover; border-bottom:1px solid rgba(61,57,41,.12); }
+  .img-caption { padding:8px 12px; font-family: var(--mono); font-size:10.5px; color: var(--forest); opacity: .6; font-style:italic; display:flex; align-items:center; justify-content:space-between; gap:8px; }
+  .img-caption a { font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; white-space:nowrap; font-style:normal; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; }
+  .img-caption a:hover { opacity: 1; }
+  .img-frame.float-right { float:right; width:220px; margin:0 0 16px 24px; }
+  .img-frame.float-right img { max-height:140px; }
+
+  .source-link { display:inline-flex; align-items:center; gap:5px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:12px; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; transition: opacity .15s; }
+  .source-link:hover { opacity: 1; }
+  .source-link::after { content:'↗'; font-size:9px; }
+
+  .signals-grid { display:flex; flex-direction:column; gap:14px; }
+  .signal-row { display:flex; align-items:flex-start; gap:14px; }
+  .signal-num { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family: var(--serif); font-size:13px; font-weight:900; flex-shrink:0; color:#fff; }
+  .signal-num.n1{background: var(--terra); color: var(--forest);} .signal-num.n2{background: var(--forest);} .signal-num.n3{background:#7AAFC0;} .signal-num.n4{background: var(--terra-d); color: var(--forest);} .signal-num.n5{background: var(--black);}
+  .signal-title { font-family: var(--serif); font-size:14px; font-weight:700; color: var(--forest); margin-bottom:2px; }
+  .signal-desc { font-family: 'Newsreader', Georgia, 'Times New Roman', serif; font-size:12px; line-height:1.65; color: var(--forest); opacity: .6; }
+  .signal-link { display:inline-block; font-family: var(--mono); font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:4px; border-bottom:1px solid rgba(61,57,41,.25); padding-bottom:1px; transition: opacity .15s; }
+  .signal-link:hover { opacity: 1; }
+
+  .themes-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .theme-item { padding:10px 14px; border-radius:8px; font-family: var(--serif); font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; text-align:center; border:1.5px solid rgba(61,57,41,.12); background: var(--cream); }
+
+  .tool-week { background: var(--forest); color: var(--cream); border-radius:12px; padding:18px 20px; text-align:center; margin-top:14px; }
+  .tool-week-eyebrow { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; opacity: .55; margin-bottom:6px; }
+  .tool-week-name { font-family: var(--serif); font-size:22px; font-weight:900; margin-bottom:4px; }
+  .tool-week-desc { font-family: 'Newsreader', Georgia, 'Times New Roman', serif; font-size:11.5px; opacity: .7; font-style:italic; }
+
+  .output-card { background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:18px 20px; margin-top:14px; }
+  .output-title { font-family: var(--serif); font-size:18px; font-weight:700; margin-bottom:8px; color: var(--forest); }
+  .tp-list { list-style:none; padding:0; margin:0; }
+  .tp-list li { padding:5px 0; font-family: 'Lora', Georgia, serif; font-size:12px; color: var(--forest); border-bottom:1px solid rgba(61,57,41,.07); display:flex; align-items:flex-start; gap:7px; }
+  .tp-list li::before { content:'·'; color: var(--terra); font-size:14px; line-height:1.2; flex-shrink:0; }
+  .tp-list li a { color: var(--forest); opacity: .8; text-decoration:none; }
+  .tp-list li a:hover { opacity: 1; }
+
+  .sources-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px 20px; }
+  .sources-grid a { font-family: var(--mono); font-size:11px; color: var(--forest); opacity: .55; text-decoration:none; border-bottom:1px solid rgba(61,57,41,.15); padding-bottom:1px; transition: opacity .15s; }
+  .sources-grid a:hover { opacity: 1; }
+
+  .footer {
+    background: var(--black);
+    padding: 28px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    border-radius: 4px 4px 20px 20px;
+    margin-top: 3px;
+  }
+  .footer-logo { display: flex; align-items: center; gap: 10px; }
+  .footer-mark { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; }
+  .footer-mark img { width: 24px; height: 24px; object-fit: contain; }
+  .footer-brand { font-family: 'Special Elite', 'Courier New', Courier, monospace; font-size: 13px; font-weight: 400; color: #fff; }
+  .footer-center { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.4); text-align: center; line-height: 1.6; }
+  .footer-right { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.3); text-align: right; line-height: 2; }
+  .footer-right a { color: rgba(255,255,255,.5); transition: color .15s; }
+  .footer-right a:hover { color: #fff; }
+
+  .page-layout { display: flex; align-items: flex-start; gap: 0; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+  .toc-sidebar { position: sticky; top: 80px; width: 170px; flex-shrink: 0; padding: 48px 0 0 0; }
+  .toc-nav { display: flex; flex-direction: column; gap: 0; }
+  .toc-link { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.5px; text-transform: uppercase; color: #000; opacity: .45; text-decoration: none; padding: 7px 12px; border-left: 2px solid transparent; transition: opacity .15s, border-color .15s; line-height: 1.3; }
+  .toc-link:hover { opacity: .85; }
+  .toc-link.active { opacity: 1; border-left-color: var(--terra); }
+  .section-anchor { scroll-margin-top: 80px; }
+
+  @media (max-width: 900px) {
+    .toc-sidebar { display: none; }
+    .page-layout { max-width: 760px; }
+  }
+
+  @media (max-width: 720px) {
+    .nav { padding: 12px 24px; }
+    .nav-links { display: none; }
+    .wrapper { padding: 20px 14px 60px; }
+    .cover-card { padding: 40px 24px; }
+    .story-card { padding: 28px 20px; }
+    .footer { padding: 24px; flex-direction: column; align-items: flex-start; }
+    .footer-center, .footer-right { text-align: left; }
+    .stat-box { float: none; margin: 0 0 16px 0; }
+    .img-frame.float-right { float: none; width: 100%; margin: 0 0 16px 0; }
+  }
+  @media (max-width: 480px) {
+    .nav-logo span { display: none; }
+    .cover-title { font-size: 40px; }
+    .card-headline.lg { font-size: 28px; }
+    .card-headline { font-size: 24px; }
+  }
+</style>
+
+</head>
+
+<body>
+
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">
+    <div class="nav-logo-mark"><img src="../assets/timps-postcards.png" alt="TIMPS"></div>
+    <span>TIMPS PostCards</span>
+  </a>
+  <div class="nav-links">
+    <a href="../articles.html" class="nav-link">Articles</a>
+    <a href="../archive.html" class="nav-link">Archive</a>
+    <a href="timps-postcards-2026-11-09.html" class="nav-link">Latest Issue</a>
+    <a href="../index.html#subscribe" class="nav-link">Subscribe</a>
+  </div>
+  <a href="../index.html#subscribe" class="nav-cta">Subscribe</a>
+</nav>
+
+<div class="page-layout">
+  <aside class="toc-sidebar">
+    <nav class="toc-nav">
+      <a href="#lead" class="toc-link">The CEO Risk</a>
+      <a href="#capital" class="toc-link">The Great Rewind</a>
+      <a href="#infra" class="toc-link">The Power Queue</a>
+      <a href="#memory" class="toc-link">The Living Room Bet</a>
+      <a href="#proof" class="toc-link">The Bio Threshold</a>
+      <a href="#signals" class="toc-link">Signals</a>
+      <a href="#themes" class="toc-link">Themes</a>
+      <a href="#tool" class="toc-link">Watch</a>
+      <a href="#sources" class="toc-link">Sources</a>
+    </nav>
+  </aside>
+
+  <div class="wrapper">
+
+  <div id="intro" class="cover-card section-anchor">
+    <div class="cover-eyebrow">Est. 2026 &middot; Hyderabad</div>
+    <div class="cover-title">TIMPS<br>PostCards</div>
+    <div class="cover-sub">AI Intelligence Digest &middot; Your Daily Signal from the Machine Frontier</div>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+      <span>Issue 165</span>
+      <span>November 9, 2026</span>
+      <span>No. 192</span>
+    </div>
+    <div class="cover-badge">&#11041; 165 Issues &mdash; Built with the TIMPS Ecosystem</div>
+    <div class="top5-pill">
+      <span class="pill">5 Top Signals</span>
+      <span class="pill light">The CEO Risk</span>
+      <span class="pill light">The Great Rewind</span>
+      <span class="pill light">The Power Queue</span>
+      <span class="pill light">The Living Room Bet</span>
+      <span class="pill light">The Bio Threshold</span>
+    </div>
+  </div>
+
+  <div id="lead" class="story-card card-blush section-anchor">
+    <div class="page-chip">01 &middot; LEAD</div>
+    <div class="card-routine">Security &middot; The CEO Risk</div>
+    <h2 class="card-headline lg">Nvidia&rsquo;s Board Opens an Independent Investigation After Jensen Huang Admits the Affair</h2>
+    <div class="card-deck">The board said Sunday it had begun an independent inquiry into Huang&rsquo;s relationship with Alice Huang, a Chinese citizen and Megaspeed executive U.S. intelligence assessed had been recruited by China&rsquo;s Ministry of State Security. In an email to employees, the CEO wrote: &ldquo;I was unfaithful to my wife.&rdquo;</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">18</span>
+        <span class="stat-label">November date of Huang&rsquo;s closed-door House briefing, a day after Q3 earnings</span>
+      </div>
+      <p class="drop">The statement from <b>Nvidia</b>&rsquo;s board arrived on Sunday, and it was careful. The board said it has opened an <b>independent investigation</b> into CEO <b>Jensen Huang</b>&rsquo;s relationship with <b>Alice Huang</b>, a Chinese citizen and executive at <b>Megaspeed</b>, the Singapore-based company U.S. officials have suspected of helping China work around AI chip restrictions. The board said it had <span class="hl-terra">&ldquo;no reason to believe that either national security or NVIDIA secrets were compromised&rdquo;</span> but that its inquiry &ldquo;will examine all available information.&rdquo; Huang, it said, fully supports the investigation and will cooperate. The company&rsquo;s message to <b>CNBC</b> was blunter: &ldquo;Today&rsquo;s news will not slow NVIDIA. Jensen is committed to continuing to lead NVIDIA as CEO without interruption.&rdquo;</p>
+      <p>The same day, Huang sent an email to Nvidia staff that made the personal admission the board&rsquo;s statement did not. &ldquo;I was unfaithful to my wife. My actions hurt her and our children. There is no excuse for what I did. I am deeply sorry,&rdquo; he wrote, in a memo published in full by <b>The Verge</b>. He apologized to his family, his colleagues, the board, partners and shareholders, said he had &ldquo;fallen short&rdquo; of his responsibility, and added: &ldquo;Regarding the national security concerns raised in news reports, NVIDIA&rsquo;s Board of Directors has initiated an independent investigation. I support the investigation and will cooperate fully.&rdquo;</p>
+      <p>The security story is separate from the marriage, and it is the one with consequences. The <b>New York Times</b> reported Friday that U.S. intelligence assessed that China&rsquo;s <b>Ministry of State Security</b> had recruited Alice Huang to gather information on the Nvidia chief executive, and that the two had a close relationship. <b>CNBC</b>, citing people briefed on the matter, reported that <b>Secretary of State Marco Rubio</b> oversaw the drafting of a classified memo this spring warning the administration about that relationship. Nvidia has previously said Huang&rsquo;s interactions with Alice Huang were ordinary customer contacts and that no sensitive trade secrets or national-security information were shared.</p>
+      <p>The political reaction has been fast and bipartisan. Three Republican House committee chairs asked Huang to appear for a joint <b>closed-door briefing on November 18</b> &mdash; a day after Nvidia is scheduled to report third-quarter earnings &mdash; writing that &ldquo;recent reports raise significant national security concerns regarding the [People&rsquo;s Republic of China&rsquo;s] access to sensitive U.S. technology and information.&rdquo; Democratic lawmakers have separately called for an investigation or public testimony. Senator <b>Chris Coons</b> of Delaware put it in the sharpest terms: &ldquo;The more I learn about the insane relationship between the Trump Administration, Chinese spies, and AI billionaires, the more I&rsquo;m convinced there is nothing this administration does that isn&rsquo;t corrupt.&rdquo; President <b>Trump</b>, asked about the affair, told reporters Huang is a &ldquo;fine person&rdquo; who should stay on as CEO, adding, &ldquo;I haven&rsquo;t heard he&rsquo;s done anything wrong,&rdquo; according to <b>Bloomberg</b>.</p>
+      <p><span class="hl-ink">The governance problem is structurally awkward. The board is investigating the man who is, for practical purposes, the company&rsquo;s most valuable asset. Nvidia&rsquo;s market position rests on Huang&rsquo;s relationships, his roadmap and his credibility with customers and governments, and the same board that owes him its success now has to ask whether his personal life created a national-security exposure. An independent probe is the right instrument, and it is also a trust exercise: the market will judge it by who runs it, what it can see and whether the findings are published. The company says the news will not slow Nvidia. The harder question is whether the affair, the memo and the congressional calendar slow the export licences that Nvidia&rsquo;s customers are waiting on.</span></p>
+      <p>Keep the facts in proportion. No finding has been made, and the board&rsquo;s own language says it has no reason to believe secrets were compromised. An affair is not espionage, and proximity to a suspected intelligence asset is not proof of a leak. But the existence of a Rubio-supervised classified memo raises a different question &mdash; what the administration knew, when it knew it, and why the relationship did not surface earlier in the export-control process. Watch three dates: the November 18 briefing, Nvidia&rsquo;s earnings the day before, and whatever the board&rsquo;s investigation produces. A company that sells the chips other countries fear is now also a company whose CEO is the subject of a counterintelligence story.</p>
+    </div>
+    <a class="source-link" href="https://www.cnbc.com/2026/11/08/jensen-huang-nvidia-china-spy-congress.html" target="_blank">Full story &middot; CNBC</a>
+  </div>
+
+  <div id="capital" class="story-card card-sky section-anchor">
+    <div class="page-chip">02 &middot; CAPITAL</div>
+    <div class="card-routine">Venture &middot; The Great Rewind</div>
+    <h2 class="card-headline">Sequoia Deleted 20 Years of Expansion With One Memo and $10 Billion</h2>
+    <div class="card-deck">Sequoia raised roughly $10 billion in new funds &mdash; then closed its London office, shut down Arc and Scouts, merged its early and growth teams, flattened its partnership and installed seven general partners. The Roelof Botha era is being unwound in public.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">7</span>
+        <span class="stat-label">general partners now primarily owning and operating Sequoia</span>
+      </div>
+      <p class="drop"><b>Sequoia</b> sent a memo on Wednesday morning titled <b>&ldquo;The Sequoia of Tomorrow,&rdquo;</b> and the framing is forward-looking even though almost everything in it is a rewind. The firm has raised roughly <b>$10 billion</b> in new funds, it said. It is also closing its <b>London office</b>, which it opened in 2020; shutting its <b>Arc</b> accelerator and its <b>Scouts</b> program; merging its early-stage and growth teams into one; flattening the partnership; and killing the Monday partner meeting. <b>TechCrunch</b>, which reviewed the memo, describes the message as a return to an earlier time when the team was smaller and more narrowly focused on Silicon Valley.</p>
+      <p>Sequoia says so itself. The firm describes coming out of a roughly <b>20-year expansionary phase</b> in which it built multiple businesses in multiple geographies, and says an unintended side effect was hierarchy. Nearly everything being undone was built during that stretch, under a succession of stewards running from <b>Doug Leone</b> to <b>Jim Goetz</b> to <b>Roelof Botha</b>. The exits are pointed. <b>Arc</b>, launched in March 2022 as Sequoia&rsquo;s answer to Y Combinator, ran seven-week cohorts several times a year and gave admitted companies $500,000 to $1 million up front. <b>Scouts</b>, launched around 2009 and copied across the industry, gave small checks to founders and operators investing on the firm&rsquo;s behalf; <b>Jason Calacanis</b> famously pointed Sequoia to <b>Uber</b> through it, and <b>Sam Altman</b> brought <b>Stripe</b> to the firm as a scout.</p>
+      <p>The people changes explain the strategy better than the language does. There are now <b>seven general partners</b> who primarily own and operate Sequoia: co-stewards <b>Alfred Lin</b> and <b>Pat Grady</b>, plus <b>Andrew Reed</b>, <b>Shaun Maguire</b>, <b>Konstantine Buhler</b>, <b>Sonya Huang</b> and <b>David Cahn</b>, who joined in 2023. <b>Jess Lee</b>, the firm&rsquo;s first female partner and the investor who oversaw Arc, is no longer listed as an investor and is now an operator in the chief product officer role. <b>Stephanie Zhan</b>, an investor since 2015, has left entirely. <b>Luciana Lixandru</b>, Sequoia&rsquo;s first partner in Europe, says she was asked to move and declined; she remains a partner and will keep her board seats while investing personally in European founders.</p>
+      <p>The Botha thread is the one the <b>Financial Times</b> pulls hardest. Botha was voted out as senior steward last fall in a surprise shake-up that the firm framed as a handoff to Lin and Grady, and he cut ties with Sequoia this summer. Sources told the FT that he joined <b>SpaceX</b>&rsquo;s board behind the partners&rsquo; backs; TechCrunch reports that partners were blindsided. Botha is the exception to a firm that rarely lets anyone go entirely &mdash; founder <b>Don Valentine</b> kept turning up at partner meetings after handing over the firm, and Goetz, who stepped back from management in 2017, is still on the website.</p>
+      <p><span class="hl-terra">The rewind is a bet that scale and geography became a tax rather than an advantage. The counterargument writes itself: at the exact moment AI deals are global and capital-intensive, a smaller, flatter Sequoia with no London presence may be outgunned by firms that can write bigger checks in more places. The firm is choosing focus, ownership and a narrower definition of who gets to decide. That is a legitimate strategy, but it is also a concession that the 20-year expansion did not produce the returns it promised, and that the next decade will be won by concentration rather than coverage.</span></p>
+      <p>The European signal is hard to miss. <b>Andreessen Horowitz</b> shuttered its London office last year and <b>Coatue</b> closed its own in 2024; Sequoia&rsquo;s exit completes a pattern. Sequoia did not say it will stop funding Europeans, and Lixandru&rsquo;s personal investing is a soft landing. But the memo says the firm &ldquo;simply doesn&rsquo;t see the need for a local presence,&rdquo; and the center of gravity is once again the Bay Area. Founders who do not want to move now know what the firm thinks of that choice.</p>
+    </div>
+    <a class="source-link" href="https://techcrunch.com/2026/11/04/sequoia-hits-rewind-undoing-20-years-of-expansion/" target="_blank">Full story &middot; TechCrunch</a>
+  </div>
+
+  <div id="infra" class="story-card card-sage section-anchor">
+    <div class="page-chip">03 &middot; INFRASTRUCTURE</div>
+    <div class="card-routine">Energy &middot; The Power Queue</div>
+    <h2 class="card-headline">Anthropic Bought 1.7 Gigawatts of Gas Generators for $3.4 Billion. They Were Ordered Two Years Ago.</h2>
+    <div class="card-deck">The FT reports Anthropic took over commitments for 1.7 GW of heavy-duty generators from San Antonio&rsquo;s OnePWR Solutions, plus the engineering and construction to install them. The machines were ordered from Caterpillar around two years ago and needed a buyer with financing.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">$2M</span>
+        <span class="stat-label">price per megawatt of capacity, based on the $3.4B deal for 1.7 GW</span>
+      </div>
+      <p class="drop"><b>Anthropic</b> agreed to pay about <b>$3.4 billion</b> for gas-fired generators to power its data centers, the <b>Financial Times</b> reported Sunday, citing a person familiar with the matter. The company secured commitments in late September for <b>1.7 gigawatts</b> of heavy-duty generators from <b>OnePWR Solutions</b>, a San Antonio, Texas, company that builds microgrids and on-site power plants. The deal also covers the engineering and construction work needed to install them, which works out to roughly <b>$2 million per megawatt</b>. Anthropic did not acquire OnePWR, and none of the supplier&rsquo;s staff moved to the AI company.</p>
+      <p>The detail that matters is the age of the order. OnePWR ordered the machines from <b>Caterpillar</b> about <b>two years ago</b> but needed financing to complete the purchase, according to the FT. Anthropic first planned to become a OnePWR customer, then took over the orders itself. In a market where the constraint is not demand but the queue for physical equipment, buying someone else&rsquo;s place in line is faster than placing a new order. Anthropic&rsquo;s own filings warn that generators and other equipment &ldquo;must be ordered years in advance,&rdquo; and that turbines, generators, substations and transmission parts have been subject to &ldquo;extended delivery timelines, price increases, tariffs&rdquo; and rationing as data center operators compete for them.</p>
+      <p>The risk is written into the prospectus. In a November 2 filing, Anthropic says &ldquo;certain of our planned data center facilities rely on dedicated on-site natural gas-fired generation,&rdquo; leaving it exposed to fuel-price swings and supply disruptions &ldquo;outside of our control.&rdquo; Its contracts generally pass fuel costs on to Anthropic &ldquo;without cost caps,&rdquo; so the company carries the risk if gas gets more expensive. It also expects data center operators to compete for the same gas supply and pipeline capacity, and notes that on-site generation faces its own &ldquo;permitting, environmental, air quality&rdquo; and siting rules. <b>Reuters</b> reported in September that Anthropic expects to spend more than <b>$500 billion</b> over the next ten years building AI infrastructure.</p>
+      <p>The politics arrive with the gas. The report lands days after U.S. voters backed limits on AI data centers in several midterm races, and after <b>Texas</b> and <b>Georgia</b> elected governors who had promised a pause. On-site generators add capacity without leaning on the local grid, which fits Anthropic&rsquo;s promise to &ldquo;bring net-new power generation online to match our data centers&rsquo; electricity needs.&rdquo; But they burn a fossil fuel, and the prospectus itself flags &ldquo;shifting public and political views regarding climate change and the appropriate treatment of various power generation sources&rdquo; as a risk. <b>OpenAI</b> responded to the midterms by saying its data centers will pay the full cost of their power.</p>
+      <p><span class="hl-sage">The queue is the moat. In 2024 the scarce assets in AI were chips and capital; in 2026 they are permits, grid interconnects and the physical equipment that takes years to build. Buying 1.7 GW of already-ordered Caterpillar generators is a vertical integration into time itself &mdash; Anthropic is paying a premium not for the metal but for the two years it did not have to wait. The trade is that it now owns the fuel risk, the permitting risk and the climate politics, at a moment when those risks are rising rather than falling. That is what it looks like when a model company decides the grid is too slow.</span></p>
+      <p>Caveats: the report rests on a single person familiar with the deal, and neither the locations nor the data centers the generators will serve have been disclosed. Anthropic, OnePWR and Caterpillar have not commented. And $2 million per megawatt is a large bet on gas at a time when the politics of on-site fossil generation are moving against it. If gas prices spike or a state denies an air permit, the generators are stranded capital. If the grid stays slow, they are the reason Claude keeps answering.</p>
+    </div>
+    <a class="source-link" href="https://www.cnbc.com/2026/11/08/anthropic-generator-deal-ai-data-centers.html" target="_blank">Full story &middot; CNBC / Financial Times</a>
+  </div>
+
+  <div id="memory" class="story-card card-lavender section-anchor">
+    <div class="page-chip">04 &middot; PRODUCTS</div>
+    <div class="card-routine">Hardware &middot; The Living Room Bet</div>
+    <h2 class="card-headline">Amazon Is Hiring for a &ldquo;New-to-World&rdquo; Home Robot While Astro Sits in the Trash Heap</h2>
+    <div class="card-deck">CNBC found job posts describing a new home robot that navigates &ldquo;dynamic home environments&rdquo; and runs &ldquo;autonomous operation alongside family members.&rdquo; It follows Astro, the $1,450 device that shipped to a few thousand invite-only customers and never left beta.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">$1,450</span>
+        <span class="stat-label">price of Astro, Amazon&rsquo;s invite-only home robot launched in 2021</span>
+      </div>
+      <p class="drop"><b>Amazon</b> has formed a new home robot team and is hiring for a <b>&ldquo;new-to-world robot product,&rdquo;</b> according to <b>CNBC</b>&rsquo;s analysis of job posts. One recent listing for an engineer, since removed, said: &ldquo;Robots are about to step out of the movies and into our homes.&rdquo; It described a product capable of navigating &ldquo;dynamic home environments&rdquo; and &ldquo;autonomous operation alongside family members.&rdquo; A June posting hinted at an effort to &ldquo;create robots that are not just functional, but delightful.&rdquo; Amazon has not announced a product, a price or a launch date.</p>
+      <p>The history is the cautionary tale. <b>Jeff Bezos</b> made a bold bet in 2017, telling a group of Amazon&rsquo;s top device executives to build a consumer robot. Within a few years the team produced <b>Astro</b>, a <b>$1,450</b> tablet on wheels that can navigate a home, recognize faces and act as a roving security monitor, unveiled at Amazon&rsquo;s fall 2021 event. It never evolved beyond an invite-only product. Astro shipped to just a few thousand customers, some of whom now believe its days are numbered, and the device became the most visible failure in Amazon&rsquo;s hardware portfolio.</p>
+      <p>Amazon is not starting from zero. Earlier this year it redeployed much of the Astro team and brought in an outside acquisition: <b>Fauna Robotics</b>, which built a 3.5-foot-tall humanoid called <b>Sprout</b>. Fauna became part of a new division called the <b>Personal Robotics Group</b>, and some of that group&rsquo;s staff previously worked in Amazon&rsquo;s <b>Lab126</b> R&amp;D unit, the organization behind the Kindle, Echo, Fire TV and Fire Tablet &mdash; and also behind the Fire Phone. CEO <b>Andy Jassy</b> told investors in his latest letter that artificial intelligence and robotics were among the &ldquo;biggest inflections of our lifetime,&rdquo; and that Amazon tries &ldquo;to anticipate what will make customers&rsquo; lives easier and better every day, and invent the next inflection.&rdquo;</p>
+      <p><span class="hl-lav">The pattern is familiar: Amazon will lose money on hardware for years to own a new category, as it did with Alexa and the Kindle. But Astro&rsquo;s failure was not a marketing problem. It was a product and price problem &mdash; a $1,450 tablet on wheels with no job a customer could not do with a cheaper camera and a smart speaker. A &ldquo;new-to-world&rdquo; robot with modern AI has a better shot because autonomy and manipulation are finally good enough to be useful, not because the form factor has changed. The graveyard of home robots is full of impressive demos; the constraint is cost, safety and a job worth paying for.</span></p>
+      <p>The market forecast explains the persistence. Analysts expect the humanoid market, currently valued at $2 billion to $3 billion, to reach roughly <b>$40 billion by 2035</b>, or as high as <b>$200 billion</b> under the most optimistic scenarios. That is a large enough prize to justify another attempt, even after Astro. The caveat is that job posts are intent, not a launch, and Amazon has a habit of prototyping categories it later abandons. Watch whether the Personal Robotics Group ships anything with a price and a clear task, or whether the next announcement is another invitation-only beta.</p>
+    </div>
+    <a class="source-link" href="https://www.cnbc.com/2026/11/08/amazon-home-robot-fauna-sprout.html" target="_blank">Full story &middot; CNBC</a>
+  </div>
+
+  <div id="proof" class="story-card card-cream section-anchor">
+    <div class="page-chip">05 &middot; FRONTIER</div>
+    <div class="card-routine">Safety &middot; The Bio Threshold</div>
+    <h2 class="card-headline">Tencent&rsquo;s Chief AI Scientist Says AI Will Soon &ldquo;Master Biology.&rdquo; He Thinks Anthropic Has a Point.</h2>
+    <div class="card-deck">At a rare public appearance in Hong Kong, Yao Shunyu said AI&rsquo;s cyber abilities will soon be followed by biological ones that reach &ldquo;a threshold where it&rsquo;s actually possible to do harm.&rdquo; He called Anthropic&rsquo;s case for closed frontier models a &ldquo;strong argument&rdquo; &mdash; while insisting open weights also strengthen defense.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">Hy4</span>
+        <span class="stat-label">Tencent&rsquo;s model, ranked the second-best produced in China by Artificial Analysis</span>
+      </div>
+      <p class="drop"><b>Yao Shunyu</b>, Tencent&rsquo;s chief AI scientist and a former <b>OpenAI</b> researcher, used a rare public appearance on Saturday to say something the industry has been circling for months. Speaking at a symposium held by the <b>Hong Kong Academy of Sciences</b>, Yao said AI models will soon be powerful enough to master biology, presenting both benefits and serious risks. The <b>South China Morning Post</b> reports that he warned AI&rsquo;s cyber abilities will be followed by biological ones that reach &ldquo;a threshold where it&rsquo;s actually possible to do harm.&rdquo; He added that biology may be more &ldquo;complicated&rdquo; to manage than cyber, because the attack and defense capabilities are harder to disentangle.</p>
+      <p>The most interesting part is what he conceded about the opposition. Yao said U.S. companies such as Anthropic have made a <span class="hl-terra">&ldquo;strong argument&rdquo;</span> that frontier AI models should be closed to prevent significant societal harms. That is a notable sentence from the chief scientist of a Chinese lab whose strategy has leaned heavily on open-weight releases &mdash; and it lands in the middle of a global argument about whether publishable weights are a public good or a permanent attack surface.</p>
+      <p>Yao did not stop at the concession. He argued that open-weight models can help bolster defenses as well, citing a recent incident in which the AI platform <b>Hugging Face</b> used a Chinese open model to defend against an attack. He said the gap between Chinese models and their U.S. counterparts is not large, and that Tencent collaborates with &ldquo;some of the best security labs&rdquo; in the company and runs evaluations before release. &ldquo;When you release [a model], you have to be very careful about evaluation,&rdquo; he said. &ldquo;I think there&rsquo;s still a lot of things we need to do to make it more complete, but we&rsquo;re trying.&rdquo;</p>
+      <p><span class="hl-ink">Yao&rsquo;s position is the honest middle, and it is more useful than either camp&rsquo;s slogan. The real question is not whether open or closed is safe in the abstract; it is which capabilities a given release exposes and whether the evaluators can measure them before the weights leave the building. Biological risk is the hardest case because the same model that helps design a therapy can help design a pathogen, and the difference is often intent rather than capability. A lab that says it evaluates before release and keeps some things closed is describing a process, not a religion. The argument to watch is whether Tencent&rsquo;s actions match that process as its models get stronger.</span></p>
+      <p>Keep the caveats visible. Yao did not announce a policy change, and Tencent still releases open models, including the <b>Hy4</b> model its own materials describe as the second-best produced in China by the benchmarking firm <b>Artificial Analysis</b>. &ldquo;Soon&rdquo; is doing a lot of work in his warning; no specific timeline was given. And the Hugging Face anecdote is a defense story, not evidence that open weights are net safer. What he has done is put a Chinese lab leader on record saying the safety case for closing frontier models is strong. In a debate that usually splits along national lines, that is the signal.</p>
+    </div>
+    <a class="source-link" href="https://www.scmp.com/tech/big-tech/article/3373697/ai-will-soon-master-biology-unleashing-new-safety-risks-tencent-ai-chief-warns" target="_blank">Full story &middot; South China Morning Post</a>
+  </div>
+
+  <div id="signals" class="story-card card-cream section-anchor">
+    <div class="page-chip">06 &middot; SIGNALS</div>
+    <div class="card-routine">5 Key Signals</div>
+    <h2 class="card-headline sm">What Moved the Machine Frontier Today</h2>
+    <div class="card-deck" style="border-bottom:none;padding-bottom:0;margin-bottom:16px;">Briefs worth an afternoon of reading.</div>
+    <div class="signals-grid">
+      <div class="signal-row">
+        <div class="signal-num n1">1</div>
+        <div>
+          <div class="signal-title">AI Companies Sold or Priced $300 Billion of Stock in 2026</div>
+          <div class="signal-desc">Excluding Anthropic&rsquo;s IPO, AI companies sold or priced more than <b>$300 billion</b> of stock in 2026, with roughly <b>$100 billion</b> more on tap, according to <b>The Information</b>. The question the market now has to answer is not whether the capital is available but how much supply it can absorb without repricing the whole complex. The wave includes secondary sales, convertibles and follow-ons &mdash; every structure a private company can use to turn paper wealth into cash before the window closes.</div>
+          <a class="signal-link" href="https://www.theinformation.com/articles/ai-stock-can-market-absorb" target="_blank">The Information &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n2">2</div>
+        <div>
+          <div class="signal-title">Professional Services Added 70,000 Jobs in October, the Most Since 2022</div>
+          <div class="signal-desc">U.S. professional services added <b>70,000</b> jobs in October, the most since July 2022, as AI-exposed consulting, legal and accounting firms all grew, the <b>Wall Street Journal</b> reported. Strong hiring at law offices and consultancies complicates the simplest version of the AI-jobs story: the categories most exposed to automation are, for now, also the ones adding headcount. The data does not prove AI creates jobs, but it does undercut the claim that white-collar losses are already visible in the aggregate.</div>
+          <a class="signal-link" href="https://www.wsj.com/economy/jobs/is-ai-taking-white-collar-jobs-what-the-latest-numbers-tell-us-dd31b115" target="_blank">Wall Street Journal &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n3">3</div>
+        <div>
+          <div class="signal-title">Commerce&rsquo;s AI Safety Center Was Asked to Report to a White House Office</div>
+          <div class="signal-desc">Officials at the Commerce Department&rsquo;s AI safety center, <b>CAISSI</b>, were asked to informally report to a White House office, according to <b>AP</b>, raising concerns about the center&rsquo;s independence. The arrangement is informal, which is precisely the problem: it changes the reporting line without changing the org chart, leaving the public unable to see who is directing the evaluations. The story matters because CAISSI is one of the few institutions standing between frontier models and deployment.</div>
+          <a class="signal-link" href="https://apnews.com/article/ai-safety-trump-white-house-d3318eb2cf011df53e9ddb3e03d25f13" target="_blank">Associated Press &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n4">4</div>
+        <div>
+          <div class="signal-title">DeepSeek&rsquo;s Harness Hit 1.54 Million Daily Users in Under Three Months</div>
+          <div class="signal-desc"><b>DeepSeek</b> says its open-source agent app <b>Harness</b> reached <b>1.54 million</b> daily active users on November 4, less than three months after launch, and consumes roughly <b>92 trillion</b> tokens a day &mdash; about <b>60 million</b> per user &mdash; according to <b>Bloomberg</b>. The token number is the tell: this is not a chatbot audience, it is an agent runtime with heavy per-user compute. DeepSeek also plans a plugin marketplace, turning Harness into a platform rather than a demo.</div>
+          <a class="signal-link" href="https://www.bloomberg.com/news/articles/2026-11-08/deepseek-s-ai-agent-platform-hits-1-54-million-daily-users" target="_blank">Bloomberg &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n5">5</div>
+        <div>
+          <div class="signal-title">GenRobot AI Raised $100 Million to Collect Human Data for Robots</div>
+          <div class="signal-desc">Beijing-based <b>GenRobot AI</b>, which develops equipment and software for collecting human demonstrations that can be used to train robots, raised a <b>$100 million</b> Series A+, according to <b>TechNode</b>. The round is a bet on the least glamorous layer of the robotics stack: the data. Foundation-model robotics needs enormous amounts of physical demonstration data, and the companies that can collect it at scale may end up owning the bottleneck the way Nvidia owns compute.</div>
+          <a class="signal-link" href="https://technode.com/2026/11/02/robot-training-data-startup-genrobot-ai-raises-100-million-in-series-a-funding/" target="_blank">TechNode &#8597;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="themes" class="story-card card-lavender section-anchor">
+    <div class="page-chip">07 &middot; CLOSER</div>
+    <div class="card-routine">Top Themes</div>
+    <h2 class="card-headline sm">The Shape of Today&rsquo;s News</h2>
+    <div class="themes-grid" style="margin-top:16px;">
+      <div class="theme-item">The CEO Risk</div>
+      <div class="theme-item">The Great Rewind</div>
+      <div class="theme-item">The Power Queue</div>
+      <div class="theme-item">The Living Room Bet</div>
+      <div class="theme-item">The Bio Threshold</div>
+    </div>
+
+    <div id="tool" class="tool-week section-anchor">
+      <div class="tool-week-eyebrow">Company Watch of the Day</div>
+      <div class="tool-week-name">ONEPWR</div>
+      <div class="tool-week-desc">On a day dominated by a boardroom scandal and a venture firm&rsquo;s retreat, the most important company in the news may be a <b>San Antonio</b> equipment supplier most people have never heard of. <b>OnePWR Solutions</b> builds microgrids and on-site power plants, and it had the one thing Anthropic could not manufacture quickly: <b>1.7 gigawatts</b> of heavy-duty generators already ordered from <b>Caterpillar</b> roughly two years ago. It lacked financing. Anthropic had <b>$3.4 billion</b>. The result is a deal that values the capacity at about <b>$2 million per megawatt</b> and hands Anthropic the engineering and construction capability to install it, without buying OnePWR or moving its staff. That is the shape of the AI power trade in 2026: the scarce asset is not the generator, it is the position in the queue. OnePWR&rsquo;s win is evidence that the companies holding physical commitments can price them like options. Its risk is equally clear &mdash; a supplier that sells its place in line has to find another one before the next buyer calls. Watch whether OnePWR becomes a repeat counterparty for the labs, or whether this was a one-time arbitrage between a two-year-old order and a company in a hurry.</div>
+    </div>
+
+    <div id="sources" class="output-card section-anchor">
+      <div class="output-title">Sources Cited</div>
+      <div class="sources-grid">
+        <a href="https://www.cnbc.com/2026/11/08/jensen-huang-nvidia-china-spy-congress.html" target="_blank">CNBC &mdash; Nvidia board opens probe into Huang&rsquo;s China spy link</a>
+        <a href="https://www.nytimes.com/2026/11/08/technology/nvidias-investigation-jensen-huang.html" target="_blank">New York Times &mdash; Nvidia&rsquo;s investigation of Jensen Huang</a>
+        <a href="https://www.theverge.com/ai-artificial-intelligence/1029595/full-text-jensen-huang-affair-memo-nvidia" target="_blank">The Verge &mdash; full text of Huang&rsquo;s memo</a>
+        <a href="https://nvidianews.nvidia.com/news/a-message-to-our-company" target="_blank">Nvidia &mdash; a message to our company</a>
+        <a href="https://www.bloomberg.com/news/articles/2026-11-08/trump-defends-nvidia-s-huang-after-he-admits-affair-with-spy" target="_blank">Bloomberg &mdash; Trump defends Huang after affair admission</a>
+        <a href="https://www.washingtonpost.com/technology/2026/11/08/read-jensen-huangs-letter-nvidia-about-his-affair-with-suspected-chinese-spy/" target="_blank">Washington Post &mdash; read Huang&rsquo;s letter</a>
+        <a href="https://techcrunch.com/2026/11/04/sequoia-hits-rewind-undoing-20-years-of-expansion/" target="_blank">TechCrunch &mdash; Sequoia hits rewind</a>
+        <a href="https://www.ft.com/content/abf66424-1738-4c1b-9d6b-a868be30b474" target="_blank">Financial Times &mdash; how Lin and Grady unwound Botha&rsquo;s era</a>
+        <a href="https://www.cnbc.com/2026/11/08/anthropic-generator-deal-ai-data-centers.html" target="_blank">CNBC &mdash; Anthropic&rsquo;s $3.4B generator deal</a>
+        <a href="https://madrobot.blog/2026/11/08/anthropic-3-4-billion-gas-generators-data-centres" target="_blank">MadRobot &mdash; Anthropic&rsquo;s gas generators and the power queue</a>
+        <a href="https://www.cnbc.com/2026/11/08/amazon-home-robot-fauna-sprout.html" target="_blank">CNBC &mdash; Amazon&rsquo;s new home robot after Astro</a>
+        <a href="https://www.scmp.com/tech/big-tech/article/3373697/ai-will-soon-master-biology-unleashing-new-safety-risks-tencent-ai-chief-warns" target="_blank">SCMP &mdash; Tencent AI chief warns on biology risks</a>
+        <a href="https://www.theinformation.com/articles/ai-stock-can-market-absorb" target="_blank">The Information &mdash; can the market absorb $300B of AI stock?</a>
+        <a href="https://www.wsj.com/economy/jobs/is-ai-taking-white-collar-jobs-what-the-latest-numbers-tell-us-dd31b115" target="_blank">WSJ &mdash; professional services added 70K jobs</a>
+        <a href="https://apnews.com/article/ai-safety-trump-white-house-d3318eb2cf011df53e9ddb3e03d25f13" target="_blank">AP &mdash; CAISSI asked to report to White House office</a>
+        <a href="https://www.bloomberg.com/news/articles/2026-11-08/deepseek-s-ai-agent-platform-hits-1-54-million-daily-users" target="_blank">Bloomberg &mdash; DeepSeek Harness hits 1.54M daily users</a>
+        <a href="https://technode.com/2026/11/02/robot-training-data-startup-genrobot-ai-raises-100-million-in-series-a-funding/" target="_blank">TechNode &mdash; GenRobot AI raises $100M Series A+</a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-logo">
+      <div class="footer-mark"><img src="../assets/timps-postcards.png" alt="TIMPS"></div>
+      <span class="footer-brand">TIMPS PostCards</span>
+    </div>
+    <div class="footer-center">Issue 165 &middot; November 9, 2026<br>Hyderabad, India</div>
+    <div class="footer-right">
+      <a href="../index.html">Home</a><br>
+      <a href="../archive.html">Archive</a><br>
+      &copy; 2026 TIMPS
+    </div>
+  </footer>
+
+
+</div></div>
+</body>
+</html>

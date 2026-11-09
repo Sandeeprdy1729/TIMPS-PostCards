@@ -149,3 +149,4 @@
 2026-11-06	162	thumb-2026-11-06.jpg	Wall Street Repriced the AI Trade by $2.5 Trillion in One Day	chip
 2026-11-07	163	thumb-2026-11-07.jpg	Congress Wants Jensen Huang to Explain a Relationship U.S. Intelligence Calls a Spy Operation	chip
 2026-11-08	164	thumb-2026-11-08.jpg	U.S. Cleared Nvidia's Best AI Chips for Chinese Firms With Empty Offices	chip
+2026-11-09	165	thumb-2026-11-09.jpg	Nvidia's Board Opens a Spy Probe After Jensen Huang Admits the Affair	chip
