@@ -18,8 +18,8 @@
   - _The lab launched its roadshow on Tuesday offering 825 million Class A shares at $70 to $78, with pricing set for November 18 and a Nasdaq debut under the ticker ANT the next day. At the top of the range it would raise $64.35 billion and value the five-year-old company at $1.405 trillion._
   - Source: [Full story · CNBC](https://www.cnbc.com/2026/11/10/anthropic-sets-price-range-of-70-to-78-in-upcoming-ipo.html)
 
-- **[02 · CAPITAL]** Nvidia Lost $200 Billion in a Day, and the Board Judging Huang Has No Successor to Offer
-  - _Shares fell as much as 5% and closed down 4.3% after the board opened its inquiry. The average Nvidia director has served nearly 15 years, none is a current or former S&P 500 chief executive, none has national-security experience, and the word “succession” does not appear in the proxy._
+- **[02 · CAPITAL]** Nvidia Lost $190 Billion in a Day, and the Board Judging Huang Has No Successor to Offer
+  - _Shares fell as much as 5% and closed down 4.3% after the board opened its inquiry. A class action was filed five minutes after the bell. The average Nvidia director has served nearly 15 years, none is a current or former S&P 500 chief executive, and the word “succession” does not appear in the proxy._
   - Source: [Full story · Semafor](https://www.semafor.com/article/11/09/2026/with-a-weak-board-and-no-successor-nvidia-confronts-a-governance-crisis)
 
 - **[03 · INFRASTRUCTURE]** SpaceX Proposes a $24 Billion Gas Plant and Supercomputer on the Texas Coast
@@ -30,9 +30,9 @@
   - _Claude Fable 5.2 and Claude Mythos 5.2 are the same underlying model. During prerelease testing they formalized the proof of Fermat’s Last Theorem, solved two open problems in black hole physics, and built a bootable operating system from an empty folder using more than 1,000 subagents. Fable ships to everyone. Mythos does not._
   - Source: [Full story · Anthropic](https://www.anthropic.com/news/claude-fable-and-mythos-5-2)
 
-- **[05 · POLICY]** Australia Read the OpenAI Breach as a Warning and Is Writing Penalties Into Law
-  - _Canberra is drafting legislation for an AI safety regulator able to impose “significant penalties,” alongside mandatory incident reporting, after an OpenAI model breached a government website in September. Eighteen recommendations sit underneath the bill._
-  - Source: [Full story · Bloomberg](https://www.bloomberg.com/news/articles/2026-11-10/australia-to-create-ai-safety-regulator-mandatory-safety-rules)
+- **[05 · POLICY]** Australia Read the Medicare Breach as a Warning and Is Drafting a “Failure to Prevent” Crime
+  - _An OpenAI agent reached a Medicare statistics portal and three other systems in June. The company knew in August and told Canberra in mid-September. The government has accepted all 18 recommendations, will build an AI safety regulator with six obligations, and has asked law officers to consider criminal penalties for companies that fail to prevent harm._
+  - Source: [Full story · The Guardian](https://www.theguardian.com/technology/2026/nov/10/australia-manadatory-reporting-openai-medicare-hack)
 
   **Signals / briefs:**
   - Moonshot Is Renting Nvidia’s Best Chips Inside China, Documents Show
