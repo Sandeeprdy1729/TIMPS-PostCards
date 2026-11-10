@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 152 daily issues + 18 deep dives · regenerated 2026-11-09**
+**Coverage: 153 daily issues + 18 deep dives · regenerated 2026-11-10**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 166 · 2026-11-10 · `daily/timps-postcards-2026-11-10.html`
+
+- **[01 · LEAD]** Anthropic Puts a $1.4 Trillion Price on Itself and Starts the Clock for November 19
+  - _The lab launched its roadshow on Tuesday offering 825 million Class A shares at $70 to $78, with pricing set for November 18 and a Nasdaq debut under the ticker ANT the next day. At the top of the range it would raise $64.35 billion and value the five-year-old company at $1.405 trillion._
+  - Source: [Full story · CNBC](https://www.cnbc.com/2026/11/10/anthropic-sets-price-range-of-70-to-78-in-upcoming-ipo.html)
+
+- **[02 · CAPITAL]** Nvidia Lost $200 Billion in a Day, and the Board Judging Huang Has No Successor to Offer
+  - _Shares fell as much as 5% and closed down 4.3% after the board opened its inquiry. The average Nvidia director has served nearly 15 years, none is a current or former S&P 500 chief executive, none has national-security experience, and the word “succession” does not appear in the proxy._
+  - Source: [Full story · Semafor](https://www.semafor.com/article/11/09/2026/with-a-weak-board-and-no-successor-nvidia-confronts-a-governance-crisis)
+
+- **[03 · INFRASTRUCTURE]** SpaceX Proposes a $24 Billion Gas Plant and Supercomputer on the Texas Coast
+  - _A public hearing notice puts the initial phases of a gas-fired power plant and a super-compute facility at Starbase at roughly $24 billion. The company CNBC now calls “the reusable rocket and AI company” is becoming a power developer._
+  - Source: [Full story · Bloomberg](https://www.bloomberg.com/news/articles/2026-11-09/spacex-plans-24-billion-data-center-and-gas-plant-in-texas)
+
+- **[04 · FRONTIER]** Anthropic’s New Model Formalized Fermat in 30 Hours. The Other One Requires a Background Check.
+  - _Claude Fable 5.2 and Claude Mythos 5.2 are the same underlying model. During prerelease testing they formalized the proof of Fermat’s Last Theorem, solved two open problems in black hole physics, and built a bootable operating system from an empty folder using more than 1,000 subagents. Fable ships to everyone. Mythos does not._
+  - Source: [Full story · Anthropic](https://www.anthropic.com/news/claude-fable-and-mythos-5-2)
+
+- **[05 · POLICY]** Australia Read the OpenAI Breach as a Warning and Is Writing Penalties Into Law
+  - _Canberra is drafting legislation for an AI safety regulator able to impose “significant penalties,” alongside mandatory incident reporting, after an OpenAI model breached a government website in September. Eighteen recommendations sit underneath the bill._
+  - Source: [Full story · Bloomberg](https://www.bloomberg.com/news/articles/2026-11-10/australia-to-create-ai-safety-regulator-mandatory-safety-rules)
+
+  **Signals / briefs:**
+  - Moonshot Is Renting Nvidia’s Best Chips Inside China, Documents Show
+  - Meta Ships Muse Ember, Its Cheapest Model, and Prices It Per Dollar of Intelligence
+  - SoftBank Swung to a $7 Billion Loss as the Tech Selloff Caught Up
+  - Apple Starts Selling $50 “Intelligence Usage Packs” When You Hit the Cap
+  - Hackers Walked Off With Customer Data and Incomplete Model Weights at Fireworks
 
 ### Issue 165 · 2026-11-09 · `daily/timps-postcards-2026-11-09.html`
 
