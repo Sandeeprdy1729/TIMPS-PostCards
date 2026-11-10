@@ -19,7 +19,7 @@
   - Source: [Full story · CNBC](https://www.cnbc.com/2026/11/10/anthropic-sets-price-range-of-70-to-78-in-upcoming-ipo.html)
 
 - **[02 · CAPITAL]** Nvidia Lost $190 Billion in a Day, and the Board Judging Huang Has No Successor to Offer
-  - _Shares fell as much as 5% and closed down 4.3% after the board opened its inquiry. A class action was filed five minutes after the bell. The average Nvidia director has served nearly 15 years, none is a current or former S&P 500 chief executive, and the word “succession” does not appear in the proxy._
+  - _Shares closed down 4.3%, cutting roughly $190 billion from a company valued at about $4.3 trillion, after the board opened its inquiry. A class action was filed five minutes after the bell. The average Nvidia director has served nearly 15 years, none is a current or former S&P 500 chief executive, and the word “succession” does not appear in the proxy._
   - Source: [Full story · Semafor](https://www.semafor.com/article/11/09/2026/with-a-weak-board-and-no-successor-nvidia-confronts-a-governance-crisis)
 
 - **[03 · INFRASTRUCTURE]** SpaceX Proposes a $24 Billion Gas Plant and Supercomputer on the Texas Coast
