@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TIMPS">
+<link rel="manifest" href="../manifest.json">
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/icon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/icon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="../assets/icon-48.png">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="../assets/icon-180.png">
+<title>TIMPS PostCards — Issue 167</title>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --cream:  #EEECE2;
+    --forest: #3D3929;
+    --terra:  #DA7756;
+    --terra-d:#BD5D3A;
+    --black:  #111111;
+    --card-bg:#F0ECE0;
+    --mono:   'Newsreader', Georgia, 'Times New Roman', serif;
+    --serif:  'TIMPS', 'Playfair Display', Georgia, serif;
+  }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Black.woff2') format('woff2'); font-weight:900; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Bold.woff2') format('woff2'); font-weight:700; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-SemiBold.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--cream);
+    background-image:
+      linear-gradient(rgba(61,57,41,.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.07) 1px, transparent 1px);
+    background-size: 38px 38px;
+    font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+    color: var(--forest);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { text-decoration: none; color: inherit; }
+
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 48px;
+    background-color: rgba(238,236,226,.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1.5px solid rgba(61,57,41,.12);
+    background-image:
+      linear-gradient(rgba(61,57,41,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.05) 1px, transparent 1px);
+    background-size: 38px 38px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Special Elite', 'Courier New', Courier, monospace;
+    font-size: 15px;
+    font-weight: 400;
+    color: #000;
+    text-decoration: none;
+  }
+  .nav-logo-mark {
+    width: 34px; height: 34px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .nav-logo-mark img { width: 28px; height: 28px; object-fit: contain; }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-link {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: #000;
+    opacity: .65;
+    text-decoration: none;
+    transition: opacity .15s;
+  }
+  .nav-link:hover { opacity: 1; }
+  .nav-cta {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: #000;
+    background: var(--terra);
+    border: 2.5px solid #000;
+    border-radius: 100px;
+    padding: 10px 24px;
+    cursor: pointer;
+    transition: background .15s, transform .1s;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--terra-d); transform: translateY(-1px); }
+
+  .wrapper { max-width: 760px; margin: 0 auto; padding: 40px 20px 80px; display: flex; flex-direction: column; gap: 0; }
+
+  .cover-card { background: var(--card-bg); border-radius: 20px 20px 4px 4px; padding: 56px 48px 48px; text-align: center; position: relative; overflow: hidden; border: 1.5px solid rgba(61,57,41,.12); margin-bottom: 3px; }
+  .cover-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, var(--terra) 0%, var(--terra-d) 60%, #E0A88A 100%); }
+  .cover-eyebrow { font-family: var(--mono); font-size:10px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:20px; display:flex; align-items:center; justify-content:center; gap:10px; }
+  .cover-eyebrow::before,.cover-eyebrow::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .15; max-width:60px; }
+  .cover-title { font-family: var(--serif); font-size:58px; font-weight:900; line-height:1; letter-spacing:-1px; color: var(--forest); margin-bottom:8px; }
+  .cover-sub { font-family: var(--serif); font-size:13px; font-style:italic; color: var(--forest); opacity: .55; margin-bottom:28px; }
+  .cover-divider { width:48px; height:2px; background: var(--terra); margin:0 auto 24px; border-radius:2px; }
+  .cover-meta { display:flex; justify-content:center; gap:32px; font-family: var(--mono); font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .45; }
+  .cover-badge { display:inline-flex; align-items:center; gap:6px; background: var(--terra); color: #fff; border-radius:20px; padding:6px 18px; font-family: var(--mono); font-size:10px; letter-spacing:2px; text-transform:uppercase; margin-top:28px; }
+  .top5-pill { display:flex; justify-content:center; gap:10px; margin-top:32px; flex-wrap:wrap; }
+  .pill { background: var(--forest); color: var(--cream); border-radius:100px; padding:4px 14px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; }
+  .pill.light { background:transparent; color: var(--forest); border:1px solid rgba(61,57,41,.2); }
+
+  .section-label { display:flex; align-items:center; gap:12px; padding:10px 0 8px; font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .35; }
+  .section-label::before,.section-label::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .1; }
+
+  .story-card { border-radius:4px; border:1.5px solid rgba(61,57,41,.10); padding:36px 40px; margin-bottom:3px; position:relative; overflow:hidden; }
+  .story-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }
+
+  .card-sky      { background:#D6E8F0; } .card-sky::before      { background: #7AAFC0; }
+  .card-cream    { background: var(--card-bg); } .card-cream::before    { background: var(--terra); }
+  .card-blush    { background:#F5DDD0; } .card-blush::before    { background: #E0A88A; }
+  .card-lavender { background:#EAE6F5; } .card-lavender::before { background: #C8BEE8; }
+  .card-sage     { background:#D6E4D6; } .card-sage::before     { background: #8BAF8B; }
+
+  .page-chip { position:absolute; top:14px; right:16px; font-family: var(--mono); font-size:9px; letter-spacing:2px; text-transform:uppercase; color: var(--forest); opacity: .3; }
+  .card-routine { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:8px; }
+  .card-headline { font-family: var(--serif); font-size:28px; font-weight:900; line-height:1.15; color: var(--forest); margin-bottom:10px; }
+  .card-headline.lg { font-size:34px; }
+  .card-headline.sm { font-size:22px; }
+  .card-deck { font-family: var(--serif); font-style:italic; font-size:14px; line-height:1.55; color: var(--forest); opacity: .55; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid rgba(61,57,41,.12); }
+  .card-body { font-family: 'Lora', Georgia, serif; font-size:14px; line-height:1.7; color: var(--forest); }
+  .card-body p { margin-bottom:11px; }
+  .drop::first-letter { font-family: var(--serif); font-size:52px; font-weight:900; float:left; line-height:.78; margin:5px 6px 0 0; color: var(--terra); }
+  .clearfix::after { content:''; display:table; clear:both; }
+
+  .hl-terra { background: var(--terra); color: var(--forest); padding:0 4px; border-radius:2px; }
+  .hl-ink  { background: var(--forest); color: var(--cream); padding:0 4px; border-radius:2px; }
+  .hl-sage { background: #8BAF8B; color: #fff; padding:0 4px; border-radius:2px; }
+  .hl-lav  { background: #C8BEE8; color: var(--forest); padding:0 4px; border-radius:2px; }
+
+  .stat-box { float:right; margin:0 0 16px 24px; background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:16px 20px; text-align:center; min-width:120px; }
+  .stat-big { font-family: var(--serif); font-size:44px; font-weight:900; line-height:1; color: var(--forest); display:block; }
+  .stat-label { font-family: var(--mono); font-size:9.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .5; display:block; margin-top:4px; }
+
+  .img-frame { border:2px solid rgba(61,57,41,0.18); border-radius:12px; overflow:hidden; margin:16px 0; background: var(--card-bg); }
+  .img-frame img { width:100%; display:block; max-height:240px; object-fit:cover; border-bottom:1px solid rgba(61,57,41,.12); }
+  .img-caption { padding:8px 12px; font-family: var(--mono); font-size:10.5px; color: var(--forest); opacity: .6; font-style:italic; display:flex; align-items:center; justify-content:space-between; gap:8px; }
+  .img-caption a { font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; white-space:nowrap; font-style:normal; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; }
+  .img-caption a:hover { opacity: 1; }
+  .img-frame.float-right { float:right; width:220px; margin:0 0 16px 24px; }
+  .img-frame.float-right img { max-height:140px; }
+
+  .source-link { display:inline-flex; align-items:center; gap:5px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:12px; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; transition: opacity .15s; }
+  .source-link:hover { opacity: 1; }
+  .source-link::after { content:'↗'; font-size:9px; }
+
+  .signals-grid { display:flex; flex-direction:column; gap:14px; }
+  .signal-row { display:flex; align-items:flex-start; gap:14px; }
+  .signal-num { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family: var(--serif); font-size:13px; font-weight:900; flex-shrink:0; color:#fff; }
+  .signal-num.n1{background: var(--terra); color: var(--forest);} .signal-num.n2{background: var(--forest);} .signal-num.n3{background:#7AAFC0;} .signal-num.n4{background: var(--terra-d); color: var(--forest);} .signal-num.n5{background: var(--black);}
+  .signal-title { font-family: var(--serif); font-size:14px; font-weight:700; color: var(--forest); margin-bottom:2px; }
+  .signal-desc { font-family: 'Newsreader', Georgia, 'Times New Roman', serif; font-size:12px; line-height:1.65; color: var(--forest); opacity: .6; }
+  .signal-link { display:inline-block; font-family: var(--mono); font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:4px; border-bottom:1px solid rgba(61,57,41,.25); padding-bottom:1px; transition: opacity .15s; }
+  .signal-link:hover { opacity: 1; }
+
+  .themes-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .theme-item { padding:10px 14px; border-radius:8px; font-family: var(--serif); font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; text-align:center; border:1.5px solid rgba(61,57,41,.12); background: var(--cream); }
+
+  .tool-week { background: var(--forest); color: var(--cream); border-radius:12px; padding:18px 20px; text-align:center; margin-top:14px; }
+  .tool-week-eyebrow { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; opacity: .55; margin-bottom:6px; }
+  .tool-week-name { font-family: var(--serif); font-size:22px; font-weight:900; margin-bottom:4px; }
+  .tool-week-desc { font-family: 'Newsreader', Georgia, 'Times New Roman', serif; font-size:11.5px; opacity: .7; font-style:italic; }
+
+  .output-card { background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:18px 20px; margin-top:14px; }
+  .output-title { font-family: var(--serif); font-size:18px; font-weight:700; margin-bottom:8px; color: var(--forest); }
+  .tp-list { list-style:none; padding:0; margin:0; }
+  .tp-list li { padding:5px 0; font-family: 'Lora', Georgia, serif; font-size:12px; color: var(--forest); border-bottom:1px solid rgba(61,57,41,.07); display:flex; align-items:flex-start; gap:7px; }
+  .tp-list li::before { content:'·'; color: var(--terra); font-size:14px; line-height:1.2; flex-shrink:0; }
+  .tp-list li a { color: var(--forest); opacity: .8; text-decoration:none; }
+  .tp-list li a:hover { opacity: 1; }
+
+  .sources-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px 20px; }
+  .sources-grid a { font-family: var(--mono); font-size:11px; color: var(--forest); opacity: .55; text-decoration:none; border-bottom:1px solid rgba(61,57,41,.15); padding-bottom:1px; transition: opacity .15s; }
+  .sources-grid a:hover { opacity: 1; }
+
+  .footer {
+    background: var(--black);
+    padding: 28px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    border-radius: 4px 4px 20px 20px;
+    margin-top: 3px;
+  }
+  .footer-logo { display: flex; align-items: center; gap: 10px; }
+  .footer-mark { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; }
+  .footer-mark img { width: 24px; height: 24px; object-fit: contain; }
+  .footer-brand { font-family: 'Special Elite', 'Courier New', Courier, monospace; font-size: 13px; font-weight: 400; color: #fff; }
+  .footer-center { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.4); text-align: center; line-height: 1.6; }
+  .footer-right { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.3); text-align: right; line-height: 2; }
+  .footer-right a { color: rgba(255,255,255,.5); transition: color .15s; }
+  .footer-right a:hover { color: #fff; }
+
+  .page-layout { display: flex; align-items: flex-start; gap: 0; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+  .toc-sidebar { position: sticky; top: 80px; width: 170px; flex-shrink: 0; padding: 48px 0 0 0; }
+  .toc-nav { display: flex; flex-direction: column; gap: 0; }
+  .toc-link { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.5px; text-transform: uppercase; color: #000; opacity: .45; text-decoration: none; padding: 7px 12px; border-left: 2px solid transparent; transition: opacity .15s, border-color .15s; line-height: 1.3; }
+  .toc-link:hover { opacity: .85; }
+  .toc-link.active { opacity: 1; border-left-color: var(--terra); }
+  .section-anchor { scroll-margin-top: 80px; }
+
+  @media (max-width: 900px) {
+    .toc-sidebar { display: none; }
+    .page-layout { max-width: 760px; }
+  }
+
+  @media (max-width: 720px) {
+    .nav { padding: 12px 24px; }
+    .nav-links { display: none; }
+    .wrapper { padding: 20px 14px 60px; }
+    .cover-card { padding: 40px 24px; }
+    .story-card { padding: 28px 20px; }
+    .footer { padding: 24px; flex-direction: column; align-items: flex-start; }
+    .footer-center, .footer-right { text-align: left; }
+    .stat-box { float: none; margin: 0 0 16px 0; }
+    .img-frame.float-right { float: none; width: 100%; margin: 0 0 16px 0; }
+  }
+  @media (max-width: 480px) {
+    .nav-logo span { display: none; }
+    .cover-title { font-size: 40px; }
+    .card-headline.lg { font-size: 28px; }
+    .card-headline { font-size: 24px; }
+  }
+</style>
+
+</head>
+
+<body>
+
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">
+    <div class="nav-logo-mark"><img src="../assets/timps-postcards.png" alt="TIMPS"></div>
+    <span>TIMPS PostCards</span>
+  </a>
+  <div class="nav-links">
+    <a href="../articles.html" class="nav-link">Articles</a>
+    <a href="../archive.html" class="nav-link">Archive</a>
+    <a href="timps-postcards-2026-11-11.html" class="nav-link">Latest Issue</a>
+    <a href="../index.html#subscribe" class="nav-link">Subscribe</a>
+  </div>
+  <a href="../index.html#subscribe" class="nav-cta">Subscribe</a>
+</nav>
+
+<div class="page-layout">
+  <aside class="toc-sidebar">
+    <nav class="toc-nav">
+      <a href="#lead" class="toc-link">The Seven-Billion Gap</a>
+      <a href="#capital" class="toc-link">The Sixteen Percent</a>
+      <a href="#infra" class="toc-link">The Venice Stack</a>
+      <a href="#memory" class="toc-link">The Swarm Budget</a>
+      <a href="#proof" class="toc-link">The Empire State Test</a>
+      <a href="#signals" class="toc-link">Signals</a>
+      <a href="#themes" class="toc-link">Themes</a>
+      <a href="#tool" class="toc-link">Watch</a>
+      <a href="#sources" class="toc-link">Sources</a>
+    </nav>
+  </aside>
+
+  <div class="wrapper">
+
+  <div id="intro" class="cover-card section-anchor">
+    <div class="cover-eyebrow">Est. 2026 &middot; Hyderabad</div>
+    <div class="cover-title">TIMPS<br>PostCards</div>
+    <div class="cover-sub">AI Intelligence Digest &middot; Your Daily Signal from the Machine Frontier</div>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+      <span>Issue 167</span>
+      <span>November 11, 2026</span>
+      <span>No. 194</span>
+    </div>
+    <div class="cover-badge">&#11041; 167 Issues &mdash; Built with the TIMPS Ecosystem</div>
+    <div class="top5-pill">
+      <span class="pill">5 Top Signals</span>
+      <span class="pill light">The Seven-Billion Gap</span>
+      <span class="pill light">The Sixteen Percent</span>
+      <span class="pill light">The Venice Stack</span>
+      <span class="pill light">The Swarm Budget</span>
+      <span class="pill light">The Empire State Test</span>
+    </div>
+  </div>
+
+  <div id="lead" class="story-card card-blush section-anchor">
+    <div class="page-chip">01 &middot; LEAD</div>
+    <div class="card-routine">Markets &middot; The Seven-Billion Gap</div>
+    <h2 class="card-headline lg">Anthropic Out-Earned OpenAI by Nearly $7 Billion in a Single Quarter</h2>
+    <div class="card-deck">Anthropic&rsquo;s amended S-1 puts third-quarter revenue at $16.96 billion, up 1,127% from a year earlier and 47% from the second quarter. OpenAI, according to the Wall Street Journal, crossed $10 billion for the first time. The gap between the two most valuable private AI labs is now about $6.96 billion &mdash; and almost all of it opened in twelve months.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">$16.96B</span>
+        <span class="stat-label">Anthropic&rsquo;s revenue in the quarter ended September 30 &mdash; up 1,127% from $1.38 billion a year earlier</span>
+      </div>
+      <p class="drop"><b>Anthropic</b> filed an amended S-1 on Monday, and the revenue line did the talking. The company booked <b>$16.96 billion</b> in the quarter ended <b>September 30</b>, up from <b>$1.38 billion</b> a year earlier &mdash; a <b>1,127%</b> increase &mdash; and up <b>47%</b> from the <b>$11.56 billion</b> it reported in the second quarter. Revenue per employee is now above <b>$6.6 million</b>. About <b>250 customers</b> have spent more than <b>$10 million</b> on a trailing-twelve-month basis. The nine-month net loss was <b>$104 billion</b>, most of which the company attributes to the change in fair value of convertible notes and derivative liabilities rather than to operations.</p>
+      <p>The comparison arrived the same week. The <b>Wall Street Journal</b> reported that <b>OpenAI</b> grew revenue roughly <b>50%</b> from the second quarter to about <b>$10 billion</b> in the third &mdash; the first time it has crossed that line &mdash; on API and enterprise demand. The same documents, reviewed by the Journal, put OpenAI&rsquo;s adjusted operating margin at about <b>negative 109%</b> in the quarter, an improvement from roughly <b>negative 150%</b> in the second. So: one lab at $16.96 billion, the other at roughly $10 billion, and a gap of about <b>$6.96 billion</b> between them.</p>
+      <p>A year ago the ordering was reversed and the distance was wider. OpenAI was the default answer to &ldquo;who sells the most AI,&rdquo; Anthropic was the enterprise challenger, and the received wisdom was that consumer distribution would compound faster than developer distribution. What the filings now show is a mix shift rather than a demand collapse: Anthropic&rsquo;s quarter was carried by enterprise contracts and developer spend, the categories where budgets are signed annually and inference is metered, while OpenAI&rsquo;s base remains enormous but far more expensive to serve. Growth of 1,127% on a small base is arithmetic; growth of 50% on a $6.7 billion base is a different kind of achievement. Both are real. Only one of them is now the larger revenue line.</p>
+      <p>The timing is not accidental. Anthropic opened its <b>Australian retail offering</b> on Wednesday, letting individual investors apply for shares ahead of a listing expected to price on <b>November 18</b>. A revenue number that beats your closest competitor by nearly <b>70%</b> is the single most useful sentence in a roadshow, and it arrived four days before the book is due to close. The company did not need to mention OpenAI by name. The comparison was already in every analyst&rsquo;s spreadsheet.</p>
+      <p><span class="hl-terra">The interesting number is not $16.96 billion. It is the $6.96 billion gap, because it changes what the market is being asked to believe. For two years the assumption was that OpenAI&rsquo;s consumer franchise would produce a revenue lead that no enterprise vendor could close. That assumption now has a counter-example with an SEC filing attached. It does not prove Anthropic wins &mdash; OpenAI still has the larger user base, the larger compute footprint and the more diversified product surface. But it does mean the &ldquo;AI leader&rdquo; label is now a measurement question rather than a narrative one, and the two companies are about to be valued in public markets where measurement questions get settled every quarter.</span></p>
+      <p>Keep the caveats close. OpenAI&rsquo;s figures come from internal documents reported by the Journal, not from a filing, and private-company revenue definitions vary &mdash; gross versus net, usage versus subscriptions, one-time versus recurring. Anthropic&rsquo;s numbers are filed, but its losses are distorted by convertible-note accounting that says little about cash burn. One quarter is not a trend, and both companies depend on the same short list of compute suppliers, which means their margins are correlated whether or not their revenue is. Watch the December quarter: if the gap widens again, the enterprise thesis has a second data point. If it narrows, the consumer thesis gets its rebuttal.</p>
+    </div>
+    <a class="source-link" href="https://www.sec.gov/Archives/edgar/data/2130357/000162828026068676/anthropicpbc-sx1ax1.htm" target="_blank">Full filing &middot; SEC</a>
+  </div>
+
+  <div id="capital" class="story-card card-sky section-anchor">
+    <div class="page-chip">02 &middot; CAPITAL</div>
+    <div class="card-routine">Capital &middot; The Sixteen Percent</div>
+    <h2 class="card-headline">CoreWeave Grew 168%, Raised Guidance, and Watched Its Bonds Yield 16%</h2>
+    <div class="card-deck">Revenue came in at $3.66 billion against a $3.55 billion estimate, and the company lifted 2026 guidance to $13 billion to $13.3 billion. Its contracted backlog is $132.5 billion. Its stock is down more than 40% in a month, and some of its bonds now yield above 16%. Growth is no longer the question. The cost of funding it is.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">$132.5B</span>
+        <span class="stat-label">CoreWeave&rsquo;s revenue backlog at the end of the quarter, up from $104 billion in June</span>
+      </div>
+      <p class="drop"><b>CoreWeave</b> reported third-quarter revenue of <b>$3.66 billion</b> on Monday, ahead of the <b>$3.55 billion</b> analysts expected and up <b>168%</b> from about <b>$1.36 billion</b> a year earlier, according to <b>CNBC</b>. The net loss was <b>$709 million</b>, or <b>$1.27</b> per share, compared with a <b>$110 million</b> loss a year earlier. On an adjusted basis the loss was <b>95 cents</b> per share, better than the <b>$1.16</b> loss analysts had modelled. Revenue beat, losses widened, and the adjusted number beat. That is a company growing into a very expensive balance sheet.</p>
+      <p>The guidance was the bullish part. CoreWeave now expects <b>$13 billion to $13.3 billion</b> in 2026 revenue and <b>$1.275 billion to $1.375 billion</b> in adjusted operating income, up from the <b>$12.4 billion to $13.2 billion</b> and <b>$960 million to $1.15 billion</b> it guided in August. Both ranges are above consensus. The backlog tells the same story from the other direction: <b>$132.5 billion</b> in contracted revenue at quarter-end, up from <b>$104 billion</b> in June. On paper, demand is not the constraint. Capital is.</p>
+      <p>The market has already voted on which constraint binds. CoreWeave shares have lost more than <b>40%</b> of their value in the past month as investors rotate out of the companies most closely tied to AI infrastructure. Rising interest rates have pushed lenders out of the market, and some CoreWeave bond yields have recently topped <b>16%</b>. The company is spending <b>$37 billion to $39 billion</b> on capital expenditure this year &mdash; growth of roughly <b>155%</b> &mdash; against about <b>$47 billion</b> of debt. Chief financial officer <b>Nitin Agrawal</b> said the company does not plan new parent-level unsecured debt through 2027 at current yields, which is the financial equivalent of saying the door is shut until the price changes.</p>
+      <p>The operating detail is more encouraging than the bond tape. CoreWeave said it would establish its first data centres in <b>Asia</b> and launched <b>Forge</b>, a service for running and evaluating AI models. <b>Anthropic</b> is a key customer, which links this quarter to the revenue numbers in the lead story: the labs booking billions in revenue are also the tenants signing multi-year compute contracts. <b>Nebius</b> reports on Thursday, and its numbers will be read as a second opinion on whether the demand behind that $132.5 billion backlog is broad or concentrated.</p>
+      <p><span class="hl-ink">A company growing 168% is being priced like a distressed borrower, and both of those things are information. The 16% yield is the market&rsquo;s estimate of the risk that the backlog is real but the cash arrives too late to service the debt that built the capacity. That is a duration mismatch dressed as a leverage problem: CoreWeave signs multi-year contracts and funds them with shorter, repricing paper. If rates fall, the equity re-rates violently. If they do not, the backlog becomes a schedule of obligations rather than a source of free cash. The guidance raise buys time. It does not buy cheaper money.</span></p>
+      <p>Caveats, because the headline numbers flatter. Backlog is contracted but not collected, and customer concentration means a single renegotiation can move it. Adjusted operating income excludes stock-based compensation, which is large for a company paying in equity while burning cash. The capex figure is a plan, not a commitment, and can be slowed if financing stays closed. And the 40% drawdown is not a valuation call &mdash; it is a repricing of the entire neocloud category, which means CoreWeave can execute perfectly and still fall. Watch the bond yields before the next earnings call. They will tell you more about the 2027 build than the guidance does.</p>
+    </div>
+    <a class="source-link" href="https://www.cnbc.com/2026/11/10/coreweave-crwv-q3-earnings-report-2026.html" target="_blank">Full story &middot; CNBC</a>
+  </div>
+
+  <div id="infra" class="story-card card-sage section-anchor">
+    <div class="page-chip">03 &middot; INFRASTRUCTURE</div>
+    <div class="card-routine">Silicon &middot; The Venice Stack</div>
+    <h2 class="card-headline">AMD Puts 256 Cores and 1,024 Threads in Two Sockets and Calls It Venice</h2>
+    <div class="card-deck">Zen 6 EPYC is built on TSMC&rsquo;s N2P process, carries a 27% average IPC uplift over Zen 5, and in a dual-socket EPYC 9996 configuration runs 93% ahead of the 768-thread EPYC 9965 on SPEC CPU 2026. The chip AMD is aiming at Nvidia&rsquo;s Vera is not a GPU. It is a CPU.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">27%</span>
+        <span class="stat-label">average IPC uplift from Zen 5 to Zen 6, per AMD&rsquo;s Venice briefing</span>
+      </div>
+      <p class="drop"><b>AMD</b> opened up <b>Zen 6 EPYC</b>, codenamed <b>Venice</b>, on Tuesday, and <b>Tom&rsquo;s Hardware</b> came away with a number that matters more than any single benchmark: a <b>27% average IPC uplift</b> over Zen 5. The chips are built on <b>TSMC&rsquo;s N2P</b> process. The flagship <b>EPYC 9996</b> carries <b>256 cores</b> and, in a two-socket system, <b>1,024 threads</b> &mdash; 93% ahead of the 768-thread dual <b>EPYC 9965</b> on the SPEC CPU 2026 intrate test. AMD is not shipping a faster version of the same pitch. It is shipping a different socket.</p>
+      <p>The architecture explains the jump. Zen 6 moves to <b>12-core CCDs</b>, while the dense <b>Zen 6c</b> variant packs <b>32 cores</b> per chiplet. Venice carries <b>two I/O dies</b>, <b>16 memory channels</b> and the new <b>SP7</b> platform, which is a lot of bandwidth per socket for workloads that spend their time waiting on memory rather than arithmetic. The frequency-optimised <b>9686F</b> is the part Tom&rsquo;s Hardware singles out: its headline claim is that the 9686F <b>outclasses Nvidia&rsquo;s Vera</b> in the comparisons the publication ran. That is a CPU beating a platform built around accelerated computing at a slice of the workload, not the whole of it &mdash; but it is the slice that agent infrastructure spends most of its time in.</p>
+      <p>Why a CPU launch belongs in an AI digest: the bottleneck has moved. Training is still GPU-bound, but inference fleets, agent sandboxes, retrieval pipelines, data loaders and orchestration layers are all CPU-and-memory problems, and the ratio of host cores to accelerators has been climbing as agents multiply. A dual-socket Venice node with 1,024 threads can host far more concurrent agent sessions per rack unit than the previous generation, which changes the cost per task without changing the GPU at all. The same logic explains why Nvidia built Vera in the first place. The CPU is no longer the thing that feeds the GPU. It is increasingly the thing that decides how many agents the GPU can serve.</p>
+      <p>The roadmap is crowded. AMD has <b>Venice-X</b> and <b>Verano</b> coming next year, plus consumer <b>Olympic Ridge</b> on the desktop side. <b>Intel&rsquo;s Diamond Rapids</b> is due in the same window, and Intel has been unusually explicit that it intends to contest exactly this segment. Hyperscalers qualify new platforms over multiple quarters, so a November launch translates into volume in the second half of 2027, not the first. TSMC&rsquo;s N2P capacity is also the same capacity everyone else wants, including the GPU vendors, which makes the ramp a allocation question as much as a technical one.</p>
+      <p><span class="hl-sage">The benchmark that matters is not the 93%. It is the thread count per socket, because that is the number that shows up in the total cost of ownership math for agent infrastructure. Every additional thousand threads per node is a thousand fewer processes queuing for a scheduler, and a thousand more concurrent sessions before latency degrades. AMD&rsquo;s pitch is that the AI buildout has spent three years buying accelerators and one year discovering that the machines around them were undersized. Venice is a bet that the next budget cycle is about balance &mdash; and that whoever wins the host socket wins the rack.</span></p>
+      <p>Caveats. The SPEC figures Tom&rsquo;s Hardware cites are estimates from a briefing, not independently audited results, and vendor-selected benchmarks reward exactly the configurations vendors build for. The 9686F comparison to Vera is workload-specific and should not be read as a general claim about accelerated computing. N2P yields, SP7 board costs and 16-channel memory pricing will decide whether Venice is cheap per thread or merely fast per socket. And Intel gets a turn: Diamond Rapids is the first Xeon in years that arrives with a credible answer on core count. Watch the first hyperscaler instance types, not the launch slides. That is where the TCO claim gets tested.</p>
+    </div>
+    <a class="source-link" href="https://www.tomshardware.com/pc-components/cpus/amd-zen-6-epyc-venice-deep-dive-and-benchmarking-dual-epyc-9996-with-1-024-threads-delivers-up-to-93-percent-performance-gain-gen-on-gen-9686f-outclasses-nvidias-vera" target="_blank">Full story &middot; Tom&rsquo;s Hardware</a>
+  </div>
+
+  <div id="memory" class="story-card card-lavender section-anchor">
+    <div class="page-chip">04 &middot; FRONTIER</div>
+    <div class="card-routine">Models &middot; The Swarm Budget</div>
+    <h2 class="card-headline">Gemini 4 Carbon Sells You a Team of Agents at the Price of One Model</h2>
+    <div class="card-deck">Google&rsquo;s new flagship ranks first on CursorBench 4.0, Perplexity&rsquo;s WANDR and Zapier&rsquo;s AutomationBench at more than half the cost per task of the next external model. It also previews /swarm, which turns one prompt into a tracked team of agents. The price is unchanged from Argon: $2 per million input tokens, $10 per million output.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">2&times;</span>
+        <span class="stat-label">lower cost per task than the next-best external model on three independent agent benchmarks</span>
+      </div>
+      <p class="drop"><b>Google</b> released <b>Gemini 4 Carbon</b> on Tuesday, describing it as its strongest model for frontier cybersecurity and long-horizon agentic work. Carbon is available through the API in <b>Google AI Studio</b> and <b>Gemini for business</b> at the same introductory price as <b>Gemini 4 Argon</b> &mdash; <b>$2 per million input tokens</b> and <b>$10 per million output</b> &mdash; and is rolling out to <b>AI Ultra</b> subscribers in <b>Antigravity</b>, the Gemini app and <b>AI Mode</b> in Search. Argon remains the default for most users. Carbon is the model you choose when the task is hard enough to justify thinking longer.</p>
+      <p>The benchmark table is unusually specific about economics. Carbon ranks <b>#1</b> on <b>CursorBench 4.0</b>, Perplexity&rsquo;s <b>WANDR</b> and Zapier&rsquo;s <b>AutomationBench</b> at more than <b>2&times; lower cost per task</b> than the next-best external model, according to Google. On the <b>MKA</b> benchmark built with <b>Artificial Analysis</b>, it ranks <b>#2</b> at more than <b>6&times; lower cost per task</b>. Those are vendor-run evaluations on benchmarks the vendor selected, and cost per task depends heavily on the harness &mdash; but the framing is the story. Google is not claiming Carbon is the smartest model in the world. It is claiming Carbon is the cheapest way to finish the work.</p>
+      <p>The product that makes that claim concrete is <b>/swarm</b>, previewed inside <b>Google Antigravity</b>. One prompt becomes a coordinated team of agents that the developer can track in real time. Carbon is assigned to the roles that need the deepest reasoning &mdash; architectural design, coordination, auditing &mdash; while faster, lighter models run in parallel isolated workspaces, and adversarial verifiers test every change. This is the same architectural bet Anthropic made with subagent orchestration and OpenAI made with its agent runtime, wrapped in a single slash command. The difference is that Google is pricing the orchestrator at the same rate as the worker.</p>
+      <p>There is a security story underneath. Google says Carbon was given to cyber defenders <b>two weeks early</b> through its <b>Fairwind Program</b>, which is the mirror image of Anthropic&rsquo;s gated Mythos release: instead of withholding capability from everyone until vetting completes, Google extends it to defenders first and then ships. The company&rsquo;s demos are the usual flex &mdash; an interactive 3D exhibition of the Eiffel Tower, a 906,000-triangle office scene built over ten overnight loops, a playable pelican game &mdash; and <b>Balyasny</b>&rsquo;s GFi benchmark reportedly places Carbon at the top of 23 configurations. None of that is proof of production reliability, but it is evidence that the model can hold a long task together.</p>
+      <p><span class="hl-ink">The number to watch is cost per task, not the benchmark rank, because agent swarms multiply token spend in a way chat never did. A single prompt that spawns twelve agents with verifiers can burn fifty times the tokens of one completion, and the labs know it. Pricing Carbon at Argon&rsquo;s rate while claiming 2&times; to 6&times; better economics per finished task is a bet that orchestration efficiency, not raw intelligence, is where the next margin comes from. If Google is right, the winners will be the platforms that can route work across a portfolio of models cheaply &mdash; and the losers will be the labs selling one expensive model to do everything.</span></p>
+      <p>Caveats. Cost per task is a derived metric, not a sticker price, and it moves with retries, context length and verifier count. The benchmarks are selected by Google and run before general availability, which is precisely when models look best. /swarm is a preview, not a shipped product, and multi-agent systems fail in ways single models do not: cascading errors, duplicated work, and verification loops that never terminate. Fairwind gating means the security claims cannot be independently checked yet. And Argon staying the default is a quiet admission that Carbon is expensive in wall-clock time even when it is cheap per task. Watch what developers actually route to it once the novelty fades.</p>
+    </div>
+    <a class="source-link" href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/" target="_blank">Full story &middot; Google</a>
+  </div>
+
+  <div id="proof" class="story-card card-cream section-anchor">
+    <div class="page-chip">05 &middot; POLICY</div>
+    <div class="card-routine">Regulation &middot; The Empire State Test</div>
+    <h2 class="card-headline">New York Will Test AI Models Before They Ship, and It Is Hiring the Referees</h2>
+    <div class="card-deck">Governor Kathy Hochul announced the first state-run AI testing programme, paired with a training pipeline for safety experts, funded by $30 million from Tom Secunda and $25 million from the state and SUNY. It launches before New York&rsquo;s RAISE Act takes effect on January 1.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">$55M</span>
+        <span class="stat-label">combined state and philanthropic funding for New York&rsquo;s AI testing and safety-training programme</span>
+      </div>
+      <p class="drop"><b>New York</b> will build the country&rsquo;s first state-run AI testing programme, Governor <b>Kathy Hochul</b> announced on Tuesday, alongside a training pipeline intended to produce a corps of independent safety experts. The programme is funded by a <b>$30 million</b> gift from <b>Tom Secunda</b>, a Bloomberg co-founder, and <b>$25 million</b> from the state and <b>SUNY</b>. It is designed to launch before the <b>RAISE Act</b> takes effect on <b>January 1</b>, the state law that will require AI companies operating in New York to publish safety frameworks.</p>
+      <p>The sequencing is the policy. A law that demands safety frameworks creates a compliance industry overnight, and the state that writes the law gets to decide who does the checking. By standing up the testing capacity first, New York avoids the usual gap between a statute and the inspectors who enforce it. The training component matters just as much: model evaluation is a small, specialised labour market, and a state programme that certifies evaluators is also a state programme that decides what counts as a rigorous test.</p>
+      <p>Hochul framed the announcement as a response to federal inaction. &ldquo;While the federal government fails to act, New York is leading the way on AI safety and holding big tech accountable,&rdquo; she said, adding: &ldquo;The stakes are too high to simply take AI companies at their word.&rdquo; The contrast is with the Trump administration&rsquo;s voluntary framework, which relies on companies to disclose their own evaluations. New York is proposing the opposite model: an external tester with a public mandate, funded partly by private money, operating in the same state where many of the largest labs have offices.</p>
+      <p>What the programme will actually test has not been published in detail. The announcement describes testing models and training safety experts, but not which capabilities are in scope, which labs will participate, or whether participation is a condition of doing business with the state. Those omissions are normal at launch and also where the leverage lives. A testing regime with no procurement consequence is a research institute. A testing regime that can disqualify a vendor from state contracts is a regulator &mdash; and New York buys a great deal of technology.</p>
+      <p><span class="hl-terra">The real instrument here is not the $55 million. It is the state&rsquo;s purchasing power and its ability to define a standard that other states copy. California, Texas and Colorado have all moved on AI legislation, and a New York evaluation protocol that becomes the default for state procurement would travel further than any single statute. The risk is capture: an evaluation regime funded by a tech billionaire and staffed by people the labs help train can be rigorous, or it can be a seal of approval. The design of the conflict-of-interest rules will decide which.</span></p>
+      <p>Caveats. $55 million is a rounding error against the labs&rsquo; research budgets, and testing cannot inspect model weights &mdash; only behaviour, on prompts the tester chooses. The RAISE Act may be amended, delayed or preempted by federal action before January. Industry participation is voluntary until procurement rules say otherwise, and the safety-expert pipeline will take years to produce evaluators who can credibly challenge frontier labs. But the direction is clear: the United States is not building a federal AI regulator, so the states are building fifty smaller ones. New York just gave the others a template.</p>
+    </div>
+    <a class="source-link" href="https://www.politico.com/news/2026/11/10/new-york-hochul-first-state-ai-testing-program-01157713" target="_blank">Full story &middot; Politico</a>
+  </div>
+
+  <div id="signals" class="story-card card-cream section-anchor">
+    <div class="page-chip">06 &middot; SIGNALS</div>
+    <div class="card-routine">5 Key Signals</div>
+    <h2 class="card-headline sm">What Moved the Machine Frontier Today</h2>
+    <div class="card-deck" style="border-bottom:none;padding-bottom:0;margin-bottom:16px;">Briefs worth an afternoon of reading.</div>
+    <div class="signals-grid">
+      <div class="signal-row">
+        <div class="signal-num n1">1</div>
+        <div>
+          <div class="signal-title">A Railway Breach Turned Stolen AI Keys Into $740,000 of Someone Else&rsquo;s Inference</div>
+          <div class="signal-desc"><b>Railway</b> disclosed that attackers accessed its internal source code and decrypted customer environment variables for up to <b>1.85%</b> of its workspaces &mdash; about <b>100,000</b> &mdash; and ran up roughly <b>$740,000</b> in fraudulent AI usage. The intrusion began on <b>October 20</b> with a build-infrastructure escape and a misconfigured trust relationship, then became a roughly <b>26-hour</b> contest between the company&rsquo;s engineers and attackers using AI agents. <b>1,852</b> users&rsquo; linked tokens, including GitHub OAuth and AI-agent keys, were caught in the sweep. <b>Wiz</b> links it to the campaign it calls <b>&ldquo;Black October.&rdquo;</b></div>
+          <a class="signal-link" href="https://www.bleepingcomputer.com/news/apple/railway-breach-leads-to-740-000-in-fraudulent-ai-charges/" target="_blank">BleepingComputer &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n2">2</div>
+        <div>
+          <div class="signal-title">IBM Stops Sponsoring Visas and Green Cards for Most of Its Consulting Arm</div>
+          <div class="signal-desc"><b>IBM</b> is ending U.S. visa and green-card sponsorship for the majority of roles in <b>IBM Consulting</b>, its largest division. &ldquo;We have opted to discontinue visa and green card sponsorship for the majority of such roles in IBM Consulting,&rdquo; a spokesperson said, adding that participation in high-skilled visa programmes had been declining for years as client needs and available skills changed. Affected employees can keep working for IBM outside the United States or leave the company. It is the clearest corporate retreat yet from the <b>H-1B</b> pipeline under the current administration.</div>
+          <a class="signal-link" href="https://www.reuters.com/technology/ibm-end-visa-green-card-sponsorship-most-roles-its-consulting-arm-2026-11-10/" target="_blank">Reuters &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n3">3</div>
+        <div>
+          <div class="signal-title">Mercor Doubles Its Valuation to $20 Billion in a Year of Data-Labour Deals</div>
+          <div class="signal-desc"><b>Mercor</b>, which supplies expert data and evaluation work to AI labs, raised <b>$750 million</b> in a Series D led by <b>Benchmark</b> and <b>General Catalyst</b>, with <b>Nvidia</b> participating, at a <b>$20 billion</b> valuation. That is double the <b>$10 billion</b> it was worth in October 2025. The round is a marker for the least glamorous layer of the stack: human expertise, structured into training and evaluation tasks, is now priced like infrastructure because the labs cannot scale past it.</div>
+          <a class="signal-link" href="https://www.reuters.com/legal/transactional/ai-training-startup-mercor-valued-20-billion-latest-funding-round-2026-11-10/" target="_blank">Reuters &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n4">4</div>
+        <div>
+          <div class="signal-title">The CFTC Tells Kalshi It Is About to Be Charged Over Unreported Contracts</div>
+          <div class="signal-desc">The <b>CFTC</b> warned <b>Kalshi</b> that it could bring charges imminently over the prediction market&rsquo;s failure to properly notify the regulator about dozens of new products, <b>Politico</b> reports. Kalshi calls it a &ldquo;procedural error involving the submission of a handful of contracts, many of which weren&rsquo;t live,&rdquo; and says it is addressing the issue. A settlement is possible. The case is small in dollars and large in precedent: prediction markets have spent two years arguing they are exchanges, and exchanges have filing obligations.</div>
+          <a class="signal-link" href="https://www.politico.com/news/2026/11/10/regulator-charges-prediction-market-kalshi-01159140" target="_blank">Politico &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n5">5</div>
+        <div>
+          <div class="signal-title">Point72 Says a Fired Analyst Used Claude and Codex to Steal Quant Code</div>
+          <div class="signal-desc"><b>Cubist Systematic Strategies</b>, Point72&rsquo;s quant arm, sued a former lead research analyst, alleging he used <b>Anthropic&rsquo;s Claude</b> and <b>OpenAI&rsquo;s Codex</b> to &ldquo;systematically review, analyze, and distill&rdquo; the team&rsquo;s research and take source code before joining a competitor, <b>Bloomberg</b> reports. These are allegations in a filing, not findings. But it is the first prominent trade-secrets case built on agentic coding tools, and it turns on a question every fund will now ask: what did the agent read, and who kept the transcript?</div>
+          <a class="signal-link" href="https://www.bloomberg.com/news/articles/2026-11-10/point72-claims-fired-quant-analyst-used-ai-tools-to-steal-code" target="_blank">Bloomberg &#8597;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="themes" class="story-card card-lavender section-anchor">
+    <div class="page-chip">07 &middot; CLOSER</div>
+    <div class="card-routine">Top Themes</div>
+    <h2 class="card-headline sm">The Shape of Today&rsquo;s News</h2>
+    <div class="themes-grid" style="margin-top:16px;">
+      <div class="theme-item">The Seven-Billion Gap</div>
+      <div class="theme-item">The Sixteen Percent</div>
+      <div class="theme-item">The Venice Stack</div>
+      <div class="theme-item">The Swarm Budget</div>
+      <div class="theme-item">The Empire State Test</div>
+    </div>
+
+    <div id="tool" class="tool-week section-anchor">
+      <div class="tool-week-eyebrow">Company Watch of the Day</div>
+      <div class="tool-week-name">WIZ</div>
+      <div class="tool-week-desc">On a day when two labs reported quarterly revenue and a neocloud&rsquo;s bonds yielded 16%, the most useful security document of the week came from a company that sells the fix. <b>Wiz</b> named the campaign <b>&ldquo;Black October&rdquo;</b> &mdash; a run of intrusions against AI developer platforms including <b>Northflank</b>, <b>OpenCode</b>, <b>Warp</b> and <b>Lightning AI</b> &mdash; and its analysis is the clearest explanation of why the Railway breach happened the way it did. The pattern is consistent: attackers go after the keys, not the models. Build systems, CI runners and agent workspaces concentrate cloud credentials, model API keys and OAuth tokens in places that are designed for convenience rather than isolation. Once inside, the intruders can run inference on someone else&rsquo;s bill &mdash; $740,000 in Railway&rsquo;s case &mdash; or quietly distil a model through its own API. Wiz&rsquo;s contribution is the taxonomy: escape the build sandbox, harvest the secrets, then use the platform&rsquo;s own trust relationships to move. The uncomfortable implication for the AI industry is that the security perimeter is now the developer toolchain, and most of it was built by startups that had never been attacked before this quarter.</div>
+    </div>
+
+    <div id="sources" class="output-card section-anchor">
+      <div class="output-title">Sources Cited</div>
+      <div class="sources-grid">
+        <a href="https://www.sec.gov/Archives/edgar/data/2130357/000162828026068676/anthropicpbc-sx1ax1.htm" target="_blank">SEC &mdash; Anthropic amended S-1</a>
+        <a href="https://www.wsj.com/business/earnings/openai-continues-to-suffer-heavy-losses-as-revenue-rises-to-10-billion-d2a96bbb" target="_blank">WSJ &mdash; OpenAI revenue rises to $10B</a>
+        <a href="https://www.bloomberg.com/news/articles/2026-11-10/openai-third-quarter-revenue-soars-nearly-50-to-10-billion" target="_blank">Bloomberg &mdash; OpenAI Q3 revenue soars nearly 50%</a>
+        <a href="https://www.theinformation.com/articles/openai-revenue-jumps-10-billion-third-quarter" target="_blank">The Information &mdash; OpenAI revenue jumps to $10B</a>
+        <a href="https://www.cnbc.com/2026/11/11/anthopic-australian-retail-ipo-offering-.html" target="_blank">CNBC &mdash; Anthropic opens Australian retail offering</a>
+        <a href="https://www.cnbc.com/2026/11/10/coreweave-crwv-q3-earnings-report-2026.html" target="_blank">CNBC &mdash; CoreWeave Q3 earnings</a>
+        <a href="https://www.tomshardware.com/pc-components/cpus/amd-zen-6-epyc-venice-deep-dive-and-benchmarking-dual-epyc-9996-with-1-024-threads-delivers-up-to-93-percent-performance-gain-gen-on-gen-9686f-outclasses-nvidias-vera" target="_blank">Tom&rsquo;s Hardware &mdash; Zen 6 EPYC Venice deep dive</a>
+        <a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/" target="_blank">Google &mdash; Gemini 4 Carbon is now available</a>
+        <a href="https://www.politico.com/news/2026/11/10/new-york-hochul-first-state-ai-testing-program-01157713" target="_blank">Politico &mdash; Hochul launches state AI testing programme</a>
+        <a href="https://www.bleepingcomputer.com/news/apple/railway-breach-leads-to-740-000-in-fraudulent-ai-charges/" target="_blank">BleepingComputer &mdash; Railway breach and $740K in AI charges</a>
+        <a href="https://www.wiz.io/blog/black-october-for-ai-developer-platforms" target="_blank">Wiz &mdash; Black October for AI developer platforms</a>
+        <a href="https://www.reuters.com/technology/ibm-end-visa-green-card-sponsorship-most-roles-its-consulting-arm-2026-11-10/" target="_blank">Reuters &mdash; IBM ends visa and green-card sponsorship</a>
+        <a href="https://www.bloomberg.com/news/articles/2026-11-10/ibm-to-end-immigration-sponsorship-for-roles-in-biggest-unit" target="_blank">Bloomberg &mdash; IBM ends sponsorship in its biggest unit</a>
+        <a href="https://www.reuters.com/legal/transactional/ai-training-startup-mercor-valued-20-billion-latest-funding-round-2026-11-10/" target="_blank">Reuters &mdash; Mercor valued at $20B</a>
+        <a href="https://www.politico.com/news/2026/11/10/regulator-charges-prediction-market-kalshi-01159140" target="_blank">Politico &mdash; CFTC poised to charge Kalshi</a>
+        <a href="https://www.bloomberg.com/news/articles/2026-11-10/point72-claims-fired-quant-analyst-used-ai-tools-to-steal-code" target="_blank">Bloomberg &mdash; Point72&rsquo;s Cubist sues former analyst</a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-logo">
+      <div class="footer-mark"><img src="../assets/timps-postcards.png" alt="TIMPS"></div>
+      <span class="footer-brand">TIMPS PostCards</span>
+    </div>
+    <div class="footer-center">Issue 167 &middot; November 11, 2026<br>Hyderabad, India</div>
+    <div class="footer-right">
+      <a href="../index.html">Home</a><br>
+      <a href="../archive.html">Archive</a><br>
+      &copy; 2026 TIMPS
+    </div>
+  </footer>
+
+
+</div></div>
+</body>
+</html>

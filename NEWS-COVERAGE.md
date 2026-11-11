@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 153 daily issues + 18 deep dives · regenerated 2026-11-10**
+**Coverage: 154 daily issues + 18 deep dives · regenerated 2026-11-11**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 167 · 2026-11-11 · `daily/timps-postcards-2026-11-11.html`
+
+- **[01 · LEAD]** Anthropic Out-Earned OpenAI by Nearly $7 Billion in a Single Quarter
+  - _Anthropic’s amended S-1 puts third-quarter revenue at $16.96 billion, up 1,127% from a year earlier and 47% from the second quarter. OpenAI, according to the Wall Street Journal, crossed $10 billion for the first time. The gap between the two most valuable private AI labs is now about $6.96 billion — and almost all of it opened in twelve months._
+  - Source: [Full filing · SEC](https://www.sec.gov/Archives/edgar/data/2130357/000162828026068676/anthropicpbc-sx1ax1.htm)
+
+- **[02 · CAPITAL]** CoreWeave Grew 168%, Raised Guidance, and Watched Its Bonds Yield 16%
+  - _Revenue came in at $3.66 billion against a $3.55 billion estimate, and the company lifted 2026 guidance to $13 billion to $13.3 billion. Its contracted backlog is $132.5 billion. Its stock is down more than 40% in a month, and some of its bonds now yield above 16%. Growth is no longer the question. The cost of funding it is._
+  - Source: [Full story · CNBC](https://www.cnbc.com/2026/11/10/coreweave-crwv-q3-earnings-report-2026.html)
+
+- **[03 · INFRASTRUCTURE]** AMD Puts 256 Cores and 1,024 Threads in Two Sockets and Calls It Venice
+  - _Zen 6 EPYC is built on TSMC’s N2P process, carries a 27% average IPC uplift over Zen 5, and in a dual-socket EPYC 9996 configuration runs 93% ahead of the 768-thread EPYC 9965 on SPEC CPU 2026. The chip AMD is aiming at Nvidia’s Vera is not a GPU. It is a CPU._
+  - Source: [Full story · Tom’s Hardware](https://www.tomshardware.com/pc-components/cpus/amd-zen-6-epyc-venice-deep-dive-and-benchmarking-dual-epyc-9996-with-1-024-threads-delivers-up-to-93-percent-performance-gain-gen-on-gen-9686f-outclasses-nvidias-vera)
+
+- **[04 · FRONTIER]** Gemini 4 Carbon Sells You a Team of Agents at the Price of One Model
+  - _Google’s new flagship ranks first on CursorBench 4.0, Perplexity’s WANDR and Zapier’s AutomationBench at more than half the cost per task of the next external model. It also previews /swarm, which turns one prompt into a tracked team of agents. The price is unchanged from Argon: $2 per million input tokens, $10 per million output._
+  - Source: [Full story · Google](https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/)
+
+- **[05 · POLICY]** New York Will Test AI Models Before They Ship, and It Is Hiring the Referees
+  - _Governor Kathy Hochul announced the first state-run AI testing programme, paired with a training pipeline for safety experts, funded by $30 million from Tom Secunda and $25 million from the state and SUNY. It launches before New York’s RAISE Act takes effect on January 1._
+  - Source: [Full story · Politico](https://www.politico.com/news/2026/11/10/new-york-hochul-first-state-ai-testing-program-01157713)
+
+  **Signals / briefs:**
+  - A Railway Breach Turned Stolen AI Keys Into $740,000 of Someone Else’s Inference
+  - IBM Stops Sponsoring Visas and Green Cards for Most of Its Consulting Arm
+  - Mercor Doubles Its Valuation to $20 Billion in a Year of Data-Labour Deals
+  - The CFTC Tells Kalshi It Is About to Be Charged Over Unreported Contracts
+  - Point72 Says a Fired Analyst Used Claude and Codex to Steal Quant Code
 
 ### Issue 166 · 2026-11-10 · `daily/timps-postcards-2026-11-10.html`
 

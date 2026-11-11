@@ -151,3 +151,4 @@
 2026-11-08	164	thumb-2026-11-08.jpg	U.S. Cleared Nvidia's Best AI Chips for Chinese Firms With Empty Offices	chip
 2026-11-09	165	thumb-2026-11-09.jpg	Nvidia's Board Opens a Spy Probe After Jensen Huang Admits the Affair	chip
 2026-11-10	166	thumb-2026-11-10.jpg	Anthropic Puts a $1.4 Trillion Price on Itself and Starts the Clock for November 19	chip
+2026-11-11	167	thumb-2026-11-11.jpg	Anthropic Out-Earned OpenAI by Nearly $7 Billion in a Single Quarter	chip
