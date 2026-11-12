@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 154 daily issues + 18 deep dives · regenerated 2026-11-11**
+**Coverage: 155 daily issues + 18 deep dives · regenerated 2026-11-12**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 168 · 2026-11-12 · `daily/timps-postcards-2026-11-12.html`
+
+- **[01 · LEAD]** Nvidia’s Board Is Preparing to Remove Jensen Huang
+  - _Nvidia’s board met on Wednesday evening to decide whether to oust the chief executive of a $4 trillion company that has no succession plan. The stock fell more than 9% after hours and touched a 52-week low. Some directors favour making CFO Colette Kress interim CEO while an outside search firm looks for a permanent one. The board has already briefed the White House._
+  - Source: [Full story · CNBC](https://www.cnbc.com/2026/11/11/nvidia-jensen-huang-affair-employee.html)
+
+- **[02 · DISCLOSURE]** Nvidia Stopped Reporting Singapore, and That Line Was 22% of Revenue
+  - _Singapore was Nvidia’s second-largest region by billings, and it was 22% of revenue in the quarter ended July 2025 — the last quarter the company disclosed it separately, after placing Megaspeed on a blocklist. The line disappeared at exactly the moment the geography became interesting._
+  - Source: [Full story · WSJ](https://www.wsj.com/business/earnings/nvidias-disappearing-singapore-sales-deepen-mystery-around-megaspeed-7d483180)
+
+- **[03 · POLICY]** Washington Is About to Make the Data Centre the Control Point
+  - _Commerce is finalising a rule that would add Singapore, Malaysia, Thailand, Indonesia, Brazil, Norway and South Africa to the export-control list, requiring approval for Blackwell-class chips and reporting on end users. It regulates remote access, not shipping. That is the loophole the hardware rules never closed._
+  - Source: [Full story · The Information](https://www.theinformation.com/articles/commerce-department-finalizing-long-awaited-ai-remote-access-rule)
+
+- **[04 · INFRASTRUCTURE]** SMIC Grew 34%, Doubled Profit, and Ran Its Fabs at 97%
+  - _Revenue of $3.19 billion, gross margin of 29.9% against guidance of 26% to 28%, and utilisation of 97.3%. China was 90.8% of the business, and industrial and automotive demand nearly doubled its share in a year. The most sanctioned foundry in the world just posted its best quarter._
+  - Source: [Full results · HKEX filing](https://www1.hkexnews.hk/listedco/listconews/sehk/2026/1112/2026111200682.pdf)
+
+- **[05 · LABOUR]** Tencent Wants Half Its People on AI-Native Business, and Denies That Means Layoffs
+  - _Pony Ma told staff the industry has entered an “Age of Discovery” and that he is willing to redeploy 50% of the workforce from the “army” to the “navy.” Chinese social media read it as a 50% cut, crashed a career app, and forced a public denial within a day._
+  - Source: [Full story · Bloomberg](https://www.bloomberg.com/news/articles/2026-11-12/tencent-founder-rallies-half-of-staff-behind-ai-native-push)
+
+  **Signals / briefs:**
+  - Foxconn’s Profit Rose 34% and Its Chairman Said Supply Will Stay Tight
+  - CoreWeave Is Trying to Swap 16% Junk for a 7% Investment-Grade Loan
+  - AWS Shipped a Tool Its Engineers Did Not Write or Review a Single Line Of
+  - Google Sells Decisions by the Thousand at Ten Cents a Million Tokens
+  - Young People Whose Photos Grok Sexualised Are Going After xAI Directly
 
 ### Issue 167 · 2026-11-11 · `daily/timps-postcards-2026-11-11.html`
 
