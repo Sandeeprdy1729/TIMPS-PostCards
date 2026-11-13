@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TIMPS">
+<link rel="manifest" href="../manifest.json">
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/icon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/icon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="../assets/icon-48.png">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="../assets/icon-180.png">
+<title>TIMPS PostCards — Issue 169</title>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --cream:  #EEECE2;
+    --forest: #3D3929;
+    --terra:  #DA7756;
+    --terra-d:#BD5D3A;
+    --black:  #111111;
+    --card-bg:#F0ECE0;
+    --mono:   'Newsreader', Georgia, 'Times New Roman', serif;
+    --serif:  'TIMPS', 'Playfair Display', Georgia, serif;
+  }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Black.woff2') format('woff2'); font-weight:900; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Bold.woff2') format('woff2'); font-weight:700; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-SemiBold.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--cream);
+    background-image:
+      linear-gradient(rgba(61,57,41,.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.07) 1px, transparent 1px);
+    background-size: 38px 38px;
+    font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+    color: var(--forest);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { text-decoration: none; color: inherit; }
+
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 48px;
+    background-color: rgba(238,236,226,.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1.5px solid rgba(61,57,41,.12);
+    background-image:
+      linear-gradient(rgba(61,57,41,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.05) 1px, transparent 1px);
+    background-size: 38px 38px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Special Elite', 'Courier New', Courier, monospace;
+    font-size: 15px;
+    font-weight: 400;
+    color: #000;
+    text-decoration: none;
+  }
+  .nav-logo-mark {
+    width: 34px; height: 34px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .nav-logo-mark img { width: 28px; height: 28px; object-fit: contain; }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-link {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: #000;
+    opacity: .65;
+    text-decoration: none;
+    transition: opacity .15s;
+  }
+  .nav-link:hover { opacity: 1; }
+  .nav-cta {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: #000;
+    background: var(--terra);
+    border: 2.5px solid #000;
+    border-radius: 100px;
+    padding: 10px 24px;
+    cursor: pointer;
+    transition: background .15s, transform .1s;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--terra-d); transform: translateY(-1px); }
+
+  .wrapper { max-width: 760px; margin: 0 auto; padding: 40px 20px 80px; display: flex; flex-direction: column; gap: 0; }
+
+  .cover-card { background: var(--card-bg); border-radius: 20px 20px 4px 4px; padding: 56px 48px 48px; text-align: center; position: relative; overflow: hidden; border: 1.5px solid rgba(61,57,41,.12); margin-bottom: 3px; }
+  .cover-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, var(--terra) 0%, var(--terra-d) 60%, #E0A88A 100%); }
+  .cover-eyebrow { font-family: var(--mono); font-size:10px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:20px; display:flex; align-items:center; justify-content:center; gap:10px; }
+  .cover-eyebrow::before,.cover-eyebrow::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .15; max-width:60px; }
+  .cover-title { font-family: var(--serif); font-size:58px; font-weight:900; line-height:1; letter-spacing:-1px; color: var(--forest); margin-bottom:8px; }
+  .cover-sub { font-family: var(--serif); font-size:13px; font-style:italic; color: var(--forest); opacity: .55; margin-bottom:28px; }
+  .cover-divider { width:48px; height:2px; background: var(--terra); margin:0 auto 24px; border-radius:2px; }
+  .cover-meta { display:flex; justify-content:center; gap:32px; font-family: var(--mono); font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .45; }
+  .cover-badge { display:inline-flex; align-items:center; gap:6px; background: var(--terra); color: #fff; border-radius:20px; padding:6px 18px; font-family: var(--mono); font-size:10px; letter-spacing:2px; text-transform:uppercase; margin-top:28px; }
+  .top5-pill { display:flex; justify-content:center; gap:10px; margin-top:32px; flex-wrap:wrap; }
+  .pill { background: var(--forest); color: var(--cream); border-radius:100px; padding:4px 14px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; }
+  .pill.light { background:transparent; color: var(--forest); border:1px solid rgba(61,57,41,.2); }
+
+  .section-label { display:flex; align-items:center; gap:12px; padding:10px 0 8px; font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .35; }
+  .section-label::before,.section-label::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .1; }
+
+  .story-card { border-radius:4px; border:1.5px solid rgba(61,57,41,.10); padding:36px 40px; margin-bottom:3px; position:relative; overflow:hidden; }
+  .story-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }
+
+  .card-sky      { background:#D6E8F0; } .card-sky::before      { background: #7AAFC0; }
+  .card-cream    { background: var(--card-bg); } .card-cream::before    { background: var(--terra); }
+  .card-blush    { background:#F5DDD0; } .card-blush::before    { background: #E0A88A; }
+  .card-lavender { background:#EAE6F5; } .card-lavender::before { background: #C8BEE8; }
+  .card-sage     { background:#D6E4D6; } .card-sage::before     { background: #8BAF8B; }
+
+  .page-chip { position:absolute; top:14px; right:16px; font-family: var(--mono); font-size:9px; letter-spacing:2px; text-transform:uppercase; color: var(--forest); opacity: .3; }
+  .card-routine { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:8px; }
+  .card-headline { font-family: var(--serif); font-size:28px; font-weight:900; line-height:1.15; color: var(--forest); margin-bottom:10px; }
+  .card-headline.lg { font-size:34px; }
+  .card-headline.sm { font-size:22px; }
+  .card-deck { font-family: var(--serif); font-style:italic; font-size:14px; line-height:1.55; color: var(--forest); opacity: .55; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid rgba(61,57,41,.12); }
+  .card-body { font-family: 'Lora', Georgia, serif; font-size:14px; line-height:1.7; color: var(--forest); }
+  .card-body p { margin-bottom:11px; }
+  .drop::first-letter { font-family: var(--serif); font-size:52px; font-weight:900; float:left; line-height:.78; margin:5px 6px 0 0; color: var(--terra); }
+  .clearfix::after { content:''; display:table; clear:both; }
+
+  .hl-terra { background: var(--terra); color: var(--forest); padding:0 4px; border-radius:2px; }
+  .hl-ink  { background: var(--forest); color: var(--cream); padding:0 4px; border-radius:2px; }
+  .hl-sage { background: #8BAF8B; color: #fff; padding:0 4px; border-radius:2px; }
+  .hl-lav  { background: #C8BEE8; color: var(--forest); padding:0 4px; border-radius:2px; }
+
+  .stat-box { float:right; margin:0 0 16px 24px; background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:16px 20px; text-align:center; min-width:120px; }
+  .stat-big { font-family: var(--serif); font-size:44px; font-weight:900; line-height:1; color: var(--forest); display:block; }
+  .stat-label { font-family: var(--mono); font-size:9.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .5; display:block; margin-top:4px; }
+
+  .img-frame { border:2px solid rgba(61,57,41,0.18); border-radius:12px; overflow:hidden; margin:16px 0; background: var(--card-bg); }
+  .img-frame img { width:100%; display:block; max-height:240px; object-fit:cover; border-bottom:1px solid rgba(61,57,41,.12); }
+  .img-caption { padding:8px 12px; font-family: var(--mono); font-size:10.5px; color: var(--forest); opacity: .6; font-style:italic; display:flex; align-items:center; justify-content:space-between; gap:8px; }
+  .img-caption a { font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; white-space:nowrap; font-style:normal; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; }
+  .img-caption a:hover { opacity: 1; }
+  .img-frame.float-right { float:right; width:220px; margin:0 0 16px 24px; }
+  .img-frame.float-right img { max-height:140px; }
+
+  .source-link { display:inline-flex; align-items:center; gap:5px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:12px; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; transition: opacity .15s; }
+  .source-link:hover { opacity: 1; }
+  .source-link::after { content:'↗'; font-size:9px; }
+
+  .signals-grid { display:flex; flex-direction:column; gap:14px; }
+  .signal-row { display:flex; align-items:flex-start; gap:14px; }
+  .signal-num { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family: var(--serif); font-size:13px; font-weight:900; flex-shrink:0; color:#fff; }
+  .signal-num.n1{background: var(--terra); color: var(--forest);} .signal-num.n2{background: var(--forest);} .signal-num.n3{background:#7AAFC0;} .signal-num.n4{background: var(--terra-d); color: var(--forest);} .signal-num.n5{background: var(--black);}
+  .signal-title { font-family: var(--serif); font-size:14px; font-weight:700; color: var(--forest); margin-bottom:2px; }
+  .signal-desc { font-family: 'Newsreader', Georgia, 'Times New Roman', serif; font-size:12px; line-height:1.65; color: var(--forest); opacity: .6; }
+  .signal-link { display:inline-block; font-family: var(--mono); font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:4px; border-bottom:1px solid rgba(61,57,41,.25); padding-bottom:1px; transition: opacity .15s; }
+  .signal-link:hover { opacity: 1; }
+
+  .themes-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .theme-item { padding:10px 14px; border-radius:8px; font-family: var(--serif); font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; text-align:center; border:1.5px solid rgba(61,57,41,.12); background: var(--cream); }
+
+  .tool-week { background: var(--forest); color: var(--cream); border-radius:12px; padding:18px 20px; text-align:center; margin-top:14px; }
+  .tool-week-eyebrow { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; opacity: .55; margin-bottom:6px; }
+  .tool-week-name { font-family: var(--serif); font-size:22px; font-weight:900; margin-bottom:4px; }
+  .tool-week-desc { font-family: 'Newsreader', Georgia, 'Times New Roman', serif; font-size:11.5px; opacity: .7; font-style:italic; }
+
+  .output-card { background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:18px 20px; margin-top:14px; }
+  .output-title { font-family: var(--serif); font-size:18px; font-weight:700; margin-bottom:8px; color: var(--forest); }
+  .tp-list { list-style:none; padding:0; margin:0; }
+  .tp-list li { padding:5px 0; font-family: 'Lora', Georgia, serif; font-size:12px; color: var(--forest); border-bottom:1px solid rgba(61,57,41,.07); display:flex; align-items:flex-start; gap:7px; }
+  .tp-list li::before { content:'·'; color: var(--terra); font-size:14px; line-height:1.2; flex-shrink:0; }
+  .tp-list li a { color: var(--forest); opacity: .8; text-decoration:none; }
+  .tp-list li a:hover { opacity: 1; }
+
+  .sources-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px 20px; }
+  .sources-grid a { font-family: var(--mono); font-size:11px; color: var(--forest); opacity: .55; text-decoration:none; border-bottom:1px solid rgba(61,57,41,.15); padding-bottom:1px; transition: opacity .15s; }
+  .sources-grid a:hover { opacity: 1; }
+
+  .footer {
+    background: var(--black);
+    padding: 28px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    border-radius: 4px 4px 20px 20px;
+    margin-top: 3px;
+  }
+  .footer-logo { display: flex; align-items: center; gap: 10px; }
+  .footer-mark { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; }
+  .footer-mark img { width: 24px; height: 24px; object-fit: contain; }
+  .footer-brand { font-family: 'Special Elite', 'Courier New', Courier, monospace; font-size: 13px; font-weight: 400; color: #fff; }
+  .footer-center { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.4); text-align: center; line-height: 1.6; }
+  .footer-right { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.3); text-align: right; line-height: 2; }
+  .footer-right a { color: rgba(255,255,255,.5); transition: color .15s; }
+  .footer-right a:hover { color: #fff; }
+
+  .page-layout { display: flex; align-items: flex-start; gap: 0; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+  .toc-sidebar { position: sticky; top: 80px; width: 170px; flex-shrink: 0; padding: 48px 0 0 0; }
+  .toc-nav { display: flex; flex-direction: column; gap: 0; }
+  .toc-link { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.5px; text-transform: uppercase; color: #000; opacity: .45; text-decoration: none; padding: 7px 12px; border-left: 2px solid transparent; transition: opacity .15s, border-color .15s; line-height: 1.3; }
+  .toc-link:hover { opacity: .85; }
+  .toc-link.active { opacity: 1; border-left-color: var(--terra); }
+  .section-anchor { scroll-margin-top: 80px; }
+
+  @media (max-width: 900px) {
+    .toc-sidebar { display: none; }
+    .page-layout { max-width: 760px; }
+  }
+
+  @media (max-width: 720px) {
+    .nav { padding: 12px 24px; }
+    .nav-links { display: none; }
+    .wrapper { padding: 20px 14px 60px; }
+    .cover-card { padding: 40px 24px; }
+    .story-card { padding: 28px 20px; }
+    .footer { padding: 24px; flex-direction: column; align-items: flex-start; }
+    .footer-center, .footer-right { text-align: left; }
+    .stat-box { float: none; margin: 0 0 16px 0; }
+    .img-frame.float-right { float: none; width: 100%; margin: 0 0 16px 0; }
+  }
+  @media (max-width: 480px) {
+    .nav-logo span { display: none; }
+    .cover-title { font-size: 40px; }
+    .card-headline.lg { font-size: 28px; }
+    .card-headline { font-size: 24px; }
+  }
+</style>
+
+</head>
+
+<body>
+
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">
+    <div class="nav-logo-mark"><img src="../assets/timps-postcards.png" alt="TIMPS"></div>
+    <span>TIMPS PostCards</span>
+  </a>
+  <div class="nav-links">
+    <a href="../articles.html" class="nav-link">Articles</a>
+    <a href="../archive.html" class="nav-link">Archive</a>
+    <a href="timps-postcards-2026-11-13.html" class="nav-link">Latest Issue</a>
+    <a href="../index.html#subscribe" class="nav-link">Subscribe</a>
+  </div>
+  <a href="../index.html#subscribe" class="nav-cta">Subscribe</a>
+</nav>
+
+<div class="page-layout">
+  <aside class="toc-sidebar">
+    <nav class="toc-nav">
+      <a href="#lead" class="toc-link">The Order Without the Money</a>
+      <a href="#capital" class="toc-link">The Billion-Dollar Series A</a>
+      <a href="#debt" class="toc-link">The 25% Floor</a>
+      <a href="#security" class="toc-link">The Face on the Call</a>
+      <a href="#china" class="toc-link">The Annual Mark</a>
+      <a href="#signals" class="toc-link">Signals</a>
+      <a href="#themes" class="toc-link">Themes</a>
+      <a href="#tool" class="toc-link">Watch</a>
+      <a href="#sources" class="toc-link">Sources</a>
+    </nav>
+  </aside>
+
+  <div class="wrapper">
+
+  <div id="intro" class="cover-card section-anchor">
+    <div class="cover-eyebrow">Est. 2026 &middot; Hyderabad</div>
+    <div class="cover-title">TIMPS<br>PostCards</div>
+    <div class="cover-sub">AI Intelligence Digest &middot; Your Daily Signal from the Machine Frontier</div>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+      <span>Issue 169</span>
+      <span>November 13, 2026</span>
+      <span>No. 196</span>
+    </div>
+    <div class="cover-badge">&#11041; 169 Issues &mdash; Built with the TIMPS Ecosystem</div>
+    <div class="top5-pill">
+      <span class="pill">5 Top Signals</span>
+      <span class="pill light">The Order Without the Money</span>
+      <span class="pill light">The Billion-Dollar Series A</span>
+      <span class="pill light">The 25% Floor</span>
+      <span class="pill light">The Face on the Call</span>
+      <span class="pill light">The Annual Mark</span>
+    </div>
+  </div>
+
+  <div id="lead" class="story-card card-blush section-anchor">
+    <div class="page-chip">01 &middot; LEAD</div>
+    <div class="card-routine">Compute Finance &middot; The Order Without the Money</div>
+    <h2 class="card-headline lg">Nscale Ordered $45 Billion of Nvidia Chips for Anthropic. Now It Says It Needs More Money.</h2>
+    <div class="card-deck">Nscale&rsquo;s amended IPO filing shows third-quarter revenue of $307.5 million, up 1,344% year on year, and a net loss of $1.69 billion that widened from $1.02 billion. The same document tells investors the company must raise more money to meet 2027 commitments on the Anthropic contracts &mdash; a funding gap inside the deal that was meant to prove the demand is real.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">$1.69B</span>
+        <span class="stat-label">third-quarter net loss, on $307.5 million of revenue</span>
+      </div>
+      <p class="drop"><b>Nscale</b>, the London-based &ldquo;neocloud&rdquo; that rents out Nvidia GPUs, released an updated prospectus for its New York listing on Thursday, and the numbers read like a company sprinting while the ground moves underneath it. Third-quarter revenue was <b>$307.5 million</b>, up <b>1,344%</b> from a year earlier and roughly double the <b>$140.6 million</b> it booked in the second quarter. The net loss was <b>$1.69 billion</b>, up from <b>$1.02 billion</b> in the second quarter. Revenue grew 119% in three months. The loss grew 66%. Neither number is the one that matters most.</p>
+      <p>The important disclosure is about financing. The <b>Financial Times</b> reports that the filing tells investors Nscale must obtain additional financing to fulfil its Anthropic contracts and meet commitments that come due in <b>2027</b>. That is the awkward sentence in a document that exists to sell growth: the company has ordered Nvidia chips against a <b>$45 billion</b> Anthropic deal, and it now says it does not yet have all the money to pay for them on the schedule the deal requires. The FT frames the disclosure as casting doubt on a listing it describes as a <b>$35 billion</b> IPO.</p>
+      <p>The customer book is thinner than the backlog implies. <b>Microsoft</b> walked away from an Nscale data centre in England this year, and decided against renewing a contract with Nscale in Texas &mdash; a retreat the company addresses in the filing by saying it expects Microsoft to be a &ldquo;significant customer in future periods.&rdquo; That sentence is a hope, not a contract.</p>
+      <p>The demand on the other side is real and enormous. <b>Anthropic</b> set the price range for its own IPO this week at <b>$70 to $78</b> a share, offering <b>825 million</b> shares, up to <b>$64.35 billion</b> in proceeds and a fully diluted valuation of up to <b>$1.405 trillion</b>. It plans to price on <b>November 18</b> and trade on <b>November 19</b> under the ticker <b>ANT</b>. Its revised S-1 disclosed <b>$17 billion</b> of third-quarter revenue and <b>$895.4 billion</b> of purchase commitments. In late September it exercised a right to contract for additional capacity at Nscale&rsquo;s West Virginia site. So Nscale&rsquo;s largest customer is a company that has promised nearly <b>$900 billion</b> of future purchases and is raising capital to fund them. The chain of commitments runs from a lab&rsquo;s S-1 to a neocloud&rsquo;s prospectus to a chipmaker&rsquo;s order book, and every link is a promise rather than cash.</p>
+      <p><span class="hl-terra">This is what 1,344% growth actually costs. In a rental business, revenue is recognised when capacity is contracted, but the chips are paid for when they are ordered and the building is paid for when it is built. The financing has to exist in the gap between the two, and when the customer signs a long contract while the supplier demands short payment terms, that gap widens with every deal you win. A neocloud growing this fast is not describing demand that has been proven; it is describing how much capital it must raise before the demand becomes revenue. That is a legitimate business model. It is also one where the growth rate and the financing risk are the same number read in different directions.</span></p>
+      <p>Caveats. &ldquo;Additional financing&rdquo; is boilerplate in pre-IPO documents, and needing it is not the same as being unable to get it. The $45 billion figure, the 2027 commitments and the $35 billion listing are as the FT reported them from the filing; Nscale has not said publicly how much it intends to raise, and the amended prospectus did not attach a size to the offering. Microsoft&rsquo;s departures could reflect power, permits or pricing rather than doubt about Nscale, and the company says it expects the relationship to continue. Anthropic&rsquo;s purchase commitments are not all Nscale&rsquo;s, and a commitment is cancellable in ways a backlog is not. But the sequence is worth watching: <b>CoreWeave</b> fell about <b>7%</b> on Thursday after <b>Jensen Huang</b> resigned, which tells you the equity market has already decided that neocloud valuations are a derivative of Nvidia&rsquo;s governance. If Nscale prices into that, the AI trade gets its first proper test of whether contracted revenue can be financed at a price the buyer will pay.</p>
+    </div>
+    <a class="source-link" href="https://www.cnbc.com/2026/11/12/nscale-updates-ipo-prospectus-that-shows-widening-loss.html" target="_blank">Full story &middot; CNBC</a>
+  </div>
+
+  <div id="capital" class="story-card card-sky section-anchor">
+    <div class="page-chip">02 &middot; CAPITAL</div>
+    <div class="card-routine">Venture &middot; The Billion-Dollar Series A</div>
+    <h2 class="card-headline">Six Months After a $200 Million Seed, Mirendil Raised $1 Billion</h2>
+    <div class="card-deck">The company was founded by former Anthropic researchers to build tools for frontier AI research and development, and Kleiner Perkins and Clearlake Capital led the round. The bet is that in a market spending hundreds of billions on compute, the most valuable software is the software that makes the next model cheaper to build.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">$1B</span>
+        <span class="stat-label">Series A, six months after a $200 million seed round</span>
+      </div>
+      <p class="drop"><b>Mirendil</b>, a startup founded by former <b>Anthropic</b> researchers, has raised a <b>$1 billion</b> Series A led by <b>Kleiner Perkins</b> and <b>Clearlake Capital</b>, the <b>Wall Street Journal</b> reported. The round lands roughly six months after the company announced a <b>$200 million</b> seed. Its stated business is tools for frontier AI research and development &mdash; the unglamorous layer of data pipelines, evaluation harnesses, training orchestration and agent scaffolding that sits between a lab&rsquo;s researchers and its GPUs.</p>
+      <p>Six months between a $200 million seed and a $1 billion A is not a normal financing cadence. It is a statement about scarcity. There are perhaps a few hundred people on earth who have run frontier-scale training, and fewer still who have run the data and evaluation infrastructure underneath it. Companies that can hire them are bidding for a supply that does not expand when capital arrives. The premium shows up as compressed time between rounds rather than as a higher price on the same round, because founders who do not need money still take it when the terms are good and the partner is useful.</p>
+      <p>The economic logic is straightforward even if the product is not. Anthropic reported <b>$33.24 billion</b> of revenue for the nine months to September and <b>$895.4 billion</b> of purchase commitments in its revised S-1. A lab spending at that scale on compute has an enormous incentive to spend less per experiment. A tool that cuts the cost of a training run by <b>20%</b>, or raises the fraction of experiments that produce a usable result, is worth more than a model that scores two points higher on a benchmark. Model performance is a public number that competitors can match. Research throughput compounds privately, and it does not get copied by a rival&rsquo;s next release.</p>
+      <p>This is also the layer where the labs&rsquo; own incentives get complicated. Everything Mirendil sells, Anthropic and OpenAI can build in-house, and historically they have: internal platforms teams at the big labs are large, well funded and physically close to the researchers whose workflows they are optimising. The startup&rsquo;s argument has to be that the tooling generalises across labs &mdash; that a customer with a different architecture, a different data mix and a different safety stack still needs the same orchestration. That is plausible for infrastructure and much less plausible for anything that encodes research taste.</p>
+      <p><span class="hl-ink">Read the round as a comment on the cost of intelligence rather than on one company. For two years the venture market paid for models and applications; the money is now moving to the layer that determines how efficiently capital converts into capability. That is a more defensible business, because it is paid out of budgets that already exist and it does not require winning a consumer market. It is also a business that has to survive its customers&rsquo; build-versus-buy decisions, and those decisions are made by people who used to be Mirendil&rsquo;s founders&rsquo; colleagues.</span></p>
+      <p>Caveats. Mirendil has not disclosed its valuation, revenue or customer list, and &ldquo;tools for frontier AI R&amp;D&rdquo; is a description broad enough to cover almost anything. The $1 billion figure and the six-month gap come from the WSJ&rsquo;s reporting. A large round is not evidence of product-market fit, and in this market it is often evidence of competition among a small number of late-stage funds. Six months from seed to a $1 billion A also compresses the time available to prove the thing works, because the next round will be priced against expectations set today. Watch two things: whether the company publishes benchmarks showing a measurable speed-up on real training workloads, and whether it signs a lab other than the one its founders left.</p>
+    </div>
+    <a class="source-link" href="https://www.wsj.com/pro/venture-capital/this-startup-raised-1-billion-to-build-ai-faster-and-with-fewer-humans-f7f07a59" target="_blank">Full story &middot; WSJ</a>
+  </div>
+
+  <div id="debt" class="story-card card-sage section-anchor">
+    <div class="page-chip">03 &middot; DEBT</div>
+    <div class="card-routine">Structured Finance &middot; The Backstop</div>
+    <h2 class="card-headline">Nvidia&rsquo;s $500 Billion Financing Vehicle Needed a Bigger Guarantee. Nobody Signed.</h2>
+    <div class="card-deck">Nvidia announced a $500 billion vehicle this summer to finance AI chip purchases. Before Jensen Huang&rsquo;s exit it was already stuck: asset managers wanted a larger backstop than the 25% residual-value support the company was offering, and the deals had not closed.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">25%</span>
+        <span class="stat-label">residual-value support Nvidia was offering; investors wanted more</span>
+      </div>
+      <p class="drop">The <b>$500 billion</b> financing vehicle <b>Nvidia</b> announced this summer was supposed to answer the awkward question underneath the AI buildout: who pays for the chips? <b>Bloomberg</b> reports that before <b>Jensen Huang</b> resigned on Thursday, the vehicle was already running into trouble, with asset managers pressing Nvidia to boost the <b>residual-value support backstop</b> it was offering above <b>25%</b>. The concern, according to the reporting, is that the guarantee is too low. No deals had closed.</p>
+      <p>Residual-value support is a promise about the future price of a depreciating asset. A GPU lease assumes the hardware will be worth something at the end of the term; if its market value falls below that assumption, the party providing support covers the difference, up to a cap. Nvidia offering 25% means investors absorb the first slice of any shortfall. For a financier underwriting a long lease on an asset whose useful economic life is genuinely contested &mdash; Nvidia depreciates GPUs over roughly five to six years, while critics argue each generation leapfrogs the last &mdash; the size of that first slice is the whole trade. Raise it and the vehicle becomes a bond. Leave it and the vehicle is an equity bet on AI demand wearing a bond&rsquo;s clothes.</p>
+      <p>That is why the standoff matters more than the headline number. A $500 billion vehicle does not need Nvidia&rsquo;s balance sheet to work; it needs a rating. Rating agencies will model the residual-value assumption, the counterparty quality and the governance of the guarantor. A 25% backstop from a company with a founder-chief executive, an active board investigation and a 52-week low is a different credit from the same 25% written by an institutionally run chipmaker. The counterparties were asking for more protection before the governance shock, not after it, which tells you the negotiation was always about how much of the downside Nvidia would keep.</p>
+      <p>The timing is the part that should worry the AI trade. The vehicle was announced in the summer, when the story was demand. By November it had not closed a deal, and the chief executive who personally underwrote it &mdash; the person whose credibility was the collateral &mdash; had resigned after a spy scandal and two admitted affairs. Financing structures of this kind depend on a named human being willing to stand behind them. When the human goes, the structure does not automatically fail; it gets repriced, by people who now have to explain to their own investment committees why the guarantor&rsquo;s board is under investigation.</p>
+      <p><span class="hl-terra">Follow the circle and the vehicle is not a surprise. Nvidia sells the chips, arranges the financing for the buyer, guarantees part of the residual value, and in some cases invests in the customer&rsquo;s equity. Each step is defensible on its own; a vendor helping a customer finance a purchase is as old as the instalment plan. What is new is the scale and the stacking &mdash; when one company is simultaneously supplier, lender, guarantor and shareholder, the credit quality of the whole chain converges on the supplier&rsquo;s own balance sheet. The 25% figure is where that convergence becomes a number, and the number was not enough for the people being asked to lend against it.</span></p>
+      <p>Caveats. The terms are private and the reporting is sourced; the 25% is a support level, not an estimate of losses, and a bigger backstop may still be agreed. A vehicle with no closed deals is not a failed vehicle &mdash; large structured financings routinely take a year to paper. Some of the pressure may be routine negotiation rather than a signal about AI demand. But the vehicle&rsquo;s fate is now a clean read on something the equity market cannot see: whether institutional buyers of AI paper will lend against contracted compute at a price the industry can afford. If the answer is yes, the buildout continues. If the answer is a higher backstop, Nvidia is financing its customers&rsquo; risk at the precise moment its board is searching for a new chief executive.</p>
+    </div>
+    <a class="source-link" href="https://www.bloomberg.com/news/articles/2026-11-12/nvidia-faced-pressure-to-boost-its-ai-backstop-before-huang-exit" target="_blank">Full story &middot; Bloomberg</a>
+  </div>
+
+  <div id="security" class="story-card card-lavender section-anchor">
+    <div class="page-chip">04 &middot; SECURITY</div>
+    <div class="card-routine">Cybercrime &middot; The Face on the Call</div>
+    <h2 class="card-headline">North Korea Stole $400 Million by Showing Up to Video Calls as Someone Else</h2>
+    <div class="card-deck">The FBI says state-backed hackers used &ldquo;FaceStealer&rdquo; &mdash; fake video calls built on AI deepfakes &mdash; to compromise crypto firms and take more than $400 million in 18 months. On the same day, the Justice Department seized $1.2 billion tied to the Binance hack and said it had disrupted the tooling.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">$400M+</span>
+        <span class="stat-label">crypto stolen over 18 months using FaceStealer, per the FBI</span>
+      </div>
+      <p class="drop">The <b>FBI</b> said this week that North Korean state-backed hackers have stolen more than <b>$400 million</b> in cryptocurrency over the past 18 months using a scheme it calls <b>&ldquo;FaceStealer&rdquo;</b>, built on fake video calls and AI-generated deepfakes. The technique is not exotic. An attacker poses as a colleague, a recruiter or an executive on a video call, using a synthesised face and voice convincing enough to survive the first thirty seconds, and uses that trust to obtain credentials, a screen share, or a single clicked file.</p>
+      <p>The same day brought the enforcement side. The <b>Justice Department</b> announced actions to disrupt North Korea&rsquo;s cryptocurrency theft, including the seizure of <b>$1.2 billion</b> tied to the hack of <b>Binance</b> and the takedown of infrastructure associated with FaceStealer. <b>CoinDesk</b> reported the DOJ targeting $1.2 billion in stolen crypto; <b>The Record</b> reported the seizure and the disruption of the tooling; <b>Bloomberg</b> put the total freeze at <b>$2.7 billion</b>. Binance, according to <b>Korea JoongAng Daily</b>, is covering <b>$6.34 billion</b> in losses from the North Korea-linked attack. The numbers vary by what is being counted &mdash; stolen, traced, frozen, seized, reimbursed &mdash; and the variation is part of the story.</p>
+      <p>For years the intrusion playbook was technical: phish a wallet, exploit a bridge, compromise a key. FaceStealer attacks the authentication step that most organisations treat as the last line &mdash; a human being looking at another human being and deciding that they are who they say they are. Deepfakes make that judgment unreliable at exactly the moment remote work made it the default. The compensating controls are procedural rather than perceptual: hardware security keys, out-of-band confirmation for transfers above a threshold, dual authorisation, allowlists of approved beneficiaries. None of them are expensive. They are simply inconvenient, which is why they are unevenly deployed.</p>
+      <p>The crypto focus is not incidental. North Korea&rsquo;s weapons programme runs on stolen convertible assets, and crypto is the most efficient way to turn an intrusion into hard currency without a banking system that will ask questions. UN panels have tracked this for years; the cumulative total runs into the billions. The strategic logic of using AI to compromise humans rather than systems is that the humans hold the credentials the systems are designed to trust. Every defence built on &ldquo;verify the person&rdquo; assumes a person can be verified.</p>
+      <p><span class="hl-ink">The uncomfortable conclusion is that identity verification is now a media problem. A face was once a biometric. It is now a file that can be generated, and the same diffusion models sold as creative tools will produce it in seconds. Firms that treat a video call as verification are running a control that no longer maps to the threat, and they will not find out until the transfer has cleared. The lesson of FaceStealer is not that deepfakes are convincing. It is that authentication was quietly outsourced to human perception, and perception is the one layer nobody can patch.</span></p>
+      <p>Caveats. Attribution to North Korean state actors comes from the FBI and the Justice Department; independent confirmation is limited, and Pyongyang routinely denies involvement. The $400 million figure covers FaceStealer-linked thefts specifically and is not the total attributed to the group. The seizure figures reported by different outlets measure different things and should not be added together. A seizure is not restitution &mdash; funds are held pending forfeiture, and victims may recover a fraction. But the operational point stands regardless of the accounting: the attack worked because it targeted trust, and trust gets cheaper to synthesise every quarter.</p>
+    </div>
+    <a class="source-link" href="https://www.justice.gov/opa/pr/justice-department-announces-actions-disrupt-north-koreas-massive-theft-cryptocurrency" target="_blank">Full story &middot; US DOJ</a>
+  </div>
+
+  <div id="china" class="story-card card-cream section-anchor">
+    <div class="page-chip">05 &middot; CHINA</div>
+    <div class="card-routine">Private Markets &middot; The Annual Mark</div>
+    <h2 class="card-headline">ByteDance Bought Back $6 Billion of Itself at $400 Billion</h2>
+    <div class="card-deck">A letter to investors offers to buy up to $6 billion of shares at a valuation around $400 billion, roughly 20% above last year&rsquo;s buyback. TikTok&rsquo;s owner is marking itself higher in a year when almost every other technology asset was repriced down.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">$400B</span>
+        <span class="stat-label">implied valuation in the buyback, about 20% above 2025</span>
+      </div>
+      <p class="drop"><b>ByteDance</b> plans to buy back up to <b>$6 billion</b> of its own shares from existing investors at a valuation of roughly <b>$400 billion</b>, according to a letter to investors reported by <b>The Information</b>. That is about <b>20%</b> above the valuation implied by its buyback last year, which would put the 2025 mark near <b>$333 billion</b>.</p>
+      <p>For a company with no public shares, the annual buyback is the price. It is the event that sets the mark for employee options, gives early backers a way out, and tells the private market what the largest unlisted technology company in the world thinks it is worth. ByteDance has run this process for several years, and the direction of the number has become a proxy for Chinese consumer technology sentiment. A 20% step-up is a statement: advertising is stabilising, e-commerce is growing, and the company&rsquo;s AI investments &mdash; its <b>Doubao</b> models and the compute behind them &mdash; are being valued as an option rather than a cost.</p>
+      <p>The context is what makes the mark interesting. <b>TikTok</b>&rsquo;s American operations remain subject to a joint-venture arrangement whose final shape is still being argued, and the company&rsquo;s two largest markets, China and the United States, are in a state of managed antagonism. A year ago the assumption in the private market was that the TikTok overhang capped ByteDance&rsquo;s multiple. The buyback implies investors have decided the cap is temporary or already priced.</p>
+      <p>There is a mechanical reason buybacks happen at moments like this. Employees with vested shares need liquidity, and a company that cannot offer a public listing has to manufacture one internally or watch its best people leave for startups that pay cash. A $6 billion buyback is large enough to clear the queue and small enough not to strain the balance sheet. It also lets the company set the price rather than discover it, which is the advantage of being private and the reason to treat the number with care.</p>
+      <p><span class="hl-terra">Read the $400 billion as a floor with a discount attached, not a market price. When a company buys its own shares, the price is what it is willing to pay, not what a buyer would pay; the difference between those two things is the liquidity discount, and for a Chinese company with a contested American asset it is not small. The useful signal is the direction and the confidence behind it. A 20% mark-up in this market says ByteDance&rsquo;s owners expect the AI cycle to widen their moat rather than commoditise it &mdash; and that the fight over TikTok is a distribution problem, not an existential one.</span></p>
+      <p>Caveats. The $400 billion is the valuation implied by the buyback as reported, not an audited or independently verified figure, and ByteDance does not publish financials. The buyback is a cap on purchases, not a commitment to spend $6 billion, and participation is at the company&rsquo;s discretion. TikTok&rsquo;s ownership structure could still change in ways that make any current mark stale. Employee liquidity at a set price is not the same as a market clearing. Watch the size of next year&rsquo;s buyback and whether the step-up continues &mdash; a company that keeps marking itself up in a de-rating market is either genuinely compounding or running out of other ways to say so.</p>
+    </div>
+    <a class="source-link" href="https://www.theinformation.com/articles/bytedance-buy-back-shares-400-billion-valuation" target="_blank">Full story &middot; The Information</a>
+  </div>
+
+  <div id="signals" class="story-card card-cream section-anchor">
+    <div class="page-chip">06 &middot; SIGNALS</div>
+    <div class="card-routine">5 Key Signals</div>
+    <h2 class="card-headline sm">What Moved the Machine Frontier Today</h2>
+    <div class="card-deck" style="border-bottom:none;padding-bottom:0;margin-bottom:16px;">Briefs worth an afternoon of reading.</div>
+    <div class="signals-grid">
+      <div class="signal-row">
+        <div class="signal-num n1">1</div>
+        <div>
+          <div class="signal-title">Cisco Grew 24% and Raised Guidance Because AI Clusters Need Switches</div>
+          <div class="signal-desc"><b>Cisco</b> reported first-quarter revenue up <b>24%</b> year on year to <b>$18.5 billion</b>, above the <b>$18.14 billion</b> consensus, with adjusted earnings per share ahead of estimates, and raised its full-year <b>2027</b> revenue forecast. The read-through: the GPU is the expensive part of an AI cluster, but the cluster is useless without the fabric that connects it. <b>Bloomberg</b> framed the raise as a sign of AI-fuelled momentum; Cisco&rsquo;s own release puts the order growth in networking and security. If Cisco can raise guidance while Nvidia&rsquo;s governance is in turmoil, demand for the plumbing is running ahead of the drama in the chip supply.</div>
+          <a class="signal-link" href="https://www.reuters.com/business/media-telecom/cisco-raises-annual-revenue-forecast-strong-ai-networking-demand-2026-11-12/" target="_blank">Reuters &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n2">2</div>
+        <div>
+          <div class="signal-title">Meta&rsquo;s AI Agent Can Now Phone a Business For You</div>
+          <div class="signal-desc"><b>Meta</b> added outbound calling to <b>Muse</b>, its consumer AI agent, for paid subscribers in the US: the assistant can now place calls to US businesses on a user&rsquo;s behalf. <b>TechCrunch</b> reported the feature, which was tested in September, and noted that Google&rsquo;s <b>Gemini</b> and the startup <b>Instinct</b> offer something similar. The interesting part is not the demo but the interface. An agent with a phone number is an agent that can act in the physical economy &mdash; book, cancel, negotiate &mdash; and the business on the other end has no reliable way to know it is talking to software.</div>
+          <a class="signal-link" href="https://techcrunch.com/2026/11/12/muse-can-now-place-calls-to-u-s-businesses-if-you-pay/" target="_blank">TechCrunch &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n3">3</div>
+        <div>
+          <div class="signal-title">The Senate Wants Huang and Lutnick Under Oath in December</div>
+          <div class="signal-desc">Senate Banking Chair <b>Tim Scott</b> asked <b>Jensen Huang</b> and Commerce Secretary <b>Howard Lutnick</b> to testify at separate hearings in December over the Nvidia saga; Lutnick has agreed to appear, <b>Politico</b> and the <b>New York Times</b> reported. This converts a boardroom and intelligence story into an on-the-record one: Huang would be questioned about the affair, the Chinese businesswoman and what the company knew; Lutnick about export controls and his relationship with the company. Sworn testimony is a different evidentiary category from anonymous sourcing, and it lands while Nvidia is searching for a chief executive.</div>
+          <a class="signal-link" href="https://www.politico.com/live-updates/2026/11/12/congress/tim-scott-summons-jensen-huang-howard-lutnick-to-testify-over-nvidia-saga-01164124" target="_blank">Politico &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n4">4</div>
+        <div>
+          <div class="signal-title">The Price of a Teen-Addiction Case Is About $2 Million</div>
+          <div class="signal-desc">Social media companies&rsquo; settlements in teen addiction suits have mostly ranged from <b>$2 million to $2.5 million</b>, with seven confidential deals in that band, according to <b>Bloomberg</b>. <b>Meta</b> agreed to pay two teens a combined <b>$7 million</b> over the past two weeks. The per-case number is small against the companies&rsquo; balance sheets and large against the template it sets: if a few thousand similar claims follow, the arithmetic changes. Bellwether settlements are how mass torts find their price, and this is the first credible one.</div>
+          <a class="signal-link" href="https://www.bloomberg.com/news/articles/2026-11-12/meta-tiktok-payouts-reveal-cost-to-settle-social-media-addiction-suits" target="_blank">Bloomberg &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n5">5</div>
+        <div>
+          <div class="signal-title">CoreWeave Fell 7% on News About a Chief Executive It Does Not Employ</div>
+          <div class="signal-desc"><b>CoreWeave</b> fell about <b>7%</b> on Thursday after <b>Jensen Huang</b> resigned, having risen on Wednesday on strong results, according to <b>CNBC</b>. The company is the purest listed proxy for neocloud demand, and its stock now trades on Nvidia&rsquo;s governance as much as on its own backlog. That correlation is the honest state of the AI trade: the buyers of compute are levered to the supplier&rsquo;s stability, and no amount of contracted revenue decorrelates them.</div>
+          <a class="signal-link" href="https://www.cnbc.com/2026/11/12/nvidia-jensen-huang-ceo-live-updates.html" target="_blank">CNBC &#8597;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="themes" class="story-card card-lavender section-anchor">
+    <div class="page-chip">07 &middot; CLOSER</div>
+    <div class="card-routine">Top Themes</div>
+    <h2 class="card-headline sm">The Shape of Today&rsquo;s News</h2>
+    <div class="themes-grid" style="margin-top:16px;">
+      <div class="theme-item">The Order Without the Money</div>
+      <div class="theme-item">The Billion-Dollar Series A</div>
+      <div class="theme-item">The 25% Floor</div>
+      <div class="theme-item">The Face on the Call</div>
+      <div class="theme-item">The Annual Mark</div>
+    </div>
+
+    <div id="tool" class="tool-week section-anchor">
+      <div class="tool-week-eyebrow">Company Watch of the Day</div>
+      <div class="tool-week-name">ANTHROPIC</div>
+      <div class="tool-week-desc">Every thread in this issue touches one company. <b>Anthropic</b> is the buyer behind Nscale&rsquo;s $45 billion chip order and the reason a neocloud is raising money against 2027. It is where Mirendil&rsquo;s founders learned to build research tooling. And it is the counterparty whose purchase commitments &mdash; <b>$895.4 billion</b> in the revised S-1 &mdash; underwrite the demand that Nvidia&rsquo;s $500 billion financing vehicle was built to fund. On <b>November 18</b> it prices its IPO at <b>$70 to $78</b> a share, up to <b>$64.35 billion</b> in proceeds and a fully diluted valuation of <b>$1.405 trillion</b>, and trades the next day under <b>ANT</b>. That makes it the first AI lab whose public debut is also a stress test of the whole financing chain: price well and the commitments look bankable, which makes Nscale&rsquo;s raise easier; price at the low end and the chain reprices from the customer backwards. The company has disclosed <b>$33.24 billion</b> of nine-month revenue and a <b>$104 billion</b> net loss, most of it an accounting effect from convertible notes. It is, in other words, a normal high-growth company with an abnormal set of promises attached &mdash; and this week the AI trade stopped asking whether the models work and started asking whether the invoices clear.</div>
+    </div>
+
+    <div id="sources" class="output-card section-anchor">
+      <div class="output-title">Sources Cited</div>
+      <div class="sources-grid">
+        <a href="https://www.cnbc.com/2026/11/12/nscale-updates-ipo-prospectus-that-shows-widening-loss.html" target="_blank">CNBC &mdash; Nscale&rsquo;s updated IPO prospectus</a>
+        <a href="https://www.ft.com/content/8d5a8642-d0a1-458d-aaa4-c1e7d344fe47" target="_blank">FT &mdash; Nscale says it needs more funding for 2027</a>
+        <a href="https://www.reuters.com/technology/nscale-expects-14-fold-revenue-surge-amended-ipo-filing-2026-11-12/" target="_blank">Reuters &mdash; Nscale expects 14-fold revenue surge</a>
+        <a href="https://www.cnbc.com/2026/11/10/anthropic-sets-price-range-of-70-to-78-in-upcoming-ipo.html" target="_blank">CNBC &mdash; Anthropic sets $70&ndash;$78 IPO range</a>
+        <a href="https://www.wsj.com/pro/venture-capital/this-startup-raised-1-billion-to-build-ai-faster-and-with-fewer-humans-f7f07a59" target="_blank">WSJ &mdash; Mirendil raises $1 billion Series A</a>
+        <a href="https://www.bloomberg.com/news/articles/2026-11-12/nvidia-faced-pressure-to-boost-its-ai-backstop-before-huang-exit" target="_blank">Bloomberg &mdash; Nvidia pressed to boost its AI backstop</a>
+        <a href="https://www.justice.gov/opa/pr/justice-department-announces-actions-disrupt-north-koreas-massive-theft-cryptocurrency" target="_blank">DOJ &mdash; Actions to disrupt North Korea&rsquo;s crypto theft</a>
+        <a href="https://www.coindesk.com/policy/2026/11/12/north-korea-s-binance-hack-faces-u-s-crackdown-as-doj-targets-usd1-2-billion-in-stolen-crypto" target="_blank">CoinDesk &mdash; DOJ targets $1.2 billion in stolen crypto</a>
+        <a href="https://therecord.media/stolen-binance-crypto-recovered-doj-facestealer-disrupted" target="_blank">The Record &mdash; Seizure and FaceStealer takedown</a>
+        <a href="https://www.koreajoongangdaily.com/business/binance-covers-634-billion-in-losses-from-north-korealinked-cyberattack/12971031" target="_blank">Korea JoongAng Daily &mdash; Binance covers $6.34 billion</a>
+        <a href="https://www.theinformation.com/articles/bytedance-buy-back-shares-400-billion-valuation" target="_blank">The Information &mdash; ByteDance buyback at $400 billion</a>
+        <a href="https://www.reuters.com/business/media-telecom/cisco-raises-annual-revenue-forecast-strong-ai-networking-demand-2026-11-12/" target="_blank">Reuters &mdash; Cisco raises annual revenue forecast</a>
+        <a href="https://techcrunch.com/2026/11/12/muse-can-now-place-calls-to-u-s-businesses-if-you-pay/" target="_blank">TechCrunch &mdash; Muse can place calls to businesses</a>
+        <a href="https://www.politico.com/live-updates/2026/11/12/congress/tim-scott-summons-jensen-huang-howard-lutnick-to-testify-over-nvidia-saga-01164124" target="_blank">Politico &mdash; Scott summons Huang and Lutnick</a>
+        <a href="https://www.bloomberg.com/news/articles/2026-11-12/meta-tiktok-payouts-reveal-cost-to-settle-social-media-addiction-suits" target="_blank">Bloomberg &mdash; The cost of settling addiction suits</a>
+        <a href="https://www.cnbc.com/2026/11/12/nvidia-jensen-huang-ceo-live-updates.html" target="_blank">CNBC &mdash; Nvidia live updates after Huang</a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-logo">
+      <div class="footer-mark"><img src="../assets/timps-postcards.png" alt="TIMPS"></div>
+      <span class="footer-brand">TIMPS PostCards</span>
+    </div>
+    <div class="footer-center">Issue 169 &middot; November 13, 2026<br>Hyderabad, India</div>
+    <div class="footer-right">
+      <a href="../index.html">Home</a><br>
+      <a href="../archive.html">Archive</a><br>
+      &copy; 2026 TIMPS
+    </div>
+  </footer>
+
+
+</div></div>
+</body>
+</html>

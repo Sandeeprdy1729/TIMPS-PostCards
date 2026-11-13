@@ -153,3 +153,4 @@
 2026-11-10	166	thumb-2026-11-10.jpg	Anthropic Puts a $1.4 Trillion Price on Itself and Starts the Clock for November 19	chip
 2026-11-11	167	thumb-2026-11-11.jpg	Anthropic Out-Earned OpenAI by Nearly $7 Billion in a Single Quarter	chip
 2026-11-12	168	thumb-2026-11-12.jpg	Nvidia Board Is Preparing to Remove Jensen Huang After a Second Affair and a Spy Probe	chip
+2026-11-13	169	thumb-2026-11-13.jpg	Nscale Ordered $45 Billion of Nvidia Chips for Anthropic. Now It Says It Needs More Money.	chip

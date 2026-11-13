@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 155 daily issues + 18 deep dives · regenerated 2026-11-12**
+**Coverage: 156 daily issues + 18 deep dives · regenerated 2026-11-13**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 169 · 2026-11-13 · `daily/timps-postcards-2026-11-13.html`
+
+- **[01 · LEAD]** Nscale Ordered $45 Billion of Nvidia Chips for Anthropic. Now It Says It Needs More Money.
+  - _Nscale’s amended IPO filing shows third-quarter revenue of $307.5 million, up 1,344% year on year, and a net loss of $1.69 billion that widened from $1.02 billion. The same document tells investors the company must raise more money to meet 2027 commitments on the Anthropic contracts — a funding gap inside the deal that was meant to prove the demand is real._
+  - Source: [Full story · CNBC](https://www.cnbc.com/2026/11/12/nscale-updates-ipo-prospectus-that-shows-widening-loss.html)
+
+- **[02 · CAPITAL]** Six Months After a $200 Million Seed, Mirendil Raised $1 Billion
+  - _The company was founded by former Anthropic researchers to build tools for frontier AI research and development, and Kleiner Perkins and Clearlake Capital led the round. The bet is that in a market spending hundreds of billions on compute, the most valuable software is the software that makes the next model cheaper to build._
+  - Source: [Full story · WSJ](https://www.wsj.com/pro/venture-capital/this-startup-raised-1-billion-to-build-ai-faster-and-with-fewer-humans-f7f07a59)
+
+- **[03 · DEBT]** Nvidia’s $500 Billion Financing Vehicle Needed a Bigger Guarantee. Nobody Signed.
+  - _Nvidia announced a $500 billion vehicle this summer to finance AI chip purchases. Before Jensen Huang’s exit it was already stuck: asset managers wanted a larger backstop than the 25% residual-value support the company was offering, and the deals had not closed._
+  - Source: [Full story · Bloomberg](https://www.bloomberg.com/news/articles/2026-11-12/nvidia-faced-pressure-to-boost-its-ai-backstop-before-huang-exit)
+
+- **[04 · SECURITY]** North Korea Stole $400 Million by Showing Up to Video Calls as Someone Else
+  - _The FBI says state-backed hackers used “FaceStealer” — fake video calls built on AI deepfakes — to compromise crypto firms and take more than $400 million in 18 months. On the same day, the Justice Department seized $1.2 billion tied to the Binance hack and said it had disrupted the tooling._
+  - Source: [Full story · US DOJ](https://www.justice.gov/opa/pr/justice-department-announces-actions-disrupt-north-koreas-massive-theft-cryptocurrency)
+
+- **[05 · CHINA]** ByteDance Bought Back $6 Billion of Itself at $400 Billion
+  - _A letter to investors offers to buy up to $6 billion of shares at a valuation around $400 billion, roughly 20% above last year’s buyback. TikTok’s owner is marking itself higher in a year when almost every other technology asset was repriced down._
+  - Source: [Full story · The Information](https://www.theinformation.com/articles/bytedance-buy-back-shares-400-billion-valuation)
+
+  **Signals / briefs:**
+  - Cisco Grew 24% and Raised Guidance Because AI Clusters Need Switches
+  - Meta’s AI Agent Can Now Phone a Business For You
+  - The Senate Wants Huang and Lutnick Under Oath in December
+  - The Price of a Teen-Addiction Case Is About $2 Million
+  - CoreWeave Fell 7% on News About a Chief Executive It Does Not Employ
 
 ### Issue 168 · 2026-11-12 · `daily/timps-postcards-2026-11-12.html`
 
