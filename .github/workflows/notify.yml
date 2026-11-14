@@ -71,18 +71,15 @@ jobs:
           fi
           base="${SITE_URL:-https://sandeeprdy1729.github.io/TIMPS-PostCards}"
           base="${base%/}"
-          out=$(python3 .github/workflows/pick-title.py "$FILE")
-          title=$(printf '%s\n' "$out" | sed -n '1p')
-          body=$(printf '%s\n' "$out" | sed -n '2p')
+          python3 .github/workflows/pick-title.py --json "$FILE" > issue.json
+          title=$(jq -r '.title // ""' issue.json)
           if [ -z "$title" ]; then
             echo "Could not extract a title from $FILE; nothing sent."
             exit 0
           fi
-          jq -n --arg title "$title" \
-                --arg body "$body" \
-                --arg url "$base/$FILE" \
-                '{title:$title, body:$body, url:$url}' > payload.json
-          echo "Sending push for $FILE"
+          # Add the absolute URL; keep issue/date/stories for the Dynamic Island.
+          jq --arg url "$base/$FILE" '. + {url: $url}' issue.json > payload.json
+          echo "Sending push for $FILE ($(jq '.stories | length' payload.json) island headlines)"
           curl -sS -X POST "$PUSH_API/api/send" \
             -H "Content-Type: application/json" \
             -H "x-push-secret: $PUSH_SEND_SECRET" \

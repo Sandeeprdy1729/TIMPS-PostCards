@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="TIMPS">
@@ -54,6 +54,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 14px 48px;
+    padding-top: calc(14px + env(safe-area-inset-top, 0px));
     background-color: rgba(238,236,226,.94);
     backdrop-filter: blur(8px);
     border-bottom: 1.5px solid rgba(61,57,41,.12);
@@ -507,5 +508,8 @@
 
 
 </div></div>
+
+<!-- Dynamic Island: today's five headlines in a live capsule (installed app) -->
+<script src="../assets/dynamic-island.js" defer></script>
 </body>
 </html>

@@ -41,6 +41,11 @@ module.exports = async function handler(req, res) {
     body: body.body || "A new issue is out.",
     url: body.url || "/",
     icon: body.icon || "assets/icon-192.png",
+    // Dynamic Island payload — the service worker forwards this to any open
+    // app window and keeps it for the next launch.
+    issue: body.issue || "",
+    date: body.date || "",
+    stories: Array.isArray(body.stories) ? body.stories.slice(0, 5) : [],
   });
 
   try {
