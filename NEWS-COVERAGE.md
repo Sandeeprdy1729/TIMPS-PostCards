@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 156 daily issues + 18 deep dives · regenerated 2026-11-13**
+**Coverage: 157 daily issues + 18 deep dives · regenerated 2026-11-14**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 170 · 2026-11-14 · `daily/timps-postcards-2026-11-14.html`
+
+- **[01 · LEAD]** Microsoft Spent 24 Hours Broken and Found Out How Much the World Runs on It
+  - _Microsoft 365 went down shortly after 1pm Eastern on Thursday and did not fully return until Saturday morning. More than 70 countries lost email, calendars and file access. Microsoft says a network capacity upgrade planted the fault and a later network change exposed it. The inventory of what stopped is the real story._
+  - Source: [Full story · Bloomberg](https://www.bloomberg.com/news/articles/2026-11-13/microsoft-says-making-progress-fixing-one-of-its-longest-outages)
+
+- **[02 · COMPUTE]** Tendrils Raised $30 Million to Rebuild the CPU From First Principles
+  - _The Cambridge startup wants thousands of cores running in parallel, a memory model without shared mutable state, and an open-source language called Vine. Benchmark led a contested round. There are still no benchmarks._
+  - Source: [Full story · Tech.eu](https://tech.eu/2026/11/11/tendrils-compute-raises-30m-to-redo-the-cpu/)
+
+- **[03 · MONEY]** Sam Bankman-Fried’s $500 Million Anthropic Bet Would Be Worth $37 Billion Next Week
+  - _Alameda Research Ventures bought nearly 14% of Anthropic in 2021 at a $4 billion valuation. The FTX estate sold the stake in 2024 for about $1.3 billion. At next week’s IPO price, the FT calculates it would be worth roughly $37 billion — the most expensive bankruptcy sale in venture history._
+  - Source: [Full story · Financial Times](https://www.ft.com/content/0ef40ac9-6d01-428f-98c8-a52bf5b9a787)
+
+- **[04 · SECURITY]** WhiteMatter Raised $20 Million to Put a Guard Agent on Every AI Agent
+  - _The company spawns a monitor for each agent inside a company, checking what it can read, touch and decide before it acts. It says it manages 2.25 million agents and has watched 116 billion interactions. Blumberg Capital led the Series A._
+  - Source: [Full story · Business Insider](https://www.businessinsider.com/whitematter-startup-ai-agent-cybersecurity-funding-pitch-deck-2026-11)
+
+- **[05 · EUROPE]** JD.com Closed Its $1.5 Billion Takeover of MediaMarkt’s Parent
+  - _The Chinese e-commerce group bought about 60% of Ceconomy, the German retailer behind MediaMarkt and Saturn, after EU approval with conditions. It is the clearest attempt yet to merge Chinese online retail know-how with European physical stores._
+  - Source: [Full story · Nikkei Asia](https://asia.nikkei.com/business/business-deals/china-s-jd.com-completes-1.5bn-takeover-of-german-appliance-retailer)
+
+  **Signals / briefs:**
+  - Operand Raised $31 Million to Let AI Do the First Pass on Private Equity
+  - Charta Health’s Third Round in Two Years Brings Total Funding to $85 Million
+  - Luminal Raised $25 Million to Make AI Models Portable Across Chips
+  - Tesla Will Sell You a Cybercab for $30,000, Plus $299 a Month to Actually Use It
+  - Amazon’s Answer to AI Shopping Agents Is to Own Every Product’s Data
 
 ### Issue 169 · 2026-11-13 · `daily/timps-postcards-2026-11-13.html`
 

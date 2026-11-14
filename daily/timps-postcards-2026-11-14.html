@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TIMPS">
+<link rel="manifest" href="../manifest.json">
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/icon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/icon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="../assets/icon-48.png">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="../assets/icon-180.png">
+<title>TIMPS PostCards — Issue 170</title>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --cream:  #EEECE2;
+    --forest: #3D3929;
+    --terra:  #DA7756;
+    --terra-d:#BD5D3A;
+    --black:  #111111;
+    --card-bg:#F0ECE0;
+    --mono:   'Newsreader', Georgia, 'Times New Roman', serif;
+    --serif:  'TIMPS', 'Playfair Display', Georgia, serif;
+  }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Black.woff2') format('woff2'); font-weight:900; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Bold.woff2') format('woff2'); font-weight:700; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-SemiBold.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--cream);
+    background-image:
+      linear-gradient(rgba(61,57,41,.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.07) 1px, transparent 1px);
+    background-size: 38px 38px;
+    font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+    color: var(--forest);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { text-decoration: none; color: inherit; }
+
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 48px;
+    padding-top: calc(14px + env(safe-area-inset-top, 0px));
+    background-color: rgba(238,236,226,.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1.5px solid rgba(61,57,41,.12);
+    background-image:
+      linear-gradient(rgba(61,57,41,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.05) 1px, transparent 1px);
+    background-size: 38px 38px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Special Elite', 'Courier New', Courier, monospace;
+    font-size: 15px;
+    font-weight: 400;
+    color: #000;
+    text-decoration: none;
+  }
+  .nav-logo-mark {
+    width: 34px; height: 34px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .nav-logo-mark img { width: 28px; height: 28px; object-fit: contain; }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-link {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: #000;
+    opacity: .65;
+    text-decoration: none;
+    transition: opacity .15s;
+  }
+  .nav-link:hover { opacity: 1; }
+  .nav-cta {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: #000;
+    background: var(--terra);
+    border: 2.5px solid #000;
+    border-radius: 100px;
+    padding: 10px 24px;
+    cursor: pointer;
+    transition: background .15s, transform .1s;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--terra-d); transform: translateY(-1px); }
+
+  .wrapper { max-width: 760px; margin: 0 auto; padding: 40px 20px 80px; display: flex; flex-direction: column; gap: 0; }
+
+  .cover-card { background: var(--card-bg); border-radius: 20px 20px 4px 4px; padding: 56px 48px 48px; text-align: center; position: relative; overflow: hidden; border: 1.5px solid rgba(61,57,41,.12); margin-bottom: 3px; }
+  .cover-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, var(--terra) 0%, var(--terra-d) 60%, #E0A88A 100%); }
+  .cover-eyebrow { font-family: var(--mono); font-size:10px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:20px; display:flex; align-items:center; justify-content:center; gap:10px; }
+  .cover-eyebrow::before,.cover-eyebrow::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .15; max-width:60px; }
+  .cover-title { font-family: var(--serif); font-size:58px; font-weight:900; line-height:1; letter-spacing:-1px; color: var(--forest); margin-bottom:8px; }
+  .cover-sub { font-family: var(--serif); font-size:13px; font-style:italic; color: var(--forest); opacity: .55; margin-bottom:28px; }
+  .cover-divider { width:48px; height:2px; background: var(--terra); margin:0 auto 24px; border-radius:2px; }
+  .cover-meta { display:flex; justify-content:center; gap:32px; font-family: var(--mono); font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .45; }
+  .cover-badge { display:inline-flex; align-items:center; gap:6px; background: var(--terra); color: #fff; border-radius:20px; padding:6px 18px; font-family: var(--mono); font-size:10px; letter-spacing:2px; text-transform:uppercase; margin-top:28px; }
+  .top5-pill { display:flex; justify-content:center; gap:10px; margin-top:32px; flex-wrap:wrap; }
+  .pill { background: var(--forest); color: var(--cream); border-radius:100px; padding:4px 14px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; }
+  .pill.light { background:transparent; color: var(--forest); border:1px solid rgba(61,57,41,.2); }
+
+  .section-label { display:flex; align-items:center; gap:12px; padding:10px 0 8px; font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .35; }
+  .section-label::before,.section-label::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .1; }
+
+  .story-card { border-radius:4px; border:1.5px solid rgba(61,57,41,.10); padding:36px 40px; margin-bottom:3px; position:relative; overflow:hidden; }
+  .story-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }
+
+  .card-sky      { background:#D6E8F0; } .card-sky::before      { background: #7AAFC0; }
+  .card-cream    { background: var(--card-bg); } .card-cream::before    { background: var(--terra); }
+  .card-blush    { background:#F5DDD0; } .card-blush::before    { background: #E0A88A; }
+  .card-lavender { background:#EAE6F5; } .card-lavender::before { background: #C8BEE8; }
+  .card-sage     { background:#D6E4D6; } .card-sage::before     { background: #8BAF8B; }
+
+  .page-chip { position:absolute; top:14px; right:16px; font-family: var(--mono); font-size:9px; letter-spacing:2px; text-transform:uppercase; color: var(--forest); opacity: .3; }
+  .card-routine { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:8px; }
+  .card-headline { font-family: var(--serif); font-size:28px; font-weight:900; line-height:1.15; color: var(--forest); margin-bottom:10px; }
+  .card-headline.lg { font-size:34px; }
+  .card-headline.sm { font-size:22px; }
+  .card-deck { font-family: var(--serif); font-style:italic; font-size:14px; line-height:1.55; color: var(--forest); opacity: .55; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid rgba(61,57,41,.12); }
+  .card-body { font-family: 'Lora', Georgia, serif; font-size:14px; line-height:1.7; color: var(--forest); }
+  .card-body p { margin-bottom:11px; }
+  .drop::first-letter { font-family: var(--serif); font-size:52px; font-weight:900; float:left; line-height:.78; margin:5px 6px 0 0; color: var(--terra); }
+  .clearfix::after { content:''; display:table; clear:both; }
+
+  .hl-terra { background: var(--terra); color: var(--forest); padding:0 4px; border-radius:2px; }
+  .hl-ink  { background: var(--forest); color: var(--cream); padding:0 4px; border-radius:2px; }
+  .hl-sage { background: #8BAF8B; color: #fff; padding:0 4px; border-radius:2px; }
+  .hl-lav  { background: #C8BEE8; color: var(--forest); padding:0 4px; border-radius:2px; }
+
+  .stat-box { float:right; margin:0 0 16px 24px; background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:16px 20px; text-align:center; min-width:120px; }
+  .stat-big { font-family: var(--serif); font-size:44px; font-weight:900; line-height:1; color: var(--forest); display:block; }
+  .stat-label { font-family: var(--mono); font-size:9.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .5; display:block; margin-top:4px; }
+
+  .img-frame { border:2px solid rgba(61,57,41,0.18); border-radius:12px; overflow:hidden; margin:16px 0; background: var(--card-bg); }
+  .img-frame img { width:100%; display:block; max-height:240px; object-fit:cover; border-bottom:1px solid rgba(61,57,41,.12); }
+  .img-caption { padding:8px 12px; font-family: var(--mono); font-size:10.5px; color: var(--forest); opacity: .6; font-style:italic; display:flex; align-items:center; justify-content:space-between; gap:8px; }
+  .img-caption a { font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; white-space:nowrap; font-style:normal; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; }
+  .img-caption a:hover { opacity: 1; }
+  .img-frame.float-right { float:right; width:220px; margin:0 0 16px 24px; }
+  .img-frame.float-right img { max-height:140px; }
+
+  .source-link { display:inline-flex; align-items:center; gap:5px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:12px; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; transition: opacity .15s; }
+  .source-link:hover { opacity: 1; }
+  .source-link::after { content:'↗'; font-size:9px; }
+
+  .signals-grid { display:flex; flex-direction:column; gap:14px; }
+  .signal-row { display:flex; align-items:flex-start; gap:14px; }
+  .signal-num { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family: var(--serif); font-size:13px; font-weight:900; flex-shrink:0; color:#fff; }
+  .signal-num.n1{background: var(--terra); color: var(--forest);} .signal-num.n2{background: var(--forest);} .signal-num.n3{background:#7AAFC0;} .signal-num.n4{background: var(--terra-d); color: var(--forest);} .signal-num.n5{background: var(--black);}
+  .signal-title { font-family: var(--serif); font-size:14px; font-weight:700; color: var(--forest); margin-bottom:2px; }
+  .signal-desc { font-family: 'Newsreader', Georgia, 'Times New Roman', serif; font-size:12px; line-height:1.65; color: var(--forest); opacity: .6; }
+  .signal-link { display:inline-block; font-family: var(--mono); font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:4px; border-bottom:1px solid rgba(61,57,41,.25); padding-bottom:1px; transition: opacity .15s; }
+  .signal-link:hover { opacity: 1; }
+
+  .themes-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .theme-item { padding:10px 14px; border-radius:8px; font-family: var(--serif); font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; text-align:center; border:1.5px solid rgba(61,57,41,.12); background: var(--cream); }
+
+  .tool-week { background: var(--forest); color: var(--cream); border-radius:12px; padding:18px 20px; text-align:center; margin-top:14px; }
+  .tool-week-eyebrow { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; opacity: .55; margin-bottom:6px; }
+  .tool-week-name { font-family: var(--serif); font-size:22px; font-weight:900; margin-bottom:4px; }
+  .tool-week-desc { font-family: 'Newsreader', Georgia, 'Times New Roman', serif; font-size:11.5px; opacity: .7; font-style:italic; }
+
+  .output-card { background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:18px 20px; margin-top:14px; }
+  .output-title { font-family: var(--serif); font-size:18px; font-weight:700; margin-bottom:8px; color: var(--forest); }
+  .tp-list { list-style:none; padding:0; margin:0; }
+  .tp-list li { padding:5px 0; font-family: 'Lora', Georgia, serif; font-size:12px; color: var(--forest); border-bottom:1px solid rgba(61,57,41,.07); display:flex; align-items:flex-start; gap:7px; }
+  .tp-list li::before { content:'·'; color: var(--terra); font-size:14px; line-height:1.2; flex-shrink:0; }
+  .tp-list li a { color: var(--forest); opacity: .8; text-decoration:none; }
+  .tp-list li a:hover { opacity: 1; }
+
+  .sources-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px 20px; }
+  .sources-grid a { font-family: var(--mono); font-size:11px; color: var(--forest); opacity: .55; text-decoration:none; border-bottom:1px solid rgba(61,57,41,.15); padding-bottom:1px; transition: opacity .15s; }
+  .sources-grid a:hover { opacity: 1; }
+
+  .footer {
+    background: var(--black);
+    padding: 28px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    border-radius: 4px 4px 20px 20px;
+    margin-top: 3px;
+  }
+  .footer-logo { display: flex; align-items: center; gap: 10px; }
+  .footer-mark { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; }
+  .footer-mark img { width: 24px; height: 24px; object-fit: contain; }
+  .footer-brand { font-family: 'Special Elite', 'Courier New', Courier, monospace; font-size: 13px; font-weight: 400; color: #fff; }
+  .footer-center { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.4); text-align: center; line-height: 1.6; }
+  .footer-right { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.3); text-align: right; line-height: 2; }
+  .footer-right a { color: rgba(255,255,255,.5); transition: color .15s; }
+  .footer-right a:hover { color: #fff; }
+
+  .page-layout { display: flex; align-items: flex-start; gap: 0; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+  .toc-sidebar { position: sticky; top: 80px; width: 170px; flex-shrink: 0; padding: 48px 0 0 0; }
+  .toc-nav { display: flex; flex-direction: column; gap: 0; }
+  .toc-link { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.5px; text-transform: uppercase; color: #000; opacity: .45; text-decoration: none; padding: 7px 12px; border-left: 2px solid transparent; transition: opacity .15s, border-color .15s; line-height: 1.3; }
+  .toc-link:hover { opacity: .85; }
+  .toc-link.active { opacity: 1; border-left-color: var(--terra); }
+  .section-anchor { scroll-margin-top: 80px; }
+
+  @media (max-width: 900px) {
+    .toc-sidebar { display: none; }
+    .page-layout { max-width: 760px; }
+  }
+
+  @media (max-width: 720px) {
+    .nav { padding: 12px 24px; }
+    .nav-links { display: none; }
+    .wrapper { padding: 20px 14px 60px; }
+    .cover-card { padding: 40px 24px; }
+    .story-card { padding: 28px 20px; }
+    .footer { padding: 24px; flex-direction: column; align-items: flex-start; }
+    .footer-center, .footer-right { text-align: left; }
+    .stat-box { float: none; margin: 0 0 16px 0; }
+    .img-frame.float-right { float: none; width: 100%; margin: 0 0 16px 0; }
+  }
+  @media (max-width: 480px) {
+    .nav-logo span { display: none; }
+    .cover-title { font-size: 40px; }
+    .card-headline.lg { font-size: 28px; }
+    .card-headline { font-size: 24px; }
+  }
+</style>
+
+</head>
+
+<body>
+
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">
+    <div class="nav-logo-mark"><img src="../assets/timps-postcards.png" alt="TIMPS"></div>
+    <span>TIMPS PostCards</span>
+  </a>
+  <div class="nav-links">
+    <a href="../articles.html" class="nav-link">Articles</a>
+    <a href="../archive.html" class="nav-link">Archive</a>
+    <a href="timps-postcards-2026-11-14.html" class="nav-link">Latest Issue</a>
+    <a href="../index.html#subscribe" class="nav-link">Subscribe</a>
+  </div>
+  <a href="../index.html#subscribe" class="nav-cta">Subscribe</a>
+</nav>
+
+<div class="page-layout">
+  <aside class="toc-sidebar">
+    <nav class="toc-nav">
+      <a href="#lead" class="toc-link">The 24-Hour Dependency</a>
+      <a href="#compute" class="toc-link">The Parallel Bet</a>
+      <a href="#money" class="toc-link">The $37 Billion Ghost</a>
+      <a href="#security" class="toc-link">The Guardian Layer</a>
+      <a href="#europe" class="toc-link">The European Beachhead</a>
+      <a href="#signals" class="toc-link">Signals</a>
+      <a href="#themes" class="toc-link">Themes</a>
+      <a href="#tool" class="toc-link">Watch</a>
+      <a href="#sources" class="toc-link">Sources</a>
+    </nav>
+  </aside>
+
+  <div class="wrapper">
+
+  <div id="intro" class="cover-card section-anchor">
+    <div class="cover-eyebrow">Est. 2026 &middot; Hyderabad</div>
+    <div class="cover-title">TIMPS<br>PostCards</div>
+    <div class="cover-sub">AI Intelligence Digest &middot; Your Daily Signal from the Machine Frontier</div>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+      <span>Issue 170</span>
+      <span>November 14, 2026</span>
+      <span>No. 197</span>
+    </div>
+    <div class="cover-badge">&#11041; 170 Issues &mdash; Built with the TIMPS Ecosystem</div>
+    <div class="top5-pill">
+      <span class="pill">5 Top Signals</span>
+      <span class="pill light">The 24-Hour Dependency</span>
+      <span class="pill light">The Parallel Bet</span>
+      <span class="pill light">The $37 Billion Ghost</span>
+      <span class="pill light">The Guardian Layer</span>
+      <span class="pill light">The European Beachhead</span>
+    </div>
+  </div>
+
+  <div id="lead" class="story-card card-blush section-anchor">
+    <div class="page-chip">01 &middot; LEAD</div>
+    <div class="card-routine">Platform Infrastructure &middot; The 24-Hour Dependency</div>
+    <h2 class="card-headline lg">Microsoft Spent 24 Hours Broken and Found Out How Much the World Runs on It</h2>
+    <div class="card-deck">Microsoft 365 went down shortly after 1pm Eastern on Thursday and did not fully return until Saturday morning. More than 70 countries lost email, calendars and file access. Microsoft says a network capacity upgrade planted the fault and a later network change exposed it. The inventory of what stopped is the real story.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">7.4M</span>
+        <span class="stat-label">Downdetector reports worldwide, peaking near 20,000 a minute</span>
+      </div>
+      <p class="drop">The outage began around <b>1pm Eastern on Thursday</b>, when users started reporting that <b>Outlook</b>, parts of <b>Teams</b>, <b>SharePoint</b> and the <b>Copilot</b> assistant were unreachable. Microsoft&rsquo;s first explanation was that some servers had gone offline unexpectedly and put additional strain on the rest of its infrastructure &mdash; not a traffic spike, but a capacity failure that cascaded. Its initial recovery measures did not work as hoped. Overnight it applied an <b>&ldquo;upstream authentication/routing configuration component patch&rdquo;</b> to part of the estate, then extended it region by region. On Saturday morning it said all products were operational and the email backlog had been processed. The disruption lasted <b>more than 24 hours</b>.</p>
+      <p>The scale is the part that is hard to hold in your head. Microsoft 365 has somewhere between <b>430 million and 450 million</b> subscribers. <b>Downdetector</b> logged more than <b>7.4 million</b> reports worldwide, peaking at nearly <b>20,000 a minute</b> &mdash; more than <b>1,500 times</b> normal levels. The outage spread to <b>74 countries and territories</b> within roughly an hour of reports climbing in the United States. It took out email for the <b>UK House of Commons</b> and New Zealand&rsquo;s foreign ministry, disrupted government agencies from Australia and Japan to the United States, delayed trading firms, stopped some companies from publishing earnings, and prompted airlines to warn customers of communication lags. Canadian hospitals and rail passengers were affected; US court services and government offices were disrupted; NHS England staff lost access. None of those organisations chose Microsoft because it was the most resilient option. They chose it because it was the default.</p>
+      <p>The technical surface was narrower than the panic suggested. Microsoft said the incident specifically hit features tied to <b>Exchange Online</b>, its cloud email and scheduling hub, while applications not connected to it kept working. Most calling, meeting and messaging functions stayed online, though some users hit errors scheduling meetings or adding calendar entries. That is the shape of modern dependency: the failure does not have to take down every service, only the identity, mail and calendar layer that every other workflow quietly assumes. A company can still take calls while it cannot send a contract, confirm a delivery, or prove that a payment was authorised.</p>
+      <p>Microsoft was unusually direct about what it was not. The company said there was <b>no evidence of malicious activity</b> and that the incident was <b>&ldquo;not related to cyber or AI/agents.&rdquo;</b> Its explanation was that the fault was introduced during an <b>earlier network capacity upgrade</b> and surfaced after a <b>recent network change</b> &mdash; a latent defect exposed by a routine-looking operation. It restored service gradually, validating stability at every stage, and extended the email timeout window to <b>48 hours</b> so delayed messages would be retried rather than bounced. It has promised a <b>full post-incident report</b> with the root cause and &ldquo;defence-in-depth repair items.&rdquo; That document is now the most important artifact in the story, because the difference between a latent configuration fault and a fragile architecture is exactly what it will have to explain.</p>
+      <p>The money is smaller than the disruption, which is its own lesson. <b>Anderson Economic Group</b>, via CNN, estimated the productivity loss could reach <b>$7 billion</b>. <b>Morningstar DBRS</b> estimated insured losses at <b>$300 million to $500 million</b>, well below the <b>$400 million to $1.5 billion</b> attributed to the 2024 CrowdStrike outage. Microsoft shares closed flat at <b>$523.88</b> on Friday and were up roughly <b>8%</b> for the year. South Korea&rsquo;s ICT ministry said it would form a joint emergency response team with Microsoft Korea to check restoration and damage, and lawyers there noted that compensation claims are theoretically possible but hard to prove. The market shrugged because the outage cost Microsoft&rsquo;s customers far more than it cost Microsoft.</p>
+      <p><span class="hl-terra">This is what concentration looks like when it fails. The cloud did not just move compute; it moved responsibility. A company that runs its own mail server owns its outages and its recovery. A company on Microsoft 365 owns neither, and gets a status page, a credit policy and an apology. The correct response is not the slogan of &ldquo;multi-cloud&rdquo; &mdash; most firms cannot afford two of everything &mdash; but the unglamorous work of exit drills, offline fallbacks, local copies of the files that matter, and a written answer to one question: which of our workflows stop completely when identity stops? Very few organisations can answer that today, and this week they were given a free rehearsal.</span></p>
+      <p>Caveats. Microsoft has not disclosed the total number of affected users or the root cause; the <b>$7 billion</b> is an outside estimate of lost productivity, not a measured loss, and the insured-loss figure is preliminary. The <b>74-country</b> count comes from Downdetector&rsquo;s user reports, not Microsoft&rsquo;s telemetry. A flat share price is not evidence of no damage &mdash; it reflects the gap between what customers lost and what the company is contractually obliged to pay. The &ldquo;servers went offline&rdquo; explanation and the &ldquo;network capacity upgrade&rdquo; explanation are compatible but not identical, and the post-incident report should reconcile them. Watch three things: whether Microsoft publishes the report in full, whether enterprise buyers treat this as a prompt to diversify, and whether regulators in Korea and Washington turn a service outage into a competition or resilience inquiry.</p>
+    </div>
+    <a class="source-link" href="https://www.bloomberg.com/news/articles/2026-11-13/microsoft-says-making-progress-fixing-one-of-its-longest-outages" target="_blank">Full story &middot; Bloomberg</a>
+  </div>
+
+  <div id="compute" class="story-card card-sky section-anchor">
+    <div class="page-chip">02 &middot; COMPUTE</div>
+    <div class="card-routine">Chip Design &middot; The Parallel Bet</div>
+    <h2 class="card-headline">Tendrils Raised $30 Million to Rebuild the CPU From First Principles</h2>
+    <div class="card-deck">The Cambridge startup wants thousands of cores running in parallel, a memory model without shared mutable state, and an open-source language called Vine. Benchmark led a contested round. There are still no benchmarks.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">$30M</span>
+        <span class="stat-label">led by Benchmark, with no hardware benchmarks yet disclosed</span>
+      </div>
+      <p class="drop"><b>Tendrils Compute</b>, a Cambridge-based chip startup, has raised <b>$30 million</b> in what <b>Tech.eu</b> describes as a hotly contested round led by <b>Benchmark</b>. The participants include <b>Visionaries Club</b>, the <b>UK Sovereign AI Fund</b>, <b>FR8</b>, <b>Antimatter</b>, <b>Cloudberry VC</b>, <b>Conviction</b>, <b>Embassy Ventures</b> and <b>SV Angels</b>. The company is not trying to build a faster version of an existing processor. It is trying to change the shape of the processor itself.</p>
+      <p>The thesis is <b>interaction nets</b>, a model of computation in which the work is a graph of small processes that reduce locally rather than a linear sequence of instructions over shared memory. Tendrils says the approach lets it run <b>thousands of small processes at the same time</b> and handle complex workloads without the cost and design problems that have accumulated in conventional CPUs. &ldquo;Instead of starting from a sequential design, we&rsquo;re building our processor to have thousands of cores operating in parallel,&rdquo; the company says. &ldquo;This requires moving beyond the notion of shared mutable memory and linear instruction sequences.&rdquo; To make that usable it is co-developing <b>Vine</b>, an open-source language designed from the start for parallel-first architectures.</p>
+      <p>Why this is more than an academic curiosity: the CPU has been optimised for decades around a compromise that is now expensive. Clock speeds stopped scaling, so designers added cores, then caches, then speculative execution, then ever more elaborate coherence protocols to keep shared memory looking simple. The result is a chip that is very good at the workloads of the 1990s and increasingly awkward for the workloads of the 2020s &mdash; many small, branchy, memory-bound tasks, which is roughly what an agent orchestrating tools looks like. If the unit of work is a graph of short-lived processes rather than a long sequential program, a machine built for that shape could win on energy and utilisation rather than peak floating-point throughput.</p>
+      <p>Britain has become a small but real cluster for this kind of bet. Tendrils is one of several UK chip companies, alongside <b>Olix</b> and <b>Fractile</b>, that investors are backing. The common thread is not a belief that Nvidia can be beaten at matrix multiplication. It is a belief that the market is large enough for architectures that are worse at training and better at something else &mdash; inference, control, simulation, or the messy coordination layer around a model.</p>
+      <p><span class="hl-ink">The hard part is not the silicon; it is the software gravity. x86 and Arm are not just instruction sets. They are decades of compilers, debuggers, libraries, operating systems, hiring pools and vendor support. A new architecture has to be not twice as good but roughly an order of magnitude better before a customer will accept the switching cost. That is why the Vine language matters more than the core count: a chip with no programmers is a demo. Benchmark&rsquo;s check is a bet that a small team can bootstrap a compiler ecosystem fast enough to matter, at a moment when the demand for compute is desperate enough to try almost anything.</span></p>
+      <p>Caveats. Tendrils has disclosed <b>no hardware benchmarks</b> and no performance figures, so the &ldquo;thousands of cores&rdquo; claim is a design target rather than a measured result. It has not disclosed a valuation, customers, a product timeline, or how Vine will run existing code. &ldquo;Hotly contested&rdquo; is Tech.eu&rsquo;s reporting, and the investor list is as reported. Interaction nets have a long research lineage and a long history of failing to commercialise; the idea is elegant, and elegance has never been the bottleneck. Watch for two things: a compiler that can run a real workload end to end, and a benchmark that an outside lab can reproduce. Until then this is a well-funded thesis, not a product.</p>
+    </div>
+    <a class="source-link" href="https://tech.eu/2026/11/11/tendrils-compute-raises-30m-to-redo-the-cpu/" target="_blank">Full story &middot; Tech.eu</a>
+  </div>
+
+  <div id="money" class="story-card card-sage section-anchor">
+    <div class="page-chip">03 &middot; MONEY</div>
+    <div class="card-routine">Private Markets &middot; The $37 Billion Ghost</div>
+    <h2 class="card-headline">Sam Bankman-Fried&rsquo;s $500 Million Anthropic Bet Would Be Worth $37 Billion Next Week</h2>
+    <div class="card-deck">Alameda Research Ventures bought nearly 14% of Anthropic in 2021 at a $4 billion valuation. The FTX estate sold the stake in 2024 for about $1.3 billion. At next week&rsquo;s IPO price, the FT calculates it would be worth roughly $37 billion &mdash; the most expensive bankruptcy sale in venture history.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">$37B</span>
+        <span class="stat-label">hypothetical value of a stake the FTX estate sold for about $1.3 billion</span>
+      </div>
+      <p class="drop">In 2021, <b>Alameda Research Ventures</b>, the investment arm of <b>Sam Bankman-Fried</b>&rsquo;s trading firm, put <b>$500 million</b> into <b>Anthropic</b> for nearly <b>14%</b> of the lab, when it was valued at about <b>$4 billion</b>. The money arrived early enough to help Anthropic hire researchers and train its first models. It was, by any measure, one of the great venture investments of the decade. Then FTX collapsed.</p>
+      <p>The sequence after the collapse is the part that turns a fortune into a case study. Bankman-Fried was convicted of fraud and sentenced to <b>25 years</b> in prison, with an <b>$11 billion</b> forfeiture order. The bankruptcy estate, under court supervision, sold the Anthropic stake in <b>2024</b> for roughly <b>$1.3 billion</b> &mdash; about <b>$884 million</b> in a first tranche and roughly <b>$452 million</b> in a second, across <b>38 buyers</b> at around <b>$30 a share</b>. The largest single chunk, about <b>$500 million</b>, went to <b>ATIC Third International Investment</b>, a firm connected to Abu Dhabi&rsquo;s <b>Mubadala</b>. The estate did its job: it converted an illiquid position into cash for creditors, at a gain of more than $800 million on the original cheque.</p>
+      <p>Now the counterfactual. <b>Anthropic</b> has set an IPO range of <b>$70 to $78</b> a share, implying a fully diluted valuation of up to about <b>$1.5 trillion</b> at the top. It plans to price on <b>November 18</b> and trade on <b>November 19</b> under the ticker <b>ANT</b>. The <b>Financial Times</b> calculates that at roughly <b>$83 a share</b>, Alameda&rsquo;s old stake would be worth about <b>$37 billion</b>. That is <b>74 times</b> the original purchase price and roughly <b>28 times</b> what the estate actually received. The gap is not a rounding error. It is the price of forced selling.</p>
+      <p>There is a real argument that the estate had no choice, and it is worth stating plainly. Bankruptcy law is built around timely, defensible distributions, not around maximising the upside of a single concentrated position. Holding a private AI stake through a multi-year IPO process would have delayed creditor recoveries, exposed the estate to valuation risk, and invited litigation if the price fell. Selling at a known price to 38 buyers converted uncertainty into money. The buyers, in turn, earned their return by accepting the illiquidity and the risk that the IPO might never happen. That is how a market for distressed private assets is supposed to work.</p>
+      <p><span class="hl-terra">But the size of the gap is the cleanest measure of what the fraud destroyed beyond customer deposits. The FTX story is usually told as a theft: customer money was taken and spent. The Anthropic stake adds a second loss that is harder to see &mdash; the value that would have existed if the company had survived long enough to hold its best asset. Two people can look at the same $37 billion and reach opposite conclusions. One sees a bankruptcy estate doing exactly what it must. The other sees a fire sale that transferred one of the great venture returns of the decade to a group of buyers who took no operating risk. Both are right, and the difference between them is the cost of illiquidity.</span></p>
+      <p>Caveats. The <b>$37 billion</b> is a hypothetical, pre-tax figure calculated at an expected IPO price, and it ignores dilution, lock-ups and the estate&rsquo;s fiduciary obligations. Alameda&rsquo;s original <b>~14%</b> had already been diluted: <b>Reuters</b> reported that FTX held <b>7.84%</b> by early 2024. Other calculations use about <b>445 million shares</b>, or roughly <b>2.5%</b> fully diluted, at a <b>$105.71</b> pre-IPO price and reach roughly <b>$47 billion</b>; different outlets are measuring different things at different prices. The estate&rsquo;s sale may have been the best available outcome, and victims are compensated from the estate, not from the counterfactual. What is not in doubt is the direction: the stake was sold for about $1.3 billion and is now worth an order of magnitude more, and the buyers who took that risk are the ones who will be paid for it.</p>
+    </div>
+    <a class="source-link" href="https://www.ft.com/content/0ef40ac9-6d01-428f-98c8-a52bf5b9a787" target="_blank">Full story &middot; Financial Times</a>
+  </div>
+
+  <div id="security" class="story-card card-lavender section-anchor">
+    <div class="page-chip">04 &middot; SECURITY</div>
+    <div class="card-routine">Agent Infrastructure &middot; The Guardian Layer</div>
+    <h2 class="card-headline">WhiteMatter Raised $20 Million to Put a Guard Agent on Every AI Agent</h2>
+    <div class="card-deck">The company spawns a monitor for each agent inside a company, checking what it can read, touch and decide before it acts. It says it manages 2.25 million agents and has watched 116 billion interactions. Blumberg Capital led the Series A.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">2.25M</span>
+        <span class="stat-label">agents under management, across 116 billion observed interactions</span>
+      </div>
+      <p class="drop"><b>WhiteMatter</b>, a startup founded in <b>2024</b> and formerly known as <b>QuilrAI</b>, has raised a <b>$20 million</b> Series A led by <b>Blumberg Capital</b>, with existing investors <b>Crew Capital</b> and <b>Sprout &amp; Oak</b> participating. Its product is a direct answer to a problem enterprises are discovering in real time: once you give an AI agent credentials, you have created an actor that can read files, use software, make decisions and trigger actions at machine speed, and your existing security stack was not built for an actor that is not a person.</p>
+      <p>The architecture is literal. WhiteMatter spawns one <b>&ldquo;guardian agent&rdquo;</b> for each AI agent in an enterprise. Before the original agent is allowed to access a file, use an application, make a decision or take an action, the guardian checks whether that is permitted, then monitors the outcome. When the enterprise creates a new agent, a new guardian appears automatically, so the control layer scales with the thing it is controlling. The guardians run on WhiteMatter&rsquo;s own self-hosted model and GPUs rather than on customers&rsquo; tokens, and the company charges a flat rate based on a deliberately familiar metric: <b>agents under management</b>, a play on assets under management.</p>
+      <p>The traction claims are specific. WhiteMatter says it has <b>2.25 million agents under management</b> and has overseen more than <b>116 billion AI interactions</b>. Its customers include Fortune 200 and Fortune 500 companies, among them the asset manager <b>Alter Domus</b>. It has <b>80 employees</b> and expects to grow the team by about <b>50%</b> over the next year, with a large share of the round going to go-to-market and sales and the rest to research. &ldquo;Our existing stack wasn&rsquo;t built for agents being the main actor in the story,&rdquo; founder and chief executive <b>Vidit Arora</b> told <b>Business Insider</b>. &ldquo;Organisations are going now from humans being the core actor to agents being the core actor, and our entire tool stack wasn&rsquo;t built for that.&rdquo;</p>
+      <p>The timing is not accidental. Agentic security has moved from a conference panel to a budget line as companies give non-technical staff access to agents that can complete tasks, and as a string of agent-powered incidents has shown what happens when an agent is over-permissioned, prompt-injected or simply wrong. WhiteMatter&rsquo;s competitors include <b>Onyx Security</b>, <b>Zenity</b> and <b>Noma</b>, which is a useful signal in itself: multiple funded companies now believe &ldquo;who watches the agents&rdquo; is a standalone market rather than a feature of an existing identity product.</p>
+      <p><span class="hl-ink">The clever part is the business model, and the risk is the architecture. Charging by agents under management means revenue grows automatically as the customer&rsquo;s agent sprawl grows, which is the kind of metric a venture investor likes and a procurement team eventually resists. But a guardian is itself an agent, and every agent is an attack surface. If the guardian can be prompt-injected, disabled or bypassed, the customer has layered trust on top of trust without reducing the number of things that must be correct. The strongest version of this product is not another model watching the first model; it is a deterministic policy engine with an agent attached for the judgement calls, and the company&rsquo;s long-term defensibility depends on which of those it turns out to be.</span></p>
+      <p>Caveats. WhiteMatter is private and the operational numbers are self-reported: &ldquo;agents under management&rdquo; is a commercial metric, not an audited one, and <b>116 billion</b> interactions is cumulative rather than a measure of unique or sensitive actions. There is no independent efficacy data showing that guardian agents catch attacks that conventional controls miss. The customer list is a single named example plus a description. The competitors are funded and the space is crowded. And a guardian does not solve the insider-agent problem when the agent holds legitimate credentials and simply does the wrong legitimate thing. Watch for third-party audits, a public incident postmortem, and whether customers renew after the first renewal cycle &mdash; the point at which a security product stops being a pilot.</p>
+    </div>
+    <a class="source-link" href="https://www.businessinsider.com/whitematter-startup-ai-agent-cybersecurity-funding-pitch-deck-2026-11" target="_blank">Full story &middot; Business Insider</a>
+  </div>
+
+  <div id="europe" class="story-card card-cream section-anchor">
+    <div class="page-chip">05 &middot; EUROPE</div>
+    <div class="card-routine">Retail &middot; The European Beachhead</div>
+    <h2 class="card-headline">JD.com Closed Its $1.5 Billion Takeover of MediaMarkt&rsquo;s Parent</h2>
+    <div class="card-deck">The Chinese e-commerce group bought about 60% of Ceconomy, the German retailer behind MediaMarkt and Saturn, after EU approval with conditions. It is the clearest attempt yet to merge Chinese online retail know-how with European physical stores.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">~60%</span>
+        <span class="stat-label">of Ceconomy acquired for about $1.5 billion</span>
+      </div>
+      <p class="drop"><b>JD.com</b> has completed its acquisition of <b>Ceconomy</b>, the German consumer-electronics retailer that operates <b>MediaMarkt</b> and <b>Saturn</b>, after buying a stake of about <b>60%</b> for roughly <b>$1.5 billion</b>. The deal closed after the <b>European Union</b> approved it with market conditions, according to <b>Nikkei Asia</b>. JD&rsquo;s stated aim is to link European physical and online stores using the retail and supply-chain know-how it built in China.</p>
+      <p>This is not a technology acquisition, and it should not be read as one. It is a distribution acquisition. Consumer electronics is one of the last categories where the physical store still matters: people want to see a television, hold a laptop, compare a washing machine, and return a faulty appliance without a courier. MediaMarkt and Saturn give JD hundreds of stores, a service and installation network, and a customer relationship that begins before the online search. In a market where AI shopping agents are starting to intermediate the research phase, owning the store means owning the data, the inventory and the last mile that an agent cannot replace.</p>
+      <p>The strategic logic runs in both directions. JD&rsquo;s home market has slowed, and Chinese platforms have been looking abroad for growth. Europe is attractive because it is large, wealthy and fragmented, with national retail champions rather than one dominant e-commerce player. It is also heavily regulated, which is why the EU&rsquo;s approval came with conditions rather than a clean clearance. Those conditions matter: they are the price of letting a Chinese platform control a European retail network, and they will shape how much JD can actually integrate.</p>
+      <p>Ceconomy, for its part, has been under pressure for years. Consumer electronics retail is a low-margin, working-capital-heavy business, and the shift to online shopping has squeezed exactly the mid-sized national chains that once dominated it. A large, well-capitalised owner with logistics expertise is a plausible answer to that pressure. Whether it is the right answer depends on whether JD brings its supply chain or just its capital &mdash; and on whether European consumers, suppliers and works councils accept the kind of integration that made JD efficient in China.</p>
+      <p><span class="hl-terra">The interesting question is whether the playbook travels. JD&rsquo;s advantage in China came from density, a mobile-first consumer, its own logistics network and a willingness to run retail as a data business. Europe has stronger incumbents, stricter labour rules, longer supplier relationships and consumers who still browse in stores and buy online. A 60% stake gives JD control, but control is not integration, and integration is where cross-border retail deals usually fail. Watch three signals over the next year: store closures or conversions, changes at the buying desk, and whether JD exports its logistics stack or leaves Ceconomy to run itself. The deal is a beachhead. The beachhead is not yet a business.</p>
+      <p>Caveats. The terms are as <b>Nikkei Asia</b> reported them; the full article is paywalled, and the <b>~$1.5 billion</b> and <b>~60%</b> figures come from its summary. A 60% stake is control, not full ownership, and minority shareholders remain. The EU&rsquo;s specific conditions were not detailed in the available reporting, so the constraints on integration are not fully known. The deal was announced earlier; completion is the news, not the price. There are no disclosed revenue, synergy or store-investment targets, and nothing in the reporting says MediaMarkt or Saturn will be rebranded. Treat the strategic rationale as JD&rsquo;s stated intent, not as an outcome that has happened.</p>
+    </div>
+    <a class="source-link" href="https://asia.nikkei.com/business/business-deals/china-s-jd.com-completes-1.5bn-takeover-of-german-appliance-retailer" target="_blank">Full story &middot; Nikkei Asia</a>
+  </div>
+
+  <div id="signals" class="story-card card-cream section-anchor">
+    <div class="page-chip">06 &middot; SIGNALS</div>
+    <div class="card-routine">5 Key Signals</div>
+    <h2 class="card-headline sm">What Moved the Machine Frontier Today</h2>
+    <div class="card-deck" style="border-bottom:none;padding-bottom:0;margin-bottom:16px;">Briefs worth an afternoon of reading.</div>
+    <div class="signals-grid">
+      <div class="signal-row">
+        <div class="signal-num n1">1</div>
+        <div>
+          <div class="signal-title">Operand Raised $31 Million to Let AI Do the First Pass on Private Equity</div>
+          <div class="signal-desc"><b>Operand</b>, which builds AI-powered due-diligence tools for private equity firms, raised <b>$31 million</b> across a seed and a Series A led by <b>Khosla Ventures</b> at a <b>$220 million</b> valuation, <b>Axios Pro</b> reported. Chief executive <b>Ram Gorthi</b> described the product as AI that does the diligence work associate teams spend their nights on: reading data rooms, extracting the numbers that matter, and flagging the inconsistencies. The read-through is less about private equity than about where AI is being bought first. Firms are paying for tools that compress a well-defined, document-heavy workflow with a clear cost per deal &mdash; not for a general assistant that might do anything.</div>
+          <a class="signal-link" href="https://www.axios.com/pro/all-deals/2026/11/10/private-equity-due-diligence-ai-operand-31m" target="_blank">Axios &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n2">2</div>
+        <div>
+          <div class="signal-title">Charta Health&rsquo;s Third Round in Two Years Brings Total Funding to $85 Million</div>
+          <div class="signal-desc"><b>Charta Health</b>, which automates medical chart review, billing and coding with AI, raised a <b>$55 million</b> Series B led by <b>Insight Partners</b>, <b>MobiHealthNews</b> reported. It is the company&rsquo;s third round in less than two years and brings total funding to <b>$85 million</b>. Healthcare administration is the least glamorous and most reliable place for AI to earn its keep: the work is document-bound, the rules are explicit, the errors are expensive, and the buyer already has a budget line for people who do it. The risk is that the rules vary by payer and by state, which makes the product a services business wearing software margins.</div>
+          <a class="signal-link" href="https://www.mobihealthnews.com/news/charta-health-raises-55m-launches-new-ai-coding-tools" target="_blank">MobiHealthNews &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n3">3</div>
+        <div>
+          <div class="signal-title">Luminal Raised $25 Million to Make AI Models Portable Across Chips</div>
+          <div class="signal-desc"><b>Luminal</b>, which runs an inference cloud and builds inference-compiler software for testing AI models on different chips, raised a <b>$25 million</b> Series A led by <b>Standard Capital</b>, chief executive <b>Joe Fioti</b> told <b>Axios Pro</b>. The pitch is portability. If a model can be compiled to run efficiently on more than one accelerator, the buyer gains leverage over the supplier that currently defines the price of inference. That is a direct challenge to the Nvidia lock-in story, and it is the kind of infrastructure bet that becomes more valuable as the model layer commoditises.</div>
+          <a class="signal-link" href="https://www.axios.com/pro/enterprise-software-deals/2026/11/12/luminal-inference-standard-software" target="_blank">Axios &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n4">4</div>
+        <div>
+          <div class="signal-title">Tesla Will Sell You a Cybercab for $30,000, Plus $299 a Month to Actually Use It</div>
+          <div class="signal-desc"><b>Tesla</b> has invited select customers to order the <b>Cybercab</b> for personal use at <b>$30,000</b>, with a required <b>$299-a-month Autonomy Subscription</b> to operate it, <b>Bloomberg</b> reported. The pricing is the story. Tesla is not selling a car with a feature; it is selling hardware and renting the software that makes the hardware useful, which turns a one-time purchase into a recurring revenue stream and keeps the autonomy stack under Tesla&rsquo;s control. It also makes the true cost of ownership depend on how long you keep the car, and it gives Tesla a lever to change the terms after the sale.</div>
+          <a class="signal-link" href="https://www.bloomberg.com/news/articles/2026-11-14/tesla-says-it-s-starting-to-sell-cybercabs-for-personal-use" target="_blank">Bloomberg &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n5">5</div>
+        <div>
+          <div class="signal-title">Amazon&rsquo;s Answer to AI Shopping Agents Is to Own Every Product&rsquo;s Data</div>
+          <div class="signal-desc"><b>Amazon</b> has a plan to gather data on nearly every product sold anywhere, including by crawling rivals&rsquo; sites, to make sure shoppers never need to leave its site, according to a <b>Reuters</b> report based on an internal document. The logic is defensive: if an AI agent compares products across retailers, the retailer with the richest, cleanest product data wins the recommendation. Amazon is trying to become the database the agents read from, which is a stronger moat than a faster checkout. It also raises the question every commerce company will face next year: when the buyer is an agent, whose catalogue is the source of truth?</div>
+          <a class="signal-link" href="https://www.reuters.com/business/media-telecom/amazons-plan-own-worlds-product-data-fight-ai-shopping-agents-2026-11-13/" target="_blank">Reuters &#8597;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="themes" class="story-card card-lavender section-anchor">
+    <div class="page-chip">07 &middot; CLOSER</div>
+    <div class="card-routine">Top Themes</div>
+    <h2 class="card-headline sm">The Shape of Today&rsquo;s News</h2>
+    <div class="themes-grid" style="margin-top:16px;">
+      <div class="theme-item">The 24-Hour Dependency</div>
+      <div class="theme-item">The Parallel Bet</div>
+      <div class="theme-item">The $37 Billion Ghost</div>
+      <div class="theme-item">The Guardian Layer</div>
+      <div class="theme-item">The European Beachhead</div>
+    </div>
+
+    <div id="tool" class="tool-week section-anchor">
+      <div class="tool-week-eyebrow">Company Watch of the Day</div>
+      <div class="tool-week-name">MICROSOFT</div>
+      <div class="tool-week-desc">Every thread in this issue touches the same question: what happens when one layer becomes load-bearing for everything else. <b>Microsoft</b> is the clearest case. Its <b>Microsoft 365</b> estate serves more than <b>430 million</b> people, and for more than a day this week it could not reliably deliver email, calendars or file access to at least <b>70 countries</b>. The outage also broke the connectors that <b>OpenAI</b> and <b>Anthropic</b> use to reach Microsoft workplace data &mdash; a reminder that the AI layer sits on top of the productivity layer, not beside it. That matters for next week&rsquo;s <b>Anthropic</b> IPO, because the same enterprise graph that makes Microsoft&rsquo;s software valuable is the distribution channel the model labs depend on. Meanwhile the signals point the other way: <b>Amazon</b> is trying to own every product&rsquo;s data so AI shopping agents read from its catalogue, and <b>JD.com</b> just bought <b>60%</b> of MediaMarkt&rsquo;s parent so it owns the physical last mile an agent cannot replace. The pattern is not &ldquo;AI eats software.&rdquo; It is that the owners of the underlying graph &mdash; identity, catalogue, store, supply chain &mdash; are being repriced, and the outage was a live demonstration of how much value sits in a layer nobody thinks about until it stops. Watch the post-incident report, the compensation question in Korea, and whether enterprises treat a 24-hour failure as a reason to diversify or simply a reason to buy the next support tier.</div>
+    </div>
+
+    <div id="sources" class="output-card section-anchor">
+      <div class="output-title">Sources Cited</div>
+      <div class="sources-grid">
+        <a href="https://www.bloomberg.com/news/articles/2026-11-13/microsoft-says-making-progress-fixing-one-of-its-longest-outages" target="_blank">Bloomberg &mdash; Microsoft says all Microsoft 365 products are operational</a>
+        <a href="https://apnews.com/article/microsoft-outage-outlook-email-365-recover-ca395c0f1e51af784b6d70afb6554f6a" target="_blank">AP &mdash; Microsoft says services fully restored</a>
+        <a href="https://www.wired.com/story/microsoft-365-crawls-back-to-life-after-a-24-hour-outage/" target="_blank">WIRED &mdash; Microsoft 365 crawls back after a 24-hour outage</a>
+        <a href="https://www.bbc.com/news/live/cq5y10ge3dp3t" target="_blank">BBC &mdash; Global Microsoft outage live coverage</a>
+        <a href="https://www.koreatimes.co.kr/business/tech-science/20261113/hourslong-microsoft-outage-disrupts-korean-companies-daily-operations" target="_blank">The Korea Times &mdash; Korean companies disrupted</a>
+        <a href="https://en.yna.co.kr/view/AEN20261114002000315" target="_blank">Yonhap &mdash; ICT ministry to inspect disruptions</a>
+        <a href="https://www.securitymagazine.com/articles/102736-microsoft-outage-could-lead-to-7b-in-losses" target="_blank">Security Magazine &mdash; Outage could cost $7 billion</a>
+        <a href="https://tech.eu/2026/11/11/tendrils-compute-raises-30m-to-redo-the-cpu/" target="_blank">Tech.eu &mdash; Tendrils Compute raises $30 million</a>
+        <a href="https://www.ft.com/content/0ef40ac9-6d01-428f-98c8-a52bf5b9a787" target="_blank">FT &mdash; SBF&rsquo;s Anthropic stake would be worth $37 billion</a>
+        <a href="https://aiweekly.co/alerts/alamedas-500m-anthropic-bet-would-be-worth-37b-at-ipo" target="_blank">AI Weekly &mdash; Alameda&rsquo;s $500 million Anthropic bet</a>
+        <a href="https://www.cryptopolitan.com/sbf-misses-37b-anthropic-windfall/" target="_blank">Cryptopolitan &mdash; SBF misses the $37 billion windfall</a>
+        <a href="https://www.businessinsider.com/whitematter-startup-ai-agent-cybersecurity-funding-pitch-deck-2026-11" target="_blank">Business Insider &mdash; WhiteMatter&rsquo;s $20 million Series A</a>
+        <a href="https://asia.nikkei.com/business/business-deals/china-s-jd.com-completes-1.5bn-takeover-of-german-appliance-retailer" target="_blank">Nikkei Asia &mdash; JD.com completes Ceconomy takeover</a>
+        <a href="https://www.axios.com/pro/all-deals/2026/11/10/private-equity-due-diligence-ai-operand-31m" target="_blank">Axios Pro &mdash; Operand raises $31 million</a>
+        <a href="https://www.mobihealthnews.com/news/charta-health-raises-55m-launches-new-ai-coding-tools" target="_blank">MobiHealthNews &mdash; Charta Health raises $55 million</a>
+        <a href="https://www.axios.com/pro/enterprise-software-deals/2026/11/12/luminal-inference-standard-software" target="_blank">Axios Pro &mdash; Luminal raises $25 million</a>
+        <a href="https://www.bloomberg.com/news/articles/2026-11-14/tesla-says-it-s-starting-to-sell-cybercabs-for-personal-use" target="_blank">Bloomberg &mdash; Tesla starts selling Cybercabs for personal use</a>
+        <a href="https://www.reuters.com/business/media-telecom/amazons-plan-own-worlds-product-data-fight-ai-shopping-agents-2026-11-13/" target="_blank">Reuters &mdash; Amazon&rsquo;s plan to own the world&rsquo;s product data</a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-logo">
+      <div class="footer-mark"><img src="../assets/timps-postcards.png" alt="TIMPS"></div>
+      <span class="footer-brand">TIMPS PostCards</span>
+    </div>
+    <div class="footer-center">Issue 170 &middot; November 14, 2026<br>Hyderabad, India</div>
+    <div class="footer-right">
+      <a href="../index.html">Home</a><br>
+      <a href="../archive.html">Archive</a><br>
+      &copy; 2026 TIMPS
+    </div>
+  </footer>
+
+
+</div></div>
+
+<!-- Dynamic Island: today's five headlines in a live capsule (installed app) -->
+<script src="../assets/dynamic-island.js" defer></script>
+</body>
+</html>
