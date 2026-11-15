@@ -155,3 +155,4 @@
 2026-11-12	168	thumb-2026-11-12.jpg	Nvidia Board Is Preparing to Remove Jensen Huang After a Second Affair and a Spy Probe	chip
 2026-11-13	169	thumb-2026-11-13.jpg	Nscale Ordered $45 Billion of Nvidia Chips for Anthropic. Now It Says It Needs More Money.	chip
 2026-11-14	170	thumb-2026-11-14.jpg	Microsoft Spent 24 Hours Broken and Found Out How Much the World Runs on It	globe
+2026-11-15	171	thumb-2026-11-15.jpg	Italy Fined Meta €805 Million for Reading Android Photo Galleries Without Asking Properly	globe

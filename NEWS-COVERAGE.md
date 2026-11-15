@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 157 daily issues + 18 deep dives · regenerated 2026-11-14**
+**Coverage: 158 daily issues + 18 deep dives · regenerated 2026-11-15**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 171 · 2026-11-15 · `daily/timps-postcards-2026-11-15.html`
+
+- **[01 · LEAD]** Italy Fined Meta €805 Million for Reading Android Photo Galleries Without Asking Properly
+  - _The Garante says one app-wide permission let Facebook scan photos, videos and metadata on roughly 20 million Italian Android phones, and the feature was on by default. Meta must switch it off within 60 days and ask again, separately. The regulator is still deciding whether to open a file on AI._
+  - Source: [Full story · Garante Privacy](https://www.garanteprivacy.it/home/docweb/-/docweb-display/docweb/10321080)
+
+- **[02 · ENERGY]** Applied Digital Wants Oracle and Meta to Guarantee Billions Before It Will Build Them a Campus
+  - _Bloomberg reports the developer has demanded multi-billion-dollar parent guarantees from investment-grade tenants since at least last year, before signing AI leases. It also wants Nvidia and AMD to backstop utility interconnections. The tenant now underwrites the landlord._
+  - Source: [Full story · Bloomberg](https://www.bloomberg.com/news/articles/2026-11-14/tech-giants-face-more-grid-cost-pressure-on-democratic-sweep)
+
+- **[03 · MONEY]** Trump Media Has Until November 30 to Find $1 Billion, and Most of Its Bitcoin Is Already Spoken For
+  - _The $1 billion of 0% convertible notes sold to fund a bitcoin treasury can be put back for cash on November 30. They convert at $34.72; the stock trades near $4.60. About 73% of the bitcoin is pledged to an options programme whose counterparty can reuse the coins._
+  - Source: [Full story · Financial Times](https://www.ft.com/content/3efa9733-fbb4-47c2-83ba-b01e548ef277)
+
+- **[04 · AVIATION]** One Router Took Down the Sky: The FAA’s Ground Stop Came From a Copper-to-Fiber Swap
+  - _Transport Secretary Sean Duffy said a contractor replacing copper line at a remote site left a router flooding the network with 1,000 connection attempts every four to five seconds. Disruption reached 17 of the FAA’s 22 air traffic centres. Officials say it was not cyber, and not AI._
+  - Source: [Full story · US Department of Transportation](https://www.transportation.gov/briefing-room/icymi-us-transportation-secretary-sean-p-duffy-provides-update-restoration-airspace)
+
+- **[05 · AGENTS]** LangChain Raised $300 Million at a $3 Billion Valuation to Be the Switzerland of AI Agents
+  - _CapitalG led the round, 13 months after a $1.25 billion valuation. LangSmith is used by more than 7,000 organisations, and the company says its open-source projects are downloaded 350 million times a month. The pitch is a model-neutral runtime for agents after they ship._
+  - Source: [Full story · WebProNews](https://www.webpronews.com/langchain-300-million-series-c-3-billion-valuation-langsmith/)
+
+  **Signals / briefs:**
+  - Five of the Six Biggest AI Labs Now Buy Their Market Data From a 39-Person Company
+  - OpenAI Gave Its Agents a Wallet, and It Still Asks You Every Time
+  - Latin America Is Quietly Becoming a Dollar Economy, One Stablecoin at a Time
+  - The Open-Model Movement Just Lost Its Patron
+  - llama.cpp Reached 1.0, Which Means Local AI Finally Has a Stability Promise
 
 ### Issue 170 · 2026-11-14 · `daily/timps-postcards-2026-11-14.html`
 
