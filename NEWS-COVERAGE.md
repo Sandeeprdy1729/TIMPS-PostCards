@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 158 daily issues + 18 deep dives · regenerated 2026-11-15**
+**Coverage: 159 daily issues + 18 deep dives · regenerated 2026-11-16**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 172 · 2026-11-16 · `daily/timps-postcards-2026-11-16.html`
+
+- **[01 · LEAD]** Apple Opens a 200,000-Person Study to See How People Use AI for Health
+  - _The Apple Health AI Usage Study, run with OpenEvidence, will recruit up to 200,000 eligible adults in the US to ask everyday health questions inside a research app. Apple says the goal is to measure trust, comprehension and real-world behaviour, not to train models on the data._
+  - Source: [Full story · Apple Newsroom](https://www.apple.com/newsroom/2026/11/apple-launches-research-study-to-explore-the-use-of-ai-for-health/)
+
+- **[02 · MODELS]** Alibaba Unveils Qwen4-Max, a 2.4-Trillion-Parameter Model With a 1 Million-Token Context
+  - _Alibaba says Qwen4-Max activates 71 billion parameters per token, adds native vision, and cuts the average cost per task by about 60% on its Work360 benchmark versus Qwen3.8-Max. Smaller open-weight models from the Qwen4 series are promised soon._
+  - Source: [Full story · Alizila](https://alizila.com/alibaba-unveils-qwen4-max-new-ai-teammate-for-work-creativity-and-discovery/)
+
+- **[03 · CHIPS]** Bharat Semi Raises $24 Million to Put AI Inside the Image Sensor
+  - _The New Delhi startup is building programmable image sensors that combine capture, processing and AI on one chip. It has design wins, no revenue yet, and is targeting first commercial production in 2027._
+  - Source: [Full story · TechCrunch](https://techcrunch.com/2026/11/15/indian-chip-startup-bharat-semi-lands-24m-seed-round-as-it-eyes-global-ai-sensor-market/)
+
+- **[04 · SOFTWARE]** Blue J Raises $176 Million to Turn Tax Research Into Agentic Workflows
+  - _The Toronto-based tax research platform says JMI Equity led a Series E valuing it at more than $700 million. The company plans to scale AI agents that can carry work from a client question to a partner-ready deliverable._
+  - Source: [Full story · Blue J](https://www.bluej.com/blog/blue-j-announces-series-e-funding)
+
+- **[05 · INFRASTRUCTURE]** Mount Thor Raises $45 Million to Run Agentic AI on Racks of Apple Silicon
+  - _The San Francisco startup says it will use the Seed and Series A financing to expand a managed fleet of Apple hardware for research labs, agent platforms and enterprises that need macOS at data-centre scale._
+  - Source: [Full story · Mount Thor](https://blog.mountthor.com/a)
+
+  **Signals / briefs:**
+  - Washington Plans to Name AI “National Champions”
+  - Zus Health Raises $33 Million to Connect Healthcare Data for AI
+  - Sumary Lands $25 Million to Sell Accountants an AI Operating System
+  - Kindo Raises $30 Million as Enterprises Try to Control Their Agents
+  - Musk Is Expected to Join Trump at APEC in Shenzhen
 
 ### Issue 171 · 2026-11-15 · `daily/timps-postcards-2026-11-15.html`
 

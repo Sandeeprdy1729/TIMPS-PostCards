@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TIMPS">
+<link rel="manifest" href="../manifest.json">
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/icon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/icon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="../assets/icon-48.png">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="../assets/icon-180.png">
+<title>TIMPS PostCards — Issue 172</title>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --cream:  #EEECE2;
+    --forest: #3D3929;
+    --terra:  #DA7756;
+    --terra-d:#BD5D3A;
+    --black:  #111111;
+    --card-bg:#F0ECE0;
+    --mono:   'Newsreader', Georgia, 'Times New Roman', serif;
+    --serif:  'TIMPS', 'Playfair Display', Georgia, serif;
+  }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Black.woff2') format('woff2'); font-weight:900; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Bold.woff2') format('woff2'); font-weight:700; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-SemiBold.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--cream);
+    background-image:
+      linear-gradient(rgba(61,57,41,.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.07) 1px, transparent 1px);
+    background-size: 38px 38px;
+    font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+    color: var(--forest);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { text-decoration: none; color: inherit; }
+
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 48px;
+    padding-top: calc(14px + env(safe-area-inset-top, 0px));
+    background-color: rgba(238,236,226,.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1.5px solid rgba(61,57,41,.12);
+    background-image:
+      linear-gradient(rgba(61,57,41,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.05) 1px, transparent 1px);
+    background-size: 38px 38px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Special Elite', 'Courier New', Courier, monospace;
+    font-size: 15px;
+    font-weight: 400;
+    color: #000;
+    text-decoration: none;
+  }
+  .nav-logo-mark {
+    width: 34px; height: 34px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .nav-logo-mark img { width: 28px; height: 28px; object-fit: contain; }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-link {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: #000;
+    opacity: .65;
+    text-decoration: none;
+    transition: opacity .15s;
+  }
+  .nav-link:hover { opacity: 1; }
+  .nav-cta {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: #000;
+    background: var(--terra);
+    border: 2.5px solid #000;
+    border-radius: 100px;
+    padding: 10px 24px;
+    cursor: pointer;
+    transition: background .15s, transform .1s;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--terra-d); transform: translateY(-1px); }
+
+  .wrapper { max-width: 760px; margin: 0 auto; padding: 40px 20px 80px; display: flex; flex-direction: column; gap: 0; }
+
+  .cover-card { background: var(--card-bg); border-radius: 20px 20px 4px 4px; padding: 56px 48px 48px; text-align: center; position: relative; overflow: hidden; border: 1.5px solid rgba(61,57,41,.12); margin-bottom: 3px; }
+  .cover-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, var(--terra) 0%, var(--terra-d) 60%, #E0A88A 100%); }
+  .cover-eyebrow { font-family: var(--mono); font-size:10px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:20px; display:flex; align-items:center; justify-content:center; gap:10px; }
+  .cover-eyebrow::before,.cover-eyebrow::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .15; max-width:60px; }
+  .cover-title { font-family: var(--serif); font-size:58px; font-weight:900; line-height:1; letter-spacing:-1px; color: var(--forest); margin-bottom:8px; }
+  .cover-sub { font-family: var(--serif); font-size:13px; font-style:italic; color: var(--forest); opacity: .55; margin-bottom:28px; }
+  .cover-divider { width:48px; height:2px; background: var(--terra); margin:0 auto 24px; border-radius:2px; }
+  .cover-meta { display:flex; justify-content:center; gap:32px; font-family: var(--mono); font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .45; }
+  .cover-badge { display:inline-flex; align-items:center; gap:6px; background: var(--terra); color: #fff; border-radius:20px; padding:6px 18px; font-family: var(--mono); font-size:10px; letter-spacing:2px; text-transform:uppercase; margin-top:28px; }
+  .top5-pill { display:flex; justify-content:center; gap:10px; margin-top:32px; flex-wrap:wrap; }
+  .pill { background: var(--forest); color: var(--cream); border-radius:100px; padding:4px 14px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; }
+  .pill.light { background:transparent; color: var(--forest); border:1px solid rgba(61,57,41,.2); }
+
+  .section-label { display:flex; align-items:center; gap:12px; padding:10px 0 8px; font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .35; }
+  .section-label::before,.section-label::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .1; }
+
+  .story-card { border-radius:4px; border:1.5px solid rgba(61,57,41,.10); padding:36px 40px; margin-bottom:3px; position:relative; overflow:hidden; }
+  .story-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }
+
+  .card-sky      { background:#D6E8F0; } .card-sky::before      { background: #7AAFC0; }
+  .card-cream    { background: var(--card-bg); } .card-cream::before    { background: var(--terra); }
+  .card-blush    { background:#F5DDD0; } .card-blush::before    { background: #E0A88A; }
+  .card-lavender { background:#EAE6F5; } .card-lavender::before { background: #C8BEE8; }
+  .card-sage     { background:#D6E4D6; } .card-sage::before     { background: #8BAF8B; }
+
+  .page-chip { position:absolute; top:14px; right:16px; font-family: var(--mono); font-size:9px; letter-spacing:2px; text-transform:uppercase; color: var(--forest); opacity: .3; }
+  .card-routine { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:8px; }
+  .card-headline { font-family: var(--serif); font-size:28px; font-weight:900; line-height:1.15; color: var(--forest); margin-bottom:10px; }
+  .card-headline.lg { font-size:34px; }
+  .card-headline.sm { font-size:22px; }
+  .card-deck { font-family: var(--serif); font-style:italic; font-size:14px; line-height:1.55; color: var(--forest); opacity: .55; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid rgba(61,57,41,.12); }
+  .card-body { font-family: 'Lora', Georgia, serif; font-size:14px; line-height:1.7; color: var(--forest); }
+  .card-body p { margin-bottom:11px; }
+  .drop::first-letter { font-family: var(--serif); font-size:52px; font-weight:900; float:left; line-height:.78; margin:5px 6px 0 0; color: var(--terra); }
+  .clearfix::after { content:''; display:table; clear:both; }
+
+  .hl-terra { background: var(--terra); color: var(--forest); padding:0 4px; border-radius:2px; }
+  .hl-ink  { background: var(--forest); color: var(--cream); padding:0 4px; border-radius:2px; }
+  .hl-sage { background: #8BAF8B; color: #fff; padding:0 4px; border-radius:2px; }
+  .hl-lav  { background: #C8BEE8; color: var(--forest); padding:0 4px; border-radius:2px; }
+
+  .stat-box { float:right; margin:0 0 16px 24px; background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:16px 20px; text-align:center; min-width:120px; }
+  .stat-big { font-family: var(--serif); font-size:44px; font-weight:900; line-height:1; color: var(--forest); display:block; }
+  .stat-label { font-family: var(--mono); font-size:9.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .5; display:block; margin-top:4px; }
+
+  .img-frame { border:2px solid rgba(61,57,41,0.18); border-radius:12px; overflow:hidden; margin:16px 0; background: var(--card-bg); }
+  .img-frame img { width:100%; display:block; max-height:240px; object-fit:cover; border-bottom:1px solid rgba(61,57,41,.12); }
+  .img-caption { padding:8px 12px; font-family: var(--mono); font-size:10.5px; color: var(--forest); opacity: .6; font-style:italic; display:flex; align-items:center; justify-content:space-between; gap:8px; }
+  .img-caption a { font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; white-space:nowrap; font-style:normal; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; }
+  .img-caption a:hover { opacity: 1; }
+  .img-frame.float-right { float:right; width:220px; margin:0 0 16px 24px; }
+  .img-frame.float-right img { max-height:140px; }
+
+  .source-link { display:inline-flex; align-items:center; gap:5px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:12px; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; transition: opacity .15s; }
+  .source-link:hover { opacity: 1; }
+  .source-link::after { content:'↗'; font-size:9px; }
+
+  .signals-grid { display:flex; flex-direction:column; gap:14px; }
+  .signal-row { display:flex; align-items:flex-start; gap:14px; }
+  .signal-num { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family: var(--serif); font-size:13px; font-weight:900; flex-shrink:0; color:#fff; }
+  .signal-num.n1{background: var(--terra); color: var(--forest);} .signal-num.n2{background: var(--forest);} .signal-num.n3{background:#7AAFC0;} .signal-num.n4{background: var(--terra-d); color: var(--forest);} .signal-num.n5{background: var(--black);}
+  .signal-title { font-family: var(--serif); font-size:14px; font-weight:700; color: var(--forest); margin-bottom:2px; }
+  .signal-desc { font-family: 'Newsreader', Georgia, 'Times New Roman', serif; font-size:12px; line-height:1.65; color: var(--forest); opacity: .6; }
+  .signal-link { display:inline-block; font-family: var(--mono); font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:4px; border-bottom:1px solid rgba(61,57,41,.25); padding-bottom:1px; transition: opacity .15s; }
+  .signal-link:hover { opacity: 1; }
+
+  .themes-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .theme-item { padding:10px 14px; border-radius:8px; font-family: var(--serif); font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; text-align:center; border:1.5px solid rgba(61,57,41,.12); background: var(--cream); }
+
+  .tool-week { background: var(--forest); color: var(--cream); border-radius:12px; padding:18px 20px; text-align:center; margin-top:14px; }
+  .tool-week-eyebrow { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; opacity: .55; margin-bottom:6px; }
+  .tool-week-name { font-family: var(--serif); font-size:22px; font-weight:900; margin-bottom:4px; }
+  .tool-week-desc { font-family: 'Newsreader', Georgia, 'Times New Roman', serif; font-size:11.5px; opacity: .7; font-style:italic; }
+
+  .output-card { background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:18px 20px; margin-top:14px; }
+  .output-title { font-family: var(--serif); font-size:18px; font-weight:700; margin-bottom:8px; color: var(--forest); }
+  .tp-list { list-style:none; padding:0; margin:0; }
+  .tp-list li { padding:5px 0; font-family: 'Lora', Georgia, serif; font-size:12px; color: var(--forest); border-bottom:1px solid rgba(61,57,41,.07); display:flex; align-items:flex-start; gap:7px; }
+  .tp-list li::before { content:'·'; color: var(--terra); font-size:14px; line-height:1.2; flex-shrink:0; }
+  .tp-list li a { color: var(--forest); opacity: .8; text-decoration:none; }
+  .tp-list li a:hover { opacity: 1; }
+
+  .sources-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px 20px; }
+  .sources-grid a { font-family: var(--mono); font-size:11px; color: var(--forest); opacity: .55; text-decoration:none; border-bottom:1px solid rgba(61,57,41,.15); padding-bottom:1px; transition: opacity .15s; }
+  .sources-grid a:hover { opacity: 1; }
+
+  .footer {
+    background: var(--black);
+    padding: 28px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    border-radius: 4px 4px 20px 20px;
+    margin-top: 3px;
+  }
+  .footer-logo { display: flex; align-items: center; gap: 10px; }
+  .footer-mark { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; }
+  .footer-mark img { width: 24px; height: 24px; object-fit: contain; }
+  .footer-brand { font-family: 'Special Elite', 'Courier New', Courier, monospace; font-size: 13px; font-weight: 400; color: #fff; }
+  .footer-center { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.4); text-align: center; line-height: 1.6; }
+  .footer-right { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.3); text-align: right; line-height: 2; }
+  .footer-right a { color: rgba(255,255,255,.5); transition: color .15s; }
+  .footer-right a:hover { color: #fff; }
+
+  .page-layout { display: flex; align-items: flex-start; gap: 0; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+  .toc-sidebar { position: sticky; top: 80px; width: 170px; flex-shrink: 0; padding: 48px 0 0 0; }
+  .toc-nav { display: flex; flex-direction: column; gap: 0; }
+  .toc-link { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.5px; text-transform: uppercase; color: #000; opacity: .45; text-decoration: none; padding: 7px 12px; border-left: 2px solid transparent; transition: opacity .15s, border-color .15s; line-height: 1.3; }
+  .toc-link:hover { opacity: .85; }
+  .toc-link.active { opacity: 1; border-left-color: var(--terra); }
+  .section-anchor { scroll-margin-top: 80px; }
+
+  @media (max-width: 900px) {
+    .toc-sidebar { display: none; }
+    .page-layout { max-width: 760px; }
+  }
+
+  @media (max-width: 720px) {
+    .nav { padding: 12px 24px; }
+    .nav-links { display: none; }
+    .wrapper { padding: 20px 14px 60px; }
+    .cover-card { padding: 40px 24px; }
+    .story-card { padding: 28px 20px; }
+    .footer { padding: 24px; flex-direction: column; align-items: flex-start; }
+    .footer-center, .footer-right { text-align: left; }
+    .stat-box { float: none; margin: 0 0 16px 0; }
+    .img-frame.float-right { float: none; width: 100%; margin: 0 0 16px 0; }
+  }
+  @media (max-width: 480px) {
+    .nav-logo span { display: none; }
+    .cover-title { font-size: 40px; }
+    .card-headline.lg { font-size: 28px; }
+    .card-headline { font-size: 24px; }
+  }
+</style>
+
+</head>
+
+<body>
+
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">
+    <div class="nav-logo-mark"><img src="../assets/timps-postcards.png" alt="TIMPS"></div>
+    <span>TIMPS PostCards</span>
+  </a>
+  <div class="nav-links">
+    <a href="../articles.html" class="nav-link">Articles</a>
+    <a href="../archive.html" class="nav-link">Archive</a>
+    <a href="timps-postcards-2026-11-16.html" class="nav-link">Latest Issue</a>
+    <a href="../index.html#subscribe" class="nav-link">Subscribe</a>
+  </div>
+  <a href="../index.html#subscribe" class="nav-cta">Subscribe</a>
+</nav>
+
+<div class="page-layout">
+  <aside class="toc-sidebar">
+    <nav class="toc-nav">
+      <a href="#lead" class="toc-link">The Waiting Room</a>
+      <a href="#models" class="toc-link">The Max Release</a>
+      <a href="#chips" class="toc-link">The Seeing Chip</a>
+      <a href="#tax" class="toc-link">The Tax Assembly Line</a>
+      <a href="#infra" class="toc-link">The Apple Rack</a>
+      <a href="#signals" class="toc-link">Signals</a>
+      <a href="#themes" class="toc-link">Themes</a>
+      <a href="#tool" class="toc-link">Watch</a>
+      <a href="#sources" class="toc-link">Sources</a>
+    </nav>
+  </aside>
+
+  <div class="wrapper">
+
+  <div id="intro" class="cover-card section-anchor">
+    <div class="cover-eyebrow">Est. 2026 &middot; Hyderabad</div>
+    <div class="cover-title">TIMPS<br>PostCards</div>
+    <div class="cover-sub">AI Intelligence Digest &middot; Your Daily Signal from the Machine Frontier</div>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+      <span>Issue 172</span>
+      <span>November 16, 2026</span>
+      <span>No. 199</span>
+    </div>
+    <div class="cover-badge">&#11041; 172 Issues &mdash; Built with the TIMPS Ecosystem</div>
+    <div class="top5-pill">
+      <span class="pill">5 Top Signals</span>
+      <span class="pill light">The Waiting Room</span>
+      <span class="pill light">The Max Release</span>
+      <span class="pill light">The Seeing Chip</span>
+      <span class="pill light">The Tax Assembly Line</span>
+      <span class="pill light">The Apple Rack</span>
+    </div>
+  </div>
+
+  <div id="lead" class="story-card card-sage section-anchor">
+    <div class="page-chip">01 &middot; LEAD</div>
+    <div class="card-routine">Health &amp; Consumer AI &middot; The Waiting Room</div>
+    <h2 class="card-headline lg">Apple Opens a 200,000-Person Study to See How People Use AI for Health</h2>
+    <div class="card-deck">The Apple Health AI Usage Study, run with OpenEvidence, will recruit up to 200,000 eligible adults in the US to ask everyday health questions inside a research app. Apple says the goal is to measure trust, comprehension and real-world behaviour, not to train models on the data.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">200K</span>
+        <span class="stat-label">eligible US participants age 21 and older on an Apple Intelligence-enabled iPhone</span>
+      </div>
+      <p class="drop"><b>Apple</b> launched the <b>Apple Health AI Usage Study</b> in the United States on Sunday, a virtual research project and companion app designed to watch how people actually use conversational AI for health questions. The company says it will enrol up to <b>200,000 eligible participants age 21 and older</b> who have an <b>Apple Intelligence-enabled iPhone</b> (iPhone 15 Pro or later) running <b>iOS 26</b> or later. The study is being conducted in collaboration with <b>OpenEvidence</b>, a clinical AI platform widely used by healthcare professionals.</p>
+      <p>Inside the app, participants can ask everyday health questions, explore complex medical information written in approachable language, and see linked, peer-reviewed clinical citations behind each response. Apple says OpenEvidence generates answers using medical information from established sources such as <i>The New England Journal of Medicine</i>, <i>JAMA</i> and <i>Nature</i>. Participants can also choose to share <b>HealthKit</b> data types &mdash; resting heart rate, activity, sleep or lab results &mdash; to test whether personal context changes relevance and understanding. The study will also look at whether the tool helps people prepare for clinical visits with their own doctors.</p>
+      <p>The framing is cautious by design. <b>Sumbul Desai, M.D.</b>, Apple&rsquo;s vice president of Health and Fitness, said the company believes &ldquo;responsible innovation starts with scientific rigor and clinical grounding&rdquo; and that a dedicated study is the most thoughtful way to understand how people engage with, comprehend and evaluate health AI in everyday life. <b>Robert M. Wachter, M.D.</b>, chair of medicine at UCSF, argued that patients and clinicians are often using AI in separate worlds and that connecting trustworthy tools &mdash; and studying what works &mdash; is how those conversations improve.</p>
+      <p><span class="hl-terra">Apple is explicit about the boundaries: the study app is not meant to diagnose or treat any condition or replace medical advice, and it includes safety guardrails intended to detect concerning questions and suggest follow-up with a provider or other resources. Apple also says study data will <b>not</b> be used to train AI models and that participants control whether to share HealthKit metrics or survey responses. That promise matters because the hardest part of consumer health AI is not producing fluent answers. It is earning trust when an answer is incomplete, unclear or confidently wrong, and then proving that the system behaves differently when the stakes are a lab result instead of a lunch recommendation.</span></p>
+      <p>Caveats. The study is virtual and opt-in, so the 200,000-person ceiling is an enrolment cap, not a guarantee of who participates or how representative they are. It is limited to US residents with recent Apple hardware and software, which skews the sample toward newer devices. Apple describes the collaboration and the privacy posture, but a consumer study is not the same as clinical validation of diagnostic accuracy. And the most important question &mdash; whether conversational health AI actually improves outcomes rather than just confidence &mdash; will take longer than a launch announcement to answer. Watch how Apple reports findings, what &ldquo;trust&rdquo; ends up measuring, and whether OpenEvidence&rsquo;s clinician-facing credibility transfers cleanly to a consumer setting.</p>
+    </div>
+    <a class="source-link" href="https://www.apple.com/newsroom/2026/11/apple-launches-research-study-to-explore-the-use-of-ai-for-health/" target="_blank">Full story &middot; Apple Newsroom</a>
+  </div>
+
+  <div id="models" class="story-card card-lavender section-anchor">
+    <div class="page-chip">02 &middot; MODELS</div>
+    <div class="card-routine">Frontier Models &middot; The Max Release</div>
+    <h2 class="card-headline">Alibaba Unveils Qwen4-Max, a 2.4-Trillion-Parameter Model With a 1 Million-Token Context</h2>
+    <div class="card-deck">Alibaba says Qwen4-Max activates 71 billion parameters per token, adds native vision, and cuts the average cost per task by about 60% on its Work360 benchmark versus Qwen3.8-Max. Smaller open-weight models from the Qwen4 series are promised soon.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">2.4T</span>
+        <span class="stat-label">total parameters, with 71 billion activated per token and a 1 million-token context window</span>
+      </div>
+      <p class="drop"><b>Alibaba</b> released <b>Qwen4-Max</b> on November 16, presenting it as the most capable model in the Qwen family to date. In its announcement, the company describes a sparse mixture-of-experts model with <b>2.4 trillion total parameters</b>, <b>native vision capabilities</b> and a <b>one-million-token context window</b>. Alibaba says the model activates only <b>71 billion parameters per token</b> &mdash; 25% fewer activated parameters than <b>Qwen3.8-Max</b> at the same 2.4T scale &mdash; as part of a broader architecture update across attention, residual connections and embeddings.</p>
+      <p>The company&rsquo;s benchmark story mixes public leaderboards with internal tests. Alibaba says Qwen4-Max ranked <b>6th on Code Arena</b> and posted strong scores on specialised benchmarks for agent workflows, workplace productivity and visual reasoning, including Agents&rsquo; Last Exam, Vals Index, JobBench and Chartography. On its proprietary <b>Work360</b> benchmark, which evaluates 721 specialised fields, Alibaba claims Qwen4-Max outperforms Qwen3.8-Max overall while using <b>35% fewer tokens</b> at high-effort reasoning and reducing the average cost per task by about <b>60%</b>. It also highlights cloud resource scheduling and long-running agent demonstrations, including a 48-hour closed-loop run in a materials-discovery example.</p>
+      <p>Qwen4-Max is available now on <b>QwenCloud</b> via the Token Plan and API, and across Alibaba products including <b>QwenWork</b> and <b>QwenStudio</b>. Alibaba lists input with an implicit cache hit at <b>$0.075 per million tokens</b>. The company says <b>open-weight, smaller-scale models</b> from the Qwen4 series will be released to developers worldwide soon, a notable distinction given that this flagship is being offered as a hosted model rather than as downloadable weights today.</p>
+      <p><span class="hl-ink">The interesting number is not 2.4 trillion by itself; it is the pairing of a huge parameter count with a smaller activation budget and a lower claimed cost per task. If those economics hold outside Alibaba&rsquo;s own benchmark, the competition shifts from &ldquo;who has the biggest model&rdquo; to &ldquo;who can make a big model cheap enough to run all day inside an agent loop.&rdquo; The one-million-token window and native vision point the same way: this is being sold as a model that can stay with a job &mdash; codebase, document set, workflow &mdash; rather than answer one prompt and forget. The promise of smaller open-weight Qwen4 models is the other half of the strategy, because it keeps developers in the family even when they do not want to rent the flagship.</span></p>
+      <p>Caveats. Most performance and efficiency claims here come from Alibaba&rsquo;s own announcement and proprietary benchmarks; independent evaluations will matter more than the launch copy. Code Arena rank is a useful signal but not a full capability audit, and &ldquo;cost per task&rdquo; depends heavily on workload, caching and tooling. The flagship itself is not open-weight at launch, so the openness question is deferred to the smaller releases Alibaba says are coming. Pricing and availability outside Alibaba&rsquo;s platforms can differ by provider and region. Watch for third-party benchmark runs, the actual release of smaller Qwen4 weights, and whether the $0.075 cached-input price reflects typical real-world usage.</p>
+    </div>
+    <a class="source-link" href="https://alizila.com/alibaba-unveils-qwen4-max-new-ai-teammate-for-work-creativity-and-discovery/" target="_blank">Full story &middot; Alizila</a>
+  </div>
+
+  <div id="chips" class="story-card card-cream section-anchor">
+    <div class="page-chip">03 &middot; CHIPS</div>
+    <div class="card-routine">Semiconductors &middot; The Seeing Chip</div>
+    <h2 class="card-headline">Bharat Semi Raises $24 Million to Put AI Inside the Image Sensor</h2>
+    <div class="card-deck">The New Delhi startup is building programmable image sensors that combine capture, processing and AI on one chip. It has design wins, no revenue yet, and is targeting first commercial production in 2027.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">$24M</span>
+        <span class="stat-label">all-equity seed round to develop AI-enabled image sensors for global markets</span>
+      </div>
+      <p class="drop"><b>Bharat Semi</b>, a New Delhi-based semiconductor startup, has raised <b>$24 million</b> in an all-equity seed round to develop AI-enabled image sensors, <b>TechCrunch</b> reported. The round was led by <b>Info Edge Group</b>, <b>South Park Commons</b> and <b>Indus Bridge Ventures</b>, with participation from Valour Capital, Micromax, Gaingels and individual investors. The nearly five-year-old company is pre-revenue but says it has secured design wins with US defense technology company <b>General Atomics</b> and India&rsquo;s <b>Kaynes Semicon</b>.</p>
+      <p>The startup is building programmable image sensors that combine image capture, processing and AI capabilities on a single chip, reducing the need to send visual data to separate processors. Co-founder <b>Vrinda Kapoor</b> told TechCrunch the goal is to move &ldquo;from sensors to sense-making solutions,&rdquo; and said the approach could cut system costs by at least <b>70%</b> compared with conventional setups that use a separate image sensor, image signal processor and system-on-chip. Bharat Semi is targeting smart homes, industrial automation, surveillance and aerospace &mdash; use cases where a device that can interpret what it sees locally can be cheaper or faster than shipping pixels elsewhere.</p>
+      <p>The hardware is still on the way. Bharat Semi&rsquo;s first-generation sensors are in prototyping, while second-generation sensors with more advanced AI capabilities are expected to reach prototype stage by <b>mid-2027</b> and reach customers by the <b>end of 2027</b>. The company has about <b>75 employees</b> across India and the US, including 10 to 12 in its American operations in Santa Clara, and plans to increase its US headcount to around 20 by mid-2027 while hiring in Europe. Kapoor said the new funding will go to engineering, product development and bringing sensors to market.</p>
+      <p><span class="hl-terra">Image sensors are a quiet choke point in the AI hardware stack because so much machine perception still begins with a camera that captures everything and hands the problem to something else. Putting inference next to the pixels changes that trade: you can decide earlier what matters, move less data, and in some cases avoid sending sensitive imagery off-device at all. That is why the customer list here matters more than the seed headline. A defense and manufacturing pull suggests buyers who care about latency, power and reliability, not just a demo. The risk is that &ldquo;AI on the sensor&rdquo; is easy to pitch and hard to manufacture at yield, especially for a pre-revenue company promising a 2027 ramp.</span></p>
+      <p>Caveats. Bharat Semi has design wins but not shipped products or disclosed revenue, and commercial timelines in semiconductors often slip. The 70% cost-reduction figure is the company&rsquo;s estimate, not an independently audited comparison across specific systems. A separate 2024 plan for a semiconductor fabrication project in India, involving a technology partnership with the US Space Force, remains in development and is distinct from this fabless sensor business; the new funding will not finance that facility. Watch for taped-out silicon, customer qualification milestones and whether the company can turn prototype interest into repeatable production.</p>
+    </div>
+    <a class="source-link" href="https://techcrunch.com/2026/11/15/indian-chip-startup-bharat-semi-lands-24m-seed-round-as-it-eyes-global-ai-sensor-market/" target="_blank">Full story &middot; TechCrunch</a>
+  </div>
+
+  <div id="tax" class="story-card card-sky section-anchor">
+    <div class="page-chip">04 &middot; SOFTWARE</div>
+    <div class="card-routine">Enterprise AI &middot; The Tax Assembly Line</div>
+    <h2 class="card-headline">Blue J Raises $176 Million to Turn Tax Research Into Agentic Workflows</h2>
+    <div class="card-deck">The Toronto-based tax research platform says JMI Equity led a Series E valuing it at more than $700 million. The company plans to scale AI agents that can carry work from a client question to a partner-ready deliverable.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">$176M</span>
+        <span class="stat-label">Series E led by JMI Equity, valuing Blue J at more than $700 million</span>
+      </div>
+      <p class="drop"><b>Blue J</b>, a Toronto-based tax research and advisory platform, announced a <b>US$176 million</b> Series E led by <b>JMI Equity</b>, with participation from existing investors <b>Oak HC/FT</b> and <b>Sapphire Ventures</b> and from <b>Intrepid Growth Partners</b>. The company said the round values it at more than <b>US$700 million</b> (more than C$1 billion) and that it will use the capital to scale <b>Workflows</b>, its agentic AI for tax work, and to expand in the United Kingdom and internationally. <b>Jack Duane</b>, a principal at JMI Equity, will join Blue J&rsquo;s board.</p>
+      <p>Blue J is betting that the valuable product is not the answer but the work that comes after it. Chief executive and co-founder <b>Benjamin Alarie</b> framed the shift as moving from answering a tax question to carrying the job &mdash; under a professional&rsquo;s direction &mdash; to a finished, partner-ready deliverable. The company says Workflows builds on a research engine that has answered more than <b>14 million</b> tax questions, and can help with tasks such as reviewing returns before filing, preparing IRS notice responses, analysing partnership, LLC and trust agreements, assessing multistate nexus and drafting client communications, with supporting sources and workflow steps available for inspection.</p>
+      <p>The round follows a year of reported growth. Blue J says annual recurring revenue grew <b>165%</b> in the 15 months after its Series D, more than <b>6,500 organisations</b> now use the platform, including Big Four firms and Fortune 100 companies, and it has doubled its team over the past year with expectations to exceed <b>200 employees</b> by year-end. In October, it partnered with <b>Legora</b> to bring its tax research into Legora&rsquo;s agentic operating system for legal work, which Blue J says is used by more than 140,000 legal professionals.</p>
+      <p><span class="hl-ink">Tax is a useful stress test for the &ldquo;AI agent&rdquo; pitch because the work is rules-heavy, source-driven and unforgiving when wrong. A model that can draft is interesting; a system that can show its sources, expose its steps and fit inside a professional&rsquo;s review loop is closer to something a firm can bill against. That is why Blue J is emphasising inspection and judgment rather than autonomy. The constraint is the same one every vertical agent company faces: once the workflow is valuable, it becomes sticky, but it also becomes responsible. In tax, a fast wrong answer is worse than a slow one, and &ldquo;partner-ready&rdquo; is a liability standard as much as a marketing phrase.</span></p>
+      <p>Caveats. Revenue growth, customer counts, question totals and usage figures are company-reported. The $700 million valuation is stated by Blue J and JMI in connection with the round, not an independent market price. Expanding from research into agentic execution means competing with both horizontal AI assistants and incumbent tax-software vendors that already own parts of the workflow. And the product still depends on practitioners reviewing outputs and making judgment calls, which limits how far automation can go without changing professional responsibility. Watch whether Workflows becomes a separate line item firms pay for, and how often &ldquo;inspectable steps&rdquo; hold up under audit pressure.</p>
+    </div>
+    <a class="source-link" href="https://www.bluej.com/blog/blue-j-announces-series-e-funding" target="_blank">Full story &middot; Blue J</a>
+  </div>
+
+  <div id="infra" class="story-card card-blush section-anchor">
+    <div class="page-chip">05 &middot; INFRASTRUCTURE</div>
+    <div class="card-routine">Agent Compute &middot; The Apple Rack</div>
+    <h2 class="card-headline">Mount Thor Raises $45 Million to Run Agentic AI on Racks of Apple Silicon</h2>
+    <div class="card-deck">The San Francisco startup says it will use the Seed and Series A financing to expand a managed fleet of Apple hardware for research labs, agent platforms and enterprises that need macOS at data-centre scale.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">$45M</span>
+        <span class="stat-label">equity raised across Seed and Series A financings, plus non-dilutive capital for hardware</span>
+      </div>
+      <p class="drop"><b>Mount Thor</b>, a San Francisco startup building cloud infrastructure on Apple hardware, announced <b>$45 million</b> in equity capital across Seed and Series A financings. The company said <b>CRV</b> and <b>Conviction</b> co-led the Series A, while <b>Chad Byers</b> and <b>Offline Ventures</b> co-led the Seed. <b>CSC Leasing</b>, <b>Enea Capital</b>, <b>Long Journey Ventures</b> and <b>Upper90</b> participated, along with strategic angels from Cognition, Core Automation, Daytona, Meta, OpenAI, Together AI and Vercel. Mount Thor also said it raised non-dilutive capital to support hardware purchases.</p>
+      <p>The pitch is simple: AI agents increasingly need to use computers the way people do, and many tasks require tools that only run on <b>macOS</b>. Mount Thor says it develops, deploys and manages rack-scale systems of Apple hardware with the security, scalability and availability customers expect from a cloud provider. Founder and CEO <b>Peter Voell</b> argued that decades of investment in accessibility and human-computer interaction make macOS a strong environment for agents to work and for humans to hold them accountable, and that chips like the <b>M5 Ultra</b> make Apple silicon an increasingly interesting platform for production inference.</p>
+      <p>The company lists use cases that span the agent stack: reinforcement-learning environments for frontier computer-use models, secure macOS sandboxes for agent infrastructure providers, long-running macOS instances for agentic products, faster build-and-test loops for Apple-platform software, and enterprise inference on open-source models optimised for Apple silicon. Mount Thor says it deployed its first data centre in less than six months and plans to expand capacity, with a particular focus on building an inference lab for open-source models on Apple silicon. The team includes people who previously built infrastructure at Cerebras, CoreWeave, Fluidstack, Nebius, OpenAI and xAI.</p>
+      <p><span class="hl-sage">This is a bet that &ldquo;computer use&rdquo; will create a real market for macOS as infrastructure, not just as a developer laptop. GPUs dominate model training and most large-scale inference, but agents that need to click, test, sign in, build or automate inside Apple software have a different requirement: they need the operating system, not a substitute. If that demand grows, a managed fleet of Macs becomes a specialised cloud layer in the same way bare-metal GPU clouds became a layer. The counterargument is obvious too &mdash; Apple controls the hardware roadmap, the licensing boundaries and the economics, so any company renting Apple silicon at scale is building on someone else&rsquo;s platform in a very literal sense.</span></p>
+      <p>Caveats. Mount Thor was founded in 2026 and is early; claims about fleet size, customer traction and cost or power advantages are company statements, not independent benchmarks. Apple&rsquo;s terms, supply and product cadence will shape what &ldquo;datacentre-scale Apple hardware&rdquo; can actually mean. The strategic-angel list is notable but not a customer disclosure. And the market depends on agent workloads needing persistent macOS environments often enough to justify a dedicated provider. Watch whether the company publishes utilisation or performance data, how it prices against conventional GPU and VM clouds, and whether Apple itself moves to serve this demand directly.</p>
+    </div>
+    <a class="source-link" href="https://blog.mountthor.com/a" target="_blank">Full story &middot; Mount Thor</a>
+  </div>
+
+  <div id="signals" class="story-card card-cream section-anchor">
+    <div class="page-chip">06 &middot; SIGNALS</div>
+    <div class="card-routine">5 Key Signals</div>
+    <h2 class="card-headline sm">What Moved the Machine Frontier Today</h2>
+    <div class="card-deck" style="border-bottom:none;padding-bottom:0;margin-bottom:16px;">Briefs worth an afternoon of reading.</div>
+    <div class="signals-grid">
+      <div class="signal-row">
+        <div class="signal-num n1">1</div>
+        <div>
+          <div class="signal-title">Washington Plans to Name AI &ldquo;National Champions&rdquo;</div>
+          <div class="signal-desc">The Trump administration plans to designate more than <b>two dozen</b> artificial intelligence companies as US &ldquo;national champions,&rdquo; including <b>Nvidia, Amazon, Microsoft, OpenAI and Anthropic</b>, according to reporting by <i>The Wall Street Journal</i> cited by Reuters and other outlets. The label is less about prestige than leverage: a formal roster can be used to steer procurement, export policy and overseas expansion. Watch for the official list and whether &ldquo;champion&rdquo; comes with obligations as well as advantages.</div>
+          <a class="signal-link" href="https://finance.yahoo.com/news/trump-administration-name-nvidia-other-041705165.html" target="_blank">Reuters via Yahoo Finance &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n2">2</div>
+        <div>
+          <div class="signal-title">Zus Health Raises $33 Million to Connect Healthcare Data for AI</div>
+          <div class="signal-desc"><b>Zus Health</b> announced a <b>$33 million</b> Series B led by <b>Drive Capital</b>, with participation from Sanofi Ventures, HealthX Ventures and Alumni Ventures alongside existing investors including Andreessen Horowitz, F-Prime, Maverick Ventures and JAZZ Venture Partners. The Boston-based company, founded by Jonathan Bush, is building a data platform meant to unify fragmented patient records so healthcare AI can run on cleaner inputs. It is a reminder that many clinical-AI products are blocked less by models than by missing context.</div>
+          <a class="signal-link" href="https://www.globenewswire.com/news-release/2026/11/10/3399761/0/en/zus-health-raises-33-million-in-series-b-funding-to-accelerate-the-next-generation-of-connected-healthcare.html" target="_blank">GlobeNewswire &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n3">3</div>
+        <div>
+          <div class="signal-title">Sumary Lands $25 Million to Sell Accountants an AI Operating System</div>
+          <div class="signal-desc">Copenhagen-based <b>Sumary</b> raised a <b>$25 million</b> seed round led by <b>Singular</b>, bringing its total funding to about <b>$29.2 million</b> after a $4.2 million pre-seed. The company is building an AI operating system for accounting work &mdash; month-end close, VAT returns and year-end preparation &mdash; and plans to expand from Denmark into the UK and Benelux. The size of the round signals investor appetite for vertical workflow software where the unit of value is a finished process, not a chat answer.</div>
+          <a class="signal-link" href="https://sumary.com/news/seed-round" target="_blank">Sumary &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n4">4</div>
+        <div>
+          <div class="signal-title">Kindo Raises $30 Million as Enterprises Try to Control Their Agents</div>
+          <div class="signal-desc"><b>Kindo</b> said it raised <b>$30 million</b> in a round co-led by <b>Crosspoint Capital</b> and <b>Forgepoint Capital</b>, bringing total capital raised to <b>$57.6 million</b>. The company, which sells an enterprise AI agent management platform, reported revenue growth of roughly <b>800%</b> year over year in 2026. Governance and cost control are becoming their own market as agents move from experiments to systems that can take actions with real consequences.</div>
+          <a class="signal-link" href="https://www.prnewswire.com/news-releases/kindo-secures-57-6-million-to-expand-enterprise-control-over-ai-agent-actions-and-reduce-costs-302937058.html" target="_blank">PR Newswire &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n5">5</div>
+        <div>
+          <div class="signal-title">Musk Is Expected to Join Trump at APEC in Shenzhen</div>
+          <div class="signal-desc"><b>Elon Musk</b> is expected to accompany President <b>Donald Trump</b> to the APEC summit in <b>Shenzhen</b> on <b>November 18&ndash;19</b>, according to reporting by the <i>South China Morning Post</i> and others. The same reporting said Nvidia chief Jensen Huang&rsquo;s participation remains uncertain. With US&ndash;China tech tensions and chip policy already in the background, the guest list matters almost as much as the agenda: who shows up signals which companies are being treated as diplomatic assets.</div>
+          <a class="signal-link" href="https://www.scmp.com/news/china/diplomacy/article/3373901/top-us-business-leaders-including-elon-musk-set-join-donald-trump-apec-china" target="_blank">South China Morning Post &#8597;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="themes" class="story-card card-lavender section-anchor">
+    <div class="page-chip">07 &middot; CLOSER</div>
+    <div class="card-routine">Top Themes</div>
+    <h2 class="card-headline sm">The Shape of Today&rsquo;s News</h2>
+    <div class="themes-grid" style="margin-top:16px;">
+      <div class="theme-item">The Waiting Room</div>
+      <div class="theme-item">The Max Release</div>
+      <div class="theme-item">The Seeing Chip</div>
+      <div class="theme-item">The Tax Assembly Line</div>
+      <div class="theme-item">The Apple Rack</div>
+    </div>
+
+    <div id="tool" class="tool-week section-anchor">
+      <div class="tool-week-eyebrow">Company Watch of the Day</div>
+      <div class="tool-week-name">APPLE</div>
+      <div class="tool-week-desc">Apple shows up in two very different places today. In the lead, it is asking up to <b>200,000</b> US iPhone users to help it study how people ask health questions, understand answers and decide what to trust &mdash; with <b>OpenEvidence</b> providing medically grounded responses and Apple insisting the data will not be used to train models. In infrastructure, <b>Mount Thor</b> is raising <b>$45 million</b> to turn Apple silicon and macOS into a rented layer for agentic workloads. The through-line is that Apple&rsquo;s hardware and software are becoming environments other people build on: a phone as a health-research instrument, a Mac fleet as a place for agents to work. The constraint is also the same. When Apple sets the rules &mdash; device eligibility, operating-system access, privacy posture, platform terms &mdash; it decides how far that ecosystem can stretch. Watch what the health study actually measures, and whether &ldquo;macOS in the cloud&rdquo; stays a niche or becomes a standard runtime for computer-using agents.</div>
+    </div>
+
+    <div id="sources" class="output-card section-anchor">
+      <div class="output-title">Sources Cited</div>
+      <div class="sources-grid">
+        <a href="https://www.apple.com/newsroom/2026/11/apple-launches-research-study-to-explore-the-use-of-ai-for-health/" target="_blank">Apple Newsroom &mdash; Apple launches research study to explore the use of AI for health</a>
+        <a href="https://alizila.com/alibaba-unveils-qwen4-max-new-ai-teammate-for-work-creativity-and-discovery/" target="_blank">Alizila &mdash; Alibaba unveils Qwen4-Max</a>
+        <a href="https://qwen.ai/blog?id=qwen4-max" target="_blank">Qwen Blog &mdash; Qwen4-Max</a>
+        <a href="https://techcrunch.com/2026/11/15/indian-chip-startup-bharat-semi-lands-24m-seed-round-as-it-eyes-global-ai-sensor-market/" target="_blank">TechCrunch &mdash; Bharat Semi raises $24M seed</a>
+        <a href="https://www.bluej.com/blog/blue-j-announces-series-e-funding" target="_blank">Blue J &mdash; Announces US$176 million Series E</a>
+        <a href="https://www.jmi.com/blue-j-announces-us176-million-series-e-to-put-ai-agents-to-work-for-tax-professionals" target="_blank">JMI Equity &mdash; Blue J Series E</a>
+        <a href="https://blog.mountthor.com/a" target="_blank">Mount Thor &mdash; Raises $45 million for Apple infrastructure</a>
+        <a href="https://finance.yahoo.com/news/trump-administration-name-nvidia-other-041705165.html" target="_blank">Reuters via Yahoo Finance &mdash; US plans AI &ldquo;national champions&rdquo;</a>
+        <a href="https://www.globenewswire.com/news-release/2026/11/10/3399761/0/en/zus-health-raises-33-million-in-series-b-funding-to-accelerate-the-next-generation-of-connected-healthcare.html" target="_blank">GlobeNewswire &mdash; Zus Health raises $33 million Series B</a>
+        <a href="https://sumary.com/news/seed-round" target="_blank">Sumary &mdash; $25 million seed round</a>
+        <a href="https://www.prnewswire.com/news-releases/kindo-secures-57-6-million-to-expand-enterprise-control-over-ai-agent-actions-and-reduce-costs-302937058.html" target="_blank">PR Newswire &mdash; Kindo raises $30 million</a>
+        <a href="https://www.scmp.com/news/china/diplomacy/article/3373901/top-us-business-leaders-including-elon-musk-set-join-donald-trump-apec-china" target="_blank">South China Morning Post &mdash; Musk expected at APEC in Shenzhen</a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-logo">
+      <div class="footer-mark"><img src="../assets/timps-postcards.png" alt="TIMPS"></div>
+      <span class="footer-brand">TIMPS PostCards</span>
+    </div>
+    <div class="footer-center">Issue 172 &middot; November 16, 2026<br>Hyderabad, India</div>
+    <div class="footer-right">
+      <a href="../index.html">Home</a><br>
+      <a href="../archive.html">Archive</a><br>
+      &copy; 2026 TIMPS
+    </div>
+  </footer>
+
+</div></div>
+
+<!-- Dynamic Island: today's five headlines in a live capsule (installed app) -->
+<script src="../assets/dynamic-island.js" defer></script>
+</body>
+</html>
