@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TIMPS">
+<link rel="manifest" href="../manifest.json">
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/icon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/icon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="../assets/icon-48.png">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="../assets/icon-180.png">
+<title>TIMPS PostCards — Issue 173</title>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --cream:  #EEECE2;
+    --forest: #3D3929;
+    --terra:  #DA7756;
+    --terra-d:#BD5D3A;
+    --black:  #111111;
+    --card-bg:#F0ECE0;
+    --mono:   'Newsreader', Georgia, 'Times New Roman', serif;
+    --serif:  'TIMPS', 'Playfair Display', Georgia, serif;
+  }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Black.woff2') format('woff2'); font-weight:900; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Bold.woff2') format('woff2'); font-weight:700; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-SemiBold.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--cream);
+    background-image:
+      linear-gradient(rgba(61,57,41,.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.07) 1px, transparent 1px);
+    background-size: 38px 38px;
+    font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+    color: var(--forest);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { text-decoration: none; color: inherit; }
+
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 48px;
+    padding-top: calc(14px + env(safe-area-inset-top, 0px));
+    background-color: rgba(238,236,226,.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1.5px solid rgba(61,57,41,.12);
+    background-image:
+      linear-gradient(rgba(61,57,41,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.05) 1px, transparent 1px);
+    background-size: 38px 38px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Special Elite', 'Courier New', Courier, monospace;
+    font-size: 15px;
+    font-weight: 400;
+    color: #000;
+    text-decoration: none;
+  }
+  .nav-logo-mark {
+    width: 34px; height: 34px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .nav-logo-mark img { width: 28px; height: 28px; object-fit: contain; }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-link {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: #000;
+    opacity: .65;
+    text-decoration: none;
+    transition: opacity .15s;
+  }
+  .nav-link:hover { opacity: 1; }
+  .nav-cta {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: #000;
+    background: var(--terra);
+    border: 2.5px solid #000;
+    border-radius: 100px;
+    padding: 10px 24px;
+    cursor: pointer;
+    transition: background .15s, transform .1s;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--terra-d); transform: translateY(-1px); }
+
+  .wrapper { max-width: 760px; margin: 0 auto; padding: 40px 20px 80px; display: flex; flex-direction: column; gap: 0; }
+
+  .cover-card { background: var(--card-bg); border-radius: 20px 20px 4px 4px; padding: 56px 48px 48px; text-align: center; position: relative; overflow: hidden; border: 1.5px solid rgba(61,57,41,.12); margin-bottom: 3px; }
+  .cover-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, var(--terra) 0%, var(--terra-d) 60%, #E0A88A 100%); }
+  .cover-eyebrow { font-family: var(--mono); font-size:10px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:20px; display:flex; align-items:center; justify-content:center; gap:10px; }
+  .cover-eyebrow::before,.cover-eyebrow::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .15; max-width:60px; }
+  .cover-title { font-family: var(--serif); font-size:58px; font-weight:900; line-height:1; letter-spacing:-1px; color: var(--forest); margin-bottom:8px; }
+  .cover-sub { font-family: var(--serif); font-size:13px; font-style:italic; color: var(--forest); opacity: .55; margin-bottom:28px; }
+  .cover-divider { width:48px; height:2px; background: var(--terra); margin:0 auto 24px; border-radius:2px; }
+  .cover-meta { display:flex; justify-content:center; gap:32px; font-family: var(--mono); font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .45; }
+  .cover-badge { display:inline-flex; align-items:center; gap:6px; background: var(--terra); color: #fff; border-radius:20px; padding:6px 18px; font-family: var(--mono); font-size:10px; letter-spacing:2px; text-transform:uppercase; margin-top:28px; }
+  .top5-pill { display:flex; justify-content:center; gap:10px; margin-top:32px; flex-wrap:wrap; }
+  .pill { background: var(--forest); color: var(--cream); border-radius:100px; padding:4px 14px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; }
+  .pill.light { background:transparent; color: var(--forest); border:1px solid rgba(61,57,41,.2); }
+
+  .section-label { display:flex; align-items:center; gap:12px; padding:10px 0 8px; font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .35; }
+  .section-label::before,.section-label::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .1; }
+
+  .story-card { border-radius:4px; border:1.5px solid rgba(61,57,41,.10); padding:36px 40px; margin-bottom:3px; position:relative; overflow:hidden; }
+  .story-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }
+
+  .card-sky      { background:#D6E8F0; } .card-sky::before      { background: #7AAFC0; }
+  .card-cream    { background: var(--card-bg); } .card-cream::before    { background: var(--terra); }
+  .card-blush    { background:#F5DDD0; } .card-blush::before    { background: #E0A88A; }
+  .card-lavender { background:#EAE6F5; } .card-lavender::before { background: #C8BEE8; }
+  .card-sage     { background:#D6E4D6; } .card-sage::before     { background: #8BAF8B; }
+
+  .page-chip { position:absolute; top:14px; right:16px; font-family: var(--mono); font-size:9px; letter-spacing:2px; text-transform:uppercase; color: var(--forest); opacity: .3; }
+  .card-routine { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:8px; }
+  .card-headline { font-family: var(--serif); font-size:28px; font-weight:900; line-height:1.15; color: var(--forest); margin-bottom:10px; }
+  .card-headline.lg { font-size:34px; }
+  .card-headline.sm { font-size:22px; }
+  .card-deck { font-family: var(--serif); font-style:italic; font-size:14px; line-height:1.55; color: var(--forest); opacity: .55; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid rgba(61,57,41,.12); }
+  .card-body { font-family: 'Lora', Georgia, serif; font-size:14px; line-height:1.7; color: var(--forest); }
+  .card-body p { margin-bottom:11px; }
+  .drop::first-letter { font-family: var(--serif); font-size:52px; font-weight:900; float:left; line-height:.78; margin:5px 6px 0 0; color: var(--terra); }
+  .clearfix::after { content:''; display:table; clear:both; }
+
+  .hl-terra { background: var(--terra); color: var(--forest); padding:0 4px; border-radius:2px; }
+  .hl-ink  { background: var(--forest); color: var(--cream); padding:0 4px; border-radius:2px; }
+  .hl-sage { background: #8BAF8B; color: #fff; padding:0 4px; border-radius:2px; }
+  .hl-lav  { background: #C8BEE8; color: var(--forest); padding:0 4px; border-radius:2px; }
+
+  .stat-box { float:right; margin:0 0 16px 24px; background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:16px 20px; text-align:center; min-width:120px; }
+  .stat-big { font-family: var(--serif); font-size:44px; font-weight:900; line-height:1; color: var(--forest); display:block; }
+  .stat-label { font-family: var(--mono); font-size:9.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .5; display:block; margin-top:4px; }
+
+  .img-frame { border:2px solid rgba(61,57,41,0.18); border-radius:12px; overflow:hidden; margin:16px 0; background: var(--card-bg); }
+  .img-frame img { width:100%; display:block; max-height:240px; object-fit:cover; border-bottom:1px solid rgba(61,57,41,.12); }
+  .img-caption { padding:8px 12px; font-family: var(--mono); font-size:10.5px; color: var(--forest); opacity: .6; font-style:italic; display:flex; align-items:center; justify-content:space-between; gap:8px; }
+  .img-caption a { font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; white-space:nowrap; font-style:normal; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; }
+  .img-caption a:hover { opacity: 1; }
+  .img-frame.float-right { float:right; width:220px; margin:0 0 16px 24px; }
+  .img-frame.float-right img { max-height:140px; }
+
+  .source-link { display:inline-flex; align-items:center; gap:5px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:12px; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; transition: opacity .15s; }
+  .source-link:hover { opacity: 1; }
+  .source-link::after { content:'↗'; font-size:9px; }
+
+  .signals-grid { display:flex; flex-direction:column; gap:14px; }
+  .signal-row { display:flex; align-items:flex-start; gap:14px; }
+  .signal-num { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family: var(--serif); font-size:13px; font-weight:900; flex-shrink:0; color:#fff; }
+  .signal-num.n1{background: var(--terra); color: var(--forest);} .signal-num.n2{background: var(--forest);} .signal-num.n3{background:#7AAFC0;} .signal-num.n4{background: var(--terra-d); color: var(--forest);} .signal-num.n5{background: var(--black);}
+  .signal-title { font-family: var(--serif); font-size:14px; font-weight:700; color: var(--forest); margin-bottom:2px; }
+  .signal-desc { font-family: 'Newsreader', Georgia, 'Times New Roman', serif; font-size:12px; line-height:1.65; color: var(--forest); opacity: .6; }
+  .signal-link { display:inline-block; font-family: var(--mono); font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:4px; border-bottom:1px solid rgba(61,57,41,.25); padding-bottom:1px; transition: opacity .15s; }
+  .signal-link:hover { opacity: 1; }
+
+  .themes-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .theme-item { padding:10px 14px; border-radius:8px; font-family: var(--serif); font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; text-align:center; border:1.5px solid rgba(61,57,41,.12); background: var(--cream); }
+
+  .tool-week { background: var(--forest); color: var(--cream); border-radius:12px; padding:18px 20px; text-align:center; margin-top:14px; }
+  .tool-week-eyebrow { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; opacity: .55; margin-bottom:6px; }
+  .tool-week-name { font-family: var(--serif); font-size:22px; font-weight:900; margin-bottom:4px; }
+  .tool-week-desc { font-family: 'Newsreader', Georgia, 'Times New Roman', serif; font-size:11.5px; opacity: .7; font-style:italic; }
+
+  .output-card { background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:18px 20px; margin-top:14px; }
+  .output-title { font-family: var(--serif); font-size:18px; font-weight:700; margin-bottom:8px; color: var(--forest); }
+  .tp-list { list-style:none; padding:0; margin:0; }
+  .tp-list li { padding:5px 0; font-family: 'Lora', Georgia, serif; font-size:12px; color: var(--forest); border-bottom:1px solid rgba(61,57,41,.07); display:flex; align-items:flex-start; gap:7px; }
+  .tp-list li::before { content:'·'; color: var(--terra); font-size:14px; line-height:1.2; flex-shrink:0; }
+  .tp-list li a { color: var(--forest); opacity: .8; text-decoration:none; }
+  .tp-list li a:hover { opacity: 1; }
+
+  .sources-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px 20px; }
+  .sources-grid a { font-family: var(--mono); font-size:11px; color: var(--forest); opacity: .55; text-decoration:none; border-bottom:1px solid rgba(61,57,41,.15); padding-bottom:1px; transition: opacity .15s; }
+  .sources-grid a:hover { opacity: 1; }
+
+  .footer {
+    background: var(--black);
+    padding: 28px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    border-radius: 4px 4px 20px 20px;
+    margin-top: 3px;
+  }
+  .footer-logo { display: flex; align-items: center; gap: 10px; }
+  .footer-mark { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; }
+  .footer-mark img { width: 24px; height: 24px; object-fit: contain; }
+  .footer-brand { font-family: 'Special Elite', 'Courier New', Courier, monospace; font-size: 13px; font-weight: 400; color: #fff; }
+  .footer-center { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.4); text-align: center; line-height: 1.6; }
+  .footer-right { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.3); text-align: right; line-height: 2; }
+  .footer-right a { color: rgba(255,255,255,.5); transition: color .15s; }
+  .footer-right a:hover { color: #fff; }
+
+  .page-layout { display: flex; align-items: flex-start; gap: 0; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+  .toc-sidebar { position: sticky; top: 80px; width: 170px; flex-shrink: 0; padding: 48px 0 0 0; }
+  .toc-nav { display: flex; flex-direction: column; gap: 0; }
+  .toc-link { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.5px; text-transform: uppercase; color: #000; opacity: .45; text-decoration: none; padding: 7px 12px; border-left: 2px solid transparent; transition: opacity .15s, border-color .15s; line-height: 1.3; }
+  .toc-link:hover { opacity: .85; }
+  .toc-link.active { opacity: 1; border-left-color: var(--terra); }
+  .section-anchor { scroll-margin-top: 80px; }
+
+  @media (max-width: 900px) {
+    .toc-sidebar { display: none; }
+    .page-layout { max-width: 760px; }
+  }
+
+  @media (max-width: 720px) {
+    .nav { padding: 12px 24px; }
+    .nav-links { display: none; }
+    .wrapper { padding: 20px 14px 60px; }
+    .cover-card { padding: 40px 24px; }
+    .story-card { padding: 28px 20px; }
+    .footer { padding: 24px; flex-direction: column; align-items: flex-start; }
+    .footer-center, .footer-right { text-align: left; }
+    .stat-box { float: none; margin: 0 0 16px 0; }
+    .img-frame.float-right { float: none; width: 100%; margin: 0 0 16px 0; }
+  }
+  @media (max-width: 480px) {
+    .nav-logo span { display: none; }
+    .cover-title { font-size: 40px; }
+    .card-headline.lg { font-size: 28px; }
+    .card-headline { font-size: 24px; }
+  }
+</style>
+
+</head>
+
+
+<body>
+
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">
+    <div class="nav-logo-mark"><img src="../assets/timps-postcards.png" alt="TIMPS"></div>
+    <span>TIMPS PostCards</span>
+  </a>
+  <div class="nav-links">
+    <a href="../articles.html" class="nav-link">Articles</a>
+    <a href="../archive.html" class="nav-link">Archive</a>
+    <a href="timps-postcards-2026-11-17.html" class="nav-link">Latest Issue</a>
+    <a href="../index.html#subscribe" class="nav-link">Subscribe</a>
+  </div>
+  <a href="../index.html#subscribe" class="nav-cta">Subscribe</a>
+</nav>
+
+<div class="page-layout">
+  <aside class="toc-sidebar">
+    <nav class="toc-nav">
+      <a href="#lead" class="toc-link">The Three-Day Port</a>
+      <a href="#models" class="toc-link">The 50,000 Cores</a>
+      <a href="#chips" class="toc-link">The Trojan Field</a>
+      <a href="#tax" class="toc-link">The Power Bill</a>
+      <a href="#infra" class="toc-link">The Self-Improvers</a>
+      <a href="#signals" class="toc-link">Signals</a>
+      <a href="#themes" class="toc-link">Themes</a>
+      <a href="#tool" class="toc-link">Watch</a>
+      <a href="#sources" class="toc-link">Sources</a>
+    </nav>
+  </aside>
+
+  <div class="wrapper">
+
+  <div id="intro" class="cover-card section-anchor">
+    <div class="cover-eyebrow">Est. 2026 &middot; Hyderabad</div>
+    <div class="cover-title">TIMPS<br>PostCards</div>
+    <div class="cover-sub">AI Intelligence Digest &middot; Your Daily Signal from the Machine Frontier</div>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+      <span>Issue 173</span>
+      <span>November 17, 2026</span>
+      <span>No. 200</span>
+    </div>
+    <div class="cover-badge">&#11041; 173 Issues &mdash; Built with the TIMPS Ecosystem</div>
+    <div class="top5-pill">
+      <span class="pill">5 Top Signals</span>
+      <span class="pill light">The Three-Day Port</span>
+      <span class="pill light">The 50,000 Cores</span>
+      <span class="pill light">The Trojan Field</span>
+      <span class="pill light">The Power Bill</span>
+      <span class="pill light">The Self-Improvers</span>
+    </div>
+  </div>
+
+  <div id="lead" class="story-card card-sage section-anchor">
+    <div class="page-chip">01 &middot; LEAD</div>
+    <div class="card-routine">Compute &middot; The Three-Day Port</div>
+    <h2 class="card-headline lg">Anthropic Ported Claude to AMD GPUs in Three Days. The CUDA Moat Just Got Narrower.</h2>
+    <div class="card-deck">The company told IPO investors that Claude Mythos Preview did the low-level software work to bring up its model on AMD MI355X GPUs in about three days, writing or porting almost all the kernels. A job that once took six to twelve months is becoming a purchase decision.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">~3D</span>
+        <span class="stat-label">to bring up Claude on AMD MI355X GPUs, down from six to twelve months of engineering</span>
+      </div>
+      <p class="drop"><b>Anthropic</b> told investors in its IPO roadshow that <b>Claude Mythos Preview</b> completed the software work needed to get one of its models running on <b>AMD MI355X GPUs</b> in about <b>three days</b>, with &ldquo;basically no human intervention.&rdquo; <b>Tom Brown</b>, Anthropic&rsquo;s co-founder and chief compute officer, said the same job used to take a team of &ldquo;dozens of engineers&rdquo; <b>six to twelve months</b>. The model ported or wrote <b>almost 100% of the kernels</b> &mdash; the small, hand-tuned programs that connect a model to a specific chip &mdash; according to <b>Tom&rsquo;s Hardware</b>, which first reported the investor disclosure.</p>
+      <p>The three-day figure is narrower than the headline suggests. Anthropic&rsquo;s slide limits it to <b>prompt processing for one model on MI355X GPUs at a useful level of performance</b> &mdash; the prefill step, before the model starts replying. The company has not said whether the decode step was included, how fast the model ran compared with the same model on Nvidia hardware, or what exactly &ldquo;almost 100%&rdquo; measures. It also left the price and share count blank in its S-1, filed October 26, while seeking a valuation reportedly around <b>$1.4 trillion</b> and a Nasdaq listing under <b>ANT</b> as soon as Thursday.</p>
+      <p>The broader claim is still significant because it comes from the buyer, not the chip seller. Anthropic already runs models across Nvidia and AMD GPUs, Google TPUs and AWS Trainium, managed as what Brown called <b>&ldquo;one fungible pool of compute.&rdquo;</b> It began using AMD GPUs for the first time this year and now has an agreement for up to <b>2 gigawatts</b> of AMD capacity. AMD has been making the same argument for months: its executives say Claude writes better conversion code than its own HIPify tool because it can search the web, and that in some cases AI-written kernels beat manually tuned versions. Anthropic goes further in its prospectus, saying only that it can &ldquo;onboard new chip platforms in a fraction of the time it once took.&rdquo;</p>
+      <p><span class="hl-terra">CUDA is nearly two decades old, and its real moat was never the code alone &mdash; it was the years of engineering talent, libraries and hardware-specific tuning that made Nvidia the default. If a model can do most of that translation in days, switching costs fall and the choice starts to look like a procurement decision. That is why the investor disclosure matters more than another AMD keynote demo: Anthropic buys the chips, is heading into an IPO, and has now put a number on a claim the industry has been making for a year. The moat is narrowing, not gone. Nvidia still knows its own architecture best, gets the newest silicon first, and is one of seven companies putting <b>$26 billion</b> into Anthropic at the IPO price.</span></p>
+      <p>Caveats. Almost every figure here is Anthropic&rsquo;s own, delivered to investors rather than published as a benchmark, and the company has an obvious interest in showing its compute strategy is flexible. The three-day result covers one model, one workload and one chip family; it says nothing about sustained training throughput, decode performance or the cost of the electricity and engineering time that still go into testing kernels. Nvidia&rsquo;s Jensen Huang called Anthropic &ldquo;a unique instance, not a trend&rdquo; in April, and AMD itself has said agentic kernel work still needs large pools of GPUs to test against &mdash; a shortage it has struggled with. Watch for independent MI355X-versus-Nvidia performance numbers, whether Anthropic publishes the missing decode figures, and how the &ldquo;fungible pool&rdquo; holds up when the specialized TPUs in it are anything but interchangeable.</p>
+    </div>
+    <a class="source-link" href="https://www.tomshardware.com/tech-industry/artificial-intelligence/anthropic-says-claude-mythos-slashed-software-work-to-onboard-amd-gpus-from-up-to-12-months-to-around-three-days-writing-almost-100-percent-of-kernels-autonomously-chips-away-at-nvidias-cuda-moat" target="_blank">Full story &middot; Tom&rsquo;s Hardware</a>
+  </div>
+
+  <div id="models" class="story-card card-lavender section-anchor">
+    <div class="page-chip">02 &middot; CHIPS</div>
+    <div class="card-routine">Silicon &middot; The 50,000 Cores</div>
+    <h2 class="card-headline">Nvidia Unveils Rubin HPC With More Than 50,000 CUDA Cores. It Arrives in 2028.</h2>
+    <div class="card-deck">At Supercomputing 2026, Nvidia announced a new member of the Rubin family aimed at agentic scientific work. It says the chip carries the highest CUDA core count of any GPU it has made &mdash; roughly double today&rsquo;s Rubin.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">50K+</span>
+        <span class="stat-label">CUDA cores on Rubin HPC, up from 28,672 on the current Rubin GPU</span>
+      </div>
+      <p class="drop"><b>Nvidia</b> took the wraps off <b>Rubin HPC</b> at the Supercomputing 2026 conference this week, describing it as the highest-core-count GPU the company has ever shipped. Nvidia says the chip has <b>&ldquo;more than 50,000&rdquo; CUDA cores</b>, compared with <b>28,672</b> and 224 streaming multiprocessors in today&rsquo;s Rubin. <b>Tom&rsquo;s Hardware</b> notes that such a jump implies a multi-die package similar to the four-die Rubin Ultra, which links dies with NVLink-C2C, but Nvidia did not describe the physical layout. The chip is not expected until <b>2028</b>.</p>
+      <p>The intended buyer is not a gamer or a chatbot operator. Nvidia is pitching Rubin HPC to scientists, engineers and analysts running <b>agentic workflows</b> and large-scale simulation &mdash; climate research, genomic analysis and financial modelling &mdash; where a swarm of agents can move from hypothesis to simulation to refinement without waiting for a human. Data moves between GPUs over <b>NVLink 7</b>, which past disclosures suggest keeps the <b>3.6 TB/s</b> per-GPU bandwidth of NVLink 6 while enlarging the scale-up domain. Nvidia also points to its CUDA-X libraries as the layer that makes the chip useful across those domains.</p>
+      <p>What Nvidia did not say is almost as revealing. There were no details on <b>HBM capacity or bandwidth</b>, and no word on whether the chip rebalances its compute toward native <b>FP64</b>, the double-precision math that matters in scientific computing and that rivals AMD and Intel are highlighting at the same conference. Nvidia instead emphasised the &ldquo;balanced design&rdquo; of more cores and faster data movement, arguing that keeping the huge data sets feeding the chip minimises idle compute. The company also said this quarter it expects to sell <b>$20 billion</b> worth of Vera Rubin hardware.</p>
+      <p><span class="hl-ink">Read this alongside the lead story and the tension is the whole issue. Anthropic is telling investors that AI can write the code that makes Nvidia&rsquo;s software layer less decisive. Nvidia is answering with a chip that puts twice as many CUDA cores on a package and leans harder on CUDA-X. Both can be true: a model may be able to port itself to AMD in days, while the best hardware and the deepest libraries still sit with the incumbent. The 2028 date also tells you the horizon. This is a roadmap promise made during a turbulent week for Nvidia, not a part you can buy.</span></p>
+      <p>Caveats. The core count and use cases come from Nvidia&rsquo;s announcement; the four-die layout is inference by Tom&rsquo;s Hardware, not a confirmed design. No memory specification, FP64 rate, power envelope, price or benchmark has been published, and the &ldquo;more than 50,000&rdquo; wording leaves room for interpretation. A launch slide is not a shipping product, and 2028 is far enough away that both the design and the competitive landscape can change. Watch for an HBM and FP64 disclosure, real simulation benchmarks against AMD and Intel accelerators, and whether the agentic-workflow framing survives contact with the researchers who would actually use it.</p>
+    </div>
+    <a class="source-link" href="https://www.tomshardware.com/pc-components/gpus/nvidia-announces-rubin-hpc-gpu-with-record-number-of-cuda-cores-at-supercomputing-2026-new-chip-accelerates-agentic-hpc-workloads-arrives-in-2028" target="_blank">Full story &middot; Tom&rsquo;s Hardware</a>
+  </div>
+
+  <div id="chips" class="story-card card-cream section-anchor">
+    <div class="page-chip">03 &middot; SECURITY</div>
+    <div class="card-routine">Supply Chain &middot; The Trojan Field</div>
+    <h2 class="card-headline">One Optimizely Field Served Malware to 178 Organizations</h2>
+    <div class="card-deck">Attackers wrote code into a custom field inside Optimizely&rsquo;s experimentation platform, and it was served from Optimizely&rsquo;s own CDN with a valid certificate to sites including Zoom, the BBC, CNN and HSBC.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">178</span>
+        <span class="stat-label">organisations served malicious JavaScript through 188 infected Optimizely snippets</span>
+      </div>
+      <p class="drop"><b>Optimizely Web</b> works by having each customer load a JavaScript snippet from the company&rsquo;s CDN, which contains Optimizely&rsquo;s code, the customer&rsquo;s experiments and an optional custom field called <b>Project JavaScript</b>. On <b>16 November</b>, attackers wrote their own code into that field on customer projects. <b>Report URI</b>, which detected the campaign, says the rest of each snippet was untouched and the files were still served from <b>cdn.optimizely.com</b> with Optimizely&rsquo;s certificate &mdash; from a host every affected site already trusted.</p>
+      <p><b>Report URI</b> researchers fetched <b>1,611</b> distinct Optimizely snippets and found <b>188</b> infected snippets belonging to <b>178 organisations</b>, including Zoom, the BBC, CNN, Salesforce, GitLab, IKEA, HSBC, Equifax, Air France-KLM, Ledger and Peacock. The payload was a multi-purpose kit. It swapped cryptocurrency wallet addresses for attacker-controlled ones, skimmed card numbers, expiry dates and CVVs from site forms, stole cookies and screenshots, and on iPhones and iPads delivered the <b>Coruna</b> and <b>DarkSword</b> exploit kits. The malicious script was rebuilt <b>26 times</b> during the day. By 19:25 UTC, the attackers&rsquo; wallets had received about <b>$7,040</b>.</p>
+      <p>Report URI says the code was not a CDN cache-poisoning attack &mdash; Optimizely&rsquo;s CDN served exactly what it was given, and Optimizely&rsquo;s own sites were affected too. The open question is how the attacker got write access to so many unrelated customer projects: a compromised Optimizely system, a credential with cross-customer access, or something else. Most of the malicious code had been removed by 21:52 UTC, with one infected snippet left out of 188, down from 169 an hour earlier. Cards typed into hosted payment iframes such as Stripe and Adyen were out of reach; cards entered into a site&rsquo;s own fields were not.</p>
+      <p><span class="hl-terra">This is the supply-chain attack that a CSP was supposed to prevent and that most organisations are still exposed to. The infected code came from a trusted domain, over a trusted certificate, inside a platform whose whole purpose is to run third-party JavaScript on your site. No customer server had to be breached. The lesson is not &ldquo;be careful with Optimizely&rdquo;; it is that any script you load is a remote code execution path into every visitor&rsquo;s browser, and that the permission surface includes fields you may never have looked at. An enforced content security policy would have blunted key parts of this. So would treating the experimentation platform as a production dependency with an owner, an inventory and an incident plan.</span></p>
+      <p>Caveats. The victim count is a floor, not a ceiling: Report URI could only check snippets it had found in time, and says the real number is likely higher. It could not see how many cards or cookies reached the attacker&rsquo;s server, so the $7,040 crypto total understates the harm. The entry point remains unconfirmed and Optimizely&rsquo;s explanation is still pending. The iOS exploit chain was limited to older devices &mdash; the kit&rsquo;s own comments say iOS 18.7.3 and 26.3 and later are patched &mdash; but the wallet and card theft worked regardless of device. Watch for Optimizely&rsquo;s forensic account, whether the same actor resurfaces through another vendor, and how many organisations discover they were in the list only after reading it.</p>
+    </div>
+    <a class="source-link" href="https://blog.report-uri.com/worlds-largest-brands-infected-with-malware-via-optimizely/" target="_blank">Full story &middot; Report URI</a>
+  </div>
+
+  <div id="tax" class="story-card card-sky section-anchor">
+    <div class="page-chip">04 &middot; INFRASTRUCTURE</div>
+    <div class="card-routine">Energy &middot; The Power Bill</div>
+    <h2 class="card-headline">403 Data Centers Used as Much Electricity as Michigan. Harvard Says the Boom Is Already Bigger.</h2>
+    <div class="card-deck">A peer-reviewed study of US hyperscale data centres found that 403 facilities consumed as much power as the state of Michigan in a year &mdash; and that the number understates what is coming.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">403</span>
+        <span class="stat-label">hyperscale data centres operational between May 2024 and April 2025 in the study</span>
+      </div>
+      <p class="drop"><b>Just 400 US data centers</b> used as much electricity as the state of <b>Michigan</b> in a single year, according to new Harvard research published Monday in <b>Nature Sustainability</b>. The study, reported by <b>WIRED</b>, assembled a list of <b>403 hyperscale data centres</b> operational between <b>May 2024 and April 2025</b> using industry research and satellite data, then modelled their energy use against regional grid mixes. It found that the majority of that electricity came from <b>fossil fuels</b> and that data-centre emissions are now <b>three times higher</b> than before the AI boom.</p>
+      <p>The geographic concentration is sharp. Data centres in <b>Virginia, Oregon, Ohio and Iowa</b> &mdash; the first home to Data Center Alley &mdash; accounted for <b>more than 50%</b> of the energy use in the study. Federal and state governments do not track data-centre consumption separately from the rest of the power sector, and individual facilities&rsquo; usage is often treated as proprietary, which is why a peer-reviewed estimate matters. Outside researcher <b>Jon Koomey</b> told WIRED that knowing facility-level use is &ldquo;a really useful thing&rdquo; and that peer review is more rigorous than back-of-the-envelope calculations.</p>
+      <p>The number is also already dated. The average facility in the dataset is about <b>40 megawatts</b>, small next to campuses being proposed today at hundreds or thousands of megawatts. The study does not include <b>behind-the-meter power</b> &mdash; developers building their own plants &mdash; which Koomey calls a &ldquo;wild card.&rdquo; As many as <b>189 gigawatts</b> of behind-the-meter generation are in the pipeline for data centres, often natural gas, and BloombergNEF estimated last week that building all of it could raise overall US emissions by <b>10%</b>. The <b>Energy Information Agency</b> has finished three pilot surveys across 10 states and is designing a potential voluntary survey.</p>
+      <p><span class="hl-ink">The headline is memorable, but the real finding is the visibility gap. We can estimate the electricity used by 403 existing hyperscale facilities from satellites and grid data, while the industry plans another 189 gigawatts of private power that nobody is required to report. That is a measurement problem before it is an energy problem: communities are being asked to approve or reject projects without the numbers, and researchers are reconstructing the truth after the fact. Local votes on data-centre restrictions are a rational response to an information vacuum. The EIA&rsquo;s voluntary survey is a start, but a voluntary survey of an industry with an incentive not to disclose is not a registry.</span></p>
+      <p>Caveats. The study covers <b>operational</b> hyperscale facilities in a single twelve-month window, not all data centres, and not all of the surveyed facilities are used for AI. Energy use is modelled rather than metered because operators do not have to disclose it. The Michigan comparison is about annual electricity, not a claim about peak load or grid stress at a particular hour. Behind-the-meter plants are excluded entirely, so the total footprint is larger. And a 40 MW average from 2024&ndash;25 says little about the 500 MW campuses under development. Watch for the EIA survey design, whether states require disclosure as a condition of interconnection, and how quickly the 403 figure is overtaken.</p>
+    </div>
+    <a class="source-link" href="https://www.wired.com/story/data-centers-use-more-electricity-than-michigan/" target="_blank">Full story &middot; WIRED</a>
+  </div>
+
+  <div id="infra" class="story-card card-blush section-anchor">
+    <div class="page-chip">05 &middot; STARTUPS</div>
+    <div class="card-routine">Enterprise AI &middot; The Self-Improvers</div>
+    <h2 class="card-headline">Noeri Launches With $110 Million to Build AI That Improves Itself</h2>
+    <div class="card-deck">Two Stanford professors, including MacArthur Fellow Yejin Choi, are building agents that learn from a customer&rsquo;s own traffic and propose changes to the models and tools around it &mdash; with a human approving each one.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">$110M</span>
+        <span class="stat-label">launch funding led by Menlo Ventures, with Nvidia and Snowflake among the strategic investors</span>
+      </div>
+      <p class="drop"><b>Noeri</b> launched on <b>16 November</b> with <b>$110 million</b> in funding led by <b>Menlo Ventures</b>. Madrona Venture Group, Kindred Ventures, Wing Venture Capital and NEA also participated, with <b>Cisco Investments, Nvidia and Snowflake</b> joining as strategic investors. The company was founded this year by Stanford computer science professors <b>Yejin Choi</b> and <b>Carlos Guestrin</b>, who serve as co-CEOs from Palo Alto and Zurich. Choi is a MacArthur Fellow known for making smaller models more capable; Guestrin co-founded Turi, acquired by Apple in 2016, and later led Apple&rsquo;s central machine-learning organisation.</p>
+      <p>Noeri is aiming at a familiar enterprise bind: pay more for the most capable general model, or accept weaker results from a cheaper one. Its system studies an organisation&rsquo;s data and workflows, then improves the surrounding software, skills, instructions and tools, and the choice of model at each step &mdash; including a model&rsquo;s underlying parameters when that is worthwhile. The agents are meant to learn from tasks, failures, corrections and production traffic without a large labelled data set, and to create new tools when existing ones fall short. Every change is explained and sent to a person for approval through a process the company compares to code review.</p>
+      <p>The economics are the point. Quality and cost are measured on the customer&rsquo;s own traffic, not public benchmarks, and the customer keeps its data and owns the workflows and models developed by the system. Choi and Guestrin argue in a <b>vision statement</b> that intelligence should be distributed across many specialised, customer-owned systems rather than concentrated in one central superintelligence. Smaller models sized to a task, they say, are cheaper, less energy-intensive and easier to specify and supervise. Noeri also plans to apply the same machinery to scientific discovery in molecules, proteins and technical systems, where sustained search costs far more compute than a single answer.</p>
+      <p><span class="hl-lav">This is a direct challenge to the idea that the winner is whoever trains the biggest model. Noeri&rsquo;s bet is that most enterprises do not need frontier capability on every step of a workflow &mdash; they need a system that knows which step is expensive, which one is failing, and how to fix it with the cheapest model that will do. That is a tooling and orchestration business with a research lab attached, and the presence of Nvidia and Snowflake as strategic investors is revealing: the hardware and data players are hedging toward a world where efficiency, not raw scale, decides the bill. The risk is that &ldquo;self-improving&rdquo; is easy to say and hard to prove outside a vendor&rsquo;s chosen metrics.</span></p>
+      <p>Caveats. The company is at launch with proof-of-concept partnerships, not published customer results, and the claims about quality and cost come from Noeri itself. Every proposed change still needs human approval, which is a real safeguard but also a ceiling on how much the system can actually automate. The customer-owned model promise is subject to third-party model licences. The research agenda &mdash; continual learning, self-distillation, agentic orchestration &mdash; is ambitious and largely unsolved, and the scientific-discovery ambition is further out than the enterprise tooling. Watch for named customers, before-and-after cost figures measured on their traffic, and whether &ldquo;human in the loop&rdquo; stays a feature or becomes a bottleneck as volume grows.</p>
+    </div>
+    <a class="source-link" href="https://www.unite.ai/noeri-raises-110m-to-build-self-improving-ai-for-enterprises/" target="_blank">Full story &middot; Unite.AI</a>
+  </div>
+
+  <div id="signals" class="story-card card-cream section-anchor">
+    <div class="page-chip">06 &middot; SIGNALS</div>
+    <div class="card-routine">5 Key Signals</div>
+    <h2 class="card-headline sm">What Moved the Machine Frontier Today</h2>
+    <div class="card-deck" style="border-bottom:none;padding-bottom:0;margin-bottom:16px;">Briefs worth an afternoon of reading.</div>
+    <div class="signals-grid">
+      <div class="signal-row">
+        <div class="signal-num n1">1</div>
+        <div>
+          <div class="signal-title">Altimeter Is Putting In for $5 Billion of Anthropic&rsquo;s IPO</div>
+          <div class="signal-desc"><b>Brad Gerstner</b> told CNBC that Altimeter intends to invest <b>$5 billion</b> in Anthropic&rsquo;s IPO &mdash; more than <b>five times</b> his largest previous IPO order. He called the company &ldquo;a cornerstone compounder for a long time.&rdquo; Anthropic is seeking a valuation around <b>$1.4 trillion</b> and could list on Nasdaq under <b>ANT</b> as soon as Thursday, with seven AI and tech companies reportedly committing <b>$26 billion</b> between them.</div>
+          <a class="signal-link" href="https://www.cnbc.com/2026/11/16/altimeters-brad-gerstner-investing-5-billion-in-anthropic-ipo.html" target="_blank">CNBC &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n2">2</div>
+        <div>
+          <div class="signal-title">Corma Went From Stealth to Unicorn in Three Months</div>
+          <div class="signal-desc"><b>Corma</b>, a Tel Aviv and San Francisco startup training foundation models for defensive cybersecurity, raised a <b>$125 million</b> Series A led by <b>NEA</b> at a <b>$1 billion</b> valuation. It emerged from stealth in August with a <b>$60 million</b> seed led by Sequoia, with Khosla Ventures and Coatue doubling down &mdash; about <b>$185 million</b> in total. The speed says as much about the market for AI-driven defence as it does about the company.</div>
+          <a class="signal-link" href="https://www.wsj.com/pro/cybersecurity/cyber-startup-corma-raises-125-million-for-defensive-ai-agents-f30a4387" target="_blank">The Wall Street Journal &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n3">3</div>
+        <div>
+          <div class="signal-title">Anthropic Cuts Its Bug-Disclosure Window From 90 Days to 30</div>
+          <div class="signal-desc"><b>Anthropic</b> is shortening its coordinated vulnerability disclosure window to <b>30 days</b> for high and critical issues and <b>45 days</b> for everything else, from <b>1 January 2027</b>. It will escalate to an external coordinator after <b>15 days</b> instead of 30 if a maintainer does not respond. The reason is AI: models find bugs faster, fix them faster, and are increasingly likely to rediscover the same flaw, so a 90-day private window no longer holds.</div>
+          <a class="signal-link" href="https://www.anthropic.com/research/coordinated-vulnerability-disclosure-timelines" target="_blank">Anthropic &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n4">4</div>
+        <div>
+          <div class="signal-title">US Life Insurers Are Sitting on $85 Billion of AI Debt</div>
+          <div class="signal-desc">Major US life insurers including Athene held <b>$85.2 billion</b> in AI-related debt as of <b>30 June</b>, up <b>24%</b> in six months, according to <b>Moody&rsquo;s</b> reporting by <i>The New York Times</i>. That is still only <b>2.1%</b> of their total debt investments, but Moody&rsquo;s projects it could reach <b>$185 billion</b> by the end of 2027. The AI build-out is now financed by balance sheets whose depositors never signed up for the risk.</div>
+          <a class="signal-link" href="https://www.nytimes.com/2026/11/16/business/insurance-ai-debt.html" target="_blank">The New York Times &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n5">5</div>
+        <div>
+          <div class="signal-title">Google Sees the First Fully Autonomous Patch-to-Exploit Agent</div>
+          <div class="signal-desc"><b>Google&rsquo;s Threat Intelligence Group</b> says it observed, for the first time, attackers using an LLM framework with <b>no human in the loop</b> to turn security patches into working exploits. A tool called <b>exploit_agent</b>, using Russian-language tooling, compared code before and after updates, identified flaws, drafted exploits and executed them automatically before data was stolen from victims. It is the clearest sign yet that offensive security research has crossed an autonomy threshold.</div>
+          <a class="signal-link" href="https://www.theregister.com/research/2026/11/16/google-ai-agent-turned-a-security-patch-into-a-working-exploit-with-no-human-help/5309926" target="_blank">The Register &#8597;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="themes" class="story-card card-lavender section-anchor">
+    <div class="page-chip">07 &middot; CLOSER</div>
+    <div class="card-routine">Top Themes</div>
+    <h2 class="card-headline sm">The Shape of Today&rsquo;s News</h2>
+    <div class="themes-grid" style="margin-top:16px;">
+      <div class="theme-item">The Three-Day Port</div>
+      <div class="theme-item">The 50,000 Cores</div>
+      <div class="theme-item">The Trojan Field</div>
+      <div class="theme-item">The Power Bill</div>
+      <div class="theme-item">The Self-Improvers</div>
+    </div>
+
+    <div id="tool" class="tool-week section-anchor">
+      <div class="tool-week-eyebrow">Company Watch of the Day</div>
+      <div class="tool-week-name">ANTHROPIC</div>
+      <div class="tool-week-desc">Anthropic is in three stories today without issuing a press release. It told IPO investors that <b>Mythos</b> brought Claude up on <b>AMD MI355X</b> GPUs in about <b>three days</b>, a concrete challenge to Nvidia&rsquo;s CUDA moat. <b>Altimeter</b> said it is putting in for <b>$5 billion</b> of an IPO that could value the company near <b>$1.4 trillion</b>, with Nvidia and AMD among the seven companies committing <b>$26 billion</b>. And it shortened its bug-disclosure window to <b>30 days</b> because AI has made the old norms obsolete. The through-line is a company that is both the subject and the author of the disruption: it sells models that write code, uses those models to run on cheaper hardware, and is rewriting the rules of the industry it is about to join publicly. Watch whether the IPO prices the software story or the compute story &mdash; and whether those three-day numbers survive independent scrutiny after the roadshow ends.</div>
+    </div>
+
+    <div id="sources" class="output-card section-anchor">
+      <div class="output-title">Sources Cited</div>
+      <div class="sources-grid">
+        <a href="https://www.tomshardware.com/tech-industry/artificial-intelligence/anthropic-says-claude-mythos-slashed-software-work-to-onboard-amd-gpus-from-up-to-12-months-to-around-three-days-writing-almost-100-percent-of-kernels-autonomously-chips-away-at-nvidias-cuda-moat" target="_blank">Tom&rsquo;s Hardware &mdash; Claude Mythos cut AMD GPU onboarding to ~3 days</a>
+        <a href="https://www.tomshardware.com/pc-components/gpus/nvidia-announces-rubin-hpc-gpu-with-record-number-of-cuda-cores-at-supercomputing-2026-new-chip-accelerates-agentic-hpc-workloads-arrives-in-2028" target="_blank">Tom&rsquo;s Hardware &mdash; Nvidia unveils Rubin HPC at SC2026</a>
+        <a href="https://blog.report-uri.com/worlds-largest-brands-infected-with-malware-via-optimizely/" target="_blank">Report URI &mdash; Malicious code injection via Optimizely</a>
+        <a href="https://www.wired.com/story/data-centers-use-more-electricity-than-michigan/" target="_blank">WIRED &mdash; Just 400 US data centers use more electricity than Michigan</a>
+        <a href="https://www.unite.ai/noeri-raises-110m-to-build-self-improving-ai-for-enterprises/" target="_blank">Unite.AI &mdash; Noeri launches with $110M</a>
+        <a href="https://www.cnbc.com/2026/11/16/altimeters-brad-gerstner-investing-5-billion-in-anthropic-ipo.html" target="_blank">CNBC &mdash; Altimeter investing $5 billion in Anthropic IPO</a>
+        <a href="https://www.wsj.com/pro/cybersecurity/cyber-startup-corma-raises-125-million-for-defensive-ai-agents-f30a4387" target="_blank">The Wall Street Journal &mdash; Corma raises $125M Series A</a>
+        <a href="https://www.anthropic.com/research/coordinated-vulnerability-disclosure-timelines" target="_blank">Anthropic &mdash; Updating CVD timelines</a>
+        <a href="https://www.nytimes.com/2026/11/16/business/insurance-ai-debt.html" target="_blank">The New York Times &mdash; Billions in insurance money bet on AI debt</a>
+        <a href="https://www.theregister.com/research/2026/11/16/google-ai-agent-turned-a-security-patch-into-a-working-exploit-with-no-human-help/5309926" target="_blank">The Register &mdash; Google: AI agent turned patch into exploit</a>
+        <a href="https://cloud.google.com/blog/topics/threat-intelligence/agentic-threat-activity-crosses-a-significant-threshold" target="_blank">Google Cloud &mdash; GTIG AI Threat Tracker</a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-logo">
+      <div class="footer-mark"><img src="../assets/timps-postcards.png" alt="TIMPS"></div>
+      <span class="footer-brand">TIMPS PostCards</span>
+    </div>
+    <div class="footer-center">Issue 173 &middot; November 17, 2026<br>Hyderabad, India</div>
+    <div class="footer-right">
+      <a href="../index.html">Home</a><br>
+      <a href="../archive.html">Archive</a><br>
+      &copy; 2026 TIMPS
+    </div>
+  </footer>
+
+</div></div>
+
+<!-- Dynamic Island: today's five headlines in a live capsule (installed app) -->
+<script src="../assets/dynamic-island.js" defer></script>
+</body>
+</html>

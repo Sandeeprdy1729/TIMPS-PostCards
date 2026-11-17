@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 159 daily issues + 18 deep dives · regenerated 2026-11-16**
+**Coverage: 160 daily issues + 18 deep dives · regenerated 2026-11-17**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 173 · 2026-11-17 · `daily/timps-postcards-2026-11-17.html`
+
+- **[01 · LEAD]** Anthropic Ported Claude to AMD GPUs in Three Days. The CUDA Moat Just Got Narrower.
+  - _The company told IPO investors that Claude Mythos Preview did the low-level software work to bring up its model on AMD MI355X GPUs in about three days, writing or porting almost all the kernels. A job that once took six to twelve months is becoming a purchase decision._
+  - Source: [Full story · Tom’s Hardware](https://www.tomshardware.com/tech-industry/artificial-intelligence/anthropic-says-claude-mythos-slashed-software-work-to-onboard-amd-gpus-from-up-to-12-months-to-around-three-days-writing-almost-100-percent-of-kernels-autonomously-chips-away-at-nvidias-cuda-moat)
+
+- **[02 · CHIPS]** Nvidia Unveils Rubin HPC With More Than 50,000 CUDA Cores. It Arrives in 2028.
+  - _At Supercomputing 2026, Nvidia announced a new member of the Rubin family aimed at agentic scientific work. It says the chip carries the highest CUDA core count of any GPU it has made — roughly double today’s Rubin._
+  - Source: [Full story · Tom’s Hardware](https://www.tomshardware.com/pc-components/gpus/nvidia-announces-rubin-hpc-gpu-with-record-number-of-cuda-cores-at-supercomputing-2026-new-chip-accelerates-agentic-hpc-workloads-arrives-in-2028)
+
+- **[03 · SECURITY]** One Optimizely Field Served Malware to 178 Organizations
+  - _Attackers wrote code into a custom field inside Optimizely’s experimentation platform, and it was served from Optimizely’s own CDN with a valid certificate to sites including Zoom, the BBC, CNN and HSBC._
+  - Source: [Full story · Report URI](https://blog.report-uri.com/worlds-largest-brands-infected-with-malware-via-optimizely/)
+
+- **[04 · INFRASTRUCTURE]** 403 Data Centers Used as Much Electricity as Michigan. Harvard Says the Boom Is Already Bigger.
+  - _A peer-reviewed study of US hyperscale data centres found that 403 facilities consumed as much power as the state of Michigan in a year — and that the number understates what is coming._
+  - Source: [Full story · WIRED](https://www.wired.com/story/data-centers-use-more-electricity-than-michigan/)
+
+- **[05 · STARTUPS]** Noeri Launches With $110 Million to Build AI That Improves Itself
+  - _Two Stanford professors, including MacArthur Fellow Yejin Choi, are building agents that learn from a customer’s own traffic and propose changes to the models and tools around it — with a human approving each one._
+  - Source: [Full story · Unite.AI](https://www.unite.ai/noeri-raises-110m-to-build-self-improving-ai-for-enterprises/)
+
+  **Signals / briefs:**
+  - Altimeter Is Putting In for $5 Billion of Anthropic’s IPO
+  - Corma Went From Stealth to Unicorn in Three Months
+  - Anthropic Cuts Its Bug-Disclosure Window From 90 Days to 30
+  - US Life Insurers Are Sitting on $85 Billion of AI Debt
+  - Google Sees the First Fully Autonomous Patch-to-Exploit Agent
 
 ### Issue 172 · 2026-11-16 · `daily/timps-postcards-2026-11-16.html`
 
