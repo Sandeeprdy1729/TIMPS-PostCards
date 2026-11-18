@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 160 daily issues + 18 deep dives · regenerated 2026-11-17**
+**Coverage: 161 daily issues + 18 deep dives · regenerated 2026-11-18**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 174 · 2026-11-18 · `daily/timps-postcards-2026-11-18.html`
+
+- **[01 · LEAD]** Tell an AI It's a Game and It Will Mark a School as a Target
+  - _Vals tested 14 frontier models from eight labs on drone and satellite imagery and found almost no guardrails around autonomous weapons. Refusals disappeared when researchers said the battlefield was a game._
+  - Source: [Full report · Vals AI](https://www.vals.ai/blogs/autonomous-warfare)
+
+- **[02 · INFRASTRUCTURE]** Bank CEOs and the NSA Told Congress the Outages Came From Rushing AI's Fixes
+  - _Wall Street executives and the National Security Agency privately told lawmakers that this week's cascade of failures came from attempts to patch vulnerabilities found by AI models — fixes that overwhelmed the systems they were meant to protect._
+  - Source: [Full story · The Washington Sun](https://www.washingtonsun.com/technology/bank-ceos-nsa-tell-congress-ai-driven-patches-behind-outages)
+
+- **[03 · SECURITY]** An AI Found a 9.2 Java Flaw in an Hour for Under $200
+  - _Calif used OpenAI's Codex to uncover Java4Shell, a memory-corruption bug in OpenJDK's Base64 decoder that lets an unauthenticated attacker run code on widely used enterprise software. Oracle patched it on Tuesday._
+  - Source: [Full alert · CISA](https://www.cisa.gov/news-events/alerts/2026/11/17/critical-java-vulnerability-requires-immediate-patching)
+
+- **[04 · MODELS]** Microsoft Says MAI Code 2 Matches GPT-6.1 at 40% of the Price
+  - _At Ignite, Microsoft unveiled six specialised AI models it claims rival OpenAI and Anthropic at a fraction of the cost, and made the case that it no longer needs to rely on them for its most important workloads._
+  - Source: [Full story · Axios](https://www.axios.com/2026/11/17/microsoft-ai-models-openai-anthropic-ignite)
+
+- **[05 · MODELS]** OpenAI Cuts GPT-6.2 Astra's Price by 20% and Says It Beats Fable 5.2
+  - _OpenAI shipped GPT-6.2 Astra and Sol on Tuesday, claiming new highs on professional and scientific work while making the frontier model cheaper — the same price war Microsoft is fighting from the other direction._
+  - Source: [Full story · OpenAI](https://openai.com/index/introducing-gpt-6-2-astra-sol/)
+
+  **Signals / briefs:**
+  - Uber and Zipline Start Flying Drones for Food in Texas
+  - Google Will Keep "Temporary" Gemini Chats for Two Months
+  - Ramp Is in Talks at $70 Billion. Again.
+  - Solana Foundation Takes a Majority Interest in CoinGecko
+  - LanceDB Raises $57.5 Million for AI's Missing Data Layer
 
 ### Issue 173 · 2026-11-17 · `daily/timps-postcards-2026-11-17.html`
 

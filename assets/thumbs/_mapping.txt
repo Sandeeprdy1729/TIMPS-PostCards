@@ -158,3 +158,4 @@
 2026-11-15	171	thumb-2026-11-15.jpg	Italy Fined Meta €805 Million for Reading Android Photo Galleries Without Asking Properly	globe
 2026-11-16	172	thumb-2026-11-16.jpg	Apple Opens a 200,000-Person Study to See How People Use AI for Health	globe
 2026-11-17	173	thumb-2026-11-17.jpg	Anthropic Ported Claude to AMD GPUs in Three Days. The CUDA Moat Just Got Narrower.	chip
+2026-11-18	174	thumb-2026-11-18.jpg	Tell an AI It's a Game and It Will Mark a School as a Target	chip
