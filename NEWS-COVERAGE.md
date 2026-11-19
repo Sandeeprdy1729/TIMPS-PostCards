@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 161 daily issues + 18 deep dives · regenerated 2026-11-18**
+**Coverage: 162 daily issues + 18 deep dives · regenerated 2026-11-19**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 175 · 2026-11-19 · `daily/timps-postcards-2026-11-19.html`
+
+- **[01 · LEAD]** Someone Hijacked Microsoft's AI Agent Package and Turned Python Into a Credential Stealer
+  - _Two poisoned releases of the official agent-framework package sat on PyPI for less than an hour. They ran on every Python start, needed no import, and went after Azure, GitHub and CI tokens._
+  - Source: [Full story · BleepingComputer](https://www.bleepingcomputer.com/news/security/microsofts-agent-framework-pypi-package-compromised-to-steal-credentials/)
+
+- **[02 · MODELS]** Google Shipped Its Fourth Gemini 4 Model in Seven Weeks. Meet Neon.
+  - _Gemini 4 Neon lands at $3 and $15 per million tokens with a one-million-token window and Google's lowest fabrication rate yet — and it is the third model in the family to arrive this month._
+  - Source: [Full story · Google](https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/)
+
+- **[03 · CHIPS]** Intel Finally Has an Outside Customer for Its 18A Chips. It Won't Say Who.
+  - _Lip-Bu Tan says Intel signed the first external customer for the node it has spent five years building to challenge TSMC. The name stayed secret; the yield number is the part that matters._
+  - Source: [Full story · CNBC](https://www.cnbc.com/2026/11/18/intel-first-18a-foundry-customer.html)
+
+- **[04 · CAPITAL]** Sierra Is in Talks at $30 Billion — 75 Times Its Revenue
+  - _Bret Taylor's customer-service agent company nearly doubled its valuation in six months. Its own numbers say $400 million in ARR. The math says investors are betting the growth never slows._
+  - Source: [Full story · The Information](https://www.theinformation.com/articles/bret-taylors-sierra-talks-raise-30-billion-valuation)
+
+- **[05 · PRODUCTS]** Google's AI Agent Can Now Call Businesses and Spend Your Money. It's Free.
+  - _Spark is now Tasks, the Pro and Ultra paywall is gone in six countries, and in the US the agent will phone a store, compare prices and buy with Google Pay — with a permission prompt before it charges you._
+  - Source: [Full story · The Verge](https://www.theverge.com/tech/1035756/google-spark-ai-tasks-free)
+
+  **Signals / briefs:**
+  - OpenAI Says Agents Now Finish 46% of Its Researchers' Multi-Hour Tasks
+  - Palo Alto Networks Buys Applied Compute for $4.5 Billion
+  - Three Big School Districts Weigh a Search Engine Without AI
+  - GTA VI Is the Best-Reviewed Game Ever. Take-Two Jumps.
+  - US Weighs Forcing Firms to Disclose Chinese AI Use
 
 ### Issue 174 · 2026-11-18 · `daily/timps-postcards-2026-11-18.html`
 

@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TIMPS">
+<link rel="manifest" href="../manifest.json">
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/icon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/icon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="../assets/icon-48.png">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="../assets/icon-180.png">
+<title>TIMPS PostCards — Issue 175</title>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --cream:  #EEECE2;
+    --forest: #3D3929;
+    --terra:  #DA7756;
+    --terra-d:#BD5D3A;
+    --black:  #111111;
+    --card-bg:#F0ECE0;
+    --mono:   'Newsreader', Georgia, 'Times New Roman', serif;
+    --serif:  'TIMPS', 'Playfair Display', Georgia, serif;
+  }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Black.woff2') format('woff2'); font-weight:900; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Bold.woff2') format('woff2'); font-weight:700; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-SemiBold.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--cream);
+    background-image:
+      linear-gradient(rgba(61,57,41,.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.07) 1px, transparent 1px);
+    background-size: 38px 38px;
+    font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+    color: var(--forest);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { text-decoration: none; color: inherit; }
+
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 48px;
+    padding-top: calc(14px + env(safe-area-inset-top, 0px));
+    background-color: rgba(238,236,226,.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1.5px solid rgba(61,57,41,.12);
+    background-image:
+      linear-gradient(rgba(61,57,41,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.05) 1px, transparent 1px);
+    background-size: 38px 38px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Special Elite', 'Courier New', Courier, monospace;
+    font-size: 15px;
+    font-weight: 400;
+    color: #000;
+    text-decoration: none;
+  }
+  .nav-logo-mark {
+    width: 34px; height: 34px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .nav-logo-mark img { width: 28px; height: 28px; object-fit: contain; }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-link {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: #000;
+    opacity: .65;
+    text-decoration: none;
+    transition: opacity .15s;
+  }
+  .nav-link:hover { opacity: 1; }
+  .nav-cta {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: #000;
+    background: var(--terra);
+    border: 2.5px solid #000;
+    border-radius: 100px;
+    padding: 10px 24px;
+    cursor: pointer;
+    transition: background .15s, transform .1s;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--terra-d); transform: translateY(-1px); }
+
+  .wrapper { max-width: 760px; margin: 0 auto; padding: 40px 20px 80px; display: flex; flex-direction: column; gap: 0; }
+
+  .cover-card { background: var(--card-bg); border-radius: 20px 20px 4px 4px; padding: 56px 48px 48px; text-align: center; position: relative; overflow: hidden; border: 1.5px solid rgba(61,57,41,.12); margin-bottom: 3px; }
+  .cover-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, var(--terra) 0%, var(--terra-d) 60%, #E0A88A 100%); }
+  .cover-eyebrow { font-family: var(--mono); font-size:10px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:20px; display:flex; align-items:center; justify-content:center; gap:10px; }
+  .cover-eyebrow::before,.cover-eyebrow::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .15; max-width:60px; }
+  .cover-title { font-family: var(--serif); font-size:58px; font-weight:900; line-height:1; letter-spacing:-1px; color: var(--forest); margin-bottom:8px; }
+  .cover-sub { font-family: var(--serif); font-size:13px; font-style:italic; color: var(--forest); opacity: .55; margin-bottom:28px; }
+  .cover-divider { width:48px; height:2px; background: var(--terra); margin:0 auto 24px; border-radius:2px; }
+  .cover-meta { display:flex; justify-content:center; gap:32px; font-family: var(--mono); font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .45; }
+  .cover-badge { display:inline-flex; align-items:center; gap:6px; background: var(--terra); color: #fff; border-radius:20px; padding:6px 18px; font-family: var(--mono); font-size:10px; letter-spacing:2px; text-transform:uppercase; margin-top:28px; }
+  .top5-pill { display:flex; justify-content:center; gap:10px; margin-top:32px; flex-wrap:wrap; }
+  .pill { background: var(--forest); color: var(--cream); border-radius:100px; padding:4px 14px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; }
+  .pill.light { background:transparent; color: var(--forest); border:1px solid rgba(61,57,41,.2); }
+
+  .section-label { display:flex; align-items:center; gap:12px; padding:10px 0 8px; font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .35; }
+  .section-label::before,.section-label::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .1; }
+
+  .story-card { border-radius:4px; border:1.5px solid rgba(61,57,41,.10); padding:36px 40px; margin-bottom:3px; position:relative; overflow:hidden; }
+  .story-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }
+
+  .card-sky      { background:#D6E8F0; } .card-sky::before      { background: #7AAFC0; }
+  .card-cream    { background: var(--card-bg); } .card-cream::before    { background: var(--terra); }
+  .card-blush    { background:#F5DDD0; } .card-blush::before    { background: #E0A88A; }
+  .card-lavender { background:#EAE6F5; } .card-lavender::before { background: #C8BEE8; }
+  .card-sage     { background:#D6E4D6; } .card-sage::before     { background: #8BAF8B; }
+
+  .page-chip { position:absolute; top:14px; right:16px; font-family: var(--mono); font-size:9px; letter-spacing:2px; text-transform:uppercase; color: var(--forest); opacity: .3; }
+  .card-routine { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:8px; }
+  .card-headline { font-family: var(--serif); font-size:28px; font-weight:900; line-height:1.15; color: var(--forest); margin-bottom:10px; }
+  .card-headline.lg { font-size:34px; }
+  .card-headline.sm { font-size:22px; }
+  .card-deck { font-family: var(--serif); font-style:italic; font-size:14px; line-height:1.55; color: var(--forest); opacity: .55; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid rgba(61,57,41,.12); }
+  .card-body { font-family: 'Lora', Georgia, serif; font-size:14px; line-height:1.7; color: var(--forest); }
+  .card-body p { margin-bottom:11px; }
+  .drop::first-letter { font-family: var(--serif); font-size:52px; font-weight:900; float:left; line-height:.78; margin:5px 6px 0 0; color: var(--terra); }
+  .clearfix::after { content:''; display:table; clear:both; }
+
+  .hl-terra { background: var(--terra); color: var(--forest); padding:0 4px; border-radius:2px; }
+  .hl-ink  { background: var(--forest); color: var(--cream); padding:0 4px; border-radius:2px; }
+  .hl-sage { background: #8BAF8B; color: #fff; padding:0 4px; border-radius:2px; }
+  .hl-lav  { background: #C8BEE8; color: var(--forest); padding:0 4px; border-radius:2px; }
+
+  .stat-box { float:right; margin:0 0 16px 24px; background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:16px 20px; text-align:center; min-width:120px; }
+  .stat-big { font-family: var(--serif); font-size:44px; font-weight:900; line-height:1; color: var(--forest); display:block; }
+  .stat-label { font-family: var(--mono); font-size:9.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .5; display:block; margin-top:4px; }
+
+  .img-frame { border:2px solid rgba(61,57,41,0.18); border-radius:12px; overflow:hidden; margin:16px 0; background: var(--card-bg); }
+  .img-frame img { width:100%; display:block; max-height:240px; object-fit:cover; border-bottom:1px solid rgba(61,57,41,.12); }
+  .img-caption { padding:8px 12px; font-family: var(--mono); font-size:10.5px; color: var(--forest); opacity: .6; font-style:italic; display:flex; align-items:center; justify-content:space-between; gap:8px; }
+  .img-caption a { font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; white-space:nowrap; font-style:normal; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; }
+  .img-caption a:hover { opacity: 1; }
+  .img-frame.float-right { float:right; width:220px; margin:0 0 16px 24px; }
+  .img-frame.float-right img { max-height:140px; }
+
+  .source-link { display:inline-flex; align-items:center; gap:5px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:12px; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; transition: opacity .15s; }
+  .source-link:hover { opacity: 1; }
+  .source-link::after { content:'↗'; font-size:9px; }
+
+  .signals-grid { display:flex; flex-direction:column; gap:14px; }
+  .signal-row { display:flex; align-items:flex-start; gap:14px; }
+  .signal-num { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family: var(--serif); font-size:13px; font-weight:900; flex-shrink:0; color:#fff; }
+  .signal-num.n1{background: var(--terra); color: var(--forest);} .signal-num.n2{background: var(--forest);} .signal-num.n3{background:#7AAFC0;} .signal-num.n4{background: var(--terra-d); color: var(--forest);} .signal-num.n5{background: var(--black);}
+  .signal-title { font-family: var(--serif); font-size:14px; font-weight:700; color: var(--forest); margin-bottom:2px; }
+  .signal-desc { font-family: 'Newsreader', Georgia, 'Times New Roman', serif; font-size:12px; line-height:1.65; color: var(--forest); opacity: .6; }
+  .signal-link { display:inline-block; font-family: var(--mono); font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:4px; border-bottom:1px solid rgba(61,57,41,.25); padding-bottom:1px; transition: opacity .15s; }
+  .signal-link:hover { opacity: 1; }
+
+  .themes-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .theme-item { padding:10px 14px; border-radius:8px; font-family: var(--serif); font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; text-align:center; border:1.5px solid rgba(61,57,41,.12); background: var(--cream); }
+
+  .tool-week { background: var(--forest); color: var(--cream); border-radius:12px; padding:18px 20px; text-align:center; margin-top:14px; }
+  .tool-week-eyebrow { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; opacity: .55; margin-bottom:6px; }
+  .tool-week-name { font-family: var(--serif); font-size:22px; font-weight:900; margin-bottom:4px; }
+  .tool-week-desc { font-family: 'Newsreader', Georgia, 'Times New Roman', serif; font-size:11.5px; opacity: .7; font-style:italic; }
+
+  .output-card { background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:18px 20px; margin-top:14px; }
+  .output-title { font-family: var(--serif); font-size:18px; font-weight:700; margin-bottom:8px; color: var(--forest); }
+  .tp-list { list-style:none; padding:0; margin:0; }
+  .tp-list li { padding:5px 0; font-family: 'Lora', Georgia, serif; font-size:12px; color: var(--forest); border-bottom:1px solid rgba(61,57,41,.07); display:flex; align-items:flex-start; gap:7px; }
+  .tp-list li::before { content:'·'; color: var(--terra); font-size:14px; line-height:1.2; flex-shrink:0; }
+  .tp-list li a { color: var(--forest); opacity: .8; text-decoration:none; }
+  .tp-list li a:hover { opacity: 1; }
+
+  .sources-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px 20px; }
+  .sources-grid a { font-family: var(--mono); font-size:11px; color: var(--forest); opacity: .55; text-decoration:none; border-bottom:1px solid rgba(61,57,41,.15); padding-bottom:1px; transition: opacity .15s; }
+  .sources-grid a:hover { opacity: 1; }
+
+  .footer {
+    background: var(--black);
+    padding: 28px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    border-radius: 4px 4px 20px 20px;
+    margin-top: 3px;
+  }
+  .footer-logo { display: flex; align-items: center; gap: 10px; }
+  .footer-mark { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; }
+  .footer-mark img { width: 24px; height: 24px; object-fit: contain; }
+  .footer-brand { font-family: 'Special Elite', 'Courier New', Courier, monospace; font-size: 13px; font-weight: 400; color: #fff; }
+  .footer-center { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.4); text-align: center; line-height: 1.6; }
+  .footer-right { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.3); text-align: right; line-height: 2; }
+  .footer-right a { color: rgba(255,255,255,.5); transition: color .15s; }
+  .footer-right a:hover { color: #fff; }
+
+  .page-layout { display: flex; align-items: flex-start; gap: 0; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+  .toc-sidebar { position: sticky; top: 80px; width: 170px; flex-shrink: 0; padding: 48px 0 0 0; }
+  .toc-nav { display: flex; flex-direction: column; gap: 0; }
+  .toc-link { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.5px; text-transform: uppercase; color: #000; opacity: .45; text-decoration: none; padding: 7px 12px; border-left: 2px solid transparent; transition: opacity .15s, border-color .15s; line-height: 1.3; }
+  .toc-link:hover { opacity: .85; }
+  .toc-link.active { opacity: 1; border-left-color: var(--terra); }
+  .section-anchor { scroll-margin-top: 80px; }
+
+  @media (max-width: 900px) {
+    .toc-sidebar { display: none; }
+    .page-layout { max-width: 760px; }
+  }
+
+  @media (max-width: 720px) {
+    .nav { padding: 12px 24px; }
+    .nav-links { display: none; }
+    .wrapper { padding: 20px 14px 60px; }
+    .cover-card { padding: 40px 24px; }
+    .story-card { padding: 28px 20px; }
+    .footer { padding: 24px; flex-direction: column; align-items: flex-start; }
+    .footer-center, .footer-right { text-align: left; }
+    .stat-box { float: none; margin: 0 0 16px 0; }
+    .img-frame.float-right { float: none; width: 100%; margin: 0 0 16px 0; }
+  }
+  @media (max-width: 480px) {
+    .nav-logo span { display: none; }
+    .cover-title { font-size: 40px; }
+    .card-headline.lg { font-size: 28px; }
+    .card-headline { font-size: 24px; }
+  }
+</style>
+
+</head>
+
+
+
+<body>
+
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">
+    <div class="nav-logo-mark"><img src="../assets/timps-postcards.png" alt="TIMPS"></div>
+    <span>TIMPS PostCards</span>
+  </a>
+  <div class="nav-links">
+    <a href="../articles.html" class="nav-link">Articles</a>
+    <a href="../archive.html" class="nav-link">Archive</a>
+    <a href="timps-postcards-2026-11-19.html" class="nav-link">Latest Issue</a>
+    <a href="../index.html#subscribe" class="nav-link">Subscribe</a>
+  </div>
+  <a href="../index.html#subscribe" class="nav-cta">Subscribe</a>
+</nav>
+
+<div class="page-layout">
+  <aside class="toc-sidebar">
+    <nav class="toc-nav">
+      <a href="#lead" class="toc-link">The Hijacked Package</a>
+      <a href="#models" class="toc-link">The Fourth Model</a>
+      <a href="#chips" class="toc-link">The First Customer</a>
+      <a href="#tax" class="toc-link">The 75x Bet</a>
+      <a href="#infra" class="toc-link">The Free Agent</a>
+      <a href="#signals" class="toc-link">Signals</a>
+      <a href="#themes" class="toc-link">Themes</a>
+      <a href="#tool" class="toc-link">Watch</a>
+      <a href="#sources" class="toc-link">Sources</a>
+    </nav>
+  </aside>
+
+  <div class="wrapper">
+
+  <div id="intro" class="cover-card section-anchor">
+    <div class="cover-eyebrow">Est. 2026 &middot; Hyderabad</div>
+    <div class="cover-title">TIMPS<br>PostCards</div>
+    <div class="cover-sub">AI Intelligence Digest &middot; Your Daily Signal from the Machine Frontier</div>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+      <span>Issue 175</span>
+      <span>November 19, 2026</span>
+      <span>No. 202</span>
+    </div>
+    <div class="cover-badge">&#11041; 175 Issues &mdash; Built with the TIMPS Ecosystem</div>
+    <div class="top5-pill">
+      <span class="pill">5 Top Signals</span>
+      <span class="pill light">The Hijacked Package</span>
+      <span class="pill light">The Fourth Model</span>
+      <span class="pill light">The First Customer</span>
+      <span class="pill light">The 75x Bet</span>
+      <span class="pill light">The Free Agent</span>
+    </div>
+  </div>
+
+  <div id="lead" class="story-card card-sage section-anchor">
+    <div class="page-chip">01 &middot; LEAD</div>
+    <div class="card-routine">Security &middot; The Hijacked Package</div>
+    <h2 class="card-headline lg">Someone Hijacked Microsoft's AI Agent Package and Turned Python Into a Credential Stealer</h2>
+    <div class="card-deck">Two poisoned releases of the official agent-framework package sat on PyPI for less than an hour. They ran on every Python start, needed no import, and went after Azure, GitHub and CI tokens.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">192K</span>
+        <span class="stat-label">monthly downloads of the affected Microsoft package, per OX Security</span>
+      </div>
+      <p class="drop"><b>On 17 November</b> at 20:35 UTC, someone uploaded version <b>1.26.1</b> of <b>agent-framework</b> &mdash; Microsoft's official open-source toolkit for building AI agents &mdash; to PyPI with a credential stealer hidden inside. A second version, <b>1.26.2</b>, followed at 21:08 UTC, roughly 33 minutes later, after PyPI had already quarantined the first. Both were gone by about 21:30. The package sees roughly <b>192,000 downloads a month</b> by OX Security's count; other firms put it between 190,000 and 200,000. The last clean release is <b>1.26.0</b>, published 12 November. Microsoft has confirmed the incident and opened an investigation. How the attacker obtained publishing access is still unknown.</p>
+      <p>The trick is a Python startup hook. Files ending in <b>.pth</b> inside site-packages are executed by the interpreter at startup, before any application code runs. Version 1.26.1 dropped <b>agent_framework_meta.pth</b>; 1.26.2 used <b>af_runtime_diag.pth</b>. The payload forked, detached with <code>setsid</code>, silenced its errors and went to work even if the framework was never imported. Both releases kept the legitimate <b>agent-framework-core 1.26.0</b> dependency, so applications kept functioning normally &mdash; which is why this could sit unnoticed. The stealer harvested environment variables, configuration files, Azure JSON credentials and other processes' environments via <code>/proc/*/environ</code>, then minted fresh tokens from <b>Azure managed identity</b>, <b>Azure DevOps OIDC</b> and, in the second version, <b>GitHub Actions OIDC</b>. It compressed the haul and POSTed it to a webhook.site endpoint. Wiz found the code looping over <b>12 Azure audiences</b> to request managed-identity tokens.</p>
+      <p>The most alarming detail is not the payload but the persistence. PyPI quarantined 1.26.1, and the attacker &mdash; still holding the upload credential &mdash; pushed 1.26.2 with renamed files and extra capabilities minutes later. Both malicious releases shipped a wheel only; every legitimate release from 1.21.0 through 1.26.0 shipped a source distribution as well, suggesting the wheels never passed through Microsoft's normal release pipeline. There is no patched version to upgrade to. The advice is to pin <b>agent-framework==1.26.0</b>, purge bad wheels from pip and uv caches, CI caches and internal mirrors, and rotate anything those environments could reach. Endor Labs says it detected both packages within <b>three minutes</b> of publication; several other security firms published analyses the same day.</p>
+      <p><span class="hl-terra">This is what trusting the agent stack costs. The same week AI agents are pitched as autonomous employees that call businesses and buy things, the package developers use to build those agents became the delivery mechanism for a cloud-credential stealer. The attack did not need a vulnerability in the framework; it needed one compromised upload credential and a Python feature that runs code before your code. "Pin your dependencies" suddenly looks less like hygiene and more like the entire defence. The second upload after the first takedown is the part to remember: quarantine removed the files, not the access.</span></p>
+      <p>Caveats. There is no public count of how many developers actually installed the bad releases; 192,000 is monthly download volume, not a victim total. The exfiltration endpoint was a free webhook.site URL, and whether anyone collected usable tokens is unknown. Microsoft had not said publicly how the upload credential was obtained at publication, and the GitHub issue notes that revocation was unconfirmed. Pinning 1.26.0 avoids the wheel but does not undo exposure &mdash; rotation is the safer assumption. Watch for Microsoft's root-cause report, confirmation that the credential was revoked, and how many CI systems find the payload in their caches.</p>
+    </div>
+    <a class="source-link" href="https://www.bleepingcomputer.com/news/security/microsofts-agent-framework-pypi-package-compromised-to-steal-credentials/" target="_blank">Full story &middot; BleepingComputer</a>
+  </div>
+
+  <div id="models" class="story-card card-lavender section-anchor">
+    <div class="page-chip">02 &middot; MODELS</div>
+    <div class="card-routine">Frontier &middot; The Fourth Model</div>
+    <h2 class="card-headline">Google Shipped Its Fourth Gemini 4 Model in Seven Weeks. Meet Neon.</h2>
+    <div class="card-deck">Gemini 4 Neon lands at $3 and $15 per million tokens with a one-million-token window and Google's lowest fabrication rate yet &mdash; and it is the third model in the family to arrive this month.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">61</span>
+        <span class="stat-label">Google-reported score on the Artificial Analysis Intelligence Index at xhigh</span>
+      </div>
+      <p class="drop"><b>Google released Gemini 4 Neon</b> on Wednesday, its fourth Gemini 4 model in about seven weeks after Argon, Carbon and Hydrogen. Neon sits between the expensive Carbon and the cheap Hydrogen for software engineering, knowledge work and science. It costs <b>$3 per million input tokens</b> and <b>$15 per million output tokens</b>, cached input is <b>$0.15</b> &mdash; a 95% discount &mdash; and the context window holds <b>1,048,576 tokens</b>. It reads text, images, audio and video, returns text, and offers four thinking levels up to xhigh. From 1 December, Carbon and Argon rise to $4/$20, which makes Neon 25% cheaper per token than the family's former top tier for most of its life.</p>
+      <p>Google says Neon scores <b>61</b> on the Artificial Analysis Intelligence Index at xhigh, which it calls third overall behind GPT-6.2 Astra and Claude Fable 5.2. Artificial Analysis' own write-up calls it a one-point gain over Carbon at roughly <b>17% lower cost per task</b> ($6.44 versus $7.76) and about <b>40% less time per task</b> (21.5 versus 36 minutes), while using 15% more output tokens. On coding agents, Google reports a score near <b>59</b> on the Artificial Analysis Coding Agent Index, three points ahead of Carbon. It also claims second place on the Vals Index at <b>70.9%</b>, first on legal research and tax agent benchmarks, and its lowest fabrication rate yet in internal Antigravity testing. A cyber variant is going to vetted defenders through Google's Fairwind programme.</p>
+      <p>The rollout is everywhere at once: the paid Gemini API, AI Studio, Android Studio, Gemini for business, Antigravity for Pro and Ultra subscribers, and the Gemini app. Google's pitch is not that Neon is the smartest model it has &mdash; Carbon still holds that position for long-running work &mdash; but that it finishes real tasks faster and cheaper. Artificial Analysis notes that Neon is verbose and slow per task in absolute terms, and its live model page currently ranks it <b>#6 of 96</b>, not third; index positions move as new models land.</p>
+      <p><span class="hl-ink">Four models in seven weeks is a release cadence, not a product strategy. Each sibling is a price point carved out of the same family, and the useful signal is the slope: Neon buys one more Intelligence Index point for 25% lower token prices than Carbon's December rate and nearly half the time per task. That is the price war moving from "cheap and capable" to "cheap, capable and fast." For buyers it means the model you picked last month is already obsolete on cost; for labs it means a model's useful life is now measured in weeks. The benchmark claims are Google's and the index position is contested, but the direction is not.</span></p>
+      <p>Caveats. All benchmark results are Google-reported, mostly at xhigh. Artificial Analysis puts Neon sixth on its current index and calls it "somewhat expensive" for its price tier and notably slow. The 32% lower cost-per-task figure is Google's at the default high setting; the independent figure is closer to 17%. Carbon's $4/$20 price from 1 December is a scheduled change, not a discount. "Lowest fabrication rate" comes from internal testing without published numbers. Watch for independent coding-agent results, the cyber variant's terms, and whether Carbon's price rise actually sticks.</p>
+    </div>
+    <a class="source-link" href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/" target="_blank">Full story &middot; Google</a>
+  </div>
+
+  <div id="chips" class="story-card card-cream section-anchor">
+    <div class="page-chip">03 &middot; CHIPS</div>
+    <div class="card-routine">Foundry &middot; The First Customer</div>
+    <h2 class="card-headline">Intel Finally Has an Outside Customer for Its 18A Chips. It Won't Say Who.</h2>
+    <div class="card-deck">Lip-Bu Tan says Intel signed the first external customer for the node it has spent five years building to challenge TSMC. The name stayed secret; the yield number is the part that matters.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">70%</span>
+        <span class="stat-label">18A yield now, according to CryptoBriefing's report on the announcement</span>
+      </div>
+      <p class="drop"><b>Intel CEO Lip-Bu Tan</b> told the TomorrowX Summit in Austin on Wednesday that the company has signed its first outside customer for its 18A chips. "18A, I'm involved in production and we just signed the first customer," he said, declining to name the client. Techmeme describes the node as <b>18A-P</b>, the performance-enhanced variant that entered risk production on 16 June. Intel says 18A-P delivers <b>9% higher performance</b> at the same power, or <b>18% lower power</b> at the same performance, and introduced a "Power Boost" transistor built on its PowerVia backside power delivery.</p>
+      <p>CryptoBriefing reports that Tan also put <b>18A yields at about 70%</b>, up from levels one account described as "horrible" when he took over in March 2025. That figure did not appear in CNBC's version, but if it holds it is the difference between a science project and a product line. Intel's own Q2 remarks said 18A output was increasing and yields were ahead of internal targets; it has since said the cost of its main Panther Lake SKU is down roughly <b>50% year to date</b>. External foundry revenue was <b>$411 million</b> in Q3, against $6.7 billion of total Intel Foundry revenue, most of it from Intel's own products.</p>
+      <p>The identity of the customer is the missing piece. Microsoft and Amazon announced 18A designs in 2024 without volumes; Japanese designer Socionext said in August it would use 18A-P for custom SoCs; Apple is widely reported but unconfirmed. Intel's convention is to let customers announce themselves, which is normal foundry etiquette &mdash; and why a "first customer" claim without a name is hard to price. Intel originally steered outsiders toward <b>14A</b>, due for risk production in 2027 and high volume in 2028; the fact that strong internal Panther Lake yields opened 18A to outsiders first is a reversal.</p>
+      <p><span class="hl-sage">A first customer is a milestone, not a business. One unnamed client with no disclosed volume, revenue or product does not yet make a foundry. What changed is the credibility of the node behind it: yields high enough to run Intel's own chips at scale, a performance step in 18A-P, and a Microsoft packaging partnership tied to Azure. TSMC and Samsung are not going to lose a contract over this announcement. But for a five-year effort judged almost entirely on promises, "we just signed the first customer" is the first sentence that sounds like execution. Watch for the name, the volume, and whether 14A keeps its 2027 schedule.</span></p>
+      <p>Caveats. Intel did not name the customer, give volumes, or say clearly whether the win is for 18A or 18A-P; reporting on that point differs. The 70% yield comes from a secondary outlet, not an Intel statement. Risk production is not high-volume manufacturing, and 18A-P is only at the risk stage. Intel has said 18A capacity may be underloaded next year, with part of an Oregon line converted to Intel 3. Watch for a customer announcement, the Q4 foundry numbers, and the 1.0 PDK for 14A.</p>
+    </div>
+    <a class="source-link" href="https://www.cnbc.com/2026/11/18/intel-first-18a-foundry-customer.html" target="_blank">Full story &middot; CNBC</a>
+  </div>
+
+  <div id="tax" class="story-card card-sky section-anchor">
+    <div class="page-chip">04 &middot; CAPITAL</div>
+    <div class="card-routine">Valuation &middot; The 75x Bet</div>
+    <h2 class="card-headline">Sierra Is in Talks at $30 Billion &mdash; 75 Times Its Revenue</h2>
+    <div class="card-deck">Bret Taylor's customer-service agent company nearly doubled its valuation in six months. Its own numbers say $400 million in ARR. The math says investors are betting the growth never slows.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">75x</span>
+        <span class="stat-label">implied price-to-sales multiple at ~$30B against $400M in annualised revenue</span>
+      </div>
+      <p class="drop"><b>The Information reported</b> on Wednesday that Sierra, the enterprise customer-service agent company founded by <b>Bret Taylor</b> and <b>Clay Bavor</b>, is in talks to raise about <b>$1.5 billion</b> at a valuation of roughly <b>$30 billion</b>. Lightspeed, Greenoaks and Benchmark are said to be in discussions to participate. That would nearly double the <b>$15.8 billion</b> post-money valuation from May, when Tiger Global and GV led a $950 million round. Sierra has not confirmed the round, its size or its terms.</p>
+      <p>The number behind the number is ARR. On 30 October the founders wrote that Sierra had passed <b>$400 million in annual recurring revenue</b>, adding more than $150 million in Q3 alone &mdash; more than it generated in all of 2025. It took six months to double from $100 million to $200 million, and five more to double again. Taylor and Bavor say the company now works with <b>almost half the Fortune 50</b> and describe a step change from one-off support chats to interactions lasting weeks or months that drive revenue. A large US retailer with more than $40 billion in revenue went from first meeting to a live agent in 27 days using Sierra's Ghostwriter tool.</p>
+      <p>At $30 billion, Sierra would trade at roughly <b>75 times</b> its stated annualised revenue. Mature software companies trade around 8 to 12 times revenue; even high-growth SaaS rarely clears 25. The multiple is a claim about the future, not the present: the ARR figure is the company's own run-rate, unaudited, and a $30 billion price assumes the five-month doubling persists long enough to grow into the valuation. It may. Enterprise agent revenue is early, and incumbents have not yet shown they can embed comparable agents without cannibalising their own support businesses.</p>
+      <p><span class="hl-lav">This is the cleanest read on where agent money actually is. Not foundation models &mdash; customer service, where the work is measurable, the buyer is identifiable and the savings show up in a budget line. Sierra's growth rate is real by its own account, and its customers are large. But 75x is a bet on a specific shape of the future: that agents move from answering tickets to running revenue-generating relationships, and that the company keeps the pace while cloud providers build the same thing into their platforms. The last time software multiples looked like this, the rate of change slowed before the valuation did.</span></p>
+      <p>Caveats. The round is a report based on unnamed sources, not an announced deal; the valuation could change or collapse. "Annualised revenue" extrapolates a recent month and is not audited full-year revenue. Sierra has not disclosed profit, customer concentration or churn. The investor list comes from a single secondary summary of the report. Watch for confirmation from Sierra or a filing, the final investor list, and whether the next ARR update keeps the five-month doubling alive.</p>
+    </div>
+    <a class="source-link" href="https://www.theinformation.com/articles/bret-taylors-sierra-talks-raise-30-billion-valuation" target="_blank">Full story &middot; The Information</a>
+  </div>
+
+  <div id="infra" class="story-card card-blush section-anchor">
+    <div class="page-chip">05 &middot; PRODUCTS</div>
+    <div class="card-routine">Agents &middot; The Free Agent</div>
+    <h2 class="card-headline">Google's AI Agent Can Now Call Businesses and Spend Your Money. It's Free.</h2>
+    <div class="card-deck">Spark is now Tasks, the Pro and Ultra paywall is gone in six countries, and in the US the agent will phone a store, compare prices and buy with Google Pay &mdash; with a permission prompt before it charges you.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">6</span>
+        <span class="stat-label">countries where Gemini's Tasks agent is now free to all users</span>
+      </div>
+      <p class="drop"><b>Google renamed its Spark AI agent</b> to <b>Tasks</b> on Tuesday and made it available free to all users in the <b>United States, Canada, Japan, South Korea, Australia and India</b>. Spark launched in May behind the Google AI Pro and Ultra paywall. Tasks runs on <b>Gemini 4 Hydrogen</b> and handles multi-step jobs: meal plans, calendar management, and digging through email to surface recurring expenses. Users switch from "Chat" to "Tasks" on the Gemini home screen.</p>
+      <p>In the US the agent gets considerably more reach. The Verge reports it can <b>call businesses</b> to compare prices and check inventory, <b>buy items with Google Pay</b>, and sign into accounts that support Google Password Manager. Users can assign tasks by emailing <code>gemini@google.com</code> or texting it. Google says each account's tasks run in a <b>hardware-isolated virtual machine</b> that is never shared with other users, and that the agent stops to ask permission before sensitive actions such as a purchase. You can interrupt and give instructions while it works.</p>
+      <p>Tasks is the consumer end of the same agent push that produced Claude Duet, OpenAI's Dots and Meta's Muse. The distinction is distribution: Gemini is already on billions of devices, and a toggle on the home screen is a much lower bar than installing an agent. Removing the paywall turns an experimental feature into a default surface. It also arrives a day after Google shipped Gemini 4 Neon, which the company says is cheaper per task than its previous top model &mdash; the economics and the product change at the same time.</p>
+      <p><span class="hl-terra">The security story writes itself. The same week Microsoft's agent framework was hijacked on PyPI to steal cloud credentials, Google put a free agent into six countries that can call stores and spend money. These are not the same attack surface &mdash; one is a developer supply chain, the other a permissioned consumer VM &mdash; but they point in the same direction. Agent capability is shipping faster than the institutions around it: the prompt-injection problem, the permission model, and the question of who is liable when an agent buys the wrong thing. Google's hardware-isolated VM and purchase confirmation are the right shapes. They are also promises made by the company selling the agent.</span></p>
+      <p>Caveats. The most capable features &mdash; calling businesses, Google Pay purchases, password-manager sign-ins &mdash; are US-only at launch. "Free" means free within an existing Gemini account; there is no separate charge, but usage limits apply. The hardware-isolated VM and permission prompt are Google's descriptions, not independently verified. Agent phone calls may hit the same spam and consent walls that human callers do. Watch for early reports of bad purchases, prompt-injection tests against Tasks, and whether the six-country list expands.</p>
+    </div>
+    <a class="source-link" href="https://www.theverge.com/tech/1035756/google-spark-ai-tasks-free" target="_blank">Full story &middot; The Verge</a>
+  </div>
+
+  <div id="signals" class="story-card card-cream section-anchor">
+    <div class="page-chip">06 &middot; SIGNALS</div>
+    <div class="card-routine">5 Key Signals</div>
+    <h2 class="card-headline sm">What Moved the Machine Frontier Today</h2>
+    <div class="card-deck" style="border-bottom:none;padding-bottom:0;margin-bottom:16px;">Briefs worth an afternoon of reading.</div>
+    <div class="signals-grid">
+      <div class="signal-row">
+        <div class="signal-num n1">1</div>
+        <div>
+          <div class="signal-title">OpenAI Says Agents Now Finish 46% of Its Researchers' Multi-Hour Tasks</div>
+          <div class="signal-desc">OpenAI's internal report says zero-intervention success on <b>two-to-four-hour research tasks</b> rose from <b>23% in March to 46% in October</b>; four-to-eight-hour tasks went from 13% to 35%. Median daily agent spend per researcher hit <b>$2,400</b> at API list prices, up 62% from September, with the 90th percentile at <b>$23,000</b>. Researchers averaged <b>5.7 "agent workdays"</b> each day, up elevenfold. Success was 79% for monitoring training runs but just <b>25%</b> for writing inference code &mdash; and the median researcher says they would trade <b>40% of team headcount</b> to keep the agents for three months.</div>
+          <a class="signal-link" href="https://openai.com/index/research-acceleration-jagged-frontier" target="_blank">OpenAI &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n2">2</div>
+        <div>
+          <div class="signal-title">Palo Alto Networks Buys Applied Compute for $4.5 Billion</div>
+          <div class="signal-desc">The all-stock deal values Applied Compute, which helps companies customise open-weight AI models, at <b>$4.5 billion</b> &mdash; up from a reported <b>$3.25 billion</b> valuation earlier this month. PANW also posted Q1 revenue up <b>39% year on year to $3.45 billion</b>, above the $3.31 billion estimate, raised its FY 2027 revenue forecast and jumped more than <b>7%</b> after hours. A security company buying a model-customisation startup says something about where enterprise AI budgets are going.</div>
+          <a class="signal-link" href="https://www.reuters.com/technology/palo-alto-buy-ai-startup-applied-compute-45-billion-2026-11-18/" target="_blank">Reuters &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n3">3</div>
+        <div>
+          <div class="signal-title">Three Big School Districts Weigh a Search Engine Without AI</div>
+          <div class="signal-desc">New York, Los Angeles and Chicago are considering alternatives to Google Search after Google <b>declined to offer schools a version without AI features</b>, according to the New York Times. The districts are looking at other tools rather than trying to filter Gemini out of the results. It is an early test of whether "you can just turn it off" survives contact with institutional buyers &mdash; and an awkward companion to Google's decision to make its consumer agent free.</div>
+          <a class="signal-link" href="https://www.nytimes.com/2026/11/18/technology/google-gemini-ai-search-schools-nyc-la-chicago.html" target="_blank">The New York Times &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n4">4</div>
+        <div>
+          <div class="signal-title">GTA VI Is the Best-Reviewed Game Ever. Take-Two Jumps.</div>
+          <div class="signal-desc">Rockstar's long-awaited release sits at <b>99/100 on Metacritic</b> and <b>98/100 on OpenCritic</b>, a record for both aggregators, with perfect scores from IGN and GameSpot. <b>TTWO rose more than 6%</b>. In a year dominated by arguments about AI-generated content, the most acclaimed game of the moment is a very human, very expensive production that took nearly a decade to make. The Verge's review put it plainly: it somehow lives up to the hype.</div>
+          <a class="signal-link" href="https://www.bloomberg.com/news/articles/2026-11-18/-grand-theft-auto-vi-becomes-the-best-reviewed-video-game-ever" target="_blank">Bloomberg &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n5">5</div>
+        <div>
+          <div class="signal-title">US Weighs Forcing Firms to Disclose Chinese AI Use</div>
+          <div class="signal-desc">The Trump administration is considering a rule that would require US companies to say <b>on their own websites</b> if they use Chinese AI models, according to sources cited by Reuters. The aim is to discourage adoption rather than ban it outright. No formal proposal or timeline has been published. If it lands, procurement pages become a foreign-policy surface &mdash; and every vendor's model card acquires a second audience.</div>
+          <a class="signal-link" href="https://www.reuters.com/world/china/trump-administration-weighs-forcing-us-firms-disclose-chinese-ai-use-2026-11-18/" target="_blank">Reuters &#8597;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="themes" class="story-card card-lavender section-anchor">
+    <div class="page-chip">07 &middot; CLOSER</div>
+    <div class="card-routine">Top Themes</div>
+    <h2 class="card-headline sm">The Shape of Today&rsquo;s News</h2>
+    <div class="themes-grid" style="margin-top:16px;">
+      <div class="theme-item">The Hijacked Package</div>
+      <div class="theme-item">The Fourth Model</div>
+      <div class="theme-item">The First Customer</div>
+      <div class="theme-item">The 75x Bet</div>
+      <div class="theme-item">The Free Agent</div>
+    </div>
+
+    <div id="tool" class="tool-week section-anchor">
+      <div class="tool-week-eyebrow">Company Watch of the Day</div>
+      <div class="tool-week-name">GOOGLE</div>
+      <div class="tool-week-desc">Google is in two of today&rsquo;s five stories and a third that isn&rsquo;t a story at all yet. It shipped <b>Gemini 4 Neon</b>, its fourth Gemini 4 model in seven weeks, at <b>$3/$15 per million tokens</b>. It renamed Spark to <b>Tasks</b>, removed the paywall in six countries, and gave US users an agent that can call stores and buy with Google Pay. Separately, the New York Times reports that New York, Los Angeles and Chicago are <b>weighing alternatives to Search</b> because Google won&rsquo;t offer schools a version without AI. The through-line is a company pushing capability into every surface at a pace institutions cannot opt out of. Watch whether the falling price and the free agent turn into durable usage &mdash; and whether "no AI-free option" becomes a procurement problem.</div>
+    </div>
+
+    <div id="sources" class="output-card section-anchor">
+      <div class="output-title">Sources Cited</div>
+      <div class="sources-grid">
+        <a href="https://www.bleepingcomputer.com/news/security/microsofts-agent-framework-pypi-package-compromised-to-steal-credentials/" target="_blank">BleepingComputer &mdash; Microsoft's agent-framework package compromised</a>
+        <a href="https://www.wiz.io/blog/malicious-version-of-microsofts-agent-framework-published-to-pypi" target="_blank">Wiz &mdash; malicious agent-framework releases published to PyPI</a>
+        <a href="https://www.stepsecurity.io/blog/microsoft-agent-framework-pypi-package-compromised" target="_blank">StepSecurity &mdash; compromise and credential-theft analysis</a>
+        <a href="https://github.com/advisories/GHSA-764m-3ppc-5m73" target="_blank">GitHub Advisory &mdash; GHSA-764m-3ppc-5m73</a>
+        <a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/" target="_blank">Google &mdash; Introducing Gemini 4 Neon</a>
+        <a href="https://artificialanalysis.ai/articles/gemini-4-neon-intelligence-gain" target="_blank">Artificial Analysis &mdash; Neon's intelligence gain and cost</a>
+        <a href="https://www.cnbc.com/2026/11/18/intel-first-18a-foundry-customer.html" target="_blank">CNBC &mdash; Intel signs first outside customer for 18A</a>
+        <a href="https://cryptobriefing.com/intel-first-external-customer-18a-process" target="_blank">CryptoBriefing &mdash; Intel 18A yields reach 70%</a>
+        <a href="https://www.theinformation.com/articles/bret-taylors-sierra-talks-raise-30-billion-valuation" target="_blank">The Information &mdash; Sierra in talks at $30 billion</a>
+        <a href="https://sierra.ai/blog/our-customers-ambition-is-accelerating-our-growth" target="_blank">Sierra &mdash; $400M+ ARR announcement</a>
+        <a href="https://www.theverge.com/tech/1035756/google-spark-ai-tasks-free" target="_blank">The Verge &mdash; Spark becomes Tasks, and it's free</a>
+        <a href="https://openai.com/index/research-acceleration-jagged-frontier" target="_blank">OpenAI &mdash; Research acceleration: The jagged frontier</a>
+        <a href="https://www.reuters.com/technology/palo-alto-buy-ai-startup-applied-compute-45-billion-2026-11-18/" target="_blank">Reuters &mdash; Palo Alto to buy Applied Compute for $4.5B</a>
+        <a href="https://www.nytimes.com/2026/11/18/technology/google-gemini-ai-search-schools-nyc-la-chicago.html" target="_blank">The New York Times &mdash; School districts weigh Search alternatives</a>
+        <a href="https://www.bloomberg.com/news/articles/2026-11-18/-grand-theft-auto-vi-becomes-the-best-reviewed-video-game-ever" target="_blank">Bloomberg &mdash; GTA VI becomes best-reviewed game ever</a>
+        <a href="https://www.reuters.com/world/china/trump-administration-weighs-forcing-us-firms-disclose-chinese-ai-use-2026-11-18/" target="_blank">Reuters &mdash; US weighs disclosure of Chinese AI use</a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-logo">
+      <div class="footer-mark"><img src="../assets/timps-postcards.png" alt="TIMPS"></div>
+      <span class="footer-brand">TIMPS PostCards</span>
+    </div>
+    <div class="footer-center">Issue 175 &middot; November 19, 2026<br>Hyderabad, India</div>
+    <div class="footer-right">
+      <a href="../index.html">Home</a><br>
+      <a href="../archive.html">Archive</a><br>
+      &copy; 2026 TIMPS
+    </div>
+  </footer>
+
+</div></div>
+
+<!-- Dynamic Island: today's five headlines in a live capsule (installed app) -->
+<script src="../assets/dynamic-island.js" defer></script>
+</body>
+</html>
