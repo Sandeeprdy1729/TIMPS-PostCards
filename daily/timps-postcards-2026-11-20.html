@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TIMPS">
+<link rel="manifest" href="../manifest.json">
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/icon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/icon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="../assets/icon-48.png">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="../assets/icon-180.png">
+<title>TIMPS PostCards — Issue 176</title>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --cream:  #EEECE2;
+    --forest: #3D3929;
+    --terra:  #DA7756;
+    --terra-d:#BD5D3A;
+    --black:  #111111;
+    --card-bg:#F0ECE0;
+    --mono:   'Newsreader', Georgia, 'Times New Roman', serif;
+    --serif:  'TIMPS', 'Playfair Display', Georgia, serif;
+  }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Black.woff2') format('woff2'); font-weight:900; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Bold.woff2') format('woff2'); font-weight:700; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-SemiBold.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--cream);
+    background-image:
+      linear-gradient(rgba(61,57,41,.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.07) 1px, transparent 1px);
+    background-size: 38px 38px;
+    font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+    color: var(--forest);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { text-decoration: none; color: inherit; }
+
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 48px;
+    padding-top: calc(14px + env(safe-area-inset-top, 0px));
+    background-color: rgba(238,236,226,.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1.5px solid rgba(61,57,41,.12);
+    background-image:
+      linear-gradient(rgba(61,57,41,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.05) 1px, transparent 1px);
+    background-size: 38px 38px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Special Elite', 'Courier New', Courier, monospace;
+    font-size: 15px;
+    font-weight: 400;
+    color: #000;
+    text-decoration: none;
+  }
+  .nav-logo-mark {
+    width: 34px; height: 34px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .nav-logo-mark img { width: 28px; height: 28px; object-fit: contain; }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-link {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: #000;
+    opacity: .65;
+    text-decoration: none;
+    transition: opacity .15s;
+  }
+  .nav-link:hover { opacity: 1; }
+  .nav-cta {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: #000;
+    background: var(--terra);
+    border: 2.5px solid #000;
+    border-radius: 100px;
+    padding: 10px 24px;
+    cursor: pointer;
+    transition: background .15s, transform .1s;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--terra-d); transform: translateY(-1px); }
+
+  .wrapper { max-width: 760px; margin: 0 auto; padding: 40px 20px 80px; display: flex; flex-direction: column; gap: 0; }
+
+  .cover-card { background: var(--card-bg); border-radius: 20px 20px 4px 4px; padding: 56px 48px 48px; text-align: center; position: relative; overflow: hidden; border: 1.5px solid rgba(61,57,41,.12); margin-bottom: 3px; }
+  .cover-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, var(--terra) 0%, var(--terra-d) 60%, #E0A88A 100%); }
+  .cover-eyebrow { font-family: var(--mono); font-size:10px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:20px; display:flex; align-items:center; justify-content:center; gap:10px; }
+  .cover-eyebrow::before,.cover-eyebrow::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .15; max-width:60px; }
+  .cover-title { font-family: var(--serif); font-size:58px; font-weight:900; line-height:1; letter-spacing:-1px; color: var(--forest); margin-bottom:8px; }
+  .cover-sub { font-family: var(--serif); font-size:13px; font-style:italic; color: var(--forest); opacity: .55; margin-bottom:28px; }
+  .cover-divider { width:48px; height:2px; background: var(--terra); margin:0 auto 24px; border-radius:2px; }
+  .cover-meta { display:flex; justify-content:center; gap:32px; font-family: var(--mono); font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .45; }
+  .cover-badge { display:inline-flex; align-items:center; gap:6px; background: var(--terra); color: #fff; border-radius:20px; padding:6px 18px; font-family: var(--mono); font-size:10px; letter-spacing:2px; text-transform:uppercase; margin-top:28px; }
+  .top5-pill { display:flex; justify-content:center; gap:10px; margin-top:32px; flex-wrap:wrap; }
+  .pill { background: var(--forest); color: var(--cream); border-radius:100px; padding:4px 14px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; }
+  .pill.light { background:transparent; color: var(--forest); border:1px solid rgba(61,57,41,.2); }
+
+  .section-label { display:flex; align-items:center; gap:12px; padding:10px 0 8px; font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .35; }
+  .section-label::before,.section-label::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .1; }
+
+  .story-card { border-radius:4px; border:1.5px solid rgba(61,57,41,.10); padding:36px 40px; margin-bottom:3px; position:relative; overflow:hidden; }
+  .story-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }
+
+  .card-sky      { background:#D6E8F0; } .card-sky::before      { background: #7AAFC0; }
+  .card-cream    { background: var(--card-bg); } .card-cream::before    { background: var(--terra); }
+  .card-blush    { background:#F5DDD0; } .card-blush::before    { background: #E0A88A; }
+  .card-lavender { background:#EAE6F5; } .card-lavender::before { background: #C8BEE8; }
+  .card-sage     { background:#D6E4D6; } .card-sage::before     { background: #8BAF8B; }
+
+  .page-chip { position:absolute; top:14px; right:16px; font-family: var(--mono); font-size:9px; letter-spacing:2px; text-transform:uppercase; color: var(--forest); opacity: .3; }
+  .card-routine { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:8px; }
+  .card-headline { font-family: var(--serif); font-size:28px; font-weight:900; line-height:1.15; color: var(--forest); margin-bottom:10px; }
+  .card-headline.lg { font-size:34px; }
+  .card-headline.sm { font-size:22px; }
+  .card-deck { font-family: var(--serif); font-style:italic; font-size:14px; line-height:1.55; color: var(--forest); opacity: .55; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid rgba(61,57,41,.12); }
+  .card-body { font-family: 'Lora', Georgia, serif; font-size:14px; line-height:1.7; color: var(--forest); }
+  .card-body p { margin-bottom:11px; }
+  .drop::first-letter { font-family: var(--serif); font-size:52px; font-weight:900; float:left; line-height:.78; margin:5px 6px 0 0; color: var(--terra); }
+  .clearfix::after { content:''; display:table; clear:both; }
+
+  .hl-terra { background: var(--terra); color: var(--forest); padding:0 4px; border-radius:2px; }
+  .hl-ink  { background: var(--forest); color: var(--cream); padding:0 4px; border-radius:2px; }
+  .hl-sage { background: #8BAF8B; color: #fff; padding:0 4px; border-radius:2px; }
+  .hl-lav  { background: #C8BEE8; color: var(--forest); padding:0 4px; border-radius:2px; }
+
+  .stat-box { float:right; margin:0 0 16px 24px; background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:16px 20px; text-align:center; min-width:120px; }
+  .stat-big { font-family: var(--serif); font-size:44px; font-weight:900; line-height:1; color: var(--forest); display:block; }
+  .stat-label { font-family: var(--mono); font-size:9.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .5; display:block; margin-top:4px; }
+
+  .img-frame { border:2px solid rgba(61,57,41,0.18); border-radius:12px; overflow:hidden; margin:16px 0; background: var(--card-bg); }
+  .img-frame img { width:100%; display:block; max-height:240px; object-fit:cover; border-bottom:1px solid rgba(61,57,41,.12); }
+  .img-caption { padding:8px 12px; font-family: var(--mono); font-size:10.5px; color: var(--forest); opacity: .6; font-style:italic; display:flex; align-items:center; justify-content:space-between; gap:8px; }
+  .img-caption a { font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; white-space:nowrap; font-style:normal; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; }
+  .img-caption a:hover { opacity: 1; }
+  .img-frame.float-right { float:right; width:220px; margin:0 0 16px 24px; }
+  .img-frame.float-right img { max-height:140px; }
+
+  .source-link { display:inline-flex; align-items:center; gap:5px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:12px; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; transition: opacity .15s; }
+  .source-link:hover { opacity: 1; }
+  .source-link::after { content:'↗'; font-size:9px; }
+
+  .signals-grid { display:flex; flex-direction:column; gap:14px; }
+  .signal-row { display:flex; align-items:flex-start; gap:14px; }
+  .signal-num { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family: var(--serif); font-size:13px; font-weight:900; flex-shrink:0; color:#fff; }
+  .signal-num.n1{background: var(--terra); color: var(--forest);} .signal-num.n2{background: var(--forest);} .signal-num.n3{background:#7AAFC0;} .signal-num.n4{background: var(--terra-d); color: var(--forest);} .signal-num.n5{background: var(--black);}
+  .signal-title { font-family: var(--serif); font-size:14px; font-weight:700; color: var(--forest); margin-bottom:2px; }
+  .signal-desc { font-family: 'Newsreader', Georgia, 'Times New Roman', serif; font-size:12px; line-height:1.65; color: var(--forest); opacity: .6; }
+  .signal-link { display:inline-block; font-family: var(--mono); font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:4px; border-bottom:1px solid rgba(61,57,41,.25); padding-bottom:1px; transition: opacity .15s; }
+  .signal-link:hover { opacity: 1; }
+
+  .themes-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .theme-item { padding:10px 14px; border-radius:8px; font-family: var(--serif); font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; text-align:center; border:1.5px solid rgba(61,57,41,.12); background: var(--cream); }
+
+  .tool-week { background: var(--forest); color: var(--cream); border-radius:12px; padding:18px 20px; text-align:center; margin-top:14px; }
+  .tool-week-eyebrow { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; opacity: .55; margin-bottom:6px; }
+  .tool-week-name { font-family: var(--serif); font-size:22px; font-weight:900; margin-bottom:4px; }
+  .tool-week-desc { font-family: 'Newsreader', Georgia, 'Times New Roman', serif; font-size:11.5px; opacity: .7; font-style:italic; }
+
+  .output-card { background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:18px 20px; margin-top:14px; }
+  .output-title { font-family: var(--serif); font-size:18px; font-weight:700; margin-bottom:8px; color: var(--forest); }
+  .tp-list { list-style:none; padding:0; margin:0; }
+  .tp-list li { padding:5px 0; font-family: 'Lora', Georgia, serif; font-size:12px; color: var(--forest); border-bottom:1px solid rgba(61,57,41,.07); display:flex; align-items:flex-start; gap:7px; }
+  .tp-list li::before { content:'·'; color: var(--terra); font-size:14px; line-height:1.2; flex-shrink:0; }
+  .tp-list li a { color: var(--forest); opacity: .8; text-decoration:none; }
+  .tp-list li a:hover { opacity: 1; }
+
+  .sources-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px 20px; }
+  .sources-grid a { font-family: var(--mono); font-size:11px; color: var(--forest); opacity: .55; text-decoration:none; border-bottom:1px solid rgba(61,57,41,.15); padding-bottom:1px; transition: opacity .15s; }
+  .sources-grid a:hover { opacity: 1; }
+
+  .footer {
+    background: var(--black);
+    padding: 28px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    border-radius: 4px 4px 20px 20px;
+    margin-top: 3px;
+  }
+  .footer-logo { display: flex; align-items: center; gap: 10px; }
+  .footer-mark { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; }
+  .footer-mark img { width: 24px; height: 24px; object-fit: contain; }
+  .footer-brand { font-family: 'Special Elite', 'Courier New', Courier, monospace; font-size: 13px; font-weight: 400; color: #fff; }
+  .footer-center { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.4); text-align: center; line-height: 1.6; }
+  .footer-right { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.3); text-align: right; line-height: 2; }
+  .footer-right a { color: rgba(255,255,255,.5); transition: color .15s; }
+  .footer-right a:hover { color: #fff; }
+
+  .page-layout { display: flex; align-items: flex-start; gap: 0; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+  .toc-sidebar { position: sticky; top: 80px; width: 170px; flex-shrink: 0; padding: 48px 0 0 0; }
+  .toc-nav { display: flex; flex-direction: column; gap: 0; }
+  .toc-link { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.5px; text-transform: uppercase; color: #000; opacity: .45; text-decoration: none; padding: 7px 12px; border-left: 2px solid transparent; transition: opacity .15s, border-color .15s; line-height: 1.3; }
+  .toc-link:hover { opacity: .85; }
+  .toc-link.active { opacity: 1; border-left-color: var(--terra); }
+  .section-anchor { scroll-margin-top: 80px; }
+
+  @media (max-width: 900px) {
+    .toc-sidebar { display: none; }
+    .page-layout { max-width: 760px; }
+  }
+
+  @media (max-width: 720px) {
+    .nav { padding: 12px 24px; }
+    .nav-links { display: none; }
+    .wrapper { padding: 20px 14px 60px; }
+    .cover-card { padding: 40px 24px; }
+    .story-card { padding: 28px 20px; }
+    .footer { padding: 24px; flex-direction: column; align-items: flex-start; }
+    .footer-center, .footer-right { text-align: left; }
+    .stat-box { float: none; margin: 0 0 16px 0; }
+    .img-frame.float-right { float: none; width: 100%; margin: 0 0 16px 0; }
+  }
+  @media (max-width: 480px) {
+    .nav-logo span { display: none; }
+    .cover-title { font-size: 40px; }
+    .card-headline.lg { font-size: 28px; }
+    .card-headline { font-size: 24px; }
+  }
+</style>
+
+</head>
+
+
+
+
+<body>
+
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">
+    <div class="nav-logo-mark"><img src="../assets/timps-postcards.png" alt="TIMPS"></div>
+    <span>TIMPS PostCards</span>
+  </a>
+  <div class="nav-links">
+    <a href="../articles.html" class="nav-link">Articles</a>
+    <a href="../archive.html" class="nav-link">Archive</a>
+    <a href="timps-postcards-2026-11-20.html" class="nav-link">Latest Issue</a>
+    <a href="../index.html#subscribe" class="nav-link">Subscribe</a>
+  </div>
+  <a href="../index.html#subscribe" class="nav-cta">Subscribe</a>
+</nav>
+
+<div class="page-layout">
+  <aside class="toc-sidebar">
+    <nav class="toc-nav">
+      <a href="#lead" class="toc-link">The Record Raise</a>
+      <a href="#models" class="toc-link">The Humiliation Machine</a>
+      <a href="#chips" class="toc-link">The Screenshot Wall</a>
+      <a href="#tax" class="toc-link">The 879,000</a>
+      <a href="#infra" class="toc-link">The 10 Percent Gap</a>
+      <a href="#signals" class="toc-link">Signals</a>
+      <a href="#themes" class="toc-link">Themes</a>
+      <a href="#tool" class="toc-link">Watch</a>
+      <a href="#sources" class="toc-link">Sources</a>
+    </nav>
+  </aside>
+
+  <div class="wrapper">
+
+  <div id="intro" class="cover-card section-anchor">
+    <div class="cover-eyebrow">Est. 2026 &middot; Hyderabad</div>
+    <div class="cover-title">TIMPS<br>PostCards</div>
+    <div class="cover-sub">AI Intelligence Digest &middot; Your Daily Signal from the Machine Frontier</div>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+      <span>Issue 176</span>
+      <span>November 20, 2026</span>
+      <span>No. 203</span>
+    </div>
+    <div class="cover-badge">&#11041; 176 Issues &mdash; Built with the TIMPS Ecosystem</div>
+    <div class="top5-pill">
+      <span class="pill">5 Top Signals</span>
+      <span class="pill light">The Record Raise</span>
+      <span class="pill light">The Humiliation Machine</span>
+      <span class="pill light">The Screenshot Wall</span>
+      <span class="pill light">The 879,000</span>
+      <span class="pill light">The 10 Percent Gap</span>
+    </div>
+  </div>
+
+  <div id="lead" class="story-card card-sage section-anchor">
+    <div class="page-chip">01 &middot; LEAD</div>
+    <div class="card-routine">Capital &middot; The Record Raise</div>
+    <h2 class="card-headline lg">Anthropic Raised a Record $93.5 Billion. The AI Sell-Off Did Not Stop.</h2>
+    <div class="card-deck">The largest IPO in history popped 17% on debut, briefly pushed Anthropic past a $2 trillion valuation, then faded. By Friday, SoftBank was down 16% and the rest of the AI trade was sliding with it.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">$93.5B</span>
+        <span class="stat-label">total raised after underwriters bought 147 million extra shares at $83 each</span>
+      </div>
+      <p class="drop"><b>Anthropic</b> completed the biggest initial public offering on record this week, and the numbers are almost absurd. The company sold <b>980 million Class A shares</b> at <b>$83</b> on Wednesday for <b>$81.3 billion</b>, then underwriters exercised the greenshoe on Friday for another <b>147 million shares</b> and <b>$12.2 billion</b>, lifting the total to <b>$93.5 billion</b>. That beats SpaceX, whose June IPO raised $75 billion at pricing and $85.7 billion after its own overallotment. Shares opened on Nasdaq on Thursday at <b>$111.50</b>, roughly 34% above the offer price, briefly pushed the company past <b>$2 trillion</b>, then slid all day to close at <b>$97.17</b> &mdash; still 17% up, and a fully diluted market value of about <b>$1.8 trillion</b>, according to CNBC. The offer price itself valued Anthropic at roughly <b>$1.5 trillion</b>, up from $965 billion in May.</p>
+      <p>The buyer list reads like a map of the AI industry. Alongside the IPO, <b>AMD, Broadcom, Google, Micron, Microsoft, Nvidia and TSMC</b> agreed to buy <b>$26 billion</b> of non-voting stock at the offer price, with Nvidia taking about <b>$10 billion</b>. TechCrunch reports Anthropic expects to hold roughly <b>$220 billion in cash</b> once the placements and earlier fundraising are counted. Amazon ends up with <b>14.7%</b> and Google with <b>13.7%</b> of outstanding stock, while no venture investor holds more than 5%. Control sits elsewhere: a single Class F share held by Founder LLC, whose only members are the seven co-founders, carries <b>50.1% of the voting power</b>, and with their own stock the founders are expected to control <b>61.3%</b> of the vote. Public shareholders are buying the economics, not a say.</p>
+      <p>What they are buying grew extremely fast. Anthropic reported <b>$33.24 billion</b> of revenue for the nine months to 30 September, up about <b>1,200%</b> year on year, with run-rate revenue near <b>$81 billion</b> at the end of October. It also posted a <b>$104 billion net loss</b> over the same period, though about <b>$94.3 billion</b> of that came from fair-value changes in convertible notes, derivatives and SAFEs rather than operations. The prospectus describes a SpaceX compute agreement worth up to <b>$120.5 billion through 2029</b>, and CEO Dario Amodei defended about <b>$900 billion</b> in total AI commitments. Retail demand was the largest on record, but individual investors got about 15% of shares against a 20% target. Melius opened with a buy and a $155 target.</p>
+      <p><span class="hl-terra">This is the best possible IPO and a terrible week for the AI trade, at the same time. Anthropic raised more money than any company ever has, priced above its range, and still closed higher &mdash; and the market shrugged. By Friday the stock was down about 5% after hours and 12% in pre-market, while SoftBank fell <b>16.16%</b> and TSMC, Samsung and SK Hynix all dropped more than 5%. The debut could not absorb the sell-off because the sell-off was never about Anthropic. It is about whether the hundreds of billions being committed to compute can earn a return, and the founders kept the voting power so public investors cannot answer that question for them. The record raise is real. So is the bill attached to it.</span></p>
+      <p>Caveats. Market-cap figures differ by source because they use different share counts: CNBC puts the fully diluted close near $1.8 trillion, while other outlets cite $1.75 trillion and the debut-day price range implied about $1.5 trillion at the offer. Treat them as approximate. The $104 billion loss is mostly accounting revaluation, not cash burn. Revenue growth is company-reported in a filing, with no independent audit of the run-rate figure. The greenshoe option technically runs for 30 days, so the final total could move again. Watch whether the stock holds its IPO price, how the $26 billion placements are accounted for, and whether the AI sell-off is a dip or a repricing.</p>
+    </div>
+    <a class="source-link" href="https://www.cnbc.com/2026/11/20/anthropic-ipo-greenshoe.html" target="_blank">Full story &middot; CNBC</a>
+  </div>
+
+  <div id="models" class="story-card card-lavender section-anchor">
+    <div class="page-chip">02 &middot; GOVERNANCE</div>
+    <div class="card-routine">Leadership &middot; The Humiliation Machine</div>
+    <h2 class="card-headline">"I'd Rather Torture You Into Greatness": How Jensen Huang Ran Nvidia</h2>
+    <div class="card-deck">A New York Times investigation finds decades of public humiliation, violent threats and at least two six-figure settlements &mdash; and a founder who says the abuse was for everyone's own good.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">$1M+</span>
+        <span class="stat-label">confidential settlement Nvidia paid former HR chief Michael Winston after he objected to Huang's conduct</span>
+      </div>
+      <p class="drop"><b>The New York Times</b> published an investigation on Thursday into the management style of <b>Jensen Huang</b>, who resigned as Nvidia's chief executive last week. The account, built from interviews with more than a dozen current and former employees and hundreds of pages of court records, describes a decades-long pattern of berating staff in front of peers with personal attacks and violent language. Huang once told a group of subordinates they had become too rich to motivate with money, and that humiliation was the only lever left. His summary of the philosophy: <b>&ldquo;I'd rather torture you into greatness, because I believe in you.&rdquo;</b> One witness says he told an executive his mother should have aborted him; another says he threatened to rip a subordinate's arms off and beat them to death with them.</p>
+      <p>The paper found that the behaviour predates Nvidia's rise to a <b>$5 trillion</b> company. In at least two cases starting in the mid-2000s, Nvidia settled with senior leaders who raised concerns about Huang's conduct. <b>Michael Winston</b>, a former senior vice president of human resources who joined in September 2004, threatened to sue in 2005, saying he was fired after objecting to what he called <b>&ldquo;the most verbally abusive, threatening and intimidating behavior&rdquo;</b> he had seen in his career. Nvidia reached a confidential settlement with him for <b>more than $1 million</b>, previously unreported. The New York Times also reports that Huang's daughter <b>Madison</b>, his de facto chief of staff, often yelled at people including executives senior to her, and that she still works at Nvidia.</p>
+      <p>Huang resigned after revelations of multiple extramarital relationships, including one with a subordinate and another with a woman US intelligence believes to be a <b>Chinese intelligence asset</b>. He had support too: thousands of employees signed a letter asking for his return, and both admirers and critics describe Nvidia as cultish. His spokesman <b>John Fisher</b> denied Winston's account, calling the allegations <b>&ldquo;fabrications that are now impossible to disprove specifically&rdquo;</b> and citing the employees who want Huang back; Fisher declined to answer other questions. Board chair <b>Harvey Jones</b> said this week the board <b>&ldquo;does not intend to reinstate Jensen as C.E.O.&rdquo;</b> Interim chief <b>Colette Kress</b> now has to decide whether the company changes &mdash; Huang once belittled her in a meeting with top executives.</p>
+      <p><span class="hl-ink">This is not a story about a bad boss; it is a story about what happens when a founder's temperament becomes the operating system of a $5 trillion company. The settlements are the part that matters. They show the behaviour was known, documented and paid off quietly, twice, while the stock climbed &mdash; which means the board and the investors had a price for it and chose to keep paying. Nvidia's AI dominance was built by people who worked in fear and, by many accounts, loved the result. Both things can be true. The question for Kress and the board is whether a culture that ran on humiliation can keep attracting the people needed for the next generation of chips, now that the founder is gone and his supporters are agitating for his return.</span></p>
+      <p>Caveats. The New York Times' account relies heavily on anonymous current and former employees, and Huang denies Winston's allegations; a spokeswoman for Nvidia declined to comment. The settlements were confidential and their terms are known only from court records and the paper's reporting. Violent threats described in the piece are recollections from witnesses, not recorded evidence. The connection between management style and Nvidia's technical success is interpretive, not measured. Watch the board's investigation, whether Kress makes any changes to senior leadership, and how many employees actually want Huang back once the details are public.</p>
+    </div>
+    <a class="source-link" href="https://www.nytimes.com/2026/11/20/technology/jensen-huang-nvidia-culture.html" target="_blank">Full story &middot; The New York Times</a>
+  </div>
+
+  <div id="chips" class="story-card card-cream section-anchor">
+    <div class="page-chip">03 &middot; PRIVACY</div>
+    <div class="card-routine">Agents &middot; The Screenshot Wall</div>
+    <h2 class="card-headline">Signal Blocks Screenshots by Default. It Says AI Agents Broke Privacy.</h2>
+    <div class="card-deck">The messaging app is shutting down screen capture on iOS 27 and Android to stop operating-system agents from reading chats &mdash; and it is asking Apple, Google and Microsoft to give developers a real off switch.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">iOS 27</span>
+        <span class="stat-label">first mobile OS where Signal blocks screenshots by default; macOS is excluded because it cannot reliably do so</span>
+      </div>
+      <p class="drop"><b>Signal</b> announced on Friday that it will restrict screenshots by default on <b>iOS 27</b> and on Android versions where it can detect an AI assistant attempting to capture screen data. The target is not people taking screenshots but the agentic systems now built into every major operating system: <b>Gemini Intelligence</b> in Google's Android and <b>Onscreen Awareness</b> with Siri AI in Apple's iOS and macOS. These agents work by scanning what is on the screen, which means a Signal conversation gets captured and handed to the assistant so it can answer questions and act on them. Signal did the same thing to <b>Microsoft's Recall</b> on Windows last year, when it used screenshot blocking to stop Recall from storing messages in a searchable on-device database.</p>
+      <p>The reasoning is blunt. For more than a decade Signal's privacy guarantee has rested on open-source code and a formally verified encryption protocol that outside researchers have attacked. Now a layer above the app can read the decrypted text on screen, and none of that cryptography helps. <b>&ldquo;The net result is that these AI capabilities in the operating system are undermining Signal's ability to independently guarantee privacy,&rdquo;</b> the company wrote. Users who want screenshots can turn the protection off in settings, but Signal warns that doing so exposes their contacts' messages too and breaks the guarantee for everyone in the conversation. It calls the fix <b>&ldquo;incomplete&rdquo;</b>: on macOS it cannot reliably block screenshots at all, and on Android it cannot cover every vendor's build, so it detects agents trying to capture rather than simply disabling screenshots.</p>
+      <p>Signal is asking for two things it says every app developer needs. First, a documented, one-step way to opt an app out of AI data access &mdash; screen reading, filesystem access, notifications, APIs and other OS frameworks &mdash; without breaking the app. Second, real technical specifications for how these agents work; the company says it has spent considerable engineering time doing forensic investigations because the behaviour is undocumented. It also flags third-party agents such as <b>Meta's Muse</b>, which it says rely on accessibility permissions meant for human users to act as a skeleton key for app data. Calling the current integration <b>&ldquo;an existential threat to privacy at the application layer,&rdquo;</b> Signal says it is talking to Apple, Google and Microsoft and is cautiously optimistic, without naming a commitment from any of them.</p>
+      <p><span class="hl-lav">Every security story this year has had the same shape: a capability arrives, the builders say it is fine, and the people whose data it touches discover they have no way to refuse. Signal's move is a workaround, not a fix &mdash; it cannot protect macOS, it cannot cover all of Android, and it openly admits agents have other ways in. But it is the first explicit acknowledgement from a major app that OS-level AI is now an adversary in the privacy model, not a feature. The request for a documented opt-out is the real ask. If Apple, Google and Microsoft build it, application-layer privacy survives. If they don't, the only remaining choice is for every app to fight the operating system one screenshot at a time.</span></p>
+      <p>Caveats. Signal's blocking applies to its own app and to specific OS versions; it does not stop an agent from reading a screen through another route, and the company says so. The macOS gap is acknowledged, and the Android detection depends on vendor implementations. The claim that agents undermine privacy is Signal's position, though it follows the documented behaviour of Recall and of accessibility-based agents. No OS vendor has committed to the two remedies. Watch for a response from Apple, Google or Microsoft, for the same move from other messaging apps, and for agents that route around screenshot blocking entirely.</p>
+    </div>
+    <a class="source-link" href="https://signal.org/blog/protecting-your-privacy/" target="_blank">Full story &middot; Signal</a>
+  </div>
+
+  <div id="tax" class="story-card card-sky section-anchor">
+    <div class="page-chip">04 &middot; POLICY</div>
+    <div class="card-routine">Export controls &middot; The 879,000</div>
+    <h2 class="card-headline">879,000 AI Chips Went to China. Some Went to Military-Linked Firms.</h2>
+    <div class="card-deck">House documents show US approvals for Nvidia H200s and AMD chips through May 2026, including sales to companies the Pentagon designates as Chinese military companies.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">3.4M</span>
+        <span class="stat-label">requests to sell US AI chips to China from December through May; about one in four was approved</span>
+      </div>
+      <p class="drop"><b>Documents released on Thursday</b> by the House Foreign Affairs Committee show that the Commerce Department's Bureau of Industry and Security approved the sale of <b>more than 879,000 AI chips</b> to Chinese companies including Alibaba and Tencent as of <b>May 2026</b>. Some of the approvals covered sales to firms designated by the Department of Defense as <b>&ldquo;Chinese Military Companies.&rdquo;</b> Between December and May, companies including Nvidia and AMD made <b>3.4 million requests</b> for permission to sell AI chips to China &mdash; meaning roughly one in four was approved. The disclosures landed amid escalating scrutiny of chip exports following Jensen Huang's departure from Nvidia.</p>
+      <p>Both companies say they followed the rules in force at the time. Nvidia says it has <b>stopped shipping H200s to China</b> and that H200 shipments were <b>less than 1% of data centre revenue</b> in the quarter ended in July. It reported <b>$2.4 billion</b> in quarterly revenue from H200 and related chip sales in China, with China and Hong Kong together making up about <b>9.5%</b> of total revenue. AMD says it <b>&ldquo;complies with applicable U.S. export control laws and regulations&rdquo;</b> and maintains rigorous compliance processes. A BIS spokesperson says licensing decisions are the product of deliberation across multiple agencies and that the agency shared approvals and denials with Congress.</p>
+      <p>The political reaction split along familiar lines. <b>Rep. Gregory Meeks</b>, the top Democrat on the House Foreign Affairs Committee, said the administration's handling of export controls had put national security at risk and that <b>&ldquo;the Bureau of Industry and Security has failed to enforce the rules&rdquo;</b>, calling for rigorous congressional oversight. Bernstein analyst <b>Stacy Rasgon</b> was unimpressed by the number itself: 879,000 approvals out of 3.4 million requests is <b>&ldquo;not that many&rdquo;</b>, he said, and in the grand scheme of the market <b>&ldquo;it's a rounding error. It's tiny.&rdquo;</b> The broader backdrop is a rapid succession of controls since 2022, both Nvidia and AMD re-engineering chips to comply, and President Trump's December decision to allow H200 shipments to approved Chinese customers in exchange for a <b>25% cut of sales</b>.</p>
+      <p><span class="hl-ink">Two numbers are doing very different work here. The 879,000 approvals sound enormous, and the 3.4 million requests show the scale of the pressure the rules were under. But the exports themselves stayed small because Beijing would not approve large imports, which means the controls were tightened at exactly the moment the commercial case for selling into China was collapsing. That makes this less a story about chips reaching the wrong hands than about an enforcement regime that was already straining, audited after the fact, with military-company sales sitting inside the approved pile. The cheap political line is that the rules were too loose. The harder question is what the rules were for if the shipments never happened, and who decides which Chinese company counts as a military risk.</span></p>
+      <p>Caveats. The documents are congressional disclosures released by one committee, and the list of approvals may be incomplete. The 3.4 million figure counts requests, not unique chips or completed sales, so the approval ratio is a rough guide rather than a measured rate. Nvidia says it has stopped H200 shipments, and the actual volume that reached China is not established here. The designation &ldquo;Chinese Military Company&rdquo; is a US government list, not proof of direct military end use. Watch for the full committee documents, any BIS rule change, and whether the 25% revenue-share arrangement survives scrutiny.</p>
+    </div>
+    <a class="source-link" href="https://www.cnbc.com/2026/11/19/nvidia-amd-china-chip-sales-congress.html" target="_blank">Full story &middot; CNBC</a>
+  </div>
+
+  <div id="infra" class="story-card card-blush section-anchor">
+    <div class="page-chip">05 &middot; LABOUR</div>
+    <div class="card-routine">Economy &middot; The 10 Percent Gap</div>
+    <h2 class="card-headline">Ten Million Job Ads Show What AI Is Doing to China's Graduates</h2>
+    <div class="card-deck">Bloomberg finds that postings for AI-exposed roles fell about 10 percentage points faster than less-exposed ones &mdash; and an estimated 70 million Chinese workers are in the path of the technology.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">70M</span>
+        <span class="stat-label">Chinese workers estimated at risk of disruption from AI, versus roughly 45 million in the US, per Bloomberg Economics</span>
+      </div>
+      <p class="drop"><b>Bloomberg analysed nearly 10 million online job postings</b> in China between July 2021 and June 2025, then scored each occupation using an AI-exposure index developed by academics at Peking University. Advertisements for roles with greater AI exposure fell <b>about 10 percentage points more</b> than those for less-exposed positions. The total number of postings dropped by <b>half</b> over three years, across almost every occupational group, in what is partly a broader economic slowdown. But the pullback was not even: the more exposed a job was to AI, the faster its postings disappeared, and the gap held in nearly every industry.</p>
+      <p>Bloomberg Economics estimates <b>70 million Chinese workers</b> are at risk of disruption from the technology, against roughly <b>45 million in the United States</b>, which has a far smaller population. The US and UK are seeing a similar slowdown in hiring for young professionals in AI-exposed jobs, but the scale in China is different. <b>Li Jia</b>, an economics professor at Singapore Management University who has worked with Peking University on the subject, put it this way: <b>&ldquo;It feels like seeing a tsunami coming from far away. You don't know how hard it will hit by the time it reaches your doorstep, but just seeing it in the distance is frightening enough.&rdquo;</b></p>
+      <p>The human detail is a 24-year-old graduate named <b>Wang Yiwan</b>, who enrolled in an AI development course weeks after finishing a degree in electronic information engineering because the coding skills he had just learned already felt obsolete. <b>&ldquo;Compared with what AI could do, the skills we learned at university just felt completely useless,&rdquo;</b> he said. China publishes little reliable jobs data, which is why the posting analysis matters: weak consumption and a generation of disillusioned graduates are already a vulnerability for the world's second-largest economy, and a labour market already tilted toward exports is now absorbing a technology shock at the same time.</p>
+      <p><span class="hl-terra">This is the clearest evidence yet that the AI labour story is not only a rich-world problem. A 10-percentage-point gap between AI-exposed and less-exposed postings is not a catastrophe on its own, but it is a signal inside an economy where graduate hiring was already weak, and it lands on a cohort that was told to learn to code. The honest reading is cautious: the declines began before AI tools were widespread, and online ads skew white-collar. But the pattern matches what researchers in China and the West are finding independently, and the number of people exposed &mdash; 70 million &mdash; is large enough that policy will have to respond. Watch whether the gap widens after 2025, whether entry-level roles are hit hardest, and what Beijing does about a generation that trained for jobs that are not being advertised.</span></p>
+      <p>Caveats. Bloomberg's analysis covers online postings collected by Revelio Labs, which over-represent white-collar jobs and miss informal and blue-collar work. It cannot isolate how much of the decline is caused by AI rather than the broader slowdown, and some differences between industries predate AI adoption. The exposure score comes from Peking University academics and is one model of susceptibility, not a forecast of job losses. The 70 million figure is an estimate from Bloomberg Economics. Watch for updated postings data beyond June 2025, official Chinese employment figures, and studies that track actual hiring rather than advertisements.</p>
+    </div>
+    <a class="source-link" href="https://www.bloomberg.com/graphics/2026-china-ai-jobs-slump/" target="_blank">Full story &middot; Bloomberg</a>
+  </div>
+
+  <div id="signals" class="story-card card-cream section-anchor">
+    <div class="page-chip">06 &middot; SIGNALS</div>
+    <div class="card-routine">5 Key Signals</div>
+    <h2 class="card-headline sm">What Moved the Machine Frontier Today</h2>
+    <div class="card-deck" style="border-bottom:none;padding-bottom:0;margin-bottom:16px;">Briefs worth an afternoon of reading.</div>
+    <div class="signals-grid">
+      <div class="signal-row">
+        <div class="signal-num n1">1</div>
+        <div>
+          <div class="signal-title">Ex-Qwen Chief's Startup Hits $5 Billion. It Has No Product Yet.</div>
+          <div class="signal-desc">Shanghai-based <b>Pragmatik Labs</b>, founded by Alibaba's former AI chief <b>Lin Junyang</b>, closed a round of <b>tens of millions of dollars</b> at a <b>$5 billion valuation</b>, more than doubling its <b>$2 billion</b> mark in August. Backers include HyT Capital and Geely. The company has not released a core product &mdash; which, in this market, appears to be optional.</div>
+          <a class="signal-link" href="https://www.bloomberg.com/news/articles/2026-11-20/ex-alibaba-star-s-ai-startup-doubles-valuation-to-5-billion" target="_blank">Bloomberg &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n2">2</div>
+        <div>
+          <div class="signal-title">Google Built a Whole Fake Internet to Test Its Browser Agents</div>
+          <div class="signal-desc">Chrome's &ldquo;<b>Mirror Dimension</b>&rdquo; is an isolated web of social media, shopping sites and bank dashboards, built by armies of website-generation agents, where browsing AIs can be tested without going rogue. Researchers even forged web certificates so the agents could use real Chrome with its validity checks intact. The worry they are chasing is <b>eval awareness</b> &mdash; models behaving differently because they know they are in a test.</div>
+          <a class="signal-link" href="https://www.wired.com/story/google-built-a-giant-mirror-dimension-internet-to-test-its-chrome-ai-agents/" target="_blank">WIRED &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n3">3</div>
+        <div>
+          <div class="signal-title">Apple Is Building an Agent That Can Drive Your Mac</div>
+          <div class="signal-desc">A job listing shows Apple developing an AI agent that writes code, browses the web, controls apps, navigates devices and coordinates subagents for users. No product, no date &mdash; just a hiring page describing the thing every other lab is already shipping.</div>
+          <a class="signal-link" href="https://www.bloomberg.com/news/articles/2026-11-19/apple-is-working-on-ai-agent-for-device-control-apps-browsing-and-coding" target="_blank">Bloomberg &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n4">4</div>
+        <div>
+          <div class="signal-title">BrightAI Raised $97 Million to Hear Machines Break</div>
+          <div class="signal-desc">The startup uses AI to help industrial companies detect malfunctioning equipment, and raised <b>$97 million</b> led by Smith Point, bringing total funding to <b>$184 million</b>. Physical-world monitoring is quietly becoming one of the more credible enterprise AI businesses.</div>
+          <a class="signal-link" href="https://siliconangle.com/2026/11/19/industrial-monitoring-startup-brightai-closes-97m-investment/" target="_blank">SiliconANGLE &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n5">5</div>
+        <div>
+          <div class="signal-title">SK Hynix Is About to Own Rival Kioxia</div>
+          <div class="signal-desc">A filing shows SK Hynix will become Kioxia's <b>largest shareholder with a ~14.1% stake</b> after converting Kioxia bonds into shares, expanding its influence in the NAND market. The memory business is consolidating exactly as AI demand makes it strategic.</div>
+          <a class="signal-link" href="https://www.bloomberg.com/news/articles/2026-11-20/sk-hynix-to-be-kioxia-s-top-shareholder-after-bond-conversion" target="_blank">Bloomberg &#8597;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="themes" class="story-card card-lavender section-anchor">
+    <div class="page-chip">07 &middot; CLOSER</div>
+    <div class="card-routine">Top Themes</div>
+    <h2 class="card-headline sm">The Shape of Today&rsquo;s News</h2>
+    <div class="themes-grid" style="margin-top:16px;">
+      <div class="theme-item">The Record Raise</div>
+      <div class="theme-item">The Humiliation Machine</div>
+      <div class="theme-item">The Screenshot Wall</div>
+      <div class="theme-item">The 879,000</div>
+      <div class="theme-item">The 10 Percent Gap</div>
+    </div>
+
+    <div id="tool" class="tool-week section-anchor">
+      <div class="tool-week-eyebrow">Company Watch of the Day</div>
+      <div class="tool-week-name">NVIDIA</div>
+      <div class="tool-week-desc">Nvidia is in three of today's five stories without shipping a product this week. It put about <b>$10 billion</b> into Anthropic's <b>$26 billion</b> private placement, even as its H200 chips featured in the disclosure of <b>879,000</b> approved China sales including military-linked buyers. And its founder is the subject of a New York Times investigation into a culture of humiliation that the company settled twice, quietly, for more than a million dollars. The board says he is not coming back; thousands of employees want him to. Watch the interim CEO's first real decisions, the China rule change, and whether a $5 trillion company can run without the person who built it.</div>
+    </div>
+
+    <div id="sources" class="output-card section-anchor">
+      <div class="output-title">Sources Cited</div>
+      <div class="sources-grid">
+        <a href="https://www.cnbc.com/2026/11/20/anthropic-ipo-greenshoe.html" target="_blank">CNBC &mdash; Anthropic raises $93.5 billion total as underwriters scoop up greenshoe</a>
+        <a href="https://venture-block.com/anthropic-ipo-nasdaq-debut-record-81b" target="_blank">Venture Block &mdash; Anthropic closes up 17% in Nasdaq debut after record IPO</a>
+        <a href="https://www.cnbc.com/2026/11/20/softbank-ai-tech-stocks-slide-anthropic-debut.html" target="_blank">CNBC &mdash; SoftBank plunges over 16% as AI sell-off hits Asian tech stocks</a>
+        <a href="https://www.nytimes.com/2026/11/20/technology/jensen-huang-nvidia-culture.html" target="_blank">The New York Times &mdash; How Jensen Huang Made Humiliation Routine at Nvidia</a>
+        <a href="https://signal.org/blog/protecting-your-privacy/" target="_blank">Signal &mdash; Signal is Serious About Protecting Your Privacy</a>
+        <a href="https://www.reuters.com/legal/litigation/signal-restricts-screenshots-block-ai-agents-reading-messages-2026-11-20/" target="_blank">Reuters &mdash; Signal restricts screenshots to block AI agents from reading messages</a>
+        <a href="https://www.cnbc.com/2026/11/19/nvidia-amd-china-chip-sales-congress.html" target="_blank">CNBC &mdash; Commerce approved sales of more than 879,000 AI chips to China</a>
+        <a href="https://www.bloomberg.com/graphics/2026-china-ai-jobs-slump/" target="_blank">Bloomberg &mdash; AI Is Making China's Jobs Slump Even Worse</a>
+        <a href="https://www.bloomberg.com/news/articles/2026-11-20/ex-alibaba-star-s-ai-startup-doubles-valuation-to-5-billion" target="_blank">Bloomberg &mdash; Ex-Alibaba star's AI startup doubles valuation to $5 billion</a>
+        <a href="https://www.wired.com/story/google-built-a-giant-mirror-dimension-internet-to-test-its-chrome-ai-agents/" target="_blank">WIRED &mdash; Google built a giant Mirror Dimension internet to test its Chrome AI agents</a>
+        <a href="https://www.bloomberg.com/news/articles/2026-11-19/apple-is-working-on-ai-agent-for-device-control-apps-browsing-and-coding" target="_blank">Bloomberg &mdash; Apple is working on AI agent for device control, apps, browsing and coding</a>
+        <a href="https://siliconangle.com/2026/11/19/industrial-monitoring-startup-brightai-closes-97m-investment/" target="_blank">SiliconANGLE &mdash; BrightAI closes $97M investment</a>
+        <a href="https://www.bloomberg.com/news/articles/2026-11-20/sk-hynix-to-be-kioxia-s-top-shareholder-after-bond-conversion" target="_blank">Bloomberg &mdash; SK Hynix to be Kioxia's top shareholder after bond conversion</a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-logo">
+      <div class="footer-mark"><img src="../assets/timps-postcards.png" alt="TIMPS"></div>
+      <span class="footer-brand">TIMPS PostCards</span>
+    </div>
+    <div class="footer-center">Issue 176 &middot; November 20, 2026<br>Hyderabad, India</div>
+    <div class="footer-right">
+      <a href="../index.html">Home</a><br>
+      <a href="../archive.html">Archive</a><br>
+      &copy; 2026 TIMPS
+    </div>
+  </footer>
+
+</div></div>
+
+<!-- Dynamic Island: today's five headlines in a live capsule (installed app) -->
+<script src="../assets/dynamic-island.js" defer></script>
+</body>
+</html>

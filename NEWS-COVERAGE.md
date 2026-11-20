@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 162 daily issues + 18 deep dives · regenerated 2026-11-19**
+**Coverage: 163 daily issues + 18 deep dives · regenerated 2026-11-20**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 176 · 2026-11-20 · `daily/timps-postcards-2026-11-20.html`
+
+- **[01 · LEAD]** Anthropic Raised a Record $93.5 Billion. The AI Sell-Off Did Not Stop.
+  - _The largest IPO in history popped 17% on debut, briefly pushed Anthropic past a $2 trillion valuation, then faded. By Friday, SoftBank was down 16% and the rest of the AI trade was sliding with it._
+  - Source: [Full story · CNBC](https://www.cnbc.com/2026/11/20/anthropic-ipo-greenshoe.html)
+
+- **[02 · GOVERNANCE]** "I'd Rather Torture You Into Greatness": How Jensen Huang Ran Nvidia
+  - _A New York Times investigation finds decades of public humiliation, violent threats and at least two six-figure settlements — and a founder who says the abuse was for everyone's own good._
+  - Source: [Full story · The New York Times](https://www.nytimes.com/2026/11/20/technology/jensen-huang-nvidia-culture.html)
+
+- **[03 · PRIVACY]** Signal Blocks Screenshots by Default. It Says AI Agents Broke Privacy.
+  - _The messaging app is shutting down screen capture on iOS 27 and Android to stop operating-system agents from reading chats — and it is asking Apple, Google and Microsoft to give developers a real off switch._
+  - Source: [Full story · Signal](https://signal.org/blog/protecting-your-privacy/)
+
+- **[04 · POLICY]** 879,000 AI Chips Went to China. Some Went to Military-Linked Firms.
+  - _House documents show US approvals for Nvidia H200s and AMD chips through May 2026, including sales to companies the Pentagon designates as Chinese military companies._
+  - Source: [Full story · CNBC](https://www.cnbc.com/2026/11/19/nvidia-amd-china-chip-sales-congress.html)
+
+- **[05 · LABOUR]** Ten Million Job Ads Show What AI Is Doing to China's Graduates
+  - _Bloomberg finds that postings for AI-exposed roles fell about 10 percentage points faster than less-exposed ones — and an estimated 70 million Chinese workers are in the path of the technology._
+  - Source: [Full story · Bloomberg](https://www.bloomberg.com/graphics/2026-china-ai-jobs-slump/)
+
+  **Signals / briefs:**
+  - Ex-Qwen Chief's Startup Hits $5 Billion. It Has No Product Yet.
+  - Google Built a Whole Fake Internet to Test Its Browser Agents
+  - Apple Is Building an Agent That Can Drive Your Mac
+  - BrightAI Raised $97 Million to Hear Machines Break
+  - SK Hynix Is About to Own Rival Kioxia
 
 ### Issue 175 · 2026-11-19 · `daily/timps-postcards-2026-11-19.html`
 
