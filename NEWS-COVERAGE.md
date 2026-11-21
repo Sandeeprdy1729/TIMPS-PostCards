@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 163 daily issues + 18 deep dives · regenerated 2026-11-20**
+**Coverage: 164 daily issues + 18 deep dives · regenerated 2026-11-21**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 177 · 2026-11-21 · `daily/timps-postcards-2026-11-21.html`
+
+- **[01 · LEAD]** Cursor Built Its Coding Model on a Chinese AI. Now Washington Wants It Gone.
+  - _A House investigation finds SpaceX's $60 billion coding subsidiary plans to phase out Chinese open-weight models — the same models that made its own Composer 2 competitive._
+  - Source: [Full story · CNBC](https://www.cnbc.com/2026/11/20/cursor-chinese-ai-models-geopolitical-risk.html)
+
+- **[02 · SECURITY]** The FBI Got Hacked Again. This Time It Was the Nation's Crime Database.
+  - _The National Crime Information Center — the system police use for warrants and background checks — is the second FBI system breached in months, discovered days after the director touted the bureau's cyber record on television._
+  - Source: [Full story · CNN](https://cnn.com/2026/11/20/politics/fbi-hacked-again-target-crime-database)
+
+- **[03 · CAPITAL]** Masayoshi Son Tried to Buy SK Hynix for $1 Trillion. The Answer Was No.
+  - _The SoftBank chief sounded out Wall Street about the biggest buyout ever attempted, then watched his own company say the idea was dead. Memory — the one piece missing from his AI empire — was the reason._
+  - Source: [Full story · The Information](https://www.theinformation.com/articles/softbanks-masayoshi-son-explored-1-trillion-moonshot-buyout-sk-hynix)
+
+- **[04 · M&A]** CrowdStrike Is in Talks to Buy Zscaler. That Would Be a $265 Billion Security Giant.
+  - _The two companies guard different halves of the corporate network — the endpoint and the connection. If this closes, one company would do both, at nearly 300 times the size of CrowdStrike's biggest purchase to date._
+  - Source: [Full story · CNBC](https://www.cnbc.com/2026/11/20/zscaler-crowdstrike-deal.html)
+
+- **[05 · MODELS]** A 26-Billion-Parameter Model That Runs on Your Laptop Matches a 27-Billion One
+  - _Thinking Machines' Inkling 2 Mini runs its middle layers three times per token instead of getting bigger. It fits on a MacBook, costs a sixth as much per task — and is harder to read._
+  - Source: [Full story · Thinking Machines](https://thinkingmachines.ai/news/inkling-2-mini/)
+
+  **Signals / briefs:**
+  - Databricks Is in Talks at $225 Billion. That's 20% Up in Three Months.
+  - Etsy Sellers Are Leaving After It Claimed the Right to Train AI on Their Work
+  - Ubisoft Opens a Studio for NPCs With Memory and AI Game Masters
+  - METR's Famous Time-Horizon Graph Gets a Judgment Upgrade
+  - YouTube Nears a $3 Billion Settlement With US School Districts
 
 ### Issue 176 · 2026-11-20 · `daily/timps-postcards-2026-11-20.html`
 
