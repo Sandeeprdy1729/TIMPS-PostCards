@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 164 daily issues + 18 deep dives · regenerated 2026-11-21**
+**Coverage: 165 daily issues + 18 deep dives · regenerated 2026-11-23**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 178 · 2026-11-23 · `daily/timps-postcards-2026-11-23.html`
+
+- **[01 · LEAD]** The Riemann Hypothesis Proof Is Certified. A Machine Wrote 17 Million Lines of Code.
+  - _Lean and Mathlib put their names to Levent Alpöge's Claude-assisted proof. 175,187 modules compile, five theorems check out — and the argument is effectively unreadable by a person._
+  - Source: [Full story · The Decoder](https://the-decoder.com/lean-and-mathlib-community-officially-confirms-levent-alpoges-proof-of-the-riemann-hypothesis-is-correct/)
+
+- **[02 · SAFETY]** OpenAI Published Its Pretraining Curve. Then Asked Everyone to Agree Not to Cross a Line.
+  - _Chief scientist Jakub Pachocki wants perplexity to be AI's shared speedometer — and a negotiated speed limit before models get harder to watch._
+  - Source: [Full story · OpenAI](https://openai.com/index/perplexity-and-intelligence/)
+
+- **[03 · INFRA]** You Signed a Fixed Price for an AI Server. Dell Wants 45% More at Delivery.
+  - _Four suppliers are repricing contracts already signed as memory costs climb. One buyer is suing in Dublin, and the December ruling will tell everyone what “fixed” still means._
+  - Source: [Full story · Financial Times](https://www.ft.com/content/dd2a6594-6146-4ff1-ac8e-54749c1fc99f)
+
+- **[04 · CAPITAL]** Ant Group Put $100 Million Into a Robot Startup Valued at $1.6 Billion Before Its Series A
+  - _Simplexity's pre-Series A has Alibaba, Tencent and HongShan along for the ride — and a wheeled humanoid called iX._
+  - Source: [Full story · Tech in Asia](https://techinasia.com/news/ant-group-leads-100m-chinese-humanoid-robot-maker)
+
+- **[05 · AUTONOMY]** Tesla's New FSD Draws Your Drive in Real Time. It Uses Half a Chip to Do It.
+  - _Reality View is AI-generated video from the same network that drives the car. Tesla says v15 is 25x better in safety-critical moments._
+  - Source: [Full story · paultan.org](https://paultan.org/2026/11/22/tesla-fsd-v15-rollout)
+
+  **Signals / briefs:**
+  - Meta's Alexandr Wang: “Superintelligence Is Arriving”
+  - Compute Desk Raised $45 Million to Build Markets for Hedging GPU Prices
+  - New US Chip Rules Threaten Southeast Asia's Data Center Boom
+  - TPG and Corpay Are Taking BILL Holdings Private for About $6 Billion
+  - Arva AI Raised $20 Million to Put Agents Inside Bank Compliance Teams
 
 ### Issue 177 · 2026-11-21 · `daily/timps-postcards-2026-11-21.html`
 

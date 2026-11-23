@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TIMPS">
+<link rel="manifest" href="../manifest.json">
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/icon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/icon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="../assets/icon-48.png">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="../assets/icon-180.png">
+<title>TIMPS PostCards — Issue 178</title>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --cream:  #EEECE2;
+    --forest: #3D3929;
+    --terra:  #DA7756;
+    --terra-d:#BD5D3A;
+    --black:  #111111;
+    --card-bg:#F0ECE0;
+    --mono:   'Newsreader', Georgia, 'Times New Roman', serif;
+    --serif:  'TIMPS', 'Playfair Display', Georgia, serif;
+  }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Black.woff2') format('woff2'); font-weight:900; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Bold.woff2') format('woff2'); font-weight:700; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-SemiBold.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--cream);
+    background-image:
+      linear-gradient(rgba(61,57,41,.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.07) 1px, transparent 1px);
+    background-size: 38px 38px;
+    font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+    color: var(--forest);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { text-decoration: none; color: inherit; }
+
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 48px;
+    padding-top: calc(14px + env(safe-area-inset-top, 0px));
+    background-color: rgba(238,236,226,.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1.5px solid rgba(61,57,41,.12);
+    background-image:
+      linear-gradient(rgba(61,57,41,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.05) 1px, transparent 1px);
+    background-size: 38px 38px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Special Elite', 'Courier New', Courier, monospace;
+    font-size: 15px;
+    font-weight: 400;
+    color: #000;
+    text-decoration: none;
+  }
+  .nav-logo-mark {
+    width: 34px; height: 34px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .nav-logo-mark img { width: 28px; height: 28px; object-fit: contain; }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-link {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: #000;
+    opacity: .65;
+    text-decoration: none;
+    transition: opacity .15s;
+  }
+  .nav-link:hover { opacity: 1; }
+  .nav-cta {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: #000;
+    background: var(--terra);
+    border: 2.5px solid #000;
+    border-radius: 100px;
+    padding: 10px 24px;
+    cursor: pointer;
+    transition: background .15s, transform .1s;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--terra-d); transform: translateY(-1px); }
+
+  .wrapper { max-width: 760px; margin: 0 auto; padding: 40px 20px 80px; display: flex; flex-direction: column; gap: 0; }
+
+  .cover-card { background: var(--card-bg); border-radius: 20px 20px 4px 4px; padding: 56px 48px 48px; text-align: center; position: relative; overflow: hidden; border: 1.5px solid rgba(61,57,41,.12); margin-bottom: 3px; }
+  .cover-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, var(--terra) 0%, var(--terra-d) 60%, #E0A88A 100%); }
+  .cover-eyebrow { font-family: var(--mono); font-size:10px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:20px; display:flex; align-items:center; justify-content:center; gap:10px; }
+  .cover-eyebrow::before,.cover-eyebrow::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .15; max-width:60px; }
+  .cover-title { font-family: var(--serif); font-size:58px; font-weight:900; line-height:1; letter-spacing:-1px; color: var(--forest); margin-bottom:8px; }
+  .cover-sub { font-family: var(--serif); font-size:13px; font-style:italic; color: var(--forest); opacity: .55; margin-bottom:28px; }
+  .cover-divider { width:48px; height:2px; background: var(--terra); margin:0 auto 24px; border-radius:2px; }
+  .cover-meta { display:flex; justify-content:center; gap:32px; font-family: var(--mono); font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .45; }
+  .cover-badge { display:inline-flex; align-items:center; gap:6px; background: var(--terra); color: #fff; border-radius:20px; padding:6px 18px; font-family: var(--mono); font-size:10px; letter-spacing:2px; text-transform:uppercase; margin-top:28px; }
+  .top5-pill { display:flex; justify-content:center; gap:10px; margin-top:32px; flex-wrap:wrap; }
+  .pill { background: var(--forest); color: var(--cream); border-radius:100px; padding:4px 14px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; }
+  .pill.light { background:transparent; color: var(--forest); border:1px solid rgba(61,57,41,.2); }
+
+  .section-label { display:flex; align-items:center; gap:12px; padding:10px 0 8px; font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .35; }
+  .section-label::before,.section-label::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .1; }
+
+  .story-card { border-radius:4px; border:1.5px solid rgba(61,57,41,.10); padding:36px 40px; margin-bottom:3px; position:relative; overflow:hidden; }
+  .story-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }
+
+  .card-sky      { background:#D6E8F0; } .card-sky::before      { background: #7AAFC0; }
+  .card-cream    { background: var(--card-bg); } .card-cream::before    { background: var(--terra); }
+  .card-blush    { background:#F5DDD0; } .card-blush::before    { background: #E0A88A; }
+  .card-lavender { background:#EAE6F5; } .card-lavender::before { background: #C8BEE8; }
+  .card-sage     { background:#D6E4D6; } .card-sage::before     { background: #8BAF8B; }
+
+  .page-chip { position:absolute; top:14px; right:16px; font-family: var(--mono); font-size:9px; letter-spacing:2px; text-transform:uppercase; color: var(--forest); opacity: .3; }
+  .card-routine { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:8px; }
+  .card-headline { font-family: var(--serif); font-size:28px; font-weight:900; line-height:1.15; color: var(--forest); margin-bottom:10px; }
+  .card-headline.lg { font-size:34px; }
+  .card-headline.sm { font-size:22px; }
+  .card-deck { font-family: var(--serif); font-style:italic; font-size:14px; line-height:1.55; color: var(--forest); opacity: .55; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid rgba(61,57,41,.12); }
+  .card-body { font-family: 'Lora', Georgia, serif; font-size:14px; line-height:1.7; color: var(--forest); }
+  .card-body p { margin-bottom:11px; }
+  .drop::first-letter { font-family: var(--serif); font-size:52px; font-weight:900; float:left; line-height:.78; margin:5px 6px 0 0; color: var(--terra); }
+  .clearfix::after { content:''; display:table; clear:both; }
+
+  .hl-terra { background: var(--terra); color: var(--forest); padding:0 4px; border-radius:2px; }
+  .hl-ink  { background: var(--forest); color: var(--cream); padding:0 4px; border-radius:2px; }
+  .hl-sage { background: #8BAF8B; color: #fff; padding:0 4px; border-radius:2px; }
+  .hl-lav  { background: #C8BEE8; color: var(--forest); padding:0 4px; border-radius:2px; }
+
+  .stat-box { float:right; margin:0 0 16px 24px; background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:16px 20px; text-align:center; min-width:120px; }
+  .stat-big { font-family: var(--serif); font-size:44px; font-weight:900; line-height:1; color: var(--forest); display:block; }
+  .stat-label { font-family: var(--mono); font-size:9.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .5; display:block; margin-top:4px; }
+
+  .img-frame { border:2px solid rgba(61,57,41,0.18); border-radius:12px; overflow:hidden; margin:16px 0; background: var(--card-bg); }
+  .img-frame img { width:100%; display:block; max-height:240px; object-fit:cover; border-bottom:1px solid rgba(61,57,41,.12); }
+  .img-caption { padding:8px 12px; font-family: var(--mono); font-size:10.5px; color: var(--forest); opacity: .6; font-style:italic; display:flex; align-items:center; justify-content:space-between; gap:8px; }
+  .img-caption a { font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; white-space:nowrap; font-style:normal; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; }
+  .img-caption a:hover { opacity: 1; }
+  .img-frame.float-right { float:right; width:220px; margin:0 0 16px 24px; }
+  .img-frame.float-right img { max-height:140px; }
+
+  .source-link { display:inline-flex; align-items:center; gap:5px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:12px; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; transition: opacity .15s; }
+  .source-link:hover { opacity: 1; }
+  .source-link::after { content:'↗'; font-size:9px; }
+
+  .signals-grid { display:flex; flex-direction:column; gap:14px; }
+  .signal-row { display:flex; align-items:flex-start; gap:14px; }
+  .signal-num { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family: var(--serif); font-size:13px; font-weight:900; flex-shrink:0; color:#fff; }
+  .signal-num.n1{background: var(--terra); color: var(--forest);} .signal-num.n2{background: var(--forest);} .signal-num.n3{background:#7AAFC0;} .signal-num.n4{background: var(--terra-d); color: var(--forest);} .signal-num.n5{background: var(--black);}
+  .signal-title { font-family: var(--serif); font-size:14px; font-weight:700; color: var(--forest); margin-bottom:2px; }
+  .signal-desc { font-family: 'Newsreader', Georgia, 'Times New Roman', serif; font-size:12px; line-height:1.65; color: var(--forest); opacity: .6; }
+  .signal-link { display:inline-block; font-family: var(--mono); font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:4px; border-bottom:1px solid rgba(61,57,41,.25); padding-bottom:1px; transition: opacity .15s; }
+  .signal-link:hover { opacity: 1; }
+
+  .themes-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .theme-item { padding:10px 14px; border-radius:8px; font-family: var(--serif); font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; text-align:center; border:1.5px solid rgba(61,57,41,.12); background: var(--cream); }
+
+  .tool-week { background: var(--forest); color: var(--cream); border-radius:12px; padding:18px 20px; text-align:center; margin-top:14px; }
+  .tool-week-eyebrow { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; opacity: .55; margin-bottom:6px; }
+  .tool-week-name { font-family: var(--serif); font-size:22px; font-weight:900; margin-bottom:4px; }
+  .tool-week-desc { font-family: 'Newsreader', Georgia, 'Times New Roman', serif; font-size:11.5px; opacity: .7; font-style:italic; }
+
+  .output-card { background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:18px 20px; margin-top:14px; }
+  .output-title { font-family: var(--serif); font-size:18px; font-weight:700; margin-bottom:8px; color: var(--forest); }
+  .tp-list { list-style:none; padding:0; margin:0; }
+  .tp-list li { padding:5px 0; font-family: 'Lora', Georgia, serif; font-size:12px; color: var(--forest); border-bottom:1px solid rgba(61,57,41,.07); display:flex; align-items:flex-start; gap:7px; }
+  .tp-list li::before { content:'·'; color: var(--terra); font-size:14px; line-height:1.2; flex-shrink:0; }
+  .tp-list li a { color: var(--forest); opacity: .8; text-decoration:none; }
+  .tp-list li a:hover { opacity: 1; }
+
+  .sources-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px 20px; }
+  .sources-grid a { font-family: var(--mono); font-size:11px; color: var(--forest); opacity: .55; text-decoration:none; border-bottom:1px solid rgba(61,57,41,.15); padding-bottom:1px; transition: opacity .15s; }
+  .sources-grid a:hover { opacity: 1; }
+
+  .footer {
+    background: var(--black);
+    padding: 28px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    border-radius: 4px 4px 20px 20px;
+    margin-top: 3px;
+  }
+  .footer-logo { display: flex; align-items: center; gap: 10px; }
+  .footer-mark { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; }
+  .footer-mark img { width: 24px; height: 24px; object-fit: contain; }
+  .footer-brand { font-family: 'Special Elite', 'Courier New', Courier, monospace; font-size: 13px; font-weight: 400; color: #fff; }
+  .footer-center { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.4); text-align: center; line-height: 1.6; }
+  .footer-right { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.3); text-align: right; line-height: 2; }
+  .footer-right a { color: rgba(255,255,255,.5); transition: color .15s; }
+  .footer-right a:hover { color: #fff; }
+
+  .page-layout { display: flex; align-items: flex-start; gap: 0; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+  .toc-sidebar { position: sticky; top: 80px; width: 170px; flex-shrink: 0; padding: 48px 0 0 0; }
+  .toc-nav { display: flex; flex-direction: column; gap: 0; }
+  .toc-link { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.5px; text-transform: uppercase; color: #000; opacity: .45; text-decoration: none; padding: 7px 12px; border-left: 2px solid transparent; transition: opacity .15s, border-color .15s; line-height: 1.3; }
+  .toc-link:hover { opacity: .85; }
+  .toc-link.active { opacity: 1; border-left-color: var(--terra); }
+  .section-anchor { scroll-margin-top: 80px; }
+
+  @media (max-width: 900px) {
+    .toc-sidebar { display: none; }
+    .page-layout { max-width: 760px; }
+  }
+
+  @media (max-width: 720px) {
+    .nav { padding: 12px 24px; }
+    .nav-links { display: none; }
+    .wrapper { padding: 20px 14px 60px; }
+    .cover-card { padding: 40px 24px; }
+    .story-card { padding: 28px 20px; }
+    .footer { padding: 24px; flex-direction: column; align-items: flex-start; }
+    .footer-center, .footer-right { text-align: left; }
+    .stat-box { float: none; margin: 0 0 16px 0; }
+    .img-frame.float-right { float: none; width: 100%; margin: 0 0 16px 0; }
+  }
+  @media (max-width: 480px) {
+    .nav-logo span { display: none; }
+    .cover-title { font-size: 40px; }
+    .card-headline.lg { font-size: 28px; }
+    .card-headline { font-size: 24px; }
+  }
+</style>
+
+</head>
+
+
+
+
+
+<body>
+
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">
+    <div class="nav-logo-mark"><img src="../assets/timps-postcards.png" alt="TIMPS"></div>
+    <span>TIMPS PostCards</span>
+  </a>
+  <div class="nav-links">
+    <a href="../articles.html" class="nav-link">Articles</a>
+    <a href="../archive.html" class="nav-link">Archive</a>
+    <a href="timps-postcards-2026-11-23.html" class="nav-link">Latest Issue</a>
+    <a href="../index.html#subscribe" class="nav-link">Subscribe</a>
+  </div>
+  <a href="../index.html#subscribe" class="nav-cta">Subscribe</a>
+</nav>
+
+<div class="page-layout">
+  <aside class="toc-sidebar">
+    <nav class="toc-nav">
+      <a href="#lead" class="toc-link">The Certified Proof</a>
+      <a href="#models" class="toc-link">The Speedometer</a>
+      <a href="#chips" class="toc-link">The 45% Surcharge</a>
+      <a href="#tax" class="toc-link">The Humanoid Round</a>
+      <a href="#infra" class="toc-link">The Rendered Road</a>
+      <a href="#signals" class="toc-link">Signals</a>
+      <a href="#themes" class="toc-link">Themes</a>
+      <a href="#tool" class="toc-link">Watch</a>
+      <a href="#sources" class="toc-link">Sources</a>
+    </nav>
+  </aside>
+
+  <div class="wrapper">
+
+  <div id="intro" class="cover-card section-anchor">
+    <div class="cover-eyebrow">Est. 2026 &middot; Hyderabad</div>
+    <div class="cover-title">TIMPS<br>PostCards</div>
+    <div class="cover-sub">AI Intelligence Digest &middot; Your Daily Signal from the Machine Frontier</div>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+      <span>Issue 178</span>
+      <span>November 23, 2026</span>
+      <span>No. 205</span>
+    </div>
+    <div class="cover-badge">&#11041; 178 Issues &mdash; Built with the TIMPS Ecosystem</div>
+    <div class="top5-pill">
+      <span class="pill">5 Top Signals</span>
+      <span class="pill light">The Certified Proof</span>
+      <span class="pill light">The Speedometer</span>
+      <span class="pill light">The 45% Surcharge</span>
+      <span class="pill light">The Humanoid Round</span>
+      <span class="pill light">The Rendered Road</span>
+    </div>
+  </div>
+
+  <div id="lead" class="story-card card-sage section-anchor">
+    <div class="page-chip">01 &middot; LEAD</div>
+    <div class="card-routine">Mathematics &middot; The Certified Proof</div>
+    <h2 class="card-headline lg">The Riemann Hypothesis Proof Is Certified. A Machine Wrote 17 Million Lines of Code.</h2>
+    <div class="card-deck">Lean and Mathlib put their names to Levent Alp&ouml;ge's Claude-assisted proof. 175,187 modules compile, five theorems check out &mdash; and the argument is effectively unreadable by a person.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">175,187</span>
+        <span class="stat-label">Lean modules that compile with zero errors, every one replayed through the kernel</span>
+      </div>
+      <p class="drop"><b>On Saturday</b>, the Lean FRO and the Mathlib Initiative published a joint statement: <b>&ldquo;We have full confidence that Alp&ouml;ge's proof of the Riemann Hypothesis is correct, and we congratulate him on this achievement.&rdquo;</b> Alp&ouml;ge released the proof on November 20 as a Lean library of roughly <b>17 million lines of code</b>. Dozens of people ran it independently and got the same result. Andrew Sutherland's MIT verification page records all <b>175,187 modules</b> compiling without errors on Lean 4.33.1 and Mathlib 4.33.1, every module replayed through the Lean kernel, and two independent kernels &mdash; nanoda and con-leche &mdash; accepting the full export. That is different from a claim. A machine-checked proof is either accepted or rejected, and this one was accepted.</p>
+      <p>The proof establishes five theorems. The first is the Riemann hypothesis in Mathlib's own definition: every zero of the zeta function other than the trivial ones has real part <b>1/2</b>. The other four extend it to <b>Dirichlet L-functions</b>, the form usually called the Generalised Riemann Hypothesis for that family. The verification page also combines the proof with an independent formalisation of Robin's and Lagarias's criteria to derive two inequalities about divisor sums, in a check that does not depend on Mathlib's definition of zeta. The exported proof is <b>61.6 GB</b> uncompressed; a sandboxed rebuild on a separate machine reproduced it byte for byte.</p>
+      <p>The timing is the shock. Metaculus forecasters had put the expected date at <b>May 2035</b>. Terence Tao said last month he expected the problem to fall to &ldquo;a combination of humans and AI around 2050 or so.&rdquo; Alp&ouml;ge's note says he believes he &ldquo;working with Claude, discovered a proof.&rdquo; OpenAI's chief scientist published his own pretraining curve on Sunday and noted that once models crossed a log-perplexity of about <b>0.76</b>, they started producing groundbreaking results on open maths problems &mdash; one after another, in a single Slack thread.</p>
+      <p><span class="hl-terra">The remarkable thing is not that a model helped prove a theorem. It is that the result is certain in a way mathematical results have rarely been certain, and opaque in a way they have almost never been. Lean can tell you the 175,187 modules are correct; it cannot tell you what the argument means. Judge the achievement by the five theorems, not by who gets to say &ldquo;I did it.&rdquo; Hours after Anthropic claimed a Claude proof, Stanford released an all-human competing draft. The credit argument will run for years. The theorem will not change &mdash; and the next open problem now has a machine that has already shown it can do this.</span></p>
+      <p>Caveats. The MIT page still lists some checks as in progress, including Lean's paranoid kernel on the export and stages of the lake comparator, and notes one non-deterministically compiled module; the export is byte-identical and that module is not on the proof path. &ldquo;GRH&rdquo; here means Dirichlet L-functions &mdash; Dedekind, Hecke and automorphic L-functions are not covered. A passing check means the formal statements, as written against Mathlib's definitions, follow from three standard axioms under the kernels used. Outlets disagree on Alp&ouml;ge's institutional affiliation, so we have not relied on it. Watch for a readable human account, a peer-reviewed write-up, and whether the credit dispute changes any of the mathematics.</p>
+    </div>
+    <a class="source-link" href="https://the-decoder.com/lean-and-mathlib-community-officially-confirms-levent-alpoges-proof-of-the-riemann-hypothesis-is-correct/" target="_blank">Full story &middot; The Decoder</a>
+  </div>
+
+  <div id="models" class="story-card card-lavender section-anchor">
+    <div class="page-chip">02 &middot; SAFETY</div>
+    <div class="card-routine">Governance &middot; The Speedometer</div>
+    <h2 class="card-headline">OpenAI Published Its Pretraining Curve. Then Asked Everyone to Agree Not to Cross a Line.</h2>
+    <div class="card-deck">Chief scientist Jakub Pachocki wants perplexity to be AI's shared speedometer &mdash; and a negotiated speed limit before models get harder to watch.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">0.76</span>
+        <span class="stat-label">log-perplexity where OpenAI says maths results started arriving &ldquo;one after another&rdquo;</span>
+      </div>
+      <p class="drop"><b>On Sunday</b>, OpenAI chief scientist <b>Jakub Pachocki</b> published <b>&ldquo;Perplexity and Intelligence&rdquo;</b>, releasing the company's internal log-perplexity numbers from GPT-3.5 onward. GPT-3.5 sat at about <b>0.99</b>; GPT-4 at <b>0.91</b>; the latest models are below <b>0.8</b>. He argues that this one number &mdash; how well a base model predicts and compresses its training data &mdash; has tracked the emergence of capabilities more reliably than benchmarks that date quickly. At about <b>0.76</b>, he writes, models started producing groundbreaking results on open maths problems. He expects the next transformative window around <b>0.68&ndash;0.7</b>.</p>
+      <p>The proposal is a set of shared limits tied to perplexity and other measurements, which labs would commit not to cross until their ability to understand and monitor model behaviour reaches a concrete milestone &mdash; <b>&ldquo;such as the development of a successor to CoT monitors.&rdquo;</b> Pachocki also wants shared norms for evaluating such models, red-teaming safety cases and transparency standards before they are first used. The urgency is that AI may soon help build better AI: <b>&ldquo;as soon as 2027 we could conceivably see a similar avalanche of fundamental pretraining advancements.&rdquo;</b> Progress in alignment and monitoring, he expects, will not be fast enough to allow that acceleration in full.</p>
+      <p>Why perplexity? Benchmarks saturate, and GPT-2 or GPT-3 would score poorly on modern tests. Perplexity has been optimised for years across many research teams and keeps delivering consistent gains in general intelligence. Pachocki lists the weaknesses himself: labs use different evaluation sets and data mixtures; perplexity does not correspond to a task anyone cares about directly; chain-of-thought reasoning raises capability without lowering perplexity; and the floor is unknown, so smaller gains near it may mean larger leaps in intelligence. Publishing the curve gives competitors a clearer picture of where OpenAI stands &mdash; a concern he says is outweighed by the need for shared safety measures.</p>
+      <p><span class="hl-lav">This is the first time a frontier lab has put a number on the thing it is afraid of. The interesting part is not the metric but the admission underneath it: if the next leap can come from AI improving pretraining, the labs will lose the ability to predict their own roadmap. Pachocki is proposing a speed limit before anyone has agreed what the road is. Whether rivals adopt a competitor's metric as a shared ceiling is the whole question &mdash; and &ldquo;we'll stop at 0.68&rdquo; is only as strong as the least committed lab. It lands the day after a machine-checked proof of the Riemann hypothesis was certified, which is a timely illustration of his point.</span></p>
+      <p>Caveats. This is one lab's dataset &mdash; OpenAI's internal codebase &mdash; not a cross-lab standard, and the thresholds are the company's own. The 2027 avalanche is a projection, not a result; Pachocki notes most of the recent steepening came from long-term research and compute investment, with only a smaller part from automation. Publishing the curve may be positioning as much as transparency. No other lab has signed on. Watch for a response from Anthropic or Google, and for whether anyone else publishes their own curve.</p>
+    </div>
+    <a class="source-link" href="https://openai.com/index/perplexity-and-intelligence/" target="_blank">Full story &middot; OpenAI</a>
+  </div>
+
+  <div id="chips" class="story-card card-cream section-anchor">
+    <div class="page-chip">03 &middot; INFRA</div>
+    <div class="card-routine">Hardware &middot; The 45% Surcharge</div>
+    <h2 class="card-headline">You Signed a Fixed Price for an AI Server. Dell Wants 45% More at Delivery.</h2>
+    <div class="card-deck">Four suppliers are repricing contracts already signed as memory costs climb. One buyer is suing in Dublin, and the December ruling will tell everyone what &ldquo;fixed&rdquo; still means.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">45%</span>
+        <span class="stat-label">maximum increase buyers are being asked to accept after contracts were signed</span>
+      </div>
+      <p class="drop"><b>The Financial Times reported on Sunday</b> that <b>Dell, HPE, Lenovo and Supermicro</b> are asking buyers to pay <b>25% to 45% more</b> for Nvidia-powered AI servers than the price in contracts signed months earlier. The suppliers blame memory and circuit-board costs. GPU servers have risen at least 20% to 30%, while prices for CPU nodes have tripled or more, because ordinary memory makes up a larger share of their cost. HPE and Supermicro declined to comment to the FT; Dell and Lenovo did not respond.</p>
+      <p>HPE made the practice official in March 2026, when CEO <b>Antonio Neri</b> told investors the company had <b>&ldquo;amended our quoting terms with a right to reprice existing orders for commodity cost increases between quoting and shipment.&rdquo;</b> HPE has since softened it, guaranteeing quotes below $1 million net &mdash; which most large AI server orders exceed. Cisco has revised its contract terms for component costs, and Extreme Networks raised prices by 7%. The FT reports memory prices have climbed <b>more than 400% since early 2024</b>, as Samsung and SK Hynix shift production toward AI products and circuit-board makers struggle to keep up.</p>
+      <p>The test case is in Dublin. <b>XTX Finland</b> sued Dell in June over 1,680 servers for a 15,000-square-metre data centre: a fixed price of about <b>$549 million</b> agreed in November 2025, plus another $5 million paid to avoid future increases. Delivery slipped by two months, and Dell then said XTX owed a further <b>$62 million to $70 million</b>. Dell's filings say it was <b>&ldquo;not willing to lose tens of millions of dollars&rdquo;</b> on the deal; an XTX director says the company was shocked. The judge admitted the case to the fast-track Commercial Court and adjourned it to December.</p>
+      <p><span class="hl-terra">A signed price is supposed to be the one thing you can plan around. If it can move at delivery, every AI infrastructure budget acquires a hole &mdash; and the hole sits with the buyer, not the supplier. This is what a supply-constrained boom looks like at the contract layer: not a higher sticker price, but the discovery that the sticker was never binding. The memory shortage is not expected to ease before 2027, so the XTX ruling matters more than any guidance number. It will tell you whether &ldquo;fixed&rdquo; still means anything, and who carries the risk when it does not.</span></p>
+      <p>Caveats. The FT's reporting relies on unnamed buyers; the increases vary by deal and 45% is a ceiling, not an average. Dell's position is a court filing, not an admission, and the $549 million and $62&ndash;70 million figures are XTX's account. Suppliers blame input costs; buyers suspect leverage. Watch the December ruling, how HPE's quote guarantee works in practice, and whether hyperscalers negotiate around this while smaller clusters simply pay.</p>
+    </div>
+    <a class="source-link" href="https://www.ft.com/content/dd2a6594-6146-4ff1-ac8e-54749c1fc99f" target="_blank">Full story &middot; Financial Times</a>
+  </div>
+
+  <div id="tax" class="story-card card-sky section-anchor">
+    <div class="page-chip">04 &middot; CAPITAL</div>
+    <div class="card-routine">Robotics &middot; The Humanoid Round</div>
+    <h2 class="card-headline">Ant Group Put $100 Million Into a Robot Startup Valued at $1.6 Billion Before Its Series A</h2>
+    <div class="card-deck">Simplexity's pre-Series A has Alibaba, Tencent and HongShan along for the ride &mdash; and a wheeled humanoid called iX.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">$1.6B</span>
+        <span class="stat-label">valuation of the Hangzhou physical-AI startup after a $100 million pre-Series A</span>
+      </div>
+      <p class="drop"><b>Bloomberg reported on Monday</b> that <b>Ant Group</b> led a <b>$100 million</b> pre-Series A in <b>Simplexity Robotics</b>, valuing the Chinese physical-AI startup at <b>$1.6 billion</b>, according to chairman and co-founder <b>Wang Kai</b>. Existing backers Alibaba, Tencent and HongShan Capital joined, along with BlueRun Investment. Secondary coverage describes the company as founded by former Li Auto executives. Simplexity unveiled <b>iX</b> at the same time &mdash; a wheeled humanoid aimed at serving, delivery and tours.</p>
+      <p>A pre-Series A is usually the stage at which a company is still proving its hardware. A $1.6 billion valuation there is a bet on a category rather than a traction multiple. China's humanoid race has attracted the whole platform stack: Ant brings payments and financing, Alibaba and Tencent bring cloud and distribution, and HongShan &mdash; formerly Sequoia China &mdash; brings the network that has backed much of the country's EV and robotics supply chain. The round follows a week in which Chinese physical AI and advanced chips were both at the centre of Washington's export-control debate.</p>
+      <p>The wheeled form factor is the tell. Legs are the hard part of humanoid robotics; wheels let a robot be useful in a showroom, hotel or warehouse before it can walk. That is the sequence the EV industry ran &mdash; start in a constrained environment, ship something that earns money, then generalise. Investors are paying for the option on the generalised version. It also sits alongside a bigger trend in Chinese AI funding this week: capital moving from models and chips to machines that can act in the physical world.</p>
+      <p><span class="hl-sage">The money is going to bodies now, not just brains. A model that can reason about the world is worth less if nothing can act in it, and China's platform companies are the ones with both the capital and the factories to close that gap. A $1.6 billion pre-Series A is not evidence that the robots work; it is evidence that the people who own the supply chain think they will. The wheeled iX is a smart way to buy time &mdash; useful today, humanoid-shaped tomorrow. Watch for deployed units and paid contracts, not another demo reel.</span></p>
+      <p>Caveats. The valuation and round size come from Wang Kai telling Bloomberg; the investor list is from company releases and wire reports. The Li Auto founding story and iX's intended uses come from secondary coverage of that report. Humanoid timelines have a long history of slipping, and a pre-Series A valuation is a negotiated price, not a market one. Watch for an actual Series A, for deployments outside a controlled demo, and for whether iX becomes a shipping product.</p>
+    </div>
+    <a class="source-link" href="https://techinasia.com/news/ant-group-leads-100m-chinese-humanoid-robot-maker" target="_blank">Full story &middot; Tech in Asia</a>
+  </div>
+
+  <div id="infra" class="story-card card-blush section-anchor">
+    <div class="page-chip">05 &middot; AUTONOMY</div>
+    <div class="card-routine">Frontier &middot; The Rendered Road</div>
+    <h2 class="card-headline">Tesla's New FSD Draws Your Drive in Real Time. It Uses Half a Chip to Do It.</h2>
+    <div class="card-deck">Reality View is AI-generated video from the same network that drives the car. Tesla says v15 is 25x better in safety-critical moments.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">25x</span>
+        <span class="stat-label">Tesla's claim for handling safety-critical cases versus the previous FSD version</span>
+      </div>
+      <p class="drop"><b>Tesla began rolling out FSD (Supervised) v15</b> to US customers on Saturday, the first major rewrite since v14 arrived in October 2025. The announcement claims <b>25x better handling of safety critical cases</b>, credited to a new vision encoder shared across FSD, Robotaxi and the Optimus humanoid. Tesla's head of AI software, <b>Ashok Elluswamy</b>, says the encoder was trained on millions of internet videos. A Tesla self-driving lead says v15 is 25x safer than v14 across the fleet, and that the difference is invisible on any single drive and only shows over millions of miles.</p>
+      <p>The visible change is <b>Tesla Reality View</b>: a realistic, generated overhead view of the car and its surroundings on the centre screen, replacing the old computer-graphics visualisation. The same end-to-end network that drives the car renders it. Musk called it <b>&ldquo;real-time AI video generation (no gaming engine!)&rdquo;</b> running on half of one AI4 TRIP accelerator, and says it uses less compute than the old display. You can tap a point on the view to tell the car where to park. Other changes include end-to-end navigation at the start and end of trips, slowing for speed cameras, better detection of signs, small animals, road debris and potholes, and a Bike Rack Mode for cars with towbar accessories.</p>
+      <p>Tesla's own safety report gives <b>6,006,200 miles</b> per major collision with FSD engaged over twelve months, against <b>660,164 miles</b> for the average US driver &mdash; the &ldquo;9x safer than a human&rdquo; line in the launch video. Manually driven Teslas with active safety features on manage 2,031,221 miles. A crash counts against FSD if the system was active in the five seconds before impact. Musk says wide release arrives next month with the Holiday Update, and that the next-generation AI5 computer will go into Optimus rather than cars: <b>&ldquo;Cars will remain at AI4. That's enough to solve superhuman driving.&rdquo;</b></p>
+      <p><span class="hl-lav">Two things are happening at once. The safety claim is unverified and measured against a baseline Tesla will not define. But the rendering trick is real engineering: a model that understands the road well enough to drive it can also render it, using less compute than a games engine. That is a cheaper way to make autonomy legible to a passenger than a dashboard full of bounding boxes &mdash; and it is the same vision encoder that feeds the robotaxi and the humanoid. The 25x headline is marketing; one set of eyes serving three products is the strategy.</span></p>
+      <p>Caveats. Tesla's numbers are self-reported and unaudited; &ldquo;critical intervention&rdquo; is undefined and the comparison baseline is unstated. First-wave tracking shows only US Model Ys on AI4 hardware; older HW3 cars get a cut-down &ldquo;v14.3 Lite&rdquo;. Two early owners reported the car trying to park in a disabled bay, and one said tap-to-park worked only after disengaging. FSD remains supervised and requires the driver to watch the road. Watch for the December wide release and for any independent safety data.</p>
+    </div>
+    <a class="source-link" href="https://paultan.org/2026/11/22/tesla-fsd-v15-rollout" target="_blank">Full story &middot; paultan.org</a>
+  </div>
+
+  <div id="signals" class="story-card card-cream section-anchor">
+    <div class="page-chip">06 &middot; SIGNALS</div>
+    <div class="card-routine">5 Key Signals</div>
+    <h2 class="card-headline sm">What Moved the Machine Frontier Today</h2>
+    <div class="card-deck" style="border-bottom:none;padding-bottom:0;margin-bottom:16px;">Briefs worth an afternoon of reading.</div>
+    <div class="signals-grid">
+      <div class="signal-row">
+        <div class="signal-num n1">1</div>
+        <div>
+          <div class="signal-title">Meta's Alexandr Wang: &ldquo;Superintelligence Is Arriving&rdquo;</div>
+          <div class="signal-desc">A day after the Riemann proof was certified, Meta's chief AI officer wrote that it shows AI will surpass the best humans in every field, <b>including AI research itself</b>, and warned against a &ldquo;handover&rdquo; of society to machines. The next year, he says, decides what world we live in.</div>
+          <a class="signal-link" href="https://mlq.ai/news/metas-alexandr-wang-says-the-riemann-proof-shows-ai-will-surpass-humans-in-every-field-including-ai-research" target="_blank">MLQ.ai &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n2">2</div>
+        <div>
+          <div class="signal-title">Compute Desk Raised $45 Million to Build Markets for Hedging GPU Prices</div>
+          <div class="signal-desc">Lightspeed led a <b>$45 million seed</b> for a startup building capital-markets infrastructure to price, trade, hedge and clear <b>compute</b>. When a signed server price can move 45%, someone will sell a contract that locks it.</div>
+          <a class="signal-link" href="https://lsvp.com/stories/building-the-clearing-platform-for-compute-why-we-invested-in-compute-desk" target="_blank">Lightspeed &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n3">3</div>
+        <div>
+          <div class="signal-title">New US Chip Rules Threaten Southeast Asia's Data Center Boom</div>
+          <div class="signal-desc">Bloomberg reports the new rulebook could leave projects incomplete or abandoned and force neoclouds to replace Chinese customers. The rules cover Singapore, Malaysia, Thailand and Indonesia &mdash; the countries that rented compute to firms cut off from chips at home.</div>
+          <a class="signal-link" href="https://www.bloomberg.com/news/features/2026-11-22/trump-s-ai-chip-crackdown-on-china-after-nvidia-crisis-squeezes-southeast-asia" target="_blank">Bloomberg &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n4">4</div>
+        <div>
+          <div class="signal-title">TPG and Corpay Are Taking BILL Holdings Private for About $6 Billion</div>
+          <div class="signal-desc">The deal pays <b>$63.25 a share</b> in cash, a 31% premium to the 60-day volume-weighted average. The software that lets small businesses automate payments is the kind of asset private equity keeps buying while public software multiples stay soft.</div>
+          <a class="signal-link" href="https://www.reuters.com/legal/transactional/bill-holdings-be-taken-private-by-tpg-6-billion-equity-value-2026-11-19/" target="_blank">Reuters &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n5">5</div>
+        <div>
+          <div class="signal-title">Arva AI Raised $20 Million to Put Agents Inside Bank Compliance Teams</div>
+          <div class="signal-desc">Arthur Ventures led the <b>Series A</b> for a startup whose agents handle financial-crime compliance, with Wise among its customers. Banking's back office is where AI agents get to touch real money &mdash; and real regulatory exposure.</div>
+          <a class="signal-link" href="https://arva.ai/blog/arva-ai-raises-20m-series-a" target="_blank">Arva AI &#8597;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="themes" class="story-card card-lavender section-anchor">
+    <div class="page-chip">07 &middot; CLOSER</div>
+    <div class="card-routine">Top Themes</div>
+    <h2 class="card-headline sm">The Shape of Today&rsquo;s News</h2>
+    <div class="themes-grid" style="margin-top:16px;">
+      <div class="theme-item">The Certified Proof</div>
+      <div class="theme-item">The Speedometer</div>
+      <div class="theme-item">The 45% Surcharge</div>
+      <div class="theme-item">The Humanoid Round</div>
+      <div class="theme-item">The Rendered Road</div>
+    </div>
+
+    <div id="tool" class="tool-week section-anchor">
+      <div class="tool-week-eyebrow">Company Watch of the Day</div>
+      <div class="tool-week-name">ANTHROPIC</div>
+      <div class="tool-week-desc">Claude is written into the most important proof of the decade, even though the argument is Alp&ouml;ge's. Anthropic says a model helped produce it; the Lean community certified the code, not the credit. The same week brought a Wall Street Journal profile of siblings <b>Dario and Daniela Amodei</b>, a Washington Post account of Dario's essay-and-Slack-memo culture, and reporting that IPO banks were kept on four-person teams with view-logging file access. The company is worth more than <b>$1 trillion</b> and is now arguing both that AI can do world-class mathematics and that the world should slow down. Watch who gets named on the paper, and whether the proof changes how the lab talks about alignment.</div>
+    </div>
+
+    <div id="sources" class="output-card section-anchor">
+      <div class="output-title">Sources Cited</div>
+      <div class="sources-grid">
+        <a href="https://the-decoder.com/lean-and-mathlib-community-officially-confirms-levent-alpoges-proof-of-the-riemann-hypothesis-is-correct/" target="_blank">The Decoder &mdash; Lean and Mathlib confirm Alp&ouml;ge's Riemann proof</a>
+        <a href="https://math.mit.edu/~drew/grh/" target="_blank">Andrew Sutherland, MIT &mdash; verification files for the Lean proof</a>
+        <a href="https://www.aljazeera.com/news/2026/11/21/riemann-hypothesis-has-the-worlds-most-famous-maths-problem-been-cracked" target="_blank">Al Jazeera &mdash; Has the world's most famous maths problem been cracked?</a>
+        <a href="https://openai.com/index/perplexity-and-intelligence/" target="_blank">OpenAI &mdash; Perplexity and Intelligence, by Jakub Pachocki</a>
+        <a href="https://www.ft.com/content/dd2a6594-6146-4ff1-ac8e-54749c1fc99f" target="_blank">Financial Times &mdash; Tech suppliers raise AI server prices after deals are signed</a>
+        <a href="https://thehype.news/ai-server-prices-rise-45-percent" target="_blank">The Hype &mdash; Dell, HPE, Lenovo and Supermicro raise prices up to 45%</a>
+        <a href="https://techinasia.com/news/ant-group-leads-100m-chinese-humanoid-robot-maker" target="_blank">Tech in Asia &mdash; Ant Group leads $100M round for Simplexity Robotics</a>
+        <a href="https://paultan.org/2026/11/22/tesla-fsd-v15-rollout" target="_blank">paultan.org &mdash; Tesla FSD v15 starts rolling out with Reality View</a>
+        <a href="https://mlq.ai/news/metas-alexandr-wang-says-the-riemann-proof-shows-ai-will-surpass-humans-in-every-field-including-ai-research" target="_blank">MLQ.ai &mdash; Alexandr Wang: &ldquo;Superintelligence is arriving&rdquo;</a>
+        <a href="https://lsvp.com/stories/building-the-clearing-platform-for-compute-why-we-invested-in-compute-desk" target="_blank">Lightspeed &mdash; Why we invested in Compute Desk</a>
+        <a href="https://www.bloomberg.com/news/features/2026-11-22/trump-s-ai-chip-crackdown-on-china-after-nvidia-crisis-squeezes-southeast-asia" target="_blank">Bloomberg &mdash; AI chip crackdown squeezes Southeast Asia</a>
+        <a href="https://www.reuters.com/legal/transactional/bill-holdings-be-taken-private-by-tpg-6-billion-equity-value-2026-11-19/" target="_blank">Reuters &mdash; TPG to take BILL Holdings private in $6 billion deal</a>
+        <a href="https://arva.ai/blog/arva-ai-raises-20m-series-a" target="_blank">Arva AI &mdash; $20M Series A for bank compliance agents</a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-logo">
+      <div class="footer-mark"><img src="../assets/timps-postcards.png" alt="TIMPS"></div>
+      <span class="footer-brand">TIMPS PostCards</span>
+    </div>
+    <div class="footer-center">Issue 178 &middot; November 23, 2026<br>Hyderabad, India</div>
+    <div class="footer-right">
+      <a href="../index.html">Home</a><br>
+      <a href="../archive.html">Archive</a><br>
+      &copy; 2026 TIMPS
+    </div>
+  </footer>
+
+</div></div>
+
+<!-- Dynamic Island: today's five headlines in a live capsule (installed app) -->
+<script src="../assets/dynamic-island.js" defer></script>
+</body>
+</html>
