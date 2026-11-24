@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 165 daily issues + 18 deep dives · regenerated 2026-11-23**
+**Coverage: 166 daily issues + 18 deep dives · regenerated 2026-11-24**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 179 · 2026-11-24 · `daily/timps-postcards-2026-11-24.html`
+
+- **[01 · LEAD]** The Board That Said Never Reinstated Jensen Huang. Nvidia Added a Trillion Dollars.
+  - _Eleven days after ruling him out, the board voted unanimously to bring its founder back, citing input from senior US officials. The market responded with the chipmaker's best day since 2003._
+  - Source: [Full story · Nvidia](https://nvidianews.nvidia.com/news/nvidia-board-reinstates-jensen-huang-as-president-ceo-and-board-director)
+
+- **[02 · MODELS]** AWS Built a Model That Doesn't Write. It Decides. And It Beat Google's.
+  - _Five open Strands Decider v2 models built on Gemma 4 return probabilities, not prose. The biggest averages 82.1 across six benchmarks._
+  - Source: [Full story · The New Stack](https://thenewstack.io/aws-strands-decider-v2/)
+
+- **[03 · EARNINGS]** HPE Posted Its Fastest Growth Ever. Its Stock Fell 6% Anyway.
+  - _Revenue jumped 50% to $14.55 billion and guidance went up. Investors wanted more from the company selling the servers underneath the AI boom._
+  - Source: [Full story · SiliconANGLE](https://siliconangle.com/2026/11/23/hpes-stock-slides-despite-record-revenue-growth-and-upbeat-forecast/)
+
+- **[04 · CAPITAL]** A $20 Million Bet That Your Market Take Should Become a Portfolio
+  - _Supertake's seed was led by Adjacent, with Coinbase Ventures and USV joining. Its agents turn a prediction into actual trades._
+  - Source: [Full story · TechCrunch](https://techcrunch.com/2026/11/23/supertake-raises-20m-to-let-ai-agents-turn-your-market-predictions-into-stock-portfolios/)
+
+- **[05 · SECURITY]** He Used OpenAI's Own Coding Tool to Improve a Hidden Recorder in Its Conference Room
+  - _Prosecutors say the ex-engineer added a voice-detection skill with Codex and stored dozens of recordings — some likely trade secrets — in Dropbox._
+  - Source: [Full story · Business Insider](https://www.businessinsider.com/openai-engineer-alfozan-codex-manage-recordings-feds-2026-11)
+
+  **Signals / briefs:**
+  - Anthropic Lets Claude Approve Your Pull Requests
+  - OpenAI and Cisco Built a Shield That Needs No Reboot
+  - Google Built Better Maps for the West Bank. Then Took Them Back.
+  - Kalshi Pauses Operations in Utah After a Federal Court Loss
+  - Myriota Raised About $40 Million to Connect Machines From Orbit
 
 ### Issue 178 · 2026-11-23 · `daily/timps-postcards-2026-11-23.html`
 
