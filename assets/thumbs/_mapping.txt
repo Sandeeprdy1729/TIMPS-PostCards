@@ -164,3 +164,4 @@
 2026-11-21	177	thumb-2026-11-21.jpg	Cursor Built Its Coding Model on a Chinese AI. Now Washington Wants It Gone.	chip
 2026-11-23	178	thumb-2026-11-23.jpg	The Riemann Hypothesis Proof Is Certified. A Model Wrote 17 Million Lines of Code.	chip
 2026-11-24	179	thumb-2026-11-24.jpg	The Board That Said Never Reinstated Jensen Huang. Nvidia Added a Trillion Dollars.	chip
+2026-11-25	180	thumb-2026-11-25.jpg	Europe Plans a 50 Billion Euro Bet on Its Own AI Champions	globe

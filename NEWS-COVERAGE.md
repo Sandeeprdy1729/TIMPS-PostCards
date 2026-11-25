@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 166 daily issues + 18 deep dives · regenerated 2026-11-24**
+**Coverage: 167 daily issues + 18 deep dives · regenerated 2026-11-25**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 180 · 2026-11-25 · `daily/timps-postcards-2026-11-25.html`
+
+- **[01 · LEAD]** Europe Plans a €50 Billion Bet on Its Own AI Champions
+  - _Brussels wants a sovereign fund that takes bigger, longer, riskier stakes in AI and quantum companies — and hopes private money follows at six to one._
+  - Source: [Full story · Financial Times](https://www.ft.com/content/53d4b629-7ae4-4d63-ac37-e773b1dd3af0)
+
+- **[02 · MATHEMATICS]** OpenAI Says It Has Pinned the Exact Speed Limit of Matrix Multiplication
+  - _A new preprint claims the exponent is exactly 9/4 over every field — an upper bound plus a matching lower bound. It is unreviewed, and the machine-checked proof covers less than the full claim._
+  - Source: [Full story · OpenAI preprint](https://github.com/openai/math/blob/main/preprints/The-matrix-multiplication-exponent-is-nine-fourths-November-24-2026/paper.pdf)
+
+- **[03 · CHIPS]** Samsung and SK Hynix Are Licensing the Stacking Tech They Used to Ignore
+  - _Cross-licensing deals give Korea’s memory giants access to parts of YMTC’s Xtacking — a sign the Chinese company’s patents now matter to the industry’s biggest players._
+  - Source: [Full story · Nikkei Asia](https://asia.nikkei.com/business/tech/semiconductors/china-s-ymtc-boosted-by-samsung-and-sk-hynix-adopting-its-memory-technology)
+
+- **[04 · GEOPOLITICS]** Huawei Is Guilty on 10 Counts in Brooklyn. The Big One Didn’t Stick.
+  - _A jury convicted the Chinese giant of fraud, sanctions violations and stealing trade secrets, but cleared it of racketeering — the charge that would have branded it a criminal enterprise._
+  - Source: [Full story · US Justice Department](https://www.justice.gov/opa/pr/chinese-tech-giant-huawei-and-subsidiaries-convicted-sanctions-violations-fraud-conspiracy)
+
+- **[05 · EARNINGS]** HP Sold More PCs and Earned Less. AI PCs Are Now 60% of Shipments.
+  - _Revenue hit $16 billion and beat the Street. A 3% Personal Systems margin and lower cash-flow guidance told the other half of the story._
+  - Source: [Full story · HP](https://www.hp.com/us-en/newsroom/press-releases/2026/hp-inc-reports-fiscal-2026-full-year-and-fourth-quarter-results.html)
+
+  **Signals / briefs:**
+  - Huawei’s Homegrown EDA Chain Ran on a Real Chip
+  - AidenAI Raised $32M to Put Agents Inside Enterprises
+  - Amazon Is Taking Its Car Marketplace to Britain
+  - VW’s $18,000 Self-Driving Sedan Was Built in China, for China
+  - Nutanix Starts the Search for Its Next CEO
 
 ### Issue 179 · 2026-11-24 · `daily/timps-postcards-2026-11-24.html`
 
