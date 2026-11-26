@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TIMPS">
+<link rel="manifest" href="../manifest.json">
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/icon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/icon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="../assets/icon-48.png">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="../assets/icon-180.png">
+<title>TIMPS PostCards — Issue 181</title>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --cream:  #EEECE2;
+    --forest: #3D3929;
+    --terra:  #DA7756;
+    --terra-d:#BD5D3A;
+    --black:  #111111;
+    --card-bg:#F0ECE0;
+    --mono:   'Newsreader', Georgia, 'Times New Roman', serif;
+    --serif:  'TIMPS', 'Playfair Display', Georgia, serif;
+  }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Black.woff2') format('woff2'); font-weight:900; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Bold.woff2') format('woff2'); font-weight:700; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-SemiBold.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--cream);
+    background-image:
+      linear-gradient(rgba(61,57,41,.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.07) 1px, transparent 1px);
+    background-size: 38px 38px;
+    font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+    color: var(--forest);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { text-decoration: none; color: inherit; }
+
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 48px;
+    padding-top: calc(14px + env(safe-area-inset-top, 0px));
+    background-color: rgba(238,236,226,.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1.5px solid rgba(61,57,41,.12);
+    background-image:
+      linear-gradient(rgba(61,57,41,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.05) 1px, transparent 1px);
+    background-size: 38px 38px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Special Elite', 'Courier New', Courier, monospace;
+    font-size: 15px;
+    font-weight: 400;
+    color: #000;
+    text-decoration: none;
+  }
+  .nav-logo-mark {
+    width: 34px; height: 34px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .nav-logo-mark img { width: 28px; height: 28px; object-fit: contain; }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-link {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: #000;
+    opacity: .65;
+    text-decoration: none;
+    transition: opacity .15s;
+  }
+  .nav-link:hover { opacity: 1; }
+  .nav-cta {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: #000;
+    background: var(--terra);
+    border: 2.5px solid #000;
+    border-radius: 100px;
+    padding: 10px 24px;
+    cursor: pointer;
+    transition: background .15s, transform .1s;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--terra-d); transform: translateY(-1px); }
+
+  .wrapper { max-width: 760px; margin: 0 auto; padding: 40px 20px 80px; display: flex; flex-direction: column; gap: 0; }
+
+  .cover-card { background: var(--card-bg); border-radius: 20px 20px 4px 4px; padding: 56px 48px 48px; text-align: center; position: relative; overflow: hidden; border: 1.5px solid rgba(61,57,41,.12); margin-bottom: 3px; }
+  .cover-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, var(--terra) 0%, var(--terra-d) 60%, #E0A88A 100%); }
+  .cover-eyebrow { font-family: var(--mono); font-size:10px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:20px; display:flex; align-items:center; justify-content:center; gap:10px; }
+  .cover-eyebrow::before,.cover-eyebrow::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .15; max-width:60px; }
+  .cover-title { font-family: var(--serif); font-size:58px; font-weight:900; line-height:1; letter-spacing:-1px; color: var(--forest); margin-bottom:8px; }
+  .cover-sub { font-family: var(--serif); font-size:13px; font-style:italic; color: var(--forest); opacity: .55; margin-bottom:28px; }
+  .cover-divider { width:48px; height:2px; background: var(--terra); margin:0 auto 24px; border-radius:2px; }
+  .cover-meta { display:flex; justify-content:center; gap:32px; font-family: var(--mono); font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .45; }
+  .cover-badge { display:inline-flex; align-items:center; gap:6px; background: var(--terra); color: #fff; border-radius:20px; padding:6px 18px; font-family: var(--mono); font-size:10px; letter-spacing:2px; text-transform:uppercase; margin-top:28px; }
+  .top5-pill { display:flex; justify-content:center; gap:10px; margin-top:32px; flex-wrap:wrap; }
+  .pill { background: var(--forest); color: var(--cream); border-radius:100px; padding:4px 14px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; }
+  .pill.light { background:transparent; color: var(--forest); border:1px solid rgba(61,57,41,.2); }
+
+  .section-label { display:flex; align-items:center; gap:12px; padding:10px 0 8px; font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .35; }
+  .section-label::before,.section-label::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .1; }
+
+  .story-card { border-radius:4px; border:1.5px solid rgba(61,57,41,.10); padding:36px 40px; margin-bottom:3px; position:relative; overflow:hidden; }
+  .story-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }
+
+  .card-sky      { background:#D6E8F0; } .card-sky::before      { background: #7AAFC0; }
+  .card-cream    { background: var(--card-bg); } .card-cream::before    { background: var(--terra); }
+  .card-blush    { background:#F5DDD0; } .card-blush::before    { background: #E0A88A; }
+  .card-lavender { background:#EAE6F5; } .card-lavender::before { background: #C8BEE8; }
+  .card-sage     { background:#D6E4D6; } .card-sage::before     { background: #8BAF8B; }
+
+  .page-chip { position:absolute; top:14px; right:16px; font-family: var(--mono); font-size:9px; letter-spacing:2px; text-transform:uppercase; color: var(--forest); opacity: .3; }
+  .card-routine { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:8px; }
+  .card-headline { font-family: var(--serif); font-size:28px; font-weight:900; line-height:1.15; color: var(--forest); margin-bottom:10px; }
+  .card-headline.lg { font-size:34px; }
+  .card-headline.sm { font-size:22px; }
+  .card-deck { font-family: var(--serif); font-style:italic; font-size:14px; line-height:1.55; color: var(--forest); opacity: .55; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid rgba(61,57,41,.12); }
+  .card-body { font-family: 'Lora', Georgia, serif; font-size:14px; line-height:1.7; color: var(--forest); }
+  .card-body p { margin-bottom:11px; }
+  .drop::first-letter { font-family: var(--serif); font-size:52px; font-weight:900; float:left; line-height:.78; margin:5px 6px 0 0; color: var(--terra); }
+  .clearfix::after { content:''; display:table; clear:both; }
+
+  .hl-terra { background: var(--terra); color: var(--forest); padding:0 4px; border-radius:2px; }
+  .hl-ink  { background: var(--forest); color: var(--cream); padding:0 4px; border-radius:2px; }
+  .hl-sage { background: #8BAF8B; color: #fff; padding:0 4px; border-radius:2px; }
+  .hl-lav  { background: #C8BEE8; color: var(--forest); padding:0 4px; border-radius:2px; }
+
+  .stat-box { float:right; margin:0 0 16px 24px; background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:16px 20px; text-align:center; min-width:120px; }
+  .stat-big { font-family: var(--serif); font-size:44px; font-weight:900; line-height:1; color: var(--forest); display:block; }
+  .stat-label { font-family: var(--mono); font-size:9.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .5; display:block; margin-top:4px; }
+
+  .img-frame { border:2px solid rgba(61,57,41,0.18); border-radius:12px; overflow:hidden; margin:16px 0; background: var(--card-bg); }
+  .img-frame img { width:100%; display:block; max-height:240px; object-fit:cover; border-bottom:1px solid rgba(61,57,41,.12); }
+  .img-caption { padding:8px 12px; font-family: var(--mono); font-size:10.5px; color: var(--forest); opacity: .6; font-style:italic; display:flex; align-items:center; justify-content:space-between; gap:8px; }
+  .img-caption a { font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; white-space:nowrap; font-style:normal; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; }
+  .img-caption a:hover { opacity: 1; }
+  .img-frame.float-right { float:right; width:220px; margin:0 0 16px 24px; }
+  .img-frame.float-right img { max-height:140px; }
+
+  .source-link { display:inline-flex; align-items:center; gap:5px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:12px; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; transition: opacity .15s; }
+  .source-link:hover { opacity: 1; }
+  .source-link::after { content:'↗'; font-size:9px; }
+
+  .signals-grid { display:flex; flex-direction:column; gap:14px; }
+  .signal-row { display:flex; align-items:flex-start; gap:14px; }
+  .signal-num { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family: var(--serif); font-size:13px; font-weight:900; flex-shrink:0; color:#fff; }
+  .signal-num.n1{background: var(--terra); color: var(--forest);} .signal-num.n2{background: var(--forest);} .signal-num.n3{background:#7AAFC0;} .signal-num.n4{background: var(--terra-d); color: var(--forest);} .signal-num.n5{background: var(--black);}
+  .signal-title { font-family: var(--serif); font-size:14px; font-weight:700; color: var(--forest); margin-bottom:2px; }
+  .signal-desc { font-family: 'Newsreader', Georgia, 'Times New Roman', serif; font-size:12px; line-height:1.65; color: var(--forest); opacity: .6; }
+  .signal-link { display:inline-block; font-family: var(--mono); font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:4px; border-bottom:1px solid rgba(61,57,41,.25); padding-bottom:1px; transition: opacity .15s; }
+  .signal-link:hover { opacity: 1; }
+
+  .themes-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .theme-item { padding:10px 14px; border-radius:8px; font-family: var(--serif); font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; text-align:center; border:1.5px solid rgba(61,57,41,.12); background: var(--cream); }
+
+  .tool-week { background: var(--forest); color: var(--cream); border-radius:12px; padding:18px 20px; text-align:center; margin-top:14px; }
+  .tool-week-eyebrow { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; opacity: .55; margin-bottom:6px; }
+  .tool-week-name { font-family: var(--serif); font-size:22px; font-weight:900; margin-bottom:4px; }
+  .tool-week-desc { font-family: 'Newsreader', Georgia, 'Times New Roman', serif; font-size:11.5px; opacity: .7; font-style:italic; }
+
+  .output-card { background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:18px 20px; margin-top:14px; }
+  .output-title { font-family: var(--serif); font-size:18px; font-weight:700; margin-bottom:8px; color: var(--forest); }
+  .tp-list { list-style:none; padding:0; margin:0; }
+  .tp-list li { padding:5px 0; font-family: 'Lora', Georgia, serif; font-size:12px; color: var(--forest); border-bottom:1px solid rgba(61,57,41,.07); display:flex; align-items:flex-start; gap:7px; }
+  .tp-list li::before { content:'·'; color: var(--terra); font-size:14px; line-height:1.2; flex-shrink:0; }
+  .tp-list li a { color: var(--forest); opacity: .8; text-decoration:none; }
+  .tp-list li a:hover { opacity: 1; }
+
+  .sources-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px 20px; }
+  .sources-grid a { font-family: var(--mono); font-size:11px; color: var(--forest); opacity: .55; text-decoration:none; border-bottom:1px solid rgba(61,57,41,.15); padding-bottom:1px; transition: opacity .15s; }
+  .sources-grid a:hover { opacity: 1; }
+
+  .footer {
+    background: var(--black);
+    padding: 28px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    border-radius: 4px 4px 20px 20px;
+    margin-top: 3px;
+  }
+  .footer-logo { display: flex; align-items: center; gap: 10px; }
+  .footer-mark { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; }
+  .footer-mark img { width: 24px; height: 24px; object-fit: contain; }
+  .footer-brand { font-family: 'Special Elite', 'Courier New', Courier, monospace; font-size: 13px; font-weight: 400; color: #fff; }
+  .footer-center { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.4); text-align: center; line-height: 1.6; }
+  .footer-right { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.3); text-align: right; line-height: 2; }
+  .footer-right a { color: rgba(255,255,255,.5); transition: color .15s; }
+  .footer-right a:hover { color: #fff; }
+
+  .page-layout { display: flex; align-items: flex-start; gap: 0; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+  .toc-sidebar { position: sticky; top: 80px; width: 170px; flex-shrink: 0; padding: 48px 0 0 0; }
+  .toc-nav { display: flex; flex-direction: column; gap: 0; }
+  .toc-link { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.5px; text-transform: uppercase; color: #000; opacity: .45; text-decoration: none; padding: 7px 12px; border-left: 2px solid transparent; transition: opacity .15s, border-color .15s; line-height: 1.3; }
+  .toc-link:hover { opacity: .85; }
+  .toc-link.active { opacity: 1; border-left-color: var(--terra); }
+  .section-anchor { scroll-margin-top: 80px; }
+
+  @media (max-width: 900px) {
+    .toc-sidebar { display: none; }
+    .page-layout { max-width: 760px; }
+  }
+
+  @media (max-width: 720px) {
+    .nav { padding: 12px 24px; }
+    .nav-links { display: none; }
+    .wrapper { padding: 20px 14px 60px; }
+    .cover-card { padding: 40px 24px; }
+    .story-card { padding: 28px 20px; }
+    .footer { padding: 24px; flex-direction: column; align-items: flex-start; }
+    .footer-center, .footer-right { text-align: left; }
+    .stat-box { float: none; margin: 0 0 16px 0; }
+    .img-frame.float-right { float: none; width: 100%; margin: 0 0 16px 0; }
+  }
+  @media (max-width: 480px) {
+    .nav-logo span { display: none; }
+    .cover-title { font-size: 40px; }
+    .card-headline.lg { font-size: 28px; }
+    .card-headline { font-size: 24px; }
+  }
+</style>
+
+</head>
+
+
+
+
+
+<body>
+
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">
+    <div class="nav-logo-mark"><img src="../assets/timps-postcards.png" alt="TIMPS"></div>
+    <span>TIMPS PostCards</span>
+  </a>
+  <div class="nav-links">
+    <a href="../articles.html" class="nav-link">Articles</a>
+    <a href="../archive.html" class="nav-link">Archive</a>
+    <a href="timps-postcards-2026-11-26.html" class="nav-link">Latest Issue</a>
+    <a href="../index.html#subscribe" class="nav-link">Subscribe</a>
+  </div>
+  <a href="../index.html#subscribe" class="nav-cta">Subscribe</a>
+</nav>
+
+<div class="page-layout">
+  <aside class="toc-sidebar">
+    <nav class="toc-nav">
+      <a href="#lead" class="toc-link">The Clinical Leap</a>
+      <a href="#models" class="toc-link">The Leverage Lesson</a>
+      <a href="#chips" class="toc-link">The Machine-Speed Attack</a>
+      <a href="#tax" class="toc-link">The Data Auction</a>
+      <a href="#infra" class="toc-link">The Slow Comeback</a>
+      <a href="#signals" class="toc-link">Signals</a>
+      <a href="#themes" class="toc-link">Themes</a>
+      <a href="#tool" class="toc-link">Watch</a>
+      <a href="#sources" class="toc-link">Sources</a>
+    </nav>
+  </aside>
+
+  <div class="wrapper">
+
+  <div id="intro" class="cover-card section-anchor">
+    <div class="cover-eyebrow">Est. 2026 &middot; Hyderabad</div>
+    <div class="cover-title">TIMPS<br>PostCards</div>
+    <div class="cover-sub">AI Intelligence Digest &middot; Your Daily Signal from the Machine Frontier</div>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+      <span>Issue 181</span>
+      <span>November 26, 2026</span>
+      <span>No. 208</span>
+    </div>
+    <div class="cover-badge">&#11041; 181 Issues &mdash; Built with the TIMPS Ecosystem</div>
+    <div class="top5-pill">
+      <span class="pill">5 Top Signals</span>
+      <span class="pill light">The Clinical Leap</span>
+      <span class="pill light">The Leverage Lesson</span>
+      <span class="pill light">The Machine-Speed Attack</span>
+      <span class="pill light">The Data Auction</span>
+      <span class="pill light">The Slow Comeback</span>
+    </div>
+  </div>
+
+    <div id="lead" class="story-card card-sage section-anchor">
+    <div class="page-chip">01 &middot; LEAD</div>
+    <div class="card-routine">Health &middot; The Clinical Leap</div>
+    <h2 class="card-headline lg">Neuralink Clears the First US Pivotal Brain-Implant Trial</h2>
+    <div class="card-deck">The FDA has opened a pivotal study of the implant in adults with severe paralysis from ALS. More than 30 people have already used earlier versions in three countries.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">&gt;30</span>
+        <span class="stat-label">implanted participants in earlier feasibility studies in the US, Canada and the UK, with thousands of hours of real-world use</span>
+      </div>
+      <p class="drop"><b>Neuralink announced on Wednesday</b> that the US Food and Drug Administration had approved the <b>LINK Pivotal Study</b>, which it calls the first pivotal trial for an implantable brain-computer interface in the United States. The study will evaluate the safety and effectiveness of the Neuralink BCI system in people with severe paralysis caused by <b>amyotrophic lateral sclerosis (ALS)</b>. Enrolment is open, and the company says it will add sites over time. Participants will use the implant to control digital devices by thought, with the trial tracking functional outcomes that improve independence in daily life.</p>
+      <p>The approval rests on earlier feasibility studies in the <b>United States, Canada and the United Kingdom</b>, where Neuralink says more than <b>30 implanted participants</b> have contributed thousands of hours of real-world use. It lists higher education, creative work, video games and communicating with family among the things participants have done with the system. The pivotal study will also follow long-term safety and reliability across multiple clinical sites &mdash; the part that matters if a device is ever to move from trial to market.</p>
+      <p>&ldquo;Pivotal&rdquo; is a regulatory word, not a claim that the device works. It is the study design regulators expect before a company can ask to market a product. Neuralink&rsquo;s announcement did not publish a participant count, a primary endpoint or a completion date. <b>Bloomberg</b> and other outlets corroborated the approval; the details available today come from the company.</p>
+      <p><span class="hl-sage">This is the moment a brain implant stops being a demo and becomes a clinical programme. The engineering story is now the easy part: the hard part is showing, across enough patients and enough years, that a coin-sized implant is safe and that thought-controlled clicks translate into something a person can actually use. Watch the trial registry, the endpoint choices and the adverse-event reporting. A first pivotal trial is a hinge, not a finish line.</span></p>
+      <p>Caveats. The announcement is from Neuralink; the FDA has approved a study, not the device itself. The &ldquo;first pivotal trial&rdquo; framing is the company&rsquo;s. Participant numbers and hours of use are self-reported, and no peer-reviewed results are attached. Watch for the trial&rsquo;s registration details, enrolment pace and any update on the earlier feasibility cohorts.</p>
+    </div>
+    <a class="source-link" href="https://neuralink.com/updates/neuralink-receives-fda-approval-to-launch-link-pivotal-study/" target="_blank">Full story &middot; Neuralink</a>
+  </div>
+
+  <div id="models" class="story-card card-lavender section-anchor">
+    <div class="page-chip">02 &middot; CAPITAL</div>
+    <div class="card-routine">Markets &middot; The Leverage Lesson</div>
+    <h2 class="card-headline">The AI Prophet Who Called It Lost 65% in a Quarter</h2>
+    <div class="card-deck">Leopold Aschenbrenner&rsquo;s Situational Awareness nearly died in July. Its third-quarter letter puts the damage at 65% after fees &mdash; and still claims an 88.5% gain for the year.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">&minus;65%</span>
+        <span class="stat-label">net-of-fee return in the third quarter, against +88.5% year to date through September, according to the investor letter</span>
+      </div>
+      <p class="drop"><b>The Wall Street Journal reported</b> that Situational Awareness told investors it lost <b>65% after fees in the third quarter</b>, as the AI-focused fund worked through the wreckage of a leveraged summer. The fund, run by former OpenAI researcher <b>Leopold Aschenbrenner</b>, came close to permanent impairment in July when borrowing-fuelled bets on AI names soured. It is still up <b>88.5% after fees</b> for the year through September.</p>
+      <p>The letter concedes the error. &ldquo;Many of our predictions&mdash;which seemed like science fiction two years ago&mdash;came true. And yet we also learned how wrong we could be, and how merciless the market is when we are,&rdquo; Aschenbrenner wrote, according to the Journal. His new rule: <b>&ldquo;Volatility, yes; existential risk, even if we are totally wrong, never.&rdquo;</b> He says the portfolio has been restructured for resilience and that the fund has been investing without taking new money.</p>
+      <p>The scale of the round trip is visible in public filings. The fund&rsquo;s reported 13F positions fell from <b>$20.24 billion</b> at the end of June to <b>$1.58 billion</b> at September 30 &mdash; a 92% reduction, with 21 of 26 lines closed. What remained was roughly two-thirds call options. Those filings cover US-listed positions only, not the whole book. Coverage of the July unwind put assets falling from about $45 billion to under $10 billion in less than a month.</p>
+      <p><span class="hl-lav">The 88.5% headline is arithmetic, not vindication: a fund that roughly quintupled by June can lose two-thirds in three months and still be way up. The useful lesson is about structure. Being right about AI and wrong about leverage produced the same outcome as being wrong about AI &mdash; a forced sale into someone else&rsquo;s profit. And the letter stops at September 30, before October cracked the trade again.</span></p>
+      <p>Caveats. The figures come from an investor letter reported by the Journal and relayed by secondary outlets; there is no independent audit. The 13F is a partial, lagged snapshot of US-listed holdings. The quarter ends before the October AI sell-off, so the fourth-quarter result is unknown. Watch the next letter, any new fund terms, and whether the options-heavy rebuild survives another drawdown.</p>
+    </div>
+    <a class="source-link" href="https://www.wsj.com/finance/investing/aschenbrenners-situational-awareness-tells-investors-it-lost-65-in-third-quarter-de8e9797" target="_blank">Full story &middot; The Wall Street Journal</a>
+  </div>
+
+  <div id="chips" class="story-card card-cream section-anchor">
+    <div class="page-chip">03 &middot; SECURITY</div>
+    <div class="card-routine">Cyber &middot; The Machine-Speed Attack</div>
+    <h2 class="card-headline">Salt Typhoon Is Running an AI Pen-Testing Framework</h2>
+    <div class="card-deck">Microsoft says Chinese and North Korean state groups have added ARTEX to their toolkits. It can go from reconnaissance to privileged access in minutes.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">Minutes</span>
+        <span class="stat-label">how quickly Microsoft says ARTEX can move from reconnaissance to persistent, privileged access inside a target organisation</span>
+      </div>
+      <p class="drop"><b>Microsoft Threat Intelligence published a detailed warning</b> on Wednesday about <b>ARTEX</b>, an AI-powered penetration-testing framework it says is being abused by state-sponsored and criminal hackers. It named six groups using the tool: <b>Storm-0940, Storm-3358, Onyx Sleet, Pearl Sleet, Crystal Typhoon and Salt Typhoon</b>. The last of those is the Chinese group blamed for breaching at least nine US telecommunications companies in 2024.</p>
+      <p>ARTEX was published on GitHub in <b>July 2026</b> by a user called Autumn-27, with a Chinese-language interface and a Go backend that coordinates multiple language-model agents. A goals model breaks a target into verifiable objectives; a planner reads a knowledge graph of discovered systems and issues short &ldquo;intents&rdquo;; worker agents execute them with a real shell and offensive tools; a reporter writes up findings. Operators can plug in almost any model, including open-weight models stripped of guardrails, and a pool function switches providers when one runs out of quota or is rate-limited.</p>
+      <p>The original source was removed in October, but forks survived, and in November a Chinese security company, <b>ThreatBook</b>, claimed ownership and began selling commercial <b>ARTEX Pro</b> access. Microsoft stresses that the framework brings no new exploit techniques &mdash; it chains existing tools such as nmap with SQL injection, template injection, file uploads and credential attacks. The durable signature is behaviour: unusually broad bursts of requests and rapid retries from one source. The FBI issued its own advisory two weeks ago. The New York Times and NextGov reported that ARTEX was allegedly used in attacks on the CIA, the National Geospatial-Intelligence Agency and the Office of the Director of National Intelligence.</p>
+      <p><span class="hl-ink">The threat is orchestration, not invention. A single operator can now run the whole intrusion loop at machine speed, and because the tool accepts any model, no provider&rsquo;s safety filter reliably sees it. That makes attribution from malware samples weaker and behavioural detection more valuable. Watch whether the agencies confirm the reported breaches, and how quickly defenders adopt machine-speed response.</span></p>
+      <p>Caveats. The group names and technical findings are Microsoft&rsquo;s, based on its own telemetry. Using ARTEX does not by itself identify an attacker. The reported attacks on US intelligence agencies come from the NYT and NextGov as cited by The Record, not from a confirmed agency statement. Watch Microsoft&rsquos detection guidance, the FBI advisory and any formal attribution.</p>
+    </div>
+    <a class="source-link" href="https://www.microsoft.com/en-us/security/blog/2026/11/25/what-defenders-need-to-know-artex-agentic-ai-framework-threat-actors-abuse" target="_blank">Full story &middot; Microsoft Security Blog</a>
+  </div>
+
+  <div id="tax" class="story-card card-sky section-anchor">
+    <div class="page-chip">04 &middot; PRIVACY</div>
+    <div class="card-routine">Courts &middot; The Data Auction</div>
+    <h2 class="card-headline">42 States Move to Block the Sale of 21 Million Character.AI Chats</h2>
+    <div class="card-deck">The bankrupt chatbot company wants to auction user histories on December 1. Attorneys general say the buyer would inherit intimate conversations &mdash; and no obligations.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">21M+</span>
+        <span class="stat-label">US accounts whose chat histories are in the proposed sale, including more than 2.1 million registered to minors</span>
+      </div>
+      <p class="drop"><b>California Attorney General Rob Bonta and 41 counterparts</b>, plus the District of Columbia, asked a Delaware bankruptcy court on Tuesday to reject Character.AI&rsquo;s plan to sell its platform and the private chat histories of more than <b>21 million US accounts</b>. More than <b>2.1 million</b> of those accounts belong to minors. The auction is scheduled for <b>December 1, 2026</b>, and would transfer chats alongside account data, IP addresses, metadata and the company&rsquo;s own risk scores.</p>
+      <p>The states say the sale includes conversations with characters presented as therapists and physicians, covering self-harm, eating disorders and suicidal thoughts, as well as explicit sexual exchanges involving children. Character.AI had told users <b>&ldquo;we do not sell personal information for monetary consideration.&rdquo;</b> Under the proposed terms, the buyer would not have to honour the privacy policy, delete data on request or refrain from reselling it.</p>
+      <p>The bidder is also a problem. The only one disclosed is <b>Smirks and Pangs Acquisition LLC</b>, incorporated in Delaware on <b>November 13</b>, one day before Character.AI chose it as the base bid. The contract names no parent or investors, permits foreign investors whose identities are shared only with the company, and would require hiring only Character.AI&rsquo;s top lawyer. The states also want a <b>$350,000 breakup fee</b> rejected. A separate <b>$20 million</b> licence of Character.AI&rsquo;s technology to Disney, which does not include user chats, still awaits final approval.</p>
+      <p><span class="hl-terra">Bankruptcy is not a privacy eraser. If a company can sell the conversations it promised to protect simply by putting them in an asset pile, the promise was never worth much. The clean fix is simple: exclude minors&rsquo; chats and sensitive health data from any sale, and make buyer obligations a condition rather than a hope. Watch the December 1 hearing and whether a named, accountable buyer appears.</span></p>
+      <p>Caveats. The objections come from an attorney-general filing and press release; the court has not ruled. Coalition counts vary by statement because some include the District of Columbia. New chatbot safety laws in California, Colorado, New York and Connecticut take effect on <b>January 1, 2027</b>, but are not yet in force. Watch the court&rsquos decision, the final bidder list and any revised sale terms.</p>
+    </div>
+    <a class="source-link" href="https://oag.ca.gov/news/press-releases/attorney-general-bonta-opposes-asset-sale-characterai-amid-child-safety-concerns" target="_blank">Full story &middot; California Attorney General</a>
+  </div>
+
+  <div id="infra" class="story-card card-blush section-anchor">
+    <div class="page-chip">05 &middot; COMMERCE</div>
+    <div class="card-routine">India &middot; The Slow Comeback</div>
+    <h2 class="card-headline">Shein Returned to India With Reliance. It Has 6 Million Users.</h2>
+    <div class="card-deck">Sensor Tower says the relaunched app is flat since January, against Myntra&rsquo;s 100 million. The technology that made Shein fast did not travel with the licence.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">6M</span>
+        <span class="stat-label">average monthly active users in India in October, versus about 100 million for market leader Myntra</span>
+      </div>
+      <p class="drop"><b>Bloomberg reports</b> that Shein&rsquo;s return to India through Reliance Retail is off to a slow start. The app averaged about <b>6 million monthly active users</b> in October, down from September and broadly unchanged since January, according to Sensor Tower estimates. Myntra, an indirect Walmart unit, averages about <b>100 million</b>. Shein relaunched in <b>February 2025</b> after being among the Chinese apps banned by New Delhi in 2020. India accounted for <b>67%</b> of its monthly users in 2019.</p>
+      <p>People familiar with the venture told Bloomberg that Reliance runs product selection, marketing and sales, while Shein has not shared the proprietary system that lets it spot, design and produce new styles in <b>under 10 days</b>. Reliance has had to build vendor onboarding and production workflows from scratch, using smaller Indian manufacturers unfamiliar with Shein&rsquo;s Gen-Z styles. Training, waste and turnaround times all rose. Early leadership churn did not help: former Meta executive <b>Manish Chopra</b>, who was helping set up the venture, left in 2024.</p>
+      <p>Engagement is thin. Indian users spent about <b>four minutes a week</b> in the app over the last two months, against a global average of <b>6.6 minutes</b>. September downloads fell <b>73%</b> year over year to <b>790,000</b>, even as advertising spend rose <b>60%</b>; October slipped further to 740,000. The market Shein is re-entering is projected to reach <b>$45 billion by 2028</b>, but Myntra, Tata&rsquo;s Trent, Aditya Birla Fashion and Meesho have spent the ban years filling the gap.</p>
+      <p><span class="hl-terra">A licence can buy a brand name, not the machine behind it. Shein&rsquo;s advantage was never the logo; it was a supply chain that compressed design-to-shelf into days. Reliance has scale, retail reach and Isha Ambani&rsquo;s attention, but it is rebuilding the hard part with different suppliers in a market that no longer waits. Watch whether local lead times fall and whether the licence terms change.</span></p>
+      <p>Caveats. Bloomberg&rsquo;s account relies on people familiar with private matters who asked not to be named; Shein and Reliance did not respond. Sensor Tower figures are estimates, not audited user counts. The $45 billion market figure is a projection. Watch the next quarterly engagement numbers and any shift from licence to deeper ownership.</p>
+    </div>
+    <a class="source-link" href="https://business-standard.com/companies/news/supply-chain-issues-leadership-uncertainty-slow-down-shein-s-india-return-126112600073_1.html" target="_blank">Full story &middot; Bloomberg / Business Standard</a>
+  </div>
+
+  <div id="signals" class="story-card card-cream section-anchor">
+    <div class="page-chip">06 &middot; SIGNALS</div>
+    <div class="card-routine">5 Key Signals</div>
+    <h2 class="card-headline sm">What Moved the Machine Frontier Today</h2>
+    <div class="card-deck" style="border-bottom:none;padding-bottom:0;margin-bottom:16px;">Briefs worth an afternoon of reading.</div>
+    <div class="signals-grid">
+      <div class="signal-row">
+        <div class="signal-num n1">1</div>
+        <div>
+          <div class="signal-title">Memory Buyers Open Procurement War Rooms</div>
+          <div class="signal-desc">The <b>Wall Street Journal</b> reports companies worldwide are setting up dedicated teams to chase supply as shortages driven by AI demand push some chip prices <b>10x higher in a year</b> and lift electronics prices.</div>
+          <a class="signal-link" href="https://www.wsj.com/tech/memory-chip-shortage-ai-electronics-prices-e58a065a" target="_blank">WSJ &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n2">2</div>
+        <div>
+          <div class="signal-title">Nvidia Freezes AI Server Shipments to Four ASEAN Markets</div>
+          <div class="signal-desc">The <b>Financial Times</b> says partners were told to stop shipping servers with Nvidia chips to Malaysia, Singapore, Thailand and Indonesia as the US tightens export controls. Buyers&rsquo; orders would not be filled.</div>
+          <a class="signal-link" href="https://www.ft.com/content/7838a715-07d4-4605-aa60-21f5af2b2370" target="_blank">FT &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n3">3</div>
+        <div>
+          <div class="signal-title">Apple Pulls Talkie Worldwide Over Sexual Content</div>
+          <div class="signal-desc">A joint investigation found AI characters subjecting children to degrading and romantic roleplay. Apple removed MiniMax&rsquo;s app after being shown evidence; it remains on Google Play with <b>50M+ downloads</b>.</div>
+          <a class="signal-link" href="https://www.thebureauinvestigates.com/stories/2026-11-24/talkie-china-chatbot-children" target="_blank">TBIJ &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n4">4</div>
+        <div>
+          <div class="signal-title">ChatGPT Chat and Work Merge Into One Usage Meter</div>
+          <div class="signal-desc">OpenAI began rolling out a unified experience to a small group of Pro users. Instant-model chats stay unlimited, but heavy users may hit limits sooner when the shared allowance goes wider in <b>December</b>.</div>
+          <a class="signal-link" href="https://techcrunch.com/2026/11/25/openai-says-heavy-chatgpt-users-may-hit-limits-sooner-as-it-merges-chat-and-work/" target="_blank">TechCrunch &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n5">5</div>
+        <div>
+          <div class="signal-title">Amazon Loses Its Fight Over 400,000 Recalls</div>
+          <div class="signal-desc">A Maryland court ruled Amazon is a distributor, not just a logistics provider, for third-party Fulfilled by Amazon goods. It must notify buyers and refund consumers who destroy hazardous products.</div>
+          <a class="signal-link" href="https://www.theverge.com/tech/1042870/amazon-recall-order-cpsc" target="_blank">The Verge &#8597;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="themes" class="story-card card-lavender section-anchor">
+    <div class="page-chip">07 &middot; CLOSER</div>
+    <div class="card-routine">Top Themes</div>
+    <h2 class="card-headline sm">The Shape of Today&rsquo;s News</h2>
+    <div class="themes-grid" style="margin-top:16px;">
+      <div class="theme-item">The Clinical Leap</div>
+      <div class="theme-item">The Leverage Lesson</div>
+      <div class="theme-item">The Machine-Speed Attack</div>
+      <div class="theme-item">The Data Auction</div>
+      <div class="theme-item">The Slow Comeback</div>
+    </div>
+
+    <div id="tool" class="tool-week section-anchor">
+      <div class="tool-week-eyebrow">Company Watch of the Day</div>
+      <div class="tool-week-name">NEURALINK</div>
+      <div class="tool-week-desc">The FDA has approved LINK, what Neuralink calls the first US pivotal trial of an implantable brain-computer interface, in adults with severe paralysis from ALS. More than <b>30 people</b> in earlier US, Canadian and UK studies have logged thousands of hours of use. Enrolment is open across multiple sites, with long-term safety and device reliability as the real test. Approval to run a trial is not approval of the product. Watch the registry, the endpoints and the adverse-event record.</div>
+    </div>
+
+    <div id="sources" class="output-card section-anchor">
+      <div class="output-title">Sources Cited</div>
+      <div class="sources-grid">
+        <a href="https://neuralink.com/updates/neuralink-receives-fda-approval-to-launch-link-pivotal-study/" target="_blank">Neuralink &mdash; LINK Pivotal Study approved</a>
+        <a href="https://www.bloomberg.com/news/articles/2026-11-25/neuralink-gets-clearance-for-brain-implant-trial-in-als-patients" target="_blank">Bloomberg &mdash; clearance for ALS brain-implant trial</a>
+        <a href="https://www.wsj.com/finance/investing/aschenbrenners-situational-awareness-tells-investors-it-lost-65-in-third-quarter-de8e9797" target="_blank">Wall Street Journal &mdash; Situational Awareness lost 65% in Q3</a>
+        <a href="https://reut.rs/49gY4MB" target="_blank">Reuters &mdash; fund loss confirmed, up 88.5% for the year</a>
+        <a href="https://zerohedge.com/markets/how-merciless-market-leopold-aschenbrenner-admits-65-q3-loss-says-now-best-time-ever-buy" target="_blank">ZeroHedge &mdash; investor letter and 13F round trip</a>
+        <a href="https://www.microsoft.com/en-us/security/blog/2026/11/25/what-defenders-need-to-know-artex-agentic-ai-framework-threat-actors-abuse" target="_blank">Microsoft Security Blog &mdash; ARTEX framework and threat actors</a>
+        <a href="https://therecord.media/microsoft-china-salt-typhoon-using-artex-ai-tool" target="_blank">The Record &mdash; Salt Typhoon and ARTEX</a>
+        <a href="https://oag.ca.gov/news/press-releases/attorney-general-bonta-opposes-asset-sale-characterai-amid-child-safety-concerns" target="_blank">California Attorney General &mdash; opposition to Character.AI sale</a>
+        <a href="https://techcrunch.com/2026/11/25/state-ags-fight-character-ais-plan-to-auction-off-users-private-chats" target="_blank">TechCrunch &mdash; state AGs fight chat auction</a>
+        <a href="https://business-standard.com/companies/news/supply-chain-issues-leadership-uncertainty-slow-down-shein-s-india-return-126112600073_1.html" target="_blank">Bloomberg / Business Standard &mdash; Shein&rsquo;s India restart</a>
+        <a href="https://economictimes.indiatimes.com/industry/services/retail/mukesh-ambani-reliance-retail-struggles-to-revive-shein-india-fortunes-fast-fashion-sales/articleshow/136176897.cms" target="_blank">Economic Times &mdash; Reliance and Shein&rsquo;s slow start</a>
+        <a href="https://www.wsj.com/tech/memory-chip-shortage-ai-electronics-prices-e58a065a" target="_blank">Wall Street Journal &mdash; memory shortage and procurement war rooms</a>
+        <a href="https://www.ft.com/content/7838a715-07d4-4605-aa60-21f5af2b2370" target="_blank">Financial Times &mdash; Nvidia halts ASEAN server shipments</a>
+        <a href="https://www.thebureauinvestigates.com/stories/2026-11-24/talkie-china-chatbot-children" target="_blank">TBIJ &mdash; Talkie and children&rsquo;s chats</a>
+        <a href="https://techcrunch.com/2026/11/25/openai-says-heavy-chatgpt-users-may-hit-limits-sooner-as-it-merges-chat-and-work/" target="_blank">TechCrunch &mdash; ChatGPT Chat and Work merge</a>
+        <a href="https://www.theverge.com/tech/1042870/amazon-recall-order-cpsc" target="_blank">The Verge &mdash; Amazon loses CPSC recall challenge</a>
+      </div>
+    </div>
+  </div>
+
+<footer class="footer">
+    <div class="footer-logo">
+      <div class="footer-mark"><img src="../assets/timps-postcards.png" alt="TIMPS"></div>
+      <span class="footer-brand">TIMPS PostCards</span>
+    </div>
+    <div class="footer-center">Issue 181 &middot; November 26, 2026<br>Hyderabad, India</div>
+    <div class="footer-right">
+      <a href="../index.html">Home</a><br>
+      <a href="../archive.html">Archive</a><br>
+      &copy; 2026 TIMPS
+    </div>
+  </footer>
+
+</div></div>
+
+<!-- Dynamic Island: today's five headlines in a live capsule (installed app) -->
+<script src="../assets/dynamic-island.js" defer></script>
+</body>
+</html>

@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 167 daily issues + 18 deep dives · regenerated 2026-11-25**
+**Coverage: 168 daily issues + 18 deep dives · regenerated 2026-11-26**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 181 · 2026-11-26 · `daily/timps-postcards-2026-11-26.html`
+
+- **[01 · LEAD]** Neuralink Clears the First US Pivotal Brain-Implant Trial
+  - _The FDA has opened a pivotal study of the implant in adults with severe paralysis from ALS. More than 30 people have already used earlier versions in three countries._
+  - Source: [Full story · Neuralink](https://neuralink.com/updates/neuralink-receives-fda-approval-to-launch-link-pivotal-study/)
+
+- **[02 · CAPITAL]** The AI Prophet Who Called It Lost 65% in a Quarter
+  - _Leopold Aschenbrenner’s Situational Awareness nearly died in July. Its third-quarter letter puts the damage at 65% after fees — and still claims an 88.5% gain for the year._
+  - Source: [Full story · The Wall Street Journal](https://www.wsj.com/finance/investing/aschenbrenners-situational-awareness-tells-investors-it-lost-65-in-third-quarter-de8e9797)
+
+- **[03 · SECURITY]** Salt Typhoon Is Running an AI Pen-Testing Framework
+  - _Microsoft says Chinese and North Korean state groups have added ARTEX to their toolkits. It can go from reconnaissance to privileged access in minutes._
+  - Source: [Full story · Microsoft Security Blog](https://www.microsoft.com/en-us/security/blog/2026/11/25/what-defenders-need-to-know-artex-agentic-ai-framework-threat-actors-abuse)
+
+- **[04 · PRIVACY]** 42 States Move to Block the Sale of 21 Million Character.AI Chats
+  - _The bankrupt chatbot company wants to auction user histories on December 1. Attorneys general say the buyer would inherit intimate conversations — and no obligations._
+  - Source: [Full story · California Attorney General](https://oag.ca.gov/news/press-releases/attorney-general-bonta-opposes-asset-sale-characterai-amid-child-safety-concerns)
+
+- **[05 · COMMERCE]** Shein Returned to India With Reliance. It Has 6 Million Users.
+  - _Sensor Tower says the relaunched app is flat since January, against Myntra’s 100 million. The technology that made Shein fast did not travel with the licence._
+  - Source: [Full story · Bloomberg / Business Standard](https://business-standard.com/companies/news/supply-chain-issues-leadership-uncertainty-slow-down-shein-s-india-return-126112600073_1.html)
+
+  **Signals / briefs:**
+  - Memory Buyers Open Procurement War Rooms
+  - Nvidia Freezes AI Server Shipments to Four ASEAN Markets
+  - Apple Pulls Talkie Worldwide Over Sexual Content
+  - ChatGPT Chat and Work Merge Into One Usage Meter
+  - Amazon Loses Its Fight Over 400,000 Recalls
 
 ### Issue 180 · 2026-11-25 · `daily/timps-postcards-2026-11-25.html`
 
