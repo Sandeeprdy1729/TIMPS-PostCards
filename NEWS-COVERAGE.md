@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 168 daily issues + 18 deep dives · regenerated 2026-11-26**
+**Coverage: 169 daily issues + 18 deep dives · regenerated 2026-11-27**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 182 · 2026-11-27 · `daily/timps-postcards-2026-11-27.html`
+
+- **[01 · LEAD]** SAP Plans to Cut 10,000 Jobs. AI Is the Reason.
+  - _Bloomberg reports a second round of 10,000 cuts in two years. This one is tied to a rewrite of how the software giant builds and sells its products._
+  - Source: [Full story · Bloomberg](https://www.bloomberg.com/news/articles/2026-11-26/sap-weighs-cutting-at-least-10-000-positions-in-ai-restructuring)
+
+- **[02 · DEVICES]** Apple Took 57% of a Shrinking US Phone Market
+  - _Counterpoint says US smartphone shipments fell 9% in Q3 as memory costs squeezed low-end Android. Apple was the only major vendor to gain share._
+  - Source: [Full story · 9to5Mac / Counterpoint](https://9to5mac.com/2026/11/26/report-apple-accounted-for-57-of-us-smartphone-shipments-in-q3/)
+
+- **[03 · POLICY]** “The US Is Not ASML’s Boss,” Dutch Minister Says
+  - _The Netherlands will fight a US bill extending chip-tool curbs from EUV to immersion DUV and servicing. China is roughly a fifth of ASML’s revenue._
+  - Source: [Full story · Seoul Economic Daily](https://en.sedaily.com/world/2026/11/27/the-us-is-not-asmls-boss-dutch-minister-says)
+
+- **[04 · INFRA]** Avicena Raised $100 Million to Wire AI Chips With Light
+  - _SK Hynix, Samsung and AMD joined a Series C for a microLED link that needs no lasers. The first 1 Tbps kits shipped in August._
+  - Source: [Full story · The Next Web](https://thenextweb.com/news/avicena-100m-series-c-microled-optical-interconnects-ai)
+
+- **[05 · WEALTH]** Musk Pledges a SpaceX Share to Every US Child. Then Another Every Year.
+  - _The gift rides on Trump Accounts, tax-advantaged investment accounts for children. SpaceX shares jumped 7.5% in overnight trading._
+  - Source: [Full story · CNBC](https://www.cnbc.com/2026/11/27/spacex-shares-musk-donations.html)
+
+  **Signals / briefs:**
+  - X Finally Adds Parental Controls
+  - Altair Raised $100 Million After Spinning Out of Sony
+  - Dante Security Raised $10 Million to Watch AI Agents
+  - Rockstar Workers Reject a Union Recognition Deal
+  - Investors Dump 2021 Fund Stakes to Buy AI Funds
 
 ### Issue 181 · 2026-11-26 · `daily/timps-postcards-2026-11-26.html`
 

@@ -166,3 +166,4 @@
 2026-11-24	179	thumb-2026-11-24.jpg	The Board That Said Never Reinstated Jensen Huang. Nvidia Added a Trillion Dollars.	chip
 2026-11-25	180	thumb-2026-11-25.jpg	Europe Plans a 50 Billion Euro Bet on Its Own AI Champions	globe
 2026-11-26	181	thumb-2026-11-26.jpg	Neuralink Clears the First US Pivotal Brain-Implant Trial	globe
+2026-11-27	182	thumb-2026-11-27.jpg	SAP Plans to Cut 10,000 Jobs. AI Is the Reason.	chip
