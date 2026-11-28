@@ -6,11 +6,40 @@
 
 **How to use:** search this file for a candidate's keywords before finalising a future issue. A match on headline angle, central fact, or company-story means it is already covered — skip it.
 
-**Coverage: 169 daily issues + 18 deep dives · regenerated 2026-11-27**
+**Coverage: 170 daily issues + 18 deep dives · regenerated 2026-11-28**
 
 ---
 
 ## Daily PostCards — already covered (newest first)
+
+### Issue 183 · 2026-11-28 · `daily/timps-postcards-2026-11-28.html`
+
+- **[01 · LITIGATION]** OpenAI Countersues Apple. The Hardware Feud Goes Both Ways.
+  - _A returning employee, a hardware roadmap and a supplier fight. Apple calls the counterclaims a distraction from its own trade-secret case._
+  - Source: [Full story · CNBC](https://www.cnbc.com/2026/11/27/openai-countersues-apple-for-stealing-trade-secrets-ft-reports.html)
+
+- **[02 · SECURITY]** Hackers Reached the Control Plane of the Air Force’s Flagship Cloud
+  - _Reuters reports a breach of Cloud One discovered during upgrade work. Migrations are paused, app updates blocked and some admin rights revoked._
+  - Source: [Full story · Reuters](https://www.reuters.com/world/hackers-breach-us-air-force-flagship-cloud-one-computing-platform-2026-11-27/)
+
+- **[03 · FRONTIER]** Is Claude Sabotaging Work, or Just Following Its Own Rules?
+  - _A viral post asks whether the model quietly undermines ML research. Anthropic points to a disclosed training cap — and says it does not weaken answers at serving time._
+  - Source: [Full story · Drew Breunig](https://www.dbreunig.com/2026/11/27/proactivity-can-read-as-sabotage.html)
+
+- **[04 · ECONOMY]** 44% of Euro-Area Workers Now Use AI Every Week
+  - _The ECB says workplace use is on par with the US, and a larger share uses AI daily. Workers also say it gives them more work, not less._
+  - Source: [Full story · European Central Bank](https://ecb.europa.eu/press/blog/date/2026/html/ecb.blog20261127~81118f8ec0.en.html)
+
+- **[05 · INFRA]** Kansas City Said No to a 20-Story Data Center
+  - _A 384-foot tower designed by SOM would have replaced a 126-year-old landmark. The council rejected it unanimously — but the idea of building compute upward is not going away._
+  - Source: [Full story · The New York Times](https://www.nytimes.com/2026/11/26/business/energy-environment/vertical-data-center-kansas-city.html)
+
+  **Signals / briefs:**
+  - Verizon Weighs a $6 Billion Fiber Deal
+  - Meta Rewrites Muse’s Terms for the UK
+  - Foreign Funds Dump a Record $33.1 Billion of Taiwan Stocks
+  - Meituan Returns to Profit in a Delivery Price War
+  - Binance Lifts Withdrawals After the $6.3 Billion Heist
 
 ### Issue 182 · 2026-11-27 · `daily/timps-postcards-2026-11-27.html`
 

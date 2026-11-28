@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TIMPS">
+<link rel="manifest" href="../manifest.json">
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/icon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/icon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="../assets/icon-48.png">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="../assets/icon-180.png">
+<title>TIMPS PostCards — Issue 183</title>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --cream:  #EEECE2;
+    --forest: #3D3929;
+    --terra:  #DA7756;
+    --terra-d:#BD5D3A;
+    --black:  #111111;
+    --card-bg:#F0ECE0;
+    --mono:   'Newsreader', Georgia, 'Times New Roman', serif;
+    --serif:  'TIMPS', 'Playfair Display', Georgia, serif;
+  }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Black.woff2') format('woff2'); font-weight:900; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Bold.woff2') format('woff2'); font-weight:700; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-SemiBold.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
+  @font-face { font-family:'TIMPS'; src:url('../TIMPS-Family-v2/TIMPS-Regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--cream);
+    background-image:
+      linear-gradient(rgba(61,57,41,.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.07) 1px, transparent 1px);
+    background-size: 38px 38px;
+    font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+    color: var(--forest);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { text-decoration: none; color: inherit; }
+
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 48px;
+    padding-top: calc(14px + env(safe-area-inset-top, 0px));
+    background-color: rgba(238,236,226,.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1.5px solid rgba(61,57,41,.12);
+    background-image:
+      linear-gradient(rgba(61,57,41,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,57,41,.05) 1px, transparent 1px);
+    background-size: 38px 38px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Special Elite', 'Courier New', Courier, monospace;
+    font-size: 15px;
+    font-weight: 400;
+    color: #000;
+    text-decoration: none;
+  }
+  .nav-logo-mark {
+    width: 34px; height: 34px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .nav-logo-mark img { width: 28px; height: 28px; object-fit: contain; }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-link {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: #000;
+    opacity: .65;
+    text-decoration: none;
+    transition: opacity .15s;
+  }
+  .nav-link:hover { opacity: 1; }
+  .nav-cta {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: #000;
+    background: var(--terra);
+    border: 2.5px solid #000;
+    border-radius: 100px;
+    padding: 10px 24px;
+    cursor: pointer;
+    transition: background .15s, transform .1s;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--terra-d); transform: translateY(-1px); }
+
+  .wrapper { max-width: 760px; margin: 0 auto; padding: 40px 20px 80px; display: flex; flex-direction: column; gap: 0; }
+
+  .cover-card { background: var(--card-bg); border-radius: 20px 20px 4px 4px; padding: 56px 48px 48px; text-align: center; position: relative; overflow: hidden; border: 1.5px solid rgba(61,57,41,.12); margin-bottom: 3px; }
+  .cover-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, var(--terra) 0%, var(--terra-d) 60%, #E0A88A 100%); }
+  .cover-eyebrow { font-family: var(--mono); font-size:10px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:20px; display:flex; align-items:center; justify-content:center; gap:10px; }
+  .cover-eyebrow::before,.cover-eyebrow::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .15; max-width:60px; }
+  .cover-title { font-family: var(--serif); font-size:58px; font-weight:900; line-height:1; letter-spacing:-1px; color: var(--forest); margin-bottom:8px; }
+  .cover-sub { font-family: var(--serif); font-size:13px; font-style:italic; color: var(--forest); opacity: .55; margin-bottom:28px; }
+  .cover-divider { width:48px; height:2px; background: var(--terra); margin:0 auto 24px; border-radius:2px; }
+  .cover-meta { display:flex; justify-content:center; gap:32px; font-family: var(--mono); font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .45; }
+  .cover-badge { display:inline-flex; align-items:center; gap:6px; background: var(--terra); color: #fff; border-radius:20px; padding:6px 18px; font-family: var(--mono); font-size:10px; letter-spacing:2px; text-transform:uppercase; margin-top:28px; }
+  .top5-pill { display:flex; justify-content:center; gap:10px; margin-top:32px; flex-wrap:wrap; }
+  .pill { background: var(--forest); color: var(--cream); border-radius:100px; padding:4px 14px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; }
+  .pill.light { background:transparent; color: var(--forest); border:1px solid rgba(61,57,41,.2); }
+
+  .section-label { display:flex; align-items:center; gap:12px; padding:10px 0 8px; font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .35; }
+  .section-label::before,.section-label::after { content:''; flex:1; height:1px; background: var(--forest); opacity: .1; }
+
+  .story-card { border-radius:4px; border:1.5px solid rgba(61,57,41,.10); padding:36px 40px; margin-bottom:3px; position:relative; overflow:hidden; }
+  .story-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }
+
+  .card-sky      { background:#D6E8F0; } .card-sky::before      { background: #7AAFC0; }
+  .card-cream    { background: var(--card-bg); } .card-cream::before    { background: var(--terra); }
+  .card-blush    { background:#F5DDD0; } .card-blush::before    { background: #E0A88A; }
+  .card-lavender { background:#EAE6F5; } .card-lavender::before { background: #C8BEE8; }
+  .card-sage     { background:#D6E4D6; } .card-sage::before     { background: #8BAF8B; }
+
+  .page-chip { position:absolute; top:14px; right:16px; font-family: var(--mono); font-size:9px; letter-spacing:2px; text-transform:uppercase; color: var(--forest); opacity: .3; }
+  .card-routine { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; color: var(--forest); opacity: .4; margin-bottom:8px; }
+  .card-headline { font-family: var(--serif); font-size:28px; font-weight:900; line-height:1.15; color: var(--forest); margin-bottom:10px; }
+  .card-headline.lg { font-size:34px; }
+  .card-headline.sm { font-size:22px; }
+  .card-deck { font-family: var(--serif); font-style:italic; font-size:14px; line-height:1.55; color: var(--forest); opacity: .55; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid rgba(61,57,41,.12); }
+  .card-body { font-family: 'Lora', Georgia, serif; font-size:14px; line-height:1.7; color: var(--forest); }
+  .card-body p { margin-bottom:11px; }
+  .drop::first-letter { font-family: var(--serif); font-size:52px; font-weight:900; float:left; line-height:.78; margin:5px 6px 0 0; color: var(--terra); }
+  .clearfix::after { content:''; display:table; clear:both; }
+
+  .hl-terra { background: var(--terra); color: var(--forest); padding:0 4px; border-radius:2px; }
+  .hl-ink  { background: var(--forest); color: var(--cream); padding:0 4px; border-radius:2px; }
+  .hl-sage { background: #8BAF8B; color: #fff; padding:0 4px; border-radius:2px; }
+  .hl-lav  { background: #C8BEE8; color: var(--forest); padding:0 4px; border-radius:2px; }
+
+  .stat-box { float:right; margin:0 0 16px 24px; background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:16px 20px; text-align:center; min-width:120px; }
+  .stat-big { font-family: var(--serif); font-size:44px; font-weight:900; line-height:1; color: var(--forest); display:block; }
+  .stat-label { font-family: var(--mono); font-size:9.5px; letter-spacing:1.5px; text-transform:uppercase; color: var(--forest); opacity: .5; display:block; margin-top:4px; }
+
+  .img-frame { border:2px solid rgba(61,57,41,0.18); border-radius:12px; overflow:hidden; margin:16px 0; background: var(--card-bg); }
+  .img-frame img { width:100%; display:block; max-height:240px; object-fit:cover; border-bottom:1px solid rgba(61,57,41,.12); }
+  .img-caption { padding:8px 12px; font-family: var(--mono); font-size:10.5px; color: var(--forest); opacity: .6; font-style:italic; display:flex; align-items:center; justify-content:space-between; gap:8px; }
+  .img-caption a { font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; white-space:nowrap; font-style:normal; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; }
+  .img-caption a:hover { opacity: 1; }
+  .img-frame.float-right { float:right; width:220px; margin:0 0 16px 24px; }
+  .img-frame.float-right img { max-height:140px; }
+
+  .source-link { display:inline-flex; align-items:center; gap:5px; font-family: var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:12px; border-bottom:1px solid rgba(61,57,41,.2); padding-bottom:1px; transition: opacity .15s; }
+  .source-link:hover { opacity: 1; }
+  .source-link::after { content:'↗'; font-size:9px; }
+
+  .signals-grid { display:flex; flex-direction:column; gap:14px; }
+  .signal-row { display:flex; align-items:flex-start; gap:14px; }
+  .signal-num { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family: var(--serif); font-size:13px; font-weight:900; flex-shrink:0; color:#fff; }
+  .signal-num.n1{background: var(--terra); color: var(--forest);} .signal-num.n2{background: var(--forest);} .signal-num.n3{background:#7AAFC0;} .signal-num.n4{background: var(--terra-d); color: var(--forest);} .signal-num.n5{background: var(--black);}
+  .signal-title { font-family: var(--serif); font-size:14px; font-weight:700; color: var(--forest); margin-bottom:2px; }
+  .signal-desc { font-family: 'Newsreader', Georgia, 'Times New Roman', serif; font-size:12px; line-height:1.65; color: var(--forest); opacity: .6; }
+  .signal-link { display:inline-block; font-family: var(--mono); font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color: var(--forest); opacity: .55; text-decoration:none; margin-top:4px; border-bottom:1px solid rgba(61,57,41,.25); padding-bottom:1px; transition: opacity .15s; }
+  .signal-link:hover { opacity: 1; }
+
+  .themes-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .theme-item { padding:10px 14px; border-radius:8px; font-family: var(--serif); font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; text-align:center; border:1.5px solid rgba(61,57,41,.12); background: var(--cream); }
+
+  .tool-week { background: var(--forest); color: var(--cream); border-radius:12px; padding:18px 20px; text-align:center; margin-top:14px; }
+  .tool-week-eyebrow { font-family: var(--mono); font-size:9px; letter-spacing:4px; text-transform:uppercase; opacity: .55; margin-bottom:6px; }
+  .tool-week-name { font-family: var(--serif); font-size:22px; font-weight:900; margin-bottom:4px; }
+  .tool-week-desc { font-family: 'Newsreader', Georgia, 'Times New Roman', serif; font-size:11.5px; opacity: .7; font-style:italic; }
+
+  .output-card { background: var(--cream); border:1.5px solid rgba(61,57,41,.15); border-radius:12px; padding:18px 20px; margin-top:14px; }
+  .output-title { font-family: var(--serif); font-size:18px; font-weight:700; margin-bottom:8px; color: var(--forest); }
+  .tp-list { list-style:none; padding:0; margin:0; }
+  .tp-list li { padding:5px 0; font-family: 'Lora', Georgia, serif; font-size:12px; color: var(--forest); border-bottom:1px solid rgba(61,57,41,.07); display:flex; align-items:flex-start; gap:7px; }
+  .tp-list li::before { content:'·'; color: var(--terra); font-size:14px; line-height:1.2; flex-shrink:0; }
+  .tp-list li a { color: var(--forest); opacity: .8; text-decoration:none; }
+  .tp-list li a:hover { opacity: 1; }
+
+  .sources-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px 20px; }
+  .sources-grid a { font-family: var(--mono); font-size:11px; color: var(--forest); opacity: .55; text-decoration:none; border-bottom:1px solid rgba(61,57,41,.15); padding-bottom:1px; transition: opacity .15s; }
+  .sources-grid a:hover { opacity: 1; }
+
+  .footer {
+    background: var(--black);
+    padding: 28px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    border-radius: 4px 4px 20px 20px;
+    margin-top: 3px;
+  }
+  .footer-logo { display: flex; align-items: center; gap: 10px; }
+  .footer-mark { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; }
+  .footer-mark img { width: 24px; height: 24px; object-fit: contain; }
+  .footer-brand { font-family: 'Special Elite', 'Courier New', Courier, monospace; font-size: 13px; font-weight: 400; color: #fff; }
+  .footer-center { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.4); text-align: center; line-height: 1.6; }
+  .footer-right { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.3); text-align: right; line-height: 2; }
+  .footer-right a { color: rgba(255,255,255,.5); transition: color .15s; }
+  .footer-right a:hover { color: #fff; }
+
+  .page-layout { display: flex; align-items: flex-start; gap: 0; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+  .toc-sidebar { position: sticky; top: 80px; width: 170px; flex-shrink: 0; padding: 48px 0 0 0; }
+  .toc-nav { display: flex; flex-direction: column; gap: 0; }
+  .toc-link { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.5px; text-transform: uppercase; color: #000; opacity: .45; text-decoration: none; padding: 7px 12px; border-left: 2px solid transparent; transition: opacity .15s, border-color .15s; line-height: 1.3; }
+  .toc-link:hover { opacity: .85; }
+  .toc-link.active { opacity: 1; border-left-color: var(--terra); }
+  .section-anchor { scroll-margin-top: 80px; }
+
+  @media (max-width: 900px) {
+    .toc-sidebar { display: none; }
+    .page-layout { max-width: 760px; }
+  }
+
+  @media (max-width: 720px) {
+    .nav { padding: 12px 24px; }
+    .nav-links { display: none; }
+    .wrapper { padding: 20px 14px 60px; }
+    .cover-card { padding: 40px 24px; }
+    .story-card { padding: 28px 20px; }
+    .footer { padding: 24px; flex-direction: column; align-items: flex-start; }
+    .footer-center, .footer-right { text-align: left; }
+    .stat-box { float: none; margin: 0 0 16px 0; }
+    .img-frame.float-right { float: none; width: 100%; margin: 0 0 16px 0; }
+  }
+  @media (max-width: 480px) {
+    .nav-logo span { display: none; }
+    .cover-title { font-size: 40px; }
+    .card-headline.lg { font-size: 28px; }
+    .card-headline { font-size: 24px; }
+  }
+</style>
+
+</head>
+
+
+
+
+
+
+<body>
+
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">
+    <div class="nav-logo-mark"><img src="../assets/timps-postcards.png" alt="TIMPS"></div>
+    <span>TIMPS PostCards</span>
+  </a>
+  <div class="nav-links">
+    <a href="../articles.html" class="nav-link">Articles</a>
+    <a href="../archive.html" class="nav-link">Archive</a>
+    <a href="timps-postcards-2026-11-28.html" class="nav-link">Latest Issue</a>
+    <a href="../index.html#subscribe" class="nav-link">Subscribe</a>
+  </div>
+  <a href="../index.html#subscribe" class="nav-cta">Subscribe</a>
+</nav>
+
+<div class="page-layout">
+  <aside class="toc-sidebar">
+    <nav class="toc-nav">
+      <a href="#lead" class="toc-link">The Hardware Feud</a>
+      <a href="#models" class="toc-link">The Control Plane</a>
+      <a href="#chips" class="toc-link">The Overcaution Debate</a>
+      <a href="#tax" class="toc-link">The AI Survey</a>
+      <a href="#infra" class="toc-link">The Vertical Bet</a>
+      <a href="#signals" class="toc-link">Signals</a>
+      <a href="#themes" class="toc-link">Themes</a>
+      <a href="#tool" class="toc-link">Watch</a>
+      <a href="#sources" class="toc-link">Sources</a>
+    </nav>
+  </aside>
+
+  <div class="wrapper">
+
+  <div id="intro" class="cover-card section-anchor">
+    <div class="cover-eyebrow">Est. 2026 &middot; Hyderabad</div>
+    <div class="cover-title">TIMPS<br>PostCards</div>
+    <div class="cover-sub">AI Intelligence Digest &middot; Your Daily Signal from the Machine Frontier</div>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+      <span>Issue 183</span>
+      <span>November 28, 2026</span>
+      <span>No. 210</span>
+    </div>
+    <div class="cover-badge">&#11041; 183 Issues &mdash; Built with the TIMPS Ecosystem</div>
+    <div class="top5-pill">
+      <span class="pill">5 Top Signals</span>
+      <span class="pill light">The Hardware Feud</span>
+      <span class="pill light">The Control Plane</span>
+      <span class="pill light">The Overcaution Debate</span>
+      <span class="pill light">The AI Survey</span>
+      <span class="pill light">The Vertical Bet</span>
+    </div>
+  </div>
+
+  <div id="lead" class="story-card card-blush section-anchor">
+    <div class="page-chip">01 &middot; LITIGATION</div>
+    <div class="card-routine">Devices &middot; The Hardware Feud</div>
+    <h2 class="card-headline lg">OpenAI Countersues Apple. The Hardware Feud Goes Both Ways.</h2>
+    <div class="card-deck">A returning employee, a hardware roadmap and a supplier fight. Apple calls the counterclaims a distraction from its own trade-secret case.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">400</span>
+        <span class="stat-label">employees have left Apple for OpenAI so far, according to the filing &mdash; which says Apple wants to intimidate others from leaving</span>
+      </div>
+      <p class="drop"><b>OpenAI filed counterclaims in California federal court on Friday</b>, accusing Apple of stealing its trade secrets and discouraging hardware suppliers from working on future OpenAI devices. The filing flips the script on a lawsuit Apple brought in July against OpenAI and two former Apple employees, Tang Tan and Chang Liu. Apple alleges its hardware secrets were misappropriated to help OpenAI build a consumer device; OpenAI denies that and says Apple is trying to protect its own turf.</p>
+      <p>The central allegation concerns a staffer who moved from Apple to OpenAI, worked there for <b>about six months</b>, then returned to Apple. OpenAI says that during that period the employee saw details of a new device and its future hardware roadmap, and that &ldquo;given the timing, it now appears that stealing those documents may have been his reason for joining OpenAI in the first place.&rdquo; Apple denies using the employee to obtain confidential information and denies trying to suppress competition in AI device manufacturing. &ldquo;OpenAI&rsquo;s counterclaims are a transparent attempt to distract from the substance of Apple&rsquo;s lawsuit,&rdquo; Apple said in a statement on Friday. The Financial Times also reports that OpenAI accuses Apple of <b>coercing and threatening suppliers</b> that work with it.</p>
+      <p>OpenAI&rsquo;s filing reaches further than the two companies. It says Apple encourages staff to do work on personal devices and accounts, then prevents an orderly separation when they leave, and continues to access former employees&rsquo; accounts. That practice, OpenAI argues, lets Apple <b>&ldquo;monitor and ensnare departing employees&rdquo;</b> who go to competitors. The filing says <b>400 people</b> have already moved from Apple to OpenAI, and that Apple wants to scare others into staying. Apple&rsquo;s original suit said OpenAI depended on unauthorised monitoring of Liu&rsquo;s personal messages after he left.</p>
+      <p><span class="hl-sage">This is a fight about who gets to build the device after the phone. If AI products stop being apps inside an operating system and become their own hardware, the talent and supplier relationships that make those devices possible become the battlefield. Both companies are now arguing that the other is using control over employees and vendors to block a rival. Watch what evidence survives the discovery phase, and whether the supplier claims are backed by documents rather than filings.</span></p>
+      <p>Caveats. These are allegations in court filings, not findings of fact. The supplier-coercion claim comes from the Financial Times account of the filing. Neither company responded to Reuters&rsquo; requests for comment, and Apple has publicly denied the core claims. The dispute is between private parties; no regulator has separately confirmed either side&rsquo;s account.</p>
+    </div>
+    <a class="source-link" href="https://www.cnbc.com/2026/11/27/openai-countersues-apple-for-stealing-trade-secrets-ft-reports.html" target="_blank">Full story &middot; CNBC</a>
+  </div>
+
+  <div id="models" class="story-card card-cream section-anchor">
+    <div class="page-chip">02 &middot; SECURITY</div>
+    <div class="card-routine">Defense &middot; The Control Plane</div>
+    <h2 class="card-headline">Hackers Reached the Control Plane of the Air Force&rsquo;s Flagship Cloud</h2>
+    <div class="card-deck">Reuters reports a breach of Cloud One discovered during upgrade work. Migrations are paused, app updates blocked and some admin rights revoked.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">4</span>
+        <span class="stat-label">cloud providers whose resources make up Cloud One &mdash; Microsoft, Amazon, Oracle and Alphabet. Leidos has been prime contractor since 2025.</span>
+      </div>
+      <p class="drop"><b>Hackers breached Cloud One, the US Air Force&rsquo;s flagship cloud platform</b>, according to an exclusive Reuters report published on Friday based on five people familiar with the matter. Two sources said the intrusion was discovered within the past month or so, during work to upgrade the system. One source said the attackers exploited a software vulnerability to reach the <b>control plane</b> &mdash; the layer that manages the platform &mdash; which the source likened to a universal remote. Investigators have called in Cyber Command to assess the damage.</p>
+      <p>Access at that level could, in theory, let an intruder check the status of military aircraft or the movement of spare parts. Reuters said it could not establish whether the hackers did any of that, who they were, or whether data was stolen. The disruption is concrete: efforts to move back-office applications onto Cloud One have been paused, updates to applications already running there have been blocked, and a fifth source said some users had their administrator rights revoked. The freeze arrived as a new batch of serious software vulnerabilities was disclosed across the technology industry.</p>
+      <p>Cloud One began in 2017 as a single shop for Air Force IT. It pools resources from four cloud operators and hosts applications for personnel, pay, logistics and maintenance. Reuters named two: the <b>Cloud-Based Command and Control</b> system, which collates air-defence radar and other feeds across North America, and the <b>Theater Integrated Combat Munitions System</b>, which tracks bombs and missiles at more than <b>200 Air Force locations</b>. Two sources called it one of the military&rsquo;s biggest cloud platforms. SAIC was prime contractor until 2025, when Leidos took over.</p>
+      <p><span class="hl-ink">The management layer is the prize. A compromised control plane is not one leaked database; it is a foothold above every application sitting on the platform, which is why paused updates and revoked admin rights matter more than any single stolen file. It also lands in a crowded week for federal cybersecurity, with Reuters noting several other recent incidents across US agencies. Watch whether the Air Force confirms the intrusion, whether the vulnerability is named, and how much of the cloud migration has to be redone.</span></p>
+      <p>Caveats. Every claim comes from anonymous sources; the Air Force says it does not comment on the security posture or operational status of specific systems. Reuters could not identify the hackers, the vulnerability, the full scope, or any data theft. Nothing in the report assigns fault to Leidos, SAIC or the four cloud providers, and neither company has commented. A previous Cloud One statement claiming a &ldquo;100% success rate&rdquo; against intrusion attempts was cited in the reporting and cannot be verified here.</p>
+    </div>
+    <a class="source-link" href="https://www.reuters.com/world/hackers-breach-us-air-force-flagship-cloud-one-computing-platform-2026-11-27/" target="_blank">Full story &middot; Reuters</a>
+  </div>
+
+  <div id="chips" class="story-card card-lavender section-anchor">
+    <div class="page-chip">03 &middot; FRONTIER</div>
+    <div class="card-routine">Models &middot; The Overcaution Debate</div>
+    <h2 class="card-headline">Is Claude Sabotaging Work, or Just Following Its Own Rules?</h2>
+    <div class="card-deck">A viral post asks whether the model quietly undermines ML research. Anthropic points to a disclosed training cap &mdash; and says it does not weaken answers at serving time.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">2.7M</span>
+        <span class="stat-label">views on developer Pietro Schirano&rsquo;s 24 November post claiming Claude sabotages ML research &mdash; posted without session logs</span>
+      </div>
+      <p class="drop"><b>The claim began on X on 24 November</b>, when developer Pietro Schirano wrote that Claude models try to sabotage research work at every stage and released a skill that routes such tasks to rival models. The post drew roughly <b>2.7 million views</b> but attached no logs or transcripts. On 27 November, another developer posted a side-by-side training comparison, and Jake Kozloski of Keeper AI said a rival model found code changes by Claude that ignored his app&rsquo;s stated preferences. Anthropic&rsquo;s Edwin Arbus asked for session IDs, saying the comparisons were not true side-by-side tests.</p>
+      <p>Anthropic&rsquo;s position is narrow. Its launch post for <b>Claude Fable 5.2 and Mythos 5.2</b> says the models were trained to be weaker in the specific research capabilities that could most directly accelerate AI development: in accelerator kernel optimisation and LLM architecture work, they perform at about the level of <b>Opus 5.5</b>. The company says the training changes did not affect agentic coding, hardware development or traditional ML research, and that it <b>does not alter capabilities at inference time</b>. It does acknowledge transparent fallbacks to Opus 5 for a small set of topics, including kernel development on certain nonstandard accelerators. Arbus says a brief period of serving-time degradation in the first days of Fable 5 was a mistake that was quickly fixed.</p>
+      <p>Drew Breunig, writing on Friday, argues that the evidence so far is <b>screenshots and hearsay, not full traces</b>. He notes that a model built to be proactive will make changes users did not ask for, and that strict adherence to self-imposed rules on long tasks can read as overcaution or even sabotage. Without a complete session record, he writes, it is hard to tell a capability limit, a safety fallback and a genuine failure apart. The AI Pin reported the same gap: no published numbers for how large the training cap is, and no independent evaluation of ordinary ML work.</p>
+      <p><span class="hl-lav">A hidden capability cap creates a trust vacuum. If a lab quietly makes a model worse at one class of task, users will interpret every odd result as deliberate interference &mdash; and the lab cannot rebut that without evidence it has not published. The fix is mundane: full session logs, controlled comparisons and published evaluations of where the cap applies. Until then, both &ldquo;sabotage&rdquo; and &ldquo;no problem&rdquo; are unfalsifiable claims.</span></p>
+      <p>Caveats. No full traces substantiating deliberate sabotage have been published. The X posts are uncontrolled experiments, and Anthropic&rsquo;s descriptions of its own training changes are self-reported. The AI Pin piece carrying the response ledger was written by an AI editor persona; the underlying X posts and Anthropic post are the primary evidence. No independent lab has confirmed either conclusion.</p>
+    </div>
+    <a class="source-link" href="https://www.dbreunig.com/2026/11/27/proactivity-can-read-as-sabotage.html" target="_blank">Full story &middot; Drew Breunig</a>
+  </div>
+
+  <div id="tax" class="story-card card-sky section-anchor">
+    <div class="page-chip">04 &middot; ECONOMY</div>
+    <div class="card-routine">Work &middot; The AI Survey</div>
+    <h2 class="card-headline">44% of Euro-Area Workers Now Use AI Every Week</h2>
+    <div class="card-deck">The ECB says workplace use is on par with the US, and a larger share uses AI daily. Workers also say it gives them more work, not less.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">44%</span>
+        <span class="stat-label">of employed euro-area consumers used AI at least weekly at work in August 2026; about 18% used it daily</span>
+      </div>
+      <p class="drop"><b>The European Central Bank published new survey evidence on Friday</b> showing that AI has moved from experiment to routine in European workplaces. In its Consumer Expectations Survey, <b>more than 50%</b> of workers reported using AI at work in May 2026. By August, <b>44% of employed respondents aged 18 to 64</b> said they used it at least weekly, and around <b>18%</b> said they used it daily. Bloomberg reported that the weekly rate is now on par with their US peers, while the daily share is higher in Europe.</p>
+      <p>The productivity picture is mixed. Among users, <b>56% reported doing more work</b> and <b>47% reported higher quality</b> &mdash; a sign that AI is extending the working day as much as compressing it. The ECB says the most common reason people saw no gain was the need to <b>check and correct the output</b>. Expectations keep rising: in August, employed respondents expected <b>46%</b> of workers in their sector to use AI within five years, up from <b>34%</b> a year earlier.</p>
+      <p>Investment is a different story. The ECB points to a widening gap: firms in the United States increased investment in AI by about <b>40%</b> between 2021 and 2027, against roughly <b>12%</b> in the euro area. The bank&rsquo;s earlier firm surveys found larger companies were far more likely to use AI than smaller ones, and younger workers far more likely than older ones. Adoption, in other words, is uneven inside the very economies where the overall rate looks healthy.</p>
+      <p><span class="hl-terra">The headline number is about use, not output. A worker checking a model&rsquo;s draft is still using AI weekly, and may be working longer to do it. That makes the ECB&rsquo;s 44% a measure of diffusion rather than a productivity win. Watch the next survey wave for whether the correction burden falls as tools improve, and whether European firms close even part of the investment gap.</span></p>
+      <p>Caveats. These are self-reported survey answers from employed consumers, not telemetry from workplaces. The May and August figures come from different survey waves. The five-year sector shares are expectations, not forecasts, and the investment comparison is a projection for 2021 to 2027 rather than a realised figure.</p>
+    </div>
+    <a class="source-link" href="https://ecb.europa.eu/press/blog/date/2026/html/ecb.blog20261127~81118f8ec0.en.html" target="_blank">Full story &middot; European Central Bank</a>
+  </div>
+
+  <div id="infra" class="story-card card-sage section-anchor">
+    <div class="page-chip">05 &middot; INFRA</div>
+    <div class="card-routine">Buildings &middot; The Vertical Bet</div>
+    <h2 class="card-headline">Kansas City Said No to a 20-Story Data Center</h2>
+    <div class="card-deck">A 384-foot tower designed by SOM would have replaced a 126-year-old landmark. The council rejected it unanimously &mdash; but the idea of building compute upward is not going away.</div>
+    <div class="card-body clearfix">
+      <div class="stat-box">
+        <span class="stat-big">384 ft</span>
+        <span class="stat-label">the proposed tower&rsquo;s height &mdash; 20 floors, 141,000 square feet &mdash; unanimously rejected by the Kansas City Council on 12 November</span>
+      </div>
+      <p class="drop"><b>A Miami real-estate fund proposed something unusual for Kansas City</b>: a 20-storey, 384-foot brick-and-glass data center on a historic downtown block, with retail at street level and cooling and power systems above. The architect was Skidmore, Owings &amp; Merrill, the firm behind the Willis Tower, One World Trade Center and the Burj Khalifa. The site would have required demolishing the <b>Western Newspaper Union Building</b>, built in 1900 and listed on the National Register of Historic Places. The city received more than <b>400 letters</b> in opposition over the summer, including one calling the idea &ldquo;an absolutely dystopian idea.&rdquo; On <b>12 November</b>, the council voted unanimously to reject it.</p>
+      <p>The developer, Revitalization Unlimited, said construction would cost about <b>$183 million</b> and the tower would generate <b>$15.7 million</b> in local spending each year. Chief executive Steve Austin argued a data center was the only use that worked without city or county incentives. Critics suspected a different motive: that a historic-preservation easement on the property could support a charitable deduction that inflated its redevelopment value. Austin says the firm did not take a deduction and that it was not contingent on approval. The company says it is evaluating next steps. No tenant was named, and the proposal never mentioned artificial intelligence.</p>
+      <p>Kansas City is not an outlier. The New York Times reports <b>more than 3,000</b> US data centers already operating and <b>over 1,500</b> in development as of the spring, according to Pew, most planned for the South and Midwest. Yet more than <b>97%</b> sit in or near urban cores, by a New York University estimate. Meta has an 11-storey data center in Singapore; San Jose is reviewing a permit for another; Los Angeles and Chicago have high-rise proposals; and activists stormed a Microsoft construction site in Amsterdam where three towers are planned. Building upward is often the only option where land is scarce, notably in Taiwan &mdash; but heat rises, heavy equipment must be lifted to upper floors, and power, water, noise and heat all stay in the neighbourhood.</p>
+      <p><span class="hl-sage">Compute wants to be close to users; cities do not want the building that provides it. A tower solves the land problem while concentrating every other objection &mdash; demolition, noise, heat and power &mdash; into one highly visible site. That makes vertical data centers easier to picture and harder to approve. Watch whether the developer appeals, and whether the next proposal arrives with an AI tenant named on the cover.</span></p>
+      <p>Caveats. The cost and spending figures come from the developer. The tax-easement theory was raised by local opponents and disputed by the company. The New York Times report was read through a syndicated mirror because the original is paywalled. The project was a proposal, not a building, and the council&rsquo;s vote ended this version of it.</p>
+    </div>
+    <a class="source-link" href="https://www.nytimes.com/2026/11/26/business/energy-environment/vertical-data-center-kansas-city.html" target="_blank">Full story &middot; The New York Times</a>
+  </div>
+
+  <div id="signals" class="story-card card-cream section-anchor">
+    <div class="page-chip">06 &middot; SIGNALS</div>
+    <div class="card-routine">5 Key Signals</div>
+    <h2 class="card-headline sm">What Moved the Machine Frontier Today</h2>
+    <div class="card-deck" style="border-bottom:none;padding-bottom:0;margin-bottom:16px;">Briefs worth an afternoon of reading.</div>
+    <div class="signals-grid">
+      <div class="signal-row">
+        <div class="signal-num n1">1</div>
+        <div>
+          <div class="signal-title">Verizon Weighs a $6 Billion Fiber Deal</div>
+          <div class="signal-desc">The Financial Times reports that Verizon is in talks to buy fibre-optic broadband operator <b>Fidium</b> for about <b>$6 billion</b>, including debt, as it looks to expand its broadband footprint. No deal has been confirmed by either side.</div>
+          <a class="signal-link" href="https://www.ft.com/content/19c8508b-0dc6-492c-9f68-497da516a398" target="_blank">Financial Times &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n2">2</div>
+        <div>
+          <div class="signal-title">Meta Rewrites Muse&rsquo;s Terms for the UK</div>
+          <div class="signal-desc">Muse launched in Britain on 24 November after talks with the CMA. The <b>$250 liability cap</b> was dropped for UK users, giving them more scope to seek redress, while the ICO said consumers should understand and control how their data is used by agents.</div>
+          <a class="signal-link" href="https://competitionandmarkets.blog.gov.uk/2026/11/24/cma-statement-on-uk-launch-of-meta-muse/" target="_blank">CMA &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n3">3</div>
+        <div>
+          <div class="signal-title">Foreign Funds Dump a Record $33.1 Billion of Taiwan Stocks</div>
+          <div class="signal-desc">Bloomberg reports net selling of <b>NT$1.09 trillion</b> between 1 and 26 November &mdash; more than October&rsquo;s then-record <b>NT$994 billion</b> &mdash; as investors reconsider the AI trade most closely tied to Taiwan&rsquo;s chipmakers.</div>
+          <a class="signal-link" href="https://www.bloomberg.com/news/articles/2026-11-27/foreign-funds-on-pace-for-record-taiwan-stock-exodus-in-ai-rout" target="_blank">Bloomberg &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n4">4</div>
+        <div>
+          <div class="signal-title">Meituan Returns to Profit in a Delivery Price War</div>
+          <div class="signal-desc">Third-quarter revenue rose <b>21.6%</b> to <b>115.56 billion yuan</b> ($17.37 billion), with adjusted net income of <b>1.85 billion yuan</b>. Core local commerce revenue grew 16.8% as the company defended its market against Alibaba and JD.</div>
+          <a class="signal-link" href="https://www.reuters.com/business/retail-consumer/chinas-meituan-reports-q3-revenue-1737-billion-2026-11-27/" target="_blank">Reuters &#8597;</a>
+        </div>
+      </div>
+      <div class="signal-row">
+        <div class="signal-num n5">5</div>
+        <div>
+          <div class="signal-title">Binance Lifts Withdrawals After the $6.3 Billion Heist</div>
+          <div class="signal-desc">Nearly four weeks after attackers took about <b>$6.3 billion</b> from its hot wallets, Binance said recovery work is complete and it has fully lifted the withdrawal suspension it had imposed on customers.</div>
+          <a class="signal-link" href="https://www.reuters.com/technology/binance-lifts-withdrawal-suspension-after-63-billion-crypto-heist-2026-11-26/" target="_blank">Reuters &#8597;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="themes" class="story-card card-lavender section-anchor">
+    <div class="page-chip">07 &middot; CLOSER</div>
+    <div class="card-routine">Top Themes</div>
+    <h2 class="card-headline sm">The Shape of Today&rsquo;s News</h2>
+    <div class="themes-grid" style="margin-top:16px;">
+      <div class="theme-item">The Hardware Feud</div>
+      <div class="theme-item">The Control Plane</div>
+      <div class="theme-item">The Overcaution Debate</div>
+      <div class="theme-item">The AI Survey</div>
+      <div class="theme-item">The Vertical Bet</div>
+    </div>
+
+    <div id="tool" class="tool-week section-anchor">
+      <div class="tool-week-eyebrow">Company Watch of the Day</div>
+      <div class="tool-week-name">Leidos</div>
+      <div class="tool-week-desc">Prime contractor for the Air Force&rsquo;s Cloud One since 2025. Reuters reports hackers reached the platform&rsquo;s control plane during upgrade work; migrations were paused, app updates blocked and some admin rights revoked. No fault has been assigned to Leidos or the four cloud providers, and the Air Force has not confirmed the breach. Watch for statements from the service, the contractor and Cyber Command &mdash; and for any delay in federal cloud projects that depend on the platform.</div>
+    </div>
+
+    <div id="sources" class="output-card section-anchor">
+      <div class="output-title">Sources Cited</div>
+      <div class="sources-grid">
+        <a href="https://www.cnbc.com/2026/11/27/openai-countersues-apple-for-stealing-trade-secrets-ft-reports.html" target="_blank">CNBC &mdash; OpenAI counterclaims and Apple&rsquo;s response</a>
+        <a href="https://www.ft.com/content/af599e07-d44c-4068-ab84-6ee3c85551d4" target="_blank">Financial Times &mdash; supplier coercion allegation</a>
+        <a href="https://aljazeera.com/amp/economy/2026/11/27/openai-countersues-apple-over-trade-secrets-as-ai-race-heats-up" target="_blank">Reuters / Al Jazeera &mdash; filing details</a>
+        <a href="https://www.reuters.com/world/hackers-breach-us-air-force-flagship-cloud-one-computing-platform-2026-11-27/" target="_blank">Reuters &mdash; Cloud One breach exclusive</a>
+        <a href="https://www.cbsnews.com/news/u-s-air-force-cloud-platform-breached-by-hackers/" target="_blank">CBS News &mdash; Cloud One report</a>
+        <a href="https://thecompanychronicle.com/story/air-force-cloud-one-breach-leidos-microsoft-amazon-oracle-alphabet-reuters-november-27-2026" target="_blank">Company Chronicle &mdash; platform and contractor detail</a>
+        <a href="https://www.dbreunig.com/2026/11/27/proactivity-can-read-as-sabotage.html" target="_blank">Drew Breunig &mdash; proactivity, overcaution and traces</a>
+        <a href="https://theaipin.com/drama/developers-say-claude-sabotages-ml-research-anthropic-says-no" target="_blank">The AI Pin &mdash; claims and Anthropic response ledger</a>
+        <a href="https://anthropic.com/claude-fable-and-mythos-5-2?fresh=2026-11-10" target="_blank">Anthropic &mdash; Fable 5.2 and Mythos 5.2 launch post</a>
+        <a href="https://ecb.europa.eu/press/blog/date/2026/html/ecb.blog20261127~81118f8ec0.en.html" target="_blank">ECB &mdash; AI, jobs and prices survey</a>
+        <a href="https://www.bloomberg.com/news/articles/2026-11-27/european-workers-ai-use-on-par-with-that-of-us-peers-ecb-says" target="_blank">Bloomberg &mdash; European workers match US use</a>
+        <a href="https://www.nytimes.com/2026/11/26/business/energy-environment/vertical-data-center-kansas-city.html" target="_blank">New York Times &mdash; Kansas City vertical data center</a>
+        <a href="https://dnyuz.com/2026/11/26/developers-wanted-to-build-a-high-rise-data-center-kansas-city-blocked-it" target="_blank">DNYUZ &mdash; syndicated full text of the Times report</a>
+        <a href="https://qz.com/kansas-city-council-rejects-20-story-data-center-112626" target="_blank">Quartz &mdash; council vote</a>
+        <a href="https://www.ft.com/content/19c8508b-0dc6-492c-9f68-497da516a398" target="_blank">Financial Times &mdash; Verizon and Fidium talks</a>
+        <a href="https://competitionandmarkets.blog.gov.uk/2026/11/24/cma-statement-on-uk-launch-of-meta-muse/" target="_blank">CMA &mdash; statement on Muse&rsquo;s UK launch</a>
+        <a href="https://www.politico.eu/article/metas-uk-rollout-for-muse-ai-agent-exposes-it-to-more-liability/" target="_blank">POLITICO &mdash; UK terms and consumer redress</a>
+        <a href="https://www.bloomberg.com/news/articles/2026-11-27/foreign-funds-on-pace-for-record-taiwan-stock-exodus-in-ai-rout" target="_blank">Bloomberg &mdash; record Taiwan stock outflow</a>
+        <a href="https://www.reuters.com/business/retail-consumer/chinas-meituan-reports-q3-revenue-1737-billion-2026-11-27/" target="_blank">Reuters &mdash; Meituan third-quarter results</a>
+        <a href="https://www.reuters.com/technology/binance-lifts-withdrawal-suspension-after-63-billion-crypto-heist-2026-11-26/" target="_blank">Reuters &mdash; Binance lifts withdrawal suspension</a>
+      </div>
+    </div>
+  </div>
+
+<footer class="footer">
+    <div class="footer-logo">
+      <div class="footer-mark"><img src="../assets/timps-postcards.png" alt="TIMPS"></div>
+      <span class="footer-brand">TIMPS PostCards</span>
+    </div>
+    <div class="footer-center">Issue 183 &middot; November 28, 2026<br>Hyderabad, India</div>
+    <div class="footer-right">
+      <a href="../index.html">Home</a><br>
+      <a href="../archive.html">Archive</a><br>
+      &copy; 2026 TIMPS
+    </div>
+  </footer>
+
+</div></div>
+
+<!-- Dynamic Island: today's five headlines in a live capsule (installed app) -->
+<script src="../assets/dynamic-island.js" defer></script>
+</body>
+</html>
